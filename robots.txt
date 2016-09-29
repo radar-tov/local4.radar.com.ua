@@ -1,0 +1,23 @@
+User-agent: *
+Disallow: /admin
+Allow: /sitemap.xml
+Allow: /images/
+Disallow: /cart
+Disallow: /cabinet
+Disallow: /login
+Disallow: /registration
+Sitemap: http://radar.com.ua/sitemap.xml
+
+
+
+User-agent: Yandex
+Allow: /sitemap.xml
+Allow: /images/
+Disallow: /admin
+Disallow: /cart
+Disallow: /cabinet
+Disallow: /login
+Disallow: /registration
+
+Host: http://radar.com.ua
+Sitemap: http://radar.com.ua/sitemap.xml

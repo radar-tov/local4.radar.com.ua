@@ -1,0 +1,1 @@
+{!! with(new \App\Services\CustomPagination($products))->render() !!}

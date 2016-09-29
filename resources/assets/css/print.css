@@ -1,0 +1,133 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("../font/roboto/Roboto-Bold.woff2") format("woff2"), url("../font/roboto/Roboto-Bold.woff") format("woff"), url("../font/roboto/Roboto-Bold.ttf") format("truetype"); }
+*{
+	font-family: sans-serif;
+}
+.listLightbox img, .header, .col.add-review, .mobile-menu, .nav-menu, .breadcrumbs, .related, .page-footer, .footer-copyright, ul.vertical-crousel.slick-slider, h3.categories, .addtocart-button-item, .buttons, .modal, .reviews, .col.features, .review-button{
+    display: none!important;
+}
+.content{
+    display: block;
+}
+.full-desc{
+clear:both;}
+.listLightbox .bigImage img{
+    display:block!important;
+}
+.listLightbox {
+	list-style-type:none;
+	width:50%;
+	float:left;
+	padding-right:20px;
+	box-sizing:border-box;
+}
+.col.single-item-info{
+  width:50%;
+  float:left;
+}
+
+.listLightbox  img{
+    width:100%;
+}
+.smallImage img{
+display:none;
+}
+/*Item!*/
+p.single-item-sku{
+    color: #777;
+}
+.brand{
+    color: #777;
+    font-size: 14px;
+    float: left;
+}
+.item-rating {
+    margin-left: 30px;
+}
+.item-new-price, .item-price{
+    color: #e74c3c;
+	font-size:20px;
+}
+.item-old-price{
+    color: #919191;
+    position: relative;
+	font-size:20px;
+	text-decoration:line-through;
+}
+.col.item-prices{
+    padding-top: 23px;
+    padding-bottom: 18px;
+    margin-top: 10px;
+}
+.bordered{
+    border: 1px solid #e6e6e6;
+	clear:both;
+}
+.col.buttons{
+    margin-top: 10px;
+    padding: 5px;
+}
+.item-option{
+    position: relative;
+}
+.item-option span{
+    color: #666;
+    position: absolute;
+    bottom: 5px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+.col.wrap-price{
+    padding: 0 19px 0 0;
+}
+.col.buttons .col:first-child{
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+.col.buttons .col:nth-child(2){
+    border-bottom: 1px solid #ddd;
+}
+.col.buttons .col:nth-child(3){
+    border-right: 1px solid #ddd;
+}
+.col.short-desc{
+    width: 100%;
+    padding: 16px;
+}
+.col.wrapper-buttons{
+    padding: 0 22px 0 0;
+}
+.availability{
+    line-height: 21px;
+    padding-left: 18px;
+    position: relative;
+}
+.availability img{
+    position: absolute;
+    left: 3px;
+    top: 2px;
+}
+.col.full-desc .bordered{
+    padding: 19px 9px 19px 19px;
+}
+.col.full-desc span.green{
+    width: 183px;
+    padding-left: 23px;
+    line-height: 29px;
+    height: 29px;
+    display: block;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #fff;
+}
+.col.aspect{
+    margin-bottom: 20px;
+}
+.bordered .col.aspect:last-child{
+    margin: 0;
+}
+.advantages .card{
+    background-color: inherit;
+}

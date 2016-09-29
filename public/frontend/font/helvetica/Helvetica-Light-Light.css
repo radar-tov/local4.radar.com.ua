@@ -1,0 +1,11 @@
+/** Created by TTF.in.ua **/
+@font-face {
+    font-family: 'Helvetica-Light-Light';
+    src: url('Helvetica-Light-Light.eot');
+    src: url('Helvetica-Light-Light.eot?#iefix') format('embedded-opentype'),
+         url('Helvetica-Light-Light.woff') format('woff'),
+         url('Helvetica-Light-Light.ttf') format('truetype'),
+         url('Helvetica-Light-Light.svg#Helvetica-Light-Light') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

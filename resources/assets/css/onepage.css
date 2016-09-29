@@ -1,0 +1,1254 @@
+div#vmMainPageOPC {
+  clear: both; 
+  float: none;
+  margin: 0; 
+  padding: 0;
+  margin-top: 10px;
+}
+div#vmMainPageOPC *, div#vmMainPageOPC *:before, div#vmMainPageOPC *:after
+{
+  
+
+ 
+}
+.op_rounded_content label{
+   color: #777;
+  font: 400 12px "Roboto",sans-serif;
+  line-height: 28px;
+  margin:0;
+}
+.last-step{
+  float:right;
+}
+div#vmMainPageOPC  input[type="radio"], div#vmMainPageOPC  input[type="checkbox"] {
+ float: left; 
+  display: none;
+}
+div#vmMainPageOPC  input[type="checkbox"]#register_account {
+ float: none; 
+}
+div#vmMainPageOPC div#ajaxshipping .zasilkovina_output br {
+ display: block; 
+}
+div#vmMainPageOPC div.formField {
+ float: none; 
+}
+div#vmMainPageOPC div.op_basket_row input[type="text"] {
+  max-width: 56px;
+  height: 20px;
+  text-align: center;
+  margin-right: 14px;
+}
+div#vmMainPageOPC input, div#vmMainPageOPC select {
+}
+div#vmMainPageOPC {
+  margin: 35px 0 0;
+  padding: 0; 
+
+}
+div#vmMainPageOPC fieldset {
+  margin: 0; 
+  padding: 0; 
+}
+
+div#vmMainPageOPC div.op_col5 .opc_PricesalesPrice, div#vmMainPageOPC div.op_col5 span.opc_PricesalesPrice {
+ text-align: left;
+}
+div#vmMainPageOPC div.op_col7 .opc_PricesalesPrice, div#vmMainPageOPC div.op_col7 span.opc_PricesalesPrice {
+ text-align: center;
+}
+
+div#vmMainPageOPC h3 span.col-module_header_color {
+ margin-left: 15px;
+}
+
+div#vmMainPageOPC div.op_rounded_fix h3 span.col-module_header_r {
+  
+}
+
+
+div#vmMainPageOPC  a:hover, div#vmMainPageOPC  a:active, div#vmMainPageOPC  a:focus, div#vmMainPageOPC .op_basket_row a:hover  {
+  text-decoration: underline; 
+  background: none; 
+  background-color: transparent; 
+  outline: none !important;
+  color: #FFD11B !important;
+  
+}
+
+div#vmMainPageOPC textarea#customer_note_field {
+ padding: 3px 3px 3px 3px !important;
+}
+div#vmMainPageOPC #basket_container  a.deletebtn, div#vmMainPageOPC #basket_container a.deletebtn:hover {
+ background: none;
+ background: transparent url('../../../SOFT/back%20up/components/com_onepage/themes/icetheme_thestore/images/remove_from_cart.png') no-repeat center;
+ display: inline-block; 
+ width: 20px; 
+ height: 20px; 
+}
+#vmMainPageOPC iframe.tos_iframe {
+ width: 95%; 
+ height: 150px; 
+}
+#vmMainPageOPC #basket_container input.updatebtn {
+background: none;
+background: transparent url('../../../SOFT/back%20up/components/com_onepage/themes/icetheme_thestore/images/update_quantity_cart.png') no-repeat center;
+ display: inline-block; 
+ width: 20px; 
+ height: 20px; 
+ border: none; 
+ 
+}
+
+div#vmMainPageOPC #basket_container div.loginsection {
+ padding-top: 40px; 
+}
+#top_basket_wrapper {
+ width: 100%;
+ 
+}
+
+div#vmMainPageOPC table tr td, div#vmMainPageOPC table tr, div#vmMainPageOPC table td {
+border: none !important; 
+ background: none;
+}
+
+div#vmMainPageOPC span#customer_note_input {
+ margin-top: 10px;
+}
+#onepage_main_div h3, div#vmMainPageOPC h3, #onepage_main_div h3 span span span span {
+ padding: 0 !important; 
+ margin: 0 !important; 
+ background: none !important;
+ margin-top: 10px !important;
+ margin-left: 10px; 
+} 
+div#vmMainPageOPC div.op_basket_row div a.continue_link {
+ padding: 0; 
+ padding-left: 20px;
+ margin: 0; 
+ background: none;
+ background-color: transparent;
+}
+form#userForm div {
+ clear: left; 
+ float: right; 
+ width: 50%; 
+}
+form#userForm div.details-button {
+ float: right; 
+ width: 20%; 
+ clear: right; 
+}
+div#vmMainPageOPC input#coupon_code {
+ padding: 0;
+ margin-right: 9px;
+ width: 200px;
+ background: none;
+ height: 20px;
+ 
+}
+/* set the width of the country field select dropdown */
+div#vmMainPageOPC div#country_input select#country_field {
+ width: 215px;
+ max-width: 215px;
+}
+
+div#basket_container {
+ width: 100%;
+
+}
+
+div#couponcode_field {
+ margin-top: 10px; 
+ float: right;
+ width: 100%; 
+ margin-bottom: 15px;
+ clear: both; 
+}
+div#couponcode_field form span {
+ 
+}
+
+
+
+div#vmMainPageOPC div#couponcode_field form input {
+ text-align: left;
+ margin-left: auto; 
+ margin-right: 0; 
+ clear: both;
+ display: block;
+ width: 200px; 
+}
+div#vmMainPageOPC #onepage_main_div button {
+ background-color: transparent !important;
+ border: none !important;
+ box-shadow: none !important;
+}
+div#vmMainPageOPC button#confirmbtn_button {
+ background-color: transparent !important;
+ border: none !important;
+
+}
+div#vmMainPageOPC div#couponcode_field form button {
+  clear: both;
+  float: right;
+  background-color: transparent;
+  background-color: transparent !important;
+  border: none !important;
+   box-shadow: none !important;  
+
+}
+div#couponcode_field form button span {
+ float: none;
+}
+
+div#basket_container .black-basket {
+ width: 100%;
+}
+div#basket_container div, div#basket_container div.inside  {
+ width: 100%;
+}
+div#basket_container div div {
+ width: 100%;
+}
+div#basket_container div div div {
+ width: 100%;
+}
+div#basket_container div div div div {
+ width: 100%;
+}
+div#basket_container div div div div div {
+ width: 100%;
+}
+div#basket_container div div div div div div {
+ width: 100%;
+}
+
+
+div#onepage_main_div {
+ width: 100%;
+ margin: 0;
+ padding: 0;
+ float: left;
+}
+div#vmMainPageOPC .col-module_header_color {
+ font-size: 12px !important;
+ font-weight: bold; 
+ color: #FFD11B;
+}
+
+#basket_container .opc_product_name {
+   color: #55147c;
+   text-decoration: none; 
+}
+
+
+div#vmMainPageOPC .continue_link_ice span {
+  color: #FFD11B;
+  margin-left: 20px; 
+}
+div#vmMainPageOPC .op_round span#confirmbtn {
+  background-color: #55147c;
+  text-align: center;
+}
+div#vmMainPageOPC button#confirmbtn_button .op_round {
+ background-image: none;
+
+}
+div#vmMainPageOPC span#confirmbtn {
+ text-align: left;
+ font-weight: normal;
+  padding: 0 10px;
+ color: #FFFFFF;
+  border: none;
+}
+div#vmMainPageOPC span#confirmbtn:hover{
+  background-color: #f6d15f;}
+span#op_separator {
+ background: url(../../../SOFT/back%20up/components/com_onepage/themes/icetheme_thestore/images/separator.png) no-repeat 0 0;
+ width: 4px;
+ vertical-align: top;
+ height: 100%;
+ line-height: 100%;
+}
+div#basket_container div.op_basket_row div.op_col1 div {
+  
+ position: relative; 
+ top: 0; 
+ left: 10px; 
+}
+div#basket_container div.op_basket_row div.op_col1 {
+ width: 1.8%;
+ float: left;
+ overflow: visible;
+ position: relative; 
+ text-align: center;
+}
+div#basket_container div.op_basket_row div.op_col2 {
+ width: 23%;
+ float: left;
+  overflow: visible;
+  padding-left: 19px;
+  box-sizing:border-box;
+}
+div#basket_container div.op_basket_row div.op_col3 {
+ width: 0%;
+ float: left;
+  overflow: visible;
+  box-sizing:border-box;
+}
+div#basket_container div.op_basket_row div.op_col4 {
+ width: 10.5%;
+ float: left;
+  overflow: visible;
+  box-sizing:border-box;
+  padding-left: 19px;
+}
+div#basket_container div.op_basket_row div.op_col5 {
+ width: 19.25%;
+ float: left;
+  overflow: visible;
+  box-sizing:border-box;
+}
+div#basket_container div.op_basket_row div.op_col6 {
+ width: 16.5%;
+ float: left;
+ overflow: visible;
+  box-sizing:border-box;
+}
+div#basket_container div.op_basket_row div.op_col6 form {
+ float: left;
+}
+div#basket_container div.op_basket_row div.op_col6 form input {
+ float: left !important;
+}
+div#basket_container div.op_basket_row div.op_col7 div.PricesalesPrice {
+ text-align: right;
+}
+
+div#basket_container div.op_basket_row div.op_col7 {
+ width: 28.95%;
+ float: left;
+ text-align: center;
+  overflow: visible;
+  box-sizing:border-box;
+  padding-left: 43px;
+}
+div#basket_container div.op_basket_row div.op_col1_4 {
+  width: 63.5%;
+ float: left;
+ text-align: right;
+  overflow: visible;
+  color: #55147c;
+  font: 600 14px "roboto",sans-serif;
+  line-height: 36px;
+}
+div#basket_container div.op_basket_row div.op_col5_3 {
+  width: 25.8%;
+ float: left;
+ text-align: right;
+  color: #cb380a;
+  overflow: visible;
+  font: 600 14px "roboto",sans-serif;
+  line-height: 36px;
+}
+div#basket_container div.op_basket_row div.op_col2_2 {
+ width: 23%;
+ float: left;
+    color: #666;
+  overflow: visible;
+  font-weight: 600;
+  padding-left: 19px;
+  box-sizing:border-box;
+}
+div#basket_container div.op_basket_row div.op_col2_3 {
+ width: 50%;
+float: left;
+    color: #777;
+  overflow: visible;
+}
+div#onepage_main_div fieldset legend.sectiontableheader {
+background: none;
+padding: 0;
+margin: 0;
+border: none;
+
+}
+fieldset.op_fieldset strong {
+ clear: both !important;
+ width: 100%;
+}
+div#onepage_main_div fieldset.op_fieldset {
+background: none !important;
+padding: 0 !important;
+margin: 0 !important;
+border: none !important;
+}
+
+
+
+#basket_container div div div div div div div div div.op_basket_row {
+  float: left;
+  width: 100%;
+  clear: both;
+  vertical-align: middle;
+  min-height: 37px;
+  line-height: 20px;
+  padding-top: 12px;
+  padding-bottom: 15px;
+}
+#basket_container div div div div div div div div div.op_basket_row span.product-field-type-S{
+  float: right;
+  padding-right: 20px;
+}
+div#vmMainPageOPC .basket_container {
+ clear: none; 
+ white-space: nowrap;
+ float: left; 
+}
+div#vmMainPageOPC span#op_round_and_separator {
+}
+div#vmMainPageOPC span#op_round_and_separator span {
+ padding-left: 5px;
+}
+
+div#vmMainPageOPC div#tab_selector button {
+ background: none;
+ background-color: transparent;
+ color: white;
+}
+div#vmMainPageOPC div#tab_selector span.op_round span.span2 {
+  color: #cb380a;
+}
+div#vmMainPageOPC div#tab_selector span.op_round span.span2:hover{
+  color:#fff;
+  background-color: #f6d15f;
+  border-color: #f6d15f;
+}
+a.pass{
+  font: 400 12px "roboto",sans-serif;
+}
+div#vmMainPageOPC span#span1 {
+background: url(../../../SOFT/back%20up/components/com_onepage/themes/icetheme_thestore/images/separator.png) no-repeat left top;
+ padding-left: 0;
+ padding-right: 0;
+}
+div#vmMainPageOPC .op_starttab  {
+ background: url(../../../SOFT/back%20up/components/com_onepage/themes/icetheme_thestore/images/button-left.png) no-repeat left top;
+ line-height: 27px; 
+}
+div#vmMainPageOPC .op_tabs {
+ margin: 0;
+ padding: 0; 
+ line-height: 27px; 
+}
+div#vmMainPageOPC .op_endtab {
+background: url(../../../SOFT/back%20up/components/com_onepage/themes/icetheme_thestore/images/button-right.png) no-repeat right top;
+line-height: 27px; 
+}
+div#vmMainPageOPC .coupon {
+  
+}
+button#submit_coupon_button {
+ float: right; 
+ min-width: 150px;
+ clear: both; 
+ padding: 0; 
+ margin: 0; 
+}
+div#vmMainPageOPC div#tab_selector {
+ height: 30px;
+ padding: 0;
+ padding-top: -20px;
+ padding-left: 30px;
+}
+	
+div#vmMainPageOPC button#submit_coupon_button .op_round {
+ margin: 0;
+}
+div#vmMainPageOPC span#span_coupon_button {
+ min-width: 150px;
+}
+div#vmMainPageOPC span#span_coupon_button span span {
+ background: none; 
+ padding: 0; 
+ margin: 0; 
+ margin-right: 20px; 
+}
+
+div#vmMainPageOPC li#op_login_btn {
+  position: relative;
+ margin: 0; 
+ padding: 0;
+ 
+}
+div#vmMainPageOPC li#op_register_btn {
+ position: relative;
+ margin: 0;
+ padding: 0;
+ 
+ }
+ div#vmMainPageOPC li#op_guest_btn {
+ position: relative;
+ margin: 0;
+ padding: 0;
+ 
+ }
+
+div#vmMainPageOPC li.op_list_separator{
+ margin-left:-20px;
+ margin-right: -4px;
+} 
+
+/* Safari */
+
+
+@-moz-document url-prefix() {
+    div#vmMainPageOPC li.op_list_separator span {
+ position:relative;
+ background: url(../../../SOFT/back%20up/components/com_onepage/themes/icetheme_thestore/images/separator.png) no-repeat;
+ width:4px;
+ height:29px;
+ display: inline-block;
+ margin: 0;
+ margin-bottom:-10.5px;
+
+}
+}
+
+
+div#vmMainPageOPC ul.op_list_ul{
+ margin:0;
+ padding:0;
+} 
+ 
+div#vmMainPageOPC li.op_list_li{
+ list-style-type: none;
+ display: inline;
+ text-align:center;
+}
+
+
+div#vmMainPageOPC span#span_coupon_button span {
+ text-align: center;
+ padding-left: 45px; 
+ 
+}
+
+div#vmMainPageOPC textarea#customer_note_field {
+ height: auto;
+ width: 100%;
+ resize:none;
+ overflow: auto;
+  min-height: 132px;
+}
+div#vmMainPageOPC div#onepage_userfieds {
+	width: 100%; 
+	float: left;
+}
+div#vmMainPageOPC div#onepage_info_above_button {
+	text-align: center; 
+	margin: auto;
+}
+div#vmMainPageOPC div#vmMainPageOPC  div#onepage_total_inc_sh {
+ padding-top: 10px;
+ width: 100%;
+}
+div#vmMainPageOPC div#onepage_info_above_button {
+ width: 100%;
+  padding-top: 20px;
+}
+div#vmMainPageOPC div#onepage_info_above_button div div {
+ width: 100%;
+}
+div#onepage_submit_section {
+	width: 100%; 
+	float: left; 
+	padding-top: 30px;
+}
+div#vmMainPageOPC input#confirmbtn {
+	width: 350px; 
+	height: 40px;  
+	padding: 20px;
+}
+div#vmMainPageOPC div#onepage_login_box {
+ padding: 20px; 
+ text-align: center; 
+ margin-right: auto; 
+ margin-left: auto; 
+ width: 100%; 
+}
+div#vmMainPageOPC div#onepage_login {
+ text-align: left; 
+ padding-left: 35%;
+}
+div#vmMainPageOPC textarea#onepage_tos {
+width: 100%;
+}
+
+div#vmMainPageOPC span.bottom_totals_txt {
+width: 30%;
+text-align: right;
+float: right;
+padding-left: 40px;
+}
+
+div#vmMainPageOPC span.bottom_totals {
+/* width: 67%; */
+text-align: left;
+padding-left: 3%;
+float: right;
+padding-left: 35px;
+
+}
+div#onepage_total_inc_sh {
+ width: 350px;
+ float: right;
+}
+div#vmMainPageOPC div#totalam div {
+ float: left;
+ clear: both;
+ width: 100%;
+  font: 400 12px "Roboto",sans-serif;
+  line-height:18px;
+}
+span#tt_total_txt {
+}
+div#totalam {
+
+width: 350px;
+clear: both;
+float: left;
+margin: 0 auto;
+padding-left: 40px;
+}
+div#vmMainPageOPC br.op_clear {
+ clear: both;
+}
+
+div#tt_order_subtotal_div {
+ width: 100%;
+ float: left;
+ clear: both;
+}
+div#tt_order_payment_discount_before_div {
+ width: 100%;
+ display: none;
+ 
+}
+
+div#tt_order_discount_before_div {
+ width: 100%;
+ display: none;
+
+}
+
+div#tt_shipping_rate_div {
+ width: 100%;
+ 
+
+}
+div#tt_shipping_tax_div {
+ width: 100%;
+ display: none;
+
+}
+
+div#tt_tax_total_0_div {
+ display: none;
+width: 100%;
+}
+
+div#tt_tax_total_1_div {
+ display: none;
+width: 100%;
+}
+
+div#tt_tax_total_2_div {
+ display: none;
+width: 100%;
+}
+
+div#tt_tax_total_3_div {
+ display: none;
+width: 100%;
+}
+
+div#tt_tax_total_4_div {
+ width: 100%;
+ display: none;
+
+}
+
+div#tt_order_payment_discount_after_div {
+ width: 100%;
+ display: none;
+
+}
+
+div#tt_order_discount_after_div {
+ width: 100%;
+ display: none;
+
+}
+span#tt_total {
+ color: #cb380a;
+ font-weight: bold;
+}
+div#tt_total_div {
+ width: 100%;
+
+}
+
+div#logintab .button {
+  float: left;
+  letter-spacing: 0;
+  font-size: 12px;
+  font-weight: 600;
+  height: 30px;
+  background-color: #55147c;
+  line-height: 30px;
+  padding: 0 50px;
+  text-transform: uppercase;
+  font-family: "roboto",arial,sans-serif;
+}
+div#logintab .button:hover{
+  background-color: #f6d15f;
+}
+div#vmMainPageOPC div.op_col2_2 a strong {
+ color: #FFD11B;
+}
+select#shipping_inside_basket_select {
+ font-family: monospace;
+}
+
+select#payment_inside_basket {
+ font-family: monospace;
+}
+
+div#rbsubmit {
+ padding-top: 20px;
+ vertical-align: bottom;
+ text-align: right;
+}
+div#rbsubmit div {
+ padding: 0;
+ width: 350px;
+}
+div#vmMainPageOPC div.op_rounded div.op_rounded_fix div div.formLabel {
+  float: left;
+  clear: left;
+  width: 15%;
+}
+div#vmMainPageOPC div.op_rounded div.op_rounded_fix div div.formLabel.special{
+  width:100%;
+}
+div#vmMainPageOPC div.continue_link_under_basket {
+ margin-bottom: 30px; 
+}
+div#vmMainPageOPC div.op_rounded div.op_rounded_fix div div.formField {
+    float: left;
+    margin: 2px;
+    vertical-align: middle;
+    width: 60%;
+}
+#customer_note_input{
+  width:100%!important;
+}
+/* rounded corners Felix */
+div#vmMainPageOPC div.op_inside {
+    width: 100%;	 
+}
+
+div#vmMainPageOPC div.op_rounded_content div div {
+ padding-top: 20px;
+
+}
+div#vmMainPageOPC .checkoutarea {
+    background: none repeat scroll 0 0 transparent !important;
+    border: none !important;
+	margin: 0 !important;    
+    padding: 10px 0 !important;
+    width: 100% !important;
+    float: left !important;
+    clear: both;
+}
+
+div#vmMainPageOPC div.op_rounded {
+    margin: 0 0 30px;
+    overflow: visible;
+    float: left;
+    width: 100%;
+    
+}
+
+div#vmMainPageOPC #onepage_main_div button {
+ background: none;
+ background-color: transparent;
+ border: medium none;
+ cursor: pointer;
+ overflow: visible;
+ padding: 0 2px;
+ white-space: nowrap;
+ width: auto;
+}
+div#vmMainPageOPC button:hover .op_round {
+ background-position: right bottom;
+ color: #FFFFFF;
+}
+div#vmMainPageOPC button:hover .op_round span {
+ background-position: left bottom;
+}
+
+
+#onepage_main_div .op_round:hover {
+ background-position: right bottom;
+ color: #FFFFFF;
+}
+#onepage_main_div .op_round:hover span {
+ background-position: left bottom;
+}
+#onepage_main_div strong {
+ text-decoration: none !important;
+}
+div#vmMainPageOPC .op_basket_row a {
+ text-decoration: none;
+}
+#onepage_main_div button span span {
+ /*background: none;*/
+ text-indent: -25px;
+ text-align: center;
+}
+#onepage_main_div #confirmbtn_button span span {
+ text-indent: 0;
+ text-align: left;
+}
+div#vmMainPageOPC .op_round {
+ cursor: pointer;
+}
+div#vmMainPageOPC   .op_round span span {
+ background: none; 
+}
+div#vmMainPageOPC   .op_round span {
+  border: 1px solid #dadada;
+  border-radius: 0;
+  color: #55147c;
+  letter-spacing: 0;
+  font-size: 12px;
+  float: left;
+  font-weight: 600;
+  height: 30px;
+  background-color: #fff;
+  line-height: 30px;
+  padding: 0 3px 0 34px;
+  text-transform: uppercase;
+  font-family: "roboto",arial,sans-serif;
+}
+div#vmMainPageOPC   .op_round span:hover{
+  background-color: #55147c;
+  border: 1px solid #55147c;
+  color:#fff;
+}
+div#vmMainPageOPC span#op_round_and_separator {
+ overflow: hidden;
+}
+div#vmMainPageOPC div.op_inside {
+}
+div#vmMainPageOPC div.op_rounded div {
+    padding-top: 10px;
+}
+div#vmMainPageOPC div.op_rounded div div div {
+        padding-top: 20px;
+    margin-top: -20px;
+}
+div#vmMainPageOPC div.op_rounded div div div div {
+    background: none repeat scroll 0 0 transparent;
+    padding-top: 0px;
+    margin: 0;
+	margin-top: 0px;
+}
+div#vmMainPageOPC div.op_rounded div.op_rounded_fix {
+    clear: both;
+    overflow: visible;
+    /*position: relative;*/
+    /*min-height: 200px; */
+   
+    
+}
+div#vmMainPageOPC div.op_rounded_content div {
+    
+}
+div#vmMainPageOPC div.op_rounded div.op_rounded_fix > div {
+ clear: none;
+ position: static;
+ padding-left: 10px;
+ width: 95%;
+}
+
+div#vmMainPageOPC div.op_rounded div.op_rounded_fix > div > div {
+ clear: none;
+ padding: 0;
+ width: auto;
+}
+
+
+
+div#vmMainPageOPC div.op_rounded h3 {
+    color: #555555;
+    display: inline-block;
+    font-size: 1em;
+    margin-top: -50px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    position: relative;
+    white-space: nowrap;
+}
+div#vmMainPageOPC div.op_rounded h3 span.col-module_header_r, div#vmMainPageOPC div.op_rounded h3 span.col-module_header_l, div#vmMainPageOPC div.op_rounded h3 span.col-module_header_arrow {
+    display: inline-block;
+    height: 43px;
+    line-height: 31px;
+}
+div#vmMainPageOPC div.op_rounded h3 span.col-module_header_arrow {
+    padding: 0 15px;
+}
+div#vmMainPageOPC div.op_rounded h3 span.col-module_header_color {
+    color: #015A80;
+}
+div#vmMainPageOPC div.op_rounded .op_rounded_content {
+    margin-top: 14px;
+    text-align: left;
+    padding: 0;
+}
+
+div#vmMainPageOPC div.op_rounded {
+    margin-right: 10px;
+}
+
+div#vmMainPageOPC div.op_rounded_fix h3 {
+  width: 100%;
+  clear: left;
+}
+div#vmMainPageOPC div.op_rounded_fix h3 span.col-module_header_color {
+  color: #55147c;
+  font: 600 14px "roboto",sans-serif;
+  text-transform: uppercase;
+  margin: 0;
+}
+button#confirmbtn {
+ top: 100px;
+}
+.module h3.modtitle.small{
+  width: 39%;
+}
+#basket_container .black-basket div div div div {
+    background: none repeat scroll 0 0 transparent;
+}
+#basket_container .black-basket div.col-module_fix {
+    clear: both;
+    overflow: visible;
+    padding: 0;
+    position: relative;
+}
+#basket_container .black-basket h3 span {
+    background: none repeat scroll 0 0 transparent !important;
+    display: inline !important;
+    height: auto !important;
+    line-height: normal !important;
+    padding: 0 !important;
+}
+#basket_container .black-basket h3 {
+    background: url("../../../SOFT/back%20up/components/com_onepage/themes/icetheme_thestore/images/colmodule_style1_header.png") repeat-x scroll left bottom transparent;
+    color: #FFFFFF;
+    display: block;
+    font-size: 1.3em;
+    margin: 5px 10px 7px;
+    padding: 10px 0 8px;
+}
+#basket_container .black-basket h3 span.col-module_header_color {
+    /*color: #CCCCCC;*/
+}
+#basket_container .black-basket .col-module_content {
+    color: #777777;
+/*    padding: 0 12px 12px; */
+}
+#basket_container .black-basket .col-module_content div.op_basket_row {
+}
+#basket_container img.browseProductImage 
+{
+ margin-left: 4px;
+}
+#basket_container .black-basket {
+    margin-right: 0px;
+	margin-left: 0px;
+}
+
+#basket_container tr {
+    /* background: url("images/othermenu_line.png") no-repeat scroll right bottom transparent; */
+    border-bottom: 0.2px dotted #999999;
+    color: #999999;
+    font-size: 1em;
+    height: 29px;
+    line-height: 29px;
+    padding: 0;
+    position: relative;
+    text-decoration: none;
+}
+#basket_container tr td {
+ background: none;
+}
+div#vmMainPageOPC tbody {display:block; display:table-row-group;} /* IE and FF */
+div#vmMainPageOPC table { 
+empty-cells:show; 
+border: none !important; 
+}
+
+
+/* address listing */
+div#vmMainPageOPC div#staddresses div.op_field_name {
+  width:40%; 
+  float: left;
+  margin: 0; 
+  padding: 0; 
+}
+div#staddresses div.op_field_value {
+ 
+ float: left; 
+ clear: right; 
+ margin:0; 
+ padding:0;
+ width:60%; 
+}
+
+div#staddresses div.op_radiowrapper {
+ width: 10%; 
+ margin: 0; 
+ margin-top: 10px; 
+ padding: 0; 
+ float: left; 
+ clear: left; 
+}
+
+div#staddresses div.op_labelwrapper {
+ margin: 0; 
+ margin-top: 10px; 
+ padding: 0; 
+ width: 90%; 
+ float: left; 
+
+ clear: right;  
+}
+
+
+div#vmMainPageOPC select {
+  border: solid #e6e6e6 1px;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  color: #777;
+  margin-bottom: 2px;
+  padding: 5px 5px 4px;
+  width: 292px;
+  max-width: 292px!important;
+  float: left;
+}
+
+div#basket_container input.inputbox_update {
+ max-width: 40px !important; 
+}
+.col-module_content{
+  font: 400 12px "roboto",sans-serif;
+}
+#basket_container div div div div div div div div div.op_basket_row:first-child{
+  background-color: #f6d15f;
+  color:#fff;  
+  line-height: 37px;
+  padding-top:0;
+  padding-bottom: 0px;
+}
+#basket_container div div div div div div div div div.op_basket_row:hover,#basket_container div div div div div div div div div.op_basket_row.grey{
+  background-color:#f0f0f0;
+}
+#basket_container div div div div div div div div div.op_basket_row.grey{
+  padding:0;
+  height:37px;
+  line-height:37px;
+}
+#basket_container div div div div div div div div div.op_basket_row:hover input{
+    background-color:#f0f0f0;
+}
+#basket_container div div div div div div div div div.op_basket_row:first-child:hover{
+  background-color: #f6d15f;
+}
+#agreed_div label{
+  float:right;
+  padding-left: 25px;
+  padding-top: 0px;
+  padding-bottom: 20px;
+  cursor: pointer;
+}
+#agreed_div label:before{
+  opacity: 0;
+  content: "";
+  width: 17px;
+  height: 17px;
+  display: block;
+  position: absolute;
+  margin-top: 1px;
+  margin-left: -23px;
+  -webkit-transition: all 0.2s ease 0s;
+  -moz-transition: all 0.2s ease 0s;
+  -o-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+}
+#agreed_div input:checked + label:before{
+opacity:1;
+  -webkit-transition: all 0.2s ease 0s;
+  -moz-transition: all 0.2s ease 0s;
+  -o-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+}
+#customer_note_input label{
+  font: 300 14px "Roboto-light",sans-serif;
+  text-transform: uppercase;
+}
+.op_rounded_content label.label-with-check{
+  width: 100%;
+}
+label.label-with-check:before {
+  opacity: 0;
+  content: "";
+  width: 17px;
+  height: 17px;
+  display: block;
+  position: absolute;
+  margin-top: 4px;
+  margin-left: 173px;
+  -webkit-transition: all 0.2s ease 0s;
+  -moz-transition: all 0.2s ease 0s;
+  -o-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+}
+.op_rounded_content input:checked + label.label-with-check:before {
+  opacity: 1;
+  -webkit-transition: all 0.2s ease 0s;
+  -moz-transition: all 0.2s ease 0s;
+  -o-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+}
+@media (max-width: 667px) {
+    div#vmMainPageOPC div.op_rounded div.op_rounded_fix div div.formLabel {
+	  float: left;
+	  clear: left;
+	  width: 50%;
+	  margin-top: 10px;
+	}
+	#rbsubmit,div#vmMainPageOPC div.op_rounded div div div div.note_cust{
+	  width:100%!important;
+	}
+	div#vmMainPageOPC div.op_rounded div div div div{
+	  width:100%;
+	}
+	div#vmMainPageOPC div#onepage_info_above_button {
+	  padding-top: 0;
+	}
+	#agreed_div label {
+	  padding-left: 20px;
+	  padding-bottom: 0;
+	}
+	#agreed_div label:before {
+	  margin-left: -16px;
+	}
+	div#vmMainPageOPC div.op_rounded div.op_rounded_fix div div.formField {
+	  margin: 2px 0px;
+	  width: 50%;
+	  margin-top: 10px;
+	}
+	div#vmMainPageOPC div#tab_selector {
+	  padding-left: 20px;
+	}
+	div#vmMainPageOPC div#tab_selector {
+      height: 41px;
+    }
+	div#logintab .button {
+	  margin-top: 10px;
+	}
+	div#vmMainPageOPC div.op_rounded div.op_rounded_fix div div.formField span{padding-right:0!important;}
+	div#vmMainPageOPC select {
+	  width: 100%;
+	  }
+	.module h3.modtitle.small {
+	  padding-top: 10px;
+	}
+	div#vmMainPageOPC div.op_rounded div div div {
+	  padding-top: 0px;
+	  margin-top: -30px;
+	}
+	div#basket_container div.op_basket_row div.op_col2 {
+	  width: 40%;
+	  line-height: 14px;
+	  padding: 8px 7px;
+	}
+	div#basket_container div.op_basket_row div.op_col4, div#basket_container div.op_basket_row div.op_col1{
+	  display: none;
+	}
+	div#basket_container div.op_basket_row div.op_col6, div#basket_container div.op_basket_row div.op_col7, div#basket_container div.op_basket_row div.op_col5{
+	  width:20%;
+	  padding-left: 0;
+	}
+	div#basket_container div.op_basket_row div.op_col2_2{
+	  width:40%;
+	  padding-left: 5px;
+	}
+	div#basket_container div.op_basket_row:first-child div.op_col5, div#basket_container div.op_basket_row:first-child div.op_col7{
+	  padding-top:8px;
+	}
+	#vmMainPageOPC #basket_container input.updatebtn {
+	  width: 26px;
+	  height: 26px;
+	}
+	div#vmMainPageOPC #basket_container a.deletebtn, div#vmMainPageOPC #basket_container a.deletebtn:hover {
+	  width: 29px;
+	  height: 27px;
+	}
+	#basket_container div div div div div div div div div.op_basket_row span.product-field-type-S {
+	  float: left;
+	  padding-right: 5px;
+	}
+	#basket_container div div div div div div div div div.op_basket_row:first-child {
+	  line-height: 14px;
+	  padding-top: 4px;
+	  padding-bottom: 4px;
+	  height: 30px;
+	}
+	div#vmMainPageOPC div.op_rounded{
+	  margin:0;
+	}
+	div#vmMainPageOPC {
+	  margin: 5px 0 0;
+	}
+}
+@media (max-width: 360px) {
+	div#basket_container div.op_basket_row div.op_col2 {
+	  padding: 1px 7px;
+	}
+	div#basket_container div.op_basket_row:first-child div.op_col6{
+      line-height: 7px;
+      padding-top: 4px;
+    }
+	div#vmMainPageOPC #basket_container a.deletebtn, div#vmMainPageOPC #basket_container a.deletebtn:hover {
+	  width: 26px;
+	  height: 27px;
+	}
+	#vmMainPageOPC #basket_container input.updatebtn {
+	  width: 25px;
+	  height: 26px;
+	}
+	#agreed_div label {
+	  line-height: 16px;
+	  padding-top: 6px;
+	}
+	#agreed_div label:before {
+	  margin-top: -4px;
+	}
+}

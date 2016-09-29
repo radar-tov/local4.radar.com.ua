@@ -1,0 +1,42 @@
+div.vote-wrap{
+    overflow: hidden;
+}
+
+div.vote-block{
+	position: relative;	
+}
+
+div.vote-hover{
+    cursor:  pointer;
+    padding: 0!important;
+    float: right;
+}
+
+
+div.vote-stars{
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+div.vote-active{
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+div.vote-result{
+    color: #ccc;
+    font-size: 14px;
+}
+
+div.vote-success{
+    clear: both;
+    color: #ccc;
+    font-size: 14px;
+    margin: 10px 0 0 10px;
+    display: none;
+}
+#rating_1, p.sku{
+    padding: 2px 0;
+}
