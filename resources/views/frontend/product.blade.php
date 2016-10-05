@@ -178,7 +178,7 @@
                             </div>
                         </div>
 
-                        <div class="tech_doc col s6 m6 l12">
+                       <!-- <div class="tech_doc col s6 m6 l12">
                             <h5>Сертификаты</h5>
 
 
@@ -190,7 +190,7 @@
                             @endforeach
 
 
-                        </div>
+                        </div>-->
 
 
                     </div>
@@ -256,7 +256,7 @@
                             </div>
                             <div id="login" class="col s12 no-padding">
                                 <div class="full-desc bordered mod">
-                                    <div class="col mod col s12 l6">
+                                 <!-- <div class="col mod col s12 l6">
                                         <h5 class="teg mod">Основные характеристики</h5>
                                         {{--                    {{ dd($product->filterValuesWithFilters->sortBy('filter.category.pivot.order')->toArray()) }}--}}
                                         @foreach($product->sortedValues($product->category_id) as $field)
@@ -270,7 +270,7 @@
                                             </div>
                                             {{--@endif--}}
                                         @endforeach
-                                    </div>
+                                    </div>-->
                                     <div class="col col s12 l6">
                                         <h5 class="teg mod">Технические характеристики</h5>
                                         {{--                    {{ dd($product->filterValuesWithFilters->sortBy('filter.category.pivot.order')->toArray()) }}--}}
