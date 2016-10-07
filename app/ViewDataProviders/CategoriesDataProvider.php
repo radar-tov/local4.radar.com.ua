@@ -11,7 +11,7 @@ class CategoriesDataProvider {
 
 	public function getCategoriesList()
 	{
-		return Category::lists('title', 'id');
+        return Category::lists('title', 'id');
 	}
 
 	public function getListForNav()
