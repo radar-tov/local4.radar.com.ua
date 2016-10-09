@@ -63,7 +63,6 @@ class ProductsController extends AdminController
     {
 
 	    if($request->ajax()){
-
 		    $search = $request->get('search');
 		    $products = $this->product
 			    ->whereNotIn('id', !empty($request->get('selected')) ? $request->get('selected') : [0])

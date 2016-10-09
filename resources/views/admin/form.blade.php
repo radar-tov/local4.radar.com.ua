@@ -2,16 +2,14 @@
 
 @section('top-scripts')
         <!-- Page specific plugin styles -->
-{{--
-    <link rel="stylesheet" href="{!! url('admin/assets/css/jquery-ui.custom.min.css') !!}" />
-    <link rel="stylesheet" href="{!! url('admin/assets/css/chosen.css') !!}" />
-    <link rel="stylesheet" href="{!! url('admin/assets/css/datepicker.css') !!}" />
-    <link rel="stylesheet" href="{!! url('admin/assets/css/bootstrap-timepicker.css') !!}" />
-    <link rel="stylesheet" href="{!! url('admin/assets/css/daterangepicker.css') !!}" />
-    <link rel="stylesheet" href="{!! url('admin/assets/css/bootstrap-datetimepicker.css') !!}" />
-    <link rel="stylesheet" href="{!! url('admin/assets/css/colorpicker.css') !!}" />
---}}
-<!-- End Page specific plugin styles -->
+        {{--<link rel="stylesheet" href="{!! url('admin/assets/css/jquery-ui.custom.min.css') !!}" />--}}
+        {{--<link rel="stylesheet" href="{!! url('admin/assets/css/chosen.css') !!}" />--}}
+        {{--<link rel="stylesheet" href="{!! url('admin/assets/css/datepicker.css') !!}" />--}}
+        {{--<link rel="stylesheet" href="{!! url('admin/assets/css/bootstrap-timepicker.css') !!}" />--}}
+        {{--<link rel="stylesheet" href="{!! url('admin/assets/css/daterangepicker.css') !!}" />--}}
+        {{--<link rel="stylesheet" href="{!! url('admin/assets/css/bootstrap-datetimepicker.css') !!}" />--}}
+        {{--<link rel="stylesheet" href="{!! url('admin/assets/css/colorpicker.css') !!}" />--}}
+        <!-- End Page specific plugin styles -->
 @stop
 
 @section('tiny')

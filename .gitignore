@@ -1,9 +1,8 @@
-/vendor
-/node_modules
-Homestead.yaml
+vendor/
+node_modules/
 storage/
-.env
-.idea
-composer.lock
 public/swf/
 public/pdf/
+composer.lock
+.env
+.idea
