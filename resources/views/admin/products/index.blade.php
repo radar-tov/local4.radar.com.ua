@@ -173,6 +173,7 @@
                                 <a class="green" target="_blank" href="/dashboard/products/@{{ product.id }}/edit">
                                     <i class="ace-icon fa fa-pencil bigger-130"></i>
                                 </a>
+                                
                             </div>
                         </td>
                         <td class="options">
