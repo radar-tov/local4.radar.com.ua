@@ -170,7 +170,7 @@
                         </td>
                         <td class="options">
                             <div class="action-buttons">
-                                <a class="green" href="/dashboard/products/@{{ product.id }}/edit">
+                                <a class="green" target="_blank" href="/dashboard/products/@{{ product.id }}/edit">
                                     <i class="ace-icon fa fa-pencil bigger-130"></i>
                                 </a>
                             </div>
