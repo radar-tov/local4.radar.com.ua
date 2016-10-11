@@ -97,14 +97,13 @@
                 <div class="col s12 m12 l4 no-padding">
                     <div id="map">
                         <div id="map-container">
-                            <script src="js/3dtour.js"></script>
+                            <!-- <script src="js/3dtour.js"></script> -->
                             {!! array_get($Settings,'map_code') !!}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <!--/Menu-->
     
