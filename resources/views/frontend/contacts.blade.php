@@ -31,7 +31,7 @@
                 <div class="col s12 m12 l8 no-padding">
                     
                     <div class="col s12 m6">
-                        <p class="bold">О компании <span class="uppercase">"Империя тепла"</span></p>
+                        <p class="bold">О компании <span class="uppercase">"Интернет магазин Radar"</span></p>
                         <p>Благодаря нашей компании, вы всегда сможете купить отопительное оборудывание с доставкой</p>
                         <p>Мы поставляем качественную продукцию по самым выгодным ценам</p>
                         <p class="bold">Наш адрес:</p>
