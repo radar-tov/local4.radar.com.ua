@@ -62,6 +62,12 @@
 
 @section('page-nav')
     <div class="row">
+        <div class="col-xs-6">
+            <a href="{!! route('dashboard.products.create') !!}" class="btn btn-sm btn-primary" title="Добавить товар" target="_blank">
+                <i class="ace-icon fa fa-plus"></i> Добавить товар
+            </a>
+        </div>
+        <hr/>
     <div class="col-lg-12 page-nav">
         <div class="row">
             <button form="form-data" class="btn btn-sm btn-primary" name="button" value="0" title="Сохранить">
