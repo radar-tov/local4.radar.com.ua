@@ -17,7 +17,7 @@
 @section('content')
     <div class="row _hid" id="products">
         <div class="col-xs-6">
-            <a href="{!! route('dashboard.products.create') !!}" class="btn btn-sm btn-primary" title="Добавить товар">
+            <a href="{!! route('dashboard.products.create') !!}" class="btn btn-sm btn-primary" title="Добавить товар" target="_blank">
                 <i class="ace-icon fa fa-plus"></i> Добавить товар
             </a>
         </div>
