@@ -2,13 +2,13 @@
 
 @section('top-scripts')
         <!-- Page specific plugin styles -->
-        {{--<link rel="stylesheet" href="{!! url('admin/assets/css/jquery-ui.custom.min.css') !!}" />--}}
-        {{--<link rel="stylesheet" href="{!! url('admin/assets/css/chosen.css') !!}" />--}}
-        {{--<link rel="stylesheet" href="{!! url('admin/assets/css/datepicker.css') !!}" />--}}
-        {{--<link rel="stylesheet" href="{!! url('admin/assets/css/bootstrap-timepicker.css') !!}" />--}}
-        {{--<link rel="stylesheet" href="{!! url('admin/assets/css/daterangepicker.css') !!}" />--}}
-        {{--<link rel="stylesheet" href="{!! url('admin/assets/css/bootstrap-datetimepicker.css') !!}" />--}}
-        {{--<link rel="stylesheet" href="{!! url('admin/assets/css/colorpicker.css') !!}" />--}}
+{{--<link rel="stylesheet" href="{!! url('admin/assets/css/jquery-ui.custom.min.css') !!}" />--}}
+{{--<link rel="stylesheet" href="{!! url('admin/assets/css/chosen.css') !!}" />--}}
+{{--<link rel="stylesheet" href="{!! url('admin/assets/css/datepicker.css') !!}" />--}}
+{{--<link rel="stylesheet" href="{!! url('admin/assets/css/bootstrap-timepicker.css') !!}" />--}}
+{{--<link rel="stylesheet" href="{!! url('admin/assets/css/daterangepicker.css') !!}" />--}}
+{{--<link rel="stylesheet" href="{!! url('admin/assets/css/bootstrap-datetimepicker.css') !!}" />--}}
+{{--<link rel="stylesheet" href="{!! url('admin/assets/css/colorpicker.css') !!}" />--}}
         <!-- End Page specific plugin styles -->
 @stop
 
@@ -17,25 +17,23 @@
 <script src="{!! url('packages/tinymce/tinymce.min.js') !!}"></script>
 <script type="text/javascript">
     tinymce.init({
-        selector:"textarea.tiny",
+        selector: "textarea.tiny",
         fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
-        plugins : 'image,table,colorpicker,textcolor,code,fullscreen,link',
+        plugins: 'image,table,colorpicker,textcolor,code,fullscreen,link',
         toolbar: [
             "undo redo | bold italic | fontselect |  fontsizeselect | alignleft aligncenter alignright | outdent indent | bullist numlist | indent | link | image fullscreen | forecolor backcolor"
         ],
         tools: "inserttable",
 
-        file_browser_callback : elFinderBrowser,
-        setup : function(ed)
-        {
-            ed.on('init', function()
-            {
+        file_browser_callback: elFinderBrowser,
+        setup: function (ed) {
+            ed.on('init', function () {
                 //this.execCommand("fontName", false, "tahoma");
                 this.execCommand("fontSize", false, "14px");
             });
         }
     });
-    function elFinderBrowser (field_name, url, type, win) {
+    function elFinderBrowser(field_name, url, type, win) {
         tinymce.activeEditor.windowManager.open({
             file: '{!! url("dashboard/elfinder/tinymce4") !!}',
             customData: {
@@ -62,25 +60,24 @@
 
 @section('page-nav')
     <div class="row">
-        <div class="col-xs-6">
-            <a href="{!! route('dashboard.products.create') !!}" class="btn btn-sm btn-primary" title="Добавить товар" target="_blank">
-                <i class="ace-icon fa fa-plus"></i> Добавить товар
-            </a>
+        <div class="col-lg-12 page-nav">
+            <div class="row">
+                <button form="form-data" class="btn btn-sm btn-primary" name="button" value="0" title="Сохранить">
+                    <i class="ace-icon fa fa-floppy-o"></i> Сохранить
+                </button>
+                <button form="form-data" class="btn btn-sm btn-primary" name="button" value="1"
+                        title="Сохранить и выйти">
+                    <i class="ace-icon fa fa-chevron-circle-up "></i> Сохранить и выйти
+                </button>
+                <a href="{!! route('dashboard.products.create') !!}" class="btn btn-sm btn-primary pull-right" title="Добавить товар"
+                   target="_blank">
+                    <i class="ace-icon fa fa-plus"></i> Добавить товар
+                </a>
+            </div>
         </div>
-        <hr/>
-    <div class="col-lg-12 page-nav">
-        <div class="row">
-            <button form="form-data" class="btn btn-sm btn-primary" name="button" value="0" title="Сохранить">
-                <i class="ace-icon fa fa-floppy-o"></i> Сохранить
-            </button>
-            <button form="form-data" class="btn btn-sm btn-primary" name="button" value="1" title="Сохранить и выйти">
-                <i class="ace-icon fa fa-chevron-circle-up "></i> Сохранить и выйти
-            </button>
-        </div>
+        {{--<div class="clearfix"></div>--}}
     </div>
-    {{--<div class="clearfix"></div>--}}
-    </div>
-@endsection
+    @endsection
 
     @section('bottom-scripts')
             <!-- Page specific plugin scripts -->
@@ -99,6 +96,6 @@
     {{--<script src="{!! url('admin/assets/js/jquery.inputlimiter.1.3.1.min.js')!!}"></script>--}}
     {{--<script src="{!! url('admin/assets/js/jquery.maskedinput.min.js')!!}"></script>--}}
     {{--<script src="{!! url('admin/assets/js/bootstrap-tag.min.js')!!}"></script>--}}
-    <!--/ End page specific plugin scripts -->
+            <!--/ End page specific plugin scripts -->
 
 @endsection
