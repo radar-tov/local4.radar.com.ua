@@ -36,7 +36,7 @@
                     <div v-if="!selectedProductsIds.length">
                         {!! Form::open(['url' => '#', 'v-on' => 'change: filterProducts()', 'v-el' => 'filterForm']) !!}
 
-                        <div class="col-xs-3">
+                        <div class="col-xs-2">
                             {!! Form::select('sortBy', [
                                'id' => 'Сортировка по умолчанию',
                                'price' => 'По цене',
@@ -45,7 +45,7 @@
                         </div>
 
 
-                        <div class="col-xs-2">
+                        <div class="col-xs-3">
                             {!! Form::select('categoryId', [0 => 'Все категории'] + $categoriesProvider->getCategoriesList()->all(),
                                 $selected = null,
                                 ['class' => 'form-control',]) !!}
@@ -60,7 +60,7 @@
                         </div>
                         {!! csrf_field() !!}
 
-                        <div class="col-xs-3">
+                        <div class="col-xs-2">
                             {!! Form::select('paginate', [
                              20 => 'Показывать по 20 продуктов',
                              50 => 'По 50 продуктов',
@@ -69,9 +69,13 @@
                         </div>
 
 
-                        <div class="col-xs-2 pull-right">
+                        <div class="col-xs-2">
                             {!! Form::text('search', $value = Request::get('q'),
                                 ['class' => 'form-control', 'placeholder' => 'Поиск', 'v-on' => 'input: filterProducts()']) !!}
+                        </div>
+
+                        <div class="col-xs-1 pull-right">
+                            {!! Form::submit('Обновить', ['class' => 'ace-icon fa fa-plus']) !!}
                         </div>
 
                         {!! Form::close() !!}
