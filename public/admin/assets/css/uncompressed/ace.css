@@ -7,7 +7,7 @@ body {
   min-height: 100%;
   padding-bottom: 0;
   font-family: 'Open Sans';
-  font-size: 13px;
+  font-size: 15px;
   color: #393939;
   line-height: 1.5;
 }
@@ -1875,7 +1875,7 @@ pre.prettyprint {
   line-height: 17px;
   padding-left: 7px;
   text-shadow: none !important;
-  font-size: 13px;
+  font-size: 15px;
   text-decoration: none;
 }
 .nav-list > li > a > .menu-icon {
