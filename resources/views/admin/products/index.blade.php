@@ -158,7 +158,9 @@
                             <span class="label label-danger bs-label" v-show="product.is_new > 0">Новинка</span>
                         </div>
                         {{--<i class="fa fa-line-chart"></i>--}}
-                        @{{ product.title }}
+                        <a style="color: #000000" target="_blank" href="/dashboard/products/@{{ product.id }}/edit">
+                            @{{ product.title }}
+                        </a>
                         <small v-show="product.clone_of > 0" style="color:indianred">(копия)</small>
                     </td>
                     <td class="">@{{ product.price }} грн.</td>
