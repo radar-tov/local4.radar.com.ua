@@ -139,7 +139,9 @@
                                v-on="change: selectProduct($event)"/>
                     </td>
                     <td class="options">
-                        <i class="fa fa-eye green" v-show="product.active > 0"></i>
+                        <a href="/@{{ product.category.slug }}/@{{ product.slug }}" target="_blank">
+                            <i class="fa fa-eye green" v-show="product.active > 0"></i>
+                        </a>
                         <i class="fa fa-eye-slash red" v-show="product.active == 0"></i>
                     </td>
                     <td>
