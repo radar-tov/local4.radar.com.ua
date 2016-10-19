@@ -168,7 +168,9 @@
                     </td>
 
                     <td>
-                        <span>@{{ product.category.title }}</span>
+                        <span>
+                            <a href="/@{{ product.category.slug }}" target="_blank">@{{ product.category.title }}</a>
+                        </span>
                     </td>
                     <td class="options">
                         <div class="action-buttons">
