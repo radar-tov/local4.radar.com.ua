@@ -143,6 +143,7 @@
                                v-on="change: selectProduct($event)"/>
                     </td>
                     <td class="options">
+                        {{--TODO-evgenii изменить URL при слиянии с програмистом--}}
                         <a href="/@{{ product.category.slug }}/@{{ product.slug }}" target="_blank">
                             <i class="fa fa-eye green" v-show="product.active > 0"></i>
                         </a>
