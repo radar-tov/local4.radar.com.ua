@@ -3,22 +3,17 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-    {{--@section('meta')--}}
-    {{--<title>{{ $MetaTitle or 'Radar' }}</title>--}}
-    {{--<meta name="description" content="{{ $MetaDescription or '' }}"/>--}}
-    {{--<meta name="description" content="{{ $MetaKeywords or '' }}"/>--}}
-    {{--@show--}}
 
     @yield('seo')
 
-
-    <? $canonicalLink = $_SERVER['REQUEST_URI'];?>
-    <link rel="canonical" href="<? echo($canonicalLink)?>">
+    <link rel="canonical" href="{{ $_SERVER['REQUEST_URI'] }}">
 
     <!-- CSS  -->
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" media="print" href="/frontend/css/print.css">
-    <link href="/frontend/css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link rel="stylesheet" href="/css/additional.css" type="text/css">
+    <link rel="stylesheet" href="/frontend/css/style.css" type="text/css" media="screen,projection">
+    <link rel="stylesheet" href="/frontend/css/print.css" type="text/css" media="print">
+    <!-- FONTS  -->
     <link href="http://allfont.ru/allfont.css?fonts=a_avantetck-medium" rel="stylesheet" type="text/css"/>
     <link href="http://allfont.ru/allfont.css?fonts=a_avantetck-heavy" rel="stylesheet" type="text/css"/>
     <link href="http://allfont.ru/allfont.css?fonts=a_avantebs" rel="stylesheet" type="text/css"/>
@@ -27,8 +22,6 @@
     <link href="http://allfont.ru/allfont.css?fonts=a_avantebsnr-bold" rel="stylesheet" type="text/css"/>
 
     @yield('top-scripts')
-
-    <link rel="stylesheet" href="/css/additional.css">
 
     @include('frontend.googleAnalistic')
 
