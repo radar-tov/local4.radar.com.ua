@@ -8,11 +8,11 @@
 
     <link rel="canonical" href="{{ $_SERVER['REQUEST_URI'] }}">
 
-    <!-- CSS  -->
+    <!-- CSS  -->  {{--  !!!   последовательность css не менять--}}
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/css/additional.css" type="text/css">
     <link rel="stylesheet" href="/frontend/css/style.css" type="text/css" media="screen,projection">
     <link rel="stylesheet" href="/frontend/css/print.css" type="text/css" media="print">
+    <link rel="stylesheet" href="/css/additional.css" type="text/css">
     <!-- FONTS  -->
     <link href="http://allfont.ru/allfont.css?fonts=a_avantetck-medium" rel="stylesheet" type="text/css"/>
     <link href="http://allfont.ru/allfont.css?fonts=a_avantetck-heavy" rel="stylesheet" type="text/css"/>
