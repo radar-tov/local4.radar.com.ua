@@ -1,15 +1,34 @@
+/*
+    CSS
+
+    // frontend
+    public\frontend\css\print.css
+    public\frontend\css\style.css
+    public\css\additional.css
+
+    //авторизация при входе в админку
+    public\css\app.css
+
+    // админка
+    public\admin\assets\css\bootstrap.min.css
+    public\admin\assets\css\font-awesome.min.css
+    public\admin\assets\css\jquery-ui.custom.min.css
+    public\admin\assets\css\jquery.gritter.css
+    https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css
+    public\admin\assets\css\ace-fonts.css
+    public\admin\assets\css\uncompressed\ace.css
+    public\admin\assets\css\uncompressed\ace-part2.css  // для IE9
+    public\admin\assets\css\ace-ie.min.css              // для IE9
+    public\admin\assets\css\main.css
+    public\packages\colorbox\colorbox.css
+    public\packages\tinymce\skins\lightgray\skin.min.css
+
+
+*/
+
+
 var elixir = require('laravel-elixir');
 
-/*
- |--------------------------------------------------------------------------
- | Elixir Asset Management
- |--------------------------------------------------------------------------
- |
- | Elixir provides a clean, fluent API for defining some basic Gulp tasks
- | for your Laravel application. By default, we are compiling the Sass
- | file for our application, as well as publishing vendor resources.
- |
- */
 
 elixir(function(mix) {
     mix.styles([

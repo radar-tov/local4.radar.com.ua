@@ -260,12 +260,12 @@ h3 {
 }
 
 ._stock .slider-arrow--right {
-    background: url("/frontend/images/arrow-stock.png") 0 30% no-repeat;
+    /*background: url("/frontend/images/arrow-stock.png") 0 30% no-repeat;*/
     padding: 24px 15px 24px 25px;
 }
 
 ._stock .slider-arrow--left {
-    background: url("/frontend/images/arrow-stock.png") -45px 30% no-repeat;
+    /*background: url("/frontend/images/arrow-stock.png") -45px 30% no-repeat;*/
     padding: 24px 25px 24px 15px;
 }
 

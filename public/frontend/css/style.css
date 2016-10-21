@@ -4559,7 +4559,7 @@ body:after {
     width: 32px;
     height: 32px;
     margin: 0 auto;
-    background: url(../images/loading.gif) no-repeat
+    /*background: url(../images/loading.gif) no-repeat*/
 }
 
 .lb-nav {
@@ -4590,7 +4590,7 @@ body:after {
     width: 34%;
     left: 0;
     float: left;
-    background: url(../images/prev.png) left 48% no-repeat;
+    /*background: url(../images/prev.png) left 48% no-repeat;*/
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
     opacity: 0;
     -webkit-transition: opacity 0.6s;
@@ -4608,7 +4608,7 @@ body:after {
     width: 64%;
     right: 0;
     float: right;
-    background: url(../images/next.png) right 48% no-repeat;
+    /*background: url(../images/next.png) right 48% no-repeat;*/
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
     opacity: 0;
     -webkit-transition: opacity 0.6s;
@@ -4672,7 +4672,7 @@ body:after {
     float: right;
     width: 30px;
     height: 30px;
-    background: url(../images/close.png) top right no-repeat;
+    /*background: url(../images/close.png) top right no-repeat;*/
     text-align: right;
     outline: none;
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
@@ -5704,11 +5704,11 @@ p.note {
 }
 
 .side-bar > li.havechild {
-    background: url('../images/cat-arrow.png') right 25px no-repeat
+    /*background: url('../images/cat-arrow.png') right 25px no-repeat*/
 }
 
 .side-bar > li.havechild:hover {
-    background-image: url('../images/cat-arrow-hover.png')
+    /*background-image: url('../images/cat-arrow-hover.png')*/
 }
 
 li.banner {
@@ -5762,7 +5762,7 @@ li.banner.card .card-image .title-company-link:hover {
 
 .arrow-link:hover {
     border-color: #7cb342;
-    background: url(../images/arrow-banner-green.png) center no-repeat
+    /*background: url(../images/arrow-banner-green.png) center no-repeat*/
 }
 
 .arrow-link {
@@ -5774,7 +5774,7 @@ li.banner.card .card-image .title-company-link:hover {
     padding: 8px;
     left: 43%;
     line-height: 10px;
-    background: url(../images/arrow-banner.png) center no-repeat
+    /*background: url(../images/arrow-banner.png) center no-repeat*/
 }
 
 div.stable {
@@ -7434,7 +7434,7 @@ section.related .container {
 }
 
 .col.crouse .slick-next:before {
-    background: url('../images/arrow-crous-down.png') 0 0 no-repeat;
+    /*background: url('../images/arrow-crous-down.png') 0 0 no-repeat;*/
     position: absolute;
     left: 0;
     right: 0;
@@ -7443,7 +7443,7 @@ section.related .container {
 }
 
 .col.crouse .slick-prev:before {
-    background: url('../images/arrow-crous-up.png') 0 0 no-repeat;
+    /*background: url('../images/arrow-crous-up.png') 0 0 no-repeat;*/
     position: absolute;
     left: 0;
     right: 0;
@@ -9251,7 +9251,7 @@ width: 35%;
 
     .side-bar.card > li.havechild:after {
         content: "";
-        background: url('../images/cat-arrow.png') center no-repeat;
+        /*background: url('../images/cat-arrow.png') center no-repeat;*/
         background-size: 14px;
         background-position-y: 4px;
         background-position-x: 19px;
@@ -9269,7 +9269,7 @@ width: 35%;
     }
 
     .side-bar.card > li.havechild:hover:after {
-        background: url('../images/cat-arrow-hover.png') center no-repeat;
+        /*background: url('../images/cat-arrow-hover.png') center no-repeat;*/
         background-size: 14px;
         background-position-y: 4px;
         background-position-x: 19px
@@ -10051,12 +10051,12 @@ div.vote-success {
 
 @font-face {
     font-family: 'HelveticaNeueCyr';
-    src: url('../font/helvetica/hinted-subset-HelveticaNeueCyr-Light.eot');
-    src: url('../font/helvetica/hinted-subset-HelveticaNeueCyr-Light.eot?#iefix') format('embedded-opentype'),
-        url('../font/helvetica/hinted-subset-HelveticaNeueCyr-Light.woff2') format('woff2'),
-        url('../font/helvetica/hinted-subset-HelveticaNeueCyr-Light.woff') format('woff'),
-        url('../font/helvetica/hinted-subset-HelveticaNeueCyr-Light.ttf') format('truetype'),
-        url('../font/helvetica/hinted-subset-HelveticaNeueCyr-Light.svg#HelveticaNeueCyr-Light') format('svg');
+    src: url('../font/helvetica/Helvetica-Light-Light.eot');
+    src: url('../font/helvetica/Helvetica-Light-Light.eot?#iefix') format('embedded-opentype'),
+        /*url('../font/helvetica/Helvetica-Light-Light.woff2') format('woff2'),*/
+        url('../font/helvetica/Helvetica-Light-Light.woff') format('woff'),
+        url('../font/helvetica/Helvetica-Light-Light.ttf') format('truetype'),
+        url('../font/helvetica/Helvetica-Light-Light.svg#HelveticaNeueCyr-Light') format('svg');
     font-weight: 300;
     font-style: normal;
 }
@@ -10075,8 +10075,11 @@ div.vote-success {
 
 @font-face {
     font-family: 'FontAwesome';
-    src: url('/frontend/font/awesome/fontawesome-webfont.eot?v=4.3.0');
-    src: url('/frontend/font/awesome/fontawesome-webfont.eot?#iefix&v=4.3.0') format('embedded-opentype'), url('/frontend/font/awesome/fontawesome-webfont.woff') format('woff'), url('/frontend/font/awesome/fontawesome-webfont.ttf?v=4.3.0') format('truetype'), url('/frontend/font/awesome/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular') format('svg');
+    src: url('../font/awesome/fontawesome-webfont.eot');
+    src: url('../font/awesome/fontawesome-webfont.eot') format('embedded-opentype'),
+        url('../font/awesome/fontawesome-webfont.woff') format('woff'),
+        url('../font/awesome/fontawesome-webfont.ttf') format('truetype'),
+        url('../font/awesome/fontawesome-webfont.svg') format('svg');
     font-weight: normal;
     font-style: normal
 }
@@ -10190,7 +10193,7 @@ nav .button-collapse img {
     top: 0;
     bottom: 0;
     background-color: #fff;
-    background: url(/frontend/images/animation3.gif) 50% 50% no-repeat;
+    /*background: url(/frontend/images/animation3.gif) 50% 50% no-repeat;*/
 }
 
 button#object-3d {
