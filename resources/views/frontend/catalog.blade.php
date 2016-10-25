@@ -4,7 +4,7 @@
     @if(isset($subcategory->meta_title) && !empty($subcategory->meta_title))
         <title>{{ $subcategory->meta_title }}</title>
     @else
-        <title>{{ isset($subcategory->title) ? $subcategory->title : $header }}</title>
+        <title>{{ isset($subcategory->title) ? $subcategory->title : '#' }}</title>
     @endif
 
     <meta name="description" content="{{ isset($subcategory->meta_description) ?  $subcategory->meta_description : ''}}"/>
@@ -21,7 +21,7 @@
             <ol class="breadcrumb">
                 <li><a href="/">Главная</a></li>
                 {{--<li><a href="index.html">Родитель</a></li>--}}
-                <li class="active">{{ isset($subcategory->title) ? $subcategory->title : $header }}</li>
+                <li class="active">{{ isset($subcategory->title) ? $subcategory->title : '#' }}</li>
             </ol>
         </div>
     </div>
@@ -35,7 +35,7 @@
             @include('frontend.partials.sidebar')
 
             <div class="col s12 m12 l9 catalog ">
-                <h3>{{ isset($subcategory->title) ? $subcategory->title : $header }}</h3>
+                <h3>{{ isset($subcategory->title) ? $subcategory->title : '#' }}</h3>
 
                 @include('frontend.partials.products.controls')
 

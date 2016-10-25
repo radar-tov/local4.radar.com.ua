@@ -28,7 +28,12 @@ class FilterService
 
 		$categories = [$category->id] + $category->children->lists('id')->all();
 
-		// dd($category->id);
+
+       // $subcategorySlug = Category::where('id', $category->parent_id);
+
+       // dd($subcategorySlug);
+
+
 
 
 		$products  = Product::whereIn('category_id', $categories);
@@ -51,8 +56,7 @@ class FilterService
 			$products = $products->ordered($request)->visible()->withRelations()->paginate();
 		}
 
-
-		// Separate rendering of products and pagination views
+        // Separate rendering of products and pagination views
 		return [
 			'products' => view('frontend.partials.products.filtered_products', compact('products'))->render(),
 			'pagination' => view('frontend.partials.products.pagination_template', compact('products'))->render()

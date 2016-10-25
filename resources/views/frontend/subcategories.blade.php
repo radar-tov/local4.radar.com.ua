@@ -65,7 +65,7 @@
                <div class="row">
                @foreach($categories as $cat)
                     <div class="col s12 m6 l4">
-                    <a href="{{$cat->slug}}">
+                    <a href="/{{ $category->slug }}/{{$cat->slug}}">
                     <div class="cat_box">
                     <img src="{{$cat->thumbnail}}"/>
                     <p>{{$cat->title}}</p>

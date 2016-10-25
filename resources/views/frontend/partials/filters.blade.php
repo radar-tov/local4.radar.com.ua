@@ -1,12 +1,12 @@
 @inject('productsProvider', 'App\ViewDataProviders\ProductsDataProvider')
-@if(isset($category))
+@if(isset($subcategory))
 <h3>Фильтр товаров</h3>
 <form class="col s12 card" id="filter">
     <input type="hidden" value="0" name="isDirty" id="isDirty"/>
-    <input type="hidden" value="{{ $category->id }}" name="categoryId"/>
+    <input type="hidden" value="{{ $subcategory->id }}" name="categoryId"/>
     {!! csrf_field() !!}
 
-    @foreach($category->filtersWithRelevantValues($category->id)->get() as $filter)
+    @foreach($subcategory->filtersWithRelevantValues($subcategory->id)->get() as $filter)
 
         <div class="filter-group">
             <div class="filter-heading">

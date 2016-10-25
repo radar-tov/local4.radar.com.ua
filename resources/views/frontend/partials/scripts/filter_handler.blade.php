@@ -55,7 +55,7 @@
 
         var data = $('.orderBy').serialize(),
             filters = $("#filter");
-alert(filters.serialize());
+
         if(filters.length > 0){
             data = filters.serialize();
         }

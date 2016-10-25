@@ -120,10 +120,10 @@ class FrontendController extends BaseController
 	 *
 	 * Show single product view
 	 */
-	public function product($categorySlug, $productSlug, Request $request)
+	public function product($categorySlug, $subcategorySlug, $productSlug, Request $request)
 	{
-		$product = Product::whereRaw("products.slug = '$productSlug'" )->whereHas('category', function($category) use($categorySlug){
-			$category->where('slug', $categorySlug);
+		$product = Product::whereRaw("products.slug = '$productSlug'" )->whereHas('category', function($category) use($subcategorySlug){
+			$category->where('slug', $subcategorySlug);
 		})
 		->visible()
 		->with(

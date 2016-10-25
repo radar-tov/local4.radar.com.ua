@@ -172,9 +172,7 @@
     });
 </script>
 
-
 @include('frontend.yandexMetric')
-
 
 </body>
 </html>

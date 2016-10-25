@@ -5,7 +5,7 @@
             @if(count($product->thumbnail) && file_exists(public_path($product->thumbnail->first()->path)))
                 <span class="outlook">
                 @if($product->category)
-                <a href="/{{ $product->category->slug}}/{{ $product->slug}}">
+                <a href="/{{ (Request::path() != '/') ? Request::path() : $product->category->slug}}/{{ $product->slug}}">
                     <img class="activator" src="{{ $product->thumbnail->first()->path or null }}">
                 </a>
                 @endif
@@ -67,7 +67,7 @@
         </div>
         <div class="card-reveal cardAnim{{ $product->id }} ">
         @if($product->category)
-		<div class="linkProduct" onclick="return location.href = '/{{ $product->category->slug}}/{{ $product->slug}}'">
+		<div class="linkProduct" onclick="return location.href = '/{{ (Request::path() != '/') ? Request::path() : $product->category->slug}}/{{ $product->slug}}'">
 
             <div class="stable" >
                 @if(count($product->thumbnail) && file_exists(public_path($product->thumbnail->first()->path)))
