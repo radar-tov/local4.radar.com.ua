@@ -1,14 +1,14 @@
 @extends('frontend.layout')
 
 @section('seo')
-    @if(isset($category->meta_title) && !empty($category->meta_title))
-        <title>{{ $category->meta_title }}</title>
+    @if(isset($subcategory->meta_title) && !empty($subcategory->meta_title))
+        <title>{{ $subcategory->meta_title }}</title>
     @else
-        <title>{{ isset($category->title) ? $category->title : $header }}</title>
+        <title>{{ isset($subcategory->title) ? $subcategory->title : $header }}</title>
     @endif
 
-    <meta name="description" content="{{ isset($category->meta_description) ?  $category->meta_description : ''}}"/>
-    <meta name="keywords" content="{{ isset($category->meta_keywords) ?  $category->meta_keywords : ''}}"/>
+    <meta name="description" content="{{ isset($subcategory->meta_description) ?  $subcategory->meta_description : ''}}"/>
+    <meta name="keywords" content="{{ isset($subcategory->meta_keywords) ?  $subcategory->meta_keywords : ''}}"/>
 @endsection
 
 @section('content')
@@ -21,7 +21,7 @@
             <ol class="breadcrumb">
                 <li><a href="/">Главная</a></li>
                 {{--<li><a href="index.html">Родитель</a></li>--}}
-                <li class="active">{{ isset($category->title) ? $category->title : $header }}</li>
+                <li class="active">{{ isset($subcategory->title) ? $subcategory->title : $header }}</li>
             </ol>
         </div>
     </div>
@@ -35,7 +35,7 @@
             @include('frontend.partials.sidebar')
 
             <div class="col s12 m12 l9 catalog ">
-                <h3>{{ isset($category->title) ? $category->title : $header }}</h3>
+                <h3>{{ isset($subcategory->title) ? $subcategory->title : $header }}</h3>
 
                 @include('frontend.partials.products.controls')
 
@@ -55,12 +55,12 @@
         @endif
     </div>
 
-                @if(isset($category))
+                @if(isset($subcategory))
                     
-                    @if($category->description)
+                    @if($subcategory->description)
                    
                         <div class="col s12 shop-info sport-girl">
-                            {!! $category->description !!}
+                            {!! $subcategory->description !!}
                         </div>
                     @endif
                 @endif

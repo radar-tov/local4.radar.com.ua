@@ -87,10 +87,11 @@ class FrontendController extends BaseController
 
 
 		$category = Category::where('slug', $categorySlug)->with('children')->with('filters')->first();
-
+		//dd($category);
 		//моя вставка
 		$subcategory = Category::where('slug', $subcategorySlug)->with('children')->with('filters')->first();
 		//
+		//dd($subcategory);
 
         if(!$category) abort(404);
 
@@ -107,8 +108,7 @@ class FrontendController extends BaseController
 
 	    //$children = $category->children()->products()->get();
 
-		//dd($subcategory);
-		return view('frontend.catalog', compact('category','subcategories'));
+		return view('frontend.catalog', compact('subcategory', 'category'));
 	}
 
 
