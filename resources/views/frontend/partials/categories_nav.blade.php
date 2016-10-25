@@ -11,7 +11,7 @@
                     <div class="col l5">
                     <ul class="sub-categories">
                         @foreach($category->children as $child)
-                            <li><a href="/{{ $child->slug }}"> {{ $child->title }}</a></li>
+                            <li><a href="/{{ $category->slug }}/{{ $child->slug }}"> {{ $child->title }}</a></li>
                         @endforeach
                     </ul>
                     </div>

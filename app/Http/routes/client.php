@@ -46,7 +46,8 @@ if( ! Request::is('dashboard*') and ! Request::is('auth*')){
 		Route::get('cabinet/orders/{order_id}', ['as' => 'order', 'uses' => 'FrontendController@showOrder']);
 
 		Route::get('{categorySlug}', 'FrontendController@catalog');
-		Route::get('{categorySlug}/{productSlug}', 'FrontendController@product');
+		Route::get('{categorySlug}/{subcategorySlug}', 'FrontendController@catalog');
+		Route::get('{categorySlug}/{subcategorySlug}/{productSlug}', 'FrontendController@product');
         Route::post('add_to_compare','CartController@addToCompare');
 		Route::post('add_to_cart', 'CartController@addProduct');
 		Route::post('add_set_to_cart', 'CartController@addSetOfProducts');

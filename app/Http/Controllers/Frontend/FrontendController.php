@@ -78,7 +78,7 @@ class FrontendController extends BaseController
 	 *
 	 * Show products by category
 	 */
-	public function catalog(Request $request, FilterService $filterService, $categorySlug)
+	public function catalog(Request $request, FilterService $filterService, $categorySlug, $subcategorySlug=null)
 	{
 		// Ajax request is used when
 		// paginate or filter products
@@ -87,14 +87,17 @@ class FrontendController extends BaseController
 
 
 		$category = Category::where('slug', $categorySlug)->with('children')->with('filters')->first();
-        
+
+		//моя вставка
+		$subcategory = Category::where('slug', $subcategorySlug)->with('children')->with('filters')->first();
+		//
+
         if(!$category) abort(404);
 
-      
-        if($category->children->count() > 0){
-        	$categories = $category->children;
-        	 return view('frontend.subcategories',compact('categories','category'));
-        }
+      	if($category->children->count() > 0 & !$subcategory){
+			$categories = $category->children;
+			return view('frontend.subcategories',compact('categories','category'));
+	  	}
 
 
 

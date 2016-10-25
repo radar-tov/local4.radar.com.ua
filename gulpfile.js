@@ -31,16 +31,23 @@ var elixir = require('laravel-elixir');
 
 
 elixir(function(mix) {
-    mix.styles([
-        'materialize.css',
+    mix.styles(
+        [
+     /* 'materialize.css',
         'style.css',
         'animate.css',
         'lightbox.css',
         'jquery.rating.css',
         'print.css',
-        'range.css',
-    ]);
+        'range.css',*/
+        'elexir/style.css',
+        'elexir/additional.css'
+        ]
+        ,'public/build/css/all.css' // куда положить файл и как назвать
+        //,'resources/assets/css' //где искать файлы
+    );
 
+    /*
     mix.scripts([
         'jquery-2.1.3.min.js',
         'materialize.js',
@@ -49,6 +56,7 @@ elixir(function(mix) {
         'jquery.glide.js',
         'wow.min.js',
         'jquery.rating-2.0.min.js',
-        'init.js',
-    ]);
+        'init.js'
+    ]);*/
+
 });
