@@ -100,8 +100,6 @@ class FrontendController extends BaseController
 	  	}
 
 
-
-
 		if($request->ajax()){
 			return $filterService->getFilteredProducts($request);
 		}
@@ -109,8 +107,8 @@ class FrontendController extends BaseController
 
 	    //$children = $category->children()->products()->get();
 
-
-		return view('frontend.catalog', compact('category','categories'));
+		//dd($subcategory);
+		return view('frontend.catalog', compact('category','subcategories'));
 	}
 
 
