@@ -20,7 +20,7 @@
         <div class="row">
             <ol class="breadcrumb">
                 <li><a href="/">Главная</a></li>
-                {{--<li><a href="index.html">Родитель</a></li>--}}
+                <li><a href="/{{ $subcategory->parent->slug }}">{{ $subcategory->parent->title }}</a></li>
                 <li class="active">{{ isset($subcategory->title) ? $subcategory->title : '#' }}</li>
             </ol>
         </div>

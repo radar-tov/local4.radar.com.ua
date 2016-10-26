@@ -15,7 +15,8 @@
             <div class="row">
                 <ol class="breadcrumb">
                     <li><a href="/">Главная</a></li>
-                    <li><a href="/{{ $product->category->slug }}">{{ $product->category->title }}</a></li>
+                    <li><a href="/{{ $product->parent->slug }}">{{ $product->parent->title }}</a></li>
+                    <li><a href="/{{ $product->parent->slug }}/{{ $product->category->slug }}">{{ $product->category->title }}</a></li>
                     <li class="active">{{ $product->title }}</li>
                 </ol>
             </div>
