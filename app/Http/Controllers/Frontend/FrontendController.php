@@ -82,16 +82,10 @@ class FrontendController extends BaseController
 	{
 		// Ajax request is used when
 		// paginate or filter products
-	
-
-
 
 		$category = Category::where('slug', $categorySlug)->with('children')->with('filters')->first();
-		//dd($category);
-		//моя вставка
+
 		$subcategory = Category::where('slug', $subcategorySlug)->with('children')->with('filters')->first();
-		//
-		//dd($subcategory);
 
         if(!$category) abort(404);
 
@@ -104,7 +98,6 @@ class FrontendController extends BaseController
 		if($request->ajax()){
 			return $filterService->getFilteredProducts($request);
 		}
-		// dd($products->all());
 
 	    //$children = $category->children()->products()->get();
 

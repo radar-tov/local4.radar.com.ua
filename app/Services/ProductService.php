@@ -69,6 +69,7 @@ class ProductService {
 			})
 			->has('category', '>', 0)
             ->orderByRaw('RAND()')->original()->withRelations()->visible()->paginate(15);
+
 		return $products;
 	}
 

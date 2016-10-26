@@ -63,12 +63,19 @@ class Product extends Eloquent {
 		'is_import',
 	];
 
+
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
 	public function category() {
 		return $this->belongsTo('App\Models\Category');
 	}
+
+
+	public function parent() {
+		return $this->belongsTo('App\Models\Category', 'slug', 'parent_id');
+	}
+
 
 	/**
 	 * @return mixed

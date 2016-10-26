@@ -7,6 +7,7 @@ use App\Models\CharacteristicValue;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class FilterService
@@ -14,110 +15,100 @@ use App\Models\Category;
  */
 class FilterService
 {
-	/**
-	 * @param Request $request
-	 * @return array
-	 *
-	 * Filter products by ajax-request from filter form
-	 */
-	public function getFilteredProducts(Request $request)
-	{
-		$filters = $request->get('filters');
+    /**
+     * @param Request $request
+     * @return array
+     *
+     * Filter products by ajax-request from filter form
+     */
+    public function getFilteredProducts(Request $request)
+    {
 
-		$category = Category::where('id',  $request->get('categoryId'))->with('children')->with('filters')->first();
+        $filters = $request->get('filters');
 
-		$categories = [$category->id] + $category->children->lists('id')->all();
+        $category = Category::where('id', $request->get('categoryId'))->with('children')->with('filters')->first();
 
+        $categories = [$category->id] + $category->children->lists('id')->all();
 
-       // $subcategorySlug = Category::where('id', $category->parent_id);
+        $products = Product::whereIn('category_id', $categories);
 
-       // dd($subcategorySlug);
+        if (count($filters)) {
+            foreach ($filters as $filter) {
+                $products = $products->whereHas('filters', function ($q) use ($filter) {
+                    $q->whereIn('filter_value_id', $filter);
+                });
+            }
+        }
 
-
-
-
-		$products  = Product::whereIn('category_id', $categories);
-
-		if(count($filters)){
-			foreach($filters as $filter) {
-				$products = $products->whereHas('filters',function($q) use ($filter){
-					$q->whereIn('filter_value_id', $filter);
-				});
-			}
-		}
-
-		if($request->get('price')){
-
-		$products = $products->whereBetween('price', explode(';', $request->get('price')));
-		$products = $products->ordered($request)->visible()->withRelations()->paginate();
-
-		}
-		else{
-			$products = $products->ordered($request)->visible()->withRelations()->paginate();
-		}
+        if ($request->get('price')) {
+            $products = $products->whereBetween('price', explode(';', $request->get('price')));
+            $products = $products->ordered($request)->visible()->withRelations()->paginate();
+        } else {
+            $products = $products->ordered($request)->visible()->withRelations()->paginate();
+        }
 
         // Separate rendering of products and pagination views
-		return [
-			'products' => view('frontend.partials.products.filtered_products', compact('products'))->render(),
-			'pagination' => view('frontend.partials.products.pagination_template', compact('products'))->render()
-		];
-	}
+        return [
+            'products' => view('frontend.partials.products.filtered_products', compact('products'))->render(),
+            'pagination' => view('frontend.partials.products.pagination_template', compact('products'))->render()
+        ];
+    }
 
-	/**
-	 * @param $category
-	 * @param $request
-	 *
-	 * Sync filters with category
-	 */
-	public function syncFilters($category, $request)
-	{
-		$filters = $request->get('filters') ? explode(',', trim($request->get('filters'), ',')) : [];
-		
-		// Just clear category relations with filters (fields)
-		// because we need to sync them with extra action
-		// - assign order and is_filter cols in pivot
-		$category->fields()->sync([]);
+    /**
+     * @param $category
+     * @param $request
+     *
+     * Sync filters with category
+     */
+    public function syncFilters($category, $request)
+    {
+        $filters = $request->get('filters') ? explode(',', trim($request->get('filters'), ',')) : [];
 
-		if(empty($filters)) return;
+        // Just clear category relations with filters (fields)
+        // because we need to sync them with extra action
+        // - assign order and is_filter cols in pivot
+        $category->fields()->sync([]);
 
-		foreach($filters as $filter) {
-			// filter here is array like - ['1:0']
-			// first param - filter_id
-			// second - is it filter for this category [1 or 0]
-			$filterId =  explode(':', trim($filter, ','))[0];
-			$isFilter =  explode(':', trim($filter, ','))[1];
+        if (empty($filters)) return;
 
-			$sortable = $this->prepareOrder($request->get('sortable'));
-			$category->fields()->attach($filterId);
+        foreach ($filters as $filter) {
+            // filter here is array like - ['1:0']
+            // first param - filter_id
+            // second - is it filter for this category [1 or 0]
+            $filterId = explode(':', trim($filter, ','))[0];
+            $isFilter = explode(':', trim($filter, ','))[1];
 
-			$filter = $category->fields()->find($filterId);
-			$filter->pivot->is_filter = $isFilter;
-			$filter->pivot->order = $sortable[$filterId];
+            $sortable = $this->prepareOrder($request->get('sortable'));
+            $category->fields()->attach($filterId);
 
-			$filter->pivot->save();
-		}
-	}
+            $filter = $category->fields()->find($filterId);
+            $filter->pivot->is_filter = $isFilter;
+            $filter->pivot->order = $sortable[$filterId];
+
+            $filter->pivot->save();
+        }
+    }
 
 
-	/**
-	 * @param $sortable | String
-	 * @return array
-	 *
-	 * Parse sortable input value
-	 * return array where keys are filterID
-	 * and value - filter order
-	 */
-	public function prepareOrder($sortable)
-	{
-		$sortable = explode(',', $sortable);
-		$arr = [];
-		foreach($sortable as $item){
-			$filterId = explode(':', $item)[0];
-			$order = explode(':', $item)[1];
-			$arr[$filterId] = $order;
-		}
-		return $arr;
-	}
+    /**
+     * @param $sortable | String
+     * @return array
+     *
+     * Parse sortable input value
+     * return array where keys are filterID
+     * and value - filter order
+     */
+    public function prepareOrder($sortable)
+    {
+        $sortable = explode(',', $sortable);
+        $arr = [];
+        foreach ($sortable as $item) {
+            $filterId = explode(':', $item)[0];
+            $order = explode(':', $item)[1];
+            $arr[$filterId] = $order;
+        }
+        return $arr;
+    }
 
 
 }
