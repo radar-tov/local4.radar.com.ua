@@ -1,5 +1,3 @@
-
-
 RewriteEngine On
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\ HTTP/ 
 RewriteRule ^index\.php$ http://radar.com.ua/ [R=301,L]
@@ -73,36 +71,3 @@ RewriteRule ^(.*)$ http://radar.com.ua/$1 [R=301,L]
     mod_gzip_item_exclude mime ^image/.*
     mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
 </ifModule>
-
-#Redirect 301 /katalog/velotrenazheri http://housefit.ua/housefit-velotrenazhery
-#Redirect 301 /katalog/begovie-dorozhki http://housefit.ua/begovie-dorojki
-#Redirect 301 /katalog/orbitreki http://housefit.ua/orbitreki
-#Redirect 301 /katalog/skami-dlja-pressa-i-zhima http://housefit.ua/skamji-dlya-pressa-jima
-#Redirect 301 /katalog/silovoe-oborudovanie http://housefit.ua/silovoe-oborudovanie
-#Redirect 301 /katalog/trenazheri http://housefit.ua/trenajeri
-#Redirect 301 /katalog/prof-oborudovanie http://housefit.ua/professionaljnaya-liniya
-#Redirect 301 /katalog/ganteli--shtangi http://housefit.ua/ganteli-shtangi 
-#Redirect 301 /katalog/turizm http://housefit.ua/turizm
-#Redirect 301 /katalog/relaks http://housefit.ua/vibromassajeri
-#Redirect 301 /katalog/aksessuari http://housefit.ua/aksessuari
-#Redirect 301 /trenajeri/s-013 http://housefit.ua/stepperi
-
-Redirect 301 /testtest http://radar.com.ua/
-
-Redirect 301 /{{%20product.options.categorySlug%20}}/{{%20product.options.productSlug%20}} http://radar.com.ua/
-Redirect 301 /pages-economi?_escaped_fragment_= http://radar.com.ua/pages-economi
-Redirect 301 /about?_escaped_fragment_= http://radar.com.ua/about
-Redirect 301 /pages-predlogenie2?_escaped_fragment_= http://radar.com.ua/pages-predlogenie2
-Redirect 301 /garantiya?_escaped_fragment_= http://radar.com.ua/garantiya
-Redirect 301 /delivery?_escaped_fragment_= http://radar.com.ua/delivery
-Redirect 301 /proizvoditeli?_escaped_fragment_= http://radar.com.ua/proizvoditeli
-Redirect 301 /pages-predlogenie?_escaped_fragment_= http://radar.com.ua/pages-predlogenie
-
-
-
-
-
-
-
-
-
