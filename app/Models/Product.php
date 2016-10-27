@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 use Laravelrus\LocalizedCarbon\Traits\LocalizedEloquentTrait;
+use App\Models\Category;
 
 /**
  * Class Product
@@ -76,6 +77,14 @@ class Product extends Eloquent {
 		return $this->belongsTo('App\Models\Category', 'slug', 'parent_id');
 	}
 
+
+	public function parentSlug(){
+		$parent_data = Category::select('slug', 'title')
+			->where('id', '=', Category::where('id', '=', $this->category_id)->value('parent_id'))
+			->get();
+		//dd($parent_data);
+		return $parent_data[0];
+	}
 
 	/**
 	 * @return mixed

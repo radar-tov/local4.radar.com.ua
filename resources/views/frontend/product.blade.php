@@ -15,8 +15,8 @@
             <div class="row">
                 <ol class="breadcrumb">
                     <li><a href="/">Главная</a></li>
-                    <li><a href="/{{ $product->parent->slug }}">{{ $product->parent->title }}</a></li>
-                    <li><a href="/{{ $product->parent->slug }}/{{ $product->category->slug }}">{{ $product->category->title }}</a></li>
+                    <li><a href="/{{ $product->parentSlug()->slug }}">{{ $product->parentSlug()->title }}</a></li>
+                    <li><a href="/{{ $product->parentSlug()->slug }}/{{ $product->category->slug }}">{{ $product->category->title }}</a></li>
                     <li class="active">{{ $product->title }}</li>
                 </ol>
             </div>
@@ -31,12 +31,12 @@
 
                 <div class="left linksBlock">
                     @if($product->prevProductSlug())
-                        <a class="link left" href="/{{ $product->category->slug.'/'.$product->prevProductSlug() }}">&#5176
+                        <a class="link left" href="/{{ $product->parentSlug()->slug }}/{{ $product->category->slug.'/'.$product->prevProductSlug() }}">&#5176
                             Предыдущий товар</a>
                     @endif
 
                     @if($product->nextProductSlug())
-                        <a class="link right" href="/{{ $product->category->slug.'/'.$product->nextProductSlug() }}">Следующий
+                        <a class="link right" href="/{{ $product->parentSlug()->slug }}/{{ $product->category->slug.'/'.$product->nextProductSlug() }}">Следующий
                             товар &#5171</a>
                     @endif
                 </div>
