@@ -94,12 +94,13 @@ class FrontendController extends BaseController
 			return view('frontend.subcategories',compact('categories','category'));
 	  	}
 
-
 		if($request->ajax()){
 			return $filterService->getFilteredProducts($request);
 		}
 
-	    //$children = $category->children()->products()->get();
+	    if(!$subcategory){
+			$subcategory = $category;
+		}
 
 		return view('frontend.catalog', compact('subcategory', 'category'));
 	}
