@@ -1,7 +1,7 @@
 @inject('productsProvider', '\App\ViewDataProviders\ProductsDataProvider')
 <script>
 
-    var maxPrice = {{ $productsProvider->getMaxPrice(isset($category) ? $category->id : null) }}
+    var maxPrice = {{ $productsProvider->getMaxPrice(isset($subcategory) ? $subcategory->id : null) }}
 
     $("#range").ionRangeSlider({
         type: "double",

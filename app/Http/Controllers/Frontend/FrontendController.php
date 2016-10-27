@@ -89,7 +89,7 @@ class FrontendController extends BaseController
 
         if(!$category) abort(404);
 
-      	if($category->children->count() > 0 & !$subcategory){
+      	if($category->children->count() > 0 and !$subcategory){
 			$categories = $category->children;
 			return view('frontend.subcategories',compact('categories','category'));
 	  	}

@@ -20,7 +20,9 @@
         <div class="row">
             <ol class="breadcrumb">
                 <li><a href="/">Главная</a></li>
+                @if(isset($subcategory->parent->slug))
                 <li><a href="/{{ $subcategory->parent->slug }}">{{ $subcategory->parent->title }}</a></li>
+                @endif
                 <li class="active">{{ isset($subcategory->title) ? $subcategory->title : '#' }}</li>
             </ol>
         </div>
