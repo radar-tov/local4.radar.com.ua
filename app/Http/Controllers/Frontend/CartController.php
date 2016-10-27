@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Stock;
+use App\Models\Category;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
@@ -31,6 +32,10 @@ class CartController extends Controller {
     public function addProduct(Request $request) {
 		$product = Product::visible()->with('relevantSale', 'thumbnail', 'category')->find($request->get('productId'));
 
+        $parentCategorySlug = Category::select('slug', 'title')
+            ->where('id', '=', Category::where('id', '=', $product->category->id)->value('parent_id'))
+            ->get();
+
 		Cart::add(
 			$id = $product->clone_of ?: $product->id,
 			$title = $product->title,
@@ -41,7 +46,7 @@ class CartController extends Controller {
 				'excerpt' => $product->excerpt,
 				'article' => $product->article,
 				'thumbnail' => count($product->thumbnail) ? $product->thumbnail->first()->path : '',
-				'categorySlug' => $product->category->slug,
+                'categorySlug' => $parentCategorySlug[0]->slug.'/'.$product->category->slug,
 				'productSlug' => $product->slug,
 			]);
 

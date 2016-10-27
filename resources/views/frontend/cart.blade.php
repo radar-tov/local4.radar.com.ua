@@ -28,6 +28,7 @@
 
         <h5 v-if="!len > 0">Корзина пуста</h5>
         <div class="row"  v-show="len > 0">
+
             {{--<h1>@{{ len == 0 }}</h1>--}}
 
             <div>
