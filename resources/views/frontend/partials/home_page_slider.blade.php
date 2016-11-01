@@ -4,7 +4,9 @@
             @foreach($sliders as $slider)
                 <li class="slide">
                     <div class="box">
-                        <a @if($slider->link) href="{{ $slider->link }}" }} @endif><img style="max-width: 100%;" src="{{ url($slider->thumbnail) }}" alt="{{ $slider->alt }}" /></a>
+                        <a @if($slider->link) href="{{ $slider->link }}" @endif>
+                            <img style="max-width: 100%;" src="{{ url($slider->thumbnail) }}" @if($slider->alt) alt="{{ $slider->alt }}" @endif/>
+                        </a>
                         <div class="container slide-content">
                             @if($slider->title)
                                       <p class="pre-title right-align wow animated fadeInUp" data-wow-delay="0.5s">{{ $slider->title }}</p>
