@@ -6291,7 +6291,7 @@ ol.breadcrumb {
 }
 
 .slider2 .slides .box a img {
-    max-width: none!important;
+    /*max-width: none!important;*/
     height: 360px;
 }
 
