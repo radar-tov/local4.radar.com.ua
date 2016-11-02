@@ -16,7 +16,7 @@
                     </ul>
                     </div>
                     <div class="col l7">
-                        <img src="{{ $category->thumbnail }}"/>
+                        <img src="/{{ $category->thumbnail }}"/>
                         </div>
                     </div>
                 @endif
