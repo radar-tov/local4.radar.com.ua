@@ -508,7 +508,7 @@ img.responsive-img, video.responsive-video {
 
 .pagination li a.pg i {
     position: absolute;
-    left: 0;
+    /*left: 0;*/
     right: 0;
     margin: auto
 }
