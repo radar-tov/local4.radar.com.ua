@@ -151,7 +151,7 @@
                 <input
                         type="submit"
                         name="addtocart"
-                        onclick="yaCounter39848700.reachGoal('addCart'); return true;"
+                        onclick="yaCounter39848700.reachGoal('addCart'); ga('send', 'event', 'Knopka', 'addCart'); return true;"
                         data-productId="{{ $product->id }}"
                         class="addtocart-button-hover buy anim"
                         value="{{ Cart::search(['id' => $product->id]) ? 'В корзине' : 'Добавить в корзину' }}"

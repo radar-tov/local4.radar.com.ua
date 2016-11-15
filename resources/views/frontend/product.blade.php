@@ -116,7 +116,7 @@
                                     <input type="submit"
                                            name="addtocart"
                                            class="addtocart-button-hover buy"
-                                           onclick="yaCounter39848700.reachGoal('addCart'); return true;"
+                                           onclick="yaCounter39848700.reachGoal('addCart'); ga('send', 'event', 'Knopka', 'addCart'); return true;"
                                            data-productId="{{ $product->id }}"
                                            data-productPrice="{{ $product->getPrice() }}"
                                            value="{{ productInCart($product) ? 'В корзине' : 'Купить' }}"
