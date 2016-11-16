@@ -1,7 +1,7 @@
 @extends('frontend.layout')
 
 @section('seo')
-    <title>{{ 'Акции' }}</title>
+    <title>{{ 'Статьи' }}</title>
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
 @endsection
@@ -13,7 +13,7 @@
             <div class="row">
                 <ol class="breadcrumb">
                     <li><a href="/">Главная</a></li>
-                    <li class="active">Акции</li>
+                    <li class="active">Статьи</li>
                 </ol>
             </div>
         </div>
@@ -50,7 +50,7 @@
                                     <p>
                                         {!! $article->excerpt !!}
                                     </p>
-                                    <a href="/news/{{ $article->id }}/{{ $article->slug }}" class="waves-effect waves-light btn">Подробнее</a>
+                                    <a href="/stati/{{ $article->id }}/{{ $article->slug }}" class="waves-effect waves-light btn">Подробнее</a>
                                 </div>
                             </div>
                         </div>

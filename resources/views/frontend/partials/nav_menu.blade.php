@@ -11,8 +11,8 @@
                     <li><a href="/">Главная</a></li>
                     <li><a href="{{ url('about') }}">О нас</a></li>
                     <li><a href="{{ route('proizvoditeli') }}">Наши производители</a></li>
-
                     <li><a href="{{ url('delivery') }}">Доставка и оплата</a></li>
+                    <li><a href="{{ route('frontend.page') }}">Статьи</a></li>
                     <li><a href="{{ route('contacts') }}">Контакты</a></li>
                 </ul>
                 <ul class="left hide-on-med-and-down">
@@ -20,6 +20,7 @@
                     <li><a href="{{ url('about') }}">О нас</a></li>
                     <li><a href="{{ url('proizvoditeli') }}">Наши производители</a></li>
                     <li><a href="{{ url('delivery') }}">Доставка и оплата</a></li>
+                    <li><a href="{{ route('frontend.page') }}">Статьи</a></li>
                     <li><a href="{{ url('contacts') }}">Контакты</a></li>
                 </ul>
             </nav>

@@ -1820,7 +1820,7 @@ nav ul.left > li > a {
     font-size: 1rem;
     color: #fff;
     display: block;
-    padding: 0 24px 0 0px
+    padding: 0 12px 0 0px
 }
 
 nav ul.left {
@@ -5522,7 +5522,7 @@ p.note {
 .nav-menu nav ul.left > li > a {
     color: #fff;
     font-family: 'a_AvanteTck Medium', sans-serif;
-    font-size:13px;
+    font-size:12px;
     text-align: center;
     line-height: 20px;
     text-transform: uppercase;
@@ -5534,7 +5534,7 @@ p.note {
     content: '';
     border-right: 1px solid white;
     height: 12px;
-    right: 12px;
+    right: 6px;
     bottom: calc(50% - 6px);
     position: absolute;
 }
