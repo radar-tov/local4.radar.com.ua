@@ -36,7 +36,7 @@
                             <div class="post-row-center col s12 m10">
                                 <div class="post-media col s12 m6 l4">
                                     <div class="media-inner">
-                                        <a href="/news/{{ $article->id }}/{{ $article->slug }}" title="{{ $article->title }}!">
+                                        <a href="/stati/{{ $article->id }}/{{ $article->slug }}" title="{{ $article->title }}!">
                                             <img src="{{ url($article->thumbnail) }}" class="responsive-img" alt="{{ $article->title }}">
                                         </a>
                                     </div>
