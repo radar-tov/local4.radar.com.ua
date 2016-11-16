@@ -13,7 +13,7 @@
             <div class="row">
                 <ol class="breadcrumb">
                     <li><a href="/">Главная</a></li>
-                    <li><a href="/news">Новости</a></li>
+                    <li><a href="/stati">Статьи</a></li>
                     <li class="active">{{ $article->title }}</li>
                 </ol>
             </div>
@@ -32,7 +32,7 @@
                             <span>{{ $article->published_at->formatLocalized('%B %d %Y') }}</span>
                         </div>
                         <div class="col s12 m12 l6">
-                            <img src="{{ url($article->thumbnail) }}" class="responsive-img" alt="{{ $article->title }}">
+                            {{--<img src="{{ url($article->thumbnail) }}" class="responsive-img" alt="{{ $article->title }}">--}}
                         </div>
                         <div class="col s12 m12 l6">
                             {!! $article->content !!}
