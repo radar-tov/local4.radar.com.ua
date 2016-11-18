@@ -19,7 +19,10 @@ class CategoriesDataProvider {
 		if(self::$listForNav) return self::$listForNav;
 
 		self::$listForNav = Category::where('parent_id',0)
-										->with('children')
+										->with(array('children' => function($query)
+										{
+											$query->where('show', '=', 1);
+										}))
 										->visible()
 										->orderBy('order')->get();
 
