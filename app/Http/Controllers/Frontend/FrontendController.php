@@ -129,12 +129,8 @@ class FrontendController extends BaseController
             'relatedProducts',
             'rates.users',
             'reviews.user',
-            'stocks.orderedProducts'
-        )
-        ->with(array('filterValuesWithFilters' => function($query)
-            {
-                $query->where('show', 1);
-            })
+            'stocks.orderedProducts',
+            'filterValuesWithFilters'
         )
 		->first();
        
