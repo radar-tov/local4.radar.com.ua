@@ -133,7 +133,7 @@ class FrontendController extends BaseController
             'filterValuesWithFilters'
         )
 		->first();
-       
+
         if(!$product) abort(404);
 
 		// Ajax request is used

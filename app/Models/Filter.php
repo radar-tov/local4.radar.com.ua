@@ -13,7 +13,7 @@ class Filter extends Eloquent
 
 	public function categories()
 	{
-		return $this->belongsToMany(Category::class)->withPivot('show','order');
+		return $this->belongsToMany(Category::class)->withPivot('show','order')->where('category_filter.show', '>', 0);
 	}
 
 
