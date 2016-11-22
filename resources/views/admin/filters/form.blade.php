@@ -13,24 +13,24 @@
             />
         </div>
     </div>
-  {{--  <div class="col-xs-6">
-        <div class="form-group">
-            <a href="#" class="pull-right" v-on="click:makeSlug($event)" v-show="title">
-                <small>Сгенерировать ссылку</small>
-                <i class="fa fa-sort-alpha-asc"></i>
-            </a>
-            <label for="title">Ссылка</label>
-            <input
-                type="text"
-                name="slug"
-                class="form-control"
-                id="slug"
-                value="{!! old('slug', $filter->slug) !!}"
-                placeholder='Ссылка'
-                v-model="slug"
-            />
-        </div>
-    </div>--}}
+    {{--<div class="col-xs-6">--}}
+        {{--<div class="form-group">--}}
+            {{--<a href="#" class="pull-right" v-on="click:makeSlug($event)" v-show="title">--}}
+                {{--<small>Сгенерировать ссылку</small>--}}
+                {{--<i class="fa fa-sort-alpha-asc"></i>--}}
+            {{--</a>--}}
+            {{--<label for="title">Ссылка</label>--}}
+            {{--<input--}}
+                {{--type="text"--}}
+                {{--name="slug"--}}
+                {{--class="form-control"--}}
+                {{--id="slug"--}}
+                {{--value="{!! old('slug', $filter->slug) !!}"--}}
+                {{--placeholder='Ссылка'--}}
+                {{--v-model="slug"--}}
+            {{--/>--}}
+        {{--</div>--}}
+    {{--</div>--}}
 </div>
 
 @if(isset($filter->values))
@@ -78,11 +78,11 @@
             </ol>
         </div>
 
-    {{--
-        <pre>
-            @{{ $data | json }}
-        </pre>
-    --}}
+
+        {{--<pre>--}}
+            {{--@{{ $data | json }}--}}
+        {{--</pre>--}}
+
     </div>
 @endif
 

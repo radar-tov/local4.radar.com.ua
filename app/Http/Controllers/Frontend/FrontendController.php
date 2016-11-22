@@ -116,14 +116,25 @@ class FrontendController extends BaseController
 	 */
 	public function product($categorySlug, $subcategorySlug, $productSlug, Request $request)
 	{
-		$product = Product::whereRaw("products.slug = '$productSlug'" )->whereHas('category', function($category) use($subcategorySlug){
+		$product = Product::whereRaw("products.slug = '$productSlug'" )
+            ->whereHas(
+                'category', function($category) use($subcategorySlug){
 			$category->where('slug', $subcategorySlug);
 		})
 		->visible()
 		->with(
-            'relevantSale', 'images', 'category','relatedProducts',
-            'rates.users','reviews.user', 'filterValuesWithFilters',
+            'relevantSale',
+            'images',
+            'category',
+            'relatedProducts',
+            'rates.users',
+            'reviews.user',
             'stocks.orderedProducts'
+        )
+        ->with(array('filterValuesWithFilters' => function($query)
+            {
+                $query->where('show', 1);
+            })
         )
 		->first();
        

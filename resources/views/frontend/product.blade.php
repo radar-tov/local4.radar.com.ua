@@ -258,24 +258,24 @@
                             </div>
                             <div id="login" class="col s12 no-padding">
                                 <div class="full-desc bordered mod">
-                                 <!-- <div class="col mod col s12 l6">
-                                        <h5 class="teg mod">Основные характеристики</h5>
-                                        {{--                    {{ dd($product->filterValuesWithFilters->sortBy('filter.category.pivot.order')->toArray()) }}--}}
-                                        @foreach($product->sortedValues($product->category_id) as $field)
+                                 {{--<div class="col mod col s12 l6">--}}
+                                        {{--<h5 class="teg mod">Основные характеристики</h5>--}}
+                                        {{--{{ dd($product->filterValuesWithFilters->sortBy('filter.category.pivot.order')->toArray()) }}--}}
+                                        {{--@foreach($product->sortedValues($product->category_id) as $field)--}}
                                             {{--{{ dd($field->toArray()) }}--}}
                                             {{-- @if($field->filter->isVisibleForCategory($product->category_id))--}}
-                                            <div class="col aspect s12">
+                                            {{--<div class="col aspect s12">--}}
                                                 {{--{{ dd($field->filter->toArray()) }}--}}
                                                 {{--<p class="title bold uppercase">Основные</p>--}}
-                                                <p class="col s12 m4">{{ $field->filter->title }}</p>
-                                                <p class="col s12 m8">{{ $field->value }}</p>
-                                            </div>
+                                                {{--<p class="col s12 m4">{{ $field->filter->title }}</p>--}}
+                                                {{--<p class="col s12 m8">{{ $field->value }}</p>--}}
+                                            {{--</div>--}}
                                             {{--@endif--}}
-                                        @endforeach
-                                    </div>-->
+                                        {{--@endforeach--}}
+                                    {{--</div>--}}
                                     <div class="col col s12 l6">
                                         <h5 class="teg mod">Технические характеристики</h5>
-                                        {{--                    {{ dd($product->filterValuesWithFilters->sortBy('filter.category.pivot.order')->toArray()) }}--}}
+                                        {{--{{ dd($product->filterValuesWithFilters->sortBy('filter.category.pivot.order')->toArray()) }}--}}
                                         @foreach($product->sortedValues($product->category_id) as $field)
                                             {{--{{ dd($field->toArray()) }}--}}
                                             {{-- @if($field->filter->isVisibleForCategory($product->category_id))--}}
