@@ -80,8 +80,8 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                 <input type="hidden" name="product_id" value="{{ $productReviewId or 0 }}"/>
                 <div class="input-field col s12">
-                    <input class="materialize-textarea" placeholder="Ваше имя"
-                           name="name" value="{{ str_replace(' ', '&nbsp;', ( Auth::check() ? Auth::user()->name : '')) }}" type="text"/>
+                    <input class="materialize-textarea" disabled placeholder="Ваше имя"
+                           name="name" value="{{ str_replace(' ', '&nbsp;', ( Auth::check() ? Auth::user()->name : 'anonimus')) }}" type="text"/>
                     <textarea class="materialize-textarea" placeholder="Отзыв" name="body" value="" required></textarea>
                     <button class="btn waves-effect waves-light" type="submit">Отправить</button>
                 </div>
