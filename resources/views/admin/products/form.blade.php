@@ -181,7 +181,7 @@
                             <div class="col-sm-12">
                                 <br/>
                                 {!! Form::label('body', 'Полное Описание') !!}
-                                {!! Form::textarea('body', $value = null, ['rows'=>'12','class'=>'form-control tiny','form'=>'form-data']) !!}
+                                {!! Form::textarea('body', $value = null, ['rows'=>'40','class'=>'form-control tiny','form'=>'form-data']) !!}
                             </div>
                         </div>
                     </div>
