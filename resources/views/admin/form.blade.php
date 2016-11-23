@@ -29,7 +29,7 @@
         setup: function (ed) {
             ed.on('init', function () {
                 //this.execCommand("fontName", false, "tahoma");
-                this.execCommand("fontSize", false, "14px");
+                //this.execCommand("fontSize", false, "14px");
             });
         }
     });
