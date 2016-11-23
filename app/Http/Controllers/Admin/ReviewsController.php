@@ -44,7 +44,12 @@ class ReviewsController extends AdminController
         try{
             $data = array_map('strip_tags', $request->only(['product_id', 'body']));
 
-            $data = array_merge($data, ['user_id' => Auth::user()->id, 'active' => 0]);
+            if(Auth::check())
+            {
+                $data = array_merge($data, ['user_id' => Auth::user()->id, 'active' => 0]);
+            }else{
+                $data = array_merge($data, ['user_id' => '292', 'active' => 0]);
+            }
 
             Review::create($data);
 

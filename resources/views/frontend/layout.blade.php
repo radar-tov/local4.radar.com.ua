@@ -75,29 +75,29 @@
 <div id="review" class="modal">
     <div class="modal-content">
         <a href="#!" class="modal-action modal-close waves-effect btn-flat "><i class="fa fa-close"></i></a>
-        @if(Auth::check())
+        {{--@if(Auth::check())--}}
             <form action="{!! route('add.review') !!}" method="post" id="review-form">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                 <input type="hidden" name="product_id" value="{{ $productReviewId or 0 }}"/>
                 <div class="input-field col s12">
-                    <input disabled placeholder="Ваше имя" name="name"
-                           value={{ str_replace(' ', '&nbsp;', Auth::user()->name) }} type="text"/>
+                    <input class="materialize-textarea" placeholder="Ваше имя"
+                           name="name" value="{{ str_replace(' ', '&nbsp;', ( Auth::check() ? Auth::user()->name : '')) }}" type="text"/>
                     <textarea class="materialize-textarea" placeholder="Отзыв" name="body" value="" required></textarea>
                     <button class="btn waves-effect waves-light" type="submit">Отправить</button>
                 </div>
             </form>
-        @else
-            <p class="red-text"><b>Только зарегистрированные пользователи могут оставлять отзывы</b></p>
-            <ol class="col s12 remember">
+        {{--@else--}}
+            {{--<p class="red-text"><b>Только зарегистрированные пользователи могут оставлять отзывы</b></p>--}}
+            {{--<ol class="col s12 remember">--}}
                 {{--<li><a href="#" class="order-forgot-login-link">Я забыл логин</a></li>--}}
-                <li>
-                    <a href="{{ route('login') }}" class="order-forgot-pwd-link modal-trigger">Вход</a>
-                </li>
-                <li>
-                    <a href="{{ route('register') }}" class="order-forgot-pwd-link modal-trigger">Регистрация</a>
-                </li>
-            </ol>
-        @endif
+                {{--<li>--}}
+                    {{--<a href="{{ route('login') }}" class="order-forgot-pwd-link modal-trigger">Вход</a>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                    {{--<a href="{{ route('register') }}" class="order-forgot-pwd-link modal-trigger">Регистрация</a>--}}
+                {{--</li>--}}
+            {{--</ol>--}}
+        {{--@endif--}}
     </div>
 </div>
 <!-- / Review modal -->
