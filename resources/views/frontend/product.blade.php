@@ -145,6 +145,7 @@
                                                class="video-button"
                                                data-productId="{{ $product->id }}"
                                                class="video-button-hover compare anim"
+                                               onclick="yaCounter39848700.reachGoal('playVideo'); ga('send', 'event', 'Knopka', 'playVideo'); return true;"
                                                value="ВИДЕО"
                                                title="Видео">
                                     </a>
