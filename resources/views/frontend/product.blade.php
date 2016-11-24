@@ -138,14 +138,16 @@
                                     @endif
                                 </div>
 
-                                <div class="video-button-item center-align col s4 non-active">
-                                    <input type="button"
-                                           name="video"
-                                           class="video-button"
-                                           data-productId="{{ $product->id }}"
-                                           class="video-button-hover compare anim"
-                                           value="ВИДЕО"
-                                           title="Видео">
+                                <div class="video-button-item center-align col s4 @if (isset($product->id)) active @else non-active @endif">
+                                    <a href="#video" class="review-button white-text uppercase modal-trigger" title="video">
+                                        <input type="button"
+                                               name="video"
+                                               class="video-button"
+                                               data-productId="{{ $product->id }}"
+                                               class="video-button-hover compare anim"
+                                               value="ВИДЕО"
+                                               title="Видео">
+                                    </a>
 
                                 </div>
                                 <div class="addtocart-button-item center-align col s4">
