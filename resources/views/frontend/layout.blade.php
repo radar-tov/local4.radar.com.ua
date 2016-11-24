@@ -83,7 +83,8 @@
                     <input class="materialize-textarea" disabled placeholder="Ваше имя"
                            name="name" value="{{ str_replace(' ', '&nbsp;', ( Auth::check() ? Auth::user()->name : 'anonimus')) }}" type="text"/>
                     <textarea class="materialize-textarea" placeholder="Отзыв" name="body" value="" required></textarea>
-                    <button class="btn waves-effect waves-light" type="submit">Отправить</button>
+                    <button class="btn waves-effect waves-light" type="submit"
+                            onclick="yaCounter39848700.reachGoal('addComent'); ga('send', 'event', 'Knopka', 'addComent'); return true;">Отправить</button>
                 </div>
             </form>
         {{--@else--}}
