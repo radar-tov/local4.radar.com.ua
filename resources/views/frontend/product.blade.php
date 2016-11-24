@@ -246,12 +246,14 @@
                     <div class="col s12 m12 l9 no-padding product-card">
                         <div class="cart-authentication">
                             <ul class="tabs">
-                                <li class="tab col s3 m3 l3"><a class="active waves-effect waves-light"
-                                                                href="#register">Описание</a></li>
-                                <li class="tab col s3 m3 l3"><a class="waves-effect waves-light" href="#login">Характеристики</a>
-                                </li>
-                                <li class="tab col s3 m3 l3"><a class="waves-effect waves-light" href="#ones">Отзывы</a>
-                                </li>
+                                @if(!empty($product->body))
+                                    <li class="tab col s3 m3 l3"><a class="active waves-effect waves-light" href="#register">Описание</a></li>
+                                    <li class="tab col s3 m3 l3"><a class="waves-effect waves-light" href="#login">Характеристики</a></li>
+                                @else
+                                    <li class="tab col s3 m3 l3"><a class="waves-effect waves-light" href="#register">Описание</a></li>
+                                    <li class="tab col s3 m3 l3"><a class="active waves-effect waves-light" href="#login">Характеристики</a></li>
+                                @endif
+                                <li class="tab col s3 m3 l3"><a class="waves-effect waves-light" href="#ones">Отзывы</a></li>
                             </ul>
                             <div id="register" class="col s12 no-padding">
                                 <div class="full-desc">
