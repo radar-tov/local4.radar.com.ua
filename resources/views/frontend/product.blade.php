@@ -173,7 +173,7 @@
 
                                 <a class="instruction {{ $product->pdf ? '' : '_disabled' }} "
                                    href="/{{ $product->pdf }}"
-                                   onclick="yaCounter39848700.files('{{ $product->pdf }}'); ga('send', 'event', 'PDF', '{{ $product->title }}'); return true;"
+                                   onclick="yaCounter39848700.file('{{ $product->pdf }}', {params: '{{ $product->title }}'}); ga('send', 'event', 'PDF', '{{ $product->title }}'); return true;"
                                    target="_blank">
                                     <span>&#8811 инструкция</span>
                                 </a>
