@@ -86,7 +86,7 @@
                 <input required="required" placeholder="Ваше имя" id="name_call" name="name" type="text" class="validate">
                 <input required="required" placeholder="Номер телефона" id="phone_call" name="phone" type="text" class="validate">
                 <button class="btn waves-effect waves-light" type="submit" name="action"
-                        onclick="yaCounter39848700.reachGoal('callBack'); ga('send', 'event', 'callBack'); return true;">
+                        onclick="yaCounter39848700.reachGoal('callBack'); ga('send', 'event', 'Knopka', 'callBack'); return true;">
                     <i class="fa fa-phone"></i>Заказать
                 </button>
             </form>
