@@ -115,27 +115,29 @@
                                 <div class="addtocart-button-item center-align col">
                                     <input type="submit"
                                            name="addtocart"
-                                           class="addtocart-button-hover buy"
+                                           class="@if($product->available == 1) addtocart-button-hover @endif buy"
                                            onclick="yaCounter39848700.reachGoal('addCart'); ga('send', 'event', 'Knopka', 'addCart'); return true;"
                                            data-productId="{{ $product->id }}"
                                            data-productPrice="{{ $product->getPrice() }}"
-                                           value="{{ productInCart($product) ? 'В корзине' : 'Купить' }}"
-                                           title="купить">
+                                           value="@if($product->available==1) {{ productInCart($product) ? 'В корзине' : 'Купить' }} @elseif($product->available==2) Под заказ @endif"
+                                           title="@if($product->available==1) Купить @elseif($product->available==2) Под заказ @elseif($product->available==0) Нет в наличии @endif"
+                                           @if($product->available != 1) disabled @endif>
                                 </div>
                             </div>
                             <div class="col s12 wrapper-buttons">
 
                                 <div class="col clearleft short-desc s4 no-margin">
-                                    @if ($product->available)
-                                        <p class="availability green-text no-margin"><img
-                                                    src="/frontend/images/available.png"
-                                                    alt=""/>Есть в
-                                            наличии</p>
-                                    @else
-                                        <p class="availability bold red-text no-margin"><i
-                                                    class="red-text fa fa-remove"></i>
-                                            Нет в наличии</p>
+                                    @if ($product->available==1)
+                                        <p class="availability green-text no-margin"><img src="/frontend/images/available.png" alt=""/>Есть в наличии</p>
                                     @endif
+                                    @if ($product->available==0)
+                                        <p class="availability bold red-text no-margin"><i class="red-text fa fa-remove"></i>Нет в наличии</p>
+                                    @endif
+                                    @if ($product->available==2)
+                                        <p class="availability bold red-text no-margin"><i class="red-text fa fa-car"></i>Под заказ</p>
+                                    @endif
+
+
                                 </div>
 
                                 <div class="video-button-item center-align col s4 @if (!empty($product->video)) active @else non-active @endif">

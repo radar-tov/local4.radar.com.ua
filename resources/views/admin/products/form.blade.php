@@ -151,7 +151,7 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     {!! Form::label('available', 'Товар в наличии?') !!}
-                                    {!! Form::select('available', ['Нет', 'Да'], $selected = null, ['class' => 'form-control']) !!}
+                                    {!! Form::select('available', ['1'=> 'Да', '0'=>'нет','2'=>'под заказ'], $selected = null, ['class' => 'form-control']) !!}
                                 </div>
                             </div>
 
