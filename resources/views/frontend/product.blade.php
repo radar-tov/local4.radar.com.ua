@@ -138,7 +138,7 @@
                                     @endif
                                 </div>
 
-                                <div class="video-button-item center-align col s4 @if (isset($product->id)) active @else non-active @endif">
+                                <div class="video-button-item center-align col s4 @if (!empty($product->video)) active @else non-active @endif">
                                     <a href="#video" class="review-button white-text uppercase modal-trigger" title="video">
                                         <input type="button"
                                                name="video"
@@ -246,13 +246,8 @@
                     <div class="col s12 m12 l9 no-padding product-card">
                         <div class="cart-authentication">
                             <ul class="tabs">
-                                @if(!empty($product->body))
-                                    <li class="tab col s3 m3 l3"><a class="active waves-effect waves-light" href="#register">Описание</a></li>
-                                    <li class="tab col s3 m3 l3"><a class="waves-effect waves-light" href="#login">Характеристики</a></li>
-                                @else
-                                    <li class="tab col s3 m3 l3"><a class="waves-effect waves-light" href="#register">Описание</a></li>
-                                    <li class="tab col s3 m3 l3"><a class="active waves-effect waves-light" href="#login">Характеристики</a></li>
-                                @endif
+                                <li class="tab col s3 m3 l3"><a class=" @if (!empty($product->body)) active @endif waves-effect waves-light" href="#register">Описание</a></li>
+                                <li class="tab col s3 m3 l3"><a class=" @if (empty($product->body)) active @endif waves-effect waves-light" href="#login">Характеристики</a></li>
                                 <li class="tab col s3 m3 l3"><a class="waves-effect waves-light" href="#ones">Отзывы</a></li>
                             </ul>
                             <div id="register" class="col s12 no-padding">
