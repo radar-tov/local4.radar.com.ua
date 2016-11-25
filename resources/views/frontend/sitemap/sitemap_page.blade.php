@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>http://localhost/about</loc>
+    <lastmod>2016-11-25</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost/garantiya</loc>
+    <lastmod>2016-11-25</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost/proizvoditeli</loc>
+    <lastmod>2016-11-25</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost/pages-predlogenie2</loc>
+    <lastmod>2016-11-25</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost/delivery</loc>
+    <lastmod>2016-11-25</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost/pages-predlogenie</loc>
+    <lastmod>2016-11-25</lastmod>
+  </url>
+  <url>
+    <loc>http://localhost/pages-economi</loc>
+    <lastmod>2016-11-25</lastmod>
+  </url>
+</urlset>

@@ -268,6 +268,17 @@ class FrontendController extends BaseController
 	}
 
 
+	public static function sitemap()
+	{
+		return StaticPage::where('id', '>', 0)->get();
+	}
+
+	public function sitemap_page()
+	{
+		return view('frontend.sitemap.sitemap_page');
+	}
+
+
 	/**
 	 * @return \Illuminate\View\View
 	 * Show cart view
