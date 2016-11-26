@@ -1,4 +1,4 @@
-require valid-user
-Authname "Basic Auth"
-Authtype Basic
+AuthType Basic
+AuthName "admin"
 AuthUserFile "/home/be217497/.htpasswd"
+require valid-user
