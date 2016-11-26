@@ -1,4 +1,4 @@
 AuthType Basic
 AuthName admin
-AuthUserFile radar.com.ua/pwdaccess
+AuthUserFile /home/be217497/radar.com.ua/pwdaccess
 require valid-user
