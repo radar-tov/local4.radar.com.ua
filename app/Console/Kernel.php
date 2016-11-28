@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         //\App\Console\Commands\Inspire::class,
         \App\Console\Commands\XMLSitemap::class,
+        \App\Console\Commands\YMLYandex::class,
     ];
 
     /**
@@ -27,6 +28,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('xmlsitemap')->dailyAt('03:00');
-        //$schedule->command('xmlsitemap')->cron('* * * * *')->sendOutputTo("storage/app/shed_log.txt");
+        //$schedule->command('umlyandex')->dailyAt('04:00');
+        $schedule->command('umlyandex')->cron('* * * * *')->sendOutputTo("storage/app/yml_log.txt");
     }
 }
