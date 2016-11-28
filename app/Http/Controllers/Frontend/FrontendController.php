@@ -303,6 +303,7 @@ class FrontendController extends BaseController
 	public function getSitemapPages()
 	{
 		return view('frontend.sitemap.sitemap_page');
+        return response()->view('frontend.sitemap.sitemap_page', ['Content-type' => 'text/xml']);
 	}
 
 
