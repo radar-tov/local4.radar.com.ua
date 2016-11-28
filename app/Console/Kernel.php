@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        //$schedule->command('xmlsitemap')->dailyAt('03:00');
-        $schedule->command('xmlsitemap')->cron('* * * * *')->sendOutputTo("storage/app/shed_log.txt");
+        $schedule->command('xmlsitemap')->dailyAt('03:00');
+        //$schedule->command('xmlsitemap')->cron('* * * * *')->sendOutputTo("storage/app/shed_log.txt");
     }
 }
