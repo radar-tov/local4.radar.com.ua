@@ -1,17 +1,27 @@
 User-agent: *
 Allow: /images/
-Disallow: /admin
-Disallow: /cart
-Disallow: /login
-Disallow: /registration
-
-
-User-agent: Yandex
-Allow: /images/
+Disallow: /dashboard
 Disallow: /admin
 Disallow: /cart
 Disallow: /cabinet
 Disallow: /login
 Disallow: /registration
-
 Host: http://radar.com.ua
+Sitemap: http://radar.com.ua/sitemap_page.xml
+Sitemap: http://radar.com.ua/sitemap_stati.xml
+Sitemap: http://radar.com.ua/sitemap_categories.xml
+Sitemap: http://radar.com.ua/sitemap_products.xml
+
+User-agent: Yandex
+Allow: /images/
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /cart
+Disallow: /cabinet
+Disallow: /login
+Disallow: /registration
+Host: http://radar.com.ua
+Sitemap: http://radar.com.ua/sitemap_page.xml
+Sitemap: http://radar.com.ua/sitemap_stati.xml
+Sitemap: http://radar.com.ua/sitemap_categories.xml
+Sitemap: http://radar.com.ua/sitemap_products.xml
