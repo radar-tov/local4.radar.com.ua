@@ -27,6 +27,6 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         //$schedule->command('xmlsitemap')->dailyAt('03:00');
-        $schedule->command('xmlsitemap')->cron('* * * * *')->sendOutputTo("resources/views/frontend/sitemap/shed_log.txt");
+        $schedule->command('xmlsitemap')->cron('* * * * *')->sendOutputTo("storage/app/shed_log.txt");
     }
 }
