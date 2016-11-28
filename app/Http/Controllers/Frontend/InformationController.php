@@ -40,6 +40,7 @@ class InformationController extends BaseController
 
 	public function getSitemapStati()
 	{
-		return view('frontend.sitemap.sitemap_stati');
+        $content = \Storage::disk('xml')->get('sitemap_stati.xml');
+        return response($content, 200)->header('Content-type', 'text/xml');
 	}
 }

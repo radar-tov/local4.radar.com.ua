@@ -87,7 +87,7 @@ class XMLSitemap extends Command
 
         }
 
-        $domDocument->save('resources/views/frontend/sitemap/sitemap_page.blade.php');
+        $domDocument->save('storage/app/sitemap_page.xml');
 
     }
 
@@ -129,7 +129,7 @@ class XMLSitemap extends Command
 
         }
 
-        $domDocument->save('resources/views/frontend/sitemap/sitemap_stati.blade.php');
+        $domDocument->save('storage/app/sitemap_stati.xml');
 
     }
 
@@ -190,7 +190,7 @@ class XMLSitemap extends Command
 
         }
 
-        $domDocument->save('resources/views/frontend/sitemap/sitemap_categories.blade.php');
+        $domDocument->save('storage/app/sitemap_categories.xml');
 
     }
 
@@ -245,7 +245,7 @@ class XMLSitemap extends Command
 
         }
 
-        $domDocument->save('resources/views/frontend/sitemap/sitemap_products.blade.php');
+        $domDocument->save('storage/app/sitemap_products.xml');
 
     }
 }

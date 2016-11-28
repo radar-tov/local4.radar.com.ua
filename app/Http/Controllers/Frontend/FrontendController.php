@@ -117,7 +117,8 @@ class FrontendController extends BaseController
 
 	public function getSitemapCategories()
 	{
-		return view('frontend.sitemap.sitemap_categories');
+        $content = \Storage::disk('xml')->get('sitemap_categories.xml');
+        return response($content, 200)->header('Content-type', 'text/xml');
 	}
 
 
@@ -174,7 +175,8 @@ class FrontendController extends BaseController
 
 	public function getSitemapProducts()
 	{
-		return view('frontend.sitemap.sitemap_products');
+        $content = \Storage::disk('xml')->get('sitemap_products.xml');
+        return response($content, 200)->header('Content-type', 'text/xml');
 	}
 
 
@@ -302,8 +304,8 @@ class FrontendController extends BaseController
 
 	public function getSitemapPages()
 	{
-		return view('frontend.sitemap.sitemap_page');
-        return response()->view('frontend.sitemap.sitemap_page', ['Content-type' => 'text/xml']);
+		$content = \Storage::disk('xml')->get('sitemap_page.xml');
+        return response($content, 200)->header('Content-type', 'text/xml');
 	}
 
 
