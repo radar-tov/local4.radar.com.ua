@@ -167,6 +167,18 @@ class FrontendController extends BaseController
 	}
 
 
+	public static function sitemapProducts($id_cat)
+	{
+		return Product::where('category_id', $id_cat)->get();
+	}
+
+	public function getSitemapProducts()
+	{
+		return view('frontend.sitemap.sitemap_products');
+	}
+
+
+
 	/**
 	 * @param Request $request
 	 * @param ProductService $productService

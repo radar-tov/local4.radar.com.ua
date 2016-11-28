@@ -26,6 +26,7 @@ if( ! Request::is('dashboard*') and ! Request::is('auth*')){
 		Route::get('sitemap_page', 'FrontendController@getSitemapPages');
 		Route::get('sitemap_stati', 'InformationController@getSitemapStati');
 		Route::get('sitemap_categories', 'FrontendController@getSitemapCategories');
+		Route::get('sitemap_products', 'FrontendController@getSitemapProducts');
 
 		Route::get('new', ['as' => 'new', 'uses' => 'FrontendController@newProducts']);
 		Route::get('sale', ['as' => 'sale', 'uses' => 'FrontendController@saleProducts']);

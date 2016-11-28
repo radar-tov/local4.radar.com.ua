@@ -42,10 +42,10 @@ class XMLSitemap extends Command
     public function fire()
     {
 
-        //Sitemap для статических страниц
         $this->sitemapStaticPages();
         $this->sitemapStati();
         $this->sitemapCategories();
+        $this->sitemapProductsXml();
 
     }
 
@@ -137,7 +137,7 @@ class XMLSitemap extends Command
     public function sitemapCategories()
     {
 
-        //Sitemap для статей
+        //Sitemap для категорий
         $data = FrontendController::sitemapCategories();
 
         $domDocument = new \DOMDocument('1.0', "UTF-8");
@@ -172,7 +172,7 @@ class XMLSitemap extends Command
                     $domElementUrl = $domElement->appendChild($domDocument->createElement('url'));
 
                     $url = $domElementUrl->appendChild($domDocument->createElement('loc'));
-                    $url->appendChild($domDocument->createTextNode(url() .'/'.$product->slug.'/' . $subProduct->slug));
+                    $url->appendChild($domDocument->createTextNode(url().'/'.$product->slug.'/'.$subProduct->slug));
 
                     $url = $domElementUrl->appendChild($domDocument->createElement('lastmod'));
                     $subDate = new \DateTime($subProduct->updated_at);
@@ -191,6 +191,61 @@ class XMLSitemap extends Command
         }
 
         $domDocument->save('resources/views/frontend/sitemap/sitemap_categories.blade.php');
+
+    }
+
+
+    public function sitemapProductsXml()
+    {
+
+        //Sitemap для товаров
+        $data = FrontendController::sitemapCategories();
+
+        $domDocument = new \DOMDocument('1.0', "UTF-8");
+        $domDocument->formatOutput = true;
+        $domElement = $domDocument->createElement('urlset');
+        $domAttribute = $domDocument->createAttribute('xmlns');
+        $domAttribute->value = 'http://www.sitemaps.org/schemas/sitemap/0.9';
+        $domElement->appendChild($domAttribute);
+        $domDocument->appendChild($domElement);
+
+        foreach($data as $cat){
+
+            $subData = FrontendController::sitemapSubCategories($cat->id);
+
+            if($subData){
+                foreach($subData as $subCat) {
+
+                    $products = FrontendController::sitemapProducts($subCat->id);
+
+                    if($products){
+                        foreach($products as $product) {
+
+                            $domElementUrl = $domElement->appendChild($domDocument->createElement('url'));
+
+                            $url = $domElementUrl->appendChild($domDocument->createElement('loc'));
+                            $url->appendChild($domDocument->createTextNode(url().'/'.$cat->slug.'/'.$subCat->slug.'/'.$product->slug));
+
+                            $url = $domElementUrl->appendChild($domDocument->createElement('lastmod'));
+                            $date = new \DateTime($product->updated_at);
+                            $url->appendChild($domDocument->createTextNode($date->format("Y-m-d")));
+
+                            $url = $domElementUrl->appendChild($domDocument->createElement('changefreq'));
+                            $url->appendChild($domDocument->createTextNode($product->changefreq));
+
+                            $url = $domElementUrl->appendChild($domDocument->createElement('priority'));
+                            $url->appendChild($domDocument->createTextNode($product->priority));
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        $domDocument->save('resources/views/frontend/sitemap/sitemap_products.blade.php');
 
     }
 }
