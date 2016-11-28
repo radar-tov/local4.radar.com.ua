@@ -67,13 +67,13 @@ class XMLSitemap extends Command
         //Для главной страницы
         $domElementUrl = $domElement->appendChild($domDocument->createElement('url'));
         $url = $domElementUrl->appendChild($domDocument->createElement('loc'));
-        $url->appendChild($domDocument->createTextNode(url().'/'));
+        $url->appendChild($domDocument->createTextNode(\URL::base().'/'));
 
         foreach($data as $product){
             $domElementUrl = $domElement->appendChild($domDocument->createElement('url'));
 
             $url = $domElementUrl->appendChild($domDocument->createElement('loc'));
-            $url->appendChild($domDocument->createTextNode(url().'/'.($product->slug)));
+            $url->appendChild($domDocument->createTextNode(\URL::base().'/'.($product->slug)));
 
             $url = $domElementUrl->appendChild($domDocument->createElement('lastmod'));
             $date = new \DateTime($product->updated_at);
@@ -109,13 +109,13 @@ class XMLSitemap extends Command
         //для списка статей
         $domElementUrl = $domElement->appendChild($domDocument->createElement('url'));
         $url = $domElementUrl->appendChild($domDocument->createElement('loc'));
-        $url->appendChild($domDocument->createTextNode(url().'/stati'));
+        $url->appendChild($domDocument->createTextNode(\URL::base().'/stati'));
 
         foreach($data as $product){
             $domElementUrl = $domElement->appendChild($domDocument->createElement('url'));
 
             $url = $domElementUrl->appendChild($domDocument->createElement('loc'));
-            $url->appendChild($domDocument->createTextNode(url().'/stati/'.$product->id.'/'.($product->slug)));
+            $url->appendChild($domDocument->createTextNode(\URL::base().'/stati/'.$product->id.'/'.($product->slug)));
 
             $url = $domElementUrl->appendChild($domDocument->createElement('lastmod'));
             $date = new \DateTime($product->updated_at);
@@ -152,7 +152,7 @@ class XMLSitemap extends Command
             $domElementUrl = $domElement->appendChild($domDocument->createElement('url'));
 
             $url = $domElementUrl->appendChild($domDocument->createElement('loc'));
-            $url->appendChild($domDocument->createTextNode(url().'/'.$product->slug));
+            $url->appendChild($domDocument->createTextNode(\URL::base().'/'.$product->slug));
 
             $url = $domElementUrl->appendChild($domDocument->createElement('lastmod'));
             $date = new \DateTime($product->updated_at);
@@ -172,7 +172,7 @@ class XMLSitemap extends Command
                     $domElementUrl = $domElement->appendChild($domDocument->createElement('url'));
 
                     $url = $domElementUrl->appendChild($domDocument->createElement('loc'));
-                    $url->appendChild($domDocument->createTextNode(url().'/'.$product->slug.'/'.$subProduct->slug));
+                    $url->appendChild($domDocument->createTextNode(\URL::base().'/'.$product->slug.'/'.$subProduct->slug));
 
                     $url = $domElementUrl->appendChild($domDocument->createElement('lastmod'));
                     $subDate = new \DateTime($subProduct->updated_at);
@@ -224,7 +224,7 @@ class XMLSitemap extends Command
                             $domElementUrl = $domElement->appendChild($domDocument->createElement('url'));
 
                             $url = $domElementUrl->appendChild($domDocument->createElement('loc'));
-                            $url->appendChild($domDocument->createTextNode(url().'/'.$cat->slug.'/'.$subCat->slug.'/'.$product->slug));
+                            $url->appendChild($domDocument->createTextNode(\URL::base().'/'.$cat->slug.'/'.$subCat->slug.'/'.$product->slug));
 
                             $url = $domElementUrl->appendChild($domDocument->createElement('lastmod'));
                             $date = new \DateTime($product->updated_at);
