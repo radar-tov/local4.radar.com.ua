@@ -5,7 +5,7 @@
   </url>
   <url>
     <loc>http://localhost/stati/1/vibor-staba</loc>
-    <lastmod>2016-11-28</lastmod>
+    <lastmod>2016-11-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.1</priority>
   </url>

@@ -5,43 +5,43 @@
   </url>
   <url>
     <loc>http://localhost/about</loc>
-    <lastmod>2016-11-28</lastmod>
+    <lastmod>2016-09-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.1</priority>
   </url>
   <url>
     <loc>http://localhost/garantiya</loc>
-    <lastmod>2016-11-28</lastmod>
+    <lastmod>2016-11-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.1</priority>
   </url>
   <url>
     <loc>http://localhost/proizvoditeli</loc>
-    <lastmod>2016-11-28</lastmod>
+    <lastmod>2016-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.1</priority>
   </url>
   <url>
     <loc>http://localhost/pages-predlogenie2</loc>
-    <lastmod>2016-11-28</lastmod>
+    <lastmod>2016-07-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.1</priority>
   </url>
   <url>
     <loc>http://localhost/delivery</loc>
-    <lastmod>2016-11-28</lastmod>
+    <lastmod>2016-11-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.1</priority>
   </url>
   <url>
     <loc>http://localhost/pages-predlogenie</loc>
-    <lastmod>2016-11-28</lastmod>
+    <lastmod>2016-07-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.1</priority>
   </url>
   <url>
     <loc>http://localhost/pages-economi</loc>
-    <lastmod>2016-11-28</lastmod>
+    <lastmod>2016-07-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.1</priority>
   </url>

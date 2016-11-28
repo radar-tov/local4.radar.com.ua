@@ -107,8 +107,12 @@ class FrontendController extends BaseController
 
 	public static function sitemapCategories()
 	{
-		//return Article::where('published_at','<=', date('Y-m-d'))->where('sitemap', 1)->get();
-		return Category::where('show',1)->get();
+		return Category::where('show',1)->where('parent_id', 0)->where('sitemap', 1)->get();
+	}
+
+	public static function sitemapSubCategories($id)
+	{
+		return Category::where('show',1)->where('parent_id', $id)->where('sitemap', 1)->get();
 	}
 
 	public function getSitemapCategories()

@@ -2,90 +2,134 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://localhost/kotli</loc>
-    <lastmod>2016-11-28</lastmod>
+    <lastmod>2016-11-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>http://localhost/kotli/gazovie-kotli</loc>
+    <lastmod>2016-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>http://localhost/kotli/elektricheskie-kotli</loc>
+    <lastmod>2016-10-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>http://localhost/kotli/tverdotoplivnie-kotli</loc>
+    <lastmod>2016-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>http://localhost/kotli/universal-kotli</loc>
+    <lastmod>2016-10-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.1</priority>
   </url>
   <url>
     <loc>http://localhost/vodonagrevateli</loc>
-    <lastmod>2016-11-28</lastmod>
+    <lastmod>2016-05-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>http://localhost/vodonagrevateli/gazovie-protochnie-vodonagrevateli</loc>
+    <lastmod>2016-11-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>http://localhost/vodonagrevateli/elektricheskie-vodonagrevateli</loc>
+    <lastmod>2016-11-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>http://localhost/vodonagrevateli/gazovie-nakopiteljnie-vodonagrevateli</loc>
+    <lastmod>2016-11-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>http://localhost/vodonagrevateli/elektricheskie-protochnie-vodonagrevateli</loc>
+    <lastmod>2016-11-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>http://localhost/vodonagrevateli/vodonagrevateli-kosvennogo-nagreva</loc>
+    <lastmod>2016-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.1</priority>
   </url>
   <url>
     <loc>http://localhost/konvektori</loc>
-    <lastmod>2016-11-28</lastmod>
+    <lastmod>2016-06-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>http://localhost/konvektori/gazovie-konvektori</loc>
+    <lastmod>2016-10-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>http://localhost/konvektori/elektricheskie-konvektori</loc>
+    <lastmod>2016-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.1</priority>
   </url>
   <url>
     <loc>http://localhost/radiatori</loc>
-    <lastmod>2016-11-28</lastmod>
+    <lastmod>2016-06-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>http://localhost/radiatori/staljnie-radiatori</loc>
+    <lastmod>2016-10-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>http://localhost/radiatori/bimetallicheskie-radiatori</loc>
+    <lastmod>2016-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>http://localhost/radiatori/alyuminievie-radiatori</loc>
+    <lastmod>2016-11-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.1</priority>
   </url>
   <url>
     <loc>http://localhost/santehnika</loc>
-    <lastmod>2016-11-28</lastmod>
+    <lastmod>2016-05-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.1</priority>
+  </url>
+  <url>
+    <loc>http://localhost/santehnika/moyki</loc>
+    <lastmod>2016-10-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.1</priority>
   </url>
   <url>
     <loc>http://localhost/aksessuari</loc>
-    <lastmod>2016-11-28</lastmod>
+    <lastmod>2016-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.1</priority>
   </url>
   <url>
-    <loc>http://localhost/udlineniya</loc>
-    <lastmod>2016-11-28</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost/gazovie-kotli</loc>
-    <lastmod>2016-11-28</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost/elektricheskie-kotli</loc>
-    <lastmod>2016-11-28</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost/tverdotoplivnie-kotli</loc>
-    <lastmod>2016-11-28</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost/gazovie-konvektori</loc>
-    <lastmod>2016-11-28</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost/elektricheskie-konvektori</loc>
-    <lastmod>2016-11-28</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost/gazovie-protochnie-vodonagrevateli</loc>
-    <lastmod>2016-11-28</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost/elektricheskie-vodonagrevateli</loc>
-    <lastmod>2016-11-28</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost/staljnie-radiatori</loc>
-    <lastmod>2016-11-28</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost/bimetallicheskie-radiatori</loc>
-    <lastmod>2016-11-28</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost/alyuminievie-radiatori</loc>
-    <lastmod>2016-11-28</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost/moyki</loc>
-    <lastmod>2016-11-28</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost/gazovie-nakopiteljnie-vodonagrevateli</loc>
-    <lastmod>2016-11-28</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost/universal-kotli</loc>
-    <lastmod>2016-11-28</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost/elektricheskie-protochnie-vodonagrevateli</loc>
-    <lastmod>2016-11-28</lastmod>
-  </url>
-  <url>
-    <loc>http://localhost/vodonagrevateli-kosvennogo-nagreva</loc>
-    <lastmod>2016-11-28</lastmod>
+    <loc>http://localhost/aksessuari/udlineniya</loc>
+    <lastmod>2016-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.1</priority>
   </url>
 </urlset>

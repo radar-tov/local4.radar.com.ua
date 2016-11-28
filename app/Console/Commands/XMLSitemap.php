@@ -76,7 +76,7 @@ class XMLSitemap extends Command
             $url->appendChild($domDocument->createTextNode(url().'/'.($product->slug)));
 
             $url = $domElementUrl->appendChild($domDocument->createElement('lastmod'));
-            $date = new \DateTime($product->apdated_at);
+            $date = new \DateTime($product->updated_at);
             $url->appendChild($domDocument->createTextNode($date->format("Y-m-d")));
 
             $url = $domElementUrl->appendChild($domDocument->createElement('changefreq'));
@@ -118,7 +118,7 @@ class XMLSitemap extends Command
             $url->appendChild($domDocument->createTextNode(url().'/stati/'.$product->id.'/'.($product->slug)));
 
             $url = $domElementUrl->appendChild($domDocument->createElement('lastmod'));
-            $date = new \DateTime($product->apdated_at);
+            $date = new \DateTime($product->updated_at);
             $url->appendChild($domDocument->createTextNode($date->format("Y-m-d")));
 
             $url = $domElementUrl->appendChild($domDocument->createElement('changefreq'));
@@ -155,14 +155,38 @@ class XMLSitemap extends Command
             $url->appendChild($domDocument->createTextNode(url().'/'.$product->slug));
 
             $url = $domElementUrl->appendChild($domDocument->createElement('lastmod'));
-            $date = new \DateTime($product->apdated_at);
+            $date = new \DateTime($product->updated_at);
             $url->appendChild($domDocument->createTextNode($date->format("Y-m-d")));
 
-//            $url = $domElementUrl->appendChild($domDocument->createElement('changefreq'));
-//            $url->appendChild($domDocument->createTextNode($product->changefreq));
-//
-//            $url = $domElementUrl->appendChild($domDocument->createElement('priority'));
-//            $url->appendChild($domDocument->createTextNode($product->priority));
+            $url = $domElementUrl->appendChild($domDocument->createElement('changefreq'));
+            $url->appendChild($domDocument->createTextNode($product->changefreq));
+
+            $url = $domElementUrl->appendChild($domDocument->createElement('priority'));
+            $url->appendChild($domDocument->createTextNode($product->priority));
+
+            $subData = FrontendController::sitemapSubCategories($product->id);
+
+            if($subData){
+                foreach($subData as $subProduct) {
+
+                    $domElementUrl = $domElement->appendChild($domDocument->createElement('url'));
+
+                    $url = $domElementUrl->appendChild($domDocument->createElement('loc'));
+                    $url->appendChild($domDocument->createTextNode(url() .'/'.$product->slug.'/' . $subProduct->slug));
+
+                    $url = $domElementUrl->appendChild($domDocument->createElement('lastmod'));
+                    $subDate = new \DateTime($subProduct->updated_at);
+                    $url->appendChild($domDocument->createTextNode($subDate->format("Y-m-d")));
+
+                    $url = $domElementUrl->appendChild($domDocument->createElement('changefreq'));
+                    $url->appendChild($domDocument->createTextNode($subProduct->changefreq));
+
+                    $url = $domElementUrl->appendChild($domDocument->createElement('priority'));
+                    $url->appendChild($domDocument->createTextNode($subProduct->priority));
+
+                }
+
+            }
 
         }
 
