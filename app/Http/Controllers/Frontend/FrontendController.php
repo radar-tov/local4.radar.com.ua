@@ -105,6 +105,17 @@ class FrontendController extends BaseController
 		return view('frontend.catalog', compact('subcategory', 'category'));
 	}
 
+	public static function sitemapCategories()
+	{
+		//return Article::where('published_at','<=', date('Y-m-d'))->where('sitemap', 1)->get();
+		return Category::where('show',1)->get();
+	}
+
+	public function getSitemapCategories()
+	{
+		return view('frontend.sitemap.sitemap_categories');
+	}
+
 
 	/**
 	 * @param $categorySlug
@@ -268,12 +279,12 @@ class FrontendController extends BaseController
 	}
 
 
-	public static function sitemap()
+	public static function sitemapPages()
 	{
-		return StaticPage::where('id', '>', 0)->get();
+		return StaticPage::where('sitemap', 1)->get();
 	}
 
-	public function sitemap_page()
+	public function getSitemapPages()
 	{
 		return view('frontend.sitemap.sitemap_page');
 	}

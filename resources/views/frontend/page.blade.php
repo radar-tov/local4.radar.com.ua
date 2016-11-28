@@ -44,7 +44,7 @@
                                 <div class="post-content-outer col s12 m6 l8">
                                     <header class="single">
                                         <h4>
-                                            <a href="/news/{{ $article->id }}/{{ $article->slug }}" title="{{ $article->title }}">{{ $article->title }}</a>
+                                            <a href="/stati/{{ $article->id }}/{{ $article->slug }}" title="{{ $article->title }}">{{ $article->title }}</a>
                                         </h4>
                                     </header>
                                     <p>

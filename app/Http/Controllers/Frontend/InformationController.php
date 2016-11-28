@@ -32,4 +32,14 @@ class InformationController extends BaseController
 		throw new ModelNotFoundException('404 Error!');
 
 	}
+
+	public static function sitemapStati()
+	{
+		return Article::where('published_at','<=', date('Y-m-d'))->where('sitemap', 1)->get();
+	}
+
+	public function getSitemapStati()
+	{
+		return view('frontend.sitemap.sitemap_stati');
+	}
 }

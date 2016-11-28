@@ -23,7 +23,9 @@ if( ! Request::is('dashboard*') and ! Request::is('auth*')){
 		Route::post('buy', 'FrontendController@buy');
 		Route::get('thank-you', 'FrontendController@thanks');
 
-		Route::get('sitemap_page', 'FrontendController@sitemap_page');
+		Route::get('sitemap_page', 'FrontendController@getSitemapPages');
+		Route::get('sitemap_stati', 'InformationController@getSitemapStati');
+		Route::get('sitemap_categories', 'FrontendController@getSitemapCategories');
 
 		Route::get('new', ['as' => 'new', 'uses' => 'FrontendController@newProducts']);
 		Route::get('sale', ['as' => 'sale', 'uses' => 'FrontendController@saleProducts']);
