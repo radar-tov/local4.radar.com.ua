@@ -120,7 +120,7 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
 		);
 
 
-		get('/',['as'=>'dashboard.index','uses'=>'DashboardController@getIndex']);
+		get('/index',['as'=>'dashboard.index','uses'=>'DashboardController@getIndex']);
 		put('/{id}',['as'=>'dashboard.update','uses'=>'DashboardController@putIndex']);
 
 
