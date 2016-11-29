@@ -102,7 +102,10 @@ class FrontendController extends BaseController
 			$subcategory = $category;
 		}
 
-		return view('frontend.catalog', compact('subcategory', 'category'));
+        $date = new \DateTime($subcategory->updated_at);
+        return \Response::view('frontend.catalog', compact('subcategory', 'category'))
+            ->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
+
 	}
 
 	public static function sitemapCategories()
@@ -164,7 +167,10 @@ class FrontendController extends BaseController
 		// need for reviews
 		$productReviewId = $product->id;
 
-		return view('frontend.product', compact('product','productReviewId'));
+        $date = new \DateTime($product->updated_at);
+        return \Response::view('frontend.product', compact('product','productReviewId'))
+            ->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
+
 	}
 
 
@@ -292,8 +298,8 @@ class FrontendController extends BaseController
 		$slug = trim($request->getRequestUri(), '/');
 		$page = StaticPage::where('slug', $slug)->first();
 		if(!$page) abort(404);
-		
- 		return view('frontend.static', compact('page'));
+        $date = new \DateTime($page->updated_at);
+ 		return \Response::view('frontend.static', compact('page'))->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
 	}
 
 

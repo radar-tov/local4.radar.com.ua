@@ -26,7 +26,11 @@ class InformationController extends BaseController
 			view()->share('MetaDescription',$article->meta_description);
 			view()->share('MetaKeywords',$article->meta_keywords);
 
-			return view('frontend.single-post',compact('article'));
+            $date = new \DateTime($article->updated_at);
+            return \Response::view('frontend.single-post',compact('article'))
+                ->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
+
+			//return view('frontend.single-post',compact('article'));
 		}
 
 		throw new ModelNotFoundException('404 Error!');
