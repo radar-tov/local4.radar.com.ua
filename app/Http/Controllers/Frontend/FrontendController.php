@@ -179,6 +179,11 @@ class FrontendController extends BaseController
 		return Product::where('category_id', $id_cat)->get();
 	}
 
+	public static function getProductsYML($cat_id, $in, $to)
+	{
+		return Product::where('category_id', $cat_id)->whereBetween('id', array($in, $to))->get();
+	}
+
 	public function getSitemapProducts()
 	{
         $content = \Storage::disk('xml')->get('sitemap_products.xml');
