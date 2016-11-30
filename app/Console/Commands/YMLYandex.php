@@ -84,21 +84,22 @@ class YMLYandex extends Command
         $line = "<yml_catalog date=\"".$date."\">\n";
         \File::append($path_file, $line);
 
-        $line = "\t<shop>\n";
-        \File::append($path_file, $line);
+            $line = "\t<shop>\n";
+            \File::append($path_file, $line);
 
-        $line = "\t\t<name>RADAR</name>\n";
-        \File::append($path_file, $line);
+                $line = "\t\t<name>RADAR</name>\n";
+                \File::append($path_file, $line);
 
-        $line = "\t\t<company>RADAR</company>\n";
-        \File::append($path_file, $line);
+                $line = "\t\t<company>RADAR</company>\n";
+                \File::append($path_file, $line);
 
-        $line = "\t\t<url>$host</url>\n";
-        \File::append($path_file, $line);
+                $line = "\t\t<url>$host</url>\n";
+                \File::append($path_file, $line);
 
-        $line = "\t\t<currencies>\n";
-        \File::append($path_file, $line);
+                $line = "\t\t<currencies>\n";
+                \File::append($path_file, $line);
 
+<<<<<<< HEAD
             $line = "\t\t\t<currency id=\"UAH\" rate=\"NBU\"/>\n";
             \File::append($path_file, $line);
 
@@ -119,15 +120,38 @@ class YMLYandex extends Command
                     foreach($subCategory as $subCat){
                         $line = "\t\t\t<category id=\"".$subCat->id."\" parentId=\"".$subCat->parent_id."\">".$subCat->title."</category>\n";
                         \File::append($path_file, $line);
-                    }
-                }else{
-                    return false;
-                }
-            }
-        }else{
-            return false;
-        }
+=======
+                    $line = "\t\t\t<currency id=\"UAH\" rate=\"NBU\"/>\n";
+                    \File::append($path_file, $line);
 
+                $line = "\t\t</currencies>\n";
+                \File::append($path_file, $line);
+
+                $line = "\t\t<categories>\n";
+                \File::append($path_file, $line);
+
+                    $dataCategories = FrontendController::sitemapCategories();
+                    if($dataCategories) {
+                        foreach($dataCategories as $cat){
+                            $line = "\t\t\t<category id=\"".$cat->id."\">".$cat->title."</category>\n";
+                            \File::append($path_file, $line);
+
+                            $subCategory = FrontendController::sitemapSubCategories($cat->id);
+                            if($subCategory){
+                                foreach($subCategory as $subCat){
+                                    $line = "\t\t\t<category id=\"".$subCat->id."\" parentId=\"".$subCat->parent_id."\">".$subCat->title."</category>\n";
+                                    \File::append($path_file, $line);
+                                }
+                            }else{
+                                return false;
+                            }
+                        }
+                    }else{
+                        return false;
+>>>>>>> master
+                    }
+
+<<<<<<< HEAD
         $line = "\t\t</categories>\n";
         \File::append($path_file, $line);
 
@@ -136,6 +160,16 @@ class YMLYandex extends Command
 
         $line = "\t\t<offers>\n";
         \File::append($path_file, $line);
+=======
+                $line = "\t\t</categories>\n";
+                \File::append($path_file, $line);
+
+                $line = "\t\t<delivery-options>100</delivery-options>\n";
+                \File::append($path_file, $line);
+
+                $line = "\t\t<offers>\n";
+                \File::append($path_file, $line);
+>>>>>>> master
 
         unset($dataCategories);
         unset($subCategory);
@@ -147,7 +181,11 @@ class YMLYandex extends Command
     //Будет исать подвал файла
     public function footerYML($path_file){
 
+<<<<<<< HEAD
         $line = "\t\t</offers>\n";
+=======
+        $line = "\t\t\</offers>\n";
+>>>>>>> master
         \File::append($path_file, $line);
 
         $line = "\t</shop>\n";
@@ -189,13 +227,14 @@ class YMLYandex extends Command
                                 //if($product->id)echo "$i. - $product->id\n";
                                 $i++;
 
-                                if($product->available != 0){
+                                if($product->yandex != 0){
 
                                     ($product->available == 1) ? $available = 'true' : $available = 'false';
                                     $line = "\t\t\t<offer id=\"".$product->id."\" type=\"vendor.model\" available=\"".$available."\">\n";
                                     \File::append($path_file, $line);
 
                                         //Адрес страницы
+<<<<<<< HEAD
                                         if(isset($product->slug)){
                                             $line = "\t\t\t\t<url>".$host.'/'.$cat->slug.'/'.$subCat->slug.'/'.$product->slug."</url>\n";
                                             \File::append($path_file, $line);
@@ -205,12 +244,28 @@ class YMLYandex extends Command
                                             $line = "\t\t\t\t<price>" . $product->price . "</price>\n";
                                             \File::append($path_file, $line);
                                         }
+=======
+                                        $line = "\t\t\t\t<url>".$host.'/'.$cat->slug.'/'.$subCat->slug.'/'.$product->slug."</url>\n";
+                                        \File::append($path_file, $line);
+
+                                        //Цена
+                                        $line = "\t\t\t\t<price>".$product->price."</price>\n";
+                                        \File::append($path_file, $line);
+
+>>>>>>> master
                                         //Валюта
                                         $line = "\t\t\t\t<currencyId>UAH</currencyId>\n";
                                         \File::append($path_file, $line);
 
                                         // ID Категории
                                         $line = "\t\t\t\t<categoryId>".$subCat->id."</categoryId>\n";
+<<<<<<< HEAD
+=======
+                                        \File::append($path_file, $line);
+
+                                        //Картинка
+                                        $line = "\t\t\t\t<picture>".$host.$product->thumbnail->first()->path."</picture>\n";
+>>>>>>> master
                                         \File::append($path_file, $line);
 
                                         if(isset($product->thumbnail)){
@@ -224,10 +279,15 @@ class YMLYandex extends Command
                                         \File::append($path_file, $line);
 
                                         //Название категории товаров
+<<<<<<< HEAD
                                         if(isset($subCat->title)) {
                                             $line = "\t\t\t\t<typePrefix>".$subCat->title."</typePrefix>\n";
                                             \File::append($path_file, $line);
                                         }
+=======
+                                        $line = "\t\t\t\t<typePrefix>".$subCat->title."</typePrefix>\n";
+                                        \File::append($path_file, $line);
+>>>>>>> master
 
                                         foreach($product->sortedValues($product->category_id) as $field){
                                             if($field->filter->title == "Производитель"){
