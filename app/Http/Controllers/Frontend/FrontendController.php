@@ -181,6 +181,7 @@ class FrontendController extends BaseController
 
 	public static function getProductsYML($cat_id, $in, $to)
 	{
+		//echo "$cat_id, $in, $to\n";
 		return Product::where('category_id', $cat_id)->whereBetween('id', array($in, $to))->get();
 	}
 

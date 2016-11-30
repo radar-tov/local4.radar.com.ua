@@ -41,11 +41,16 @@ class XMLSitemap extends Command
      */
     public function fire()
     {
-
+        $date = new \DateTime('NOW');
+        $date = $date->format("Y-m-d H:m");
         $this->sitemapStaticPages();
         $this->sitemapStati();
         $this->sitemapCategories();
-        $this->sitemapProductsXml();
+        if($this->sitemapProductsXml()){
+            echo "Записано - $date";
+        }else {
+            echo "Ошибка - $date";
+        }
 
     }
 
@@ -246,6 +251,6 @@ class XMLSitemap extends Command
         }
 
         $domDocument->save('storage/app/sitemap_products.xml');
-
+        return true;
     }
 }
