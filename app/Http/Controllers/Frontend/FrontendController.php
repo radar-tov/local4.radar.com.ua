@@ -191,6 +191,12 @@ class FrontendController extends BaseController
         return response($content, 200)->header('Content-type', 'text/xml');
 	}
 
+	public function getYandexProducts()
+	{
+		$content = \Storage::disk('xml')->get('yml_products.xml');
+		return response($content, 200)->header('Content-type', 'text/xml');
+	}
+
 
 
 	/**

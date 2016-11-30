@@ -232,24 +232,24 @@ class YMLYandex extends Command
                                             }
                                         }
 
-                                        if($product->article){
+                                        if($product->article != '-'){
                                             //Артикул производителя
                                             $line = "\t\t\t\t\t<vendorCode>".$product->article."</vendorCode>\n";
                                             \File::append($path_file, $line);
                                         }
 
                                         //Модель
-                                        $line = "\t\t\t\t\t<model>".$product->title."</model>\n";
+                                        $line = "\t\t\t\t\t<model>".htmlspecialchars($product->title)."</model>\n";
                                         \File::append($path_file, $line);
 
                                         if($product->meta_description){
                                             //Описание
-                                            $line = "\t\t\t\t\t<description>".$product->meta_description."</description>\n";
+                                            $line = "\t\t\t\t\t<description>".htmlspecialchars($product->meta_description)."</description>\n";
                                             \File::append($path_file, $line);
                                         }
 
                                         //Страна производитель
-                                        $line = "\t\t\t\t\t<country_of_origin>".$ar[1]."</country_of_origin>\n";
+                                        $line = "\t\t\t\t\t<country_of_origin>".str_replace(" ", "", $ar[1])."</country_of_origin>\n";
                                         \File::append($path_file, $line);
 
                                     $line = "\t\t\t\t</offer>\n";
