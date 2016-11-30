@@ -84,55 +84,58 @@ class YMLYandex extends Command
         $line = "<yml_catalog date=\"".$date."\">\n";
         \File::append($path_file, $line);
 
-        $line = "\t<shop>\n";
-        \File::append($path_file, $line);
+            $line = "\t<shop>\n";
+            \File::append($path_file, $line);
 
-        $line = "\t\t<name>RADAR</name>\n";
-        \File::append($path_file, $line);
-
-        $line = "\t\t<company>RADAR</company>\n";
-        \File::append($path_file, $line);
-
-        $line = "\t\t<url>$host</url>\n";
-        \File::append($path_file, $line);
-
-        $line = "\t\t<currencies>\n";
-        \File::append($path_file, $line);
-
-        $line = "\t\t\t<currency id=\"UAH\" rate=\"NBU\"/>\n";
-        \File::append($path_file, $line);
-
-        $line = "\t\t\t<categories>\n";
-        \File::append($path_file, $line);
-
-        $dataCategories = FrontendController::sitemapCategories();
-        if($dataCategories) {
-            foreach($dataCategories as $cat){
-                $line = "\t\t\t\t<category id=\"".$cat->id."\">".$cat->title."</category>\n";
+                $line = "\t\t<name>RADAR</name>\n";
                 \File::append($path_file, $line);
 
-                $subCategory = FrontendController::sitemapSubCategories($cat->id);
-                if($subCategory){
-                    foreach($subCategory as $subCat){
-                        $line = "\t\t\t\t<category id=\"".$subCat->id."\" parentId=\"".$subCat->parent_id."\">".$subCat->title."</category>\n";
-                        \File::append($path_file, $line);
+                $line = "\t\t<company>RADAR</company>\n";
+                \File::append($path_file, $line);
+
+                $line = "\t\t<url>$host</url>\n";
+                \File::append($path_file, $line);
+
+                $line = "\t\t<currencies>\n";
+                \File::append($path_file, $line);
+
+                    $line = "\t\t\t<currency id=\"UAH\" rate=\"NBU\"/>\n";
+                    \File::append($path_file, $line);
+
+                $line = "\t\t</currencies>\n";
+                \File::append($path_file, $line);
+
+                $line = "\t\t<categories>\n";
+                \File::append($path_file, $line);
+
+                    $dataCategories = FrontendController::sitemapCategories();
+                    if($dataCategories) {
+                        foreach($dataCategories as $cat){
+                            $line = "\t\t\t<category id=\"".$cat->id."\">".$cat->title."</category>\n";
+                            \File::append($path_file, $line);
+
+                            $subCategory = FrontendController::sitemapSubCategories($cat->id);
+                            if($subCategory){
+                                foreach($subCategory as $subCat){
+                                    $line = "\t\t\t<category id=\"".$subCat->id."\" parentId=\"".$subCat->parent_id."\">".$subCat->title."</category>\n";
+                                    \File::append($path_file, $line);
+                                }
+                            }else{
+                                return false;
+                            }
+                        }
+                    }else{
+                        return false;
                     }
-                }else{
-                    return false;
-                }
-            }
-        }else{
-            return false;
-        }
 
-        $line = "\t\t\t</categories>\n";
-        \File::append($path_file, $line);
+                $line = "\t\t</categories>\n";
+                \File::append($path_file, $line);
 
-        $line = "\t\t\t<delivery-options>100</delivery-options>\n";
-        \File::append($path_file, $line);
+                $line = "\t\t<delivery-options>100</delivery-options>\n";
+                \File::append($path_file, $line);
 
-        $line = "\t\t\t<offers>\n";
-        \File::append($path_file, $line);
+                $line = "\t\t<offers>\n";
+                \File::append($path_file, $line);
 
         unset($dataCategories);
         unset($subCategory);
@@ -144,10 +147,7 @@ class YMLYandex extends Command
     //Будет исать подвал файла
     public function footerYML($path_file){
 
-        $line = "\t\t\t</offers>\n";
-        \File::append($path_file, $line);
-
-        $line = "\t\t</currencies>\n";
+        $line = "\t\t\</offers>\n";
         \File::append($path_file, $line);
 
         $line = "\t</shop>\n";
@@ -191,35 +191,35 @@ class YMLYandex extends Command
                                 if($product->available != 0){
 
                                     ($product->available == 1) ? $available = 'true' : $available = 'false';
-                                    $line = "\t\t\t\t<offer id=\"".$product->id."\" type=\"vendor.model\" available=\"".$available."\">\n";
+                                    $line = "\t\t\t<offer id=\"".$product->id."\" type=\"vendor.model\" available=\"".$available."\">\n";
                                     \File::append($path_file, $line);
 
                                         //Адрес страницы
-                                        $line = "\t\t\t\t\t<url>".$host.'/'.$cat->slug.'/'.$subCat->slug.'/'.$product->slug."</url>\n";
+                                        $line = "\t\t\t\t<url>".$host.'/'.$cat->slug.'/'.$subCat->slug.'/'.$product->slug."</url>\n";
                                         \File::append($path_file, $line);
 
                                         //Цена
-                                        $line = "\t\t\t\t\t<price>".$product->price."</price>\n";
+                                        $line = "\t\t\t\t<price>".$product->price."</price>\n";
                                         \File::append($path_file, $line);
 
                                         //Валюта
-                                        $line = "\t\t\t\t\t<currencyId>UAH</currencyId>\n";
+                                        $line = "\t\t\t\t<currencyId>UAH</currencyId>\n";
                                         \File::append($path_file, $line);
 
                                         // ID Категории
-                                        $line = "\t\t\t\t\t<categoryId>".$subCat->id."</categoryId>\n";
+                                        $line = "\t\t\t\t<categoryId>".$subCat->id."</categoryId>\n";
                                         \File::append($path_file, $line);
 
                                         //Картинка
-                                        $line = "\t\t\t\t\t<picture>".$host.$product->thumbnail->first()->path."</picture>\n";
+                                        $line = "\t\t\t\t<picture>".$host.$product->thumbnail->first()->path."</picture>\n";
                                         \File::append($path_file, $line);
 
                                         //Возможность доставки
-                                        $line = "\t\t\t\t\t<delivery>true</delivery>\n";
+                                        $line = "\t\t\t\t<delivery>true</delivery>\n";
                                         \File::append($path_file, $line);
 
                                         //Название категории товаров
-                                        $line = "\t\t\t\t\t<typePrefix>".$subCat->title."</typePrefix>\n";
+                                        $line = "\t\t\t\t<typePrefix>".$subCat->title."</typePrefix>\n";
                                         \File::append($path_file, $line);
 
                                         foreach($product->sortedValues($product->category_id) as $field){
@@ -227,32 +227,32 @@ class YMLYandex extends Command
 
                                                 $ar = explode(",", $field->value);
                                                 //Производитель
-                                                $line = "\t\t\t\t\t<vendor>".str_replace(" ", "", $ar[0])."</vendor>\n";
+                                                $line = "\t\t\t\t<vendor>".str_replace(" ", "", $ar[0])."</vendor>\n";
                                                 \File::append($path_file, $line);
                                             }
                                         }
 
                                         if($product->article != '-'){
                                             //Артикул производителя
-                                            $line = "\t\t\t\t\t<vendorCode>".$product->article."</vendorCode>\n";
+                                            $line = "\t\t\t\t<vendorCode>".$product->article."</vendorCode>\n";
                                             \File::append($path_file, $line);
                                         }
 
                                         //Модель
-                                        $line = "\t\t\t\t\t<model>".htmlspecialchars($product->title)."</model>\n";
+                                        $line = "\t\t\t\t<model>".htmlspecialchars($product->title)."</model>\n";
                                         \File::append($path_file, $line);
 
                                         if($product->meta_description){
                                             //Описание
-                                            $line = "\t\t\t\t\t<description>".htmlspecialchars($product->meta_description)."</description>\n";
+                                            $line = "\t\t\t\t<description>".htmlspecialchars($product->meta_description)."</description>\n";
                                             \File::append($path_file, $line);
                                         }
 
                                         //Страна производитель
-                                        $line = "\t\t\t\t\t<country_of_origin>".str_replace(" ", "", $ar[1])."</country_of_origin>\n";
+                                        $line = "\t\t\t\t<country_of_origin>".str_replace(" ", "", $ar[1])."</country_of_origin>\n";
                                         \File::append($path_file, $line);
 
-                                    $line = "\t\t\t\t</offer>\n";
+                                    $line = "\t\t\t</offer>\n";
                                     \File::append($path_file, $line);
 
                                 }
