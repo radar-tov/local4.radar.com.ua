@@ -188,7 +188,7 @@ class YMLYandex extends Command
                                 //if($product->id)echo "$i. - $product->id\n";
                                 $i++;
 
-                                if($product->available != 0){
+                                if($product->yandex != 0){
 
                                     ($product->available == 1) ? $available = 'true' : $available = 'false';
                                     $line = "\t\t\t<offer id=\"".$product->id."\" type=\"vendor.model\" available=\"".$available."\">\n";
