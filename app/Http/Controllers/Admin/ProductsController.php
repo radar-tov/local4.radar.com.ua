@@ -196,13 +196,17 @@ class ProductsController extends AdminController
 	public function update(UpdateProductRequest $request, $id, ProductService $productService)
     {
 
-    	
+    	//dd($request->all());
 	    $request = $this->filesHandler->saveFile($request);
 	    $product = $this->product->withTrashed()->findOrFail($id);
-
+		//dd($product);
 	    $request['filters'] = $productService->prepareFiltersRequest($request->get('filters'));
         
-	    $product->update($request->all());
+	    $r = $product->update($request->all());
+		//dd($r);
+		//$product = $this->product->withTrashed()->findOrFail($id);
+		//dd($product);
+
 //		dd($request->get('filters'));
 		$product->filters()->sync($request->get('filters') ?: []);
 
