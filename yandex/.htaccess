@@ -1,4 +1,0 @@
-AuthType Basic
-AuthName "Access is Denied. Enter password"
-require valid-user
-AuthUserFile  "/home/be217497/.htpasswd"

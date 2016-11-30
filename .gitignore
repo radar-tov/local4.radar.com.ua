@@ -6,3 +6,7 @@ public/pdf/
 composer.lock
 .env
 .idea
+dashboard/.htaccess
+yandex/.htaccess
+dashboard/htaccess
+yandex/htaccess

@@ -526,6 +526,14 @@
                         {!! Form::text('meta_keywords', $value = null, ['class' => 'form-control',"row"=>2,'form'=>'form-data']) !!}
                     </div>
                 </div>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        {!! Form::label('sitemap', 'Показывать в Sitemap.xml?') !!}
+                        {!! Form::select('sitemap', ['Нет', 'Да'], $selected = null, ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+
+
             </div>
     </div>
     {{--tabs end--}}
