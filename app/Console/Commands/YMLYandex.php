@@ -171,24 +171,25 @@ class YMLYandex extends Command
         if($dataCategories){
 
             foreach($dataCategories as $cat){
-                //if($cat->id)echo "Получены категории.\n";
+                if($cat->id)echo "Получены категории.\n";
 
                 $subCategory = FrontendController::sitemapSubCategories($cat->id);
 
                 if($subCategory){
 
                     foreach($subCategory as $subCat){
-                        //if($subCat->id)echo "Получены подкатегории.\n";
+                        if($subCat->id)echo "Получены подкатегории.\n";
 
                         $products = FrontendController::getProductsYML($subCat->id, $in, $to);
 
                         if($products) {
 
                             foreach($products as $product){
-                                //if($product->id)echo "$i. - $product->id\n";
+
+                                if($product->id)echo "$i. - $product->id\n";
                                 $i++;
 
-                                if($product->available != 0 && $product->active != 0){
+                                if($product->available != 0){
 
                                     ($product->available == 1) ? $available = 'true' : $available = 'false';
                                     $line = "\t\t\t\t<offer id=\"".$product->id."\" type=\"vendor.model\" available=\"".$available."\">\n";
@@ -210,10 +211,12 @@ class YMLYandex extends Command
                                         $line = "\t\t\t\t\t<categoryId>".$subCat->id."</categoryId>\n";
                                         \File::append($path_file, $line);
 
-                                        //Картинка
-                                        $line = "\t\t\t\t\t<picture>".$host.$product->thumbnail->first()->path."</picture>\n";
-                                        \File::append($path_file, $line);
-
+                                        if($product->thumbnail){
+                                            //Картинка
+                                            $line = "\t\t\t\t\t<picture>".$host.$product->thumbnail->first()->path."</picture>\n";
+                                            \File::append($path_file, $line);
+                                        }
+                                    
                                         //Возможность доставки
                                         $line = "\t\t\t\t\t<delivery>true</delivery>\n";
                                         \File::append($path_file, $line);
