@@ -83,16 +83,16 @@
 
                 </div>
 
-                <div class="col s12 m12 l6 feedback">
-                    <h4>Отзывы</h4>
+                {{--<div class="col s12 m12 l6 feedback">--}}
+                    {{--<h4>Отзывы</h4>--}}
 
-                    @if(array_get($settingsProvider->getSettings(),'reviews'))
+                    {{--@if(array_get($settingsProvider->getSettings(),'reviews'))--}}
 
-                        {!! array_get($settingsProvider->getSettings(),'reviews') !!}
+                        {{--{!! array_get($settingsProvider->getSettings(),'reviews') !!}--}}
 
-                    @endif
+                    {{--@endif--}}
 
-                </div>
+                {{--</div>--}}
             </div>
         </div>
     </section>

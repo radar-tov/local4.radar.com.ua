@@ -1,25 +1,21 @@
-User-agent: *
-Allow: /images/
-Disallow: /dashboard
-Disallow: /admin
-Disallow: /cart
-Disallow: /cabinet
-Disallow: /login
-Disallow: /registration
-Host: http://radar.com.ua
-Sitemap: http://radar.com.ua/sitemap_page
-Sitemap: http://radar.com.ua/sitemap_stati
-Sitemap: http://radar.com.ua/sitemap_categories
-Sitemap: http://radar.com.ua/sitemap_products
-
 User-agent: Yandex
-Allow: /images/
+Allow: /images
 Disallow: /dashboard
 Disallow: /admin
 Disallow: /cart
 Disallow: /cabinet
 Disallow: /login
 Disallow: /registration
+
+User-agent: *
+Allow: /images
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /cart
+Disallow: /cabinet
+Disallow: /login
+Disallow: /registration
+
 Host: http://radar.com.ua
 Sitemap: http://radar.com.ua/sitemap_page
 Sitemap: http://radar.com.ua/sitemap_stati
