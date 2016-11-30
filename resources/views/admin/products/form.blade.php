@@ -213,15 +213,6 @@
                                     {!! Form::select('is_new', ['Нет', 'Да'], $selected = null, ['class' => 'form-control']) !!}
                                 </div>
                             </div>
-
-                            <div class="col-xs-12">
-                                <div class="form-group">
-                                    {!! Form::label('yandex', 'Показывать в Yandex.xml?') !!}
-                                    {!! Form::select('yandex', ['Нет', 'Да'], $selected = null, ['class' => 'form-control']) !!}
-                                </div>
-                            </div>
-
-
                             <div class="col-xs-12">
                                 <div class="form-group">
                                     {!! Form::label('rating', 'Оценка продукта') !!}
@@ -230,6 +221,49 @@
                             </div>
 
 
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    {!! Form::label('sitemap', 'Показывать в Sitemap.xml?') !!}
+                                    {!! Form::select('sitemap', ['1'=> 'Да', '0'=>'Нет'], $selected = null, ['class' => 'form-control','form'=>'form-data']) !!}
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    {!! Form::label('yandex', 'Показывать в Yandex.xml?') !!}
+                                    {!! Form::select('yandex', ['Нет', 'Да'], $selected = null, ['class' => 'form-control','form'=>'form-data']) !!}
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    {!! Form::label('priority', 'Приоритет индексирования?') !!}
+                                    {!! Form::select('priority', [
+                                        '0,1'=> '0,1',
+                                        '0,2'=> '0,2',
+                                        '0,3'=> '0,3',
+                                        '0,4'=> '0,4',
+                                        '0,5'=> '0,5',
+                                        '0,6'=> '0,6',
+                                        '0,7'=> '0,7',
+                                        '0,8'=> '0,8',
+                                        '0,9'=> '0,9',
+                                        '1,0'=> '1,0'
+                                     ], $selected = null, ['class' => 'form-control','form'=>'form-data']) !!}
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    {!! Form::label('changefreq', 'Частота индексирования?') !!}
+                                    {!! Form::select('changefreq', [
+                                        'always'=> 'всегда',
+                                        'hourly'=> 'почасово',
+                                        'daily'=> 'ежедневно',
+                                        'weekly'=> 'еженедельно',
+                                        'monthly'=> 'ежемесячно',
+                                        'yearly'=> 'раз в год',
+                                        'never'=> 'никогда'
+                                     ], $selected = null, ['class' => 'form-control','form'=>'form-data']) !!}
+                                </div>
+                            </div>
                             {{--<div class="col-lg-4">--}}
                             {{--                                {!! Form::label('','Показывать на сайте?')!!}<br/>--}}
                             {{--<label>--}}
@@ -535,44 +569,7 @@
                         {!! Form::label('meta_keywords', 'Meta Keywords') !!}
                         {!! Form::text('meta_keywords', $value = null, ['class' => 'form-control',"row"=>2,'form'=>'form-data']) !!}
                     </div>
-                    {{--<div class="form-group">--}}
-                        {{--{!! Form::label('sitemap', 'Показывать в Sitemap.xml?') !!}--}}
-                        {{--{!! Form::select('sitemap', ['1'=> 'Да', '0'=>'Нет'], $selected = null, ['class' => 'form-control','form'=>'form-data']) !!}--}}
-                    {{--</div>--}}
-                    {{--<div class="form-group">--}}
-                        {{--{!! Form::label('yandex', 'Показывать в Yandex.xml?') !!}--}}
-                        {{--{!! Form::select('yandex', ['Нет', 'Да'], $selected = null, ['class' => 'form-control','form'=>'form-data']) !!}--}}
-                    {{--</div>--}}
-                    {{--<div class="form-group">--}}
-                        {{--{!! Form::label('priority', 'Приоритет индексирования?') !!}--}}
-                        {{--{!! Form::select('priority', [--}}
-                            {{--'0,1'=> '0,1',--}}
-                            {{--'0,2'=> '0,2',--}}
-                            {{--'0,3'=> '0,3',--}}
-                            {{--'0,4'=> '0,4',--}}
-                            {{--'0,5'=> '0,5',--}}
-                            {{--'0,6'=> '0,6',--}}
-                            {{--'0,7'=> '0,7',--}}
-                            {{--'0,8'=> '0,8',--}}
-                            {{--'0,9'=> '0,9',--}}
-                            {{--'1,0'=> '1,0'--}}
-                         {{--], $selected = null, ['class' => 'form-control','form'=>'form-data']) !!}--}}
-                    {{--</div>--}}
-                    {{--<div class="form-group">--}}
-                        {{--{!! Form::label('changefreq', 'Частота индексирования?') !!}--}}
-                        {{--{!! Form::select('changefreq', [--}}
-                            {{--'always'=> 'всегда',--}}
-                            {{--'hourly'=> 'почасово',--}}
-                            {{--'daily'=> 'ежедневно',--}}
-                            {{--'weekly'=> 'еженедельно',--}}
-                            {{--'monthly'=> 'ежемесячно',--}}
-                            {{--'yearly'=> 'раз в год',--}}
-                            {{--'never'=> 'никогда'--}}
-                         {{--], $selected = null, ['class' => 'form-control','form'=>'form-data']) !!}--}}
-                    {{--</div>--}}
                 </div>
-
-
             </div>
     </div>
     {{--tabs end--}}

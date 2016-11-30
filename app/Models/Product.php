@@ -62,6 +62,10 @@ class Product extends Eloquent {
 		'is_new',
 		'brand_id',
 		'is_import',
+        'yandex',
+        'sitemap',
+        'priority',
+        'changefreq',
 	];
 
 
