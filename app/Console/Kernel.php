@@ -27,8 +27,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('xmlsitemap')->dailyAt('03:00');
-        $schedule->command('umlyandex')->dailyAt('04:00');
+        $schedule->command('xmlsitemap')->dailyAt('03:00')->sendOutputTo("storage/app/shed_log.txt");
+        $schedule->command('umlyandex')->dailyAt('04:00')->sendOutputTo("storage/app/yml_log.txt");
         //$schedule->command('umlyandex')->cron('* * * * *')->sendOutputTo("storage/app/yml_log.txt");
     }
 }
