@@ -258,7 +258,7 @@ class XMLSitemap extends Command
                                 $url = $domElementUrl->appendChild($domDocument->createElement('priority'));
                                 $url->appendChild($domDocument->createTextNode($product->priority));
                             }
-                            
+
                         }
 
                     }

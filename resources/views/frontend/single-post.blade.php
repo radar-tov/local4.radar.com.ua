@@ -26,7 +26,7 @@
             <div class="row">
                 <div class="col s12 text-page no-padding">
                     <div class="col single-post s12 fadeIn animated wow" data-wow-delay="0.3s">
-                        <h3>{{ $article->title }}</h3>
+                        {{--<h3>{{ $article->title }}</h3>--}}
                         <div class="col date s12">
                             {{--<span>{{ date('m',strtotime($article->published_at)) }} </span><span> {{ date('d \'y', strtotime($article->published_at)) }} </span>--}}
                             <span>{{ $article->published_at->formatLocalized('%B %d %Y') }}</span>
