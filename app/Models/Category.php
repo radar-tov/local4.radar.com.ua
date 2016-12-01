@@ -27,7 +27,10 @@ class Category extends Eloquent
 		'description',
 		'in_footer',
 		'is_import',
-
+		'sitemap',
+		'priority',
+		'changefreq',
+		'yandex',
 		'thumb_alt',
 		'thumb_desc',
 		'thumb_link',

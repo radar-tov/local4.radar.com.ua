@@ -8,11 +8,12 @@ class Article extends Eloquent
 		'user_id',
 		'page_id',
 		'show',
-
 		'meta_title',
 		'meta_description',
 		'meta_keywords',
-
+		'sitemap',
+		'priority',
+		'changefreq',
 		'title',
 		'slug',
 		'thumbnail',

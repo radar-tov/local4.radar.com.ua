@@ -75,20 +75,25 @@ class XMLSitemap extends Command
         $url->appendChild($domDocument->createTextNode('http://radar.com.ua/'));
 
         foreach($data as $product){
-            $domElementUrl = $domElement->appendChild($domDocument->createElement('url'));
 
-            $url = $domElementUrl->appendChild($domDocument->createElement('loc'));
-            $url->appendChild($domDocument->createTextNode('http://radar.com.ua/'.($product->slug)));
+            if($product->sitemap){
 
-            $url = $domElementUrl->appendChild($domDocument->createElement('lastmod'));
-            $date = new \DateTime($product->updated_at);
-            $url->appendChild($domDocument->createTextNode($date->format("Y-m-d")));
+                $domElementUrl = $domElement->appendChild($domDocument->createElement('url'));
 
-            $url = $domElementUrl->appendChild($domDocument->createElement('changefreq'));
-            $url->appendChild($domDocument->createTextNode($product->changefreq));
+                $url = $domElementUrl->appendChild($domDocument->createElement('loc'));
+                $url->appendChild($domDocument->createTextNode('http://radar.com.ua/'.($product->slug)));
 
-            $url = $domElementUrl->appendChild($domDocument->createElement('priority'));
-            $url->appendChild($domDocument->createTextNode($product->priority));
+                $url = $domElementUrl->appendChild($domDocument->createElement('lastmod'));
+                $date = new \DateTime($product->updated_at);
+                $url->appendChild($domDocument->createTextNode($date->format("Y-m-d")));
+
+                $url = $domElementUrl->appendChild($domDocument->createElement('changefreq'));
+                $url->appendChild($domDocument->createTextNode($product->changefreq));
+
+                $url = $domElementUrl->appendChild($domDocument->createElement('priority'));
+                $url->appendChild($domDocument->createTextNode($product->priority));
+
+            }
 
         }
 
@@ -117,21 +122,24 @@ class XMLSitemap extends Command
         $url->appendChild($domDocument->createTextNode('http://radar.com.ua/stati'));
 
         foreach($data as $product){
-            $domElementUrl = $domElement->appendChild($domDocument->createElement('url'));
 
-            $url = $domElementUrl->appendChild($domDocument->createElement('loc'));
-            $url->appendChild($domDocument->createTextNode('http://radar.com.ua/stati/'.$product->id.'/'.($product->slug)));
+            if($product->sitemap) {
 
-            $url = $domElementUrl->appendChild($domDocument->createElement('lastmod'));
-            $date = new \DateTime($product->updated_at);
-            $url->appendChild($domDocument->createTextNode($date->format("Y-m-d")));
+                $domElementUrl = $domElement->appendChild($domDocument->createElement('url'));
 
-            $url = $domElementUrl->appendChild($domDocument->createElement('changefreq'));
-            $url->appendChild($domDocument->createTextNode($product->changefreq));
+                $url = $domElementUrl->appendChild($domDocument->createElement('loc'));
+                $url->appendChild($domDocument->createTextNode('http://radar.com.ua/stati/' . $product->id . '/' . ($product->slug)));
 
-            $url = $domElementUrl->appendChild($domDocument->createElement('priority'));
-            $url->appendChild($domDocument->createTextNode($product->priority));
+                $url = $domElementUrl->appendChild($domDocument->createElement('lastmod'));
+                $date = new \DateTime($product->updated_at);
+                $url->appendChild($domDocument->createTextNode($date->format("Y-m-d")));
 
+                $url = $domElementUrl->appendChild($domDocument->createElement('changefreq'));
+                $url->appendChild($domDocument->createTextNode($product->changefreq));
+
+                $url = $domElementUrl->appendChild($domDocument->createElement('priority'));
+                $url->appendChild($domDocument->createTextNode($product->priority));
+            }
         }
 
         $domDocument->save('storage/app/sitemap_stati.xml');
@@ -154,43 +162,50 @@ class XMLSitemap extends Command
         $domDocument->appendChild($domElement);
 
         foreach($data as $product){
-            $domElementUrl = $domElement->appendChild($domDocument->createElement('url'));
 
-            $url = $domElementUrl->appendChild($domDocument->createElement('loc'));
-            $url->appendChild($domDocument->createTextNode('http://radar.com.ua/'.$product->slug));
+            if($product->sitemap) {
 
-            $url = $domElementUrl->appendChild($domDocument->createElement('lastmod'));
-            $date = new \DateTime($product->updated_at);
-            $url->appendChild($domDocument->createTextNode($date->format("Y-m-d")));
+                $domElementUrl = $domElement->appendChild($domDocument->createElement('url'));
 
-            $url = $domElementUrl->appendChild($domDocument->createElement('changefreq'));
-            $url->appendChild($domDocument->createTextNode($product->changefreq));
+                $url = $domElementUrl->appendChild($domDocument->createElement('loc'));
+                $url->appendChild($domDocument->createTextNode('http://radar.com.ua/' . $product->slug));
 
-            $url = $domElementUrl->appendChild($domDocument->createElement('priority'));
-            $url->appendChild($domDocument->createTextNode($product->priority));
+                $url = $domElementUrl->appendChild($domDocument->createElement('lastmod'));
+                $date = new \DateTime($product->updated_at);
+                $url->appendChild($domDocument->createTextNode($date->format("Y-m-d")));
 
-            $subData = FrontendController::sitemapSubCategories($product->id);
+                $url = $domElementUrl->appendChild($domDocument->createElement('changefreq'));
+                $url->appendChild($domDocument->createTextNode($product->changefreq));
 
-            if($subData){
-                foreach($subData as $subProduct) {
+                $url = $domElementUrl->appendChild($domDocument->createElement('priority'));
+                $url->appendChild($domDocument->createTextNode($product->priority));
 
-                    $domElementUrl = $domElement->appendChild($domDocument->createElement('url'));
+                $subData = FrontendController::sitemapSubCategories($product->id);
 
-                    $url = $domElementUrl->appendChild($domDocument->createElement('loc'));
-                    $url->appendChild($domDocument->createTextNode('http://radar.com.ua/'.$product->slug.'/'.$subProduct->slug));
+                if ($subData) {
+                    foreach ($subData as $subProduct) {
 
-                    $url = $domElementUrl->appendChild($domDocument->createElement('lastmod'));
-                    $subDate = new \DateTime($subProduct->updated_at);
-                    $url->appendChild($domDocument->createTextNode($subDate->format("Y-m-d")));
+                        if($subProduct->sitemap) {
 
-                    $url = $domElementUrl->appendChild($domDocument->createElement('changefreq'));
-                    $url->appendChild($domDocument->createTextNode($subProduct->changefreq));
+                            $domElementUrl = $domElement->appendChild($domDocument->createElement('url'));
 
-                    $url = $domElementUrl->appendChild($domDocument->createElement('priority'));
-                    $url->appendChild($domDocument->createTextNode($subProduct->priority));
+                            $url = $domElementUrl->appendChild($domDocument->createElement('loc'));
+                            $url->appendChild($domDocument->createTextNode('http://radar.com.ua/' . $product->slug . '/' . $subProduct->slug));
+
+                            $url = $domElementUrl->appendChild($domDocument->createElement('lastmod'));
+                            $subDate = new \DateTime($subProduct->updated_at);
+                            $url->appendChild($domDocument->createTextNode($subDate->format("Y-m-d")));
+
+                            $url = $domElementUrl->appendChild($domDocument->createElement('changefreq'));
+                            $url->appendChild($domDocument->createTextNode($subProduct->changefreq));
+
+                            $url = $domElementUrl->appendChild($domDocument->createElement('priority'));
+                            $url->appendChild($domDocument->createTextNode($subProduct->priority));
+                        }
+
+                    }
 
                 }
-
             }
 
         }
@@ -226,20 +241,24 @@ class XMLSitemap extends Command
                     if($products){
                         foreach($products as $product) {
 
-                            $domElementUrl = $domElement->appendChild($domDocument->createElement('url'));
+                            if($product->sitemap) {
 
-                            $url = $domElementUrl->appendChild($domDocument->createElement('loc'));
-                            $url->appendChild($domDocument->createTextNode('http://radar.com.ua/'.$cat->slug.'/'.$subCat->slug.'/'.$product->slug));
+                                $domElementUrl = $domElement->appendChild($domDocument->createElement('url'));
 
-                            $url = $domElementUrl->appendChild($domDocument->createElement('lastmod'));
-                            $date = new \DateTime($product->updated_at);
-                            $url->appendChild($domDocument->createTextNode($date->format("Y-m-d")));
+                                $url = $domElementUrl->appendChild($domDocument->createElement('loc'));
+                                $url->appendChild($domDocument->createTextNode('http://radar.com.ua/' . $cat->slug . '/' . $subCat->slug . '/' . $product->slug));
 
-                            $url = $domElementUrl->appendChild($domDocument->createElement('changefreq'));
-                            $url->appendChild($domDocument->createTextNode($product->changefreq));
+                                $url = $domElementUrl->appendChild($domDocument->createElement('lastmod'));
+                                $date = new \DateTime($product->updated_at);
+                                $url->appendChild($domDocument->createTextNode($date->format("Y-m-d")));
 
-                            $url = $domElementUrl->appendChild($domDocument->createElement('priority'));
-                            $url->appendChild($domDocument->createTextNode($product->priority));
+                                $url = $domElementUrl->appendChild($domDocument->createElement('changefreq'));
+                                $url->appendChild($domDocument->createTextNode($product->changefreq));
+
+                                $url = $domElementUrl->appendChild($domDocument->createElement('priority'));
+                                $url->appendChild($domDocument->createTextNode($product->priority));
+                            }
+                            
                         }
 
                     }

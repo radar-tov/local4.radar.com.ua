@@ -90,8 +90,9 @@
                         {{--{!! Form::hidden('thumbnail',$value = null, ['id'=>'thumbnail']) !!}--}}
                         {{--<a href="{!! route('elfinder.popup',['thumbnail']) !!}" class="popup_selector btn btn-default" data-inputid="thumbnail">Выбрать Изображение</a>--}}
                     {{--</div>--}}
-                    {!! Form::label('','Показывать на сайте?')!!}<br/>
+
                     <div class="btn-group" data-toggle="buttons">
+                        {!! Form::label('show','Показывать на сайте?')!!}
                         <label class="btn btn-sm btn-primary {{ $category->show == 1 ? 'active' : null }}">
                             {!!Form::radio('show',$value = 1, $category->show == 1 ? true : false)!!} Да
                         </label>
@@ -102,8 +103,9 @@
                         <br/>
                     </div>
 
-                    {!! Form::label('','Показывать в "подвале" сайта?')!!}<br/>
+
                     <div class="btn-group" data-toggle="buttons">
+                        {!! Form::label('in_footer','Показывать в "подвале" сайта?')!!}
                         <label class="btn btn-sm btn-primary {{ $category->in_footer == 1 ? 'active' : null }}">
                             {!!Form::radio('in_footer',$value = 1, $category->in_footer == 1 ? true : false)!!} Да
                         </label>
@@ -111,6 +113,51 @@
                             {!!Form::radio('in_footer',$value = 0, $category->in_footer == 0 ? true : false)!!} Нет
                         </label>
                     </div>
+
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            {!! Form::label('sitemap', 'Показывать в Sitemap.xml?') !!}
+                            {!! Form::select('sitemap', ['1'=> 'Да', '0'=>'Нет'], $selected = null, ['class' => 'form-control','form'=>'form-data']) !!}
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            {!! Form::label('yandex', 'Показывать в Yandex.xml?') !!}
+                            {!! Form::select('yandex', ['Нет', 'Да'], $selected = null, ['class' => 'form-control','form'=>'form-data']) !!}
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            {!! Form::label('priority', 'Приоритет индексирования?') !!}
+                            {!! Form::select('priority', [
+                                '0,1'=> '0,1',
+                                '0,2'=> '0,2',
+                                '0,3'=> '0,3',
+                                '0,4'=> '0,4',
+                                '0,5'=> '0,5',
+                                '0,6'=> '0,6',
+                                '0,7'=> '0,7',
+                                '0,8'=> '0,8',
+                                '0,9'=> '0,9',
+                                '1,0'=> '1,0'
+                             ], $selected = null, ['class' => 'form-control','form'=>'form-data']) !!}
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            {!! Form::label('changefreq', 'Частота индексирования?') !!}
+                            {!! Form::select('changefreq', [
+                                'always'=> 'всегда',
+                                'hourly'=> 'почасово',
+                                'daily'=> 'ежедневно',
+                                'weekly'=> 'еженедельно',
+                                'monthly'=> 'ежемесячно',
+                                'yearly'=> 'раз в год',
+                                'never'=> 'никогда'
+                             ], $selected = null, ['class' => 'form-control','form'=>'form-data']) !!}
+                        </div>
+                    </div>
+
                 </div>
                 <!-- End my options -->
             </div>

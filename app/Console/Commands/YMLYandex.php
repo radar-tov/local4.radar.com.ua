@@ -117,18 +117,32 @@ class YMLYandex extends Command
                     $dataCategories = FrontendController::sitemapCategories();
                     if($dataCategories) {
                         foreach($dataCategories as $cat){
-                            $line = "\t\t\t<category id=\"".$cat->id."\">".$cat->title."</category>\n";
-                            \File::append($path_file, $line);
 
-                            $subCategory = FrontendController::sitemapSubCategories($cat->id);
-                            if($subCategory){
-                                foreach($subCategory as $subCat){
-                                    $line = "\t\t\t<category id=\"".$subCat->id."\" parentId=\"".$subCat->parent_id."\">".$subCat->title."</category>\n";
-                                    \File::append($path_file, $line);
+                            if($cat->yndex){
+
+                                $line = "\t\t\t<category id=\"".$cat->id."\">".$cat->title."</category>\n";
+                                \File::append($path_file, $line);
+
+                                $subCategory = FrontendController::sitemapSubCategories($cat->id);
+
+                                if($subCategory){
+                                    foreach($subCategory as $subCat){
+
+                                        if($subCat->yandex) {
+
+                                            $line = "\t\t\t<category id=\"" . $subCat->id . "\" parentId=\"" . $subCat->parent_id . "\">" . $subCat->title . "</category>\n";
+                                            \File::append($path_file, $line);
+
+                                        }
+                                    }
+                                }else{
+                                    return false;
                                 }
-                            }else{
-                                return false;
+
+
                             }
+
+
                         }
                     }else{
                         return false;
@@ -195,9 +209,9 @@ class YMLYandex extends Command
                             foreach($products as $product){
 
                                 //if($product->id)echo "$i. - $product->id\n";
-                                $i++;
+                                //$i++;
 
-                                if($product->yandex != 0){
+                                if($product->yandex){
 
                                     ($product->available == 1) ? $available = 'true' : $available = 'false';
                                     $line = "\t\t\t<offer id=\"".$product->id."\" type=\"vendor.model\" available=\"".$available."\">\n";
