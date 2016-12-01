@@ -99,7 +99,13 @@ class YMLYandex extends Command
                 $line = "\t\t<currencies>\n";
                 \File::append($path_file, $line);
 
-                    $line = "\t\t\t<currency id=\"UAH\" rate=\"NBU\"/>\n";
+                    $line = "\t\t\t<currency id=\"UAH\" rate=\"1\"/>\n";
+                    \File::append($path_file, $line);
+
+                    $line = "\t\t\t<currency id=\"USD\" rate=\"NBU\"/>\n";
+                    \File::append($path_file, $line);
+
+                    $line = "\t\t\t<currency id=\"EUR\" rate=\"NBU\"/>\n";
                     \File::append($path_file, $line);
 
                 $line = "\t\t</currencies>\n";
