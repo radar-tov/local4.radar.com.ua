@@ -89,9 +89,13 @@ class FrontendController extends BaseController
 
         if(!$category) abort(404);
 
-      	if($category->children->count() > 0 and !$subcategory){
+
+
+		if($category->children->count() > 0 and !$subcategory){
 			$categories = $category->children;
-			return view('frontend.subcategories',compact('categories','category'));
+			$date = new \DateTime($category->updated_at);
+			return \Response::view('frontend.subcategories', compact('categories','category'))
+				->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
 	  	}
 
 		if($request->ajax()){
