@@ -8,6 +8,8 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Session\Middleware\StartSession;
 
 /**
  * Class FilterService
@@ -24,7 +26,19 @@ class FilterService
     public function getFilteredProducts(Request $request)
     {
 
-        $filters = $request->get('filters');
+        if ($request->get('filters') !== null) {
+            $request->session()->put('filters.'.$request->get('categoryId'), $request->get('filters'));
+            $request->session()->save();
+            $filters = $request->get('filters');
+        } else {
+            if($request->session()->get('filters.'.$request->get('categoryId')) !== null){
+                $filters = $request->session()->get('filters.'.$request->get('categoryId'));
+            }else{
+                $filters = $request->get('filters');
+            }
+        }
+
+        dd($request->session()->all());
 
         $category = Category::where('id', $request->get('categoryId'))->with('children')->with('filters')->first();
 
@@ -46,6 +60,9 @@ class FilterService
         } else {
             $products = $products->ordered($request)->visible()->withRelations()->paginate();
         }
+
+
+        //dd($request->session()->get('filters'));
 
         // Separate rendering of products and pagination views
         return [

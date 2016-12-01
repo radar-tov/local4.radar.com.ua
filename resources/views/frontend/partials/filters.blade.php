@@ -7,7 +7,6 @@
     {!! csrf_field() !!}
 
     @foreach($subcategory->filtersWithRelevantValues($subcategory->id)->get() as $filter)
-
         <div class="filter-group">
             <div class="filter-heading">
                 <div class="ft-heading-inner">
@@ -16,13 +15,25 @@
             </div>
             <div class="filter-content">
                 <ul class="filter-select no-margin">
+
                     @foreach($filter->values as $value)
+
                         <li class="filter-option">
-                            <input id="filter-option-{{ $value->id }}" type="checkbox" name="filters[{{ $filter->id }}][]" value="{{ $value->id }}">
+                            <input  id="filter-option-{{ $value->id }}"
+                                    type="checkbox"
+                                    name="filters[{{ $filter->id }}][]"
+                                    value="{{ $value->id }}"
+                                    @if(Session::get('filters.'.$subcategory->id.'.'.$filter->id))
+                                        @foreach(Session::get('filters.'.$subcategory->id.'.'.$filter->id) as $key => $val)
+                                            @if($val == $value->id) checked @endif
+                                        @endforeach
+                                    @endif
+                            >
                             <label for="filter-option-{{ $value->id }}" class="filter-option-label">
                                 <span class="ft-opt-name">{{ $value->value }}</span>
                             </label>
                         </li>
+
                     @endforeach
                 </ul>
             </div>
