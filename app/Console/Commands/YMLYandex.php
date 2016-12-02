@@ -118,7 +118,7 @@ class YMLYandex extends Command
                     if($dataCategories) {
                         foreach($dataCategories as $cat){
 
-                            if($cat->yndex){
+                            if($cat->yandex){
 
                                 $line = "\t\t\t<category id=\"".$cat->id."\">".$cat->title."</category>\n";
                                 \File::append($path_file, $line);
