@@ -1,14 +1,16 @@
 @inject('productsProvider', '\App\ViewDataProviders\ProductsDataProvider')
 <script>
-
     var maxPrice = {{ $productsProvider->getMaxPrice(isset($subcategory) ? $subcategory->id : null) }}
+    arr = '{{ Session::get('price.'.$subcategory->id) }}'.split(';')
+    var filtrPrice = arr[1]
+
 
     $("#range").ionRangeSlider({
         type: "double",
         min: 0,
         max: maxPrice,
         from: 0,
-        to: maxPrice,
+        to: filtrPrice,
         prefix: "",
         step: 100,
         onFinish: function (data) {
@@ -34,7 +36,7 @@
 
     $("#filter").on('change', filterProducts);
     setTimeout(function(){
-        filterProducts();
+        filterProducts(false);
     },100);
 
 
@@ -44,12 +46,11 @@
             sel.selectedIndex = $this.selectedIndex;
             $('.select-dropdown').val(sel.options[sel.selectedIndex].innerHTML);
         });
-        filterProducts();
+        filterProducts(true);
     });
 
 
-    function filterProducts(page){
-
+    function filterProducts(filcl, page){
         $("#isDirty").val(1);
         if(isNaN(page)) page = 1;
 
@@ -61,6 +62,8 @@
         }
 
         if(!!getParameterByName('search')) data += '&search=' + getParameterByName('search');
+
+        if(filcl) data = data + '&click=true';
 
         $.ajax({
             url: location.href,
@@ -81,8 +84,7 @@
         $("html, body").animate({ scrollTop: 0 }, 0);
         var href = $(this).attr('href'),
                 page = parseInt(getParameterByName('page', href));
-
-        filterProducts(page);
+        filterProducts(true, page);
     });
 
 

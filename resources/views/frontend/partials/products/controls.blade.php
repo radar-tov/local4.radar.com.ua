@@ -3,11 +3,11 @@
     <div class="col s6 no-padding">
         <span class="left sort">Сортировать:</span>
         <select class="left orderBy" form="filter" name="orderBy">
-            <option value="price:asc">Сначала дешевые</option>
-            <option value="price:desc">Сначала дорогие</option>
-            <option value="id:desc" {{ Request::is('new') ? 'selected' : '' }}>Сначала новые</option>
-            <option value="id:asc">Сначала старые</option>
-            <option value="title:asc">По названию</option>
+            <option value="price:asc"{{ (Session::get('orderBy.'.$subcategory->id) == 'price:asc') ? 'selected' : '' }}>Сначала дешевые</option>
+            <option value="price:desc"{{ (Session::get('orderBy.'.$subcategory->id) == 'price:desc') ? 'selected' : '' }}>Сначала дорогие</option>
+            <option value="id:desc" {{ (Session::get('orderBy.'.$subcategory->id) == 'id:desc') ? 'selected' : '' }}>Сначала новые</option>
+            <option value="id:asc"{{ (Session::get('orderBy.'.$subcategory->id) == 'id:asc') ? 'selected' : '' }}>Сначала старые</option>
+            <option value="title:asc"{{ (Session::get('orderBy.'.$subcategory->id) == 'title:asc') ? 'selected' : '' }}>По названию</option>
         </select>
         
     </div>

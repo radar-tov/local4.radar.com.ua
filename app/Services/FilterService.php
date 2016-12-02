@@ -25,20 +25,51 @@ class FilterService
      */
     public function getFilteredProducts(Request $request)
     {
-
+        //Сохраняем фильтры в сессию
         if ($request->get('filters') !== null) {
             $request->session()->put('filters.'.$request->get('categoryId'), $request->get('filters'));
             $request->session()->save();
             $filters = $request->get('filters');
         } else {
-            if($request->session()->get('filters.'.$request->get('categoryId')) !== null){
-                $filters = $request->session()->get('filters.'.$request->get('categoryId'));
-            }else{
+            if($request->get('click') == true){
+                $request->session()->put('filters.'.$request->get('categoryId'), null);
+                $request->session()->save();
                 $filters = $request->get('filters');
+            }else{
+                if($request->session()->get('filters.'.$request->get('categoryId')) !== null){
+                    $filters = $request->session()->get('filters.'.$request->get('categoryId'));
+                }else{
+                    $filters = $request->get('filters');
+                }
             }
+
         }
 
-        dd($request->session()->all());
+        //Сохраняем сортировку в сессию
+        if($request->get('click') == true){
+            $request->session()->put('orderBy.'.$request->get('categoryId'), $request->get('orderBy'));
+            $request->session()->save();
+        }else{
+            $request->merge(array('orderBy' => Session::get('orderBy.'.$request->get('categoryId'))));
+        }
+
+        //Сохраняем пагинацию в сессию
+        if($request->get('click') == true){
+            $request->session()->put('page.'.$request->get('categoryId'), $request->get('page'));
+            $request->session()->save();
+        }else{
+            $request->merge(array('page' => Session::get('page.'.$request->get('categoryId'))));
+        }
+
+        //Сохраняем фильтр цены в сессию
+        if($request->get('click') == true){
+            $request->session()->put('price.'.$request->get('categoryId'), $request->get('price'));
+            $request->session()->save();
+        }else{
+            $request->merge(array('price' => Session::get('price.'.$request->get('categoryId'))));
+        }
+
+
 
         $category = Category::where('id', $request->get('categoryId'))->with('children')->with('filters')->first();
 

@@ -84,7 +84,7 @@
                     </li>
 
                     @if(array_get($settingsProvider->getSettings(),'contact_email'))
-                        <li class="mail"><a href="mailto:house.od@gmail.com"><span class="mail">{{ array_get($settingsProvider->getSettings(),'contact_email') }}</span></a></li>
+                        <li class="mail"><a href="mailto:{{ array_get($settingsProvider->getSettings(),'contact_email') }}"><span class="mail">{{ array_get($settingsProvider->getSettings(),'contact_email') }}</span></a></li>
                     @endif
                 </ul>
             </div>
