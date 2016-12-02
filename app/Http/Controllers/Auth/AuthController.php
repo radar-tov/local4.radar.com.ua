@@ -136,7 +136,8 @@ class AuthController extends Controller
 
 		Auth::login(User::create($request->all()));
 
-		return redirect($this->redirectPath());
+		//return redirect($this->redirectPath());
+        return redirect()->back();
 	}
 
 }
