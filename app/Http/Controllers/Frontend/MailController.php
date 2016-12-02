@@ -25,6 +25,18 @@ class MailController extends Controller
 
 	public function mailMe(Request $request)
 	{
+
+//		$messages = [
+//			'required' => "Поле :attribute обязательно к заполнению.",
+//			'email' => "Поле :attribute должно соответствовать email адресу."
+//		];
+//
+//		$this->validate($request, [
+//				'name' 	=> 'required|max:255',
+//				'email' => 'required|email'
+//		], $messages);
+
+
 		$data = $request->all();
 		$data['subject'] = 'Новое оповещение';
 		$data['_view'] = 'emails.'.array_get($data,'_view');
@@ -46,6 +58,21 @@ class MailController extends Controller
 
 			$message->to($this->messageTo)->subject(array_get($data,'subject',''));
 		});
+
+//		$result = Mail::send('mail.contact', ['data' => $date], function($message) use ($data){
+//
+//			$mail_admin = env('MAIL_ADMIN');
+//
+//			$message->from($data['email'], $data['name']);
+//			$message->to($mail_admin, 'Mr. Admin')->subject('Question');
+//
+//		});
+//
+//		if($result){
+//			return true;
+//		}else{
+//			return false;
+//		}
 
 		return true;
 	}
