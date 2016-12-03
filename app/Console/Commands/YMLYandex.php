@@ -151,7 +151,13 @@ class YMLYandex extends Command
                 $line = "\t\t</categories>\n";
                 \File::append($path_file, $line);
 
-                $line = "\t\t<delivery-options>100</delivery-options>\n";
+                $line = "\t\t<delivery-options>\n";
+                \File::append($path_file, $line);
+
+                    $line = "\t\t\t<option cost=\"50\" days=\"1-7\"/>\n";
+                    \File::append($path_file, $line);
+
+                $line = "\t\t</delivery-options>\n";
                 \File::append($path_file, $line);
 
                 $line = "\t\t<offers>\n";
@@ -225,7 +231,7 @@ class YMLYandex extends Command
                                         }
                                         if(isset($product->price)) {
                                             //Цена
-                                            $line = "\t\t\t\t<price>" . $product->price . "</price>\n";
+                                            $line = "\t\t\t\t<price>".round($product->price)."</price>\n";
                                             \File::append($path_file, $line);
                                         }
 
