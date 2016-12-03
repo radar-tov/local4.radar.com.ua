@@ -119,13 +119,13 @@ class FrontendController extends BaseController
         $date = new \DateTime($subcategory->updated_at);
 
         //Получаем header If-Modified-Since
-        $ifModifiedSince = strtotime(substr($request->header('If-Modified-Since'), 5));
-        $LastModified = strtotime(substr($date->format("D, d M Y H:i:s"), 5));
-        if($ifModifiedSince){
-            if($ifModifiedSince >= $LastModified){
-                return Response::view('frontend.catalog', compact('subcategory', 'category'), 304);
-            }
-        }
+//        $ifModifiedSince = strtotime(substr($request->header('If-Modified-Since'), 5));
+//        $LastModified = strtotime(substr($date->format("D, d M Y H:i:s"), 5));
+//        if($ifModifiedSince){
+//            if($ifModifiedSince >= $LastModified){
+//                return Response::view('frontend.catalog', compact('subcategory', 'category'), 304);
+//            }
+//        }
 
 
         return Response::view('frontend.catalog', compact('subcategory', 'category'))
