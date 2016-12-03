@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\Article;
 use App\Models\Page;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 /**
  * Created by Igor Mazur
@@ -17,7 +20,7 @@ class InformationController extends BaseController
 		return view('frontend.page', compact('articles'));
 	}
 
-	public function getArticle(Article $article, $articleSlug)
+	public function getArticle(Request $request, Article $article, $articleSlug)
 	{
 		$article = $article->where('slug', $articleSlug)->first();
 
@@ -27,10 +30,19 @@ class InformationController extends BaseController
 			view()->share('MetaKeywords',$article->meta_keywords);
 
             $date = new \DateTime($article->updated_at);
-            return \Response::view('frontend.single-post',compact('article'))
+
+            //Получаем header If-Modified-Since
+            $ifModifiedSince = strtotime(substr($request->header('If-Modified-Since'), 5));
+            $LastModified = strtotime(substr($date->format("D, d M Y H:i:s"), 5));
+            if($ifModifiedSince){
+                if($ifModifiedSince >= $LastModified){
+                    return Response::view('frontend.single-post',compact('article'), 304);
+                }
+            }
+
+            return Response::view('frontend.single-post',compact('article'))
                 ->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
 
-			//return view('frontend.single-post',compact('article'));
 		}
 
 		throw new ModelNotFoundException('404 Error!');
@@ -44,7 +56,7 @@ class InformationController extends BaseController
 
 	public function getSitemapStati()
 	{
-        $content = \Storage::disk('xml')->get('sitemap_stati.xml');
+        $content = Storage::disk('xml')->get('sitemap_stati.xml');
         return response($content, 200)->header('Content-type', 'text/xml');
 	}
 }

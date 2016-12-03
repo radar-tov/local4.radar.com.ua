@@ -31,6 +31,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 use Session;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class FrontendController
@@ -89,12 +91,20 @@ class FrontendController extends BaseController
 
         if(!$category) abort(404);
 
-
-
 		if($category->children->count() > 0 and !$subcategory){
 			$categories = $category->children;
 			$date = new \DateTime($category->updated_at);
-			return \Response::view('frontend.subcategories', compact('categories','category'))
+
+            //Получаем header If-Modified-Since
+            $ifModifiedSince = strtotime(substr($request->header('If-Modified-Since'), 5));
+            $LastModified = strtotime(substr($date->format("D, d M Y H:i:s"), 5));
+            if($ifModifiedSince){
+                if($ifModifiedSince >= $LastModified){
+                    return Response::view('frontend.subcategories', compact('categories','category'), 304);
+                }
+            }
+
+			return Response::view('frontend.subcategories', compact('categories','category'))
 				->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
 	  	}
 
@@ -107,7 +117,18 @@ class FrontendController extends BaseController
 		}
 
         $date = new \DateTime($subcategory->updated_at);
-        return \Response::view('frontend.catalog', compact('subcategory', 'category'))
+
+        //Получаем header If-Modified-Since
+        $ifModifiedSince = strtotime(substr($request->header('If-Modified-Since'), 5));
+        $LastModified = strtotime(substr($date->format("D, d M Y H:i:s"), 5));
+        if($ifModifiedSince){
+            if($ifModifiedSince >= $LastModified){
+                return Response::view('frontend.catalog', compact('subcategory', 'category'), 304);
+            }
+        }
+
+
+        return Response::view('frontend.catalog', compact('subcategory', 'category'))
             ->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
 
 	}
@@ -124,7 +145,7 @@ class FrontendController extends BaseController
 
 	public function getSitemapCategories()
 	{
-        $content = \Storage::disk('xml')->get('sitemap_categories.xml');
+        $content = Storage::disk('xml')->get('sitemap_categories.xml');
         return response($content, 200)->header('Content-type', 'text/xml');
 	}
 
@@ -172,7 +193,18 @@ class FrontendController extends BaseController
 		$productReviewId = $product->id;
 
         $date = new \DateTime($product->updated_at);
-        return \Response::view('frontend.product', compact('product','productReviewId'))
+
+        //Получаем header If-Modified-Since
+        $ifModifiedSince = strtotime(substr($request->header('If-Modified-Since'), 5));
+        $LastModified = strtotime(substr($date->format("D, d M Y H:i:s"), 5));
+        if($ifModifiedSince){
+            if($ifModifiedSince >= $LastModified){
+                return Response::view('frontend.product', compact('product','productReviewId'), 304);
+            }
+        }
+
+
+        return Response::view('frontend.product', compact('product','productReviewId'))
             ->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
 
 	}
@@ -191,13 +223,13 @@ class FrontendController extends BaseController
 
 	public function getSitemapProducts()
 	{
-        $content = \Storage::disk('xml')->get('sitemap_products.xml');
+        $content = Storage::disk('xml')->get('sitemap_products.xml');
         return response($content, 200)->header('Content-type', 'text/xml');
 	}
 
 	public function getYandexProducts()
 	{
-		$content = \Storage::disk('xml')->get('yml_products.xml');
+		$content = Storage::disk('xml')->get('yml_products.xml');
 		return response($content, 200)->header('Content-type', 'text/xml');
 	}
 
@@ -313,9 +345,21 @@ class FrontendController extends BaseController
 	{
 		$slug = trim($request->getRequestUri(), '/');
 		$page = StaticPage::where('slug', $slug)->first();
-		if(!$page) abort(404);
+
+        if(!$page) abort(404);
+
         $date = new \DateTime($page->updated_at);
- 		return \Response::view('frontend.static', compact('page'))->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
+
+        //Получаем header If-Modified-Since
+        $ifModifiedSince = strtotime(substr($request->header('If-Modified-Since'), 5));
+        $LastModified = strtotime(substr($date->format("D, d M Y H:i:s"), 5));
+        if($ifModifiedSince){
+            if($ifModifiedSince >= $LastModified){
+                return Response::view('frontend.static', compact('page'), 304);
+            }
+        }
+
+ 		return Response::view('frontend.static', compact('page'))->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
 	}
 
 
@@ -326,7 +370,7 @@ class FrontendController extends BaseController
 
 	public function getSitemapPages()
 	{
-		$content = \Storage::disk('xml')->get('sitemap_page.xml');
+		$content = Storage::disk('xml')->get('sitemap_page.xml');
         return response($content, 200)->header('Content-type', 'text/xml');
 	}
 
