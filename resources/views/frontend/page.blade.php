@@ -36,7 +36,7 @@
                             <div class="post-row-center col s12 m10">
                                 <div class="post-media col s12 m6 l4">
                                     <div class="media-inner">
-                                        <a href="/stati/{{ $article->id }}/{{ $article->slug }}" title="{{ $article->title }}!">
+                                        <a href="/stati/{{ $article->slug }}" title="{{ $article->title }}!">
                                             <img src="{{ url($article->thumbnail) }}" class="responsive-img" alt="{{ $article->title }}">
                                         </a>
                                     </div>
@@ -44,13 +44,13 @@
                                 <div class="post-content-outer col s12 m6 l8">
                                     <header class="single">
                                         <h4>
-                                            <a href="/stati/{{ $article->id }}/{{ $article->slug }}" title="{{ $article->title }}">{{ $article->title }}</a>
+                                            <a href="/stati/{{ $article->slug }}" title="{{ $article->title }}">{{ $article->title }}</a>
                                         </h4>
                                     </header>
                                     <p>
                                         {!! $article->excerpt !!}
                                     </p>
-                                    <a href="/stati/{{ $article->id }}/{{ $article->slug }}" class="waves-effect waves-light btn">Подробнее</a>
+                                    <a href="/stati/{{ $article->slug }}" class="waves-effect waves-light btn">Подробнее</a>
                                 </div>
                             </div>
                         </div>

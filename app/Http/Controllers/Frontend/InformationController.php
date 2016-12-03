@@ -17,9 +17,9 @@ class InformationController extends BaseController
 		return view('frontend.page', compact('articles'));
 	}
 
-	public function getArticle(Article $article, $articleId, $articleSlug)
+	public function getArticle(Article $article, $articleSlug)
 	{
-		$article = $article->show()->findOrFail($articleId);
+		$article = $article->where('slug', $articleSlug)->first();
 
 		if( $article->slug === $articleSlug ) {
 			view()->share('MetaTitle',$article->meta_title);

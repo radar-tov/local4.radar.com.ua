@@ -128,7 +128,7 @@ class XMLSitemap extends Command
                 $domElementUrl = $domElement->appendChild($domDocument->createElement('url'));
 
                 $url = $domElementUrl->appendChild($domDocument->createElement('loc'));
-                $url->appendChild($domDocument->createTextNode('http://radar.com.ua/stati/' . $product->id . '/' . ($product->slug)));
+                $url->appendChild($domDocument->createTextNode('http://radar.com.ua/stati/'.$product->slug));
 
                 $url = $domElementUrl->appendChild($domDocument->createElement('lastmod'));
                 $date = new \DateTime($product->updated_at);
