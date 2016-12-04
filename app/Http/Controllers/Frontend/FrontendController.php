@@ -100,7 +100,8 @@ class FrontendController extends BaseController
             $LastModified = strtotime(substr($date->format("D, d M Y H:i:s"), 5));
             if($ifModifiedSince){
                 if($ifModifiedSince >= $LastModified){
-                    return Response::view('frontend.subcategories', compact('categories','category'), 304);
+                    if($_ENV['APP_ENV'] == 'production')
+                        return Response::view('frontend.subcategories', compact('categories','category'), 304);
                 }
             }
 
@@ -117,16 +118,6 @@ class FrontendController extends BaseController
 		}
 
         $date = new \DateTime($subcategory->updated_at);
-
-        //Получаем header If-Modified-Since
-//        $ifModifiedSince = strtotime(substr($request->header('If-Modified-Since'), 5));
-//        $LastModified = strtotime(substr($date->format("D, d M Y H:i:s"), 5));
-//        if($ifModifiedSince){
-//            if($ifModifiedSince >= $LastModified){
-//                return Response::view('frontend.catalog', compact('subcategory', 'category'), 304);
-//            }
-//        }
-
 
         return Response::view('frontend.catalog', compact('subcategory', 'category'))
             ->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
@@ -199,7 +190,8 @@ class FrontendController extends BaseController
         $LastModified = strtotime(substr($date->format("D, d M Y H:i:s"), 5));
         if($ifModifiedSince){
             if($ifModifiedSince >= $LastModified){
-                return Response::view('frontend.product', compact('product','productReviewId'), 304);
+                if($_ENV['APP_ENV'] == 'production')
+                    return Response::view('frontend.product', compact('product','productReviewId'), 304);
             }
         }
 
@@ -355,7 +347,8 @@ class FrontendController extends BaseController
         $LastModified = strtotime(substr($date->format("D, d M Y H:i:s"), 5));
         if($ifModifiedSince){
             if($ifModifiedSince >= $LastModified){
-                return Response::view('frontend.static', compact('page'), 304);
+                if($_ENV['APP_ENV'] == 'production')
+                    return Response::view('frontend.static', compact('page'), 304);
             }
         }
 
