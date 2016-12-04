@@ -185,6 +185,16 @@ class ProductsController extends AdminController
         return view('admin.products.edit',compact('product'));
     }
 
+
+    public function isCheckbox($request, $checkbox, $name){
+        if(isset($checkbox) && $checkbox == 'on'){
+            $request->merge([$name => true]);
+        }else{
+            $request->merge([$name => false]);
+        }
+        return $request;
+    }
+
 	/**
 	 * Update the specified resource in storage.
 	 *
@@ -196,18 +206,20 @@ class ProductsController extends AdminController
 	public function update(UpdateProductRequest $request, $id, ProductService $productService)
     {
 
-    	//dd($request->all());
 	    $request = $this->filesHandler->saveFile($request);
 	    $product = $this->product->withTrashed()->findOrFail($id);
-		//dd($product);
-	    $request['filters'] = $productService->prepareFiltersRequest($request->get('filters'));
-        
-	    $r = $product->update($request->all());
-		//dd($r);
-		//$product = $this->product->withTrashed()->findOrFail($id);
-		//dd($product);
 
-//		dd($request->get('filters'));
+	    $request['filters'] = $productService->prepareFiltersRequest($request->get('filters'));
+
+        //Определяем checkbox
+	    $request = $this->isCheckbox($request, $request->sitemap, 'sitemap');
+        $request = $this->isCheckbox($request, $request->yandex, 'yandex');
+        $request = $this->isCheckbox($request, $request->active, 'active');
+        $request = $this->isCheckbox($request, $request->is_bestseller, 'is_bestseller');
+        $request = $this->isCheckbox($request, $request->is_new, 'is_new');
+
+        $product->update($request->all());
+
 		$product->filters()->sync($request->get('filters') ?: []);
 
 	    $this->productService->syncImages($product, $request->get('imagesIds'));

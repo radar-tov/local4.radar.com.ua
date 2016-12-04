@@ -9,6 +9,6 @@ class BrandsDataProvider {
 
 	public function getList()
 	{
-		return Brand::lists('title', 'id');
+		return Brand::orderBy('title')->lists('title', 'id');
 	}
 }

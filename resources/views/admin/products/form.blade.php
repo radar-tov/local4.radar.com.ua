@@ -151,7 +151,7 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     {!! Form::label('available', 'Товар в наличии?') !!}
-                                    {!! Form::select('available', ['1'=> 'Да', '0'=>'нет','2'=>'под заказ'], $selected = null, ['class' => 'form-control']) !!}
+                                    {!! Form::select('available', ['1'=> 'Да', '0'=>'Нет','2'=>'Под заказ'], $selected = null, ['class' => 'form-control']) !!}
                                 </div>
                             </div>
 
@@ -196,21 +196,32 @@
                             <div class="col-xs-12">
                                 <div class="form-group">
                                     {!! Form::label('active', 'Показывать на сайте?') !!}
-                                    {!! Form::select('active', ['Нет', 'Да'], $selected = null, ['class' => 'form-control']) !!}
+                                    {!! Form::checkbox('active', $selected = null, ['class' => 'form-control']) !!}
                                 </div>
                             </div>
-
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    {!! Form::label('sitemap', 'Показывать в Sitemap.xml?') !!}
+                                    {!! Form::checkbox('sitemap', $selected = null, ['class' => 'form-control','form'=>'form-data']) !!}
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    {!! Form::label('yandex', 'Показывать в Yandex.xml?') !!}
+                                    {!! Form::checkbox('yandex', $selected = null, ['class' => 'form-control','form'=>'form-data']) !!}
+                                </div>
+                            </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
                                     {!! Form::label('is_bestseller', 'Отметить как хит продаж?') !!}
-                                    {!! Form::select('is_bestseller', ['Нет', 'Да'], $selected = null, ['class' => 'form-control']) !!}
+                                    {!! Form::checkbox('is_bestseller', $selected = null, ['class' => 'form-control']) !!}
                                 </div>
                             </div>
 
                             <div class="col-xs-12">
                                 <div class="form-group">
                                     {!! Form::label('is_new', 'Отметить как новинку?') !!}
-                                    {!! Form::select('is_new', ['Нет', 'Да'], $selected = null, ['class' => 'form-control']) !!}
+                                    {!! Form::checkbox('is_new', $selected = null, ['class' => 'form-control']) !!}
                                 </div>
                             </div>
                             <div class="col-xs-12">
@@ -220,19 +231,6 @@
                                 </div>
                             </div>
 
-
-                            <div class="col-xs-12">
-                                <div class="form-group">
-                                    {!! Form::label('sitemap', 'Показывать в Sitemap.xml?') !!}
-                                    {!! Form::select('sitemap', ['1'=> 'Да', '0'=>'Нет'], $selected = null, ['class' => 'form-control','form'=>'form-data']) !!}
-                                </div>
-                            </div>
-                            <div class="col-xs-12">
-                                <div class="form-group">
-                                    {!! Form::label('yandex', 'Показывать в Yandex.xml?') !!}
-                                    {!! Form::select('yandex', ['Нет', 'Да'], $selected = null, ['class' => 'form-control','form'=>'form-data']) !!}
-                                </div>
-                            </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
                                     {!! Form::label('priority', 'Приоритет индексирования?') !!}
