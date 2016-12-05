@@ -56,7 +56,15 @@ class MailController extends Controller
 
 		}
 
-		//dd($data);
+		if(empty($data['phone'])){
+			$data['phone'] = 'Не указан.';
+		}
+		if(empty($data['comment'])){
+			$data['comment'] = 'Не указан.';
+		}
+		if(empty($data['email'])){
+			$data['email'] = 'Не указан.';
+		}
 
 		$this->sendMessage($data);
 
