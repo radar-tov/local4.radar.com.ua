@@ -148,8 +148,8 @@
 
 
 @section('bottom-scripts')
-    @include('frontend.partials.scripts.add_to_cart')
-    @include('frontend.partials.scripts.add_to_compare')
-    @include('frontend.partials.scripts.slow_menu')
+    {{--@include('frontend.partials.scripts.add_to_cart')--}}
+    {{--@include('frontend.partials.scripts.add_to_compare')--}}
+    {{--@include('frontend.partials.scripts.slow_menu')--}}
 @endsection
 

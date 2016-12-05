@@ -20,7 +20,8 @@
     <link href="http://allfont.ru/allfont.css?fonts=a_avanteltnr-thinitalic" rel="stylesheet" type="text/css"/>
     <link href="http://allfont.ru/allfont.css?fonts=a_avantebsnr-light" rel="stylesheet" type="text/css"/>
     <link href="http://allfont.ru/allfont.css?fonts=a_avantebsnr-bold" rel="stylesheet" type="text/css"/>
-
+    <script type="text/javascript" src="/frontend/js/jquery-2.1.3.min.js"></script>
+    
     @yield('top-scripts')
 
     @include('frontend.googleAnalistic')
@@ -103,10 +104,10 @@
 </div>
 <!-- / Review modal -->
 
-<!--Scripts-->
-<!--JQuery-->
-<script type="text/javascript" src="/frontend/js/jquery-2.1.3.min.js"></script>
-<script>
+{{--<!--Scripts-->--}}
+{{--<!--JQuery-->--}}
+{{--<script type="text/javascript" src="/frontend/js/jquery-2.1.3.min.js"></script>--}}
+{{--<script>--}}
 
 
             {{--<script>--}}
@@ -121,58 +122,58 @@
             {{--</script>--}}
 
 
-    var disabled = $(".disabled").prop('disabled', true);
+    {{--var disabled = $(".disabled").prop('disabled', true);--}}
 
 
-</script>
+{{--</script>--}}
 
-<script type="text/javascript">
-    $("._disabled").click(function () {
-        return false;
-    })
-</script>
-<script language="javascript">
-    function printsite() {
-        if (navigator.platform == "Win32") {
-            window.print();
-        } else {
-            alert("print out this page by hitting command + p");
-        }
-    }
-</script>
+{{--<script type="text/javascript">--}}
+    {{--$("._disabled").click(function () {--}}
+        {{--return false;--}}
+    {{--})--}}
+{{--</script>--}}
+{{--<script language="javascript">--}}
+    {{--function printsite() {--}}
+        {{--if (navigator.platform == "Win32") {--}}
+            {{--window.print();--}}
+        {{--} else {--}}
+            {{--alert("print out this page by hitting command + p");--}}
+        {{--}--}}
+    {{--}--}}
+{{--</script>--}}
 @yield('bottom-scripts')
 @yield('rate')
 @yield('filter_handler')
 
-<script>
+{{--<script>--}}
 
-    var flashObject = $(".flashObject");
-    flashObject.css({"display": "block"});
+    {{--var flashObject = $(".flashObject");--}}
+    {{--flashObject.css({"display": "block"});--}}
 
 
-    $(document).ready(function () {
-        $(".object-3d").click(function () {
-            $(".modalTest").addClass("modalAnimation");
-            $("body").append("<div class='lean-overlay over' id='materialize-lean-overlay-4' style='z-index: 1002; display: block; opacity: 0.5;'></div>");
+    {{--$(document).ready(function () {--}}
+        {{--$(".object-3d").click(function () {--}}
+            {{--$(".modalTest").addClass("modalAnimation");--}}
+            {{--$("body").append("<div class='lean-overlay over' id='materialize-lean-overlay-4' style='z-index: 1002; display: block; opacity: 0.5;'></div>");--}}
 
-            $('.over').show();
-            flashObject.css({"margin": "auto"});
-            function second() {
-                $(".object-hover").css({"display": "none"});
-            }
+            {{--$('.over').show();--}}
+            {{--flashObject.css({"margin": "auto"});--}}
+            {{--function second() {--}}
+                {{--$(".object-hover").css({"display": "none"});--}}
+            {{--}--}}
 
-            setTimeout(second, "400");
+            {{--setTimeout(second, "400");--}}
 
-        });
-        $(".objClose").click(function () {
-            $('.over').hide();
-            $(".modalTest").removeClass("modalAnimation");
-            $(".over").css("display", "none");
-            flashObject.css({"margin-left": "-3000px"});
-        });
-    });
-</script>
-
+        {{--});--}}
+        {{--$(".objClose").click(function () {--}}
+            {{--$('.over').hide();--}}
+            {{--$(".modalTest").removeClass("modalAnimation");--}}
+            {{--$(".over").css("display", "none");--}}
+            {{--flashObject.css({"margin-left": "-3000px"});--}}
+        {{--});--}}
+    {{--});--}}
+{{--</script>--}}
+<script type="text/javascript" src="/frontend/js/index.js"></script>
 @include('frontend.yandexMetric')
 
 </body>
