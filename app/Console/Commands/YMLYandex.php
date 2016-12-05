@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Http\Controllers\Frontend\FrontendController;
-use Illuminate\Support\FacadesFile;
+use Illuminate\Support\Facades\File;
 
 class YMLYandex extends Command
 {
