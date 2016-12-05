@@ -107,7 +107,7 @@
                         заполнения.</p>
                     <form action="{!! route('mail.me') !!}" id="contactForm" method="post">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="hidden" name="_view" value="contact"/>
+                        <input type="hidden" name="_view" value="skidka"/>
                         <div class="row">
                             <div class="col s12 m12 no-padding">
                                 <div class="form-group">

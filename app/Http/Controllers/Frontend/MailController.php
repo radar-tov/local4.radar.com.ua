@@ -14,24 +14,53 @@ class MailController extends Controller
 
 	public function __construct()
 	{
-		$messageTo = Setting::pluck('feedback_email');
+		$emailTo = Setting::pluck('feedback_email');
+		$emailFrom = Setting::pluck('contact_email');
 
-		if(empty($messageTo)) {
+		if(empty($emailTo or $emailFrom)) {
 			throw new Exception("Feedback email is empty! Please set email.");
 		}
 
-		$this->messageTo = $messageTo;
+		$this->emailTo = $emailTo;
+		$this->emailFrom = $emailFrom;
 	}
 
 	public function mailMe(Request $request)
 	{
+
+//		$messages = [
+//			'required' => "Поле :attribute обязательно к заполнению.",
+//			'email' => "Поле :attribute должно соответствовать email адресу."
+//		];
+//
+//		$this->validate($request, [
+//				'name' 	=> 'required|max:255',
+//				'email' => 'required|email'
+//		], $messages);
+
+
 		$data = $request->all();
-		$data['subject'] = 'Новое оповещение';
-		$data['_view'] = 'emails.'.array_get($data,'_view');
+		//dd($data);
+		//
+		//Тема сообщения
+		if($data['_view'] == 'contact'){
+			$data['subject'] = 'Новое оповещение из формы обратной связи.';
+			$message = 'Ваше письмо отправлено!';
+		}elseif($data['_view'] == 'callback'){
+			$data['subject'] = 'Заказ обратного звонка.';
+			$message = 'Спасибо, мы обязательно с Вами свяжемся.';
+		}elseif($data['_view'] == 'skidka'){
+			$data['subject'] = 'Запрос на получение скидки.';
+			$message = 'Ваш запрос расматривается. Мы обязательно с Вами свяжемся.';
+		}else{
+
+		}
+
+		//dd($data);
 
 		$this->sendMessage($data);
 
-		return redirect()->back()->withMessage('Ваше письмо отправлено!');
+		return redirect()->back()->withMessage($message);
 	}
 
 	/**
@@ -40,12 +69,27 @@ class MailController extends Controller
 	 */
 	protected function sendMessage(array $data)
 	{
-		Mail::send(array_get($data,'_view','not.found.view'), $data , function($message) use ($data)
+		$result = Mail::send('mail.contact', ['data' => $data] , function($message) use ($data)
 		{
-			$message->from(array_get($data,'email','radar.tov@gmail.com'), 'Radar');
-
-			$message->to($this->messageTo)->subject(array_get($data,'subject',''));
+			//dd($this->emailFrom, $this->messageTo);
+			$message->from($this->emailFrom, 'Интернет магазин Radar');
+			$message->to($this->emailTo, 'Mr. Admin')->subject(base64_encode(iconv("UTF-8", "koi8-r", $data['subject'])));//->subject(array_get($data,'subject',''))
 		});
+
+//		$result = Mail::send('mail.contact', ['data' => $date], function($message) use ($data){
+//
+//			$mail_admin = env('MAIL_ADMIN');
+//
+//			$message->from($data['email'], $data['name']);
+//			$message->to($mail_admin, 'Mr. Admin')->subject('Question');
+//
+//		});
+
+		if($result){
+			return true;
+		}else{
+			return false;
+		}
 
 		return true;
 	}
