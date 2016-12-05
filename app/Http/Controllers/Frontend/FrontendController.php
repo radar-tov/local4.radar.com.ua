@@ -315,8 +315,9 @@ class FrontendController extends BaseController
 		// just display custom page heading
 		// instead of category title
 		$header = 'Результаты поиска';
+		$subcategory = Category::with('children')->with('filters')->first();
 
-		return view('frontend.catalog', compact('products', 'header'));
+		return view('frontend.catalog', compact('products', 'header', 'subcategory'));
 	}
 
 	/**
