@@ -73,7 +73,7 @@ class MailController extends Controller
 		{
 			//dd($this->emailFrom, $this->messageTo);
 			$message->from($this->emailFrom, 'Интернет магазин Radar');
-			$message->to($this->emailTo, 'Mr. Admin')->subject(base64_encode(iconv("UTF-8", "koi8-r", $data['subject'])));//->subject(array_get($data,'subject',''))
+			$message->to($this->emailTo, 'Mr. Admin')->subject($data['subject']);//->subject(array_get($data,'subject',''))
 		});
 
 //		$result = Mail::send('mail.contact', ['data' => $date], function($message) use ($data){
