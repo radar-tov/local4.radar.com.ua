@@ -155,7 +155,7 @@ class YMLYandex extends Command
                 $line = "\t\t<delivery-options>\n";
                 File::append($path_file, $line);
 
-                    $line = "\t\t\t<option cost=\"50\" days=\"1-7\"/>\n";
+                    $line = "\t\t\t<option cost=\"50\" days=\"2-5\"/>\n";
                     File::append($path_file, $line);
 
                 $line = "\t\t</delivery-options>\n";
