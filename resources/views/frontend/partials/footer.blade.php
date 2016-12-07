@@ -52,20 +52,20 @@
                 <p class="white-text">Мы в соцсетях</p>
                 <div class="social_icon">
 					@if(array_get($settingsProvider->getSettings(),'vkontakte'))
-                        <a href="{{ array_get($settingsProvider->getSettings(),'vkontakte') }}" target="_blank"><img src="/public/frontend/images/vk_1.png"></a>
+                        <a href="{{ array_get($settingsProvider->getSettings(),'vkontakte') }}" rel="nofollow" target="_blank"><img src="/public/frontend/images/vk_1.png"></a>
                     @endif
 					
                     @if(array_get($settingsProvider->getSettings(),'facebook'))
-                        <a href="{{ array_get($settingsProvider->getSettings(),'facebook') }}" target="_blank"><img src="/public/frontend/images/fb.png"></a>
+                        <a href="{{ array_get($settingsProvider->getSettings(),'facebook') }}" rel="nofollow" target="_blank"><img src="/public/frontend/images/fb.png"></a>
                     @endif
                     @if(array_get($settingsProvider->getSettings(),'twitter'))
-                        <a href="{{ array_get($settingsProvider->getSettings(),'twitter') }}" target="_blank"><img src="/public/frontend/images/inst.png"></a>
+                        <a href="{{ array_get($settingsProvider->getSettings(),'twitter') }}" rel="nofollow" target="_blank"><img src="/public/frontend/images/inst.png"></a>
                     @endif
                     @if(array_get($settingsProvider->getSettings(),'google'))
-                        <a href="{{ array_get($settingsProvider->getSettings(),'google') }}" target="_blank"><img src="/public/frontend/images/goo.png"></a>
+                        <a href="{{ array_get($settingsProvider->getSettings(),'google') }}" rel="nofollow" target="_blank"><img src="/public/frontend/images/goo.png"></a>
                     @endif 
                     @if(array_get($settingsProvider->getSettings(),'youtube'))
-                        <a href="{{ array_get($settingsProvider->getSettings(),'youtube') }}" target="_blank"><i class="fa fa-youtube"></i></a>
+                        <a href="{{ array_get($settingsProvider->getSettings(),'youtube') }}" rel="nofollow" target="_blank"><i class="fa fa-youtube"></i></a>
                     @endif
                 </div>
             </div>
