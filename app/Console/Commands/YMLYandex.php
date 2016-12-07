@@ -243,7 +243,7 @@ class YMLYandex extends Command
                                         $line = "\t\t\t\t<categoryId>".$subCat->id."</categoryId>\n";
                                         File::append($path_file, $line);
 
-                                        if(isset($product->thumbnail)){
+                                        if(!empty($product->thumbnail->first()->path)){
                                             //Картинка
                                             $line = "\t\t\t\t<picture>".$host.$product->thumbnail->first()->path."</picture>\n";
                                             File::append($path_file, $line);
