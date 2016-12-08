@@ -785,23 +785,26 @@ img.responsive-img, video.responsive-video {
 
     .cat_box {
         border: 1px solid #ddd;
+        margin: 0 0 10px 0;
     }
     .cat_box img {
         display:block;
         margin:0 auto;
+        width: 100%;
     }
 
     .cat_box p {
-    background: #8294ba;
-    color: white;
-    padding: 10px 15px;
-    width: 100%;
-    text-align: center;
+        background: #062a75;
+        color: white;
+        padding: 10px 15px;
+        width: 100%;
+        /*min-height:60px;*/
+        /*vertical-align: bottom;*/
+        text-align: center;
     }
 
     .cat_box p:hover {
-        background: #385591;
-
+        background: #fd7903;
     }
 
 

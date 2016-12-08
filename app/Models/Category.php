@@ -58,7 +58,7 @@ class Category extends Eloquent
 	 */
 	public function children()
 	{
-		return $this->hasMany('App\Models\Category','parent_id')->orderBy('order');
+		return $this->hasMany('App\Models\Category','parent_id')->where('show',1)->orderBy('order');
 	}
 
 	/**
