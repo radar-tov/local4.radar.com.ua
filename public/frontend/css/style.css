@@ -5522,6 +5522,7 @@ p.note {
      border:none!important;
 }
 
+
 .nav-menu nav ul.left > li > a {
     color: #fff;
     font-family: 'a_AvanteTck Medium', sans-serif;
@@ -5694,7 +5695,7 @@ p.note {
 }
 
 .side-bar .havechild span:after {
-    content: url('../images/side_bar_arrow.png');
+    /*content: url('../images/side_bar_arrow.png');*/
     position: absolute;
     top: 3px;
     right:10px;
@@ -5708,10 +5709,12 @@ p.note {
 
 .side-bar > li.havechild {
     /*background: url('../images/cat-arrow.png') right 25px no-repeat*/
+    background: #062a75;
 }
 
 .side-bar > li.havechild:hover {
     /*background-image: url('../images/cat-arrow-hover.png')*/
+    background: #fd7903;
 }
 
 li.banner {
@@ -5818,12 +5821,16 @@ aside {
 }
 
 .side-bar.card li span a {
-    color: #656464;
+    color: #FFFFFF;
     line-height:20px;
 }
 
-.side-bar li:hover span a, .side-bar li .sub-categories li:hover a {
-        color: #fa9827;
+.side-bar li:hover span a{
+        color: #FFFFFF;
+}
+
+.side-bar li .sub-categories li:hover a {
+    color: #000000;
 }
 
 .side-bar li span {
@@ -5876,20 +5883,16 @@ aside {
     min-height:315px;
 }
 
-
-
-
-
 .side-bar li .sub-categories i {
     margin: 0 5px
 }
 
 .sub-categories li a {
-min-height:50px!important;
+    min-height:50px!important;
     line-height: 18px!important;
-        text-transform: uppercase;
-    font: 400 14px "Roboto", sans-serif;
-        padding-left: 15px;
+    text-transform: uppercase;
+    font: 600 14px "Roboto", sans-serif;
+    padding-left: 15px;
     position: relative;
 }
 
@@ -10019,7 +10022,7 @@ div.vote-success {
 }
 
 .irs-from, .irs-to, .irs-single {
-    color: #fff;
+    color: #062a75;
     font: 300 9px "Roboto", sans-serif;
     line-height: 1.333;
     text-shadow: none;

@@ -1,6 +1,6 @@
 @inject('categoriesProvider', 'App\ViewDataProviders\CategoriesDataProvider')
 <div class="hide-on-med-and-down">
-    <h6>Каталог товаров</h6>
+    <h6 style="color: #fd7903;">Каталог товаров</h6>
     <ul class="side-bar card">
         @foreach($categoriesProvider->getListForNav() as $category)
             <li @if(count($category->children))class="havechild"@endif>
