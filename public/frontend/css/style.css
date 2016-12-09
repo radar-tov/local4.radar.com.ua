@@ -477,7 +477,7 @@ img.responsive-img, video.responsive-video {
 }*/
 
 .for_code {
-    width: 46px;
+    width: 130px;
     display: inline-block;
 }
 
@@ -5056,7 +5056,7 @@ input[type=search].search-form {
 }
 
 .header .links span a {
-    background-color: rgb(0, 47, 143);
+    background-color: #fd7903;
     width: 151px;
     height: 25px;
     padding: 5px 11px;
@@ -7165,13 +7165,13 @@ footer.page-footer {
 
 .header .contacts .mail:before {
     content: '';
-    background: url('../images/mail-icon.png') 0 0 no-repeat;
+    /*background: url('../images/mail-icon.png') 0 0 no-repeat;*/
     width: 11px;
     height: 9px;
     background-size: 11px;
     position: absolute;
     bottom: 2px;
-    left: 0;
+    left: 10px;
 }
 
 .contact-info li.mail {

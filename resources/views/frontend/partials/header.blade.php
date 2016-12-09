@@ -15,17 +15,18 @@
                 {{--<span class="phone number right-align">{{ array_get($settingsProvider->getSettings(),'header_phone2') }}</span><br>--}}
                 {{--@endif--}}
                 <div class="for_code">
-                    <span class="phone code right-align"><img src="/frontend/images/tel.png"/> 095</span><br>
-                    <span class="phone code right-align"><img src="/frontend/images/tel.png"/> 063</span><br>
-                    <span class="phone code right-align"><img src="/frontend/images/tel.png"/> 068</span><br>
+                    <span class="phone code right-align"><img src="/frontend/images/tel.png"/> 095 881 83 83</span><br>
+                    <span class="phone code right-align"><img src="/frontend/images/tel.png"/> 063 881 83 83</span><br>
+                    <span class="phone code right-align"><img src="/frontend/images/tel.png"/> 068 881 83 83</span><br>
                 </div>
 
-                <div class="for_number">
-                    <span class="phone number right-align">881-83-83</span>
-                </div>
+                {{--<div class="for_number">--}}
+                    {{--<span class="phone number right-align">881-83-83</span>--}}
+                {{--</div>--}}
                 @if(array_get($settingsProvider->getSettings(),'contact_email'))
-                    <a href="mailto:{{ array_get($settingsProvider->getSettings(),'contact_email') }}"><span
-                                class="mail">{{ array_get($settingsProvider->getSettings(),'contact_email') }}</span></a>
+                    <a href="mailto:{{ array_get($settingsProvider->getSettings(),'contact_email') }}">
+                        <span class="mail">{{ array_get($settingsProvider->getSettings(),'contact_email') }}</span>
+                    </a>
                 @endif
             </div>
             <div class="col s12 m4 l2 links">
