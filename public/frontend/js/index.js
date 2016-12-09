@@ -1,6 +1,9 @@
 /**
  * Created by Evgenii on 05.12.2016.
  */
+
+//Из файла resources\views\frontend\layout.blade.php
+//>>>>>>>>>>>>>>
 var disabled = $(".disabled").prop('disabled', true);
 
 $("._disabled").click(function () {
@@ -54,9 +57,12 @@ $(".buySet").click(function(){
     $(this).val('В корзине');
     $(this).parents('.item').find('.buy').val('В корзине');
 })
+//<<<<<<<<<<<<<<<<<<<<<
+//Из файла resources\views\frontend\layout.blade.php
+
 
 //Из файла frontend.partials.scripts.add_to_compare
-
+//>>>>>>>>>>>>>>>>>
 $("body").on("click",".compare",function()
 {
     var productId = $(this).attr('data-productid');
@@ -70,16 +76,23 @@ $("body").on("click",".compare",function()
     $(this).parents('.item').find('.compare').val('В сравнении');
 
 });
+//<<<<<<<<<<<<<<<<<<<<
+//Из файла frontend.partials.scripts.add_to_compare
+
 
 //Из файла resources\views\frontend\catalog.blade.php
+//>>>>>>>>>>>>>>>>
 $("body").on('click', '.video-review', function(e){
     e.preventDefault();
     var video = $(this).siblings('._video').html();
     $('#video').find('.video-container').html(video);
 })
+//<<<<<<<<<<<<<<<
+//Из файла resources\views\frontend\catalog.blade.php
+
 
 //из файла frontend.partials.scripts.filter_handler
-
+//>>>>>>>>>>>>>>>>>
 $("#range").ionRangeSlider({
     type: "double",
     min: 0,
@@ -166,10 +179,33 @@ $("body").on('click', '._pagination a', function(event){
 $("#range").change(function(){
     return false;
 })
+//<<<<<<<<<<<<<<<<<<<<<
+//из файла frontend.partials.scripts.filter_handler
 
 
+//Из файла resources\views\frontend\product.blade.php
+//>>>>>>>>>>>>>>>>>>>>>
+console.log(!!$("#check").val());
+
+$('#rating_3').rating({
+    fx: 'full',
+    image: '/frontend/images/stars2.png',
+    loader: '/frontend/images/ajax-loader.gif',
+    url: location.href, /*обработка результатов голосования*/
+    type: 'GET',
+    readOnly: !!$("#check").val(),
+    callback: function (responce) {
+        this._data.val = Math.round(responce);
+        this.set();
+        this.vote_success.fadeOut(2000);
+    }
+});
+//<<<<<<<<<<<<<<<<<<<<<<<<
+//Из файла resources\views\frontend\product.blade.php
 
 
+//Из файла resources\views\frontend\layout.blade.php
+//>>>>>>>>>>>>>>>>>>>>>>>>>
 var flashObject = $(".flashObject");
 flashObject.css({"display": "block"});
 
@@ -194,3 +230,5 @@ $(document).ready(function () {
         flashObject.css({"margin-left": "-3000px"});
     });
 });
+//<<<<<<<<<<<<<<<<<<<<<<<<
+//Из файла resources\views\frontend\layout.blade.php

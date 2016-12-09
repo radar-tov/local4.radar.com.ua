@@ -186,61 +186,61 @@
                             </div>
                         </div>
 
-                       <!-- <div class="tech_doc col s6 m6 l12">
-                            <h5>Сертификаты</h5>
+                       {{--<!-- <div class="tech_doc col s6 m6 l12">--}}
+                            {{--<h5>Сертификаты</h5>--}}
 
 
-                            @foreach($product->images->where('is_certificate', 1) as $image)
+                            {{--@foreach($product->images->where('is_certificate', 1) as $image)--}}
 
-                                <li><a class="example-image-link" href="{{ $image->path }}" data-lightbox="example-set1"
-                                       data-title="{{ $product->title }}">сертификат</a></li>
+                                {{--<li><a class="example-image-link" href="{{ $image->path }}" data-lightbox="example-set1"--}}
+                                       {{--data-title="{{ $product->title }}">сертификат</a></li>--}}
 
-                            @endforeach
+                            {{--@endforeach--}}
 
 
-                        </div>-->
+                        {{--</div>-->--}}
 
 
                     </div>
                 </div>
-                <!--<div class="col features">
+                {{--<!--<div class="col features">--}}
 
-                    <div class="col s6 no-padding">
-                        <h6><span class="green-text">&gt;&gt;</span> Бесплатная сборка</h6>
+                    {{--<div class="col s6 no-padding">--}}
+                        {{--<h6><span class="green-text">&gt;&gt;</span> Бесплатная сборка</h6>--}}
 
-                        <p>непосредственно <span class="green-text italic">высоко- квалифицирован­ными специалистами</span>
-                            компании «HouseFit» в городах Одесса и Киев.</p>
-                    </div>
-                    <div class="col s6 no-padding">
-                        <h6><span class="green-text">&gt;&gt;</span> Отгрузка товара</h6>
+                        {{--<p>непосредственно <span class="green-text italic">высоко- квалифицирован­ными специалистами</span>--}}
+                            {{--компании «HouseFit» в городах Одесса и Киев.</p>--}}
+                    {{--</div>--}}
+                    {{--<div class="col s6 no-padding">--}}
+                        {{--<h6><span class="green-text">&gt;&gt;</span> Отгрузка товара</h6>--}}
 
-                        <p>Отгрузка товара на тран­спортную фирму произво­дится в течении одного рабочего дня с момента
-                            оформления заказа.</p>
-                    </div>
-                    <div class="col s6 no-padding">
-                        <h6><span class="green-text">&gt;&gt;</span> Доставка в городах Одесса и Киев</h6>
+                        {{--<p>Отгрузка товара на тран­спортную фирму произво­дится в течении одного рабочего дня с момента--}}
+                            {{--оформления заказа.</p>--}}
+                    {{--</div>--}}
+                    {{--<div class="col s6 no-padding">--}}
+                        {{--<h6><span class="green-text">&gt;&gt;</span> Доставка в городах Одесса и Киев</h6>--}}
 
-                        <p>Теперь не нужно думать о доставке! Мы товар доста­вим сами и самое главное - <span
-                                    class="green-text italic">совершенно бесплатно</span>!</p>
-                    </div>
-                    <div class="col s6 no-padding">
-                        <h6><span class="green-text">&gt;&gt;</span> Гарантия</h6>
+                        {{--<p>Теперь не нужно думать о доставке! Мы товар доста­вим сами и самое главное - <span--}}
+                                    {{--class="green-text italic">совершенно бесплатно</span>!</p>--}}
+                    {{--</div>--}}
+                    {{--<div class="col s6 no-padding">--}}
+                        {{--<h6><span class="green-text">&gt;&gt;</span> Гарантия</h6>--}}
 
-                        <p>На все товары предостав­ляется фирменная гаран­тия и обслуживание <span
-                                    class="green-text italic">непо­средственно от произво­дителя.</span></p>
-                    </div>
-                    <div class="col s6 no-padding">
-                        <h6><span class="green-text">&gt;&gt;</span> Доставка в регионах</h6>
+                        {{--<p>На все товары предостав­ляется фирменная гаран­тия и обслуживание <span--}}
+                                    {{--class="green-text italic">непо­средственно от произво­дителя.</span></p>--}}
+                    {{--</div>--}}
+                    {{--<div class="col s6 no-padding">--}}
+                        {{--<h6><span class="green-text">&gt;&gt;</span> Доставка в регионах</h6>--}}
 
-                        <p>Для других регионов <span class="green-text italic">бесплатная доставка</span> на региональный
-                            склад.</p>
-                    </div>
-                    <div class="col s6 no-padding">
-                        <h6><span class="green-text">&gt;&gt;</span> Документы</h6>
+                        {{--<p>Для других регионов <span class="green-text italic">бесплатная доставка</span> на региональный--}}
+                            {{--склад.</p>--}}
+                    {{--</div>--}}
+                    {{--<div class="col s6 no-padding">--}}
+                        {{--<h6><span class="green-text">&gt;&gt;</span> Документы</h6>--}}
 
-                        <p>Полный комплект докумен­тов: паспорт, гарантийный талон, товарный чек.</p>
-                    </div>
-                </div>-->
+                        {{--<p>Полный комплект докумен­тов: паспорт, гарантийный талон, товарный чек.</p>--}}
+                    {{--</div>--}}
+                {{--</div>-->--}}
 
                 @include('frontend.partials.products.stock')
 
@@ -421,34 +421,34 @@
 @endsection
 
 @section('bottom-scripts')
-    @include('frontend.partials.scripts.add_to_cart')
-    @include('frontend.partials.scripts.add_to_compare')
+    {{--@include('frontend.partials.scripts.add_to_cart')--}}
+    {{--@include('frontend.partials.scripts.add_to_compare')--}}
 @endsection
 
 
 @section('rate')
 
-    <script>
-        //        $("input.addtocart-button-hover").click(function(){
-        //            $('#sold').openModal();
-        //        });
+    {{--<script>--}}
+        {{--//        $("input.addtocart-button-hover").click(function(){--}}
+        {{--//            $('#sold').openModal();--}}
+        {{--//        });--}}
 
-        console.log(!!$("#check").val());
+        {{--console.log(!!$("#check").val());--}}
 
-        $('#rating_3').rating({
-            fx: 'full',
-            image: '/frontend/images/stars2.png',
-            loader: '/frontend/images/ajax-loader.gif',
-            url: location.href, /*обработка результатов голосования*/
-            type: 'GET',
-            readOnly: !!$("#check").val(),
-            callback: function (responce) {
-                this._data.val = Math.round(responce);
-                this.set();
-                this.vote_success.fadeOut(2000);
-            }
-        });
+        {{--$('#rating_3').rating({--}}
+            {{--fx: 'full',--}}
+            {{--image: '/frontend/images/stars2.png',--}}
+            {{--loader: '/frontend/images/ajax-loader.gif',--}}
+            {{--url: location.href, обработка результатов голосования--}}
+            {{--type: 'GET',--}}
+            {{--readOnly: !!$("#check").val(),--}}
+            {{--callback: function (responce) {--}}
+                {{--this._data.val = Math.round(responce);--}}
+                {{--this.set();--}}
+                {{--this.vote_success.fadeOut(2000);--}}
+            {{--}--}}
+        {{--});--}}
 
 
-    </script>
+    {{--</script>--}}
 @endsection
