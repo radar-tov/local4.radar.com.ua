@@ -5860,6 +5860,17 @@ aside {
     height:360px!important;
 }
 
+.main-sidebar2 .sub-wrapper {
+    width:270%!important;
+    height: 360px!important;
+    top: -45px!important;
+}
+
+.main-sidebar2 .sub-wrapper img {
+    height:360px!important;
+}
+
+
 
 .side-bar li .sub-wrapper {
         overflow: hidden;

@@ -54,9 +54,9 @@
     <!--Simple Menu-->
     <div class="container">
         <div class="row">
-
-            <div class="col s12 m12 l3">@include('frontend.partials.categories_nav')</div>
-
+            <div class="col s12 m12 l3 catalog no-padding main-sidebar2">
+                @include('frontend.partials.categories_nav')
+            </div>
             <div class="col s12 m12 l9 catalog ">
                 <h3>{{ isset($category->title) ? $category->title : $header }}</h3>
 
