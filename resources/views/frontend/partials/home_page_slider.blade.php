@@ -9,7 +9,7 @@
                         </a>
                         <div class="container slide-content">
                             @if($slider->title)
-                                      <p class="pre-title right-align wow animated fadeInUp" data-wow-delay="0.5s">{{ $slider->title }}</p>
+                                <p class="pre-title right-align wow animated fadeInUp" data-wow-delay="0.5s">{{ $slider->title }}</p>
                             @endif
                             <h4 class=" wow animated fadeInUp" data-wow-delay="0.7s">{{ $slider->subtitle }}</h4>
                             <p class="main-text center-align wow animated fadeInUp" data-wow-delay="0.9s">

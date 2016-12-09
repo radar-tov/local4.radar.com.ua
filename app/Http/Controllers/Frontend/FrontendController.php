@@ -85,7 +85,7 @@ class FrontendController extends BaseController
 		// Ajax request is used when
 		// paginate or filter products
 
-		$category = Category::where('slug', $categorySlug)->with('children')->with('filters')->first();
+		$category = Category::where('show',1)->where('slug', $categorySlug)->with('children')->with('filters')->first();
 
 		$subcategory = Category::where('slug', $subcategorySlug)->with('children')->with('filters')->first();
 
@@ -95,7 +95,7 @@ class FrontendController extends BaseController
 			$categories = $category->children;
 			$date = new \DateTime($category->updated_at);
 
-            //Получаем header If-Modified-Since
+			//Получаем header If-Modified-Since
             $ifModifiedSince = strtotime(substr($request->header('If-Modified-Since'), 5));
             $LastModified = strtotime(substr($date->format("D, d M Y H:i:s"), 5));
             if($ifModifiedSince){
@@ -111,6 +111,10 @@ class FrontendController extends BaseController
 
 		if($request->ajax()){
 			return $filterService->getFilteredProducts($request);
+		}
+
+		if(!Category::where('show',1)->where('slug', $subcategorySlug)->first()){
+			abort(404);
 		}
 
 	    if(!$subcategory){
@@ -315,7 +319,7 @@ class FrontendController extends BaseController
 		// just display custom page heading
 		// instead of category title
 		$header = 'Результаты поиска';
-		$subcategory = Category::with('children')->with('filters')->first();
+		$subcategory = Category::where('id', 143)->first();
 
 		return view('frontend.catalog', compact('products', 'header', 'subcategory'));
 	}

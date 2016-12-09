@@ -10,9 +10,10 @@ div.user-thumbnail img, div.thumb-box img {
 }
 
 div.category-thumb.thumb-box{
-    max-width: 900px;
-    max-height: 100px;
+    max-width: 480px;
+    max-height: 360px;
     overflow: hidden;
+    padding: 10px;
 }
 
 div.thumb-box img {
