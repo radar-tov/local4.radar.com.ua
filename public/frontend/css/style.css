@@ -9919,7 +9919,7 @@ div.vote-success {
     font-size: 9px;
     line-height: 9px;
     padding: 0 3px;
-    color: #000
+    color: #000;
 }
 
 .irs-disable-mask {
@@ -10035,8 +10035,8 @@ div.vote-success {
 }
 
 .irs-from, .irs-to, .irs-single {
-    color: #062a75;
-    font: 300 9px "Roboto", sans-serif;
+    color: #000000;
+    font: 400 12px "Roboto", sans-serif;
     line-height: 1.333;
     text-shadow: none;
     padding: 1px 5px;
