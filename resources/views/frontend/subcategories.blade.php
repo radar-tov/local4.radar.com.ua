@@ -12,45 +12,45 @@
 @endsection
 
 @section('content')
-                
-               
+                {{----}}
+               {{----}}
 
 
-                <!-- Customize it as you want -->  
-                  <!--@if(isset($category->thumbnail) && is_file(public_path($category->thumbnail)))
-                <div class="category-thumb container">
+                {{--<!-- Customize it as you want -->  --}}
+                  {{--<!--@if(isset($category->thumbnail) && is_file(public_path($category->thumbnail)))--}}
+                {{--<div class="category-thumb container">--}}
 
 
-                        @if($category->thumb_link)
-                            <a href="{{ url($category->thumb_link) }}">
-                                <img src="{{ asset($category->thumbnail) }}" alt="{{ $category->thumb_alt }}"/>
-				                    @if(isset($category->thumb_desc))
-                        <span>{!! $category->thumb_desc !!}</span>
-                    @endif
-                            </a>
-                        @else
-                            <img src="{{ asset($category->thumbnail) }}" alt="{{ $category->thumb_alt }}"/>
-				                    @if(isset($category->thumb_desc))
-                        <span>{!! $category->thumb_desc !!}</span>
-                    @endif
-                        @endif  
-              </div>
-                    @endif-->
+                        {{--@if($category->thumb_link)--}}
+                            {{--<a href="{{ url($category->thumb_link) }}">--}}
+                                {{--<img src="{{ asset($category->thumbnail) }}" alt="{{ $category->thumb_alt }}"/>--}}
+				                    {{--@if(isset($category->thumb_desc))--}}
+                        {{--<span>{!! $category->thumb_desc !!}</span>--}}
+                    {{--@endif--}}
+                            {{--</a>--}}
+                        {{--@else--}}
+                            {{--<img src="{{ asset($category->thumbnail) }}" alt="{{ $category->thumb_alt }}"/>--}}
+				                    {{--@if(isset($category->thumb_desc))--}}
+                        {{--<span>{!! $category->thumb_desc !!}</span>--}}
+                    {{--@endif--}}
+                        {{--@endif  --}}
+              {{--</div>--}}
+                    {{--@endif-->--}}
 
 
-<section class="breadcrumbs">
-    <div class="container">
-        <div class="row">
-            <ol class="breadcrumb">
-                <li><a href="/">Главная</a></li>
-               
-                <li class="active">{{ isset($category->title) ? $category->title : $header }}</li>
-            </ol>
-        </div>
-    </div>
-</section>
+{{--<section class="breadcrumbs">--}}
+    {{--<div class="container">--}}
+        {{--<div class="row">--}}
+            {{--<ol class="breadcrumb">--}}
+                {{--<li><a href="/">Главная</a></li>--}}
+               {{----}}
+                {{--<li class="active">{{ isset($category->title) ? $category->title : $header }}</li>--}}
+            {{--</ol>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+{{--</section>--}}
 
-<section class="content">
+{{--<section class="content">--}}
     <!--Simple Menu-->
     <div class="container">
         <div class="row">
