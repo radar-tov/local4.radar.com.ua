@@ -108,6 +108,7 @@
                                     <input type="number"
                                            name="colichestvo"
                                            class="addcol-item-hover buy"
+                                           data-productId="{{ $product->id }}"
                                            value="1"
                                            title="1">
                                 </div>
