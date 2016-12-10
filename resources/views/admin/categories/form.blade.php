@@ -307,12 +307,22 @@
                         {!! Form::textarea('thumb_desc', $value = null, ['class' => 'form-control',"rows"=>2,]) !!}
                     </div>
                     <div class="form-group" id="thumb-box">
-                        <label for="thumbnail">Изображение <span style="color:#C20808;font-weight:600">(размер 480x360 px)</span></label>
-                        <div class="category-thumb thumb-box">
-                            @if(is_file(public_path($category->thumbnail)))
-                                <img src="{{ asset($category->thumbnail) }}" alt=""/>
-                            @endif
-                        </div>
+                        @if($category->parent_id == 0)
+                            <label for="thumbnail">Изображение <span style="color:#C20808;font-weight:600">(размер 480x360 px)</span></label>
+                            <div class="category-thumb thumb-box">
+                                @if(is_file(public_path($category->thumbnail)))
+                                    <img src="{{ asset($category->thumbnail) }}" alt=""/>
+                                @endif
+                            </div>
+                        @else
+                            <label for="thumbnail">Изображение <span style="color:#C20808;font-weight:600">(размер 260x260 px)</span></label>
+                            <div class="category-thumb thumb-box2">
+                                @if(is_file(public_path($category->thumbnail)))
+                                    <img src="{{ asset($category->thumbnail) }}" alt=""/>
+                                @endif
+                            </div>
+                        @endif
+
                         {!! Form::hidden('thumbnail',$value = null, ['id'=>'thumbnail', "v-model" => "loadImage"]) !!}
                         <a href="{!! route('elfinder.popup',['thumbnail']) !!}" class="popup_selector btn btn-sm btn-default" data-inputid="thumbnail">Выбрать Изображение</a>
                         <a href="#" id="clear" class="btn btn-sm btn-danger">Удалить</a>

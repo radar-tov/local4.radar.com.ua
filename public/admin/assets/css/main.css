@@ -16,6 +16,13 @@ div.category-thumb.thumb-box{
     padding: 10px;
 }
 
+div.category-thumb.thumb-box2{
+    max-width: 260px;
+    max-height: 260px;
+    overflow: hidden;
+    padding: 10px;
+}
+
 div.thumb-box img {
     width: 100%;
     height: auto;
