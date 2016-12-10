@@ -60,12 +60,12 @@
                         </div>
                         @foreach($categoriesProvider->getListForNav() as $category)
                             <li class="col s12">
-                                <a href="{{ url($category->slug) }}">{{ $category->title }}</a>
+                                <a href="/{{ $category->slug }}">{{ $category->title }}</a>
                                 @if(count($category->children))
                                     <span class="collapsible-header"><i class="fa fa-arrow-down subcategories-open"></i></span>
                                     <ul class="col no-padding s12 sub-categories collapsible-body">
                                         @foreach($category->children as $child)
-                                            <li><a href="{{ url($child->slug) }}"><i class="fa fa-circle-o"></i> {{ $child->title }}</a></li>
+                                            <li><a href="/{{ $category->slug }}/{{ $child->slug }}"><i class="fa fa-circle-o"></i> {{ $child->title }}</a></li>
                                         @endforeach
                                     </ul>
                                 @endif
