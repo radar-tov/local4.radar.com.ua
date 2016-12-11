@@ -1,3 +1,4 @@
+<!-- google-analytics counter -->
 <script>
     (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;
@@ -15,3 +16,4 @@
     ga('send', 'pageview');
 
 </script>
+<!-- / google-analytics counter -->

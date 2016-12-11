@@ -34,7 +34,7 @@
 @yield('content')
 @include('frontend.partials.footer')
 
-        <!--Modals-->
+<!--Modals-->
 
 <div id="application" class="modal">
     <div class="modal-content">
@@ -173,8 +173,12 @@
         {{--});--}}
     {{--});--}}
 {{--</script>--}}
+<!-- JQuery -->
+{{--<script type="text/javascript" src="/frontend/js/jquery-2.1.3.min.js"></script>--}}
+<!-- / JQuery-->
+<!-- Scripts -->
 <script type="text/javascript" src="/frontend/js/index.js"></script>
+<!-- / Scripts -->
 @include('frontend.yandexMetric')
-
 </body>
 </html>

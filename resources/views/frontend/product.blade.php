@@ -46,11 +46,11 @@
                     <ul class="listLightbox">
                         <li>
                             @if(count($product->thumbnail) && file_exists(public_path($product->thumbnail->first()->path)))
-
-                                <a class="example-image-link bigImage" href="{{ $product->thumbnail->first()->path }}"
-                                   data-lightbox="example" data-title="{{ $product->title }}">
-                                    <img class="example-image" src="{{ $product->thumbnail->first()->path }}"
-                                         alt="{{ $product->title }}"/>
+                                <a class="example-image-link bigImage"
+                                   href="{{ $product->thumbnail->first()->path }}"
+                                   data-lightbox="example"
+                                   data-title="{{ $product->title }}">
+                                    <img class="example-image" src="{{ $product->thumbnail->first()->path }}" alt="{{ $product->title }}"/>
                                 </a>
                             @else
                                 <a class="example-image-link bigImage" href="#" data-title="{{ $product->title }}">
@@ -63,18 +63,16 @@
                             @endif
                         </li>
                         @if(count($product->thumbnail) && file_exists(public_path($product->images->first()->path)))
-
                             @foreach($product->images->where('is_certificate', '=', 0) as $key => $image)
-
-                                <li><a class="example-image-link" href="{{ $image->path }}" data-lightbox="example-set"
-                                       data-title="{{ $product->title }}"><img class="example-image"
-                                                                               src="{{ $image->path }}"
-                                                                               alt=""/></a></li>
+                                <li>
+                                    <a class="example-image-link"
+                                       href="{{ $image->path }}"
+                                       data-lightbox="example-set"
+                                       data-title="{{ $product->title }}">
+                                            <img class="example-image" src="{{ $image->path }}" alt="{{ $product->title }}"/>
+                                    </a>
+                                </li>
                             @endforeach
-
-                        @else
-
-
                         @endif
                     </ul>
                 </div>
@@ -137,22 +135,20 @@
                                     @if ($product->available==2)
                                         <p class="availability bold red-text no-margin"><i class="red-text fa fa-car"></i>Под заказ</p>
                                     @endif
-
-
                                 </div>
 
-                                <div class="video-button-item center-align col s4 @if (!empty($product->video)) active @else non-active @endif">
-                                    <a href="#video" class="review-button white-text uppercase modal-trigger" title="video">
-                                        <input type="button"
-                                               name="video"
-                                               class="video-button"
-                                               data-productId="{{ $product->id }}"
-                                               class="video-button-hover compare anim"
-                                               onclick="yaCounter39848700.reachGoal('playVideo'); ga('send', 'event', 'Knopka', 'playVideo'); return true;"
-                                               value="ВИДЕО"
-                                               title="Видео">
-                                    </a>
-
+                                <div class="video-button-item center-align col s4">
+                                    @if(!empty($product->video))
+                                        <a href="#video" class="review-button white-text uppercase modal-trigger" title="video">
+                                            <input type="button"
+                                                   name="video"
+                                                   class="video-button video-button-hover compare anim"
+                                                   data-productId="{{ $product->id }}"
+                                                   onclick="yaCounter39848700.reachGoal('playVideo'); ga('send', 'event', 'Knopka', 'playVideo'); return true;"
+                                                   value="ВИДЕО"
+                                                   title="Видео">
+                                        </a>
+                                    @endif
                                 </div>
                                 <div class="addtocart-button-item center-align col s4">
                                     <input type="submit"
@@ -422,8 +418,11 @@
 @endsection
 
 @section('bottom-scripts')
-    {{--@include('frontend.partials.scripts.add_to_cart')--}}
-    {{--@include('frontend.partials.scripts.add_to_compare')--}}
+<!-- JQuery -->
+<script type="text/javascript" src="/frontend/js/jquery-2.1.3.min.js"></script>
+<!-- / JQuery-->
+{{--@include('frontend.partials.scripts.add_to_cart')--}}
+{{--@include('frontend.partials.scripts.add_to_compare')--}}
 @endsection
 
 
