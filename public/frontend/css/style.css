@@ -10243,24 +10243,3 @@ button#object-3d {
     list-style-type: disc;
     margin-left: 14px;
 }
-
-.par{
-    -webkit-filter: grayscale(100%);
-    -moz-filter: grayscale(100%);
-    -ms-filter: grayscale(100%);
-    -o-filter: grayscale(100%);
-    filter: grayscale(100%);
-    filter: gray;
-}
-.par-3{
-    width: 45%;
-}
-.par-5{
-    width: 40%;
-}
-.par-1{
-    width: 29%;
-}
-.par-2{
-    width: 28%;
-}
