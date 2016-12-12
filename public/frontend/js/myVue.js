@@ -50,7 +50,7 @@ new Vue({
             var vue = this,
                 qty = $(_qty.$el).find('.item-quantity');
 
-                    console.log(product.options.instance);
+                    //console.log(product.options.instance);
 
             qty.css('border-color', '#7cb342');
             if(qty.val().match(/^[0-9]{1,3}$/) && qty.val() > 0){
