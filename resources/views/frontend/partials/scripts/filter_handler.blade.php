@@ -1,8 +1,12 @@
 @inject('productsProvider', '\App\ViewDataProviders\ProductsDataProvider')
 <script>
     var maxPrice = {{ $productsProvider->getMaxPrice(isset($subcategory) ? $subcategory->id : null) }}
-    arr = '{{ Session::get('price.'.$subcategory->id) }}'.split(';')
-    var filtrPrice = arr[1]
+    @if(Session::get('price.'.$subcategory->id) != null)
+        arr = '{{ Session::get('price.'.$subcategory->id) }}'.split(';')
+        var filtrPrice = arr[1]
+    @else
+        var filtrPrice = null
+    @endif
 </script>
 
     {{--$("#range").ionRangeSlider({--}}

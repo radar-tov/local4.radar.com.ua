@@ -1,13 +1,14 @@
 @extends('frontend.layout')
 
 @section('seo')
-
     <title>{{ $page->meta_title ?: $page->title }}</title>
     <meta name="description" content="{{ $page->meta_description }}"/>
     <meta name="keywords" content="{{ $page->meta_keywords }}"/>
-
 @endsection
 
+@section('top-scripts')
+
+@endsection
 
 @section('content')
 <section class="breadcrumbs">
@@ -34,4 +35,9 @@
     <!--/Menu-->
 </section>
 
+@endsection
+
+@section('bottom-scripts')
+    {!! Html::script("frontend/js/jquery-2.1.3.min.js") !!}
+    {!! Html::script("frontend/js/index.js") !!}
 @endsection

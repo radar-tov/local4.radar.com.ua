@@ -204,86 +204,26 @@ $('#rating_3').rating({
 //Из файла resources\views\frontend\product.blade.php
 
 
-//Из файла resources\views\frontend\cart.blade.php
+//Из файла resources\views\frontend\compare.blade.php
 //>>>>>>>>>>>>>>>>>>>>>>>>>
-//new Vue({
-//
-//    el: "#cart",
-//    data: {
-//        cart: {},
-//        token: null,
-//        len: 0,
-//        total: 0,
-//        stockProducts: null
-//    },
-//
-//    ready: function(){
-//        var vue = this;
-//        vue.getContent();
-////                setInterval(function(){
-////                    vue.getContent();
-////                }, 2000);
-//
-//        $(this.$$.cartContent).show();
-//    },
-//
-//    methods: {
-//        getContent: function(){
-//            var vue = this;
-//            $(this.$$.cartContent).css('opacity', '.4');
-//            $.post("/cart/get_content", {_token: this.token }).done(function(cart){
-//                vue.stockProducts = cart.stockProducts;
-//                vue.cart = cart.content;
-//                vue.len = cart.len;
-//                vue.total = cart.total;
-//
-//                var cart = $("#_cart");
-//                cart.find('.qty').html(vue.len);
-//                cart.find('.qty-items').html(vue.len);
-//                cart.find('._sum').html(vue.total);
-//
-//                $(vue.$$.cartContent).css('opacity', '1');
-//            });
-//        },
-//        deleteItem: function(id) {
-//            var vue = this;
-//            $.post('/cart/delete_item', { _token: this.token, rowid: id})
-//                .done(function(){
-//                    vue.getContent()
-//                })
-//        },
-//
-//        updateItem: function(product, _qty){
-//
-//            var vue = this,
-//                qty = $(_qty.$el).find('.item-quantity');
-//
-////                    console.log(product.options.instance);
-//
-//            qty.css('border-color', '#7cb342');
-//            if(qty.val().match(/^[0-9]{1,3}$/) && qty.val() > 0){
-//                $.post('/cart/update_item', {
-//                    _token: this.token,
-//                    product: product,
-//                    qty: qty.val(),
-//                    instance: product.options.instance
-//                }).done(function(){
-//                    vue.getContent();
-//                })
-//            } else if(qty.val().match(/^\d{0}$/)){
-//                qty.css('border-color', 'red');
-//            } else {
-//                $(_qty.$el).find('.item-quantity').val(product.qty);
-//            }
-//        }
-//    }
-//
-//
-//
-//})
-//<<<<<<<<<<<<<<<<<<<<<<<<
-//Из файла resources\views\frontend\cart.blade.php
+setTimeout(function () {
+    $('.compare-list').each(function () {
 
+        var min_height = 0;
+        var parent = this;
+        $(parent).find('.compare_product').each(function () {
+            var height = $(this).outerHeight();
+            if (min_height <= height) {
+                min_height = height;
+            }
+        })
+        $(parent).find('.compare_product').each(function () {
+            $(this).height(min_height);
+        })
+    })
+}, 1000);
+//<<<<<<<<<<<<<<<<<<<<<<<<
+//Из файла resources\views\frontend\compare.blade.php
 
 //Из файла resources\views\frontend\layout.blade.php
 //>>>>>>>>>>>>>>>>>>>>>>>>>

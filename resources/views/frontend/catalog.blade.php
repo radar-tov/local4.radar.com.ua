@@ -11,9 +11,11 @@
     <meta name="keywords" content="{{ isset($subcategory->meta_keywords) ?  $subcategory->meta_keywords : ''}}"/>
 @endsection
 
-@section('content')
-               
+@section('top-scripts')
+    {!! Html::script("frontend/js/jquery-2.1.3.min.js") !!}
+@endsection
 
+@section('content')
 
 <section class="breadcrumbs">
     <div class="container">
@@ -77,18 +79,23 @@
 
 @section('filter_handler')
 
-    @include('frontend.partials.scripts.filter_handler')
+@include('frontend.partials.scripts.filter_handler')
 
 @endsection
 
 @section('bottom-scripts')
+    {{--{!! Html::script("frontend/js/jquery-2.1.3.min.js") !!}--}}
+    {!! Html::script("frontend/js/index.js") !!}
+@endsection
 
-    <div id="video" class="modal">
-        <div class="modal-content">
-            <a href="#!" class="modal-action modal-close waves-effect btn-flat "><i class="fa fa-close"></i></a>
-            <div class="video-container"></div>
-        </div>
-    </div>
+{{--@section('bottom-scripts')--}}
+
+    {{--<div id="video" class="modal">--}}
+        {{--<div class="modal-content">--}}
+            {{--<a href="#!" class="modal-action modal-close waves-effect btn-flat "><i class="fa fa-close"></i></a>--}}
+            {{--<div class="video-container"></div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
     {{--@include('frontend.partials.scripts.add_to_cart')--}}
     {{--@include('frontend.partials.scripts.add_to_compare')--}}
     {{--<script>--}}
@@ -98,4 +105,4 @@
             {{--$('#video').find('.video-container').html(video);--}}
         {{--})--}}
     {{--</script>--}}
-@endsection
+{{--@endsection--}}

@@ -11,6 +11,11 @@
     <meta name="keywords" content="{{ isset($category->meta_keywords) ?  $category->meta_keywords : ''}}"/>
 @endsection
 
+@section('top-scripts')
+
+@endsection
+
+
 @section('content')
                 {{----}}
                {{----}}
@@ -94,3 +99,7 @@
 
 @endsection
 
+@section('bottom-scripts')
+    {!! Html::script("frontend/js/jquery-2.1.3.min.js") !!}
+    {!! Html::script("frontend/js/index.js") !!}
+@endsection

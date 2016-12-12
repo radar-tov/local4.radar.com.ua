@@ -22,10 +22,12 @@
     <link href="http://allfont.ru/allfont.css?fonts=a_avantebsnr-bold" rel="stylesheet" type="text/css"/>
     <!-- / FONTS  -->
     <!-- SCRIPTS  -->
-    {!! Html::script("frontend/js/jquery-2.1.3.min.js") !!}
-    {!! Html::script("admin/assets/js/vue.js") !!}
+    {{--{!! Html::script("frontend/js/jquery-2.1.3.min.js") !!}--}}
+    {{--{!! Html::script("admin/assets/js/vue.js") !!}--}}
     {{--{!! Html::script("frontend/js/index.js") !!}--}}
+    <!-- section top-scripts  -->
     @yield('top-scripts')
+    <!-- / section top-scripts  -->
     @include('frontend.googleAnalistic')
     <!-- / SCRIPTS  -->
 </head>
@@ -94,18 +96,17 @@
     </div>
 </div>
 <!-- / Review modal -->
+
+<!-- Scripts -->
+<!-- section filter_handler -->
+@yield('filter_handler')
+<!-- / section filter_handler -->
 <!-- section bottom-scripts -->
 @yield('bottom-scripts')
 <!-- / section bottom-scripts -->
 <!-- section rate -->
 @yield('rate')
 <!-- / section rate -->
-<!-- section filter_handler -->
-@yield('filter_handler')
-<!-- Scripts -->
-{!! Html::script("frontend/js/jquery-2.1.3.min.js") !!}
-{!! Html::script("admin/assets/js/vue.js") !!}
-{!! Html::script("frontend/js/index.js") !!}
 @include('frontend.yandexMetric')
 <!-- / Scripts -->
 </body>

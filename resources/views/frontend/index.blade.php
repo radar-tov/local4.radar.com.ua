@@ -8,6 +8,10 @@
     <meta name="keyword" content=""/>
 @endsection
 
+@section('top-scripts')
+
+@endsection
+
 @section('content')
 
     <section class="content">
@@ -148,8 +152,7 @@
 
 
 @section('bottom-scripts')
-    {{--@include('frontend.partials.scripts.add_to_cart')--}}
-    {{--@include('frontend.partials.scripts.add_to_compare')--}}
-    {{--@include('frontend.partials.scripts.slow_menu')--}}
+    {!! Html::script("frontend/js/jquery-2.1.3.min.js") !!}
+    {!! Html::script("frontend/js/index.js") !!}
 @endsection
 

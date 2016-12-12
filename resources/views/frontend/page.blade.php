@@ -6,6 +6,10 @@
     <meta name="keywords" content=""/>
 @endsection
 
+@section('top-scripts')
+
+@endsection
+
 
 @section('content')
     <section class="breadcrumbs">
@@ -70,27 +74,33 @@
 
 @endsection
 
-@section('__bottom-scripts')
-    <script>
-        var post = 4; // - количество отображаемых новостей
-        hidenews = "скрыть";
-        shownews = "показать ещё";
 
-        $(".more").html( shownews );
-        $(".post:not(:lt("+post+"))").hide();
-
-        $(".more").click(function (e){
-            e.preventDefault();
-            if( $(".post:eq("+post+")").is(":hidden") )
-            {
-                $(".post:hidden").show();
-                $(".more").html( hidenews );
-            }
-            else
-            {
-                $(".post:not(:lt("+post+"))").hide();
-                $(".more").html( shownews );
-            }
-        });
-    </script>
+@section('bottom-scripts')
+    {!! Html::script("frontend/js/jquery-2.1.3.min.js") !!}
+    {!! Html::script("frontend/js/index.js") !!}
 @endsection
+
+{{--@section('__bottom-scripts')--}}
+    {{--<script>--}}
+        {{--var post = 4; // - количество отображаемых новостей--}}
+        {{--hidenews = "скрыть";--}}
+        {{--shownews = "показать ещё";--}}
+
+        {{--$(".more").html( shownews );--}}
+        {{--$(".post:not(:lt("+post+"))").hide();--}}
+
+        {{--$(".more").click(function (e){--}}
+            {{--e.preventDefault();--}}
+            {{--if( $(".post:eq("+post+")").is(":hidden") )--}}
+            {{--{--}}
+                {{--$(".post:hidden").show();--}}
+                {{--$(".more").html( hidenews );--}}
+            {{--}--}}
+            {{--else--}}
+            {{--{--}}
+                {{--$(".post:not(:lt("+post+"))").hide();--}}
+                {{--$(".more").html( shownews );--}}
+            {{--}--}}
+        {{--});--}}
+    {{--</script>--}}
+{{--@endsection--}}
