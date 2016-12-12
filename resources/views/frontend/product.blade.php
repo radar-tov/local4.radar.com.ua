@@ -388,15 +388,7 @@
     <div id="object-3d" class="modalTest">
         <div class="modal-content center-align">
             <a href="#!" class="objClose modal-close waves-effect btn-flat"><i class="fa fa-close"></i></a>
-            {{--<script src="/frontend/js/3dtour.js"></script>--}}
-            {{--<div id="container">--}}
-            {{--<div id="panoDIV" style="height:470px">--}}
-            {{--<script>--}}
-            {{--embedpano({target:"panoDIV",swf:"/{{ $product->flash_view }}",wmode:"direct"});--}}
-            {{--</script>--}}
 
-            {{--</div>--}}
-            {{--</div>--}}
             <object class="flashObject" width="550" height="400">
                 <param name="movie" value="/{{ $product->flash_view }}">
                 <embed src="/{{ $product->flash_view }}" width="550" height="400" type="application/x-shockwave-flash"
@@ -418,37 +410,10 @@
 @endsection
 
 @section('bottom-scripts')
-<!-- JQuery -->
-<script type="text/javascript" src="/frontend/js/jquery-2.1.3.min.js"></script>
-<!-- / JQuery-->
-{{--@include('frontend.partials.scripts.add_to_cart')--}}
-{{--@include('frontend.partials.scripts.add_to_compare')--}}
+
 @endsection
 
 
 @section('rate')
 
-    {{--<script>--}}
-        {{--//        $("input.addtocart-button-hover").click(function(){--}}
-        {{--//            $('#sold').openModal();--}}
-        {{--//        });--}}
-
-        {{--console.log(!!$("#check").val());--}}
-
-        {{--$('#rating_3').rating({--}}
-            {{--fx: 'full',--}}
-            {{--image: '/frontend/images/stars2.png',--}}
-            {{--loader: '/frontend/images/ajax-loader.gif',--}}
-            {{--url: location.href, обработка результатов голосования--}}
-            {{--type: 'GET',--}}
-            {{--readOnly: !!$("#check").val(),--}}
-            {{--callback: function (responce) {--}}
-                {{--this._data.val = Math.round(responce);--}}
-                {{--this.set();--}}
-                {{--this.vote_success.fadeOut(2000);--}}
-            {{--}--}}
-        {{--});--}}
-
-
-    {{--</script>--}}
 @endsection

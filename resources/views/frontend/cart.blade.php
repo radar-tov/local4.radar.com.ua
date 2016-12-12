@@ -317,18 +317,18 @@
             {{--@{{ $data | json}}--}}
         {{--</pre>--}}
     </div>
-<!--<div id="otc" class="modal">
-    <div class="modal-content">
-        <a href="#!" class="modal-action modal-close waves-effect btn-flat "><i class="fa fa-close"></i></a>
-        <p>{!! $settingsProvider->getAgreement() !!}</p>тег p можно убрать
-    </div>-->
+{{--<!--<div id="otc" class="modal">--}}
+    {{--<div class="modal-content">--}}
+        {{--<a href="#!" class="modal-action modal-close waves-effect btn-flat "><i class="fa fa-close"></i></a>--}}
+        {{--<p>{!! $settingsProvider->getAgreement() !!}</p>тег p можно убрать--}}
+    {{--</div>-->--}}
 </div>
 </section>
 
 @endsection
 
 @section('bottom-scripts')
-    {!! Html::script("admin/assets/js/vue.js") !!}
+    {{--{!! Html::script("admin/assets/js/vue.js") !!}--}}
 
     <script>
         new Vue({
