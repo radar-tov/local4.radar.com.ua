@@ -194,7 +194,7 @@ class FrontendController extends BaseController
         $LastModified = strtotime(substr($date->format("D, d M Y H:i:s"), 5));
         if($ifModifiedSince){
             if($ifModifiedSince >= $LastModified){
-                if($_ENV['APP_ENV'] == 'production')
+                if(env('APP_ENV') == 'production')
                     return Response::view('frontend.product', compact('product','productReviewId'), 304);
             }
         }
@@ -352,7 +352,7 @@ class FrontendController extends BaseController
         $LastModified = strtotime(substr($date->format("D, d M Y H:i:s"), 5));
         if($ifModifiedSince){
             if($ifModifiedSince >= $LastModified){
-                if($_ENV['APP_ENV'] == 'production')
+                if(env('APP_ENV') == 'production')
                     return Response::view('frontend.static', compact('page'), 304);
             }
         }

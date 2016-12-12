@@ -36,7 +36,7 @@ class InformationController extends BaseController
             $LastModified = strtotime(substr($date->format("D, d M Y H:i:s"), 5));
             if($ifModifiedSince){
                 if($ifModifiedSince >= $LastModified){
-                    if($_ENV['APP_ENV'] == 'production')
+                    if(env('APP_ENV') == 'production')
                         return Response::view('frontend.single-post',compact('article'), 304);
                 }
             }
