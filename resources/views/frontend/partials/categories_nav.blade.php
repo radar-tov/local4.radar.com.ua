@@ -4,7 +4,7 @@
     <ul class="side-bar card">
         @foreach($categoriesProvider->getListForNav() as $category)
             <li @if(count($category->children))class="havechild"@endif>
-                <span><a href="/{{ $category->slug }}">{{ $category->title }}</a></span>
+                <span class="link"><a href="/{{ $category->slug }}">{{ $category->title }}</a></span>
 
                 @if(count($category->children))
                     <div class="sub-wrapper">
