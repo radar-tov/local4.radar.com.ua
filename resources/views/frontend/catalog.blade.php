@@ -89,13 +89,13 @@
             <div class="video-container"></div>
         </div>
     </div>
-    @include('frontend.partials.scripts.add_to_cart')
-    @include('frontend.partials.scripts.add_to_compare')
-    <script>
-        $("body").on('click', '.video-review', function(e){
-            e.preventDefault();
-            var video = $(this).siblings('._video').html();
-            $('#video').find('.video-container').html(video);
-        })
-    </script>
+    {{--@include('frontend.partials.scripts.add_to_cart')--}}
+    {{--@include('frontend.partials.scripts.add_to_compare')--}}
+    {{--<script>--}}
+        {{--$("body").on('click', '.video-review', function(e){--}}
+            {{--e.preventDefault();--}}
+            {{--var video = $(this).siblings('._video').html();--}}
+            {{--$('#video').find('.video-container').html(video);--}}
+        {{--})--}}
+    {{--</script>--}}
 @endsection
