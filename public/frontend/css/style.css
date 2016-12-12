@@ -10249,3 +10249,9 @@ button#object-3d {
 .par-1{
     width: 29%;
 }
+
+/* ссылка в меню весь блок */
+.link {}
+.link a {
+    display: block;
+}
