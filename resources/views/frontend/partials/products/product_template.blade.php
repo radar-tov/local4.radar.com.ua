@@ -15,34 +15,34 @@
             @endif
 
           
-            <!--@if($product->video)
-                <span class="feature">
-                    <img src="/frontend/images/feature.png" />
-                    <span class="text-feature">видео</span>
-                </span>
-            @endif
-            @if($product->flash_view)
-                <span class="feature {{ $product->video ? 'offset-feature' : ''}}">
-                    <img src="/frontend/images/button-3d-little.png" />
-                    <span class="text-feature">товар в 3d</span>
-                </span>
-            @endif-->
+            {{--<!--@if($product->video)--}}
+                {{--<span class="feature">--}}
+                    {{--<img src="/frontend/images/feature.png" />--}}
+                    {{--<span class="text-feature">видео</span>--}}
+                {{--</span>--}}
+            {{--@endif--}}
+            {{--@if($product->flash_view)--}}
+                {{--<span class="feature {{ $product->video ? 'offset-feature' : ''}}">--}}
+                    {{--<img src="/frontend/images/button-3d-little.png" />--}}
+                    {{--<span class="text-feature">товар в 3d</span>--}}
+                {{--</span>--}}
+            {{--@endif-->--}}
 
-            <!--@if(getAppointment($product))
-                <div class="appointment"><img src="/frontend/images/{{ getAppointment($product) }}" /></div>
-            @endif-->
-        </div>{{--end--}}
-        <div class="item-info">
-            <p class="item-title">{!! $product->title !!}</p>
-            <!--<div class="col s8 no-padding">
-                <p class="sku">Код: <span>{{ $product->article }}</span></p>
-            </div>
-            <div class="col s4 no-padding">
-                <div class="rating_1">
-                    <input type="hidden" name="vote-id" value="5"/>
-                    <input type="hidden" name="val" value="{{ array_sum($product->rates->lists('rate')->all()) / ($product->rates->count() ?: 1) }}">
-                </div>
-            </div>-->
+            {{--<!--@if(getAppointment($product))--}}
+                {{--<div class="appointment"><img src="/frontend/images/{{ getAppointment($product) }}" /></div>--}}
+            {{--@endif-->--}}
+        {{--</div>--}}{{--end--}}
+        {{--<div class="item-info">--}}
+            {{--<p class="item-title">{!! $product->title !!}</p>--}}
+            {{--<!--<div class="col s8 no-padding">--}}
+                {{--<p class="sku">Код: <span>{{ $product->article }}</span></p>--}}
+            {{--</div>--}}
+            {{--<div class="col s4 no-padding">--}}
+                {{--<div class="rating_1">--}}
+                    {{--<input type="hidden" name="vote-id" value="5"/>--}}
+                    {{--<input type="hidden" name="val" value="{{ array_sum($product->rates->lists('rate')->all()) / ($product->rates->count() ?: 1) }}">--}}
+                {{--</div>--}}
+            {{--</div>-->--}}
               <div class="item-content">
 
                 @if($product->hasDiscount())
@@ -54,7 +54,7 @@
 
             </div>
 
-            <!--<div class="desc"><p>{!! $product->excerpt !!}</p></div>-->
+            {{--<!--<div class="desc"><p>{!! $product->excerpt !!}</p></div>-->--}}
             <div class="addtocart-button center-align">
                 <input
                         type="submit"
@@ -78,10 +78,10 @@
             </div>
 
             <input type="hidden" value="{{ $product->id }}" class="_id"/>
-            <!--<div class="rating_2">
-                <input type="hidden" name="vote-id" value="5"/>
-                <input type="hidden" name="val" value="{{ array_sum($product->rates->lists('rate')->all()) / ($product->rates->count() ?: 1) }}">
-            </div>-->
+            {{--<!--<div class="rating_2">--}}
+                {{--<input type="hidden" name="vote-id" value="5"/>--}}
+                {{--<input type="hidden" name="val" value="{{ array_sum($product->rates->lists('rate')->all()) / ($product->rates->count() ?: 1) }}">--}}
+            {{--</div>-->--}}
 
 
 
@@ -92,8 +92,9 @@
             </span>
 
             @if($product->video)
-                <a href="#video" class="modal-trigger video-review uppercase">видеообзор</a>
-                <span class="_video" style="display:none;">{!!  $product->video !!}</span>
+                <span class="video-review uppercase">видеообзор</span>
+                {{--<a href="#video" class="modal-trigger video-review uppercase">видеообзор</a>--}}
+                {{--<span class="_video" style="display:none;">{!!  $product->video !!}</span>--}}
             @endif
 
             <span class="hover-item-title">{{ $product->title }}</span>
