@@ -45,42 +45,38 @@
 
                 {{--{{ $product->id }}--}}
                 <div class="col s12 m6 l4 divLightBox no-padding">
-                    <ul class="listLightbox">
-                        <li>
+                    <div class="listLightbox">
+                        {{--<li>--}}
 
                             @if(count($product->thumbnail) && file_exists(public_path($product->thumbnail->first()->path)))
-                                <a class="bigImage fancybox"
-                                   rel="group"
-                                   href="{{ $product->thumbnail->first()->path }}"
-                                   data-lightbox="example"
-                                   data-title="{{ $product->title }}">
-                                    <img class="example-image" src="{{ $product->thumbnail->first()->path }}" alt="{{ $product->title }}"/>
-                                </a>
+                                {{--<a class="bigImage"--}}
+                                   {{--href="{{ $product->thumbnail->first()->path }}"--}}
+                                   {{--data-lightbox="example"--}}
+                                   {{--data-title="{{ $product->title }}">--}}
+                                <img class="example-image index_image" src="{{ $product->thumbnail->first()->path }}" alt="{{ $product->title }}"/>
+                                {{--</a>--}}
                             @else
-                                <a class="example-image-link bigImage" href="#" data-title="{{ $product->title }}">
-                                    <img class="example-image" src="/frontend/images/default.png"
-                                         alt="{{ $product->title }}"/>
-                                </a>
+                                <img class="example-image index_image" src="/frontend/images/default.png" alt="{{ $product->title }}"/>
                             @endif
 
                             @if(hasGift($product))
                                 <div class="appointment"><img src="/frontend/images/present.png"/></div>
                             @endif
-                        </li>
-                        @if(count($product->thumbnail) && file_exists(public_path($product->images->first()->path)))
-                            @foreach($product->images->where('is_certificate', '=', 0) as $key => $image)
-                                <li>
-                                    <a class="example-image-link fancybox"
-                                       rel="group"
-                                       href="{{ $image->path }}"
-                                       data-lightbox="example-set"
-                                       data-title="{{ $product->title }}">
-                                            <img class="example-image" src="{{ $image->path }}" alt="{{ $product->title }}"/>
-                                    </a>
-                                </li>
-                            @endforeach
-                        @endif
-                    </ul>
+                        {{--</li>--}}
+                        {{--@if(count($product->thumbnail) && file_exists(public_path($product->images->first()->path)))--}}
+                            {{--@foreach($product->images->where('is_certificate', '=', 0) as $key => $image)--}}
+                                {{--<li>--}}
+                                    {{--<a class="example-image-link fancybox"--}}
+                                       {{--rel="group"--}}
+                                       {{--href="{{ $image->path }}"--}}
+                                       {{--data-lightbox="example-set"--}}
+                                       {{--data-title="{{ $product->title }}">--}}
+                                            {{--<img class="example-image" src="{{ $image->path }}" alt="{{ $product->title }}"/>--}}
+                                    {{--</a>--}}
+                                {{--</li>--}}
+                            {{--@endforeach--}}
+                        {{--@endif--}}
+                    </div>
                 </div>
                 <div class="col s12 m6 l5 single-item-info">
                     <h3>{{ $product->title }}</h3>
@@ -143,19 +139,19 @@
                                     @endif
                                 </div>
 
-                                <div class="video-button-item center-align col s4">
-                                    @if(!empty($product->video))
-                                        <a href="#video" class="review-button white-text uppercase modal-trigger" title="video">
-                                            <input type="button"
-                                                   name="video"
-                                                   class="video-button video-button-hover compare anim"
-                                                   data-productId="{{ $product->id }}"
-                                                   onclick="yaCounter39848700.reachGoal('playVideo'); ga('send', 'event', 'Knopka', 'playVideo'); return true;"
-                                                   value="ВИДЕО"
-                                                   title="Видео">
-                                        </a>
-                                    @endif
-                                </div>
+                                {{--<div class="video-button-item center-align col s4">--}}
+                                    {{--@if(!empty($product->video))--}}
+                                        {{--<a href="#video" class="review-button white-text uppercase modal-trigger" title="video">--}}
+                                            {{--<input type="button"--}}
+                                                   {{--name="video"--}}
+                                                   {{--class="video-button video-button-hover compare anim"--}}
+                                                   {{--data-productId="{{ $product->id }}"--}}
+                                                   {{--onclick="yaCounter39848700.reachGoal('playVideo'); ga('send', 'event', 'Knopka', 'playVideo'); return true;"--}}
+                                                   {{--value="ВИДЕО"--}}
+                                                   {{--title="Видео">--}}
+                                        {{--</a>--}}
+                                    {{--@endif--}}
+                                {{--</div>--}}
                                 <div class="addtocart-button-item center-align col s4">
                                     <input type="submit"
                                            name="compare"
@@ -203,44 +199,6 @@
 
                     </div>
                 </div>
-                {{--<!--<div class="col features">--}}
-
-                    {{--<div class="col s6 no-padding">--}}
-                        {{--<h6><span class="green-text">&gt;&gt;</span> Бесплатная сборка</h6>--}}
-
-                        {{--<p>непосредственно <span class="green-text italic">высоко- квалифицирован­ными специалистами</span>--}}
-                            {{--компании «HouseFit» в городах Одесса и Киев.</p>--}}
-                    {{--</div>--}}
-                    {{--<div class="col s6 no-padding">--}}
-                        {{--<h6><span class="green-text">&gt;&gt;</span> Отгрузка товара</h6>--}}
-
-                        {{--<p>Отгрузка товара на тран­спортную фирму произво­дится в течении одного рабочего дня с момента--}}
-                            {{--оформления заказа.</p>--}}
-                    {{--</div>--}}
-                    {{--<div class="col s6 no-padding">--}}
-                        {{--<h6><span class="green-text">&gt;&gt;</span> Доставка в городах Одесса и Киев</h6>--}}
-
-                        {{--<p>Теперь не нужно думать о доставке! Мы товар доста­вим сами и самое главное - <span--}}
-                                    {{--class="green-text italic">совершенно бесплатно</span>!</p>--}}
-                    {{--</div>--}}
-                    {{--<div class="col s6 no-padding">--}}
-                        {{--<h6><span class="green-text">&gt;&gt;</span> Гарантия</h6>--}}
-
-                        {{--<p>На все товары предостав­ляется фирменная гаран­тия и обслуживание <span--}}
-                                    {{--class="green-text italic">непо­средственно от произво­дителя.</span></p>--}}
-                    {{--</div>--}}
-                    {{--<div class="col s6 no-padding">--}}
-                        {{--<h6><span class="green-text">&gt;&gt;</span> Доставка в регионах</h6>--}}
-
-                        {{--<p>Для других регионов <span class="green-text italic">бесплатная доставка</span> на региональный--}}
-                            {{--склад.</p>--}}
-                    {{--</div>--}}
-                    {{--<div class="col s6 no-padding">--}}
-                        {{--<h6><span class="green-text">&gt;&gt;</span> Документы</h6>--}}
-
-                        {{--<p>Полный комплект докумен­тов: паспорт, гарантийный талон, товарный чек.</p>--}}
-                    {{--</div>--}}
-                {{--</div>-->--}}
 
                 @include('frontend.partials.products.stock')
 
@@ -248,18 +206,22 @@
                     <div class="col s12 m12 l9 no-padding product-card">
                         <div class="cart-authentication">
                             <ul class="tabs">
-                                <li class="tab col s3 m3 l3"><a class=" @if (!empty($product->body)) active @endif waves-effect waves-light" href="#register">Описание</a></li>
-                                <li class="tab col s3 m3 l3"><a class=" @if (empty($product->body)) active @endif waves-effect waves-light" href="#login">Характеристики</a></li>
+                                <li class="tab col s3 m3 l3"><a class=" @if (!empty($product->body)) active @endif waves-effect waves-light" href="#description">Описание</a></li>
+                                <li class="tab col s3 m3 l3"><a class=" @if (empty($product->body)) active @endif waves-effect waves-light" href="#options">Характеристики</a></li>
+                                <li class="tab col s3 m3 l3"><a class="waves-effect waves-light" href="#foto">Фото</a></li>
+                                @if(!empty($product->video))
+                                    <li class="tab col s3 m3 l3"><a class="waves-effect waves-light" href="#video1">Видео</a></li>
+                                @endif
                                 <li class="tab col s3 m3 l3"><a class="waves-effect waves-light" href="#ones">Отзывы</a></li>
                             </ul>
-                            <div id="register" class="col s12 no-padding">
+                            <div id="description" class="col s12 no-padding">
                                 <div class="full-desc">
                                     <div class="bordered">
                                         {!! $product->body !!}
                                     </div>
                                 </div>
                             </div>
-                            <div id="login" class="col s12 no-padding">
+                            <div id="options" class="col s12 no-padding">
                                 <div class="full-desc bordered mod">
                                     {{--<div class="col mod col s12 l6">--}}
                                         {{--<h5 class="teg mod">Основные характеристики</h5>--}}
@@ -294,6 +256,34 @@
                                 </div>
 
                             </div>
+
+                            <div id="foto" class="col s12 no-padding">
+                                <div class="full-desc">
+                                    <div class="bordered">
+                                        @if(count($product->thumbnail) && file_exists(public_path($product->images->first()->path)))
+                                            @foreach($product->images->where('is_certificate', '=', 0) as $key => $image)
+                                                @if(getimagesize(public_path($image->path))[0] > 260)
+                                                    <a class="fancybox"
+                                                       rel="gallery"
+                                                       href="{{ $image->path }}"
+                                                       title="{{ $product->title }}">
+                                                       <img style="max-height: 150px;" src="{{ $image->path }}" alt="{{ $product->title }}"/>
+                                                    </a>
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="video1" class="col s12 no-padding">
+                                <div class="full-desc">
+                                    <div class="bordered">
+                                        {!! $product->video !!}
+                                    </div>
+                                </div>
+                            </div>
+
                             <div id="ones" class="col s12 no-padding bordered">
                                 <div class="reviews">
                                     @if(count($product->reviews))

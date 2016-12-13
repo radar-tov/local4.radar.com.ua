@@ -6469,38 +6469,47 @@ img.activator {
     top: 0
 }
 
-.listLightbox li a img {
-    width: 100%;
-    margin: 1px 0px -6px;
+.listLightbox{
+    text-align: center;
 }
 
-.listLightbox li {
-    width: 20%;
-    border: 1px solid #ddd;
-    margin-bottom: 10px;
+.index_image{
+    max-height: 260px;
+    max-width: 260px;
 }
 
-.listLightbox li:first-child {
-    float: right;
-    padding-left: 1px;
-    width: calc(80% - 20px);
-    margin: 0 10px;
-    margin-top: 1px;
-    min-height: 340px;
-    border: 1px solid #ddd;
-}
+/*.listLightbox li a img {*/
+    /*width: 100%;*/
+    /*margin: 1px 0px -6px;*/
+/*}*/
 
-.listLightbox li:first-child:after {
-    content:url("/frontend/images/zoom_03.png");
-    position:absolute;
-    right:7px;
-    bottom:0;
-}
+/*.listLightbox li {*/
+    /*width: 20%;*/
+    /*border: 1px solid #ddd;*/
+    /*margin-bottom: 10px;*/
+/*}*/
 
-.listLightbox li:first-child a img {
-    padding: 0 0 0 1px;
-    margin-top: 0;
-}
+/*.listLightbox li:first-child {*/
+    /*float: right;*/
+    /*padding-left: 1px;*/
+    /*width: calc(80% - 20px);*/
+    /*margin: 0 10px;*/
+    /*margin-top: 1px;*/
+    /*min-height: 340px;*/
+    /*border: 1px solid #ddd;*/
+/*}*/
+
+/*.listLightbox li:first-child:after {*/
+    /*content:url("/frontend/images/zoom_03.png");*/
+    /*position:absolute;*/
+    /*right:7px;*/
+    /*bottom:0;*/
+/*}*/
+
+/*.listLightbox li:first-child a img {*/
+    /*padding: 0 0 0 1px;*/
+    /*margin-top: 0;*/
+/*}*/
 
 .related-products {
     padding-bottom: 40px;
