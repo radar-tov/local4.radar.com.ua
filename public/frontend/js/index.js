@@ -31,9 +31,10 @@ function printsite() {
 
 $("body").on('click', '.buy', function(){
     var productId = $(this).attr('data-productid'),
+        qty = $(".colichestvo").attr('value'),
         token = $("#token").val();
 
-    $.post('/add_to_cart', {'productId': productId, _token: token}).done(function(data){
+    $.post('/add_to_cart', {'productId': productId,'qty': qty,  _token: token}).done(function(data){
         $("#_cart").find('.qty').html(data.count);
         $("#_cart").find('.qty-items').html(data.count);
 

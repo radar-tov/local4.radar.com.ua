@@ -105,11 +105,18 @@
                                     <p>Кол-во:</p>
                                 </div>
                                 <div class="addcol-item center-left mod col">
+                                    {{--<input type="number"--}}
+                                           {{--name="colichestvo"--}}
+                                           {{--class="addcol-item-hover buySet"--}}
+                                           {{--data-productId="{{ $product->id }}"--}}
+                                           {{--value="1"--}}
+                                           {{--title="1">--}}
                                     <input type="number"
+                                           debounce="10"
                                            name="colichestvo"
-                                           class="addcol-item-hover buy"
+                                           class="item-quantity colichestvo"
                                            data-productId="{{ $product->id }}"
-                                           value="1"
+                                           value=""
                                            title="1">
                                 </div>
 

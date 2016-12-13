@@ -35,11 +35,11 @@ class CartController extends Controller {
         $parentCategorySlug = Category::select('slug', 'title')
             ->where('id', '=', Category::where('id', '=', $product->category->id)->value('parent_id'))
             ->get();
-
+        dd($request->get('qty'));
 		Cart::add(
 			$id = $product->clone_of ?: $product->id,
 			$title = $product->title,
-			$qty = 1,
+			$qty = $request->get('qty'),
 			$price = str_replace(' ', '', $product->hasDiscount() ? $product->getNewPrice() : $product->getPrice()),
 			$options = [
                 'instance' => 'main',
