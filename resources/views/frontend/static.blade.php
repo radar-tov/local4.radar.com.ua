@@ -38,6 +38,5 @@
 @endsection
 
 @section('bottom-scripts')
-    {!! Html::script("frontend/js/jquery-2.1.3.min.js") !!}
-    {!! Html::script("frontend/js/index.js") !!}
+
 @endsection

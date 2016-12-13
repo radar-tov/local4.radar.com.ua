@@ -251,6 +251,7 @@ $(document).ready(function () {
         flashObject.css({"margin-left": "-3000px"});
     });
 });
+
 //<<<<<<<<<<<<<<<<<<<<<<<<
 //Из файла resources\views\frontend\layout.blade.php
 

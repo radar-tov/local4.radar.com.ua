@@ -47,8 +47,10 @@
                 <div class="col s12 m6 l4 divLightBox no-padding">
                     <ul class="listLightbox">
                         <li>
+
                             @if(count($product->thumbnail) && file_exists(public_path($product->thumbnail->first()->path)))
-                                <a class="example-image-link bigImage"
+                                <a class="bigImage fancybox"
+                                   rel="group"
                                    href="{{ $product->thumbnail->first()->path }}"
                                    data-lightbox="example"
                                    data-title="{{ $product->title }}">
@@ -60,6 +62,7 @@
                                          alt="{{ $product->title }}"/>
                                 </a>
                             @endif
+
                             @if(hasGift($product))
                                 <div class="appointment"><img src="/frontend/images/present.png"/></div>
                             @endif
@@ -67,7 +70,8 @@
                         @if(count($product->thumbnail) && file_exists(public_path($product->images->first()->path)))
                             @foreach($product->images->where('is_certificate', '=', 0) as $key => $image)
                                 <li>
-                                    <a class="example-image-link"
+                                    <a class="example-image-link fancybox"
+                                       rel="group"
                                        href="{{ $image->path }}"
                                        data-lightbox="example-set"
                                        data-title="{{ $product->title }}">
@@ -172,16 +176,13 @@
                     <div class="tech_docs">
                         <div class="tech_doc col s6 m6 l12">
                             <h5>Техническая документация</h5>
-
                             <div class="">
-
                                 <a class="instruction {{ $product->pdf ? '' : '_disabled' }} "
                                    href="/{{ $product->pdf }}"
                                    onclick="yaCounter39848700.file('{{ $product->pdf }}', {params: '{{ $product->title }}'}); ga('send', 'event', 'PDF', '{{ $product->title }}'); return true;"
                                    target="_blank">
                                     <span>&#8811 инструкция</span>
                                 </a>
-
                             </div>
                         </div>
 
@@ -260,7 +261,7 @@
                             </div>
                             <div id="login" class="col s12 no-padding">
                                 <div class="full-desc bordered mod">
-                                 {{--<div class="col mod col s12 l6">--}}
+                                    {{--<div class="col mod col s12 l6">--}}
                                         {{--<h5 class="teg mod">Основные характеристики</h5>--}}
                                         {{--{{ dd($product->filterValuesWithFilters->sortBy('filter.category.pivot.order')->toArray()) }}--}}
                                         {{--@foreach($product->sortedValues($product->category_id) as $field)--}}
@@ -412,8 +413,7 @@
 @endsection
 
 @section('bottom-scripts')
-    {!! Html::script("frontend/js/jquery-2.1.3.min.js") !!}
-    {!! Html::script("frontend/js/index.js") !!}
+
 @endsection
 
 

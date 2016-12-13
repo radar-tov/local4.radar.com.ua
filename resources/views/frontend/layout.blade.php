@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/frontend/css/style.css" type="text/css" media="screen,projection">
     <link rel="stylesheet" href="/frontend/css/print.css" type="text/css" media="print">
     <link rel="stylesheet" href="/css/additional.css" type="text/css">
+    <link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css" type="text/css" media="screen" />
     <!-- / CSS  -->
     <!-- FONTS  -->
     <link href="http://allfont.ru/allfont.css?fonts=a_avantetck-medium" rel="stylesheet" type="text/css"/>
@@ -22,9 +23,9 @@
     <link href="http://allfont.ru/allfont.css?fonts=a_avantebsnr-bold" rel="stylesheet" type="text/css"/>
     <!-- / FONTS  -->
     <!-- SCRIPTS  -->
-    {{--{!! Html::script("frontend/js/jquery-2.1.3.min.js") !!}--}}
-    {{--{!! Html::script("admin/assets/js/vue.js") !!}--}}
-    {{--{!! Html::script("frontend/js/index.js") !!}--}}
+    {!! Html::script("frontend/js/jquery-2.1.3.min.js") !!}
+    <script type="text/javascript" src="/fancybox/lib/jquery.mousewheel.pack.js"></script>
+    <script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js"></script>
     <!-- section top-scripts  -->
     @yield('top-scripts')
     <!-- / section top-scripts  -->
@@ -102,6 +103,12 @@
 @yield('filter_handler')
 <!-- / section filter_handler -->
 <!-- section bottom-scripts -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".fancybox").fancybox();
+    });
+</script>
+{!! Html::script("frontend/js/index.js") !!}
 @yield('bottom-scripts')
 <!-- / section bottom-scripts -->
 <!-- section rate -->

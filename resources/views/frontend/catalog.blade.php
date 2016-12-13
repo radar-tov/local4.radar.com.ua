@@ -12,7 +12,7 @@
 @endsection
 
 @section('top-scripts')
-    {!! Html::script("frontend/js/jquery-2.1.3.min.js") !!}
+
 @endsection
 
 @section('content')
@@ -84,25 +84,5 @@
 @endsection
 
 @section('bottom-scripts')
-    {{--{!! Html::script("frontend/js/jquery-2.1.3.min.js") !!}--}}
-    {!! Html::script("frontend/js/index.js") !!}
+
 @endsection
-
-{{--@section('bottom-scripts')--}}
-
-    {{--<div id="video" class="modal">--}}
-        {{--<div class="modal-content">--}}
-            {{--<a href="#!" class="modal-action modal-close waves-effect btn-flat "><i class="fa fa-close"></i></a>--}}
-            {{--<div class="video-container"></div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-    {{--@include('frontend.partials.scripts.add_to_cart')--}}
-    {{--@include('frontend.partials.scripts.add_to_compare')--}}
-    {{--<script>--}}
-        {{--$("body").on('click', '.video-review', function(e){--}}
-            {{--e.preventDefault();--}}
-            {{--var video = $(this).siblings('._video').html();--}}
-            {{--$('#video').find('.video-container').html(video);--}}
-        {{--})--}}
-    {{--</script>--}}
-{{--@endsection--}}

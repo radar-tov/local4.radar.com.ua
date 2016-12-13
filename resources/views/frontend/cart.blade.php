@@ -10,7 +10,6 @@
 @extends('frontend.layout')
 
 @section('top-scripts')
-    {!! Html::script("frontend/js/jquery-2.1.3.min.js") !!}
     {!! Html::script("admin/assets/js/vue.js") !!}
 @endsection
 
@@ -317,18 +316,8 @@
                 @endif
             <div class="col s12 offset-top-30px"></div>
         </div>
-
-
         <input type="hidden" value="{{ csrf_token() }}" v-model="token"/>
-        {{--<pre>--}}
-            {{--@{{ $data | json}}--}}
-        {{--</pre>--}}
     </div>
-{{--<!--<div id="otc" class="modal">--}}
-    {{--<div class="modal-content">--}}
-        {{--<a href="#!" class="modal-action modal-close waves-effect btn-flat "><i class="fa fa-close"></i></a>--}}
-        {{--<p>{!! $settingsProvider->getAgreement() !!}</p>тег p можно убрать--}}
-    {{--</div>-->--}}
 </div>
 </section>
 
@@ -336,5 +325,4 @@
 
 @section('bottom-scripts')
     {!! Html::script("frontend/js/myVue.js") !!}
-    {!! Html::script("frontend/js/index.js") !!}
 @endsection
