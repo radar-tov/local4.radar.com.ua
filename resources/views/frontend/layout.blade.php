@@ -33,6 +33,7 @@
     <!-- / SCRIPTS  -->
 </head>
 <body>
+{{ dump($_ENV['BOT']) }}
 <!-- include  -->
 @include('frontend.partials.nav_menu')
 @include('frontend.partials.header')

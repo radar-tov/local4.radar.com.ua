@@ -6,7 +6,7 @@ if( ! Request::is('dashboard*') and ! Request::is('auth*')){
 	/* Add review on front page */
 	post('add/review',['uses'=>'\App\Http\Controllers\Admin\ReviewsController@store','as'=>'add.review']);
 
-	Route::group(['namespace' => '\App\Http\Controllers\Frontend'], function()
+	Route::group(['namespace' => '\App\Http\Controllers\Frontend', 'middleware' => 'bot'], function()
 	{
 		Route::get('rate', 'FrontendController@rateProduct');
 
@@ -16,7 +16,7 @@ if( ! Request::is('dashboard*') and ! Request::is('auth*')){
 		Route::get('/stati/{slug}',['uses'=>'InformationController@getArticle','as'=>'frontend.article']);
 
 		/* send mail from site */
-		post("mail/me",["uses"=>"MailController@mailMe",'as'=>'mail.me']);
+		Route::post("mail/me",["uses"=>"MailController@mailMe",'as'=>'mail.me']);
 
         Route::get('compare','FrontendController@compare');
 		Route::get('cart', 'FrontendController@cart');

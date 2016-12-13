@@ -35,6 +35,7 @@ class Kernel extends HttpKernel
 //        'data' => \App\Http\Middleware\DataHandler::class,
 	    'pageHasFilter' => \App\Http\Middleware\PageHasFilter::class,
 	    'frontAuth' => FrontAuth::class,
-        'handleSlug' => HandleSlug::class
+        'handleSlug' => HandleSlug::class,
+        'bot' => \App\Http\Middleware\BotDefinition::class
     ];
 }
