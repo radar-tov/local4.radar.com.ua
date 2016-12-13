@@ -97,17 +97,11 @@
     </div>
 </div>
 <!-- / Review modal -->
-
 <!-- Scripts -->
 <!-- section filter_handler -->
 @yield('filter_handler')
 <!-- / section filter_handler -->
 <!-- section bottom-scripts -->
-<script type="text/javascript">
-    $(document).ready(function() {
-        $(".fancybox").fancybox();
-    });
-</script>
 {!! Html::script("frontend/js/index.js") !!}
 @yield('bottom-scripts')
 <!-- / section bottom-scripts -->

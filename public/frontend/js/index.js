@@ -2,6 +2,15 @@
  * Created by Evgenii on 05.12.2016.
  */
 
+$(document).ready(function() {
+    $(".fancybox").fancybox();
+    setTimeout(function() {
+        var partner = document.getElementById('partner');
+        partner.style.display = 'block';
+    }, 1000);
+
+});
+
 //Из файла resources\views\frontend\layout.blade.php
 //>>>>>>>>>>>>>>
 var disabled = $(".disabled").prop('disabled', true);
@@ -185,12 +194,12 @@ $("#range").change(function(){
 
 //Из файла resources\views\frontend\product.blade.php
 //>>>>>>>>>>>>>>>>>>>>>
-console.log(!!$("#check").val());
+//console.log(!!$("#check").val());
 
 $('#rating_3').rating({
     fx: 'full',
     image: '/frontend/images/stars2.png',
-    loader: '/frontend/images/ajax-loader.gif',
+    loader: '/frontend/images/loader.gif',
     url: location.href, /*обработка результатов голосования*/
     type: 'GET',
     readOnly: !!$("#check").val(),
@@ -225,32 +234,31 @@ setTimeout(function () {
 //<<<<<<<<<<<<<<<<<<<<<<<<
 //Из файла resources\views\frontend\compare.blade.php
 
+
 //Из файла resources\views\frontend\layout.blade.php
 //>>>>>>>>>>>>>>>>>>>>>>>>>
-var flashObject = $(".flashObject");
-flashObject.css({"display": "block"});
-
-$(document).ready(function () {
-    $(".object-3d").click(function () {
-        $(".modalTest").addClass("modalAnimation");
-        $("body").append("<div class='lean-overlay over' id='materialize-lean-overlay-4' style='z-index: 1002; display: block; opacity: 0.5;'></div>");
-
-        $('.over').show();
-        flashObject.css({"margin": "auto"});
-        function second() {
-            $(".object-hover").css({"display": "none"});
-        }
-
-        setTimeout(second, "400");
-
-    });
-    $(".objClose").click(function () {
-        $('.over').hide();
-        $(".modalTest").removeClass("modalAnimation");
-        $(".over").css("display", "none");
-        flashObject.css({"margin-left": "-3000px"});
-    });
-});
+//var flashObject = $(".flashObject");
+//flashObject.css({"display": "block"});
+//
+//$(document).ready(function () {
+//    $(".object-3d").click(function () {
+//        $(".modalTest").addClass("modalAnimation");
+//        $("body").append("<div class='lean-overlay over' id='materialize-lean-overlay-4' style='z-index: 1002; display: block; opacity: 0.5;'></div>");
+//
+//        $('.over').show();
+//        flashObject.css({"margin": "auto"});
+//        function second() {
+//            $(".object-hover").css({"display": "none"});
+//        }
+//        setTimeout(second, "400");
+//    });
+//    $(".objClose").click(function () {
+//        $('.over').hide();
+//        $(".modalTest").removeClass("modalAnimation");
+//        $(".over").css("display", "none");
+//        flashObject.css({"margin-left": "-3000px"});
+//    });
+//});
 
 //<<<<<<<<<<<<<<<<<<<<<<<<
 //Из файла resources\views\frontend\layout.blade.php

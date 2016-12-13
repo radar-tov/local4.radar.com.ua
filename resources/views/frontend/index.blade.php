@@ -57,7 +57,9 @@
     <section class="our_partners">
         <div class="container">
             <div class="row">
-                @include('frontend.partials.products.our_partners_slider')
+                <div id="partner" style="display: none">
+                    @include('frontend.partials.products.our_partners_slider')
+                </div>
             </div>
         </div>
     </section>
