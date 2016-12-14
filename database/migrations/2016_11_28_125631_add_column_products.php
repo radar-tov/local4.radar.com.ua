@@ -16,6 +16,7 @@ class AddColumnProducts extends Migration
             $table->string('changefreq')->default('weekly');
             $table->string('priority')->default('0.1')->after('changefreq');
             $table->boolean('sitemap')->default(true)->after('priority');
+            $table->boolean('yandex')->default(true)->after('sitemap');
         });
     }
 
@@ -27,7 +28,7 @@ class AddColumnProducts extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn(['changefreq', 'priority', 'sitemap']);
+            $table->dropColumn(['changefreq', 'priority', 'sitemap', 'yandex']);
         });
     }
 }
