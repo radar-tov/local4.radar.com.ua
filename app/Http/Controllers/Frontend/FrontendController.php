@@ -507,5 +507,6 @@ class FrontendController extends BaseController
 				return view('frontend.otvet.contact');
 				break;
 		}
+		dump(Session::all());
 	}
 }
