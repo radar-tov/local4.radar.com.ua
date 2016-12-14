@@ -71,6 +71,7 @@ class MailController extends Controller
 
 		$request->session()->put('from_otvet', $data['_view']);
 		$request->session()->put('otvet', $message);
+		$request->session()->save();
 
 		return redirect()->back();
 	}
