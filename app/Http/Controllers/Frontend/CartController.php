@@ -54,6 +54,31 @@ class CartController extends Controller {
 	}
 
 
+    public function addKolProduct(Request $request){
+
+        $product = Product::visible()->with('relevantSale', 'thumbnail', 'category')->find($request->get('productId'));
+
+        $parentCategorySlug = Category::select('slug', 'title')
+            ->where('id', '=', Category::where('id', '=', $product->category->id)->value('parent_id'))
+            ->get();
+
+        Cart::add(
+            $id = $product->clone_of ?: $product->id,
+            $title = $product->title,
+            $qty = $request->get('qty'),
+            $price = str_replace(' ', '', $product->hasDiscount() ? $product->getNewPrice() : $product->getPrice()),
+            $options = [
+                'instance' => 'main',
+                'excerpt' => $product->excerpt,
+                'article' => $product->article,
+                'thumbnail' => count($product->thumbnail) ? $product->thumbnail->first()->path : '',
+                'categorySlug' => $parentCategorySlug[0]->slug.'/'.$product->category->slug,
+                'productSlug' => $product->slug,
+            ]);
+
+        return ['count' => $this->calcProductsInCart(), 'total' => $this->calcTotalPrice()];
+    }
+
 
     public function addToCompare(Request $request)
     {

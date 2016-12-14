@@ -106,17 +106,18 @@
                                 </div>
                                 <div class="addcol-item center-left mod col">
                                     <input type="number"
+                                           debounce="10"
                                            name="colichestvo"
-                                           class="addcol-item-hover buy"
+                                           id="colichestvo"
+                                           class="item-quantity colichestvo"
                                            data-productId="{{ $product->id }}"
-                                           value="1"
-                                           title="1">
+                                           value="1">
                                 </div>
 
                                 <div class="addtocart-button-item center-align col">
                                     <input type="submit"
                                            name="addtocart"
-                                           class="@if($product->available == 1) addtocart-button-hover @endif buy"
+                                           class="@if($product->available == 1) addtocart-button-hover @endif buyKol"
                                            onclick="yaCounter39848700.reachGoal('addCart'); ga('send', 'event', 'Knopka', 'addCart'); return true;"
                                            data-productId="{{ $product->id }}"
                                            data-productPrice="{{ $product->getPrice() }}"

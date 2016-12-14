@@ -6,24 +6,24 @@ Breadcrumbs::register('dashboard.index', function($breadcrumbs)
 });
 
 // Dashboard > Articles
-Breadcrumbs::register('dashboard.articles.index', function($breadcrumbs)
-{
-	$breadcrumbs->parent('dashboard.index');
-	$breadcrumbs->push('Статьи', route('dashboard.articles.index'));
-});
+//Breadcrumbs::register('dashboard.articles.index', function($breadcrumbs)
+//{
+//	$breadcrumbs->parent('dashboard.index');
+//	$breadcrumbs->push('Статьи', route('dashboard.articles.index'));
+//});
 // Dashboard > Articles > Create Article
-Breadcrumbs::register('dashboard.articles.create', function($breadcrumbs)
-{
-	$breadcrumbs->parent('dashboard.articles.index');
-	$breadcrumbs->push('Добавить статью', route('dashboard.articles.create'));
-});
+//Breadcrumbs::register('dashboard.articles.create', function($breadcrumbs)
+//{
+//	$breadcrumbs->parent('dashboard.articles.index');
+//	$breadcrumbs->push('Добавить статью', route('dashboard.articles.create'));
+//});
 
 // Dashboard > Articles > Edit Article
-Breadcrumbs::register('dashboard.articles.edit', function($breadcrumbs)
-{
-	$breadcrumbs->parent('dashboard.articles.index');
-	$breadcrumbs->push('Редактировать статью', route('dashboard.articles.edit'));
-});
+//Breadcrumbs::register('dashboard.articles.edit', function($breadcrumbs)
+//{
+//	$breadcrumbs->parent('dashboard.articles.index');
+//	$breadcrumbs->push('Редактировать статью', route('dashboard.articles.edit'));
+//});
 
 // Dashboard > Users
 Breadcrumbs::register('dashboard.users.index', function($breadcrumbs)

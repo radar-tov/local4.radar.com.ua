@@ -17,7 +17,7 @@
         "filp/whoops": "^1.1",
         "barryvdh/laravel-elfinder": "0.3.*",
         "barryvdh/laravel-debugbar": "^2.0",
-        "fzaninotto/faker": "1.5",
+        "fzaninotto/faker": "^1.5",
         "laravelrus/localized-carbon": "dev-master",
         "guzzlehttp/guzzle": "^6.0",
         "doctrine/dbal": "^2.5",

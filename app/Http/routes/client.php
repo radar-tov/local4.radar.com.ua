@@ -57,6 +57,7 @@ if( ! Request::is('dashboard*') and ! Request::is('auth*')){
 		Route::get('{categorySlug}/{subcategorySlug}/{productSlug}', 'FrontendController@product');
         Route::post('add_to_compare','CartController@addToCompare');
 		Route::post('add_to_cart', 'CartController@addProduct');
+		Route::post('addKol_to_cart', 'CartController@addKolProduct');
 		Route::post('add_set_to_cart', 'CartController@addSetOfProducts');
 		Route::post('cart/get_content', 'CartController@getContent');
 		Route::post('cart/get_to_compare','CartController@getToCompare');

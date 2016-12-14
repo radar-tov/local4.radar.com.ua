@@ -33,7 +33,25 @@ $("body").on('click', '.buy', function(){
     var productId = $(this).attr('data-productid'),
         token = $("#token").val();
 
-    $.post('/add_to_cart', {'productId': productId, _token: token}).done(function(data){
+    $.post('/add_to_cart', {'productId': productId,  _token: token}).done(function(data){
+        $("#_cart").find('.qty').html(data.count);
+        $("#_cart").find('.qty-items').html(data.count);
+
+        $("#_cart").find('._sum').html(data.total);
+        $('.cart_empty').hide();
+        $('.cart_filled').show();
+    });
+    $(this).val('В корзине');
+    $(this).parents('.item').find('.buy').val('В корзине');
+
+});
+
+$("body").on('click', '.buyKol', function(){
+    var productId = $(this).attr('data-productid'),
+        qty = $("#colichestvo").val(),
+        token = $("#token").val();
+
+    $.post('/addKol_to_cart', {'productId': productId, 'qty': qty,  _token: token}).done(function(data){
         $("#_cart").find('.qty').html(data.count);
         $("#_cart").find('.qty-items').html(data.count);
 
