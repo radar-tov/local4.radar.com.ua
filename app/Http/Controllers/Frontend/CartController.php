@@ -51,6 +51,10 @@ class CartController extends Controller {
 				'productSlug' => $product->slug,
 			]);
 
+        $data_otvet = ['qty'=>$qty, 'count' => $this->calcProductsInCart(), 'total' => $this->calcTotalPrice()];
+        $request->session()->put('from_otvet', 'addProduct');
+        $request->session()->put('otvet', $data_otvet);
+
 		return ['count' => $this->calcProductsInCart(), 'total' => $this->calcTotalPrice()];
 	}
 
@@ -77,7 +81,9 @@ class CartController extends Controller {
                 'productSlug' => $product->slug,
             ]);
 
-        $request->session()->put('otvet', 'Ответ из корзины');
+        $data_otvet = ['qty'=>$qty, 'count' => $this->calcProductsInCart(), 'total' => $this->calcTotalPrice()];
+        $request->session()->put('from_otvet', 'addKolProduct');
+        $request->session()->put('otvet', $data_otvet);
 
         return ['count' => $this->calcProductsInCart(), 'total' => $this->calcTotalPrice()];
     }

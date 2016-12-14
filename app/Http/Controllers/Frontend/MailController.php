@@ -68,7 +68,11 @@ class MailController extends Controller
 
 		$this->sendMessage($data);
 
-		return redirect()->back()->with('otvet', $message);
+
+		$request->session()->put('from_otvet', $data['_view']);
+		$request->session()->put('otvet', $message);
+
+		return redirect()->back();
 	}
 
 	/**

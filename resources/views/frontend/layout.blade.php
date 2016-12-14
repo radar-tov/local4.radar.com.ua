@@ -39,7 +39,7 @@
 <!-- include  -->
 <!-- section CONTENT  -->
 @yield('content')
-<a id="otvet" class="various fancybox.ajax" href="/otvet">Ajax</a>
+<a id="otvet" class="various fancybox.ajax" href="/otvet"></a>
 <!-- / section CONTENT  -->
 @include('frontend.partials.footer')
 <!--Modals-->

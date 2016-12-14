@@ -19,7 +19,7 @@ if( ! Request::is('dashboard*') and ! Request::is('auth*')){
 		Route::post("mail/me",["uses"=>"MailController@mailMe",'as'=>'mail.me']);
 
         Route::get('compare','FrontendController@compare');
-		Route::get('cart', 'FrontendController@cart');
+		Route::get('cart', ['as' => 'cart', 'uses' => 'FrontendController@cart']);
 		Route::post('buy', 'FrontendController@buy');
 		Route::get('thank-you', 'FrontendController@thanks');
 		Route::get('otvet', 'FrontendController@otvet');

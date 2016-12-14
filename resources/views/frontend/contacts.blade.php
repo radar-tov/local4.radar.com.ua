@@ -33,12 +33,8 @@
         <div class="row">
             <div class="col s12 m12 text-page no-padding">
             <h3>Контакты</h3>
-                <div style="color: rgba(0, 128, 0, 0.76); font-size: 20px;">
-                    <b>{{ session('otvet') }}</b>
-                </div>
-
                 <div class="col s12 m12 l8 no-padding">
-                    
+
                     <div class="col s12 m6">
                         <p class="bold">О компании <span class="uppercase">"Интернет магазин Radar"</span></p>
                         <p>Благодаря нашей компании, вы всегда сможете купить отопительное оборудование с доставкой</p>
@@ -121,5 +117,11 @@
 @endsection
 
 @section('bottom-scripts')
-
+@if(Session::get('from_otvet'))
+<script>
+    $(document).ready(function() {
+        $("#otvet").click();
+    });
+</script>
+@endif
 @endsection
