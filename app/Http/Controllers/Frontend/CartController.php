@@ -86,6 +86,7 @@ class CartController extends Controller {
         Session::put('from_otvet', 'addKolProduct');
         Session::put('otvet', $data_otvet);
         Session::save();
+        //dump(Session::all());
 
         return ['count' => $this->calcProductsInCart(), 'total' => $this->calcTotalPrice()];
     }
