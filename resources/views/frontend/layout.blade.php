@@ -39,6 +39,7 @@
 <!-- include  -->
 <!-- section CONTENT  -->
 @yield('content')
+<a id="otvet" class="various fancybox.ajax" href="/otvet">Ajax</a>
 <!-- / section CONTENT  -->
 @include('frontend.partials.footer')
 <!--Modals-->
@@ -63,7 +64,6 @@
     </div>
 </div>
 
-
 <div id="forgot" class="modal">
     <div class="modal-content">
         <form action="{{ url('password/email') }}" method="POST">
@@ -78,7 +78,6 @@
     </div>
 </div>
 
-<!-- Review modal -->
 <div id="review" class="modal">
     <div class="modal-content">
         <a href="#!" class="modal-action modal-close waves-effect btn-flat "><i class="fa fa-close"></i></a>
@@ -96,7 +95,8 @@
             </form>
     </div>
 </div>
-<!-- / Review modal -->
+
+<!-- / Modals-->
 <!-- Scripts -->
 <!-- section filter_handler -->
 @yield('filter_handler')

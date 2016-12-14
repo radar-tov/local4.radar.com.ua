@@ -8,6 +8,7 @@ use App\Models\Stock;
 use App\Models\Category;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 /**
  * Class CartController
@@ -75,6 +76,8 @@ class CartController extends Controller {
                 'categorySlug' => $parentCategorySlug[0]->slug.'/'.$product->category->slug,
                 'productSlug' => $product->slug,
             ]);
+
+        $request->session()->put('otvet', 'Ответ из корзины');
 
         return ['count' => $this->calcProductsInCart(), 'total' => $this->calcTotalPrice()];
     }

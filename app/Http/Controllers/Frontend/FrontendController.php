@@ -493,4 +493,11 @@ class FrontendController extends BaseController
 		$order = Order::with('products.original.category', 'products.original.thumbnail')->find($orderId);
 		return view('frontend.order', compact('order'));
 	}
+
+
+	public function otvet(){
+
+		return view('frontend.otvet');
+
+	}
 }

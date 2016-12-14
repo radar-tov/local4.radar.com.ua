@@ -22,6 +22,7 @@ if( ! Request::is('dashboard*') and ! Request::is('auth*')){
 		Route::get('cart', 'FrontendController@cart');
 		Route::post('buy', 'FrontendController@buy');
 		Route::get('thank-you', 'FrontendController@thanks');
+		Route::get('otvet', 'FrontendController@otvet');
 
 		Route::get('sitemap_page', 'FrontendController@getSitemapPages');
 		Route::get('sitemap_stati', 'InformationController@getSitemapStati');

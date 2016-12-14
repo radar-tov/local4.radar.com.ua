@@ -4,6 +4,19 @@
 
 $(document).ready(function() {
     $(".fancybox").fancybox();
+
+    $(".various").fancybox({
+        maxWidth	: 500,
+        maxHeight	: 300,
+        fitToView	: false,
+        width		: '70%',
+        height		: '50%',
+        autoSize	: false,
+        closeClick	: false,
+        openEffect	: 'none',
+        closeEffect	: 'none'
+    });
+
     setTimeout(function() {
         var partner = document.getElementById('partner');
         partner.style.display = 'block';
@@ -62,6 +75,7 @@ $("body").on('click', '.buyKol', function(){
     $(this).val('В корзине');
     $(this).parents('.item').find('.buy').val('В корзине');
 
+    $("#otvet").click
 });
 
 
