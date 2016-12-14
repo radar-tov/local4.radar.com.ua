@@ -42,7 +42,7 @@ class BotDefinition
                 $_ENV['BOT'] = true;
             }
         }
-        //dump($_SERVER['HTTP_USER_AGENT']);
+        
         return $next($request);
     }
 }

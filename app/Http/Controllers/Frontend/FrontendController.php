@@ -103,8 +103,6 @@ class FrontendController extends BaseController
                     if(env('APP_ENV') == 'production'){
 						if($_ENV['BOT']){
 							return Response::view('frontend.subcategories', compact('categories','category'), 304);
-						}else{
-							return Response::view('frontend.subcategories', compact('categories','category'), 200);
 						}
 					}
                 }
@@ -128,8 +126,14 @@ class FrontendController extends BaseController
 
         $date = new \DateTime($subcategory->updated_at);
 
-        return Response::view('frontend.catalog', compact('subcategory', 'category'))
-            ->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
+		if(env('APP_ENV') == 'production'){
+			if($_ENV['BOT']){
+				return Response::view('frontend.catalog', compact('subcategory', 'category'), 304);
+			}
+		}
+
+		return Response::view('frontend.catalog', compact('subcategory', 'category'))
+			->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
 
 	}
 
@@ -199,9 +203,12 @@ class FrontendController extends BaseController
         $LastModified = strtotime(substr($date->format("D, d M Y H:i:s"), 5));
         if($ifModifiedSince){
             if($ifModifiedSince >= $LastModified){
-                if(env('APP_ENV') == 'production')
-                    return Response::view('frontend.product', compact('product','productReviewId'), 304);
-            }
+				if(env('APP_ENV') == 'production'){
+					if($_ENV['BOT']){
+						return Response::view('frontend.product', compact('product','productReviewId'), 304);
+					}
+				}
+			}
         }
 
 
@@ -357,9 +364,12 @@ class FrontendController extends BaseController
         $LastModified = strtotime(substr($date->format("D, d M Y H:i:s"), 5));
         if($ifModifiedSince){
             if($ifModifiedSince >= $LastModified){
-                if(env('APP_ENV') == 'production')
-                    return Response::view('frontend.static', compact('page'), 304);
-            }
+				if(env('APP_ENV') == 'production'){
+					if($_ENV['BOT']){
+						return Response::view('frontend.static', compact('page'), 304);
+					}
+				}
+			}
         }
 
  		return Response::view('frontend.static', compact('page'))->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
