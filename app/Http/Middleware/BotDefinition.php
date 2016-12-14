@@ -42,7 +42,7 @@ class BotDefinition
                 $_ENV['BOT'] = true;
             }
         }
-        
+
         return $next($request);
     }
 }
