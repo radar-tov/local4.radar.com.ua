@@ -54,7 +54,7 @@ $("body").on('click', '.buy', function(){
     });
     $(this).val('В корзине');
     $(this).parents('.item').find('.buy').val('В корзине');
-    $("#otvet").click();
+    //$("#otvet").click();
 });
 
 $("body").on('click', '.buyKol', function(){
@@ -71,7 +71,7 @@ $("body").on('click', '.buyKol', function(){
     });
     $(this).val('В корзине');
     $(this).parents('.item').find('.buy').val('В корзине');
-    $("#otvet").click();
+    //$("#otvet").click();
 });
 
 
