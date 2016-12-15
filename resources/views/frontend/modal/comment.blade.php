@@ -24,7 +24,7 @@
 
         $.ajax({
             url: '{!! route('add.review') !!}',
-            data: {'name': name,  '_token': token,  'name': name, 'body': body},
+            data: {'product_id': product_id,  '_token': token,  'name': name, 'body': body},
             type: 'POST',
             success: function (response) {
                 //console.log(response);
