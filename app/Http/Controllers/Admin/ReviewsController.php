@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Review;
 use App\Http\Requests\Review\UpdateRequest;
 use Auth;
+use App\Models\Product;
 
 class ReviewsController extends AdminController
 {
@@ -67,7 +69,7 @@ class ReviewsController extends AdminController
         Review::create($data);
 
         return response('<h3 align="center">Ваш отзыв будет опубликован после модерации</h3>');
-        exit;
+
 
     }
 
@@ -102,13 +104,17 @@ class ReviewsController extends AdminController
      * @param  int $id
      * @return Response
      */
-    public function update(UpdateRequest $request, $id)
+    public function update(UpdateRequest $request, Product $product, $id)
     {
+        //dd($request->all());
         Review::findOrFail($id)->update($request->all());
 
         if((int)$request->get('button')) {
             return redirect()->route('dashboard.reviews.index');
         }
+
+        $date = new \DateTime('NOW');
+        $product->where('id', $request->product_id)->update(['updated_at' => $date->format("Y-m-d H:i:s")]);
 
         return redirect()->route('dashboard.reviews.edit',$id);
     }
