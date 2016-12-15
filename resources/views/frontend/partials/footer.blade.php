@@ -44,7 +44,7 @@
                     <div class="links">
                         <a href="{{ route('login') }}">Вход</a>
                         <a href="{{ route('register') }}">Регистрация</a>
-                        <a href="#callorder" class="modal-trigger">Обратный звонок</a>
+                        <a href="{{ url('callbeck') }}" class="various fancybox.ajax">Обратный звонок</a>
                     </div>
                 </form>
             </div>

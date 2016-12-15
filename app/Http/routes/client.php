@@ -23,6 +23,9 @@ if( ! Request::is('dashboard*') and ! Request::is('auth*')){
 		Route::post('buy', 'FrontendController@buy');
 		Route::get('thank-you', 'FrontendController@thanks');
 		Route::get('otvet', 'FrontendController@otvet');
+		Route::get('callbeck', ['as' => 'callbeck', 'uses' => 'FrontendController@callbeck']);
+		Route::get('montagniki', ['as' => 'montagniki', 'uses' => 'FrontendController@montagniki']);
+		Route::get('comment/{id}', ['as' => 'comment', 'uses' => 'FrontendController@comment']);
 
 		Route::get('sitemap_page', 'FrontendController@getSitemapPages');
 		Route::get('sitemap_stati', 'InformationController@getSitemapStati');
@@ -47,6 +50,7 @@ if( ! Request::is('dashboard*') and ! Request::is('auth*')){
 		Route::get('login', ['as' => 'login', 'uses' => 'FrontendController@login']);
 		Route::get('registration', ['as' => 'register', 'uses' => 'FrontendController@registration']);
 		Route::get('password', ['as' => 'password', 'uses' => 'FrontendController@']);
+		Route::get('password_modal', ['as' => 'password_modal', 'uses' => 'FrontendController@password_modal']);
 		Route::get('cabinet', ['as' => 'cabinet', 'uses' => 'FrontendController@cabinet']);
 		Route::get('search', ['as' => 'search', 'uses' => 'FrontendController@search']);
 

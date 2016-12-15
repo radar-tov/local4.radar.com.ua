@@ -518,4 +518,21 @@ class FrontendController extends BaseController
 		}
 		//dump(Session::all());
 	}
+
+	public function callbeck(){
+		return view('frontend.modal.callbeck');
+	}
+
+	public function montagniki(){
+		return view('frontend.modal.montagniki');
+	}
+
+	public function comment($id){
+		$data = ['id'=>$id];
+		return view('frontend.modal.comment', $data);
+	}
+
+	public function password_modal(){
+		return view('frontend.modal.password');
+	}
 }

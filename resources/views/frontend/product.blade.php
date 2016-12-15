@@ -314,19 +314,9 @@
                                 </div>
                                 <div class="right clearleft">
                                     <div class="review-button center-align">
-                                        {{--@if(Auth::check())--}}
-                                        <a href="#review" class="review-button white-text uppercase modal-trigger"
-                                           title="купить">
-                                            <input type="submit" name="add_review"
-                                                   class="review-button white-text uppercase" value="оставить отзыв"
-                                                   title="купить">
+                                        <a class="various fancybox.ajax" href="{{ url('comment', $product->id) }}"  title="оставить отзыв">
+                                            <input type="submit" name="add_review" class="review-button white-text uppercase" value="оставить отзыв" title="оставить отзыв">
                                         </a>
-                                        @if (session('message'))
-                                            <div>
-                                                <b>{{ session('message') }}</b>
-                                            </div>
-                                        @endif
-                                        {{--@endif--}}
                                     </div>
                                 </div>
                             </div>
@@ -358,39 +348,39 @@
         </div>
     </section>
 
-    <div id="video" class="modal">
-        <div class="modal-content">
-            <a href="#!" class="modal-action modal-close waves-effect btn-flat "><i class="fa fa-close"></i></a>
-            <div class="video-container">
-                {!! $product->video !!}
-            </div>
-        </div>
-    </div>
-    <div id="application" class="modal">
-        <div class="modal-content">
-            <a href="#!" class="modal-action modal-close waves-effect btn-flat "><i class="fa fa-close"></i></a>
-            <div class="input-field col s12 center-align">
-                <input placeholder="введите ваше имя" id="name" type="text" class="validate">
-                <input placeholder="номер телефона" id="phone" type="text" class="validate">
-                <input placeholder="email" id="email" type="text" class="validate">
-                <input placeholder="примечание" id="message" type="text" class="validate">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Отправить <i
-                            class="fa fa-envelope"></i></button>
-            </div>
-        </div>
-    </div>
-    <div id="object-3d" class="modalTest">
-        <div class="modal-content center-align">
-            <a href="#!" class="objClose modal-close waves-effect btn-flat"><i class="fa fa-close"></i></a>
+    {{--<div id="video" class="modal">--}}
+        {{--<div class="modal-content">--}}
+            {{--<a href="#!" class="modal-action modal-close waves-effect btn-flat "><i class="fa fa-close"></i></a>--}}
+            {{--<div class="video-container">--}}
+                {{--{!! $product->video !!}--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+    {{--<div id="application" class="modal">--}}
+        {{--<div class="modal-content">--}}
+            {{--<a href="#!" class="modal-action modal-close waves-effect btn-flat "><i class="fa fa-close"></i></a>--}}
+            {{--<div class="input-field col s12 center-align">--}}
+                {{--<input placeholder="введите ваше имя" id="name" type="text" class="validate">--}}
+                {{--<input placeholder="номер телефона" id="phone" type="text" class="validate">--}}
+                {{--<input placeholder="email" id="email" type="text" class="validate">--}}
+                {{--<input placeholder="примечание" id="message" type="text" class="validate">--}}
+                {{--<button class="btn waves-effect waves-light" type="submit" name="action">Отправить <i--}}
+                            {{--class="fa fa-envelope"></i></button>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+    {{--<div id="object-3d" class="modalTest">--}}
+        {{--<div class="modal-content center-align">--}}
+            {{--<a href="#!" class="objClose modal-close waves-effect btn-flat"><i class="fa fa-close"></i></a>--}}
 
-            <object class="flashObject" width="550" height="400">
-                <param name="movie" value="/{{ $product->flash_view }}">
-                <embed src="/{{ $product->flash_view }}" width="550" height="400" type="application/x-shockwave-flash"
-                       pluginspage="http://www.macromedia.com/go/getflashplayer">
-            </object>
-        </div>
-        <div class="object-hover"></div>
-    </div>
+            {{--<object class="flashObject" width="550" height="400">--}}
+                {{--<param name="movie" value="/{{ $product->flash_view }}">--}}
+                {{--<embed src="/{{ $product->flash_view }}" width="550" height="400" type="application/x-shockwave-flash"--}}
+                       {{--pluginspage="http://www.macromedia.com/go/getflashplayer">--}}
+            {{--</object>--}}
+        {{--</div>--}}
+        {{--<div class="object-hover"></div>--}}
+    {{--</div>--}}
 
     <!--  Scripts-->
 

@@ -102,54 +102,6 @@
             </div>
         </div>
     </section>
-
-    <div id="montagniki" class="modal">
-        <div class="modal-content">
-            <a href="#!" class="modal-action modal-close btn-flat "><i class="fa fa-close"></i></a>
-            <div class="input-field col s12 center-align">
-                <div class="col s12 m12 feedback">
-                    <h4>Обратная связь</h4>
-                    <p class="col s12 no-padding">Отправьте нам е-мейл. Все поля, помеченные *, обязательны для
-                        заполнения.</p>
-                    <form action="{!! route('mail.me') !!}" id="contactForm" method="post">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="hidden" name="_view" value="skidka"/>
-                        <div class="row">
-                            <div class="col s12 m12 no-padding">
-                                <div class="form-group">
-                                    <input required="required" name="name" class="form-control col" id="name"
-                                           placeholder="Ваше имя (*)" title="Name" value="" type="text">
-                                </div>
-                                <div class="form-group">
-                                    <input required="required" name="email"
-                                           class="form-control col validate-email" id="email"
-                                           placeholder="Ваш email (*)" title="Email" value="" type="text">
-                                </div>
-                                <div class="form-group">
-                                    <input class="input-text col form-control" name="phone" id="phone"
-                                           placeholder="Ваш номер телефона" title="Telephone" value="" type="text">
-                                </div>
-                            </div>
-                            <div class="col s12 m12 no-padding">
-                                <div class="form-group">
-                                        <textarea required="required" name="comment" placeholder="Ваше сообщение (*)"
-                                                  id="comment" title="Comment"
-                                                  class="form-control col input-text" cols="5"
-                                                  rows="3"></textarea>
-                                </div>
-
-                            </div>
-                            <div class="buttons-set clearfix">
-                                <button class="btn waves-effect waves-light" type="submit" name="action">Отправить
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
 @endsection
 
 

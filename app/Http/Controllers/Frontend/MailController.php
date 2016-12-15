@@ -27,31 +27,48 @@ class MailController extends Controller
 
 	public function mailMe(Request $request)
 	{
-
-//		$messages = [
-//			'required' => "Поле :attribute обязательно к заполнению.",
-//			'email' => "Поле :attribute должно соответствовать email адресу."
-//		];
-//
-//		$this->validate($request, [
-//				'name' 	=> 'required|max:255',
-//				'email' => 'required|email'
-//		], $messages);
-
-
 		$data = $request->all();
-		//dd($data);
-		//
+		if($data['_view'] == 'callback'){
+			$messages = [
+				'required' => "Поле :attribute обязательно к заполнению.",
+				'phone' => "Поле :attribute обязательно к заполнению."
+			];
+
+			$this->validate($request, [
+				'name' 	=> 'required|max:255',
+				'phone' => 'required|max:255'
+			], $messages);
+		}
+
+		if($data['_view'] == 'skidka'){
+			$messages = [
+				'required' => "Поле :attribute обязательно к заполнению.",
+				'email' => "Поле :attributeдолжно быть электронным адресом."
+			];
+
+			$this->validate($request, [
+				'name' 	=> 'required|max:255',
+				'phone' => 'required|max:255',
+				'email' => 'required|email',
+				'comment' => 'required|max:255'
+			], $messages);
+		}
+
+
+
+
+
+
 		//Тема сообщения
 		if($data['_view'] == 'contact'){
 			$data['subject'] = 'Новое оповещение из формы обратной связи.';
 			$message = 'Ваше письмо отправлено!';
 		}elseif($data['_view'] == 'callback'){
 			$data['subject'] = 'Заказ обратного звонка.';
-			$message = 'Спасибо, мы обязательно с Вами свяжемся.';
+			$message = '<h3 align="center">Спасибо, мы обязательно с Вами свяжемся.</h3>';
 		}elseif($data['_view'] == 'skidka'){
 			$data['subject'] = 'Запрос на получение скидки.';
-			$message = 'Ваш запрос расматривается. Мы обязательно с Вами свяжемся.';
+			$message = '<h3 align="center">Ваш запрос расматривается. Мы обязательно с Вами свяжемся.</h3>';
 		}else{
 
 		}
@@ -68,6 +85,15 @@ class MailController extends Controller
 
 		$this->sendMessage($data);
 
+		if($data['_view'] == 'callback'){
+			return response($message);
+			exit;
+		}
+
+		if($data['_view'] == 'skidka'){
+			return response($message);
+			exit;
+		}
 
 		$request->session()->put('from_otvet', $data['_view']);
 		$request->session()->put('otvet', $message);

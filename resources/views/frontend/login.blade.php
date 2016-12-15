@@ -44,7 +44,7 @@
                     <ol class="col s12 remember">
                         {{--<li><a href="#" class="order-forgot-login-link">Я забыл логин</a></li>--}}
                         <li>
-                            <a href="#forgot" class="order-forgot-pwd-link modal-trigger">Забыли пароль?</a>
+                            <a class="various fancybox.ajax" href="{{ url('password_modal') }}">Забыли пароль?</a>
                         </li>
                     </ol>
                 </form>

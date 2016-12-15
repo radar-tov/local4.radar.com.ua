@@ -41,24 +41,33 @@ class ReviewsController extends AdminController
      */
     public function store(Request $request)
     {
-        try{
-            $data = array_map('strip_tags', $request->only(['product_id', 'body']));
 
-            if(Auth::check())
-            {
-                $data = array_merge($data, ['user_id' => Auth::user()->id, 'active' => 0]);
-            }else{
-                $data = array_merge($data, ['user_id' => '292', 'active' => 0]);
-            }
+        $messages = [
+            'required' => "Поле :attribute обязательно к заполнению.",
+            'max' => "Поле :attribute ",
+            'min' => "Поле :attribute "
+        ];
 
-            Review::create($data);
+        $rules = [
+            'name' 	=> 'required|max:60|min:3',
+            'body' => 'required'
+        ];
 
-            return redirect()->back()->with('message', 'Ваш отзыв будет опубликован после модерации');
+        $this->validate($request, $rules, $messages);
 
-        } catch (\Exception $e) {
-            dd($e->getMessage());
+        $data = array_map('strip_tags', $request->only(['product_id', 'body']));
+
+        if(Auth::check())
+        {
+            $data = array_merge($data, ['user_id' => Auth::user()->id, 'active' => 0]);
+        }else{
+            $data = array_merge($data, ['user_id' => '292', 'active' => 0]);
         }
 
+        Review::create($data);
+
+        return response('<h3 align="center">Ваш отзыв будет опубликован после модерации</h3>');
+        exit;
 
     }
 

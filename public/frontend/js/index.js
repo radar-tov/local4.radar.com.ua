@@ -17,6 +17,18 @@ $(document).ready(function() {
         closeEffect	: 'none'
     });
 
+    $(".various1").fancybox({
+        maxWidth	: 500,
+        maxHeight	: 800,
+        fitToView	: false,
+        width		: '70%',
+        height		: '90%',
+        autoSize	: false,
+        closeClick	: false,
+        openEffect	: 'none',
+        closeEffect	: 'none'
+    });
+
     setTimeout(function() {
         var partner = document.getElementById('partner');
         partner.style.display = 'block';
