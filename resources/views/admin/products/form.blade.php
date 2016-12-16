@@ -468,37 +468,11 @@
 
             <div id="files" class="tab-pane">
                 <div class="col-md-12" id="files-section">
-                    <div id="filesup" v-show="PDF_list">
-                        <span>@{{ PDF_list }}</span>
-                    </div>
-                    
-                    <div>
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                                <td>Имя файла</td>
-                                <td>Путь к файлу</td>
-                                <td>Скачан раз</td>
-                                <td>Редактировать</td>
-                                <td>Удалить</td>
-                            </thead>
-                            <tbody>
-                                @if(isset($product->files))
-                                    @foreach($product->files as $file)
-                                        <tr>
-                                            <td>{{ $file->name }}</td>
-                                            <td>{{ $file->path }}</td>
-                                            <td>{{ $file->downloads }}</td>
-                                            <td>edit</td>
-                                            <td>delete</td>
-                                        </tr>
-                                    @endforeach
-                                @endif
-                            </tbody>
-                        </table>
-                    </div>
-                    {!!Form::label('pdf_new', "Выбрать PDF",["class" => "btn btn-success btn-sm"]) !!}
-                    <input type="hidden" name="product_id" value="{{ $product->id }}"/>
-                    <input type="file" name="pdf_new" id="pdf_new" v-on="change: loadPDF" v-el="pdfInput" multiple>
+                    <div id="filesup" v-show="getPdfList"></div>
+
+                    {{--{!!Form::label('pdf_new', "Выбрать PDF",["class" => "btn btn-success btn-sm"]) !!}--}}
+                    {{--<input type="hidden" name="product_id" value="{{ $product->id }}"/>--}}
+                    {{--<input type="file" name="pdf_new" id="pdf_new" v-on="change: loadPDF" v-el="pdfInput" multiple>--}}
 
                     <hr>
 

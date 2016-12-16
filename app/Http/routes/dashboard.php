@@ -108,8 +108,6 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
 		post("get-images/{accommodation_id}", "ProductImagesController@getProductImages");
 		post("remove-image/{image_id}", "ProductImagesController@removeImage");
 		post("set-thumbnail/{image_id}", "ProductImagesController@setThumbnail");
-		post("upload-pdf","ProductsController@uploadPDF");
-		post("remove-pdf/{product_id}", "ProductsController@removePDF");
 		post("remove-flash/{product_id}", "ProductsController@removeFlash");
 
 
@@ -123,6 +121,12 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
 		get('/index',['as'=>'dashboard.index','uses'=>'DashboardController@getIndex']);
 		put('/{id}',['as'=>'dashboard.update','uses'=>'DashboardController@putIndex']);
 
+		/* PDF */
+		post("upload-pdf","ProductsController@uploadPDF");
+		post("remove-pdf/{product_id}", "ProductsController@removePDF");
+		resource("pdf/{id?}", 'PdfController');
+
+		/* end PDF */
 
 	});
 

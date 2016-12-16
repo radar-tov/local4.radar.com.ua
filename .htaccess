@@ -20,32 +20,32 @@ RewriteRule ^(.*)$ http://radar.com.ua/$1 [R=301,L]
 
 
 
-<ifModule mod_expires.c>
-    ExpiresActive On
-    ExpiresDefault "access plus 3600 seconds"
-    ExpiresByType image/gif "access plus 2592000 seconds"
-    ExpiresByType image/jpeg "access plus 2592000 seconds"
-    ExpiresByType image/png "access plus 2592000 seconds"
-    ExpiresByType text/css "access plus 604800 seconds"
-    ExpiresByType text/javascript "access plus 604800 seconds"
-    ExpiresByType application/x-javascript "access plus 604800 seconds"
-</ifModule>
+#<ifModule mod_expires.c>
+#    ExpiresActive On
+#    ExpiresDefault "access plus 3600 seconds"
+#    ExpiresByType image/gif "access plus 2592000 seconds"
+#    ExpiresByType image/jpeg "access plus 2592000 seconds"
+#    ExpiresByType image/png "access plus 2592000 seconds"
+#    ExpiresByType text/css "access plus 604800 seconds"
+#    ExpiresByType text/javascript "access plus 604800 seconds"
+#    ExpiresByType application/x-javascript "access plus 604800 seconds"
+#</ifModule>
 
 
 ### Подсказать браузеру схему кеширования через заголовки в ответе сервера
 # 43200 - день, 604800 - неделя, 2592000 - месяц
 
-<ifModule mod_headers.c>
-    <filesMatch ".(ico|pdf|flv|jpg|jpeg|png|gif|swf|woff)$">
-        Header set Cache-Control "max-age=2592000, public"
-    </filesMatch>
-    <filesMatch ".(css|js)$">
-        Header set Cache-Control "max-age=604800, public"
-    </filesMatch>
-    <filesMatch ".(html|txt)$">
-        Header set Cache-Control "max-age=172800, public, must-revalidate"
-    </filesMatch>
-</ifModule>
+#<ifModule mod_headers.c>
+#    <filesMatch ".(ico|pdf|flv|jpg|jpeg|png|gif|swf|woff)$">
+#        Header set Cache-Control "max-age=2592000, public"
+#    </filesMatch>
+#    <filesMatch ".(css|js)$">
+#        Header set Cache-Control "max-age=604800, public"
+#    </filesMatch>
+#    <filesMatch ".(html|txt)$">
+#        Header set Cache-Control "max-age=172800, public, must-revalidate"
+#    </filesMatch>
+#</ifModule>
 
 <ifModule mod_headers.c>
     <filesMatch ".(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf|woff)$">

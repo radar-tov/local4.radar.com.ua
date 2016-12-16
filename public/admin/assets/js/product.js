@@ -20,6 +20,7 @@ new Vue({
         }, 1000);
 
         this.getFilterValues();
+        this.getPdfList();
         this.initSelectize();
 
     },
@@ -37,6 +38,7 @@ new Vue({
         flashObject:{},
         video: {},
         filterValues: [],
+        pdfList: [],
         productsList:{
             products:{},
             pagination:{
@@ -297,16 +299,17 @@ new Vue({
                     data.append('_token', this.token);
                     data.append('productId',this.productId);
                     $.ajax({
-                        url: '/dashboard/upload-pdf',
+                        url: '/dashboard/pdf',
                         type: 'POST',
                         data: data,
                         processData: false,
                         contentType: false,
                         dataType: 'json'
-                    }).done(function(pdf){
-                        that.PDF_list.push(pdf);
-                        that.pdf.push(pdf);
-                        console.log(pdf);
+                    }).done(function(){
+                        that.getPdfList();
+                        //that.PDF_list.push(pdf);
+                        //that.pdf.push(pdf);
+                        console.log('asdfasdf');
                        
                     }).fail(function(jqXHR, textStatus, errorThrown){ //replaces .error
                         console.log("error");
@@ -420,6 +423,17 @@ new Vue({
                 create: true,
                 createOnBlur: true,
                 sortField: 'text'
+            });
+        },
+
+        getPdfList: function(){
+            var vue = this;
+            $.ajax({
+                type: "GET",
+                url: "/dashboard/pdf/" + vue.productId,
+                data: {_token : vue.token}
+            }).done(function(response){
+                $("#filesup").html(response);
             });
         }
     }
