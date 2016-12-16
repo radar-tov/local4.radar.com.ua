@@ -182,6 +182,7 @@ class FrontendController extends BaseController
 		->with(
             'relevantSale',
             'images',
+			'files',
             'category',
             'relatedProducts',
             'rates.users',

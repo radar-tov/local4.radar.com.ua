@@ -89,7 +89,7 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
 		resource('static_pages', 'StaticPagesController');
 		resource('articles', 'ArticlesController');
 		resource('sliders', 'SlidersController');
-                resource('slider2','Slider2Controller');
+		resource('slider2','Slider2Controller');
 		post('categories/order', ['as' => 'dashboard.categories.order', 'uses' => 'CategoriesController@order']);
 		resource('categories', 'CategoriesController');
 		resource('banners', 'BannersController');
@@ -108,7 +108,7 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
 		post("get-images/{accommodation_id}", "ProductImagesController@getProductImages");
 		post("remove-image/{image_id}", "ProductImagesController@removeImage");
 		post("set-thumbnail/{image_id}", "ProductImagesController@setThumbnail");
-                post("upload-pdf","ProductsController@uploadPDF");
+		post("upload-pdf","ProductsController@uploadPDF");
 		post("remove-pdf/{product_id}", "ProductsController@removePDF");
 		post("remove-flash/{product_id}", "ProductsController@removeFlash");
 

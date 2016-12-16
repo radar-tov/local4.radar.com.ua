@@ -378,14 +378,10 @@ class ProductsController extends AdminController
 
     public function uploadPDF(Request $request)
     {
-
         $product = Product::find($request->get('productId'));
         $request = $this->filesHandler->saveFile($request, $this->path);
         $product->pdf = $request->get('file');
-        $product->save();
         return \Response::json($product->pdf);
-
-
     }
 
     public function removeFlash($productId)

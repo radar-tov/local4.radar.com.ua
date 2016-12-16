@@ -98,6 +98,10 @@ class Product extends Eloquent {
 			->orderBy('is_thumb', 'desc');
 	}
 
+	public function files() {
+		return $this->belongsToMany('App\Models\File', 'file_product', 'product_id', 'file_id')->where('file_product.show', 1)->where('files.show', 1);
+	}
+
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
 	 */

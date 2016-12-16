@@ -2,7 +2,7 @@
 
 
 @section('seo')
-    <title>{{ $product->meta_title ?: $product->title }}</title>
+    <title xmlns="http://www.w3.org/1999/html">{{ $product->meta_title ?: $product->title }}</title>
     <meta name="description" content="{{ $product->meta_description ?: $product->excerpt }}"/>
     <meta name="keywords" content="{{ $product->meta_keywords ?: $product->title }}"/>
 @endsection
@@ -173,14 +173,17 @@
                     <div class="tech_docs">
                         <div class="tech_doc col s6 m6 l12">
                             <h5>Техническая документация</h5>
-                            <div class="">
-                                <a class="instruction {{ $product->pdf ? '' : '_disabled' }} "
-                                   href="/{{ $product->pdf }}"
-                                   onclick="yaCounter39848700.file('{{ $product->pdf }}', {params: '{{ $product->title }}'}); ga('send', 'event', 'PDF', '{{ $product->title }}'); return true;"
-                                   target="_blank">
-                                    <span>&#8811 инструкция</span>
-                                </a>
-                            </div>
+                            @if($product->files)
+                                @foreach($product->files as $file)
+                                    <a class="instruction {{ $file->path ? '' : '_disabled' }} "
+                                       href="/{{ $file->path }}"
+                                       onclick="yaCounter39848700.file('{{ $file->path }}', {params: '{{ $file->name }}'}); ga('send', 'event', 'PDF', '{{ $file->name }}'); return true;"
+                                       target="_blank">
+                                        <span>&#8811 {{ $file->name }}</span></br>
+                                    </a>
+                                    <a class="instruction _disabled"><span>скачан {{ $file->downloads }} раз</span></a></br>
+                                @endforeach
+                            @endif
                         </div>
 
                        {{--<!-- <div class="tech_doc col s6 m6 l12">--}}

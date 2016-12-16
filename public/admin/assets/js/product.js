@@ -305,7 +305,7 @@ new Vue({
                         dataType: 'json'
                     }).done(function(pdf){
                         that.pdf.push(pdf);
-
+                        console.log(pdf);
                        
                     }).fail(function(jqXHR, textStatus, errorThrown){ //replaces .error
                         console.log("error");

@@ -101,6 +101,12 @@
                 </a>
             </li>
             <li class="">
+                <a data-toggle="tab" href="#files">
+                    <i class="red ace-icon fa fa-file"></i>
+                    Файлы
+                </a>
+            </li>
+            <li class="">
                 <a data-toggle="tab" href="#additionalProducts" v-on="click:getProducts()">
                     <i class="ace-icon fa fa-cart-plus"></i>
                     Сопутств. товары
@@ -354,64 +360,64 @@
 
                      
 
-                    <hr/>
+                    {{--<hr/>--}}
                     {{--{{ dd($product->pdf) }}--}}
-                    {!!Form::label('pdf', "Загрузить PDF",["class" => "btn btn-success btn-sm"]) !!}
-                    @if(isset($product->pdf) && !empty($product->pdf))
+                    {{--{!!Form::label('pdf', "Загрузить PDF",["class" => "btn btn-success btn-sm"]) !!}--}}
+                    {{--@if(isset($product->pdf) && !empty($product->pdf))--}}
                         {{--*/ $pdfName = explode('/', $product->pdf);/*--}}
-                    @endif
-                    
-                    
-                    <input type="hidden" v-model="PDF" value="{{ isset($pdfName) ? array_pop($pdfName) : '' }}"/>
-                    <input type="file" name="pdf" id="pdf" v-on="change: loadPDF" v-el="pdfInput" multiple>
-                    <div class="pdf" v-show="PDF">
-                        <img src="/admin/assets/img/PDF-icon.png" alt="pdf file"/>
-                        <span>@{{ PDF }}</span>
-                        <a href="#"><i class="fa fa-remove" title="удалить PDF" v-on="click: removePDF($event)"></i></a>
-                    </div>
-
-                    <br>
-                    <br>
-
-                    <div class="form-group">
-                        {!!
-                        Form::label(
-                        'cerf', "Загрузить сертификаты ( @{{ certificateImages.length }}/15 )",
-                        ["class" => "btn btn-success btn-sm", "disabled" => "@{{ isDisabled }}"]
-                        ) !!}
-                        <input type="file" name="image" id="cerf" v-on="change: loadImage($event)" multiple>
-                    </div>
-
-                    <div class="image-box clearfix" v-show="images">
-                        <div class="thumb" v-repeat="image: certificateImages">
+                    {{--@endif--}}
 
 
+                    {{--<input type="hidden" v-model="PDF" value="{{ isset($pdfName) ? array_pop($pdfName) : '' }}"/>--}}
+                    {{--<input type="file" name="pdf" id="pdf" v-on="change: loadPDF" v-el="pdfInput" multiple>--}}
+                    {{--<div class="pdf" v-show="PDF">--}}
+                        {{--<img src="/admin/assets/img/PDF-icon.png" alt="pdf file"/>--}}
+                        {{--<span>@{{ PDF }}</span>--}}
+                        {{--<a href="#"><i class="fa fa-remove" title="удалить PDF" v-on="click: removePDF($event)"></i></a>--}}
+                    {{--</div>--}}
 
-                        <span class="remove" v-on="click: removeImage(image)">
-                            <i class="fa fa-remove"></i>
-                        </span>
-                            <img v-attr="src: image.path " alt="test"/>
-                        </div>
-                        {!! Form::hidden("product-id",
-                        $value = isset($product->id) ? $product->id : null,
-                        ["v-model" => "productId"]) !!}
+                    {{--<br>--}}
+                    {{--<br>--}}
 
-                    </div>
+                    {{--<div class="form-group">--}}
+                        {{--{!!--}}
+                        {{--Form::label(--}}
+                        {{--'cerf', "Загрузить сертификаты ( @{{ certificateImages.length }}/15 )",--}}
+                        {{--["class" => "btn btn-success btn-sm", "disabled" => "@{{ isDisabled }}"]--}}
+                        {{--) !!}--}}
+                        {{--<input type="file" name="image" id="cerf" v-on="change: loadImage($event)" multiple>--}}
+                    {{--</div>--}}
 
-                    <hr/>
+                    {{--<div class="image-box clearfix" v-show="images">--}}
+                        {{--<div class="thumb" v-repeat="image: certificateImages">--}}
 
-                    {!!Form::label('flash', "Загрузить 3D просмотр",["class" => "btn btn-success btn-sm"]) !!}
-                    @if(isset($product->flash_view) && !empty($product->flash_view))
+
+
+                        {{--<span class="remove" v-on="click: removeImage(image)">--}}
+                            {{--<i class="fa fa-remove"></i>--}}
+                        {{--</span>--}}
+                            {{--<img v-attr="src: image.path " alt="test"/>--}}
+                        {{--</div>--}}
+                        {{--{!! Form::hidden("product-id",--}}
+                        {{--$value = isset($product->id) ? $product->id : null,--}}
+                        {{--["v-model" => "productId"]) !!}--}}
+
+                    {{--</div>--}}
+
+                    {{--<hr/>--}}
+
+                    {{--{!!Form::label('flash', "Загрузить 3D просмотр",["class" => "btn btn-success btn-sm"]) !!}--}}
+                    {{--@if(isset($product->flash_view) && !empty($product->flash_view))--}}
                         {{--*/ $flashName = explode('/', $product->flash_view);/*--}}
-                    @endif
+                    {{--@endif--}}
 
-                    <input type="hidden" v-model="flashObject" value="{{ isset($flashName) ? array_pop($flashName) : '' }}"/>
-                    <input type="file" name="flash_view" id="flash" v-on="change: load3D" v-el="flashInput">
-                    <div class="pdf" v-show="flashObject">
-                        <img src="/admin/assets/img/3d.png" alt="3d file"/>
-                        <span>@{{ flashObject }}</span>
-                        <a href="#"><i class="fa fa-remove" title="удалить 3D просмотр" v-on="click: removeFlash($event)"></i></a>
-                    </div>
+                    {{--<input type="hidden" v-model="flashObject" value="{{ isset($flashName) ? array_pop($flashName) : '' }}"/>--}}
+                    {{--<input type="file" name="flash_view" id="flash" v-on="change: load3D" v-el="flashInput">--}}
+                    {{--<div class="pdf" v-show="flashObject">--}}
+                        {{--<img src="/admin/assets/img/3d.png" alt="3d file"/>--}}
+                        {{--<span>@{{ flashObject }}</span>--}}
+                        {{--<a href="#"><i class="fa fa-remove" title="удалить 3D просмотр" v-on="click: removeFlash($event)"></i></a>--}}
+                    {{--</div>--}}
 
 
                     {{--<div class="col-xs-12">--}}
@@ -439,7 +445,7 @@
                     <hr/>
 
                     <div class="row">
-                        <a href="#" class="btn btn-success btn-sm" v-on="click: loadVideo($event)">Загрузить видео обзор</a>
+                        <a href="#" class="btn btn-success btn-sm" v-on="click: loadVideo($event)">Загрузить видео</a>
                         <div class="clearfix"></div>
                         <input type="hidden" name="video" v-model="video" value="{{ $product->video or null}}"/>
                         <div class="m-cont" v-if="video" style="margin-top: 20px">
@@ -458,6 +464,29 @@
 
 
             </div>
+
+
+            <div id="files" class="tab-pane">
+                <div class="col-md-12" id="files-section">
+                    {!!Form::label('pdf', "Загрузить PDF",["class" => "btn btn-success btn-sm"]) !!}
+                    @if(isset($product->pdf) && !empty($product->pdf))
+                        {{--*/ $pdfName = explode('/', $product->pdf);/*--}}
+                    @endif
+
+
+                    <input type="hidden" v-model="PDF" value="{{ isset($pdfName) ? array_pop($pdfName) : '' }}"/>
+                    <input type="file" name="pdf" id="pdf" v-on="change: loadPDF" v-el="pdfInput" multiple>
+                    <div class="pdf" v-show="PDF">
+                        <img src="/admin/assets/img/PDF-icon.png" alt="pdf file"/>
+                        <span>@{{ PDF }}</span>
+                        <a href="#"><i class="fa fa-remove" title="удалить PDF" v-on="click: removePDF($event)"></i></a>
+                    </div>
+                </div>
+            </div>
+
+
+
+
             <div id="additionalProducts" class="tab-pane">
                 <div class="col-xs-12">
                     <div class="_cover" v-el="cover"></div>
