@@ -304,6 +304,7 @@ new Vue({
                         contentType: false,
                         dataType: 'json'
                     }).done(function(pdf){
+                        that.PDF_list.push(pdf);
                         that.pdf.push(pdf);
                         console.log(pdf);
                        

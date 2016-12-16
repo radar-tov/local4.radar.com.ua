@@ -184,7 +184,7 @@ class ProductsController extends AdminController
     public function edit(Category $categories, $id)
     {
         $product = $this->product
-            ->with('images', 'category', 'category.filters', 'characteristicsValues', 'category.strain.values', 'filters')
+            ->with('images', 'category', 'category.filters', 'characteristicsValues', 'category.strain.values', 'filters', 'files')
             ->withTrashed()
             ->findOrFail($id);
 
@@ -380,6 +380,10 @@ class ProductsController extends AdminController
     {
         $product = Product::find($request->get('productId'));
         $request = $this->filesHandler->saveFile($request, $this->path);
+
+        
+
+
         $product->pdf = $request->get('file');
         return \Response::json($product->pdf);
     }
