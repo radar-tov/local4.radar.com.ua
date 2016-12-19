@@ -64,4 +64,8 @@ class File extends Model
     public function updateProduct($request){
         DB::table('file_product')->where('product_id', $request->productID)->where('file_id', $request->fileID)->update(['show' => $request->showProduct]);
     }
+
+    public function getfileProduct($product_id){
+        return DB::table('file_product')->where('product_id', $product_id)->get();
+    }
 }

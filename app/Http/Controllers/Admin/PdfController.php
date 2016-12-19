@@ -58,9 +58,11 @@ class PdfController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(File $file, $id)
     {
-        //
+        $file_product = $file->getfileProduct($id);
+        $file = $file->get();
+        return view('admin.pdf.add',compact('file', 'file_product'));
     }
 
     /**
