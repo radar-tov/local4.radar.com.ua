@@ -475,19 +475,27 @@
                             <td>Имя файла</td>
                             <td>Путь к файлу</td>
                             <td>Скачан раз</td>
-                            <td>Редактировать</td>
-                            <td>Удалить</td>
+                            <td></td>
+                            <td></td>
                             </thead>
                             <tbody>
                             @if(isset($product->files))
                                 @foreach($product->files as $file)
-                                    <tr class="pdf">
-                                        <td>{!! ($file->show == 1) ? "<img src='/admin/assets/img/PDF-icon.png' alt='pdf file'/>" : '' !!}</td>
+                                    <tr>
+                                        <td>{!! ($file->show == 1) ? '' : '' !!}</td>
                                         <td>{{ $file->name }}</td>
                                         <td>{{ $file->path }}</td>
                                         <td>{{ $file->downloads }}</td>
-                                        <td><a id="otvet" class="various fancybox.ajax" href="{{ url('dashboard/pdf/'.$file->id) }}">Ajax</a></td>
-                                        <td><a href="#"><i class="fa fa-remove" title="удалить PDF" v-on="click: removePDF($event, {{ $file->id }})"></i></a></td>
+                                        <td>
+                                            <a id="otvet" class="various fancybox.ajax" href="{{ url('dashboard/pdf/'.$file->id.'/'.$product->id) }}">
+                                                <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#">
+                                                <i class="ace-icon fa fa-trash-o bigger-120" title="удалить PDF" v-on="click: removePDF($event, {{ $file->id }})"></i>
+                                            </a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             @endif
@@ -495,18 +503,16 @@
                         </table>
                     </div>
 
-
-
-                    {{--{!!Form::label('pdf_new', "Выбрать PDF",["class" => "btn btn-success btn-sm"]) !!}--}}
-                    {{--<input type="hidden" name="product_id" value="{{ $product->id }}"/>--}}
-                    {{--<input type="file" name="pdf_new" id="pdf_new" v-on="change: loadPDF" v-el="pdfInput" multiple>--}}
-
                     <hr>
 
+                    <button id="otvet" class="various fancybox.ajax btn btn-success btn-sm" href="{{ url('dashboard/pdf/add', $product->id) }}">
+                        Выбрать файл
+                    </button>
 
-                    {!!Form::label('pdf', "Загрузить PDF",["class" => "btn btn-success btn-sm"]) !!}
+                    {!!Form::label('pdf', "Загрузить",["class" => "btn btn-success btn-sm"]) !!}
                     <input type="hidden" v-model="PDF" value="{{ isset($pdfName) ? array_pop($pdfName) : '' }}"/>
                     <input type="file" name="pdf" id="pdf" v-on="change: loadPDF" v-el="pdfInput" multiple>
+
                 </div>
             </div>
 

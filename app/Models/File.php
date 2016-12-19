@@ -7,6 +7,16 @@ use Illuminate\Support\Facades\DB;
 
 class File extends Model
 {
+    protected $fillable = [
+        'name',
+        'path',
+        'hash_name',
+        'downloads',
+        'show',
+        'created_at',
+        'updated_at'
+    ];
+
     public function add($path, $product_id){
         $date = new \DateTime('NOW');
         $id = DB::table('files')->insertGetId([
@@ -45,5 +55,13 @@ class File extends Model
             return true;
         }
         return false;
+    }
+
+    public function visible($file_id, $product_id){
+        return DB::table('file_product')->where('product_id', $product_id)->where('file_id', $file_id)->first();
+    }
+
+    public function updateProduct($request){
+        DB::table('file_product')->where('product_id', $request->productID)->where('file_id', $request->fileID)->update(['show' => $request->showProduct]);
     }
 }

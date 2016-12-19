@@ -125,7 +125,9 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
 		post("upload-pdf","ProductsController@uploadPDF");
 		post("remove-pdf", "ProductsController@removePDF");
 		get("pdf", 'PdfController@index');
-		get("pdf/{id}", 'PdfController@edit');
+		get("pdf/add/{id}", 'PdfController@show');
+		get("pdf/{id}/{productID}", 'PdfController@edit');
+		post("pdf", 'PdfController@update');
 
 		/* end PDF */
 

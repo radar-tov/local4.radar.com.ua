@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\File;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Response;
 
 class PdfController extends Controller
 {
@@ -67,11 +69,12 @@ class PdfController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(File $file, $id)
+    public function edit(File $file, $id, $productID)
     {
         $file = $file->where('id', $id)->first();
+        $productShow = $file->visible($id, $productID);
 
-        return view('admin.pdf.edit', compact('file'));
+        return view('admin.pdf.edit', compact('file', 'productShow'));
     }
 
     /**
@@ -81,9 +84,22 @@ class PdfController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, File $file)
     {
-        //
+        $file = $file->where('id', $request->fileID)->first();
+
+        $request = $this->isCheckbox($request, $request->show, 'show');
+        $request = $this->isCheckbox($request, $request->showProduct, 'showProduct');
+//dd($request->all());
+        $file->updateProduct($request);
+
+        if($file->update($request->all())){
+            return '<h3 align="center">Сохранено</h3>';
+        }else{
+            return response()->json(['status'=>'error']);
+        }
+
+
     }
 
     /**
@@ -95,5 +111,15 @@ class PdfController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function isCheckbox($request, $checkbox, $name)
+    {
+        if (isset($checkbox) && $checkbox == 'on') {
+            $request->merge([$name => true]);
+        } else {
+            $request->merge([$name => false]);
+        }
+        return $request;
     }
 }
