@@ -19,6 +19,7 @@ Use App\Http\Requests\Product\UpdateRequest;
 use Illuminate\Queue\RedisQueue;
 use Illuminate\Support\Facades\Response;
 use Mockery\CountValidator\Exception;
+use App\models\File;
 
 /**
  * Class ProductsController
@@ -361,31 +362,33 @@ class ProductsController extends AdminController
     /**
      * @param $productId
      */
-    public function removePDF($productId)
+    public function removePDF(Request $request, File $file)
     {
-        $product = Product::find($productId);
-
-        if ($product) {
-            if (file_exists(public_path($product->pdf)) && is_file(public_path($product->pdf))) {
-                $path = public_path($product->pdf);
-                unlink($path);
+        if(isset($request->productId) && isset($request->fileId)){
+            if(!$file->deletFileProduct($request->productId, $request->fileId)){
+                if($file->deletFile($request->fileId)){
+                    return \Response::json('File delete all.');
+                }
+                return \Response::json('Error.');
             }
-            $product->pdf = null;
-            $product->save();
+            return \Response::json('File delete to product.');
+        }else{
+            abort('Error', 422);
         }
 
     }
 
-    public function uploadPDF(Request $request)
+    public function uploadPDF(Request $request, File $file)
     {
         $product = Product::find($request->get('productId'));
         $request = $this->filesHandler->saveFile($request, $this->path);
-
-        
-
-
         $product->pdf = $request->get('file');
-        return \Response::json($product->pdf);
+
+        if($file->add($product->pdf, $request->get('productId'))){
+            return \Response::json($product->pdf);
+        }else{
+            abort('Error', 422);
+        }
     }
 
     public function removeFlash($productId)

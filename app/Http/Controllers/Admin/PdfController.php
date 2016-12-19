@@ -16,10 +16,10 @@ class PdfController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index(Request $request)
     {
         $files = DB::table('file_product')->leftJoin('files', 'files.id', '=', 'file_product.file_id')
-            ->where('file_product.product_id', $id)
+            ->where('file_product.product_id', $request->id)
             ->where('file_product.show', 1)
             ->where('files.show', 1)->get();
 
@@ -67,9 +67,11 @@ class PdfController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(File $file, $id)
     {
-        //
+        $file = $file->where('id', $id)->first();
+
+        return view('admin.pdf.edit', compact('file'));
     }
 
     /**

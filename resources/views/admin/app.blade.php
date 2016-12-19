@@ -68,6 +68,7 @@
     <!--[if lte IE 8]>
         <script src="{!! url('admin/assets/js/html5shiv.js') !!}"></script>
         <script src="{!! url('admin/assets/js/respond.min.js') !!}"></script>
+
     <![endif]-->
     <!--[if !IE]> -->
     <script type="text/javascript">
@@ -80,6 +81,9 @@
         window.jQuery || document.write("<script src='/admin/assets/js/jquery1x.min.js'>"+"<"+"/script>");
     </script>
     <![endif]-->
+    <link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="/fancybox/lib/jquery.mousewheel.pack.js"></script>
+    <script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js"></script>
     @yield('top-scripts')
     @yield('tiny')
 </head>
@@ -318,5 +322,6 @@
 @yield('bottom-scripts')
 {{--@include('admin.partials.messages')--}}
 <script src="{!! url('admin/assets/js/bootstrap.min.js') !!}"></script>
+<script src="{!! url('admin/assets/js/index.js') !!}"></script>
 </body>
 </html>

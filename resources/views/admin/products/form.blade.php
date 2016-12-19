@@ -468,7 +468,34 @@
 
             <div id="files" class="tab-pane">
                 <div class="col-md-12" id="files-section">
-                    <div id="filesup" v-show="getPdfList"></div>
+                    <div id="filesup" v-show="getPdfList">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <td></td>
+                            <td>Имя файла</td>
+                            <td>Путь к файлу</td>
+                            <td>Скачан раз</td>
+                            <td>Редактировать</td>
+                            <td>Удалить</td>
+                            </thead>
+                            <tbody>
+                            @if(isset($product->files))
+                                @foreach($product->files as $file)
+                                    <tr class="pdf">
+                                        <td>{!! ($file->show == 1) ? "<img src='/admin/assets/img/PDF-icon.png' alt='pdf file'/>" : '' !!}</td>
+                                        <td>{{ $file->name }}</td>
+                                        <td>{{ $file->path }}</td>
+                                        <td>{{ $file->downloads }}</td>
+                                        <td><a id="otvet" class="various fancybox.ajax" href="{{ url('dashboard/pdf/'.$file->id) }}">Ajax</a></td>
+                                        <td><a href="#"><i class="fa fa-remove" title="удалить PDF" v-on="click: removePDF($event, {{ $file->id }})"></i></a></td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                            </tbody>
+                        </table>
+                    </div>
+
+
 
                     {{--{!!Form::label('pdf_new', "Выбрать PDF",["class" => "btn btn-success btn-sm"]) !!}--}}
                     {{--<input type="hidden" name="product_id" value="{{ $product->id }}"/>--}}
@@ -480,11 +507,6 @@
                     {!!Form::label('pdf', "Загрузить PDF",["class" => "btn btn-success btn-sm"]) !!}
                     <input type="hidden" v-model="PDF" value="{{ isset($pdfName) ? array_pop($pdfName) : '' }}"/>
                     <input type="file" name="pdf" id="pdf" v-on="change: loadPDF" v-el="pdfInput" multiple>
-                    <div class="pdf" v-show="PDF">
-                        <img src="/admin/assets/img/PDF-icon.png" alt="pdf file"/>
-                        <span>@{{ PDF }}</span>
-                        <a href="#"><i class="fa fa-remove" title="удалить PDF" v-on="click: removePDF($event)"></i></a>
-                    </div>
                 </div>
             </div>
 

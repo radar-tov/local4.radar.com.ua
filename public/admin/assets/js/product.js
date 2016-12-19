@@ -20,7 +20,6 @@ new Vue({
         }, 1000);
 
         this.getFilterValues();
-        this.getPdfList();
         this.initSelectize();
 
     },
@@ -34,6 +33,7 @@ new Vue({
         title: null,
         slug:null,
         pdf: [],
+        fileId: [],
         fields: {},
         flashObject:{},
         video: {},
@@ -299,7 +299,7 @@ new Vue({
                     data.append('_token', this.token);
                     data.append('productId',this.productId);
                     $.ajax({
-                        url: '/dashboard/pdf',
+                        url: '/dashboard/upload-pdf',
                         type: 'POST',
                         data: data,
                         processData: false,
@@ -324,16 +324,20 @@ new Vue({
 
         },
 
-        removePDF: function(event){
+        removePDF: function(event, fileID){
             event.preventDefault();
             var vue = this;
             $(this.$$.pdfInput).val(null);
             $.ajax({
                 type: "POST",
-                url: "/dashboard/remove-pdf/" + vue.productId,
-                data: {_token : vue.token}
+                url: "/dashboard/remove-pdf",
+                data: {
+                    _token : vue.token,
+                    productId : vue.productId,
+                    fileId : fileID
+                }
             }).done(function(){
-                vue.PDF = null;
+                vue.getPdfList();
             });
         },
 
@@ -430,8 +434,8 @@ new Vue({
             var vue = this;
             $.ajax({
                 type: "GET",
-                url: "/dashboard/pdf/" + vue.productId,
-                data: {_token : vue.token}
+                url: "/dashboard/pdf",
+                data: {_token : vue.token, id: vue.productId}
             }).done(function(response){
                 $("#filesup").html(response);
             });
