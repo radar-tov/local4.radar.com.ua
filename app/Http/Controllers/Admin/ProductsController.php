@@ -19,7 +19,7 @@ Use App\Http\Requests\Product\UpdateRequest;
 use Illuminate\Queue\RedisQueue;
 use Illuminate\Support\Facades\Response;
 use Mockery\CountValidator\Exception;
-use App\models\File;
+use App\Models\File;
 
 /**
  * Class ProductsController
