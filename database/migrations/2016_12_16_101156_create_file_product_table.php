@@ -17,7 +17,7 @@ class CreateFileProductTable extends Migration
             $table->increments('id');
             $table->integer('file_id');
             $table->integer('product_id');
-            $table->boolean('show')->default(false);
+            $table->boolean('show')->default(true);
         });
     }
 

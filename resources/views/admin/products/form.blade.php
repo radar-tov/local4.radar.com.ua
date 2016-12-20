@@ -482,18 +482,18 @@
                             @if(isset($product->files))
                                 @foreach($product->files as $file)
                                     <tr>
-                                        <td>{!! ($file->show == 1) ? '' : '' !!}</td>
-                                        <td>{{ $file->name }}</td>
+                                        <td>{!! ($file->show == 1) ? '1' : '0' !!}</td>
+                                        <td>{{ $file->admin_name }}</td>
                                         <td>{{ $file->path }}</td>
                                         <td>{{ $file->downloads }}</td>
                                         <td>
-                                            <a id="otvet" class="various fancybox.ajax" href="{{ url('dashboard/pdf/'.$file->id.'/'.$product->id) }}">
+                                            <a id="otvet" class="fileedit fancybox.ajax" href="{{ url('dashboard/pdf/'.$file->id.'/'.$product->id) }}">
                                                 <i class="ace-icon fa fa-pencil bigger-130"></i>
                                             </a>
                                         </td>
                                         <td>
                                             <a href="#">
-                                                <i class="ace-icon fa fa-trash-o bigger-120" title="удалить PDF" v-on="click: removePDF($event, {{ $file->id }})"></i>
+                                                <i class="ace-icon fa fa-trash-o bigger-120" title="удалить" v-on="click: removePDF($event, {{ $file->id }})"></i>
                                             </a>
                                         </td>
                                     </tr>
@@ -505,7 +505,7 @@
 
                     <hr>
 
-                    <button id="otvet" class="various fancybox.ajax btn btn-success btn-sm" href="{{ url('dashboard/pdf/add', $product->id) }}">
+                    <button id="otvet" class="various fancybox.ajax btn btn-success btn-sm" href="{{ url('dashboard/pdf/add/'.$product->category_id, $product->id) }}">
                         Выбрать файл
                     </button>
 

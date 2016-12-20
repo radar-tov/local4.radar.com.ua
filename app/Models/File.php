@@ -14,7 +14,9 @@ class File extends Model
         'downloads',
         'show',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'admin_name',
+        'category_id'
     ];
 
     public function add($path, $product_id){
@@ -28,7 +30,8 @@ class File extends Model
 
         if(DB::table('file_product')->insert([
                 'file_id'       =>  $id,
-                'product_id'    =>  $product_id, 'show'=>1
+                'product_id'    =>  $product_id,
+                'show'          =>  1
             ])
         ){
             return true;
@@ -62,10 +65,23 @@ class File extends Model
     }
 
     public function updateProduct($request){
-        DB::table('file_product')->where('product_id', $request->productID)->where('file_id', $request->fileID)->update(['show' => $request->showProduct]);
+        DB::table('file_product')->where('product_id', $request->productID)->where('file_id', $request->fileID)->update(['show' => ($request->showProduct == 'true') ? 1 : 0 ]);
     }
 
     public function getfileProduct($product_id){
         return DB::table('file_product')->where('product_id', $product_id)->get();
+    }
+
+    public function addSelectFile($request){
+        foreach($request->fileID as $fileID){
+            if($fileID != ''){
+                $mas[] = [ 'product_id' => $request->productID, 'file_id' => $fileID, 'show' => 1];
+            }
+        }
+        if(DB::table('file_product')->insert($mas)){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

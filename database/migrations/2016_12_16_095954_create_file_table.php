@@ -15,11 +15,13 @@ class CreateFileTable extends Migration
         Schema::create('files', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->integer('category_id');
             $table->string('name', 255)->nullable();
-            $table->string('path', 255);
+            $table->string('path', 255)->nullable();
             $table->string('hash_name', 255)->nullable();
+            $table->string('admin_name', 255)->nullable();
             $table->integer('downloads')->default(0);
-            $table->boolean('show')->default(false);
+            $table->boolean('show')->default(true);
             $table->timestamps();
         });
     }

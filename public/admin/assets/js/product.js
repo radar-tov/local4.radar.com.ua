@@ -309,7 +309,7 @@ new Vue({
                         that.getPdfList();
                         //that.PDF_list.push(pdf);
                         //that.pdf.push(pdf);
-                        console.log('asdfasdf');
+                        //console.log('asdfasdf');
                        
                     }).fail(function(jqXHR, textStatus, errorThrown){ //replaces .error
                         console.log("error");
