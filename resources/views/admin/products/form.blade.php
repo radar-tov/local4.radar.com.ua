@@ -510,7 +510,7 @@
                     </button>
 
                     {!!Form::label('pdf', "Загрузить",["class" => "btn btn-success btn-sm"]) !!}
-                    <input type="hidden" v-model="PDF" value="{{ isset($pdfName) ? array_pop($pdfName) : '' }}"/>
+                    <input type="hidden" v-model="PDF"/>
                     <input type="file" name="pdf" id="pdf" v-on="change: loadPDF" v-el="pdfInput" multiple>
 
                 </div>
