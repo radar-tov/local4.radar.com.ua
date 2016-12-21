@@ -1,41 +1,69 @@
-@extends('admin.app')
+{{ dump($request) }}
 
-@section('top-scripts')@stop
+<div id="params" class="tab-pane">
+    <div class="col-md-12" id="params-section">
+        <div id="paramsUpdate">
+            <div class="response-field"></div>
+            <form action="#" method="POST">
+                <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
+                <input type="hidden" id="productID" name="productID" value="{{ $request->productID }}"/>
+                <input type="hidden" id="categoryID" name="productID" value="{{ $request->categoryID }}"/>
+                <h3 align="center">Добавить параметр</h3>
 
-@section('page-title')
-    Добавить категорию
-@stop
+                @for($i=1; $i < 5; $i++ )
 
-@section('page-nav')
-    <div class="col-xs-12">
-        <button form="form-data" class="btn btn-sm btn-primary" name="button" value="0" title="Сохранить">
-            <i class="ace-icon fa fa-floppy-o"></i> Сохранить
-        </button>
-        <button form="form-data" class="btn btn-sm btn-primary" name="button" value="1" title="Сохранить и выйти">
-            <i class="ace-icon fa fa-chevron-circle-up "></i> Сохранить и выйти
-        </button>
-    </div>
-    <div class="col-xs-12">&nbsp;</div>
 
-    {{--
-        <div class="col-xs-12">
-            <button form="form-data" class="btn btn-sm btn-primary" name="button" value="0" title="Сохранить">
-                <i class="ace-icon fa fa-2x fa-floppy-o"></i>
-            </button>
-            <button form="form-data" class="btn btn-sm btn-primary" name="button" value="1" title="Сохранить и выйти">
-                <i class="ace-icon fa fa-2x fa-chevron-circle-up "></i>
-            </button>
+                    <select id="{{ 'fileID_'.$i }}" name="{{ 'fileID_'.$i }}" class="'validate form-control">
+                        <option></option>
+                        @foreach($file as $key => $value)
+                            <option value="{{ $key }}">{{ $value }}</option>
+                        @endforeach
+                    </select>
+                    <br>
+
+                @endfor
+
+
+                <hr>
+                <button class="btn waves-effect waves-light" type="submit" name="action" onclick="addFileEdit(); return false;">
+                    Сохранить
+                </button>
+            </form>
         </div>
-        <div class="col-xs-12">&nbsp;</div>
-    --}}
-@stop
-
-@section('content')
-    <div id="parameters" class="col-xs-12">
-        @include('admin.partials.errors')
-        <form action="{!! route('dashboard.parameters.store') !!}" method="POST" id="form-data">
-            {!! csrf_field() !!}
-            @include("admin.parameters.form")
-        </form>
     </div>
-@stop
+</div>
+
+<script>
+    function addFileEdit(){
+        var _token      =   $("#_token").val(),
+                productID   =   $("#productID").val(),
+                fileID_1    =   $("#fileID_1").val(),
+                fileID_2    =   $("#fileID_2").val(),
+                fileID_3    =   $("#fileID_3").val(),
+                fileID_4    =   $("#fileID_4").val();
+
+        $.ajax({
+            url: '',
+            data: {
+                '_token': _token,
+                'productID': productID,
+                'fileID': [fileID_1, fileID_2, fileID_3, fileID_4]
+            },
+            type: 'POST',
+            success: function (response) {
+                // console.log(response);
+                $("#filesUpdate").html(response);
+            },
+            error: function (errors) {
+                output = "<div class='alert alert-danger'><ul>";
+                $.each(errors.responseJSON, function(index, error){
+                    output += "<li>" + error + "</li>";
+                });
+                output += "</ul></div>";
+                $('.response-field').html(output);
+                //console.log(errors);
+            }
+        });
+    }
+
+</script>

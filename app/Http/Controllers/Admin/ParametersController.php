@@ -24,7 +24,7 @@ class ParametersController extends AdminController
 	 */
 	public function index(Parameter $parameter)
 	{
-		return view('admin.parameters.index')->withParameters($parameter->all());
+		//return view('admin.parameters.index')->withParameters($parameter->all());
 	}
 
 	/**
@@ -32,9 +32,8 @@ class ParametersController extends AdminController
 	 *
 	 * @return Response
 	 */
-	public function create()
-	{
-		return view('admin.parameters.create')->withParameter(new Parameter);
+	public function create($categoryID, $productID){
+		return view('admin.parameters.create')->with('request', ['categoryID' => $categoryID, 'productID' => $productID]);
 	}
 
 	/**
@@ -46,13 +45,13 @@ class ParametersController extends AdminController
 	 */
 	public function store(CreateRequest $request,Parameter $parameter)
 	{
-		$parameter = $parameter->create($request->all());
-
-		if((int)$request->get('button')) {
-			return redirect()->route('dashboard.parameters.index')->withMessage('');
-		}
-
-		return redirect()->route('dashboard.parameters.edit',[$parameter->id])->withParameter($parameter);
+//		$parameter = $parameter->create($request->all());
+//
+//		if((int)$request->get('button')) {
+//			return redirect()->route('dashboard.parameters.index')->withMessage('');
+//		}
+//
+//		return redirect()->route('dashboard.parameters.edit',[$parameter->id])->withParameter($parameter);
 	}
 
 	/**
@@ -63,7 +62,7 @@ class ParametersController extends AdminController
 	 */
 	public function show($id)
 	{
-		return "method show is not allowed";
+		//return "method show is not allowed";
 	}
 
 	/**
@@ -75,9 +74,9 @@ class ParametersController extends AdminController
 	 */
 	public function edit(Parameter $parameter, $id)
 	{
-		$parameter = $parameter->with('values')->findOrFail($id);
-
-		return view('admin.parameters.edit')->withParameter($parameter);
+//		$parameter = $parameter->with('values')->findOrFail($id);
+//
+//		return view('admin.parameters.edit')->withParameter($parameter);
 	}
 
 	/**
@@ -90,13 +89,13 @@ class ParametersController extends AdminController
 	 */
 	public function update(Parameter $parameter, UpdateRequest $request, $id)
 	{
-		$parameter = $parameter->findOrFail($id)->update($request->all())->with('values');
-
-		if((int)$request->get('button')) {
-			return redirect()->route('dashboard.parameters.index')->withMessage('');
-		}
-
-		return redirect()->route('dashboard.parameters.edit',[$parameter->id])->withParameter($parameter);
+//		$parameter = $parameter->findOrFail($id)->update($request->all())->with('values');
+//
+//		if((int)$request->get('button')) {
+//			return redirect()->route('dashboard.parameters.index')->withMessage('');
+//		}
+//
+//		return redirect()->route('dashboard.parameters.edit',[$parameter->id])->withParameter($parameter);
 	}
 
 	/**
@@ -108,19 +107,19 @@ class ParametersController extends AdminController
 	 */
 	public function destroy(Parameter $parameter, $id)
 	{
-		$parameter->findOrFail($id)->delete();
-
-		return redirect()->route('dashboard.parameters.index');
+//		$parameter->findOrFail($id)->delete();
+//
+//		return redirect()->route('dashboard.parameters.index');
 	}
 
 	public function values(ParametersValue $value, $id)
 	{
-		return $value->where('parameter_id',$id)->orderBy('id','desc')->get()->toArray();
+		//return $value->where('parameter_id',$id)->orderBy('id','desc')->get()->toArray();
 	}
 
 	public function addValue(Request $request)
 	{
-		return ParametersValue::create($request->all());
+		//return ParametersValue::create($request->all());
 	}
 
 }

@@ -90,8 +90,14 @@
             </li>
             <li class="">
                 <a data-toggle="tab" href="#filters">
+                    <i class="ace-icon fa fa-filter"></i>
+                    Фильтры
+                </a>
+            </li>
+            <li class="">
+                <a data-toggle="tab" href="#params">
                     <i class="ace-icon fa fa-cogs"></i>
-                    Характеристики
+                    Параметры
                 </a>
             </li>
             <li class="">
@@ -318,6 +324,57 @@
             </div>
 
             <!-- /End Filters -->
+
+            <!-- Params -->
+
+
+            <div id="params" class="tab-pane">
+                <div class="col-md-12" id="params-section">
+                    <div id="paramsup" v-show="">
+                        {{--{{ dump($product->getParameters) }}--}}
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <td>Название</td>
+                            <td>Значение</td>
+                            <td></td>
+                            <td></td>
+                            </thead>
+                            <tbody>
+                            @if(isset($product->getParameters))
+                                @foreach($product->getParameters as $parameters)
+                                    <tr>
+                                        <td>{{ $parameters->parameter->title }}</td>
+                                        <td>{{ $parameters->value }}</td>
+                                        <td>
+                                            <a id="otvet" class="fileedit fancybox.ajax" href="">
+                                                <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#">
+                                                <i class="ace-icon fa fa-trash-o bigger-120" title="удалить" v-on=""></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <button class="various fancybox.ajax btn btn-success btn-sm" href="{{ url('dashboard/parameters/add/'.$product->category_id, $product->id) }}">
+                        Добавить параметр
+                    </button>
+                    <button class="various fancybox.ajax btn btn-success btn-sm" href="">
+                        Выбрать параметр
+                    </button>
+
+                </div>
+            </div>
+
+
+            <!-- /End Params -->
+
             <div id="images" class="tab-pane">
            
                 <div class="col-md-12" id="image-section">

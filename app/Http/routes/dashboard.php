@@ -77,7 +77,6 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
 		resource('payments', 'PaymentMethodsController');
 		resource('groups', 'CustomerGroupsController');
 		resource('brands', 'BrandsController');
-		resource('parameters', 'ParametersController');
 		resource('sales', 'SalesController');
 		resource('stock', 'StockController');
 
@@ -130,7 +129,13 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
 		post("pdf", 'PdfController@update');
 		post("pdf/addfile", 'PdfController@store');
 
-		/* end PDF */
+		/* /end PDF */
+
+		/* PARAMETERS */
+		get("parameters/add/{categoryID}/{productID}", ['as'=>'dashboard.parameters.add','uses'=>'ParametersController@create']);
+
+		/* /end PARAMETER */
+
 
 	});
 
