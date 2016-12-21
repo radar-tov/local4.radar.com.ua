@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 use Laravelrus\LocalizedCarbon\Traits\LocalizedEloquentTrait;
 use App\Models\Category;
+use App\Models\ParametersValue;
 
 /**
  * Class Product
@@ -279,6 +280,10 @@ class Product extends Eloquent {
 	public function filterValuesWithFilters() {
 		return $this->belongsToMany(FilterValue::class, 'filter_product', 'product_id', 'filter_value_id')
 			->with('filter.categories');
+	}
+
+	public function getParameters(){
+		return $this->belongsToMany(ParametersValue::class, 'parameter_product', 'product_id', 'parameter_value_id')->with('parameter');
 	}
 
 	/**
