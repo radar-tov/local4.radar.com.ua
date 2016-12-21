@@ -31,6 +31,7 @@
         btns[i].disabled = true;
     }
 </script>
+<span style="color: darkred">Дата обновления: {{ $product->updated_at }}</span>
 <div class="col-lg-12" id="product">
     {{--<pre>--}}
         {{--@{{ $data.selectedProductsIds | json }}--}}
