@@ -22,9 +22,11 @@ class ParametersController extends AdminController
 	 * @param Parameter $parameter
 	 * @return Response
 	 */
-	public function index(Parameter $parameter)
+	public function index(Parameter $parameter, $categoryID, $brandID, $productID)
 	{
-		//return view('admin.parameters.index')->withParameters($parameter->all());
+		$params = $parameter->where('category_id', $categoryID)->where('brand_id', $brandID)->lists('id', 'title');
+
+		return view('admin.parameters.selection', compact('params') )->with('request', ['categoryID' => $categoryID, 'brandID' => $brandID, 'productID' => $productID]);
 	}
 
 	/**
@@ -32,8 +34,8 @@ class ParametersController extends AdminController
 	 *
 	 * @return Response
 	 */
-	public function create($categoryID, $productID){
-		return view('admin.parameters.create')->with('request', ['categoryID' => $categoryID, 'productID' => $productID]);
+	public function create($categoryID, $brandID){
+		return view('admin.parameters.create')->with('request', ['categoryID' => $categoryID, 'brandID' => $brandID]);
 	}
 
 	/**
@@ -43,15 +45,59 @@ class ParametersController extends AdminController
 	 * @param Parameter $parameter
 	 * @return Response
 	 */
-	public function store(CreateRequest $request,Parameter $parameter)
+	public function addparams(Request $request, Parameter $parameter)
 	{
-//		$parameter = $parameter->create($request->all());
+		dd($request->all());
 //
-//		if((int)$request->get('button')) {
-//			return redirect()->route('dashboard.parameters.index')->withMessage('');
+//		if($request['param'][0] != ''){
+//			$date = new \DateTime('NOW');
+//
+//			for($i=0; $i < 10; $i++){
+//				if($request['param'][$i] != ''){
+//					$params[] = [
+//						'title' =>$request['param'][$i],
+//						'category_id' => $request['categoryID'],
+//						'brand_id' => $request['brandID'],
+//						'created_at'    =>  $date->format("Y-m-d H:i:s"),
+//						'updated_at'    =>  $date->format("Y-m-d H:i:s")
+//					];
+//				}
+//			}
+//
+//			if($parameter->add($params)){
+//				return '<h3 align="center">Сохранено</h3>';
+//			}else{
+//				return response()->json(['errors'=>'error']);
+//			}
+//
+//		}else{
+//			return response()->json(['errors'=>'error']);
 //		}
-//
-//		return redirect()->route('dashboard.parameters.edit',[$parameter->id])->withParameter($parameter);
+
+	}
+
+	public function saveParams(Request $request, Parameter $parameter){
+		//dump($request->all());
+
+		if($request['param'][0] != ''){
+			for($i=0; $i < 10; $i++){
+				if($request['param'][$i] != ''){
+					$params[] = [
+						'product_id' =>$request['productID'],
+						'parameter_id' => $request['param'][$i]
+					];
+				}
+			}
+
+			if($parameter->saveParamsProduct($params)){
+				return '<h3 align="center">Сохранено</h3>';
+			}else{
+				return response()->json(['errors'=>'error']);
+			}
+
+		}else{
+			return response()->json(['errors'=>'error']);
+		}
 	}
 
 	/**

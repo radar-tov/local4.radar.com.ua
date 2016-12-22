@@ -362,10 +362,10 @@
                         </table>
                     </div>
 
-                    <button class="various fancybox.ajax btn btn-success btn-sm" href="{{ url('dashboard/parameters/add/'.$product->category_id, $product->id) }}">
+                    <button class="various fancybox.ajax btn btn-success btn-sm" href="{{ url('dashboard/parameters/add/'.$product->category_id, $product->brand_id) }}">
                         Добавить параметр
                     </button>
-                    <button class="various fancybox.ajax btn btn-success btn-sm" href="">
+                    <button class="various fancybox.ajax btn btn-success btn-sm" href="{{ url('dashboard/parameters/selection/'.$product->category_id.'/'.$product->brand_id, $product->id) }}">
                         Выбрать параметр
                     </button>
 
