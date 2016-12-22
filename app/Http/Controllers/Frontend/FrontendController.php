@@ -222,8 +222,8 @@ class FrontendController extends BaseController
         }
 
 
-        return Response::view('frontend.product', compact('product','productReviewId'))
-            ->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
+        return Response::view('frontend.product', compact('product','productReviewId'));
+            //->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT')
 
 	}
 
@@ -382,7 +382,8 @@ class FrontendController extends BaseController
 			}
         }
 
- 		return Response::view('frontend.static', compact('page'))->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
+ 		return Response::view('frontend.static', compact('page'));
+			//->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT')
 	}
 
 
