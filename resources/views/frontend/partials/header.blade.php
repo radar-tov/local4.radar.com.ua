@@ -14,11 +14,20 @@
                 {{--@if(array_get($settingsProvider->getSettings(),'header_phone2'))--}}
                 {{--<span class="phone number right-align">{{ array_get($settingsProvider->getSettings(),'header_phone2') }}</span><br>--}}
                 {{--@endif--}}
-                <div class="for_code">
-                    <span class="phone code right-align"><img src="/frontend/images/tel.png"/> 095 881 83 83</span><br>
-                    <span class="phone code right-align"><img src="/frontend/images/tel.png"/> 063 881 83 83</span><br>
-                    <span class="phone code right-align"><img src="/frontend/images/tel.png"/> 068 881 83 83</span><br>
-                </div>
+                @if($_ENV['BOT'])
+                    <div class="for_code">
+                        <span class="phone code right-align"><img src="/frontend/images/tel.png"/> 095 881-83 83</span><br>
+                        <span class="phone code right-align"><img src="/frontend/images/tel.png"/> 063 881 83 83</span><br>
+                        <span class="phone code right-align"><img src="/frontend/images/tel.png"/> 068 881 83 83</span><br>
+                    </div>
+                @elseif
+                    <div class="for_code">
+                        <span class="phone code right-align"><img src="/frontend/images/tel.png"/> 095 881 83 83</span><br>
+                        <span class="phone code right-align"><img src="/frontend/images/tel.png"/> 063 881 83 83</span><br>
+                        <span class="phone code right-align"><img src="/frontend/images/tel.png"/> 068 881 83 83</span><br>
+                    </div>
+                @endif
+
 
                 {{--<div class="for_number">--}}
                 {{--<span class="phone number right-align">881-83-83</span>--}}
