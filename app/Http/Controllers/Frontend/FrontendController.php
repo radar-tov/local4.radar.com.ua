@@ -128,17 +128,17 @@ class FrontendController extends BaseController
 
 
 		//Получаем header If-Modified-Since
-		$ifModifiedSince = strtotime(substr($request->header('If-Modified-Since'), 5));
-		$LastModified = strtotime(substr($date->format("D, d M Y H:i:s"), 5));
-		if($ifModifiedSince){
-			if($ifModifiedSince >= $LastModified){
-				if(env('APP_ENV') == 'production'){
-					if($_ENV['BOT']){
-						return Response::view('frontend.catalog', compact('subcategory', 'category'), 304);
-					}
-				}
-			}
-		}
+//		$ifModifiedSince = strtotime(substr($request->header('If-Modified-Since'), 5));
+//		$LastModified = strtotime(substr($date->format("D, d M Y H:i:s"), 5));
+//		if($ifModifiedSince){
+//			if($ifModifiedSince >= $LastModified){
+//				if(env('APP_ENV') == 'production'){
+//					if($_ENV['BOT']){
+//						return Response::view('frontend.catalog', compact('subcategory', 'category'), 304);
+//					}
+//				}
+//			}
+//		}
 
 
 		return Response::view('frontend.catalog', compact('subcategory', 'category'))
