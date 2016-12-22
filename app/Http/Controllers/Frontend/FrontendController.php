@@ -102,7 +102,7 @@ class FrontendController extends BaseController
                 if($ifModifiedSince >= $LastModified){
                     if(env('APP_ENV') == 'production'){
 						if($_ENV['BOT']){
-							//return Response::view('frontend.subcategories', compact('categories','category'), 304);
+							return Response::view('frontend.subcategories', compact('categories','category'), 304);
 						}
 					}
                 }
@@ -134,7 +134,7 @@ class FrontendController extends BaseController
 			if($ifModifiedSince >= $LastModified){
 				if(env('APP_ENV') == 'production'){
 					if($_ENV['BOT']){
-						//return Response::view('frontend.catalog', compact('subcategory', 'category'), 304);
+						return Response::view('frontend.catalog', compact('subcategory', 'category'), 304);
 					}
 				}
 			}
