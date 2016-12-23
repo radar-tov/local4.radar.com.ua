@@ -12,8 +12,8 @@ if( ! Request::is('dashboard*') and ! Request::is('auth*')){
 
 		Route::get('/', 'FrontendController@index');
 
-		Route::get('/stati',['uses'=>'InformationController@getPage','as'=>'frontend.page']);
-		Route::get('/stati/{slug}',['uses'=>'InformationController@getArticle','as'=>'frontend.article']);
+		Route::get('stati',['uses'=>'InformationController@getPage','as'=>'frontend.page']);
+		Route::get('stati/{slug}',['uses'=>'InformationController@getArticle','as'=>'frontend.article']);
 
 		/* send mail from site */
 		Route::post("mail/me",["uses"=>"MailController@mailMe",'as'=>'mail.me']);

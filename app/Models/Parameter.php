@@ -20,20 +20,19 @@ class Parameter extends Eloquent
 		return $this->hasMany('App\Models\ParametersValue');
 	}
 
-	public function add($params){
-
-		if(DB::table('parameters')->insert($params)){
-			return true;
-		}else{
-			return false;
-		}
+	public function getValues(){
+		return $this->hasMany('App\Models\ParametersValue');
 	}
 
-	public function saveParamsProduct($params){
-		if(DB::table('parameter_product')->insert($params)){
-			return true;
-		}else{
-			return false;
-		}
+	public function add($params){
+		return DB::table('parameters')->insertGetId($params);
+	}
+
+	public function addValue($value){
+		return DB::table('parameters_values')->insertGetId($value);
+	}
+
+	public function saveParamsProduct($parameter_product){
+		return DB::table('parameter_product')->insert($parameter_product);
 	}
 }

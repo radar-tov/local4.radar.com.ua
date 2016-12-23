@@ -31,6 +31,66 @@ $(document).ready(function () {
         }
     });
 
+    $(".parameters_add").fancybox({
+        maxWidth: 1000,
+        maxHeight: 1000,
+        fitToView: false,
+        width: '80%',
+        height: '80%',
+        autoSize: false,
+        closeClick: false,
+        openEffect: 'none',
+        closeEffect: 'none',
+        afterClose: function () {
+            getParameterList();
+        }
+    });
+
+    $(".parameters_selection").fancybox({
+        maxWidth: 1000,
+        maxHeight: 1000,
+        fitToView: false,
+        width: '80%',
+        height: '80%',
+        autoSize: false,
+        closeClick: false,
+        openEffect: 'none',
+        closeEffect: 'none',
+        afterClose: function () {
+            getParameterList();
+        }
+    });
+
+    $(".param_edit").fancybox({
+        maxWidth: 1000,
+        maxHeight: 1000,
+        fitToView: false,
+        width: '80%',
+        height: '80%',
+        autoSize: false,
+        closeClick: false,
+        openEffect: 'none',
+        closeEffect: 'none',
+        afterClose: function () {
+            getParameterList();
+        }
+    });
+
+    $(".param_value_edit").fancybox({
+        maxWidth: 1000,
+        maxHeight: 1000,
+        fitToView: false,
+        width: '80%',
+        height: '80%',
+        autoSize: false,
+        closeClick: false,
+        openEffect: 'none',
+        closeEffect: 'none',
+        afterClose: function () {
+            getParameterList();
+        }
+    });
+
 });
 
 function getPdfList() {
@@ -60,5 +120,17 @@ function deletePDF(fileID) {
         }
     }).done(function () {
         getPdfList();
+    });
+}
+
+function getParameterList() {
+    var token = $("input[name='_token']").val(),
+        productId = $("input[name='product-id']").val();
+    $.ajax({
+        type: "GET",
+        url: "/dashboard/parameters/list",
+        data: {id: productId, _token: token}
+    }).done(function (response) {
+        $("#paramsup").html(response);
     });
 }

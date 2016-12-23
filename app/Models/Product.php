@@ -284,7 +284,7 @@ class Product extends Eloquent {
 	}
 
 	public function getParameters(){
-		return $this->belongsToMany(ParametersValue::class, 'parameter_product', 'product_id', 'parameter_id')->with('parameter');
+		return $this->belongsToMany(ParametersValue::class, 'parameter_product', 'product_id', 'parameter_value_id')->with('parameter');
 	}
 
 	/**

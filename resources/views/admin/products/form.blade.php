@@ -330,29 +330,37 @@
 
             <div id="params" class="tab-pane">
                 <div class="col-md-12" id="params-section">
-                    <div id="paramsup" v-show="">
+                    <div id="paramsup">
                         {{--{{ dump($product->getParameters) }}--}}
                         <table class="table table-bordered table-hover">
                             <thead>
                             <td>Название</td>
                             <td>Значение</td>
                             <td></td>
-                            <td></td>
                             </thead>
                             <tbody>
                             @if(isset($product->getParameters))
                                 @foreach($product->getParameters as $parameters)
                                     <tr>
-                                        <td>{{ $parameters->parameter->title }}</td>
-                                        <td>{{ $parameters->value }}</td>
                                         <td>
-                                            <a id="otvet" class="fileedit fancybox.ajax" href="">
-                                                <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                            {{ $parameters->parameter->title }}
+                                            <a class="param_edit fancybox.ajax"
+                                               href=""
+                                               title="Редактировать название параметра">
+                                                <i class="ace-icon fa fa-pencil bigger-130" style="float: right"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            {{ $parameters->value }}
+                                            <a class="param_value_edit fancybox.ajax"
+                                               href="{{ url('dashboard/parameters/edit_value/'.$product->id.'/'.$parameters->parameter->id) }}"
+                                               title="Редактировать значение параметра">
+                                                <i class="ace-icon fa fa-pencil bigger-130" style="float: right"></i>
                                             </a>
                                         </td>
                                         <td>
                                             <a href="#">
-                                                <i class="ace-icon fa fa-trash-o bigger-120" title="удалить" v-on=""></i>
+                                                <i class="ace-icon fa fa-trash-o bigger-120" title="удалить" style="float: right"></i>
                                             </a>
                                         </td>
                                     </tr>
@@ -362,10 +370,12 @@
                         </table>
                     </div>
 
-                    <button class="various fancybox.ajax btn btn-success btn-sm" href="{{ url('dashboard/parameters/add/'.$product->category_id, $product->brand_id) }}">
+                    <button class="parameters_add fancybox.ajax btn btn-success btn-sm"
+                            href="{{ url('dashboard/parameters/add/'.$product->category_id.'/'.$product->brand_id, $product->id) }}">
                         Добавить параметр
                     </button>
-                    <button class="various fancybox.ajax btn btn-success btn-sm" href="{{ url('dashboard/parameters/selection/'.$product->category_id.'/'.$product->brand_id, $product->id) }}">
+                    <button class="parameters_selection fancybox.ajax btn btn-success btn-sm"
+                            href="{{ url('dashboard/parameters/selection/'.$product->category_id.'/'.$product->brand_id, $product->id) }}">
                         Выбрать параметр
                     </button>
 

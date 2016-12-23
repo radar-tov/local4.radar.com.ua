@@ -132,10 +132,13 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
 		/* /end PDF */
 
 		/* PARAMETERS */
-		get("parameters/add/{categoryID}/{brandID}", ['as'=>'dashboard.parameters.add','uses'=>'ParametersController@create']);
+		get("parameters/add/{categoryID}/{brandID}/{productID}", ['as'=>'dashboard.parameters.add','uses'=>'ParametersController@create']);
 		post("parameters/addparams", ['as'=>'dashboard.parameters.addparams','uses'=>'ParametersController@addparams']);
 		get("parameters/selection/{categoryID}/{brandID}/{productID}", ['as'=>'dashboard.parameters.selection','uses'=>'ParametersController@index']);
 		post("parameters/save", ['as'=>'dashboard.parameters.save','uses'=>'ParametersController@saveParams']);
+		get("parameters/list", ['as'=>'dashboard.parameters.list','uses'=>'ParametersController@show']);
+		get("parameters/edit_value/{productID}/{parameterID}", ['as'=>'dashboard.parameters.edit_value','uses'=>'ParametersController@edit']);
+		post("parameters/save_value", ['as'=>'dashboard.parameters.save_value','uses'=>'ParametersController@save_value']);
 		/* /end PARAMETER */
 
 

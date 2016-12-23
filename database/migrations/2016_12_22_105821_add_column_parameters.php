@@ -15,6 +15,7 @@ class AddColumnParameters extends Migration
         Schema::table('parameters', function ($table) {
             $table->integer('category_id')->after('slug');
             $table->integer('brand_id')->after('category_id');
+            $table->integer('default_value')->after('brand_id');
         });
     }
 
@@ -28,6 +29,7 @@ class AddColumnParameters extends Migration
         Schema::table('parameters', function ($table) {
             $table->dropColumn('category_id');
             $table->dropColumn('brand_id');
+            $table->dropColumn('default_value');
         });
     }
 }
