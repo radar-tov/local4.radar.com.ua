@@ -172,7 +172,7 @@ class ParametersController extends AdminController
 	 */
 	public function edit(ParametersValue $parameterValue, $productID, $parameterID)
 	{
-		$values = $parameterValue->where('parameter_id', $parameterID)->with('parameter')->get();
+		$values = $parameterValue->where('parameter_id', $parameterID)->get();
 		$param = Parameter::where('id', $parameterID)->first();
 		return view('admin.parameters.edit_value', compact('values', 'param'))->with('data', ['productID' => $productID]);
 	}
@@ -187,7 +187,25 @@ class ParametersController extends AdminController
 	 */
 	public function save_value(Parameter $parameter, Request $request)
 	{
-		dd($request->all());
+		if($request->value[1] != ''){
+
+			$date = new \DateTime('NOW');
+
+			$value = [
+				'parameter_id' =>$request->parameterID,
+				'value' => $request->value[1],
+				'created_at'    =>  $date->format("Y-m-d H:i:s"),
+				'updated_at'    =>  $date->format("Y-m-d H:i:s")
+			];
+
+			$parameter_value_id = $parameter->addValue($value);
+
+			$parameter->updateValue();
+
+		}else{
+
+
+		}
 	}
 
 	/**
