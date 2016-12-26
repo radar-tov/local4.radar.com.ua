@@ -139,6 +139,7 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
 		get("parameters/list", ['as'=>'dashboard.parameters.list','uses'=>'ParametersController@show']);
 		get("parameters/edit_value/{productID}/{parameterID}", ['as'=>'dashboard.parameters.edit_value','uses'=>'ParametersController@edit']);
 		post("parameters/save_value", ['as'=>'dashboard.parameters.save_value','uses'=>'ParametersController@save_value']);
+		post("parameters/getvalue", ['as'=>'dashboard.parameters.getvalue','uses'=>'ParametersController@getvalue']);
 		/* /end PARAMETER */
 
 

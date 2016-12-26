@@ -35,4 +35,13 @@ class Parameter extends Eloquent
 	public function saveParamsProduct($parameter_product){
 		return DB::table('parameter_product')->insert($parameter_product);
 	}
+
+	public function updateValue($request, $id){
+		return DB::table('parameter_product')->where('parameter_id', $request->parameterID)
+			->where('product_id', $request->productID)->update(['parameter_value_id' => $id]);
+	}
+
+	public function getValueID($id){
+		return DB::table('parameters_values')->where('id', $id)->get();
+	}
 }

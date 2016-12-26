@@ -51,14 +51,14 @@ class ParametersController extends AdminController
 		//dd($request->all());
 		$flag = '';
 
-		if($request['param'][0] != ''){
+		if($request['param_1'] != ''){
 			$date = new \DateTime('NOW');
 
 			for($i=0; $i < 10; $i++){
-				if($request['param'][$i] != ''){
+				if($request['param_'.$i] != ''){
 
 					$params = [
-						'title' =>$request['param'][$i],
+						'title' =>$request['param_'.$i],
 						'category_id' => $request['categoryID'],
 						'brand_id' => $request['brandID'],
 						'created_at'    =>  $date->format("Y-m-d H:i:s"),
@@ -81,7 +81,7 @@ class ParametersController extends AdminController
 
 						$value = [
 							'parameter_id' =>$parameter_id,
-							'value' => $request['value'][$i],
+							'value' => $request['value_'.$i],
 							'created_at'    =>  $date->format("Y-m-d H:i:s"),
 							'updated_at'    =>  $date->format("Y-m-d H:i:s")
 						];
@@ -124,7 +124,7 @@ class ParametersController extends AdminController
 	}
 
 	public function saveParams(Request $request, Parameter $parameter){
-		//dd($request->all());
+		dd($request->all());
 
 		if($request['param'][0] != ''){
 			for($i=0; $i < 10; $i++){
@@ -187,23 +187,33 @@ class ParametersController extends AdminController
 	 */
 	public function save_value(Parameter $parameter, Request $request)
 	{
-		if($request->value[1] != ''){
+		//dd($request->all());
+		if($request->value_2 != ''){
 
 			$date = new \DateTime('NOW');
 
 			$value = [
 				'parameter_id' =>$request->parameterID,
-				'value' => $request->value[1],
+				'value' => $request->value_2,
 				'created_at'    =>  $date->format("Y-m-d H:i:s"),
 				'updated_at'    =>  $date->format("Y-m-d H:i:s")
 			];
 
 			$parameter_value_id = $parameter->addValue($value);
 
-			$parameter->updateValue();
+			if($parameter->updateValue($request, $parameter_value_id)){
+				return '<h3 align="center">Сохранено</h3>';
+			}else{
+				return response()->json(['errors'=>'error']);
+			}
 
 		}else{
 
+			if($parameter->updateValue($request, $request->value_1)){
+				return '<h3 align="center">Сохранено</h3>';
+			}else{
+				return response()->json(['errors'=>'error']);
+			}
 
 		}
 	}
@@ -218,6 +228,12 @@ class ParametersController extends AdminController
 	public function destroy(Parameter $parameter, $id)
 	{
 
+	}
+
+	public function getvalue(Parameter $parameter,Request $request){
+
+		$values =  $parameter->getValueID($request->id);
+		dd($values);
 	}
 
 }
