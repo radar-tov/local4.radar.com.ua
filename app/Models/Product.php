@@ -162,10 +162,10 @@ class Product extends Eloquent {
 	/**
 	 * @return mixed
 	 */
-	public function characteristics() {
-		return $this->hasMany('App\Models\CharacteristicValue')->where('value', '!=', '')
-			->leftJoin('characteristics', 'characteristic_values.characteristic_id', '=', 'characteristics.id');
-	}
+//	public function characteristics() {
+//		return $this->hasMany('App\Models\CharacteristicValue')->where('value', '!=', '')
+//			->leftJoin('characteristics', 'characteristic_values.characteristic_id', '=', 'characteristics.id');
+//	}
 
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -307,7 +307,7 @@ class Product extends Eloquent {
 	 */
 	public function scopeWithRelations($query) {
 		return $query->with(
-			'relevantSale', 'thumbnail', 'characteristics',
+			'relevantSale', 'thumbnail',
 			'category', 'rates', 'filterValuesWithFilters',
 			'stocks.products');
 	}
