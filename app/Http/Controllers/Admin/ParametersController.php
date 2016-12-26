@@ -124,17 +124,16 @@ class ParametersController extends AdminController
 	}
 
 	public function saveParams(Request $request, Parameter $parameter){
-		dd($request->all());
+		//dd($request->all());
 
-		if($request['param'][0] != ''){
+		if($request['param_1'] != ''){
 			for($i=0; $i < 10; $i++){
-				if($request['param'][$i] != ''){
+				if($request['param_'.$i] != ''){
 
-					$parameter_value_id = $parameter->where('id', $request['param'][$i])->pluck('default_value');
 					$params[] = [
 						'product_id' =>$request['productID'],
-						'parameter_id' => $request['param'][$i],
-						'parameter_value_id' => $parameter_value_id
+						'parameter_id' => $request['param_'.$i],
+						'parameter_value_id' => $request['value_'.$i]
 					];
 				}
 			}
@@ -225,15 +224,40 @@ class ParametersController extends AdminController
 	 * @param  int $id
 	 * @return Response
 	 */
-	public function destroy(Parameter $parameter, $id)
+	public function delete(Parameter $parameter, Request $request)
 	{
-
+		if(isset($request->productID) && isset($request->paramID)){
+			return $parameter->deleteParam($request->paramID, $request->productID);
+		}
 	}
 
-	public function getvalue(Parameter $parameter,Request $request){
+	public function getvalue(ParametersValue $arametersValue, Request $request){
+		//dump($request->all());
 
-		$values =  $parameter->getValueID($request->id);
-		dd($values);
+		$values = $arametersValue->where('parameter_id', $request->id)->get();
+
+		$data = "<select id='value_".$request->i."' name='value_".$request->i."' class='validate form-control'>";
+
+		foreach($values as $value){
+			$data = $data."<option value='".$value->id."'>".$value->value."</option>";
+		}
+
+		$data = $data."</select>";
+
+		return $data;
+	}
+
+	public function edit_param(Parameter $parameter, $id){
+		$param = $parameter->where('id', $id)->first();
+		return view('admin.parameters.edit_param', compact('param'));
+	}
+
+	public function save_param(Parameter $parameter, Request $request){
+		if($parameter->where('id', $request->parameterID)->update(['title' => $request->param])){
+			return '<h3 align="center">Сохранено</h3>';
+		}else{
+			return response()->json(['errors'=>'error']);
+		}
 	}
 
 }

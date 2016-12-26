@@ -41,7 +41,16 @@ class Parameter extends Eloquent
 			->where('product_id', $request->productID)->update(['parameter_value_id' => $id]);
 	}
 
-	public function getValueID($id){
-		return DB::table('parameters_values')->where('id', $id)->get();
+	public function deleteParam($paramID, $productID){
+		DB::table('parameter_product')->where('parameter_id', $paramID)->where('product_id', $productID)->delete();
+
+		if(!DB::table('parameter_product')->where('parameter_id', $paramID)->first()){
+			DB::table('parameters')->where('id', $paramID)->delete();
+			DB::table('parameters_values')->where('parameter_id', $paramID)->delete();
+			return "<h3 align=эcenterэ>Удалён полностью.</h3>";
+		}
+
+		return "<h3 align=эcenterэ>Удалён из продукта.</h3>";
 	}
+
 }

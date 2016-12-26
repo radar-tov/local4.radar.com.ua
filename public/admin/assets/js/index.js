@@ -123,6 +123,23 @@ function deletePDF(fileID) {
     });
 }
 
+function deleteParam(productID, paramID){
+    var token = $("input[name='_token']").val()
+    $.ajax({
+        type: "POST",
+        url: "/dashboard/parameters/delete",
+        data: {
+            '_token': token,
+            'productID': productID,
+            'paramID': paramID
+        }
+    }).done(function (response) {
+        $('#error').html(response);
+        getParameterList();
+    });
+    return false;
+}
+
 function getParameterList() {
     var token = $("input[name='_token']").val(),
         productId = $("input[name='product-id']").val();

@@ -330,6 +330,7 @@
 
             <div id="params" class="tab-pane">
                 <div class="col-md-12" id="params-section">
+                    <div id="error"></div>
                     <div id="paramsup">
                         {{--{{ dump($product->getParameters) }}--}}
                         <table class="table table-bordered table-hover">
@@ -345,7 +346,7 @@
                                         <td>
                                             {{ $parameters->parameter->title }}
                                             <a class="param_edit fancybox.ajax"
-                                               href=""
+                                               href="{{ url('dashboard/parameters/edit_param/'.$parameters->parameter->id) }}"
                                                title="Редактировать название параметра">
                                                 <i class="ace-icon fa fa-pencil bigger-130" style="float: right"></i>
                                             </a>
@@ -360,7 +361,8 @@
                                         </td>
                                         <td>
                                             <a href="#">
-                                                <i class="ace-icon fa fa-trash-o bigger-120" title="удалить" style="float: right"></i>
+                                                <i class="ace-icon fa fa-trash-o bigger-120" title="удалить"
+                                                   style="float: right" onclick="deleteParam({{ $product->id }}, {{ $parameters->parameter->id }});"></i>
                                             </a>
                                         </td>
                                     </tr>

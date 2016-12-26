@@ -41,18 +41,18 @@
 
 <script>
     $( ".validate" ).change(function() {
-        var val = $(this).val(),
-            id = $(this).attr('id').split('_')[1];
+        var id = $(this).val(),
+            i = $(this).attr('id').split('_')[1];
         $.ajax({
             type:'POST',
             url:'/dashboard/parameters/getvalue',
             data:{
                 'id': id,
+                'i': i,
                 '_token': $("#_token").val()
             },
             success: function (response) {
-                //console.log(response);
-                $("#result_"+id).html(response);
+                $("#result_"+i).html(response);
             }
         });
     });
