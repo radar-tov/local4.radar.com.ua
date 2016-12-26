@@ -35,19 +35,18 @@
         </li>
         <li class="{{ Request::is('dashboard/filters*') ? 'active' : null }}">
             <a href="{!! route('dashboard.filters.index') !!}">
+                <i class="menu-icon fa fa-filter"></i>
+                <span class="menu-text">Фильтры</span>
+            </a>
+            <b class="arrow"></b>
+        </li>
+        <li class="{{ Request::is('dashboard/filters*') ? 'active' : null }}">
+            <a href="{!! route('dashboard.filters.index') !!}">
                 <i class="menu-icon fa fa-cogs"></i>
                 <span class="menu-text">Характеристики</span>
             </a>
             <b class="arrow"></b>
         </li>
-        {{--<li class="{{ Request::is('dashboard/filters*') ? 'active' : null }}">--}}
-            {{--<a href="{!! route('dashboard.filters.index') !!}">--}}
-                {{--<i class="menu-icon fa fa-filter"></i>--}}
-                {{--<span class="menu-text">Характеристики</span>--}}
-            {{--</a>--}}
-            {{--<b class="arrow"></b>--}}
-        {{--</li>--}}
-
         <li class="{{ Request::is('dashboard/sales*') ? 'active' : null }}">
             <a href="{!! route('dashboard.sales.index') !!}">
                 <i class="menu-icon fa fa-tags"></i>

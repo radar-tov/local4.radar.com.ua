@@ -119,4 +119,13 @@ class FiltersController extends AdminController
 
 		return redirect()->route('dashboard.filters.index');
 	}
+
+	/**
+	 * @param Request $request
+	 * @return mixed
+	 */
+	public function getFilters(Request $request)
+	{
+		return Filter::whereNotIn('id', $request->get('ids') ?: [0])->get();
+	}
 }

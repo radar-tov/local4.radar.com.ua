@@ -55,23 +55,6 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
 //		get('get_ordered_products', 'OrderedProductsController@getProductsByOrder');
 		delete('destroy_ordered_product/{product_id}', 'OrderedProductsController@destroy');
 
-//		get('parameters/{id}/values',['as'=>'dashboard.parameters.values', 'uses'=>'ParametersController@values']);
-//		post('parameters/add-value',['as'=>'dashboard.parameters.values.post', 'uses'=>'ParametersController@addValue']);
-//		resource('parameters', 'ParametersController');
-//
-		post('values/{id}/filter',['as'=>'dashboard.values.filter', 'uses'=>'FiltersValuesController@fetchByFilter']);
-
-		post('values/order',['as'=>'dashboard.values.order', 'uses'=>'FiltersValuesController@order']);
-
-		resource('filters', 'FiltersController');
-		resource('values', 'FiltersValuesController');
-
-		post('characteristics', 'CharacteristicsController@createCharacteristic');
-		post('characteristics_list', 'CharacteristicsController@getCharacteristics');
-		get('characteristics/{category_id}', 'CharacteristicsController@getCharacteristicsForCategory');
-		put('characteristics/{id}', 'CharacteristicsController@updateCharacteristic');
-		delete('characteristics/{id}', 'CharacteristicsController@deleteCharacteristic');
-
 		resource('orders', 'OrdersController');
 		resource('shipments', 'ShipmentMethodsController');
 		resource('payments', 'PaymentMethodsController');
@@ -128,7 +111,6 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
 		get("pdf/{id}/{productID}", 'PdfController@edit');
 		post("pdf", 'PdfController@update');
 		post("pdf/addfile", 'PdfController@store');
-
 		/* /end PDF */
 
 		/* PARAMETERS */
@@ -145,7 +127,24 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
 		post("parameters/delete", ['as'=>'dashboard.parameters.delete','uses'=>'ParametersController@delete']);
 		/* /end PARAMETER */
 
+		/* FILTERS */
+		post('values/{id}/filter',['as'=>'dashboard.values.filter', 'uses'=>'FiltersValuesController@fetchByFilter']);
+		post('values/order',['as'=>'dashboard.values.order', 'uses'=>'FiltersValuesController@order']);
+		post('filters/get', 'FiltersController@getFilters');
+		resource('filters', 'FiltersController');
+		resource('values', 'FiltersValuesController');
+		/* /end FILTERS */
 
+		/* CHRACTERISTICS */
+
+//		post('characteristics', 'CharacteristicsController@createCharacteristic');
+//		post('characteristics_list', 'CharacteristicsController@getCharacteristics');
+//		get('characteristics/{category_id}', 'CharacteristicsController@getCharacteristicsForCategory');
+//		put('characteristics/{id}', 'CharacteristicsController@updateCharacteristic');
+//		delete('characteristics/{id}', 'CharacteristicsController@deleteCharacteristic');
+
+
+		/* /end CHRACTERISTICS */
 	});
 
 });

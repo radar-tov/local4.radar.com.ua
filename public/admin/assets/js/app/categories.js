@@ -57,7 +57,7 @@ new Vue({
             var vue = this;
             $.ajax({
                 method: "POST",
-                url: '/dashboard/characteristics_list',
+                url: '/dashboard/filters/get',
                 data: {_token: vue.token, ids: vue.getRelatedFieldsIds() },
                 success: function (fields) {
                     fields.forEach(function(field){

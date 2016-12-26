@@ -12,6 +12,12 @@
             </li>
             <li class="">
                 <a data-toggle="tab" href="#fields">
+                    <i class="ace-icon fa fa-filter"></i>
+                    Фильтры
+                </a>
+            </li>
+            <li class="">
+                <a data-toggle="tab" href="#fields">
                     <i class="ace-icon fa fa-gears"></i>
                     Характеристики
                 </a>
