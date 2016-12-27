@@ -162,10 +162,10 @@ class Product extends Eloquent {
 	/**
 	 * @return mixed
 	 */
-//	public function characteristics() {
-//		return $this->hasMany('App\Models\CharacteristicValue')->where('value', '!=', '')
-//			->leftJoin('characteristics', 'characteristic_values.characteristic_id', '=', 'characteristics.id');
-//	}
+	public function getCharacteristics() {
+		return $this->belongsToMany(CharacteristicValue::class, 'characteristic_value_product', 'product_id', 'characteristic_value_id')
+			->with('characteristic');
+	}
 
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

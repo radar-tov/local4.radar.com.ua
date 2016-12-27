@@ -14,6 +14,8 @@ class EditCharacteristicsTable extends Migration
     {
         Schema::table('characteristics', function ($table) {
             $table->dropColumn('is_filter');
+
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

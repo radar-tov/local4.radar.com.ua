@@ -16,6 +16,9 @@ class EditCharacteristicValuesTable extends Migration
             $table->dropIndex(['value']);
             $table->dropIndex('category_id');
             $table->dropColumn('product_id');
+            $table->integer('order')->after('value');
+
+            $table->foreign('characteristic_id')->references('id')->on('characteristics');
         });
     }
 
@@ -30,6 +33,7 @@ class EditCharacteristicValuesTable extends Migration
             $table->index('value');
             $table->index('category_id');
             $table->integer('product_id');
+            $table->dropColumn('order');
         });
     }
 }

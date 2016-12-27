@@ -228,7 +228,17 @@
                             <div id="options" class="col s12 no-padding">
                                 <div class="full-desc bordered mod">
                                     <div class="col mod col s12 l6">
-                                        <h5 class="teg mod">Основные характеристики</h5>
+                                    <div class="col col s12 l6">
+                                        <h5 class="teg mod">Характеристики</h5>
+                                        @foreach($product->getCharacteristics as $characteristics)
+                                            <div class="col aspect s12">
+                                                <p class="col s12 m4">{{ $characteristics->characteristic->title }}</p>
+                                                <p class="col s12 m8">{{ $characteristics->value }}</p>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <div class="col col s12 l6">
+                                        <h5 class="teg mod">Параметры</h5>
                                         @foreach($product->getParameters as $rapameter)
                                             <div class="col aspect s12">
                                                 <p class="col s12 m4">{{ $rapameter->parameter->title }}</p>
@@ -238,7 +248,7 @@
 
                                     </div>
                                     <div class="col col s12 l6">
-                                        <h5 class="teg mod">Технические характеристики</h5>
+                                        <h5 class="teg mod">Фильтры</h5>
                                         {{--{{ dd($product->filterValuesWithFilters->sortBy('filter.category.pivot.order')->toArray()) }}--}}
                                         @foreach($product->sortedValues($product->category_id) as $field)
                                             {{--{{ dd($field->toArray()) }}--}}

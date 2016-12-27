@@ -189,7 +189,8 @@ class FrontendController extends BaseController
             'reviews.user',
             'stocks.orderedProducts',
             'filterValuesWithFilters',
-			'getParameters'
+			'getParameters',
+			'getCharacteristics'
         )
 		->first();
 
