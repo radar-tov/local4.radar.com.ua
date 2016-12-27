@@ -261,7 +261,7 @@
                                             {{--@endif--}}
                                         @endforeach
                                         {{--TODO-evgenii END Удалить блок после заполнения всех товаров --}}
-                                        
+
                                     </div>
                                 </div>
 

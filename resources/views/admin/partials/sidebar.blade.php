@@ -40,8 +40,8 @@
             </a>
             <b class="arrow"></b>
         </li>
-        <li class="{{ Request::is('dashboard/filters*') ? 'active' : null }}">
-            <a href="{!! route('dashboard.filters.index') !!}">
+        <li class="{{ Request::is('dashboard/characteristics*') ? 'active' : null }}">
+            <a href="{!! route('dashboard.characteristics.index') !!}">
                 <i class="menu-icon fa fa-cogs"></i>
                 <span class="menu-text">Характеристики</span>
             </a>

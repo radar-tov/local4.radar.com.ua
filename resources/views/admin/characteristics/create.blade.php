@@ -3,7 +3,7 @@
 @section('top-scripts')@stop
 
 @section('page-title')
-    Добавить категорию
+    Добавить характеристику
 @stop
 
 @section('page-nav')
@@ -20,9 +20,9 @@
 
 @section('content')
     @include('admin.partials.errors')
-    <form action="{!! route('dashboard.filters.store') !!}" method="POST" id="form-data">
+    <form action="{!! route('dashboard.characteristics.store') !!}" method="POST" id="form-data">
         {!! csrf_field() !!}
-        @include("admin.filters.form")
+        @include("admin.characteristics.form")
     </form>
 
 @stop

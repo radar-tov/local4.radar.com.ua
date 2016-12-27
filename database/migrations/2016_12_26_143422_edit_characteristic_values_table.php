@@ -17,8 +17,6 @@ class EditCharacteristicValuesTable extends Migration
             $table->dropIndex('category_id');
             $table->dropColumn('product_id');
             $table->integer('order')->after('value');
-
-            $table->foreign('characteristic_id')->references('id')->on('characteristics');
         });
     }
 

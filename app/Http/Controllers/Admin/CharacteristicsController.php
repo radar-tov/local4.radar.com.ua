@@ -6,7 +6,8 @@ use App\Models\Characteristic;
 use App\Models\Filter;
 use App\Models\Product;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\Characteristic\UpdateRequest;
+use App\Http\Requests\Characteristic\CreateRequest;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use MyProject\Proxies\__CG__\OtherProject\Proxies\__CG__\stdClass;
@@ -17,6 +18,60 @@ use MyProject\Proxies\__CG__\OtherProject\Proxies\__CG__\stdClass;
  */
 class CharacteristicsController extends AdminController
 {
+
+	public function index(Characteristic $characteristic)
+	{
+		$characteristics = $characteristic->with('categories')->get();
+		//dd($characteristics);
+		return view('admin.characteristics.index', compact('characteristics'));
+	}
+
+
+
+	public function create()
+	{
+
+		$characteristics = Characteristic::create([]);
+
+		return redirect()->route('dashboard.characteristics.edit',[$characteristics->id]);
+
+		//return view('admin.characteristics.create');
+	}
+
+
+	public function edit(Characteristic $characteristics, $id)
+	{
+		$characteristic = $characteristics->with('values')->findOrFail($id);
+		//dump($characteristic);
+		return view('admin.characteristics.edit', compact('characteristic'));
+	}
+
+
+	public function store(CreateRequest $request, Characteristic $characteristic)
+	{
+//		$characteristic = $characteristic->create($request->all());
+//
+//		if((int)$request->get('button')) {
+//			return redirect()->route('dashboard.$characteristics.index')->withMessage('');
+//		}
+//
+//		return redirect()->route('dashboard.$characteristics.edit',[$characteristic->id])->withFilter($characteristic);
+	}
+
+
+	public function update(Characteristic $characteristic, UpdateRequest $request, $id)
+	{
+		$characteristic = $characteristic->findOrFail($id)->update($request->all())->with('values');
+
+		if((int)$request->get('button')) {
+			return redirect()->route('dashboard.characteristics.index')->withMessage('');
+		}
+
+		return redirect()->route('dashboard.characteristics.edit',[$id])->withFilter($characteristic);
+	}
+
+
+
 	/**
 	 * @param Request $request
 	 * @return static

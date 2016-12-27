@@ -14,8 +14,8 @@ class FilterValue extends Model
 	{
 		parent::boot();
 		static::creating( function($value) {
-				$value->order = 1 + FilterValue::where('filter_id', $value->filter_id)->max('order');
-			});
+            $value->order = 1 + FilterValue::where('filter_id', $value->filter_id)->max('order');
+        });
 	}
 
 

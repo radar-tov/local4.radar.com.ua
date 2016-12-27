@@ -2,22 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 
-class Characteristic extends Model
+class Characteristic extends Eloquent
 {
-    protected $fillable = ['category_id', 'title', 'is_filter'];
+    protected $fillable = ['category_id', 'title'];
 	public $timestamps = false;
 
 	public function values()
 	{
-		return $this->hasMany(CharacteristicValue::class);
+		return $this->hasMany(CharacteristicValue::class)->orderBy('order');
 	}
 
 	public function categories()
 	{
-		return $this->belongsToMany(Category::class,'categories');
+		return $this->belongsToMany(Category::class, 'characteristics', 'id', 'category_id');
 	}
+
 	public function filterValues()
 	{
 		return $this->hasMany(CharacteristicValue::class)->where('value','!=', '')->has('product', '>', 0)->groupBy('value');

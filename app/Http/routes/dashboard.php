@@ -143,6 +143,9 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
 //		put('characteristics/{id}', 'CharacteristicsController@updateCharacteristic');
 //		delete('characteristics/{id}', 'CharacteristicsController@deleteCharacteristic');
 
+		post('characteristics_value/{id}/characteristics',['as'=>'dashboard.values.characteristics', 'uses'=>'CharacteristicsValuesController@fetchByCharacteristic']);
+		resource('characteristics', 'CharacteristicsController');
+		resource('characteristics_value', 'CharacteristicsValuesController');
 
 		/* /end CHRACTERISTICS */
 	});

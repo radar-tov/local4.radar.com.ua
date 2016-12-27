@@ -22,10 +22,6 @@ class EditCharacteristicValueProductTable extends Migration
 
             $table->dropForeign(['product_id']);
             $table->dropIndex(['product_id']);
-
-            $table->foreign('characteristic_id')->references('id')->on('characteristics');
-            $table->foreign('characteristic_value_id')->references('id')->on('characteristic_values');
-            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 

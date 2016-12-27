@@ -1,4 +1,6 @@
-<div id="filter" class="row">
+{{--{{ dump($characteristic) }}--}}
+
+<div id="characteristic" class="row">
     <div class="col-xs-6 col-lg-6">
         <div class="form-group">
             <label for="title">Название</label>
@@ -8,7 +10,7 @@
                 name="title"
                 class="form-control"
                 id="title"
-                value="{!! old('title',$characteristic->title) !!}"
+                value="@if(isset($characteristic)) {{ old('title',$characteristic->title) }} @endif"
                 placeholder='Название параметра'
             />
         </div>
@@ -65,5 +67,5 @@
 
 @section('bottom-scripts')
     @parent
-    <script src="{{ url('admin/assets/js/app/characteristic-values.js') }}"></script>
+    <script src="{{ url('admin/assets/js/app/characteristics-values.js') }}"></script>
 @endsection
