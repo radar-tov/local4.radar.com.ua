@@ -115,7 +115,6 @@
 
                         @endif
                         <div class="clearing"></div>
-                        @if($product->getCharacteristics != '')
 
                             <div class="characteristics col s12 no-padding">
                                 @foreach($product->getCharacteristics as $characteristics)
@@ -127,11 +126,7 @@
                                     {{--@endif--}}
                                     {{--<hr/>--}}
                                 @endforeach
-                            </div>
-
-                        @else
-
-                            <div class="characteristics col s12 no-padding">
+                                {{--TODO-evgenii Удалить блок после заполнения всех товаров --}}
                                 @foreach($product->sortedValues($product->category_id) as $field)
                                     @if($field->filter->isVisibleForCategory($product->category_id))
                                     <div class="col s12 characteristic">
@@ -139,11 +134,11 @@
                                         <div class="col s12 m6 no-padding">{{ $field->value }}</div>
                                     </div>
                                     @endif
-                                    <hr/>
+                                    {{--<hr/>--}}
                                 @endforeach
+                                {{--TODO-evgenii END Удалить блок после заполнения всех товаров --}}
                             </div>
 
-                        @endif
 
                         <div class="clearing"></div>
                         {{--<div class="collapsible-header open-info">...</div>--}}

@@ -236,8 +236,8 @@
                                                 <p class="col s12 m8">{{ $characteristics->value }}</p>
                                             </div>
                                         @endforeach
-                                    </div>
-                                    <div class="col col s12 l6">
+
+
                                         <h5 class="teg mod">Параметры</h5>
                                         @foreach($product->getParameters as $rapameter)
                                             <div class="col aspect s12">
@@ -246,9 +246,8 @@
                                             </div>
                                         @endforeach
 
-                                    </div>
-                                    <div class="col col s12 l6">
-                                        <h5 class="teg mod">Фильтры</h5>
+
+                                        {{--TODO-evgenii Удалить блок после заполнения всех товаров --}}
                                         {{--{{ dd($product->filterValuesWithFilters->sortBy('filter.category.pivot.order')->toArray()) }}--}}
                                         @foreach($product->sortedValues($product->category_id) as $field)
                                             {{--{{ dd($field->toArray()) }}--}}
@@ -261,6 +260,8 @@
                                             </div>
                                             {{--@endif--}}
                                         @endforeach
+                                        {{--TODO-evgenii END Удалить блок после заполнения всех товаров --}}
+                                        
                                     </div>
                                 </div>
 
