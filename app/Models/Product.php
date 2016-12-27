@@ -301,7 +301,7 @@ class Product extends Eloquent {
 	 */
 	public function scopeWithRelations($query) {
 		return $query->with(
-			'relevantSale', 'thumbnail', 'characteristics',
+			'relevantSale', 'thumbnail',
 			'category', 'rates', 'filterValuesWithFilters',
 			'stocks.products');
 	}
