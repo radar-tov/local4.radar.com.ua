@@ -1,3 +1,4 @@
+{{--{{ dump($product) }}--}}
 <div class="col s12 m4 l4 item-inner">
     <div class="card item itemAnim{{ $product->id }}">
         <div class="item-image">
@@ -114,18 +115,35 @@
 
                         @endif
                         <div class="clearing"></div>
-                        <div class="characteristics col s12 no-padding">
-                            @foreach($product->sortedValues($product->category_id) as $field)
-                                {{--@if($field->filter->isVisibleForCategory($product->category_id))--}}
-                                <div class="col s12 characteristic">
-                                    <div class="col s12 m6 boldy no-padding">{{ $field->filter->title }}:</div>
-                                    <div class="col s12 m6 no-padding">{{ $field->value }}</div>
-                                </div>
-                                {{--@endif--}}
-                                {{--<hr/>--}}
-                            @endforeach
-                        </div>
+                        @if($product->getCharacteristics != '')
 
+                            <div class="characteristics col s12 no-padding">
+                                @foreach($product->getCharacteristics as $characteristics)
+                                    {{--@if($field->filter->isVisibleForCategory($product->category_id))--}}
+                                    <div class="col s12 characteristic">
+                                        <div class="col s12 m6 boldy no-padding">{{ $characteristics->characteristic->title }}:</div>
+                                        <div class="col s12 m6 no-padding">{{ $characteristics->value }}</div>
+                                    </div>
+                                    {{--@endif--}}
+                                    {{--<hr/>--}}
+                                @endforeach
+                            </div>
+
+                        @else
+
+                            <div class="characteristics col s12 no-padding">
+                                @foreach($product->sortedValues($product->category_id) as $field)
+                                    @if($field->filter->isVisibleForCategory($product->category_id))
+                                    <div class="col s12 characteristic">
+                                        <div class="col s12 m6 boldy no-padding">{{ $field->filter->title }}:</div>
+                                        <div class="col s12 m6 no-padding">{{ $field->value }}</div>
+                                    </div>
+                                    @endif
+                                    <hr/>
+                                @endforeach
+                            </div>
+
+                        @endif
 
                         <div class="clearing"></div>
                         {{--<div class="collapsible-header open-info">...</div>--}}
