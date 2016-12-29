@@ -31,7 +31,9 @@
         btns[i].disabled = true;
     }
 </script>
-<span style="color: darkred">Дата обновления: {{ $product->updated_at }}</span>
+@if(isset($product))
+    <span style="color: darkred">Дата обновления: {{ $product->updated_at }}</span>
+@endif
 <div class="col-lg-12" id="product">
     {{--<pre>--}}
         {{--@{{ $data.selectedProductsIds | json }}--}}
@@ -365,7 +367,7 @@
                     {{--{{ dd($product->pdf) }}--}}
                     {{--{!!Form::label('pdf', "Загрузить PDF",["class" => "btn btn-success btn-sm"]) !!}--}}
                     {{--@if(isset($product->pdf) && !empty($product->pdf))--}}
-                        {{--*/ $pdfName = explode('/', $product->pdf);/*--}}
+                        {{-- $pdfName = explode('/', $product->pdf);--}}
                     {{--@endif--}}
 
 
@@ -409,7 +411,7 @@
 
                     {{--{!!Form::label('flash', "Загрузить 3D просмотр",["class" => "btn btn-success btn-sm"]) !!}--}}
                     {{--@if(isset($product->flash_view) && !empty($product->flash_view))--}}
-                        {{--*/ $flashName = explode('/', $product->flash_view);/*--}}
+                        {{-- $flashName = explode('/', $product->flash_view);--}}
                     {{--@endif--}}
 
                     {{--<input type="hidden" v-model="flashObject" value="{{ isset($flashName) ? array_pop($flashName) : '' }}"/>--}}
@@ -448,7 +450,7 @@
                     <div class="row">
                         <a href="#" class="btn btn-success btn-sm" v-on="click: loadVideo($event)">Загрузить видео</a>
                         <div class="clearfix"></div>
-                        <input type="hidden" name="video" v-model="video" value="{{ $product->video or null}}"/>
+                        <input type="hidden" name="video" v-model="video" value="{{ isset($product->video) ? $product->video : null}}"/>
                         <div class="m-cont" v-if="video" style="margin-top: 20px">
                             @{{{ video }}}
                             <a href="#"><i class="fa fa-remove" title="удалить видео обзор" v-on="click: removeVideo($event)"></i></a>
@@ -488,9 +490,11 @@
                                         <td>{{ $file->path }}</td>
                                         <td>{{ $file->downloads }}</td>
                                         <td>
-                                            <a id="otvet" class="fileedit fancybox.ajax" href="{{ url('dashboard/pdf/'.$file->id.'/'.$product->id) }}">
-                                                <i class="ace-icon fa fa-pencil bigger-130"></i>
-                                            </a>
+                                            @if(isset($product))
+                                                <a id="otvet" class="fileedit fancybox.ajax" href="{{ url('dashboard/pdf/'.$file->id.'/'.$product->id) }}">
+                                                    <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                                </a>
+                                            @endif
                                         </td>
                                         <td>
                                             <a href="#">
@@ -505,11 +509,11 @@
                     </div>
 
                     <hr>
-
-                    <button id="otvet" class="various fancybox.ajax btn btn-success btn-sm" href="{{ url('dashboard/pdf/add/'.$product->category_id, $product->id) }}">
-                        Выбрать файл
-                    </button>
-
+                    @if(isset($product))
+                        <button id="otvet" class="various fancybox.ajax btn btn-success btn-sm" href="{{ url('dashboard/pdf/add/'.$product->category_id, $product->id) }}">
+                            Выбрать файл
+                        </button>
+                    @endif
                     {!!Form::label('pdf', "Загрузить",["class" => "btn btn-success btn-sm"]) !!}
                     <input type="hidden" v-model="PDF"/>
                     <input type="file" name="pdf" id="pdf" v-on="change: loadPDF" v-el="pdfInput" multiple>
