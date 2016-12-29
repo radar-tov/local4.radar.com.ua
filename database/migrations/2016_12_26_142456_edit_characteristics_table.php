@@ -14,6 +14,7 @@ class EditCharacteristicsTable extends Migration
     {
         Schema::table('characteristics', function ($table) {
             $table->dropColumn('is_filter');
+            $table->dropColumn('category_id');
         });
     }
 
@@ -26,6 +27,7 @@ class EditCharacteristicsTable extends Migration
     {
         Schema::table('characteristics', function ($table) {
             $table->integer('is_filter');
+            $table->integer('category_id');
         });
     }
 }
