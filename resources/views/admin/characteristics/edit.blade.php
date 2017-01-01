@@ -1,7 +1,5 @@
 @extends('admin.app')
 
-@section('top-scripts')@stop
-
 @section('page-title')
     Редактировать категорию
 @stop

@@ -1,5 +1,3 @@
-{{--{{ dump($characteristic) }}--}}
-
 <div id="characteristic" class="row">
     <div class="col-xs-6 col-lg-6">
         <div class="form-group">
@@ -10,7 +8,7 @@
                 name="title"
                 class="form-control"
                 id="title"
-                value="@if(isset($characteristic)) {{ old('title',$characteristic->title) }} @endif"
+                value="{{ old('title',$characteristic->title) }}"
                 placeholder='Название параметра'
             />
         </div>
@@ -19,7 +17,7 @@
 
 @if(isset($characteristic->values))
     <div class="col-xs-12">
-        <h4>Значения параметров</h4>
+        <label>Доступные значения характеристики</label>
     </div>
     <div id="values" class="col-xs-6" >
         <div class="form-group">
@@ -44,28 +42,95 @@
                 </span>
             </div>
         </div>
+        <div class="dd" id="nestable">
+            <ol class="list-group dd-list">
+                <li v-repeat="v: values | orderBy 'order'"
+                    class="list-group-item dd-item"
+                    data-id="@{{ v.id }}">
+                    <div class="dd-handle">
+                        <span v-on="dblclick: editValue($event,v)">
+                            @{{ v.value }}
+                        </span>
+                        <div class="pull-right control">
+                            <a v-on="click: editValue($event,v)"class="btn btn-xs btn-white btn-info"><i class="fa fa-edit"></i></a>
+                            <a v-on="click: removeValue($event,v)"class="btn btn-xs btn-white btn-info "><i class="fa fa-times"></i></a>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+        </div>
 
-        <ol class="list-group no-padding">
-            <li v-repeat="v: values"
-                class="list-group-item"
-            >
-                <span v-on="dblclick: editValue($event,v)">
-                    @{{ v.value }}
-                </span>
-                <div class="pull-right">
-                    <button v-on="click: editValue($event,v)"class="btn btn-xs btn-white btn-info"><i class="fa fa-edit"></i></button>
-                    <button v-on="click: removeValue($event,v)"class="btn btn-xs btn-white btn-info "><i class="fa fa-times"></i></button>
-                </div>
-            </li>
-        </ol>
-
-        <pre>
-            @{{ $data | json }}
-        </pre>
+        {{--<pre>--}}
+            {{--@{{ $data | json }}--}}
+        {{--</pre>--}}
     </div>
 @endif
+
+@section('top-scripts')
+    <style>
+        #nestable .dd-handle {
+            background: none;
+            border: none;
+        }
+    </style>
+@endsection
 
 @section('bottom-scripts')
     @parent
     <script src="{{ url('admin/assets/js/app/characteristics-values.js') }}"></script>
+
+
+    <!-- Sortable -->
+    <script src="{{ url('admin/assets/js/jquery.nestable.min.js') }}"></script>
+
+    <!-- inline scripts related to this page -->
+    <script type="text/javascript">
+        jQuery(function($){
+            var nestable,
+                    serialized,
+                    settings = {maxDepth:1},
+                    saveOrder = $('#saveOrder'),
+                    edit = $('.edit');
+
+            nestable = $('.dd').nestable(settings);
+
+            jQuery('.dd').on('change', function() {
+                serialized = nestable.nestable('serialize');
+
+                $.ajax({
+                    method:'POST',
+                    url : "{!! route('dashboard.characteristics_value.order') !!}",
+                    data: { _token: "{!! csrf_token() !!}", serialized: serialized }
+
+                }).done(function (data) {
+                    //alert("Сохранено!");
+                })
+
+                console.log(serialized);
+            });
+
+            saveOrder.on('click', function(e) {
+                e.preventDefault();
+                serialized = nestable.nestable('serialize');
+
+                $.ajax({
+                    method:'POST',
+                    url : "{!! route('dashboard.categories.order') !!}",
+                    data: { _token: "{!! csrf_token() !!}", serialized: serialized }
+
+                }).done(function (data) {
+                    alert("Сохранено!");
+                })
+            })
+
+            $('.dd-handle a, .dd-handle .control').on('mousedown', function(e){
+                e.stopPropagation();
+            });
+
+
+            $('[data-rel="tooltip"]').tooltip();
+
+        });
+
+    </script>
 @endsection

@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\CharacteristicValue;
 use App\Http\Requests\CharacteristicsValues\CreateRequest;
+use App\Http\Requests\CharacteristicsValues\UpdateRequest;
 
 class CharacteristicsValuesController extends Controller
 {
@@ -71,9 +72,9 @@ class CharacteristicsValuesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, CharacteristicValue $values, $id)
     {
-        //
+        return ['success'=>true,$values->findOrFail($id)->update($request->all())];
     }
 
     /**
@@ -82,12 +83,28 @@ class CharacteristicsValuesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(CharacteristicValue $values, $id)
     {
-        //
+        try{
+            $values->findOrFail($id)->delete();
+        } catch(ModelNotFoundException $e) {
+            return ['success'=>false,'message'=>$e->getMessage()];
+        }
+
+        return ['success'=>true];
     }
 
     public function fetchByCharacteristic(CharacteristicValue $value, $id){
         return $value->where('characteristic_id',$id)->orderBy('order')->get();
+    }
+
+    public function order(Request $request, CharacteristicValue $value)
+    {
+        foreach($request->get('serialized') as $order=>$val)
+        {
+            $value->find($val['id'])->update(['order'=>$order]);
+        }
+
+        return ['success'=>true,'message'=>''];
     }
 }

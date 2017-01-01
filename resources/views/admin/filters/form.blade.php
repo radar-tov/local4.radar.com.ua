@@ -35,7 +35,7 @@
 
 @if(isset($filter->values))
     <div class="col-xs-12">
-        <label>Доступные значения характеристики</label>
+        <label>Доступные значения фильтра</label>
     </div>
     <div id="values" class="col-xs-6" >
         <div class="form-group">
@@ -50,6 +50,7 @@
                     placeholder='Значение'
                     v-model="newValue"
                     v-el="newValue"
+                    v-on="keyup:submit | key 13"
                 />
                 <span class="input-group-btn">
                     <button v-on="click: saveValue" type="button" class="btn btn-primary btn-sm" title="Добавить">
@@ -63,8 +64,7 @@
             <ol class="list-group dd-list">
                 <li v-repeat="v: values | orderBy 'order'"
                     class="list-group-item dd-item"
-                    data-id="@{{ v.id }}"
-                >
+                    data-id="@{{ v.id }}">
                     <div class="dd-handle">
                         <span v-on="dblclick: editValue($event,v)">
                             @{{ v.value }}

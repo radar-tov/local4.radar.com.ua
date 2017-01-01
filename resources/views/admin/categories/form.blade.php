@@ -17,7 +17,7 @@
                 </a>
             </li>
             <li class="">
-                <a data-toggle="tab" href="#fields">
+                <a data-toggle="tab" href="#charactiristics">
                     <i class="ace-icon fa fa-gears"></i>
                     Характеристики
                 </a>
@@ -167,14 +167,21 @@
                 </div>
                 <!-- End my options -->
             </div>
+
+
+
+
+
+
+
             <div id="fields" class="tab-pane">
-                <input type="hidden" name="characteristicsIds" value="@{{ characteristicsIds }}"/>
+                <input type="hidden" name="filterIds" value="@{{ filterIds }}"/>
 
 
                 <div class="col-xs-12">
                     <div class="alert alert-info" role="alert">
                         {{--<i class="fa fa-info" style="position: absolute;left: 0;top:0"></i>--}}
-                        Тут вы можете указать список дополнительных характеристик для продуктов этой категории
+                        Тут вы можете указать список фильтров для продуктов этой категории
                     </div>
                     <div class="row">
                         <div class="col-md-4">
@@ -182,7 +189,7 @@
                         </div>
                         <div class="col-md-4">
                             <a href="#" class="btn btn-primary btn-sm" v-on="click:saveField($event)">
-                                <i class="fa fa-plus"></i> Добавить характиристику
+                                <i class="fa fa-plus"></i> Добавить фильтр
                             </a>
                         </div>
                         <br/>
@@ -198,7 +205,7 @@
                             <div class="clearfix">
                                 <div class="col-xs-2"><b>Фильтр</b></div>
                                 <div class="col-xs-2"><b>Показ.</b></div>
-                                <div class="col-xs-6"><b>Характеристика</b></div>
+                                <div class="col-xs-6"><b>Название фильтра</b></div>
                                 <div class="col-xs-2"><b>Удалить</b></div>
                             </div>
                         </div>
@@ -254,7 +261,128 @@
                             </ol>
                         </div>
                         <p v-if="!category.fields.length">
-                            <b>Для этой категории пока не указаны дополнительные характеристики</b>
+                            <b>Для этой категории пока не указаны фильтры</b>
+                        </p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <table class="table" v-if="fieldList.length">
+                            <tr>
+                                <th class="center">Добавить</th>
+                                <th>Доступные фильтры</th>
+                                {{--<th class="options" colspan="2">Опции</th>--}}
+                            </tr>
+                            <tr v-repeat="field in fieldList | orderBy 'id' -1">
+                                <td class="center action-buttons">
+                                    <a href="#" class="green" v-on="click:applyField($event, field)">
+                                        <i class="fa fa-arrow-circle-o-left fa-2x"></i>
+                                    </a>
+                                </td>
+                                <td>@{{ field.title }}</td>
+                            </tr>
+                        </table>
+                        <p v-if="!fieldList.length">
+                            <b style="color:#808080">Эта категория уже включает в себя все созданные фильтры, либо еще не создано ни одного фильтра</b>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+            <div id="charactiristics" class="tab-pane">
+                <input type="hidden" name="characteristicsIds" value="@{{ characteristicsIds }}"/>
+
+
+                <div class="col-xs-12">
+                    <div class="alert alert-info" role="alert">
+                        {{--<i class="fa fa-info" style="position: absolute;left: 0;top:0"></i>--}}
+                        Тут вы можете указать список характеристик для продуктов этой категории
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" v-model="fieldToCreate.title" v-el="charField"/>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="#" class="btn btn-primary btn-sm" v-on="click:saveField($event)">
+                                <i class="fa fa-plus"></i> Добавить характеристику
+                            </a>
+                        </div>
+                        <br/>
+                        <br/>
+                        <br/>
+                    </div>
+                    <div class="col-md-6">
+
+                        <input type="hidden" v-attr="val: getRelatedFieldsIds()"/>
+                        {{--<input type="hidden" name="filters" value="@{{ getFieldsForSync() }}"/>--}}
+                        {{--<input type="hidden" name="sortable" id="_sort"/>--}}
+                        <div class="row table-emulator">
+                            <div class="clearfix">
+                                <div class="col-xs-2"><b>Характеристика</b></div>
+                                <div class="col-xs-2"><b>Показ.</b></div>
+                                <div class="col-xs-6"><b>Название характеристики</b></div>
+                                <div class="col-xs-2"><b>Удалить</b></div>
+                            </div>
+                        </div>
+
+                        <div class="row"></div>
+                        <div class="clearfix"></div>
+                        <div class="dd">
+                            <ol class="list-group dd-list" id="nestable">
+                                <li class="dd-item"
+                                    v-repeat="field in category.fields"
+                                    data-id="@{{ field.id }}"
+                                >
+                                    <input type="hidden" name="filters[@{{ field.id }}]"/>
+                                    <div class="row dd-handle">
+                                        <div class="clearfix">
+                                            <div class="col-xs-2">
+                                                <label>
+                                                    <input
+                                                            type="checkbox"
+                                                            class="ace"
+                                                            v-attr="checked: checked(field)"
+                                                            value="1"
+                                                            v-on="change: setAsFilter(field, $event)"
+                                                            name="filters[@{{ field.id }}][is_filter]"
+                                                    />
+                                                    <span class="lbl"></span>
+                                                </label>
+                                            </div>
+                                            <div class="col-xs-2">
+                                                <label>
+                                                    <input
+                                                            type="checkbox"
+                                                            class="ace"
+                                                            v-attr="checked: checkedIfShow(field)"
+                                                            value="1"
+                                                            name="filters[@{{ field.id }}][show]"
+                                                    />
+                                                    <span class="lbl"></span>
+                                                </label>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <div>@{{ field.title }}</div>
+                                            </div>
+                                            <div class="col-xs-2 action-buttons align-right no-padding">
+                                                <a class="red" href="#" v-on="click: removeField($event, field)">
+                                                    <i class="ace-icon fa fa-arrow-circle-o-right fa-2x"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </li>
+                            </ol>
+                        </div>
+                        <p v-if="!category.fields.length">
+                            <b>Для этой категории пока не указаны характеристики</b>
                         </p>
                     </div>
 
@@ -280,6 +408,14 @@
                     </div>
                 </div>
             </div>
+
+
+
+
+
+
+
+
             <div id="seo" class="tab-pane">
                 <div class="col-xs-12">
                     <div class="form-group">

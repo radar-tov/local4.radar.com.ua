@@ -71,6 +71,21 @@ class CharacteristicsController extends AdminController
 	}
 
 
+    public function destroy(Characteristic $characteristic, $id)
+    {
+        $characteristic->findOrFail($id)->delete();
+
+        return redirect()->route('dashboard.characteristics.index');
+    }
+
+
+    public function getCharact(Request $request)
+    {
+        dd($request->all());
+        return Characteristic::whereNotIn('id', $request->get('ids') ?: [0])->get();
+    }
+
+
 
 	/**
 	 * @param Request $request

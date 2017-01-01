@@ -70,7 +70,7 @@ Breadcrumbs::register('dashboard.categories.edit', function($breadcrumbs)
 Breadcrumbs::register('dashboard.filters.index', function($breadcrumbs)
 {
 	$breadcrumbs->parent('dashboard.index');
-	$breadcrumbs->push('Характеристики', route('dashboard.filters.index'));
+	$breadcrumbs->push('Фильтры', route('dashboard.filters.index'));
 });
 
 // Dashboard > Filters > Create
@@ -86,6 +86,13 @@ Breadcrumbs::register('dashboard.filters.create', function($breadcrumbs)
 //	$breadcrumbs->parent('dashboard.filters.index');
 //	$breadcrumbs->push('Редактировать фильтр', route('dashboard.accommodations.edit'));
 //});
+
+// Dashboard > Characteristics
+Breadcrumbs::register('dashboard.characteristics.index', function($breadcrumbs)
+{
+    $breadcrumbs->parent('dashboard.index');
+    $breadcrumbs->push('Характеристики', route('dashboard.characteristics.index'));
+});
 
 
 // Dashboard > Accommodations

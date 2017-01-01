@@ -10,7 +10,7 @@
 @section('page-nav')
     <div class="col-xs-12">
         <a href="{!! route('dashboard.filters.create') !!}" class="btn btn-sm btn-primary" title="Добавить Параметр Товара">
-            <i class="ace-icon fa fa fa-plus"></i> Добавиль характеристику
+            <i class="ace-icon fa fa fa-plus"></i> Добавиль фильтр
         </a>
     </div>
     <div class="col-xs-12">&nbsp;</div>

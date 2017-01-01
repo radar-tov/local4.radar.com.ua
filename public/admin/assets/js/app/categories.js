@@ -27,6 +27,7 @@ new Vue({
         this.getFields();
         setTimeout(function(){
             vue.getFieldsList();
+            vue.getCharactList();
         },500);
 
 
@@ -36,6 +37,14 @@ new Vue({
     },
 
     computed: {
+        filterIds: function(){
+            var idsString = '';
+            for(var i = 0; i < this.category.fields.length; i++) {
+                idsString += this.category.fields[i].id + ',';
+            }
+            return idsString;
+        },
+
         characteristicsIds: function(){
             var idsString = '';
             for(var i = 0; i < this.category.fields.length; i++) {
@@ -43,6 +52,8 @@ new Vue({
             }
             return idsString;
         }
+
+
         //
         //isFilter: function(field){
         //    console.log(field);
@@ -81,6 +92,22 @@ new Vue({
                     }
                 });
             }
+        },
+
+        getCharactList: function(){
+            var vue = this;
+            $.ajax({
+                method: "POST",
+                url: '/dashboard/characteristics/get',
+                data: {_token: vue.token, ids: vue.getRelatedChractersIds() },
+                success: function (fields) {
+                    fields.forEach(function(field){
+                        field.pivot = {};
+                        field.pivot.is_filter = 0;
+                    });
+                    vue.fieldList = fields;
+                }
+            });
         },
 
         checked: function(field){
@@ -224,6 +251,14 @@ new Vue({
         },
 
         getRelatedFieldsIds: function(){
+            var ids = [];
+            this.category.fields.forEach(function(field){
+                ids.push(field.id)
+            });
+            return ids;
+        },
+
+        getRelatedChractersIds: function(){
             var ids = [];
             this.category.fields.forEach(function(field){
                 ids.push(field.id)

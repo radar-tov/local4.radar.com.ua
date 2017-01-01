@@ -15,7 +15,7 @@ class Characteristic extends Eloquent
 
 	public function categories()
 	{
-		return $this->belongsToMany(Category::class, 'characteristics', 'id', 'category_id');
+		return $this->belongsToMany(Category::class)->withPivot('show','order')->where('category_characteristic.show', '>', 0);
 	}
 
 	public function filterValues()
