@@ -49,13 +49,13 @@ class CharacteristicsController extends AdminController
 
 	public function store(CreateRequest $request, Characteristic $characteristic)
 	{
-//		$characteristic = $characteristic->create($request->all());
-//
-//		if((int)$request->get('button')) {
-//			return redirect()->route('dashboard.$characteristics.index')->withMessage('');
-//		}
-//
-//		return redirect()->route('dashboard.$characteristics.edit',[$characteristic->id])->withFilter($characteristic);
+		$characteristic = $characteristic->create($request->all());
+
+		if((int)$request->get('button')) {
+			return redirect()->route('dashboard.characteristics.index')->withMessage('');
+		}
+
+		return redirect()->route('dashboard.characteristics.edit',[$characteristic->id])->withFilter($characteristic);
 	}
 
 
@@ -81,7 +81,7 @@ class CharacteristicsController extends AdminController
 
     public function getCharact(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
         return Characteristic::whereNotIn('id', $request->get('ids') ?: [0])->get();
     }
 

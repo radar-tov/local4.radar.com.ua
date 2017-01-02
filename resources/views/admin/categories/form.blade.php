@@ -306,10 +306,10 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <input type="text" class="form-control" v-model="fieldToCreate.title" v-el="charField"/>
+                            <input type="text" class="form-control" v-model="xapactToCreate.title" v-el="charXapact"/>
                         </div>
                         <div class="col-md-4">
-                            <a href="#" class="btn btn-primary btn-sm" v-on="click:saveField($event)">
+                            <a href="#" class="btn btn-primary btn-sm" v-on="click:saveXapact($event)">
                                 <i class="fa fa-plus"></i> Добавить характеристику
                             </a>
                         </div>
@@ -319,12 +319,11 @@
                     </div>
                     <div class="col-md-6">
 
-                        <input type="hidden" v-attr="val: getRelatedFieldsIds()"/>
+                        <input type="hidden" v-attr="val: getRelatedChractersIds()"/>
                         {{--<input type="hidden" name="filters" value="@{{ getFieldsForSync() }}"/>--}}
                         {{--<input type="hidden" name="sortable" id="_sort"/>--}}
                         <div class="row table-emulator">
                             <div class="clearfix">
-                                <div class="col-xs-2"><b>Характеристика</b></div>
                                 <div class="col-xs-2"><b>Показ.</b></div>
                                 <div class="col-xs-6"><b>Название характеристики</b></div>
                                 <div class="col-xs-2"><b>Удалить</b></div>
@@ -336,10 +335,10 @@
                         <div class="dd">
                             <ol class="list-group dd-list" id="nestable">
                                 <li class="dd-item"
-                                    v-repeat="field in category.fields"
-                                    data-id="@{{ field.id }}"
+                                    v-repeat="xapact in category.xapacts"
+                                    data-id="@{{ xapact.id }}"
                                 >
-                                    <input type="hidden" name="filters[@{{ field.id }}]"/>
+                                    <input type="hidden" name="xapacts[@{{ xapact.id }}]"/>
                                     <div class="row dd-handle">
                                         <div class="clearfix">
                                             <div class="col-xs-2">
@@ -347,31 +346,18 @@
                                                     <input
                                                             type="checkbox"
                                                             class="ace"
-                                                            v-attr="checked: checked(field)"
+                                                            v-attr="checked: checkedIfShow(xapact)"
                                                             value="1"
-                                                            v-on="change: setAsFilter(field, $event)"
-                                                            name="filters[@{{ field.id }}][is_filter]"
-                                                    />
-                                                    <span class="lbl"></span>
-                                                </label>
-                                            </div>
-                                            <div class="col-xs-2">
-                                                <label>
-                                                    <input
-                                                            type="checkbox"
-                                                            class="ace"
-                                                            v-attr="checked: checkedIfShow(field)"
-                                                            value="1"
-                                                            name="filters[@{{ field.id }}][show]"
+                                                            name="xapacts[@{{ xapact.id }}][show]"
                                                     />
                                                     <span class="lbl"></span>
                                                 </label>
                                             </div>
                                             <div class="col-xs-6">
-                                                <div>@{{ field.title }}</div>
+                                                <div>@{{ xapact.title }}</div>
                                             </div>
                                             <div class="col-xs-2 action-buttons align-right no-padding">
-                                                <a class="red" href="#" v-on="click: removeField($event, field)">
+                                                <a class="red" href="#" v-on="click: removeXapact($event, xapact)">
                                                     <i class="ace-icon fa fa-arrow-circle-o-right fa-2x"></i>
                                                 </a>
                                             </div>
@@ -381,28 +367,28 @@
                                 </li>
                             </ol>
                         </div>
-                        <p v-if="!category.fields.length">
+                        <p v-if="!category.xapacts.length">
                             <b>Для этой категории пока не указаны характеристики</b>
                         </p>
                     </div>
 
                     <div class="col-md-6">
-                        <table class="table" v-if="fieldList.length">
+                        <table class="table" v-if="xapactList.length">
                             <tr>
                                 <th class="center">Добавить</th>
                                 <th>Доступные характеристики</th>
                                 {{--<th class="options" colspan="2">Опции</th>--}}
                             </tr>
-                            <tr v-repeat="field in fieldList | orderBy 'id' -1">
+                            <tr v-repeat="xapact in xapactList | orderBy 'id' -1">
                                 <td class="center action-buttons">
-                                    <a href="#" class="green" v-on="click:applyField($event, field)">
+                                    <a href="#" class="green" v-on="click:applyXapact($event, xapact)">
                                         <i class="fa fa-arrow-circle-o-left fa-2x"></i>
                                     </a>
                                 </td>
-                                <td>@{{ field.title }}</td>
+                                <td>@{{ xapact.title }}</td>
                             </tr>
                         </table>
-                        <p v-if="!fieldList.length">
+                        <p v-if="!xapactList.length">
                             <b style="color:#808080">Эта категория уже включает в себя все созданные характеристики, либо еще не создано ни одной характеристики</b>
                         </p>
                     </div>

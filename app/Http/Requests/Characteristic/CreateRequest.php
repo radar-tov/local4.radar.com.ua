@@ -1,4 +1,4 @@
-<?php namespace App\Http\Requests\Characteristics;
+<?php namespace App\Http\Requests\Characteristic;
 
 use App\Http\Requests\Request;
 

@@ -87,6 +87,15 @@ class Category extends Eloquent
 			->orderBy('category_filter.order');
 	}
 
+
+    public function xapacts()
+    {
+        return $this->belongsToMany(Characteristic::class,'category_characteristic')
+            ->withPivot('order','show')
+            ->orderBy('category_characteristic.order');
+    }
+
+
 	/**
 	 * Alias for filters
 	 */
@@ -120,6 +129,13 @@ class Category extends Eloquent
 	{
 		return $this->belongsToMany(Filter::class,'category_filter')->withPivot('is_filter')->where('is_filter', 1);
 	}
+
+
+    public function saveXapacts()
+    {
+        return $this->belongsToMany(Characteristic::class,'category_characteristic');
+    }
+
 
 	/**
 	 * @param $productId

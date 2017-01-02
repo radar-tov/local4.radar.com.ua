@@ -6,15 +6,12 @@ new Vue({
         slug: null,
         translate: {},
         category:{
-            fields: [
-                //{
-                ////    is_checked: null,
-                //    is_filter: 0
-                //}
-            ],
+            fields: [],
+            xapacts: [],
             icon: ''
         },
         fieldList: {},
+        xapactList:{},
         token: null,
         fieldToCreate: {
             title: '',
@@ -47,8 +44,8 @@ new Vue({
 
         characteristicsIds: function(){
             var idsString = '';
-            for(var i = 0; i < this.category.fields.length; i++) {
-                idsString += this.category.fields[i].id + ',';
+            for(var i = 0; i < this.category.xapacts.length; i++) {
+                idsString += this.category.xapacts[i].id + ',';
             }
             return idsString;
         }
@@ -100,12 +97,12 @@ new Vue({
                 method: "POST",
                 url: '/dashboard/characteristics/get',
                 data: {_token: vue.token, ids: vue.getRelatedChractersIds() },
-                success: function (fields) {
-                    fields.forEach(function(field){
-                        field.pivot = {};
-                        field.pivot.is_filter = 0;
+                success: function (xapacts) {
+                    xapacts.forEach(function(xapact){
+                        xapact.pivot = {};
+                        xapact.pivot.is_filter = 0;
                     });
-                    vue.fieldList = fields;
+                    vue.xapactList = xapacts;
                 }
             });
         },
@@ -139,6 +136,22 @@ new Vue({
 
         },
 
+
+        applyXapact: function(event, xapact){
+            event.preventDefault();
+            this.category.xapacts.push(xapact);
+            this.getCharactList();
+
+            // Reset event handler for applied list item
+            setTimeout(function(){
+                $('.dd-handle a, .dd-handle .lbl').on('mousedown', function(e){
+                    e.stopPropagation();
+                });
+            }, 500)
+
+        },
+
+
         prepareSlug: function () {
             var answer = '',
                 title = this.title,
@@ -170,11 +183,23 @@ new Vue({
                 }
             }
         },
+
+        saveXapact: function(event){
+            event.preventDefault();
+            if(this.xapactToCreate.title) {
+                if(this.xapactToCreate.id) {
+                    //this.updateXapact();
+                } else {
+                    this.createNewXapact();
+                }
+            }
+        },
+
         createNewField: function(){
             var vue = this;
             $.ajax({
                 method: "POST",
-                url: '/dashboard/filters/',
+                url: '/dashboard/filters',
                 data:  {title: vue.fieldToCreate.title, _token: vue.token, is_filter: 0},
                 success: function (field) {
                     vue.getFieldsList();
@@ -182,11 +207,25 @@ new Vue({
                 }
             });
         },
+
+        createNewXapact: function(){
+            var vue = this;
+            $.ajax({
+                method: "POST",
+                url: '/dashboard/characteristics',
+                data:  {title: vue.xapactToCreate.title, _token: vue.token},
+                success: function (xapact) {
+                    vue.getCharactList();
+                    vue.xapactToCreate = {}
+                }
+            });
+        },
+
         updateField: function(){
             var vue = this;
             $.ajax({
                 method: "POST",
-                url: '/dashboard/characteristics/'+ vue.fieldToCreate.id,
+                url: '/dashboard/filters/'+ vue.fieldToCreate.id,
                 data:  {title: vue.fieldToCreate.title, is_filter: vue.fieldToCreate.is_filter, _token: vue.token, _method: 'PUT'},
                 success: function (field) {
                     vue.category.fields.push(field);
@@ -233,6 +272,14 @@ new Vue({
 
 
 
+        removeXapact : function(event, xapact){
+            event.preventDefault();
+            this.category.xapacts.$remove(xapact);
+            this.getCharactList();
+        },
+
+
+
         editField: function(event, field){
             event.preventDefault();
             if(this.fieldToCreate.id) this.category.fields.push(field);
@@ -260,8 +307,8 @@ new Vue({
 
         getRelatedChractersIds: function(){
             var ids = [];
-            this.category.fields.forEach(function(field){
-                ids.push(field.id)
+            this.category.xapacts.forEach(function(xapact){
+                ids.push(xapact.id)
             });
             return ids;
         },

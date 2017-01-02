@@ -94,8 +94,8 @@ class CategoriesController extends AdminController
 		$category = $this->category->with('fields')->findOrFail($id);
 
 		if($request->ajax()){
-			return $category->load('fields');
-			dd($category->load('fields')->toArray());
+			return $category->load('fields', 'xapacts');
+			//dd($category->load('fields')->toArray());
 		}
 
 		$filters = $this->filter->all();
@@ -136,7 +136,17 @@ class CategoriesController extends AdminController
 		
 		$category->filters()->sync($arr);
 		//$filterService->syncFilters($category, $request);
-       
+
+        $xap = $request->get('xapacts') ?: [];
+        $o = 0;
+        foreach($xap as &$xapact){
+            $xapact['order'] = $o;
+            isset($xapact['show']) ?: $xapact['show'] = 0;
+            $o++;
+        };
+
+        $category->saveXapacts()->sync($xap);
+
 		if((int)$request->get('button')) {
 			return redirect()->route('dashboard.categories.index')->withMessage('');
 		}
