@@ -4,7 +4,7 @@
 @stop
 
 @section('page-title')
-    Характеристики товаров
+    Фильтры
 @stop
 
 @section('page-nav')

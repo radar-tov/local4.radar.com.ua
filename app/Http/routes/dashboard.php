@@ -1,12 +1,5 @@
 <?php
 
-//get('/dashboard/test',function(){
-//
-//	dd(\File::getRemote('http://lorempixel.com/400/200/sports/'));
-//	$upload = new App\Services\BackupFilesUpload();
-//
-//});
-
 Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Http\Controllers\Admin'], function() {
 
 	Route::group(['prefix'=>'dashboard'], function () {
@@ -48,11 +41,10 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
 		get('products/restore-from-trash/{product_id}', 'ProductsController@restoreFromTrash');
 		resource('products', 'ProductsController');
 
-		/**
-		* Products routes end
-		* */
+		/*
+		 * Products routes end
+		 */
 
-//		get('get_ordered_products', 'OrderedProductsController@getProductsByOrder');
 		delete('destroy_ordered_product/{product_id}', 'OrderedProductsController@destroy');
 
 		resource('orders', 'OrdersController');
@@ -136,20 +128,18 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
 		/* /end FILTERS */
 
 		/* CHRACTERISTICS */
-
-//		post('characteristics', 'CharacteristicsController@createCharacteristic');
-//		post('characteristics_list', 'CharacteristicsController@getCharacteristics');
-//		get('characteristics/{category_id}', 'CharacteristicsController@getCharacteristicsForCategory');
-//		put('characteristics/{id}', 'CharacteristicsController@updateCharacteristic');
-//		delete('characteristics/{id}', 'CharacteristicsController@deleteCharacteristic');
-
 		post('characteristics_value/{id}/characteristics',['as'=>'dashboard.values.characteristics', 'uses'=>'CharacteristicsValuesController@fetchByCharacteristic']);
         post('characteristics_value/order',['as'=>'dashboard.characteristics_value.order', 'uses'=>'CharacteristicsValuesController@order']);
         post('characteristics/get', 'CharacteristicsController@getCharact');
 		resource('characteristics', 'CharacteristicsController');
 		resource('characteristics_value', 'CharacteristicsValuesController');
-
 		/* /end CHRACTERISTICS */
+
+
+        /* CENA */
+        get('cena/list', 'CenaController@show');
+        resource('cena', 'CenaController');
+        /* /end CENA */
 	});
 
 });

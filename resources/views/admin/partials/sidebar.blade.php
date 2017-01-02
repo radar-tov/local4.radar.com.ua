@@ -19,13 +19,13 @@
             </a>
             <b class="arrow"></b>
         </li>
-        {{--<li class="{{ Request::is('dashboard/parameters*') ? 'active' : null }}">--}}
-            {{--<a href="{!! route('dashboard.parameters.index') !!}" title="Параметры Товаров">--}}
-                {{--<i class="menu-icon fa fa-cubes"></i>--}}
-                {{--<span class="menu-text">Параметры Тов...</span>--}}
-            {{--</a>--}}
-            {{--<b class="arrow"></b>--}}
-        {{--</li>--}}
+        <li class="{{ Request::is('dashboard/cena*') ? 'active' : null }}">
+            <a href="{!! route('dashboard.cena.index') !!}" title="Группы цен">
+                <i class="menu-icon fa fa-dollar"></i>
+                <span class="menu-text">Группы цен</span>
+            </a>
+            <b class="arrow"></b>
+        </li>
         <li class="{{ Request::is('dashboard/categories*') ? 'active' : null }}">
             <a href="{!! route('dashboard.categories.index') !!}">
                 <i class="menu-icon fa fa-list"></i>

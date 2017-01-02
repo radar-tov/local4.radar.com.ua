@@ -91,6 +91,38 @@ $(document).ready(function () {
         }
     });
 
+
+    $(".cena_create").fancybox({
+        maxWidth: 1000,
+        maxHeight: 1000,
+        fitToView: false,
+        width: '80%',
+        height: '80%',
+        autoSize: false,
+        closeClick: false,
+        openEffect: 'none',
+        closeEffect: 'none',
+        afterClose: function () {
+            getCenaGrups();
+        }
+    });
+
+
+    $(".cena_edit").fancybox({
+        maxWidth: 1000,
+        maxHeight: 1000,
+        fitToView: false,
+        width: '80%',
+        height: '80%',
+        autoSize: false,
+        closeClick: false,
+        openEffect: 'none',
+        closeEffect: 'none',
+        afterClose: function () {
+            getCenaGrups();
+        }
+    });
+
 });
 
 function getPdfList() {
@@ -104,6 +136,19 @@ function getPdfList() {
         $("#filesup").html(response);
     });
 }
+
+
+function getCenaGrups(){
+    var token = $("input[name='_token']").val();
+    $.ajax({
+        type: "GET",
+        url: "/dashboard/cena/list",
+        data: {_token: token}
+    }).done(function (response) {
+        $("#cenagrupslist").html(response);
+    });
+}
+
 
 function deletePDF(fileID) {
     var token = $("input[name='_token']").val(),

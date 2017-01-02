@@ -80,6 +80,13 @@ Breadcrumbs::register('dashboard.filters.create', function($breadcrumbs)
 	$breadcrumbs->push('Добавить фильтр', route('dashboard.filters.create'));
 });
 
+// Dashboard > Cena
+Breadcrumbs::register('dashboard.cena.index', function($breadcrumbs)
+{
+    $breadcrumbs->parent('dashboard.index');
+    $breadcrumbs->push('Группы цен', route('dashboard.cena.index'));
+});
+
 // Dashboard > Filters > Edit
 //Breadcrumbs::register('dashboard.filters.edit', function($breadcrumbs)
 //{

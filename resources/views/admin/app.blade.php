@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
     <meta id="token" name="token" value="{!! csrf_token() !!}" >
-    <title>Dashboard</title>
+    <title>@yield('page-title')</title>
     <meta name="description" content="overview &amp; stats" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
@@ -30,12 +30,12 @@
     <link rel="stylesheet" href="{!! url('admin/assets/css/uncompressed/ace-part2.css') !!}"/>
     <![endif]-->
 
-    {{--
-        <!-- Burn after reading -->
-        {!!Html::style('admin/assets/css/ace-skins.min.css')!!}
-        {!!Html::style('admin/assets/css/ace-rtl.min.css')!!}
-        <!-- Burn after reading -->
-    --}}
+
+    {{--<!-- Burn after reading -->--}}
+    {{--{!!Html::style('admin/assets/css/ace-skins.min.css')!!}--}}
+    {{--{!!Html::style('admin/assets/css/ace-rtl.min.css')!!}--}}
+    {{--<!-- Burn after reading -->--}}
+
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="{!! url('admin/assets/css/ace-ie.min.css') !!}"/>
@@ -46,22 +46,20 @@
     <link rel="stylesheet" href="{{ url('packages/colorbox/colorbox.css') }}">
     {{--<link rel="stylesheet" href="{{ url('admin/assets/css/chosen.css') }}">--}}
 
-    {{--
-        <!-- Burn after reading -->
-            {!!Html::style('packages/colorbox/colorbox.css')!!}
-            {!!Html::style('admin/assets/css/jquery-ui.min.css')!!}
-            {!!Html::style('admin/assets/css/chosen.css')!!}
-        <!-- Burn after reading -->
-    --}}
+
+    {{--<!-- Burn after reading -->--}}
+        {{--{!!Html::style('packages/colorbox/colorbox.css')!!}--}}
+        {{--{!!Html::style('admin/assets/css/jquery-ui.min.css')!!}--}}
+        {{--{!!Html::style('admin/assets/css/chosen.css')!!}--}}
+    {{--<!-- Burn after reading -->--}}
+
     <!--/Custom admin templates -->
 
     <!-- inline styles related to this page -->
 
     <!-- ace settings handler -->
 
-    {{--
-        {!!Html::script('admin/assets/js/ace-extra.min.js')!!}
-    --}}
+    {{--{!!Html::script('admin/assets/js/ace-extra.min.js')!!}--}}
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
@@ -182,13 +180,13 @@
             </script>
 
             <ul class="breadcrumb">
-            {{--
-                <li>
-                    <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="#">Home</a>
-                </li>
-                <li class="active">Dashboard</li>
-            --}}
+
+                {{--<li>--}}
+                    {{--<i class="ace-icon fa fa-home home-icon"></i>--}}
+                    {{--<a href="#">Home</a>--}}
+                {{--</li>--}}
+                {{--<li class="active">Dashboard</li>--}}
+
                 {!! Breadcrumbs::renderIfExists() !!}
             </ul><!-- /.breadcrumb -->
 
@@ -197,19 +195,17 @@
 
         <!-- /section:basics/content.breadcrumbs -->
         <div class="page-content">
-            <!--
-                {{--
-                    <div class="page-header">
-                        <h1>
-                            @yield('page-title')
-                            <!--<small>
-                                <i class="ace-icon fa fa-angle-double-right"></i>
-                                overview &amp; stats
-                            </small>-->
-                        </h1>
-                    </div><!-- /.page-header -->
-                --}}
-            -->
+
+                    {{--<div class="page-header">--}}
+                        {{--<h1>--}}
+                            {{--@yield('page-title')--}}
+                            {{--<!--<small>--}}
+                                {{--<i class="ace-icon fa fa-angle-double-right"></i>--}}
+                                {{--overview &amp; stats--}}
+                            {{--</small>-->--}}
+                        {{--</h1>--}}
+                    {{--</div><!-- /.page-header -->--}}
+
             @yield('page-nav')
             @yield('content')
             <div class="row"></div><!-- /.row -->
@@ -247,21 +243,21 @@
 <script src="{!! url('admin/assets/js/excanvas.min.js') !!}"></script>
 <![endif]-->
 
-{{--
-{!!Html::script('admin/assets/js/jquery-ui.custom.min.js')!!}
-{!!Html::script('admin/assets/js/jquery.ui.touch-punch.min.js')!!}
-{!!Html::script('admin/assets/js/jquery.easypiechart.min.js')!!}
-{!!Html::script('admin/assets/js/jquery.sparkline.min.js')!!}
-{!!Html::script('admin/assets/js/jquery.gritter.min.js')!!}
---}}
+
+{{--{!!Html::script('admin/assets/js/jquery-ui.custom.min.js')!!}--}}
+{{--{!!Html::script('admin/assets/js/jquery.ui.touch-punch.min.js')!!}--}}
+{{--{!!Html::script('admin/assets/js/jquery.easypiechart.min.js')!!}--}}
+{{--{!!Html::script('admin/assets/js/jquery.sparkline.min.js')!!}--}}
+{{--{!!Html::script('admin/assets/js/jquery.gritter.min.js')!!}--}}
+
 
 {{--<script src="../assets/js/jquery.gritter.min.js"></script>--}}
 
-{{--
-{!!Html::script('admin/assets/js/flot/jquery.flot.min.js')!!}
-{!!Html::script('admin/assets/js/flot/jquery.flot.pie.min.js')!!}
-{!!Html::script('admin/assets/js/flot/jquery.flot.resize.min.js')!!}
---}}
+
+{{--{!!Html::script('admin/assets/js/flot/jquery.flot.min.js')!!}--}}
+{{--{!!Html::script('admin/assets/js/flot/jquery.flot.pie.min.js')!!}--}}
+{{--{!!Html::script('admin/assets/js/flot/jquery.flot.resize.min.js')!!}--}}
+
 
 <!-- ace scripts -->
 {{--{!!Html::script('admin/assets/js/ace-elements.min.js')!!}--}}

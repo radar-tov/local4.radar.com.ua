@@ -10,7 +10,6 @@ use App\Http\Requests\Characteristic\UpdateRequest;
 use App\Http\Requests\Characteristic\CreateRequest;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use MyProject\Proxies\__CG__\OtherProject\Proxies\__CG__\stdClass;
 
 /**
  * Class CharacteristicsController
