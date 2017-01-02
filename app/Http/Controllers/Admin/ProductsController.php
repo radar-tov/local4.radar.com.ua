@@ -213,11 +213,12 @@ class ProductsController extends AdminController
     // TODO: Refactor this crap
     public function update(UpdateProductRequest $request, $id, ProductService $productService)
     {
-
+        //dd($request->all());
         $request = $this->filesHandler->saveFile($request);
         $product = $this->product->withTrashed()->findOrFail($id);
 
         $request['filters'] = $productService->prepareFiltersRequest($request->get('filters'));
+        $request['xaracts'] = $productService->prepareXaractsRequest($request->get('xaracts'));
 
         //Определяем checkbox
         $request = $this->isCheckbox($request, $request->sitemap, 'sitemap');
@@ -229,6 +230,7 @@ class ProductsController extends AdminController
         $product->update($request->all());
 
         $product->filters()->sync($request->get('filters') ?: []);
+        $product->xaracts()->sync($request->get('xaracts') ?: []);
 
         $this->productService->syncImages($product, $request->get('imagesIds'));
 

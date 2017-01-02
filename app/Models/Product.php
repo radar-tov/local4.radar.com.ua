@@ -268,6 +268,11 @@ class Product extends Eloquent {
 		return $this->belongsToMany(Filter::class)->withPivot('filter_value_id');
 	}
 
+
+    public function xaracts() {
+        return $this->belongsToMany(Characteristic::class, 'characteristic_value_product')->withPivot('characteristic_value_id');
+    }
+
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
 	 */
@@ -282,6 +287,13 @@ class Product extends Eloquent {
 		return $this->belongsToMany(FilterValue::class, 'filter_product', 'product_id', 'filter_value_id')
 			->with('filter.categories');
 	}
+
+
+    public function xaractValuesWithXaracts() {
+        return $this->belongsToMany(Characteristic::class, 'characteristic_value_product', 'product_id', 'characteristic_value_id')
+            ->with('characteristic.categories');
+    }
+
 
 	public function getParameters(){
 		return $this->belongsToMany(ParametersValue::class, 'parameter_product', 'product_id', 'parameter_value_id')->with('parameter');

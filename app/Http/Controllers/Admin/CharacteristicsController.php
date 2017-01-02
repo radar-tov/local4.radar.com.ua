@@ -86,6 +86,20 @@ class CharacteristicsController extends AdminController
     }
 
 
+    public function show($productId, Request $request)
+    {
+        //$product = Product::with('category.strain.values','filters','filterValuesWithFilters')->find($productId);
+        $product = Product::with('xaracts', 'xaractValuesWithXaracts')->find($productId);
+        //dd($product);
+
+        $xaracts =  Characteristic::whereHas('categories', function($category) use($request){
+            $category->where('id', $request->get('category_id'));
+        })->with('values')->get();
+        //dd($xaracts);
+        return view('admin.characteristics.select_form', compact('xaracts', 'product'))->render();
+    }
+
+
 
 	/**
 	 * @param Request $request

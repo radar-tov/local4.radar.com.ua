@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\CharacteristicValue;
+use App\Models\Characteristic;
 use App\Http\Requests\CharacteristicsValues\CreateRequest;
 use App\Http\Requests\CharacteristicsValues\UpdateRequest;
 
@@ -17,19 +18,23 @@ class CharacteristicsValuesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, CharacteristicValue $characteristicValue, $characteristicId = 0)
     {
-        //
+        if($request->ajax()){
+            return CharacteristicValue::groupBy('value')->lists('value');
+        }
+        return $characteristicValue->where('characteristic_id', $characteristicId)->orderBy('id','desc')->get();
     }
+
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Characteristic $characteristic)
     {
-        //
+        //return view('admin.filter-values.create')->withFilters($characteristic->lists('title','id'));
     }
 
     /**
@@ -49,9 +54,9 @@ class CharacteristicsValuesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(CharacteristicValue $characteristicValue, $characteristicId)
     {
-        //
+        return $characteristicValue->where('characteristic_id',$characteristicId)->orderBy('order','desc')->get();
     }
 
     /**

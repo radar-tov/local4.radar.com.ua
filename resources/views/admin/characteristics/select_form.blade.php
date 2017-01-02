@@ -1,0 +1,47 @@
+{{--{{ dump($product) }}--}}
+<div class="row xaract_sel">
+    {{--@if(isset($category->strain))--}}
+    @foreach($xaracts as $xaract)
+        <div class="col-xs-12">
+
+            <div class="form-group">
+                <label for="">
+                    {{ $xaract->title }}
+                </label>
+                <a href="{{ route('dashboard.characteristics.edit', $xaract->id) }}" class="pull-right" target="_blank">
+                    <small>Редактировать характеристику</small>
+                </a>
+                {{--                @if(count($filter->values))--}}
+                <input type="hidden" name="xaracts[{{ $xaract->id }}][characteristic_id]" value = "{{ $xaract->id }}"/>
+
+                @if(count($product))
+                    <input type="hidden" name="xaracts[{{ $xaract->id }}][product_id]" value = "{{ $product->id }}"/>
+
+                    <select name="xaracts[{{ $xaract->id }}][value]" id="" class="form-control selectize_x">
+                        @foreach($xaract->values as $v)
+                            <option value="{{ $v->value }}"
+                            @foreach($product->xaracts as $selected)
+                                {{ (int)$selected->pivot->characteristic_value_id === (int)$v->id ? 'selected' : null }}
+                            @endforeach
+                            >{{ $v->value }}</option>
+                        @endforeach
+                    </select>
+
+                @else
+
+                    <select name="xaracts[{{ $xaract->id }}][value]" id="" class="form-control selectize_x">
+                        @foreach($xaract->values as $v)
+                            <option value="{{ $v->value }}">{{ $v->value }}</option>
+                        @endforeach
+                    </select>
+                @endif
+
+                {{--@else--}}
+
+                {{--@endif--}}
+            </div>
+        </div>
+    @endforeach
+    {{--@endif--}}
+
+</div>

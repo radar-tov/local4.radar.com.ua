@@ -98,8 +98,14 @@
                 </a>
             </li>
             <li class="">
-                <a data-toggle="tab" href="#params">
+                <a data-toggle="tab" href="#characters">
                     <i class="ace-icon fa fa-cogs"></i>
+                    Характеристики
+                </a>
+            </li>
+            <li class="">
+                <a data-toggle="tab" href="#params">
+                    <i class="ace-icon fa fa-list"></i>
                     Параметры
                 </a>
             </li>
@@ -327,6 +333,26 @@
             </div>
 
             <!-- /End Filters -->
+
+
+            <!-- characters -->
+            <div id="characters" class="tab-pane">
+
+                <label class="action-buttons pull-right" v-on="click: getXapacts()">
+                    <a href="#" id="_spin"><i class="fa fa-refresh fa-2x"></i></a>
+                </label>
+                <div class="inner clearfix">
+                    {{--This section will be ajax loaded--}}
+                </div>
+
+                <div class="row">
+                    <div style="padding-bottom: 150px"></div>
+                </div>
+            </div>
+
+            <!-- /End characters -->
+
+
 
             <!-- Params -->
 

@@ -7,6 +7,7 @@ new Vue({
         this.getImages();
         setTimeout(function(){
             vue.getFields();
+            vue.getXapacts();
         }, 100);
 
         this.getRelatedProducts();
@@ -20,7 +21,8 @@ new Vue({
         }, 1000);
 
         this.getFilterValues();
-        this.initSelectize();
+        this.getXapactValues();
+        //this.initSelectize();
 
     },
 
@@ -38,6 +40,7 @@ new Vue({
         flashObject:{},
         video: {},
         filterValues: [],
+        xapactsValues: [],
         pdfList: [],
         productsList:{
             products:{},
@@ -126,10 +129,25 @@ new Vue({
                 url: '/dashboard/values',
                 method: 'GET'
             }).done(function(values){
-                console.log(values)
+                //console.log(values)
                 vue.filterValues = values;
             })
         },
+
+
+
+        getXapactValues: function(){
+            var vue = this;
+            $.ajax({
+                url: '/dashboard/characteristics_value',
+                method: 'GET'
+            }).done(function(xapacts){
+               // console.log(values)
+                vue.xapactsValues = xapacts;
+            })
+        },
+
+
 
         getImages: function () {
             var that = this;
@@ -348,9 +366,30 @@ new Vue({
             $.get('/dashboard/filters/'+ this.productId, {category_id: this.category }).done(function(response){
                 $("#filters .inner").html(response);
                 $("#filters").removeClass('loading');
-                vue.initSelectize();
+                $('.selectize').selectize({
+                    create: true,
+                    createOnBlur: true,
+                    sortField: 'text'
+                });
             })
         },
+
+
+        getXapacts: function(){
+            var vue = this;
+            $("#characters").addClass('loading');
+            $.get('/dashboard/characteristics/'+ this.productId, {category_id: this.category }).done(function(response){
+                $("#characters .inner").html(response);
+                $("#characters").removeClass('loading');
+                $('.selectize_x').selectize({
+                    create: true,
+                    createOnBlur: true,
+                    sortField: 'text'
+                });
+            })
+        },
+
+
 
         load3D: function(event){
             this.flashObject = $(this.$$.flashInput).val().split('\\').pop();

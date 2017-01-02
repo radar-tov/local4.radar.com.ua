@@ -147,4 +147,23 @@ class ProductService {
 		}
 		return $filters;
 	}
+
+
+
+    public function prepareXaractsRequest($xaracts)
+    {
+        if(!$xaracts) return $xaracts;
+
+
+        foreach ($xaracts as $key => &$xaract) {
+            if(empty($xaract['value'])){
+                unset($xaracts[$key]); continue;
+            }
+            $value = CharacteristicValue::where('characteristic_id', $xaract['characteristic_id'])->where('value', $xaract['value'])->first();
+            $xaract['characteristic_value_id'] = count($value) ? $value->id : CharacteristicValue::create($xaract)->id;
+            unset($xaract['value']);
+        }
+        return $xaracts;
+    }
+
 }
