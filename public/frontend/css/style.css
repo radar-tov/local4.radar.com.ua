@@ -5709,7 +5709,7 @@ p.note {
 
 .side-bar > li.havechild {
     /*background: url('../images/cat-arrow.png') right 25px no-repeat*/
-    background: #062a75;
+    /*background: #062a75;*/
 }
 
 .side-bar > li.havechild:hover {
@@ -5821,12 +5821,13 @@ aside {
 }
 
 .side-bar.card li span a {
-    color: #FFFFFF;
+    /*color: #FFFFFF;*/
     line-height:20px;
+    font-weight: 600;
 }
 
 .side-bar li:hover span a{
-        color: #FFFFFF;
+    color: #FFFFFF;
 }
 
 .side-bar li .sub-categories li:hover a {
@@ -5837,7 +5838,7 @@ aside {
     text-transform: uppercase;
     display: block;
     font: 400 14px "Roboto", sans-serif;
-        position: relative;
+    position: relative;
 }
 
 .side-bar.card li img.right {
@@ -5901,7 +5902,7 @@ aside {
 .sub-categories li a {
     min-height:50px!important;
     line-height: 18px!important;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     font: 600 14px "Roboto", sans-serif;
     padding-left: 15px;
     position: relative;

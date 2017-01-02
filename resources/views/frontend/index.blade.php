@@ -25,7 +25,7 @@
                 </div>
             </div>
         </div>
-        @include('frontend.partials.sale_slider')
+        {{--@include('frontend.partials.sale_slider')--}}
         <div class="container">
             <div class="row">
                 @include('frontend.partials.products.sale_products_slider')

@@ -108,8 +108,8 @@ class FrontendController extends BaseController
                 }
             }
 
-			return Response::view('frontend.subcategories', compact('categories','category'))
-				->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
+			return Response::view('frontend.subcategories', compact('categories','category'));
+				//->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT')
 	  	}
 
 		if($request->ajax()){
@@ -141,8 +141,8 @@ class FrontendController extends BaseController
 		}
 
 
-		return Response::view('frontend.catalog', compact('subcategory', 'category'))
-			->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
+		return Response::view('frontend.catalog', compact('subcategory', 'category'));
+			//->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT')
 
 	}
 
@@ -224,8 +224,8 @@ class FrontendController extends BaseController
         }
 
 
-        return Response::view('frontend.product', compact('product','productReviewId'))
-            ->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
+        return Response::view('frontend.product', compact('product','productReviewId'));
+            //->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT')
 
 	}
 
@@ -384,7 +384,8 @@ class FrontendController extends BaseController
 			}
         }
 
- 		return Response::view('frontend.static', compact('page'))->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
+ 		return Response::view('frontend.static', compact('page'));
+			//->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT')
 	}
 
 
