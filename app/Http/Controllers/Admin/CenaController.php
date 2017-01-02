@@ -72,9 +72,13 @@ class CenaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Cenagrup $cenagrup, Request $request, $id)
     {
-        //
+        if($cenagrup->findOrFail($id)->update($request->all())){
+            return '<h3 align="center">Сохранено.</h3>';
+        }else{
+            return '<h3 align="center">Ошибка.</h3>';
+        }
     }
 
     /**
