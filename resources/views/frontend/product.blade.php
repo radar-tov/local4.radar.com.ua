@@ -230,11 +230,13 @@
                                     <div class="col mod col s12 l6">
                                     <div class="col col s12 l6">
                                         <h5 class="teg mod">Характеристики</h5>
-                                        @foreach($product->getCharacteristics as $characteristics)
-                                            <div class="col aspect s12">
-                                                <p class="col s12 m4">{{ $characteristics->characteristic->title }}</p>
-                                                <p class="col s12 m8">{{ $characteristics->value }}</p>
-                                            </div>
+                                        @foreach($product->sortedValuesCharacters($product->category_id) as $characteristics)
+                                            @if($characteristics->characteristic->isVisibleForCategory($product->category_id))
+                                                <div class="col aspect s12">
+                                                    <p class="col s12 m4">{{ $characteristics->characteristic->title }}</p>
+                                                    <p class="col s12 m8">{{ $characteristics->value }}</p>
+                                                </div>
+                                            @endif
                                         @endforeach
 
 
@@ -248,17 +250,13 @@
 
 
                                         {{--TODO-evgenii Удалить блок после заполнения всех товаров --}}
-                                        {{--{{ dd($product->filterValuesWithFilters->sortBy('filter.category.pivot.order')->toArray()) }}--}}
                                         @foreach($product->sortedValues($product->category_id) as $field)
-                                            {{--{{ dd($field->toArray()) }}--}}
-                                            {{-- @if($field->filter->isVisibleForCategory($product->category_id))--}}
-                                            <div class="col aspect s12">
-                                                {{--{{ dd($field->filter->toArray()) }}--}}
-                                                {{--<p class="title bold uppercase">Основные</p>--}}
-                                                <p class="col s12 m4">{{ $field->filter->title }}</p>
-                                                <p class="col s12 m8">{{ $field->value }}</p>
-                                            </div>
-                                            {{--@endif--}}
+                                            @if($field->filter->isVisibleForCategory($product->category_id))
+                                                <div class="col aspect s12">
+                                                    <p class="col s12 m4">{{ $field->filter->title }}</p>
+                                                    <p class="col s12 m8">{{ $field->value }}</p>
+                                                </div>
+                                            @endif
                                         @endforeach
                                         {{--TODO-evgenii END Удалить блок после заполнения всех товаров --}}
 

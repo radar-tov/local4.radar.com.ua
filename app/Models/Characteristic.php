@@ -15,13 +15,23 @@ class Characteristic extends Eloquent
 
 	public function categories()
 	{
-		return $this->belongsToMany(Category::class)->withPivot('show','order')->where('category_characteristic.show', '>', 0);
+		return $this->belongsToMany(Category::class)->withPivot('show','order');
 	}
 
 	public function filterValues()
 	{
 		return $this->hasMany(CharacteristicValue::class)->where('value','!=', '')->has('product', '>', 0)->groupBy('value');
 	}
+
+
+    public function isVisibleForCategory($categoryId)
+    {
+        $category = $this->categories->where('id', $categoryId)->first();
+        if(isset($category->pivot) && $category->pivot->show == 1) return true;
+        return false;
+    }
+
+
 
 	public function scopePresentedSelect($query)
 	{

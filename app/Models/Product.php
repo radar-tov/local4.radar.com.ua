@@ -313,6 +313,19 @@ class Product extends Eloquent {
 		});
 	}
 
+
+    public function sortedValuesCharacters($categoryId) {
+        return $this->getCharacteristics->sortBy(function ($product, $key) use ($categoryId) {
+            $cat = $product->characteristic->categories->where('id', $categoryId)->first();
+            if (count($cat)) {
+                return $cat->pivot->order;
+            }
+
+        });
+    }
+
+
+
 	/**
 	 * @param $query
 	 * @return mixed

@@ -117,14 +117,13 @@
                         <div class="clearing"></div>
 
                             <div class="characteristics col s12 no-padding">
-                                @foreach($product->getCharacteristics as $characteristics)
-                                    {{--@if($field->filter->isVisibleForCategory($product->category_id))--}}
-                                    <div class="col s12 characteristic">
-                                        <div class="col s12 m6 boldy no-padding">{{ $characteristics->characteristic->title }}:</div>
-                                        <div class="col s12 m6 no-padding">{{ $characteristics->value }}</div>
-                                    </div>
-                                    {{--@endif--}}
-                                    {{--<hr/>--}}
+                                @foreach($product->sortedValuesCharacters($product->category_id) as $characteristics)
+                                    @if($characteristics->characteristic->isVisibleForCategory($product->category_id))
+                                        <div class="col s12 characteristic">
+                                            <div class="col s12 m6 boldy no-padding">{{ $characteristics->characteristic->title }}:</div>
+                                            <div class="col s12 m6 no-padding">{{ $characteristics->value }}</div>
+                                        </div>
+                                    @endif
                                 @endforeach
                                 {{--TODO-evgenii Удалить блок после заполнения всех товаров --}}
                                 @foreach($product->sortedValues($product->category_id) as $field)
@@ -134,7 +133,6 @@
                                         <div class="col s12 m6 no-padding">{{ $field->value }}</div>
                                     </div>
                                     @endif
-                                    {{--<hr/>--}}
                                 @endforeach
                                 {{--TODO-evgenii END Удалить блок после заполнения всех товаров --}}
                             </div>
