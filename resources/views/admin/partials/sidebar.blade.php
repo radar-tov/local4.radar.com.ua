@@ -5,7 +5,7 @@
     <ul class="nav nav-list">
         <li class="{{ Request::is('dashboard') ? 'active' : null }}">
             <a href="{!! route('dashboard.index') !!}">
-                <i class="menu-icon fa fa-tachometer"></i>
+                <i class="menu-icon fa fa-sliders"></i>
                 <span class="menu-text">Админпанель</span>
             </a>
 
@@ -79,7 +79,7 @@
         </li>
         <li class="{{ Request::is('dashboard/shipments*') ? 'active' : null }}">
             <a href="{!! route('dashboard.shipments.index') !!}">
-                <i class="menu-icon fa fa-send"></i>
+                <i class="menu-icon fa fa-truck"></i>
                 <span class="menu-text">Способы доставки</span>
             </a>
             <b class="arrow"></b>
@@ -93,7 +93,7 @@
         </li>
         <li class="{{ Request::is('dashboard/orders*') ? 'active' : null }}">
             <a href="{!! route('dashboard.orders.index') !!}">
-                <i class="menu-icon fa fa-cart-arrow-down"></i>
+                <i class="menu-icon fa fa-shopping-basket"></i>
                 <span class="menu-text">
                     Заказы
                 {{--<span class="label label-success arrowed-right arrowed-in"></span>--}}
@@ -114,19 +114,19 @@
 
         <li class="{{ Request::is('dashboard/articles*') ? 'active' : null }}">
             <a href="{!! route('dashboard.articles.index') !!}">
-                <i class="menu-icon fa fa-list"></i>
+                <i class="menu-icon fa fa-book"></i>
                 <span class="menu-text">Статьи блога</span>
             </a>
         </li>
         <li class="{{ Request::is('dashboard/static_pages*') ? 'active' : null }}">
             <a href="{!! route('dashboard.static_pages.index') !!}">
-                <i class="menu-icon fa fa-list"></i>
+                <i class="menu-icon fa fa-file-text-o"></i>
                 <span class="menu-text">Страницы</span>
             </a>
         </li>
         <li  class="{{ Request::is('dashboard/users*') ? 'active' : null }}">
             <a href="{{ route("dashboard.users.index") }}">
-                <i class="menu-icon fa fa-users"></i>
+                <i class="menu-icon fa fa-user"></i>
                 <span class="menu-text"> Пользователи </span>
             </a>
 
@@ -134,7 +134,7 @@
         </li>
         <li  class="{{ Request::is('dashboard/sliders*') ? 'active' : null }}">
             <a href="{{ route("dashboard.sliders.index") }}">
-                <i class="menu-icon fa fa-image"></i>
+                <i class="menu-icon fa fa-object-group"></i>
                 <span class="menu-text"> Слайдер </span>
             </a>
             <b class="arrow"></b>
@@ -150,7 +150,7 @@
 
         <li  class="{{ Request::is('dashboard/banners*') ? 'active' : null }}">
             <a href="{{ route("dashboard.banners.index") }}">
-                <i class="menu-icon fa fa-image"></i>
+                <i class="menu-icon fa fa-desktop"></i>
                 <span class="menu-text"> Баннеры </span>
             </a>
             <b class="arrow"></b>
@@ -164,7 +164,7 @@
         </li>
         <li  class="{{ Request::is('dashboard/transfer*') ? 'active' : null }}">
             <a href="{{ route("dashboard.transfer.index") }}">
-                <i class="menu-icon fa fa-cogs"></i>
+                <i class="menu-icon fa fa-retweet"></i>
                 <span class="menu-text">Импорт/Экспорт</span>
             </a>
             <b class="arrow"></b>
