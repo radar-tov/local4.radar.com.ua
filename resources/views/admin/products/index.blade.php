@@ -1,4 +1,6 @@
 @inject('categoriesProvider', 'App\ViewDataProviders\CategoriesDataProvider')
+@inject('brandsProvider', 'App\ViewDataProviders\BrandsDataProvider')
+
 @extends('admin.app')
 
 @section('top-scripts')
@@ -36,6 +38,7 @@
                     <div v-if="!selectedProductsIds.length">
                         {!! Form::open(['url' => '#', 'v-on' => 'change: filterProducts()', 'v-el' => 'filterForm']) !!}
 
+
                         <div class="col-xs-2">
                             {!! Form::select('sortBy', [
                                'id' => 'Сортировка по умолчанию',
@@ -45,8 +48,14 @@
                         </div>
 
 
-                        <div class="col-xs-3">
+                        <div class="col-xs-2">
                             {!! Form::select('categoryId', [0 => 'Все категории'] + $categoriesProvider->getCategoriesList()->all(),
+                                $selected = null,
+                                ['class' => 'form-control',]) !!}
+                        </div>
+
+                        <div class="col-xs-2">
+                            {!! Form::select('brandID', [0 => 'Все бренды'] + $brandsProvider->getList()->all(),
                                 $selected = null,
                                 ['class' => 'form-control',]) !!}
                         </div>
@@ -59,7 +68,6 @@
                                ], $selected = null, ['class' => 'form-control']) !!}
                         </div>
                         {!! csrf_field() !!}
-
                         <div class="col-xs-2">
                             {!! Form::select('paginate', [
                              20 => 'Показывать по 20 продуктов',
@@ -144,7 +152,7 @@
                     </td>
                     <td class="options">
                         {{--TODO-evgenii изменить URL --}}
-                        <a href="/@{{ product.category.slug }}/@{{ product.slug }}" target="_blank">
+                        <a href="/@{{ product.parent.slug }}/@{{ product.category.slug }}/@{{ product.slug }}" target="_blank">
                             <i class="fa fa-eye green" v-show="product.active > 0"></i>
                         </a>
                         <i class="fa fa-eye-slash red" v-show="product.active == 0"></i>
@@ -272,6 +280,7 @@
                                 url: '/dashboard/products',
                                 cache: false,
                                 success: function (response) {
+                                    console.log(response.data);
                                     vue.products = response.data;
                                 }
                             });

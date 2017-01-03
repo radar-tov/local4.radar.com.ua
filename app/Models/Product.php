@@ -91,6 +91,10 @@ class Product extends Eloquent {
 		return $this->belongsTo('App\Models\Category', 'slug', 'parent_id');
 	}
 
+//    public function parentList() {
+//        return $this->belongsTo('App\Models\Category');
+//    }
+
 
 	public function parentSlug(){
 		$parent_data = Category::select('slug', 'title')

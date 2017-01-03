@@ -78,6 +78,7 @@ class ProductsController extends AdminController
                 })
                 ->orderBy($request->get('sortBy') ?: 'id', 'ASC')
                 ->where('category_id', $request->get('categoryId') ?: 'LIKE', '%')
+                ->where('brand_id', $request->get('brandID') ?: 'LIKE', '%')
                 ->with('thumbnail')
                 ->paginate($request->get('paginate') ?: 20);
 
