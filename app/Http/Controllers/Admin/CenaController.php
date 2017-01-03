@@ -95,4 +95,5 @@ class CenaController extends Controller
             return '<h3 align="center">Ошибка.</h3>';
         }
     }
+
 }

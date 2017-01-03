@@ -20,6 +20,7 @@ use Illuminate\Queue\RedisQueue;
 use Illuminate\Support\Facades\Response;
 use Mockery\CountValidator\Exception;
 use App\Models\File;
+use App\Models\Cena;
 
 /**
  * Class ProductsController
@@ -182,10 +183,10 @@ class ProductsController extends AdminController
      * @param  int $id
      * @return Response
      */
-    public function edit(Category $categories, $id)
+    public function edit(Category $categories, Cena $cena, $id)
     {
         $product = $this->product
-            ->with('images', 'category', 'category.filters', 'category.strain.values', 'filters', 'files', 'getParameters')
+            ->with('images', 'category', 'category.filters', 'category.strain.values', 'filters', 'files', 'getParameters', 'getCena')
             ->withTrashed()
             ->findOrFail($id);
 

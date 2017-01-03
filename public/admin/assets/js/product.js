@@ -5,10 +5,10 @@ new Vue({
         var vue = this;
 
         this.getImages();
-        setTimeout(function(){
-            vue.getFields();
-            vue.getXapacts();
-        }, 100);
+        //setTimeout(function(){
+        //    vue.getFields();
+        //    vue.getXapacts();
+        //}, 100);
 
         this.getRelatedProducts();
 
@@ -39,6 +39,8 @@ new Vue({
         fields: {},
         flashObject:{},
         video: {},
+        filterEvent: true,
+        xapactEvent: true,
         filterValues: [],
         xapactsValues: [],
         pdfList: [],
@@ -362,8 +364,27 @@ new Vue({
 
         getFields: function(){
             var vue = this;
+            if(vue.filterEvent){
+                vue.filterEvent = false;
+                $("#filters").addClass('loading');
+                $.get('/dashboard/filters/'+ vue.productId, {category_id: vue.category })
+                .done(function(response){
+                    $("#filters .inner").html(response);
+                    $("#filters").removeClass('loading');
+                    $('.selectize').selectize({
+                        create: true,
+                        createOnBlur: true,
+                        sortField: 'text'
+                    });
+                })
+            }
+        },
+
+        getFieldsClik: function(){
+            var vue = this;
             $("#filters").addClass('loading');
-            $.get('/dashboard/filters/'+ this.productId, {category_id: this.category }).done(function(response){
+            $.get('/dashboard/filters/'+ vue.productId, {category_id: vue.category })
+            .done(function(response){
                 $("#filters .inner").html(response);
                 $("#filters").removeClass('loading');
                 $('.selectize').selectize({
@@ -377,18 +398,38 @@ new Vue({
 
         getXapacts: function(){
             var vue = this;
-            $("#characters").addClass('loading');
-            $.get('/dashboard/characteristics/'+ this.productId, {category_id: this.category }).done(function(response){
-                $("#characters .inner").html(response);
-                $("#characters").removeClass('loading');
-                $('.selectize_x').selectize({
-                    create: true,
-                    createOnBlur: true,
-                    sortField: 'text'
-                });
-            })
+            if(vue.xapactEvent){
+                vue.xapactEvent = false;
+                $("#characters").addClass('loading');
+                $.get('/dashboard/characteristics/'+ vue.productId, {category_id: vue.category })
+                .done(function(response){
+                        $("#characters .inner").html(response);
+                        $("#characters").removeClass('loading');
+                        $('.selectize_x').selectize({
+                            create: true,
+                            createOnBlur: true,
+                            sortField: 'text'
+                        });
+                    }
+                )
+            }
         },
 
+        getXapactsClik: function(){
+            var vue = this;
+            $("#characters").addClass('loading');
+            $.get('/dashboard/characteristics/'+ vue.productId, {category_id: vue.category })
+            .done(function(response){
+                    $("#characters .inner").html(response);
+                    $("#characters").removeClass('loading');
+                    $('.selectize_x').selectize({
+                        create: true,
+                        createOnBlur: true,
+                        sortField: 'text'
+                    });
+                }
+            )
+        },
 
 
         load3D: function(event){

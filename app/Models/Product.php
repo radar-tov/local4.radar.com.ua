@@ -68,6 +68,14 @@ class Product extends Eloquent {
         'sitemap',
         'priority',
         'changefreq',
+        'url_1',
+        'url_2',
+        'url_3',
+        'cenagrup_id',
+        'name',
+        'base_price',
+        'out_price',
+        'nacenka'
 	];
 
 
@@ -298,6 +306,11 @@ class Product extends Eloquent {
 	public function getParameters(){
 		return $this->belongsToMany(ParametersValue::class, 'parameter_product', 'product_id', 'parameter_value_id')->with('parameter');
 	}
+
+
+    public function getCena(){
+        return $this->hasOne(Cena::class, 'id', 'cenagrup_id');
+    }
 
 	/**
 	 * @param $categoryId

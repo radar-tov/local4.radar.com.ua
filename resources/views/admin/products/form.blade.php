@@ -1,5 +1,6 @@
 @inject('categoriesProvider', 'App\ViewDataProviders\CategoriesDataProvider')
 @inject('brandsProvider', 'App\ViewDataProviders\BrandsDataProvider')
+@inject('cenaProvider', 'App\ViewDataProviders\CenaDataProvider')
 
 @section('top-scripts')
     @parent
@@ -92,13 +93,19 @@
                 </a>
             </li>
             <li class="">
-                <a data-toggle="tab" href="#filters">
+                <a data-toggle="tab" href="#cena">
+                    <i class="ace-icon fa fa-dollar"></i>
+                    Цены
+                </a>
+            </li>
+            <li class="">
+                <a data-toggle="tab" href="#filters" v-on="click:getFields();">
                     <i class="ace-icon fa fa-filter"></i>
                     Фильтры
                 </a>
             </li>
             <li class="">
-                <a data-toggle="tab" href="#characters">
+                <a data-toggle="tab" href="#characters" v-on="click:getXapacts();">
                     <i class="ace-icon fa fa-cogs"></i>
                     Характеристики
                 </a>
@@ -146,30 +153,6 @@
                         <div class="row">
 
                             <div class="col-sm-3">
-                                {!! Form::label('price','Цена') !!}
-                                <label for="price"></label>
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <i class="fa  bigger-110">&#8372;</i>
-                                    </span>
-                                    {!! Form::text('price', $value = null, ['class' => 'form-control']) !!}
-
-                                    {{--<input type="text" name="price" id="price" value="{{ old('price', $product->price) }}" placeholder="Цена" class="form-control" form="form-data"/>--}}
-                                </div>
-                            </div>
-
-                            <div class="col-sm-3">
-
-                                <label for="discount">Скидка</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <i class="fa  bigger-110">%</i>
-                                    </span>
-                                    {!! Form::text('discount', $value = null, ['class' => 'form-control']) !!}
-                                </div>
-                            </div>
-
-                            <div class="col-sm-3">
                                 <div class="form-group">
                                     {!! Form::label('available', 'Товар в наличии?') !!}
                                     {!! Form::select('available', ['1'=> 'Да', '0'=>'Нет','2'=>'Под заказ'], $selected = null, ['class' => 'form-control']) !!}
@@ -183,17 +166,41 @@
                                 <br/>
                             </div>
 
-
                             <div class="col-sm-12">
-                                {{--<br/>--}}
-                                <label for="discount">Упаковка</label>
-                                {!! Form::text('pack', $value = null, ['class' => 'form-control']) !!}
+                                {!! Form::label('name','Название тоывара в админке') !!}
+                                {!! Form::text('name', $value = null, ['class' => 'form-control']) !!}
+                                <br/>
                             </div>
 
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="row">
+
+                            <div class="col-sm-12">
+                                <br/>
+                                {!! Form::label('url_1', 'Ссылка на производителя №1') !!}
+                                @if($product->url_1 != '')
+                                    <a href="{{ $product->url_1 }}"><i class="fa fa-link"></i></a>
+                                @endif
+                                {!! Form::text('url_1', $value = null, ['class'=>'form-control','form'=>'form-data']) !!}
+                            </div>
+                            <div class="col-sm-12">
+                                <br/>
+                                {!! Form::label('url_2', 'Ссылка на производителя №2') !!}
+                                @if($product->url_2 != '')
+                                    <a href="{{ $product->url_2 }}"><i class="fa fa-link"></i></a>
+                                @endif
+                                {!! Form::text('url_2', $value = null, ['class'=>'form-control','form'=>'form-data']) !!}
+                            </div>
+                            <div class="col-sm-12">
+                                <br/>
+                                {!! Form::label('url_3', 'Ссылка на производителя №3') !!}
+                                @if($product->url_3 != '')
+                                    <a href="{{ $product->url_3 }}"><i class="fa fa-link"></i></a>
+                                @endif
+                                {!! Form::text('url_4', $value = null, ['class'=>'form-control','form'=>'form-data']) !!}
+                            </div>
                             <div class="col-sm-12">
                                 <br/>
                                 {!! Form::label('excerpt', 'Краткое Описание') !!}
@@ -203,6 +210,12 @@
                                 <br/>
                                 {!! Form::label('body', 'Полное Описание') !!}
                                 {!! Form::textarea('body', $value = null, ['rows'=>'40','class'=>'form-control tiny','form'=>'form-data']) !!}
+                            </div>
+
+                            <div class="col-sm-12">
+                                {{--<br/>--}}
+                                <label for="discount">Упаковка</label>
+                                {!! Form::text('pack', $value = null, ['class' => 'form-control']) !!}
                             </div>
                         </div>
                     </div>
@@ -301,26 +314,138 @@
 
                 </div>
             </div>
-            <div id="characteristic" class="tab-pane">
+
+
+
+
+
+            <!-- Cena -->
+            <div id="cena" class="tab-pane">
                 <div class="col-xs-12">
 
-                    <div class="form-group" v-repeat="field in fields | orderBy 'id' -1">
-                        <label for="@{{ field.id }}">@{{ field.title }}</label>
-                        <input type="text"
-                               id="@{{ field.id }}"
-                               name="fields[@{{ field.id }}:@{{ field.val_id }}]"
-                               class="form-control"
-                               value="@{{ !!field.value ? field.value : null }}"
-                            />
+                    <div class="col-sm-3">
+                        {!! Form::label('base_price','Базовая цена') !!}
+                        <label for="base_price"></label>
+                        <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa  bigger-110">&#8372;</i>
+                                    </span>
+                            {!! Form::text('base_price', $value = null, ['class' => 'form-control']) !!}
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        {!! Form::label('price','Цена без скидки или наценки') !!}
+                        <label for="price"></label>
+                        <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa  bigger-110">&#8372;</i>
+                                    </span>
+                            {!! Form::text('price', $value = null, ['class' => 'form-control']) !!}
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        {!! Form::label('out_price','Цена со скидкой или наценкой') !!}
+                        <label for="out_price"></label>
+                        <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa  bigger-110">&#8372;</i>
+                                    </span>
+                            {!! Form::text('out_price', $value = null, ['class' => 'form-control']) !!}
+                        </div>
                     </div>
 
                 </div>
+
+                <div class="col-xs-12">
+                    <div class="col-sm-3">
+                        <label for="discount">Скидка</label>
+                        <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa  bigger-110">%</i>
+                                    </span>
+                            {!! Form::text('discount', $value = null, ['class' => 'form-control']) !!}
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <label for="nacenka">Наценка</label>
+                        <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa  bigger-110">%</i>
+                                    </span>
+                            {!! Form::text('nacenka', $value = null, ['class' => 'form-control']) !!}
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-sm-3">
+                        <label for="nacenka">Группа цен</label>
+                        <div class="input-group">
+                            {!! Form::select('cenagrup_id',
+                                    $value = $cenaProvider->getList(), $selected = null, ['class'=>'form-control', 'style' => 'min-width: 300px']) !!}
+                        </div>
+                    </div>
+                    {{--{{ dump($product->getCena) }}--}}
+
+                </div>
+
+                <div class="col-xs-12">
+                    <h3 for="nacenka">Валюта :
+                        @if(isset($product->getCena->valuta))
+                            @if($product->getCena->valuta == 1) Гривна
+                            @elseif($product->getCena->valuta == 2) Доллар
+                            @elseif($product->getCena->valuta == 3) Евро
+                            @endif
+                        @endif
+                    </h3>
+                </div>
+
+                <div class="col-xs-12">
+                    <h3>Курс в группе : {{ isset($product->getCena->curs) ? $product->getCena->curs : ''}}</h3>
+                </div>
+
+                <div class="col-xs-12">
+                    <h3>Скидка в группе : {{ isset($product->getCena->skidka) ? $product->getCena->skidka : ''}}</h3>
+                </div>
+
+                <div class="col-xs-12">
+                    <h3>Наценка в группе : {{ isset($product->getCena->nacenka) ? $product->getCena->nacenka : ''}}</h3>
+                </div>
+
+
+                <div class="col-sm-12">
+                    {{ isset($product->getCena->coment) ? $product->getCena->coment : ''}}
+                </div>
+
+                <div class="col-sm-12">
+                    {{ isset($product->getCena->file) ? $product->getCena->file : ''}}
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div style="padding-bottom: 150px"></div>
+                    </div>
+                </div>
             </div>
+
+            <script>
+                var curs = {{ isset($product->getCena->curs) ? $product->getCena->curs : ''}}
+                    skidka = {{ isset($product->getCena->skidka) ? $product->getCena->skidka : ''}}
+                    nacenka = {{ isset($product->getCena->nacenka) ? $product->getCena->nacenka : ''}}
+
+            </script>
+
+            <!-- /End Cena -->
+
+
 
             <!-- Filters -->
             <div id="filters" class="tab-pane">
 
-                <label class="action-buttons pull-right" v-on="click: getFields()">
+                <label class="action-buttons pull-right" v-on="click: getFieldsClik()">
                     <a href="#" id="_spin"><i class="fa fa-refresh fa-2x"></i></a>
                 </label>
                 <div class="inner clearfix">
@@ -338,7 +463,7 @@
             <!-- characters -->
             <div id="characters" class="tab-pane">
 
-                <label class="action-buttons pull-right" v-on="click: getXapacts()">
+                <label class="action-buttons pull-right" v-on="click: getXapactsClik()">
                     <a href="#" id="_spin"><i class="fa fa-refresh fa-2x"></i></a>
                 </label>
                 <div class="inner clearfix">
