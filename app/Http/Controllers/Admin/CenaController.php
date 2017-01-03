@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Cenagrup;
+use App\Models\Product;
 
 class CenaController extends Controller
 {
@@ -48,7 +49,7 @@ class CenaController extends Controller
 
 
     public function show(Cenagrup $cenagrup){
-        $cenagrups = $cenagrup->orderBy('name')->get();
+        $cenagrups = $cenagrup->orderBy('name')->with('getCountProducts')->get();
         return view('admin.cena.list', compact('cenagrups'));
     }
 
@@ -94,6 +95,61 @@ class CenaController extends Controller
         }else{
             return '<h3 align="center">Ошибка.</h3>';
         }
+    }
+
+
+    public function refresh(Cenagrup $cenagrup, Product $product_m, $id){
+        $cenagrup = $cenagrup->find($id);
+        $products = $product_m->where('cenagrup_id', $id)->get();
+
+        $out = "<p>Обновляем цены в товарах группы: ".$cenagrup->name."</p>";
+        $out .= "<p>Найдено товаров: ".count($products)."</p>";
+
+        foreach($products as $product){
+            $out .= "<hr>";
+            $out .= "<p>Товар:".$product->title."</p>";
+            if($product->base_price != 0){
+
+                $product->price = round(($product->base_price * $cenagrup->curs), 2);
+                $out .= "<p>Цена - ".$product->price."</p>";
+
+                $product->out_price = round(($product->base_price * $cenagrup->curs), 2);
+                $out .= "<p>Выходная цена - ".$product->out_price."</p>";
+
+                $product->discount = $cenagrup->skidka;
+                $out .= "<p>Скидка - ".$product->discount."</p>";
+
+                $product->nacenka = $cenagrup->nacenka;
+                $out .= "<p>Наценка - ".$product->nacenka."</p>";
+
+                if($cenagrup->skidka != 0){
+                    $product->out_price = round((round(($product->base_price * $cenagrup->curs), 2)) - ((round(($product->base_price * $cenagrup->curs), 2)) * $product->discount / 100));
+                    $out .= "<p>Новая выходная цена - ".$product->out_price."</p>";
+                }elseif($cenagrup->nacenka != 0){
+                    $product->out_price = round((round(($product->base_price * $cenagrup->curs), 2)) + ((round(($product->base_price * $cenagrup->curs), 2)) * $product->discount / 100));
+                    $out .= "<p>Новая выходная цена - ".$product->out_price."</p>";
+                }
+
+            }else{
+                $out .= "<p>Не найдена базовая цена.</p>";
+            }
+
+            if($product_m->where('id', $product->id)->update(
+                [
+                    'price' => $product->price,
+                    'discount' => $product->discount,
+                    'out_price' => $product->out_price,
+                    'nacenka' => $product->nacenka
+                ]
+            )){
+                $out .= "<p>Товар обновили.</p>";
+            }else{
+                $out .= "<p>Ошибка обновления товара.</p>";
+            }
+
+        }
+
+        return $out;
     }
 
 }

@@ -324,8 +324,14 @@
                 <div class="col-xs-12">
 
                     <div class="col-sm-3">
-                        {!! Form::label('base_price','Базовая цена') !!}
-                        <label for="base_price"></label>
+                        @if(isset($product->getCena->valuta))
+                            @if($product->getCena->valuta == 1) {!! Form::label('base_price','Базовая цена в гривне') !!}
+                            @elseif($product->getCena->valuta == 2) {!! Form::label('base_price','Базовая цена в долларах') !!}
+                            @elseif($product->getCena->valuta == 3) {!! Form::label('base_price','Базовая цена в евро') !!}
+                            @endif
+                        @else
+                            {!! Form::label('base_price','Базовая цена') !!}
+                        @endif
                         <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="fa  bigger-110">&#8372;</i>
@@ -333,7 +339,7 @@
                             {!! Form::text('base_price', $value = null, ['class' => 'form-control']) !!}
                         </div>
                     </div>
-
+                    <div class="col-sm-1"><h3> * {{ isset($product->getCena->curs) ? $product->getCena->curs : '1'}}</h3></div>
                     <div class="col-sm-3">
                         {!! Form::label('price','Цена без скидки или наценки') !!}
                         <label for="price"></label>
@@ -342,6 +348,29 @@
                                         <i class="fa  bigger-110">&#8372;</i>
                                     </span>
                             {!! Form::text('price', $value = null, ['class' => 'form-control']) !!}
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-xs-12">
+                    <div class="col-sm-3">
+                        <label for="discount">Скидка на товар</label>
+                        <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa  bigger-110">%</i>
+                                    </span>
+                            {!! Form::text('discount', $value = null, ['class' => 'form-control']) !!}
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <label for="nacenka">Наценка на товар</label>
+                        <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa  bigger-110">%</i>
+                                    </span>
+                            {!! Form::text('nacenka', $value = null, ['class' => 'form-control']) !!}
                         </div>
                     </div>
 
@@ -359,60 +388,20 @@
                 </div>
 
                 <div class="col-xs-12">
-                    <div class="col-sm-3">
-                        <label for="discount">Скидка</label>
-                        <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <i class="fa  bigger-110">%</i>
-                                    </span>
-                            {!! Form::text('discount', $value = null, ['class' => 'form-control']) !!}
-                        </div>
+                    <label for="nacenka">Группа цен</label>
+                    <div class="input-group">
+                        {!! Form::select('cenagrup_id',
+                                $value = $cenaProvider->getList(), $selected = null, ['class'=>'form-control', 'style' => 'min-width: 300px']) !!}
                     </div>
-
-                    <div class="col-sm-3">
-                        <label for="nacenka">Наценка</label>
-                        <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <i class="fa  bigger-110">%</i>
-                                    </span>
-                            {!! Form::text('nacenka', $value = null, ['class' => 'form-control']) !!}
-                        </div>
-                    </div>
+                </div>
 
 
-
-                    <div class="col-sm-3">
-                        <label for="nacenka">Группа цен</label>
-                        <div class="input-group">
-                            {!! Form::select('cenagrup_id',
-                                    $value = $cenaProvider->getList(), $selected = null, ['class'=>'form-control', 'style' => 'min-width: 300px']) !!}
-                        </div>
-                    </div>
-                    {{--{{ dump($product->getCena) }}--}}
-
+                <div class="col-xs-12">
+                    <h5>Скидка в группе : {{ isset($product->getCena->skidka) ? $product->getCena->skidka : ''}}</h5>
                 </div>
 
                 <div class="col-xs-12">
-                    <h3 for="nacenka">Валюта :
-                        @if(isset($product->getCena->valuta))
-                            @if($product->getCena->valuta == 1) Гривна
-                            @elseif($product->getCena->valuta == 2) Доллар
-                            @elseif($product->getCena->valuta == 3) Евро
-                            @endif
-                        @endif
-                    </h3>
-                </div>
-
-                <div class="col-xs-12">
-                    <h3>Курс в группе : {{ isset($product->getCena->curs) ? $product->getCena->curs : ''}}</h3>
-                </div>
-
-                <div class="col-xs-12">
-                    <h3>Скидка в группе : {{ isset($product->getCena->skidka) ? $product->getCena->skidka : ''}}</h3>
-                </div>
-
-                <div class="col-xs-12">
-                    <h3>Наценка в группе : {{ isset($product->getCena->nacenka) ? $product->getCena->nacenka : ''}}</h3>
+                    <h5>Наценка в группе : {{ isset($product->getCena->nacenka) ? $product->getCena->nacenka : ''}}</h5>
                 </div>
 
 

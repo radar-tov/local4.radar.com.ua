@@ -6,7 +6,9 @@
     <td>Курс</td>
     <td>Скидка</td>
     <td>Наценка</td>
+    <td>Товаров в группе</td>
     <td>Дата обновления</td>
+    <td></td>
     <td></td>
     </thead>
     <tbody>
@@ -29,8 +31,14 @@
             <td>{{ $cenagrup->curs }}</td>
             <td>{{ $cenagrup->skidka }}</td>
             <td>{{ $cenagrup->nacenka }}</td>
+            <td>{{ count($cenagrup->getCountProducts) }}</td>
             <td>{{ $cenagrup->updated_at }}</td>
-            <td><a href="#"><i class="ace-icon fa fa-trash-o bigger-120" title="удалить" style="float: right" onclick="deleteCenaGrup( {{ $cenagrup->id }}, '{{ csrf_token() }}' )"></i></a></td>
+            <td>
+                <a href="{{ url('dashboard/cena/'.$cenagrup->id.'/refresh') }}" class="cena_refresh fancybox.ajax" title="Пересчитать цены в группе">
+                    <i class="fa fa-calculator"></i>
+                </a>
+            </td>
+            <td><a href="#"><i class="ace-icon fa fa-trash-o bigger-120" title="удалить" onclick="deleteCenaGrup( {{ $cenagrup->id }}, '{{ csrf_token() }}' )"></i></a></td>
         </tr>
     @endforeach
     </tbody>

@@ -138,6 +138,7 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
 
         /* CENA */
         get('cena/list', 'CenaController@show');
+        get('cena/{id}/refresh', 'CenaController@refresh');
         resource('cena', 'CenaController');
         /* /end CENA */
 	});

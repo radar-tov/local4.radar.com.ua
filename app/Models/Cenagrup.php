@@ -15,4 +15,8 @@ class Cenagrup extends Model
         'coment',
         'file'
     ];
+
+    public function getCountProducts(){
+        return $this->hasMany('App\Models\Product', 'cenagrup_id', 'id');
+    }
 }
