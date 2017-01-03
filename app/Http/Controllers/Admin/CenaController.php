@@ -87,8 +87,12 @@ class CenaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Cenagrup $cenagrup, $id)
     {
-        //
+        if($cenagrup->findOrFail($id)->delete()){
+            return '<h3 align="center">Удалено.</h3>';
+        }else{
+            return '<h3 align="center">Ошибка.</h3>';
+        }
     }
 }

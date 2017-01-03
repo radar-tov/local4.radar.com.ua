@@ -30,7 +30,7 @@
             <td>{{ $cenagrup->skidka }}</td>
             <td>{{ $cenagrup->nacenka }}</td>
             <td>{{ $cenagrup->updated_at }}</td>
-            <td><a href="#"><i class="ace-icon fa fa-trash-o bigger-120" title="удалить" style="float: right" onclick=""></i></a></td>
+            <td><a href="#"><i class="ace-icon fa fa-trash-o bigger-120" title="удалить" style="float: right" onclick="deleteCenaGrup( {{ $cenagrup->id }}, '{{ csrf_token() }}' )"></i></a></td>
         </tr>
     @endforeach
     </tbody>

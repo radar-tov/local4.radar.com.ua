@@ -17,6 +17,7 @@
 @stop
 
 @section('content')
+    <div class="response-field"></div>
     <div id="cenagrupslist"></div>
 @stop
 

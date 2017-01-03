@@ -196,3 +196,23 @@ function getParameterList() {
         $("#paramsup").html(response);
     });
 }
+
+function deleteCenaGrup(ID, token){
+    event.preventDefault();
+    if(confirm('Потвердите удаление!')){
+        $.ajax({
+            type: "DELETE",
+            url: "/dashboard/cena/" + ID,
+            data: {
+                '_token': token,
+                'id': ID
+            }
+        }).done(function (response) {
+            $('.response-field').html(response)
+            getCenaGrups();
+            setTimeout(function(){
+                $('.response-field').html('');
+            }, 5000);
+        });
+    }
+}
