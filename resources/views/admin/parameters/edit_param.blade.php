@@ -10,7 +10,7 @@
                 <table class="table table-bordered table-hover">
                     <tr>
                         <td>
-                            <input type="text" name="param" value="{{ $param->title }}">
+                            <input type="text" name="param" value="{{ $param->title }}" class="form-control">
                         </td>
                     </tr>
                 </table>
