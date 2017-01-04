@@ -171,7 +171,7 @@ class ParametersController extends AdminController
 	 */
 	public function edit(ParametersValue $parameterValue, $productID, $parameterID)
 	{
-		$values = $parameterValue->where('parameter_id', $parameterID)->get();
+		$values = $parameterValue->where('parameter_id', $parameterID)->orderBy('value')->get();
 		$param = Parameter::where('id', $parameterID)->first();
 		return view('admin.parameters.edit_value', compact('values', 'param'))->with('data', ['productID' => $productID]);
 	}
@@ -234,7 +234,7 @@ class ParametersController extends AdminController
 	public function getvalue(ParametersValue $arametersValue, Request $request){
 		//dump($request->all());
 
-		$values = $arametersValue->where('parameter_id', $request->id)->get();
+		$values = $arametersValue->where('parameter_id', $request->id)->orderBy('value')->get();
 
 		$data = "<select id='value_".$request->i."' name='value_".$request->i."' class='validate form-control'>";
 
