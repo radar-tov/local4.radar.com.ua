@@ -5,10 +5,10 @@ new Vue({
         var vue = this;
 
         this.getImages();
-        //setTimeout(function(){
-        //    vue.getFields();
-        //    vue.getXapacts();
-        //}, 100);
+        setTimeout(function(){
+            vue.getFields();
+            vue.getXapacts();
+        }, 100);
 
         this.getRelatedProducts();
 
