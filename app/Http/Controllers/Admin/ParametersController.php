@@ -25,7 +25,7 @@ class ParametersController extends AdminController
 	 */
 	public function index(Parameter $parameter, $categoryID, $brandID, $productID)
 	{
-		$params = $parameter->where('category_id', $categoryID)->where('brand_id', $brandID)->with('getValues')->get();
+		$params = $parameter->where('category_id', $categoryID)->where('brand_id', $brandID)->orderBy('title')->with('getValues')->get();
 //dd($params);
 		return view('admin.parameters.selection', compact('params') )->with('request', ['categoryID' => $categoryID, 'brandID' => $brandID, 'productID' => $productID]);
 	}
