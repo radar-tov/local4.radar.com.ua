@@ -181,7 +181,7 @@
                                 <br/>
                                 {!! Form::label('url_1', 'Ссылка на производителя №1') !!}
                                 @if($product->url_1 != '')
-                                    <a href="{{ $product->url_1 }}"><i class="fa fa-link"></i></a>
+                                    <a href="{{ $product->url_1 }}" target="_blank"><i class="fa fa-link"></i></a>
                                 @endif
                                 {!! Form::text('url_1', $value = null, ['class'=>'form-control','form'=>'form-data']) !!}
                             </div>
@@ -189,7 +189,7 @@
                                 <br/>
                                 {!! Form::label('url_2', 'Ссылка на производителя №2') !!}
                                 @if($product->url_2 != '')
-                                    <a href="{{ $product->url_2 }}"><i class="fa fa-link"></i></a>
+                                    <a href="{{ $product->url_2 }}" target="_blank"><i class="fa fa-link"></i></a>
                                 @endif
                                 {!! Form::text('url_2', $value = null, ['class'=>'form-control','form'=>'form-data']) !!}
                             </div>
@@ -197,7 +197,7 @@
                                 <br/>
                                 {!! Form::label('url_3', 'Ссылка на производителя №3') !!}
                                 @if($product->url_3 != '')
-                                    <a href="{{ $product->url_3 }}"><i class="fa fa-link"></i></a>
+                                    <a href="{{ $product->url_3 }}" target="_blank"><i class="fa fa-link"></i></a>
                                 @endif
                                 {!! Form::text('url_4', $value = null, ['class'=>'form-control','form'=>'form-data']) !!}
                             </div>
