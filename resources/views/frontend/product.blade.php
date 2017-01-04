@@ -233,8 +233,8 @@
                                         @foreach($product->sortedValuesCharacters($product->category_id) as $characteristics)
                                             @if($characteristics->characteristic->isVisibleForCategory($product->category_id))
                                                 <div class="col aspect s12">
-                                                    <p class="col s12 m4">{{ $characteristics->characteristic->title }}</p>
-                                                    <p class="col s12 m8">{{ $characteristics->value }}</p>
+                                                    <p class="col s12 m8">{{ $characteristics->characteristic->title }}</p>
+                                                    <p class="col s12 m4">{{ $characteristics->value }}</p>
                                                 </div>
                                             @endif
                                         @endforeach
@@ -243,8 +243,8 @@
                                         <h5 class="teg mod">Параметры</h5>
                                         @foreach($product->getParameters as $rapameter)
                                             <div class="col aspect s12">
-                                                <p class="col s12 m4">{{ $rapameter->parameter->title }}</p>
-                                                <p class="col s12 m8">{{ $rapameter->value }}</p>
+                                                <p class="col s12 m8">{{ $rapameter->parameter->title }}</p>
+                                                <p class="col s12 m4">{{ $rapameter->value }}</p>
                                             </div>
                                         @endforeach
 
@@ -253,8 +253,8 @@
                                         @foreach($product->sortedValues($product->category_id) as $field)
                                             @if($field->filter->isVisibleForCategory($product->category_id))
                                                 <div class="col aspect s12">
-                                                    <p class="col s12 m4">{{ $field->filter->title }}</p>
-                                                    <p class="col s12 m8">{{ $field->value }}</p>
+                                                    <p class="col s12 m8">{{ $field->filter->title }}</p>
+                                                    <p class="col s12 m4">{{ $field->value }}</p>
                                                 </div>
                                             @endif
                                         @endforeach
