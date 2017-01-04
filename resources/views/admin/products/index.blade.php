@@ -1,5 +1,6 @@
 @inject('categoriesProvider', 'App\ViewDataProviders\CategoriesDataProvider')
 @inject('brandsProvider', 'App\ViewDataProviders\BrandsDataProvider')
+@inject('cenaGrupsProvider', 'App\ViewDataProviders\CenaGrupsDataProvider')
 
 @extends('admin.app')
 
@@ -37,7 +38,7 @@
                 <div class="row">
                     <div v-if="!selectedProductsIds.length">
                         {!! Form::open(['url' => '#', 'v-on' => 'change: filterProducts()', 'v-el' => 'filterForm']) !!}
-
+                        {!! csrf_field() !!}
 
                         <div class="col-xs-2">
                             {!! Form::select('sortBy', [
@@ -61,13 +62,19 @@
                         </div>
 
                         <div class="col-xs-2">
+                            {!! Form::select('cenagrupID', [0 => 'Все ценовые группы'] + $cenaGrupsProvider->getList()->all(),
+                                $selected = null,
+                                ['class' => 'form-control',]) !!}
+                        </div>
+
+                        <div class="col-xs-2">
                             {!! Form::select('discount', [
                                0 => 'Все',
                                1 => 'Без скидки',
                                2 => 'Со скидкой'
                                ], $selected = null, ['class' => 'form-control']) !!}
                         </div>
-                        {!! csrf_field() !!}
+
                         <div class="col-xs-2">
                             {!! Form::select('paginate', [
                              20 => 'Показывать по 20 продуктов',
@@ -75,16 +82,17 @@
                              100 => 'По 100 продуктов',
                             ], $selected = null, ['class' => 'form-control']) !!}
                         </div>
+                        <div style="padding-top: 50px">
+                            <div class="col-xs-2">
+                                {!! Form::text('search', $value = Request::get('q'),
+                                    ['class' => 'form-control', 'placeholder' => 'Поиск', 'v-on' => 'input: filterProducts()']) !!}
+                            </div>
 
-
-                        <div class="col-xs-2">
-                            {!! Form::text('search', $value = Request::get('q'),
-                                ['class' => 'form-control', 'placeholder' => 'Поиск', 'v-on' => 'input: filterProducts()']) !!}
+                            <div class="col-xs-1 pull-right">
+                                {!! Form::submit('Обновить', ['class' => 'ace-icon fa fa-plus']) !!}
+                            </div>
                         </div>
 
-                        <div class="col-xs-1 pull-right">
-                            {!! Form::submit('Обновить', ['class' => 'ace-icon fa fa-plus']) !!}
-                        </div>
 
                         {!! Form::close() !!}
 
@@ -136,10 +144,13 @@
                         <input type="checkbox" v-on="change:markProducts()" v-el="mainCheckbox"/>
                     </th>
                     <th class="options"><i class="fa fa-eye"></i></th>
+                    <th class="options"><i class="fa fa-eye"></i></th>
                     <th>Артикул</th>
                     <th>Название</th>
+                    <th class="p-base-price">Базовая цена</th>
                     <th class="p-price">Цена</th>
                     <th class="p-discount">Скидка</th>
+                    <th class="p-out-price">Цена +- скидка</th>
                     <th>Категория</th>
                     <th colspan="3" class="options">Опции</th>
                 </tr>
@@ -151,11 +162,15 @@
                                v-on="change: selectProduct($event)"/>
                     </td>
                     <td class="options">
-                        {{--TODO-evgenii изменить URL --}}
-                        <a href="/@{{ product.parent.slug }}/@{{ product.category.slug }}/@{{ product.slug }}" target="_blank">
+                        <a href="/@{{ product.category.parent.slug }}/@{{ product.category.slug }}/@{{ product.slug }}" target="_blank">
                             <i class="fa fa-eye green" v-show="product.active > 0"></i>
                         </a>
                         <i class="fa fa-eye-slash red" v-show="product.active == 0"></i>
+                    </td>
+                    <td class="options">
+                        <i class="fa fa-minus red" v-show="product.available == 0"></i>
+                        <i class="fa fa-plus green" v-show="product.available == 1"></i>
+                        <i class="fa fa-phone red" v-show="product.available == 2"></i>
                     </td>
                     <td>
                         @{{ product.article }}
@@ -172,7 +187,8 @@
                         </a>
                         <small v-show="product.clone_of > 0" style="color:indianred">(копия)</small>
                     </td>
-                    <td class="">@{{ product.price }} грн.</td>
+                    <td class="">@{{ product.base_price }}</td>
+                    <td class="">@{{ product.price }}</td>
                     <td class="center">
                             <span class="label label-sm label-success arrowed-right" v-show="product.discount > 0">
                                 @{{ product.discount }} %
@@ -181,10 +197,10 @@
                                 <i class="fa fa-minus"></i>
                             </span>
                     </td>
-
+                    <td class="">@{{ product.out_price }}</td>
                     <td>
                         <span>{{--TODO-evgenii изменить URL --}}
-                            <a href="/@{{ product.category.slug }}" target="_blank">@{{ product.category.title }}</a>
+                            <a href="/@{{ product.category.parent.slug }}/@{{ product.category.slug }}" target="_blank">@{{ product.category.title }}</a>
                         </span>
                     </td>
                     <td class="options">

@@ -10,12 +10,12 @@
         @foreach($product as $parameters)
             <tr>
                 <td>
-                    {{ $parameters->parameter->title }}
                     <a class="param_edit fancybox.ajax"
                        href="{{ url('dashboard/parameters/edit_param/'.$parameters->parameter->id) }}"
                        title="Редактировать название параметра">
-                        <i class="ace-icon fa fa-pencil bigger-130" style="float: right"></i>
+                        {{ $parameters->parameter->title }}
                     </a>
+                    <i class="ace-icon fa fa-pencil bigger-130" style="float: right"></i>
                 </td>
                 <td>
                     {{ $parameters->value }}

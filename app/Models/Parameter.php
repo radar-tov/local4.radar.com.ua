@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Support\Facades\DB;
 
+use App\Models\ParametersValue;
+
 class Parameter extends Eloquent
 {
 	protected $fillable = [
@@ -25,20 +27,31 @@ class Parameter extends Eloquent
 	}
 
 	public function add($params){
-		return DB::table('parameters')->insertGetId($params);
+        $param = $this->firstOrCreate($params);
+        return $param->id;
 	}
 
 	public function addValue($value){
 		return DB::table('parameters_values')->insertGetId($value);
 	}
 
+    public function addValueUn($values){
+        //return DB::table('parameters_values')->insertGetId($value);
+        $valu = ParametersValue::firstOrCreate($values);
+        return $valu->id;
+    }
+
 	public function saveParamsProduct($parameter_product){
 		return DB::table('parameter_product')->insert($parameter_product);
 	}
 
 	public function updateValue($request, $id){
-		return DB::table('parameter_product')->where('parameter_id', $request->parameterID)
-			->where('product_id', $request->productID)->update(['parameter_value_id' => $id]);
+		if(DB::table('parameter_product')->where('parameter_id', $request->parameterID)
+			->where('product_id', $request->productID)->update(['parameter_value_id' => $id])){
+            return true;
+        }else{
+            return false;
+        }
 	}
 
 	public function deleteParam($paramID, $productID){

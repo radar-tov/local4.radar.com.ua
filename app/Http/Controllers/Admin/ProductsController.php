@@ -66,6 +66,7 @@ class ProductsController extends AdminController
 
         if ($request->ajax()) {
             $search = $request->get('search');
+
             $products = $this->product
                 ->whereNotIn('id', !empty($request->get('selected')) ? $request->get('selected') : [0])
                 ->with('category')
@@ -79,6 +80,7 @@ class ProductsController extends AdminController
                 ->orderBy($request->get('sortBy') ?: 'id', 'ASC')
                 ->where('category_id', $request->get('categoryId') ?: 'LIKE', '%')
                 ->where('brand_id', $request->get('brandID') ?: 'LIKE', '%')
+                ->where('cenagrup_id', $request->get('cenagrupID') ?: 'LIKE', '%')
                 ->with('thumbnail')
                 ->paginate($request->get('paginate') ?: 20);
 

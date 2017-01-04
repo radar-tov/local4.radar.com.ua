@@ -52,7 +52,6 @@ class ParametersController extends AdminController
 		$flag = '';
 
 		if($request['param_1'] != ''){
-			$date = new \DateTime('NOW');
 
 			for($i=0; $i < 10; $i++){
 				if($request['param_'.$i] != ''){
@@ -60,9 +59,7 @@ class ParametersController extends AdminController
 					$params = [
 						'title' => trim($request['param_'.$i]),
 						'category_id' => $request['categoryID'],
-						'brand_id' => $request['brandID'],
-						'created_at'    =>  $date->format("Y-m-d H:i:s"),
-						'updated_at'    =>  $date->format("Y-m-d H:i:s")
+						'brand_id' => $request['brandID']
 					];
 
 					$parameter_id = $parameter->add($params);
@@ -72,8 +69,6 @@ class ParametersController extends AdminController
 						$value = [
 							'parameter_id' =>$parameter_id,
 							'value' => '',
-							'created_at'    =>  $date->format("Y-m-d H:i:s"),
-							'updated_at'    =>  $date->format("Y-m-d H:i:s")
 						];
 
 						$default_value_id = $parameter->addValue($value);
@@ -81,9 +76,7 @@ class ParametersController extends AdminController
 
 						$value = [
 							'parameter_id' =>$parameter_id,
-							'value' => trim($request['value_'.$i]),
-							'created_at'    =>  $date->format("Y-m-d H:i:s"),
-							'updated_at'    =>  $date->format("Y-m-d H:i:s")
+							'value' => trim($request['value_'.$i])
 						];
 
 						$parameter_value_id = $parameter->addValue($value);
@@ -127,7 +120,7 @@ class ParametersController extends AdminController
 		//dd($request->all());
 
 		if($request['param_1'] != ''){
-			for($i=0; $i < 10; $i++){
+			for($i=0; $i < 11; $i++){
 				if($request['param_'.$i] != ''){
 
 					$params[] = [
@@ -184,26 +177,22 @@ class ParametersController extends AdminController
 	 * @param  int $id
 	 * @return Response
 	 */
-	public function save_value(Parameter $parameter, Request $request)
+	public function save_value(Parameter $parameter, ParametersValue $value, Request $request)
 	{
 		//dd($request->all());
 		if($request->value_2 != ''){
 
-			$date = new \DateTime('NOW');
-
 			$value = [
-				'parameter_id' =>$request->parameterID,
-				'value' => trim($request->value_2),
-				'created_at'    =>  $date->format("Y-m-d H:i:s"),
-				'updated_at'    =>  $date->format("Y-m-d H:i:s")
+				'parameter_id'  =>  $request->parameterID,
+				'value'         =>  trim($request->value_2)
 			];
 
-			$parameter_value_id = $parameter->addValue($value);
+			$parameter_value_id = $parameter->addValueUn($value);
 
 			if($parameter->updateValue($request, $parameter_value_id)){
 				return '<h3 align="center">Сохранено</h3>';
 			}else{
-				return response()->json(['errors'=>'error']);
+                return '<h3 align="center">Не сохранено! Дубликат.</h3>';
 			}
 
 		}else{
@@ -253,7 +242,7 @@ class ParametersController extends AdminController
 	}
 
 	public function save_param(Parameter $parameter, Request $request){
-		if($parameter->where('id', $request->parameterID)->update(['title' => $request->param])){
+		if($parameter->where('id', $request->parameterID)->update(['title' => trim($request->param)])){
 			return '<h3 align="center">Сохранено</h3>';
 		}else{
 			return response()->json(['errors'=>'error']);
