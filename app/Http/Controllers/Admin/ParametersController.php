@@ -58,7 +58,7 @@ class ParametersController extends AdminController
 				if($request['param_'.$i] != ''){
 
 					$params = [
-						'title' =>$request['param_'.$i],
+						'title' => trim($request['param_'.$i]),
 						'category_id' => $request['categoryID'],
 						'brand_id' => $request['brandID'],
 						'created_at'    =>  $date->format("Y-m-d H:i:s"),
@@ -81,7 +81,7 @@ class ParametersController extends AdminController
 
 						$value = [
 							'parameter_id' =>$parameter_id,
-							'value' => $request['value_'.$i],
+							'value' => trim($request['value_'.$i]),
 							'created_at'    =>  $date->format("Y-m-d H:i:s"),
 							'updated_at'    =>  $date->format("Y-m-d H:i:s")
 						];
@@ -193,7 +193,7 @@ class ParametersController extends AdminController
 
 			$value = [
 				'parameter_id' =>$request->parameterID,
-				'value' => $request->value_2,
+				'value' => trim($request->value_2),
 				'created_at'    =>  $date->format("Y-m-d H:i:s"),
 				'updated_at'    =>  $date->format("Y-m-d H:i:s")
 			];
