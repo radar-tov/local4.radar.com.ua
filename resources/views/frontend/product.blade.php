@@ -228,41 +228,41 @@
                             <div id="options" class="col s12 no-padding">
                                 <div class="full-desc bordered mod">
                                     <div class="col mod col s12 l6">
-                                    <div class="col col s12 l6">
-                                        <h5 class="teg mod">Характеристики</h5>
-                                        @foreach($product->sortedValuesCharacters($product->category_id) as $characteristics)
-                                            @if($characteristics->characteristic->isVisibleForCategory($product->category_id))
+                                        <div class="col col s12 l6">
+                                            <h5 class="teg mod">Характеристики</h5>
+                                            @foreach($product->sortedValuesCharacters($product->category_id) as $characteristics)
+                                                @if($characteristics->characteristic->isVisibleForCategory($product->category_id))
+                                                    <div class="col aspect s12">
+                                                        <p class="col s12 m8">{{ $characteristics->characteristic->title }}</p>
+                                                        <p class="col s12 m4">{{ $characteristics->value }}</p>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+
+
+                                            <h5 class="teg mod">Параметры</h5>
+                                            @foreach($product->getParameters as $rapameter)
                                                 <div class="col aspect s12">
-                                                    <p class="col s12 m8">{{ $characteristics->characteristic->title }}</p>
-                                                    <p class="col s12 m4">{{ $characteristics->value }}</p>
+                                                    <p class="col s12 m8">{{ $rapameter->parameter->title }}</p>
+                                                    <p class="col s12 m4">{{ $rapameter->value }}</p>
                                                 </div>
-                                            @endif
-                                        @endforeach
+                                            @endforeach
 
 
-                                        <h5 class="teg mod">Параметры</h5>
-                                        @foreach($product->getParameters as $rapameter)
-                                            <div class="col aspect s12">
-                                                <p class="col s12 m8">{{ $rapameter->parameter->title }}</p>
-                                                <p class="col s12 m4">{{ $rapameter->value }}</p>
-                                            </div>
-                                        @endforeach
+                                            {{--TODO-evgenii Удалить блок после заполнения всех товаров --}}
+                                            @foreach($product->sortedValues($product->category_id) as $field)
+                                                @if($field->filter->isVisibleForCategory($product->category_id))
+                                                    <div class="col aspect s12">
+                                                        <p class="col s12 m8">{{ $field->filter->title }}</p>
+                                                        <p class="col s12 m4">{{ $field->value }}</p>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                            {{--TODO-evgenii END Удалить блок после заполнения всех товаров --}}
 
-
-                                        {{--TODO-evgenii Удалить блок после заполнения всех товаров --}}
-                                        @foreach($product->sortedValues($product->category_id) as $field)
-                                            @if($field->filter->isVisibleForCategory($product->category_id))
-                                                <div class="col aspect s12">
-                                                    <p class="col s12 m8">{{ $field->filter->title }}</p>
-                                                    <p class="col s12 m4">{{ $field->value }}</p>
-                                                </div>
-                                            @endif
-                                        @endforeach
-                                        {{--TODO-evgenii END Удалить блок после заполнения всех товаров --}}
-
+                                        </div>
                                     </div>
                                 </div>
-
                             </div>
 
                             <div id="foto" class="col s12 no-padding">
