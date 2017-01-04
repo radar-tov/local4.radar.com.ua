@@ -231,6 +231,15 @@ class ProductsController extends AdminController
         $request = $this->isCheckbox($request, $request->is_bestseller, 'is_bestseller');
         $request = $this->isCheckbox($request, $request->is_new, 'is_new');
 
+        //Удаляем пробелы
+        $data = $request->all();
+        array_walk_recursive($data, function (&$value) {
+            if (is_string($value)) {
+                $value = trim($value);
+            }
+        });
+        $request->merge($data);
+
         $product->update($request->all());
 
         $product->filters()->sync($request->get('filters') ?: []);

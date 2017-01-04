@@ -26,7 +26,7 @@ class CreateProductRequest extends Request
     {
         return [
             'title' => 'required',
-//	        'slug' => 'required|unique:products,slug',
+	        'slug' => 'required|unique:products,slug',
 	        'slug' => 'required',
 	        'price' => ['regex:/[\d]+\.?[\d]+/','required'],
 	        'discount' => 'integer',

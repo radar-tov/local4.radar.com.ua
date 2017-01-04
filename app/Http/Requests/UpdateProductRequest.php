@@ -27,7 +27,7 @@ class UpdateProductRequest extends Request
 		return [
 			'title' => 'required',
 //			'slug' => 'required|unique:products,slug,'.$this->route()->products,
-			'slug' => 'required',
+			'slug' => 'required|unique:products,slug,'.$this->segment(3),
 			'price' => ['regex:/[\d]+/','required'],
 			'discount' => 'regex:/[\d]+/',
 			'category_id' => 'integer',
