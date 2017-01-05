@@ -38,11 +38,15 @@
 <div class="row compare-list">
 
         @foreach($chunk as $product)
-
+{{--{{ dump($product) }}--}}
             <div class="col s12 m6 l4">
             <div class="compare_product">
 
-            <div class="name">{{ $product->name }}</div>
+            <div class="name">
+                <a href="/{{ $product->options->categorySlug }}/{{ $product->options->productSlug }}">
+                    {{ $product->name }}
+                </a>
+            </div>
             <div>{{ $product->price }}</div>
             
 

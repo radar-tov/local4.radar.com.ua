@@ -99,7 +99,9 @@ class CartController extends Controller {
 
         $product = Product::visible()->with('relevantSale', 'thumbnail', 'category')->find($request->get('productId'));
 
-         // Cart::search(array('id' => $, 'options' => array('size' => 'L')));
+        $parentCategorySlug = Category::select('slug', 'title')
+            ->where('id', '=', Category::where('id', '=', $product->category->id)->value('parent_id'))
+            ->get();
         
         if(Cart::search(['id' => $product->id])) return null;
 
@@ -121,7 +123,7 @@ class CartController extends Controller {
                 'excerpt' => $product->excerpt,
                 'article' => $product->article,
                 'thumbnail' => count($product->thumbnail) ? $product->thumbnail->first()->path : '',
-                'categorySlug' => $product->category->slug,
+                'categorySlug' => $parentCategorySlug[0]->slug.'/'.$product->category->slug,
                 'productSlug' => $product->slug,
                 'characteristics' => $chars
             ]
