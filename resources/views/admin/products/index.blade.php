@@ -144,7 +144,8 @@
                         <input type="checkbox" v-on="change:markProducts()" v-el="mainCheckbox"/>
                     </th>
                     <th class="options"><i class="fa fa-eye"></i></th>
-                    <th class="options"><i class="fa fa-eye"></i></th>
+                    <th class="options"><i class="fa fa-plus"></i></th>
+                    <th class="options"><i class="fa fa-camera"></i></th>
                     <th>Артикул</th>
                     <th>Название</th>
                     <th class="p-base-price">Базовая цена</th>
@@ -171,6 +172,9 @@
                         <i class="fa fa-minus red" v-show="product.available == 0"></i>
                         <i class="fa fa-plus green" v-show="product.available == 1"></i>
                         <i class="fa fa-phone red" v-show="product.available == 2"></i>
+                    </td>
+                    <td class="options">
+                        {{--<img src="..@{{ product.path }}" style="max-height: 26px">--}}
                     </td>
                     <td>
                         @{{ product.article }}

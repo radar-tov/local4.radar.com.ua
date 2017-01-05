@@ -33,7 +33,9 @@
     }
 </script>
 @if(isset($product))
-    <span style="color: darkred">Дата обновления: {{ $product->updated_at }}</span>
+    <span style="color: darkred">Дата обновления: {{ $product->updated_at }}</span><br>
+    <span style="color: darkred"><a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}/{{ $product->slug }}" target="_blank">Страница товара</a></span><br>
+    <span style="color: darkred"><a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}" target="_blank">Страница категории</a></span><br>
 @endif
 <div class="col-lg-12" id="product">
     {{--<pre>--}}
