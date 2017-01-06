@@ -203,7 +203,7 @@
                     </td>
                     <td class="">@{{ product.out_price }}</td>
                     <td>
-                        <span>{{--TODO-evgenii изменить URL --}}
+                        <span>
                             <a href="/@{{ product.category.parent.slug }}/@{{ product.category.slug }}" target="_blank">@{{ product.category.title }}</a>
                         </span>
                     </td>

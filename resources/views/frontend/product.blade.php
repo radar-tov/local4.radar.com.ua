@@ -241,6 +241,7 @@
 
 
                                             <h5 class="teg mod">Параметры</h5>
+                                            {{--{{ dump($product->getParameters) }}--}}
                                             @foreach($product->getParameters as $rapameter)
                                                 <div class="col aspect s12">
                                                     <p class="col s12 m8">{{ $rapameter->parameter->title }}</p>

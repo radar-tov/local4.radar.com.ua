@@ -14,6 +14,6 @@ class ParametersValue extends Model
 
     public function parameter()
     {
-        return $this->belongsTo('App\Models\Parameter', 'parameter_id', 'id');
+        return $this->belongsTo('App\Models\Parameter', 'parameter_id', 'id')->orderBy('parameters.title');
     }
 }
