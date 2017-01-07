@@ -328,8 +328,11 @@
                     <div class="col-sm-3">
                         @if(isset($product->getCena->valuta))
                             @if($product->getCena->valuta == 1) {!! Form::label('base_price','Базовая цена в гривне') !!}
+                                <i class="fa fa-ruble"></i>
                             @elseif($product->getCena->valuta == 2) {!! Form::label('base_price','Базовая цена в долларах') !!}
+                                <i class="fa fa-dollar"></i>
                             @elseif($product->getCena->valuta == 3) {!! Form::label('base_price','Базовая цена в евро') !!}
+                                <i class="fa fa-euro"></i>
                             @endif
                         @else
                             {!! Form::label('base_price','Базовая цена') !!}
@@ -388,8 +391,12 @@
                     </div>
 
                 </div>
-
-                <div class="col-xs-12">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div style="padding-bottom: 30px"></div>
+                    </div>
+                </div>
+                <div class="col-md-12">
                     <label for="nacenka">Группа цен</label>
                     <div class="input-group">
                         {!! Form::select('cenagrup_id',
@@ -397,25 +404,34 @@
                     </div>
                 </div>
 
+                <div class="col-md-12">
+                    <div class="row">
+                        <div style="padding-bottom: 30px"></div>
+                    </div>
+                </div>
 
-                <div class="col-xs-12">
+                <div class="col-md-12">
+                    <h5>Дата последнего персчёта цен : {{ isset($product->getCena->updated_at) ? $product->getCena->updated_at : ''}}</h5>
+                </div>
+
+                <div class="col-md-12">
                     <h5>Скидка в группе : {{ isset($product->getCena->skidka) ? $product->getCena->skidka : ''}}</h5>
                 </div>
 
-                <div class="col-xs-12">
+                <div class="col-md-12">
                     <h5>Наценка в группе : {{ isset($product->getCena->nacenka) ? $product->getCena->nacenka : ''}}</h5>
                 </div>
 
 
-                <div class="col-sm-12">
+                <div class="col-md-12">
                     {{ isset($product->getCena->coment) ? $product->getCena->coment : ''}}
                 </div>
 
-                <div class="col-sm-12">
+                <div class="col-md-12">
                     {{ isset($product->getCena->file) ? $product->getCena->file : ''}}
                 </div>
 
-                <div class="col-sm-12">
+                <div class="col-md-12">
                     <div class="row">
                         <div style="padding-bottom: 150px"></div>
                     </div>

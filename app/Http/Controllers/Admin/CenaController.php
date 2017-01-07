@@ -148,7 +148,7 @@ class CenaController extends Controller
             }
 
         }
-
+        $cenagrup->touch();
         return $out;
     }
 
