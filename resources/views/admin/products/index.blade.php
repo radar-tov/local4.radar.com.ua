@@ -42,12 +42,23 @@
 
                         <div class="col-xs-2">
                             {!! Form::select('sortBy', [
-                               'id' => 'Сортировка по умолчанию',
-                               'price' => 'По цене',
-                               'title' => 'По названию'
+                               'id'         => 'Сортировка по умолчанию',
+                               'price'      => 'По цене',
+                               'out_price'  => 'По цене со скидкой',
+                               'base_price' => 'По базовой цене',
+                               'discount'   => 'По скидке',
+                               'nacenka'    => 'По наценке',
+                               'title'      => 'По названию',
+                               'name'       => 'По AdminName'
                                ], $selected = null, ['class' => 'form-control']) !!}
                         </div>
 
+                        <div class="col-xs-1">
+                            {!! Form::select('sortByPor', [
+                               'ASC'  => 'По возрастанию',
+                               'DESC' => 'По убыванию'
+                               ], $selected = null, ['class' => 'form-control']) !!}
+                        </div>
 
                         <div class="col-xs-2">
                             {!! Form::select('categoryId', [0 => 'Все категории'] + $categoriesProvider->getCategoriesList()->all(),
@@ -75,14 +86,15 @@
                                ], $selected = null, ['class' => 'form-control']) !!}
                         </div>
 
-                        <div class="col-xs-2">
-                            {!! Form::select('paginate', [
-                             50 => 'Показывать по 50 продуктов',
-                             100 => 'По 100 продуктов',
-                             200 => 'По 200 продуктов',
-                            ], $selected = null, ['class' => 'form-control']) !!}
-                        </div>
                         <div style="padding-top: 50px">
+                            <div class="col-xs-2">
+                                {!! Form::select('paginate', [
+                                 50 => 'Показывать по 50 продуктов',
+                                 100 => 'По 100 продуктов',
+                                 200 => 'По 200 продуктов',
+                                ], $selected = null, ['class' => 'form-control']) !!}
+                            </div>
+
                             <div class="col-xs-2">
                                 {!! Form::text('search', $value = Request::get('q'),
                                     ['class' => 'form-control', 'placeholder' => 'Поиск', 'v-on' => 'input: filterProducts()']) !!}
@@ -158,9 +170,11 @@
                     <th class="options"><i class="fa fa-camera"></i></th>
                     <th>Артикул</th>
                     <th>Название</th>
+                    <th>AdminName</th>
                     <th class="p-base-price">Базовая цена</th>
                     <th class="p-price">Цена</th>
                     <th class="p-discount">Скидка</th>
+                    <th class="p-nacenka">Наценка</th>
                     <th class="p-out-price">Цена +- скидка</th>
                     <th>Категория</th>
                     <th colspan="3" class="options">Опции</th>
@@ -197,7 +211,7 @@
                     <td>
                         @{{ product.article }}
                     </td>
-                    <td class="p-title">
+                    <td>
                         <div class="bs-label-container">
                             <span class="label label-success bs-label"
                                   v-show="product.is_bestseller > 0">Хит продаж</span>
@@ -209,13 +223,40 @@
                         </a>
                         <small v-show="product.clone_of > 0" style="color:indianred">(копия)</small>
                     </td>
-                    <td class="">@{{ product.base_price }}</td>
+                    <td>
+
+                        <div class="bs-label-container">
+                            <span class="label label-success bs-label"
+                                  v-show="product.is_bestseller > 0">Хит продаж</span>
+                            <span class="label label-danger bs-label" v-show="product.is_new > 0">Новинка</span>
+                        </div>
+                        {{--<i class="fa fa-line-chart"></i>--}}
+                        <a style="color: #000000" target="_blank" href="/dashboard/products/@{{ product.id }}/edit">
+                            @{{ product.name }}
+                        </a>
+                        <small v-show="product.clone_of > 0" style="color:indianred">(копия)</small>
+                    </td>
+                    <td class="">
+                        @{{ product.base_price }}
+                        <i class="fa fa-ruble" v-show="product.get_cena.valuta == 1"></i>
+                        <i class="fa fa-dollar" v-show="product.get_cena.valuta == 2"></i>
+                        <i class="fa fa-euro" v-show="product.get_cena.valuta == 3"></i>
+                         * @{{ product.get_cena.curs }}
+                    </td>
                     <td class="">@{{ product.price }}</td>
                     <td class="center">
                             <span class="label label-sm label-success arrowed-right" v-show="product.discount > 0">
                                 @{{ product.discount }} %
                             </span>
                             <span v-show="product.discount < 1">
+                                <i class="fa fa-minus"></i>
+                            </span>
+                    </td>
+                    <td class="center">
+                            <span class="label label-sm label-success arrowed-right" v-show="product.nacenka > 0">
+                                @{{ product.nacenka }} %
+                            </span>
+                            <span v-show="product.nacenka < 1">
                                 <i class="fa fa-minus"></i>
                             </span>
                     </td>
@@ -268,7 +309,9 @@
                     </li>
                 </ul>
             </nav>
-
+            {{--<pre>--}}
+            {{--@{{ $data.products | json }}--}}
+            {{--</pre>--}}
 
             <input type="hidden" value="{{ csrf_token() }}" v-model="token"/>
             {{--{!! $products->appends(['q'])->render() !!}--}}

@@ -25,7 +25,7 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         Route::post('product-actions/getProductsForSale','ProductsController@getProductsForSale');
         Route::post('product-actions/getRelatedProducts','ProductsController@getRelatedProducts');
         Route::post('product-actions/syncRelated','ProductsController@syncRelatedProducts');
-        Route::post('product-actions/getProducts','ProductsController@getProducts');
+        Route::get('product-actions/getProducts','ProductsController@getProducts');
         Route::post('product-actions/delete','ProductsController@massDelete');
         Route::post('product-actions/deactivate','ProductsController@massDeactivate');
         Route::post('product-actions/activate','ProductsController@massActivate');
@@ -35,7 +35,6 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         Route::post('product-actions/unmarkAsNew','ProductsController@massUnmarkAsNew');
         Route::post('product-actions/dropDiscount','ProductsController@massDropDiscount');
         Route::post('product-actions/stock-products','ProductsController@getStockProducts');
-
         Route::post('product-actions/sklad-true','ProductsController@massSkladTrue');
         Route::post('product-actions/sklad-false','ProductsController@massSkladFalse');
         Route::post('product-actions/sklad-custom','ProductsController@massSkladCustom');
@@ -43,7 +42,6 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         Route::post('product-actions/sitemap-false','ProductsController@massSitemapFalse');
         Route::post('product-actions/yandex-true','ProductsController@massYandexTrue');
         Route::post('product-actions/yandex-false','ProductsController@massYandexFalse');
-
 
         Route::get('products/trash',['as'=>'dashboard.products.trash', 'uses'=>'ProductsController@trash']);
         Route::post('get-products', 'ProductsController@getProducts');

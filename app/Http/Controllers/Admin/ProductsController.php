@@ -75,13 +75,13 @@ class ProductsController extends AdminController
                 ->where(function ($prods) use ($search) {
                     $prods->where('title', 'LIKE', '%' . $search . '%')
                         ->orWhere('article', 'LIKE', '%' . $search . '%')
-                        ->orWhere('clone_of', $search);
+                        ->orWhere('name', 'LIKE', '%' . $search . '%');
                 })
-                ->orderBy($request->get('sortBy') ?: 'id', 'ASC')
+                ->orderBy($request->get('sortBy') ?: 'id', $request->get('sortByPor'))
                 ->where('category_id', $request->get('categoryId') ?: 'LIKE', '%')
                 ->where('brand_id', $request->get('brandID') ?: 'LIKE', '%')
                 ->where('cenagrup_id', $request->get('cenagrupID') ?: 'LIKE', '%')
-                ->with('thumbnail')
+                ->with('thumbnail', 'getCena')
                 ->paginate($request->get('paginate') ?: 20);
 
             return $products;
