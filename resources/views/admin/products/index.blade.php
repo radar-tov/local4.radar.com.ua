@@ -77,9 +77,9 @@
 
                         <div class="col-xs-2">
                             {!! Form::select('paginate', [
-                             20 => 'Показывать по 20 продуктов',
-                             50 => 'По 50 продуктов',
+                             50 => 'Показывать по 50 продуктов',
                              100 => 'По 100 продуктов',
+                             200 => 'По 200 продуктов',
                             ], $selected = null, ['class' => 'form-control']) !!}
                         </div>
                         <div style="padding-top: 50px">
@@ -107,14 +107,22 @@
                         <div class="col-xs-8">
                             {{--{!! Form::label('action', 'С выбранными') !!}--}}
                             {!! Form::select('action', [
+                                'sklad-true' => 'Есть на складе',
+                                'sklad-false' => 'Нет на складе',
+                                'sklad-custom' => 'Под заказ',
+                                'deactivate' => 'Не показывать на сайте',
+                                'activate' => 'Показывать на сайте',
                                 'delete' => 'Удалить в корзину',
                                 'dropDiscount' => 'Убрать скидку',
                                 'markAsBestseller'  => 'Отметить как хит продаж',
                                 'unmarkAsBestseller'  => 'Убрать из хитов продаж',
                                 'markAsNew' => 'Отметить как новинку',
                                 'unmarkAsNew' => 'Убрать из новинок',
-                                'deactivate' => 'Не показывать на сайте',
-                                'activate' => 'Показывать на сайте'
+                                'sitemap-true' => 'Показывать в Sitemap.xml',
+                                'sitemap-false' => 'Не показывать в Sitemap.xml',
+                                'yandex-true' => 'Показывать в Yandex.xml',
+                                'yandex-false' => 'Не показывать в Yandex.xml'
+
                             ],
                             $selected = null, ['class' => 'form-control', 'v-model' => 'selectedAction']) !!}
                         </div>
@@ -146,6 +154,8 @@
                     <th class="options"><i class="fa fa-eye"></i></th>
                     <th class="options"><i class="fa fa-plus"></i></th>
                     <th class="options"><i class="fa fa-camera"></i></th>
+                    <th class="options"><i class="fa fa-yc"></i></th>
+                    <th class="options"><i class="fa fa-sitemap"></i></th>
                     <th>Артикул</th>
                     <th>Название</th>
                     <th class="p-base-price">Базовая цена</th>
@@ -172,6 +182,14 @@
                         <i class="fa fa-minus red" v-show="product.available == 0"></i>
                         <i class="fa fa-plus green" v-show="product.available == 1"></i>
                         <i class="fa fa-phone red" v-show="product.available == 2"></i>
+                    </td>
+                    <td class="options">
+                        <i class="fa fa-yc red" v-show="product.yandex == 0"></i>
+                        <i class="fa fa-yc green" v-show="product.yandex == 1"></i>
+                    </td>
+                    <td class="options">
+                        <i class="fa fa-sitemap red" v-show="product.sitemap == 0"></i>
+                        <i class="fa fa-sitemap green" v-show="product.sitemap == 1"></i>
                     </td>
                     <td class="options">
                         {{--<img src="..@{{ product.path }}" style="max-height: 26px">--}}

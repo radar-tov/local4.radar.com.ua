@@ -501,6 +501,52 @@ class ProductsController extends AdminController
         return [true];
     }
 
+
+    public function massSkladTrue(Request $request)
+    {
+        Product::whereIn('id', $request->get('ids'))->update(['available' => 1]);
+        return [true];
+    }
+
+    public function massSkladFalse(Request $request)
+    {
+        Product::whereIn('id', $request->get('ids'))->update(['available' => 0]);
+        return [true];
+    }
+
+    public function massSkladCustom(Request $request)
+    {
+        Product::whereIn('id', $request->get('ids'))->update(['available' => 2]);
+        return [true];
+    }
+
+
+    public function massSitemapTrue(Request $request)
+    {
+        Product::whereIn('id', $request->get('ids'))->update(['sitemap' => 1]);
+        return [true];
+    }
+
+    public function massSitemapFalse(Request $request)
+    {
+        Product::whereIn('id', $request->get('ids'))->update(['sitemap' => 0]);
+        return [true];
+    }
+
+
+    public function massYandexTrue(Request $request)
+    {
+        Product::whereIn('id', $request->get('ids'))->update(['yandex' => 1]);
+        return [true];
+    }
+
+    public function massYandexFalse(Request $request)
+    {
+        Product::whereIn('id', $request->get('ids'))->update(['yandex' => 0]);
+        return [true];
+    }
+
+
     /**
      * @param Request $request
      * @return mixed

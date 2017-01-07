@@ -35,6 +35,16 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         Route::post('product-actions/unmarkAsNew','ProductsController@massUnmarkAsNew');
         Route::post('product-actions/dropDiscount','ProductsController@massDropDiscount');
         Route::post('product-actions/stock-products','ProductsController@getStockProducts');
+
+        Route::post('product-actions/sklad-true','ProductsController@massSkladTrue');
+        Route::post('product-actions/sklad-false','ProductsController@massSkladFalse');
+        Route::post('product-actions/sklad-custom','ProductsController@massSkladCustom');
+        Route::post('product-actions/sitemap-true','ProductsController@massSitemapTrue');
+        Route::post('product-actions/sitemap-false','ProductsController@massSitemapFalse');
+        Route::post('product-actions/yandex-true','ProductsController@massYandexTrue');
+        Route::post('product-actions/yandex-false','ProductsController@massYandexFalse');
+
+
         Route::get('products/trash',['as'=>'dashboard.products.trash', 'uses'=>'ProductsController@trash']);
         Route::post('get-products', 'ProductsController@getProducts');
         Route::delete('products/destroy-from-trash/{product_id}', 'ProductsController@destroyFromTrash');

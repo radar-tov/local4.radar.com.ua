@@ -183,7 +183,7 @@
                                        target="_blank">
                                         <span>&#8811 {{ $file->name }}</span></br>
                                     </a>
-                                    {{--<a class="instruction _disabled"><span>скачан {{ $file->downloads }} раз</span></a></br>--}}
+                                    <a class="instruction _disabled"><span>скачан {{ $file->downloads }} раз</span></a></br>
                                 @endforeach
                             @endif
                         </div>
