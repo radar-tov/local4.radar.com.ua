@@ -1,4 +1,5 @@
 @inject('categoriesProvider', 'App\ViewDataProviders\CategoriesDataProvider')
+@inject('brandsProvider', 'App\ViewDataProviders\BrandsDataProvider')
 {{--{{ dump($file) }}--}}
 {{--{{ dump($productShow) }}--}}
 <div id="files" class="tab-pane">
@@ -23,6 +24,11 @@
                         <td>{!! Form::label('category_id', 'Категория') !!}</td>
                         <td>{!! Form::select('category_id', $value = $categoriesProvider->getCategoriesList(), $selected = $file->category_id,
                                 ['id'=>'category_id', 'class' => 'validate form-control'])!!}</td>
+                    </tr>
+                    <tr>
+                        <td>{!! Form::label('brand_id', 'Бренд') !!}</td>
+                        <td>{!! Form::select('brand_id', $value = $brandsProvider->getList(), $selected = $file->brand_id,
+                                ['id'=>'brand_id', 'class' => 'validate form-control'])!!}</td>
                     </tr>
                     <tr>
                         <td>{!! Form::label('path', 'Путь к файлу') !!}</td>

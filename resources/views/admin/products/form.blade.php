@@ -120,13 +120,13 @@
             </li>
             <li class="">
                 <a data-toggle="tab" href="#images">
-                    <i class="red ace-icon fa fa-image"></i>
+                    <i class="ace-icon fa fa-image"></i>
                     Медиа
                 </a>
             </li>
             <li class="">
                 <a data-toggle="tab" href="#files">
-                    <i class="red ace-icon fa fa-file"></i>
+                    <i class="ace-icon fa fa-file"></i>
                     Файлы
                 </a>
             </li>
@@ -164,7 +164,7 @@
                             <div class="col-sm-3">
                                 <label for="category_id">Бренд</label>
                                 {!! Form::select('brand_id',
-                                    $value = $brandsProvider->getList(), $selected = null, ['class'=>'form-control']) !!}
+                                    $value = $brandsProvider->getList(), $selected = null, ['class'=>'form-control', 'v-model' => 'brand']) !!}
                                 <br/>
                             </div>
 

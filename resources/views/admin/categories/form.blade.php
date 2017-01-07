@@ -2,6 +2,7 @@
 
 <div class="col-xs-12" id="">
     <input type="hidden" v-model="token" value="{{ csrf_token() }}"/>
+    <input type="hidden" v-model="categoryID" value="{{ $category->id }}"/>
     <div class="tabbable tabs-left">
         <ul class="nav nav-tabs" id="myTab3">
             <li class="active">
@@ -22,6 +23,12 @@
                     Характеристики
                 </a>
             </li>
+            <li class="">
+                <a data-toggle="tab" href="#files" v-on="click:getFiles($event)">
+                    <i class="ace-icon fa fa-file"></i>
+                    Файлы
+                </a>
+            </li>
              <li class="">
                 <a data-toggle="tab" href="#seo">
                     <i class="ace-icon fa fa-bullhorn"></i>
@@ -30,7 +37,7 @@
             </li>
             <li class="">
                 <a data-toggle="tab" href="#media">
-                    <i class="red ace-icon fa fa-image"></i>
+                    <i class="ace-icon fa fa-image"></i>
                     Медиа
                 </a>
             </li>
@@ -398,7 +405,21 @@
 
 
 
-
+            <div id="files" class="tab-pane">
+                <div id="files-data">
+                    <ul>
+                        <li v-repeat="file in files | orderBy 'brand.title'">
+                            <a href="{{ url('/dashboard/pdf-get-order') }}?brand_id=@{{ file.brand_id }}&category_id=@{{ file.category_id }}&_token={{ csrf_token() }}"
+                               class="order_files fancybox.ajax">
+                                @{{ file.brand.title }}
+                            </a>
+                        </li>
+                    </ul>
+                    {{--<pre>--}}
+                    {{--@{{ $data.files | json }}--}}
+                    {{--</pre>--}}
+                </div>
+            </div>
 
 
 
@@ -418,6 +439,7 @@
                     </div>
                 </div>
             </div>
+
             <div id="media" class="tab-pane">
                 <div class="col-xs-12">
                     <div class="form-group">

@@ -103,6 +103,9 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         Route::get("pdf/{id}/{productID}", 'PdfController@edit');
         Route::post("pdf", 'PdfController@update');
         Route::post("pdf/addfile", 'PdfController@store');
+        Route::get('pdf/get', 'PdfController@getList');
+        Route::get('pdf-get-order', 'PdfController@orderList');
+        Route::post('pdf/order', 'PdfController@orderSave');
         /* /end PDF */
 
         /* PARAMETERS */

@@ -176,8 +176,10 @@
                             @if($product->files)
                                 @foreach($product->files as $file)
                                     <a class="instruction {{ $file->path ? '' : '_disabled' }} "
-                                       href="/{{ $file->path }}"
-                                       onclick="yaCounter39848700.file('{{ $file->path }}', {params: '{{ $file->name }}'}); ga('send', 'event', 'PDF', '{{ $file->name }}'); return true;"
+                                       href="{{ url('/pdf/download', $file->id ) }}"
+                                       onclick="yaCounter39848700.file('{{ $file->path }}',{params: '{{ $file->name }}'});
+                                               ga('send', 'event', 'PDF', '{{ $file->name }}');
+                                               return true;"
                                        target="_blank">
                                         <span>&#8811 {{ $file->name }}</span></br>
                                     </a>

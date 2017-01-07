@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Requests\BuyRequest;
 use App\Models\Category;
 use App\Models\CustomerGroup;
+use App\models\File;
 use App\Models\FilterValue;
 use App\Models\LifeComplex;
 use App\Models\Metro;
@@ -539,4 +540,11 @@ class FrontendController extends BaseController
 	public function password_modal(){
 		return view('frontend.modal.password');
 	}
+
+    public function download($id){
+        $file = File::find($id);
+        $file->update(['downloads' => $file->downloads + 1]);
+        $fileName = explode('__',  $file->path);
+        return Response::download($file->path, $fileName[1]);
+    }
 }

@@ -395,11 +395,11 @@ class ProductsController extends AdminController
 
     public function uploadPDF(Request $request, File $file)
     {
-        $product = Product::find($request->get('productId'));
+        $product = Product::find($request->get('productID'));
         $request = $this->filesHandler->saveFile($request, $this->path);
         $product->pdf = $request->get('file');
 
-        if($file->add($product->pdf, $request->get('productId'))){
+        if($file->add($product->pdf, $request)){
             return \Response::json($product->pdf);
         }else{
             abort('Error', 422);

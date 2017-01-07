@@ -16,21 +16,31 @@ class File extends Model
         'created_at',
         'updated_at',
         'admin_name',
-        'category_id'
+        'category_id',
+        'brand_id',
+        'order'
     ];
 
-    public function add($path, $product_id){
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class)->withPivot('show','order');
+    }
+
+    public function add($path, $request){
         $date = new \DateTime('NOW');
         $id = DB::table('files')->insertGetId([
                 'path'          =>  $path,
                 'show'          =>  1,
+                'category_id'   =>  $request->categoryID,
+                'brand_id'      =>  $request->brandID,
                 'created_at'    =>  $date->format("Y-m-d H:i:s"),
                 'updated_at'    =>  $date->format("Y-m-d H:i:s")
             ]);
 
         if(DB::table('file_product')->insert([
                 'file_id'       =>  $id,
-                'product_id'    =>  $product_id,
+                'product_id'    =>  $request->productID,
                 'show'          =>  1
             ])
         ){
@@ -83,5 +93,9 @@ class File extends Model
         }else{
             return false;
         }
+    }
+
+    public function brand(){
+        return $this->hasOne(Brand::class, 'id', 'brand_id');
     }
 }

@@ -133,4 +133,22 @@ class PdfController extends Controller
         }
         return $request;
     }
+
+    public function getList(Request $request){
+        return File::where('category_id', $request->id)->groupBy('brand_id')->with('brand')->get();
+    }
+
+    public function orderList(Request $request){
+        $files = File::where('category_id', $request->category_id)->where('brand_id', $request->brand_id)->orderBy('order')->get();
+        return view('admin.pdf.order', compact('files'));
+    }
+
+    public function orderSave(){
+
+        foreach(\Request::get('serialized') as $fileKey => $file) {
+            $result = File::find($file['id'])->update(['order' => $fileKey]);
+        }
+        return ['success' => true];
+
+    }
 }

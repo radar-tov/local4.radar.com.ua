@@ -10,9 +10,11 @@ new Vue({
             xapacts: [],
             icon: ''
         },
+        files: [],
         fieldList: {},
         xapactList:{},
         token: null,
+        categoryID: null,
         fieldToCreate: {
             title: '',
             is_filter: ''
@@ -103,6 +105,18 @@ new Vue({
                         xapact.pivot.is_filter = 0;
                     });
                     vue.xapactList = xapacts;
+                }
+            });
+        },
+
+        getFiles: function(event){
+            var vue = this;
+            $.ajax({
+                method: "GET",
+                url: '/dashboard/pdf/get/',
+                data: {_token: vue.token, id: vue.categoryID },
+                success: function (files) {
+                    vue.files = files;
                 }
             });
         },

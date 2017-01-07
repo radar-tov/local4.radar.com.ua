@@ -317,7 +317,9 @@ new Vue({
                    
                     data.append('file', uploadInput[0].files[property]);
                     data.append('_token', this.token);
-                    data.append('productId',this.productId);
+                    data.append('productID',this.productId);
+                    data.append('categoryID', this.category);
+                    data.append('brandID',this.brand);
                     $.ajax({
                         url: '/dashboard/upload-pdf',
                         type: 'POST',

@@ -113,7 +113,7 @@ class Product extends Eloquent {
 	}
 
 	public function files() {
-		return $this->belongsToMany('App\Models\File', 'file_product', 'product_id', 'file_id');
+		return $this->belongsToMany('App\Models\File', 'file_product', 'product_id', 'file_id')->orderBy('order');
 	}
 
 	/**
@@ -340,6 +340,17 @@ class Product extends Eloquent {
 
         });
     }
+
+
+//    public function sortedFiles($categoryId, $brandId) {
+//        return $this->files->sortBy(function ($product, $key) use ($categoryId, $brandId) {
+//            $cat = $product->where('id', $categoryId)->where('brand_id', $brandId)->get();
+//            if (count($cat)) {
+//                return $cat->order;
+//            }
+//
+//        });
+//    }
 
 
 

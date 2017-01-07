@@ -63,7 +63,7 @@ Breadcrumbs::register('dashboard.categories.create', function($breadcrumbs)
 Breadcrumbs::register('dashboard.categories.edit', function($breadcrumbs)
 {
 	$breadcrumbs->parent('dashboard.categories.index');
-	$breadcrumbs->push('Редактировать категорию', route('dashboard.categories.edit'));
+	$breadcrumbs->push('Редактировать категорию', route('dashboard.categories.edit',  '#'));
 });
 
 // Dashboard > Filters
@@ -120,7 +120,7 @@ Breadcrumbs::register('dashboard.accommodations.create', function($breadcrumbs)
 Breadcrumbs::register('dashboard.accommodations.edit', function($breadcrumbs)
 {
 	$breadcrumbs->parent('dashboard.accommodations.index');
-	$breadcrumbs->push('Редактировать объект', route('dashboard.accommodations.edit'));
+	$breadcrumbs->push('Редактировать объект', route('dashboard.accommodations.edit',  '#'));
 });
 
 // Dashboard > Pages
@@ -141,7 +141,7 @@ Breadcrumbs::register('dashboard.pages.create', function($breadcrumbs)
 Breadcrumbs::register('dashboard.pages.edit', function($breadcrumbs)
 {
 	$breadcrumbs->parent('dashboard.pages.index');
-	$breadcrumbs->push('Редактировать страницу', route('dashboard.pages.edit'));
+	$breadcrumbs->push('Редактировать страницу', route('dashboard.pages.edit',  '#'));
 });
 
 // Dashboard > Articles
@@ -162,7 +162,7 @@ Breadcrumbs::register('dashboard.articles.create', function($breadcrumbs)
 Breadcrumbs::register('dashboard.articles.edit', function($breadcrumbs)
 {
 	$breadcrumbs->parent('dashboard.articles.index');
-	$breadcrumbs->push('Редактировать статью', route('dashboard.articles.edit'));
+	$breadcrumbs->push('Редактировать статью', route('dashboard.articles.edit',  '#'));
 });
 
 

@@ -53,6 +53,7 @@ if( ! Request::is('dashboard*') and ! Request::is('auth*')){
 		Route::get('password_modal', ['as' => 'password_modal', 'uses' => 'FrontendController@password_modal']);
 		Route::get('cabinet', ['as' => 'cabinet', 'uses' => 'FrontendController@cabinet']);
 		Route::get('search', ['as' => 'search', 'uses' => 'FrontendController@search']);
+        Route::get('pdf/download/{ID}', 'FrontendController@download');
 
 		Route::post('user_update', ['as' => 'user_update', 'uses' => 'FrontendController@updateUserData']);
 		Route::get('cabinet/orders/{order_id}', ['as' => 'order', 'uses' => 'FrontendController@showOrder']);
