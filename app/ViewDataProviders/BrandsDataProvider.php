@@ -4,9 +4,7 @@ namespace App\ViewDataProviders;
 
 use App\Models\Brand;
 
-
 class BrandsDataProvider {
-
 
 	public function getList()
 	{
