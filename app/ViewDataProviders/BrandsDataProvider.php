@@ -4,6 +4,7 @@ namespace App\ViewDataProviders;
 
 use App\Models\Brand;
 
+
 class BrandsDataProvider {
 
 
