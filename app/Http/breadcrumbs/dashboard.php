@@ -42,7 +42,7 @@ Breadcrumbs::register('dashboard.users.create', function($breadcrumbs)
 Breadcrumbs::register('dashboard.users.edit', function($breadcrumbs)
 {
 	$breadcrumbs->parent('dashboard.users.index');
-	$breadcrumbs->push('Редактировать пользователя', route('dashboard.users.edit'));
+	$breadcrumbs->push('Редактировать пользователя', route('dashboard.users.edit',  '#'));
 });
 
 // Dashboard > Categories
