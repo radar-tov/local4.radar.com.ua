@@ -4,7 +4,7 @@ use App\Http\Requests;
 use App\Http\Requests\BuyRequest;
 use App\Models\Category;
 use App\Models\CustomerGroup;
-use App\models\File;
+use App\Models\File;
 use App\Models\FilterValue;
 use App\Models\LifeComplex;
 use App\Models\Metro;
