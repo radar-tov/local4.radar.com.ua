@@ -153,9 +153,9 @@
                     </th>
                     <th class="options"><i class="fa fa-eye"></i></th>
                     <th class="options"><i class="fa fa-plus"></i></th>
-                    <th class="options"><i class="fa fa-camera"></i></th>
                     <th class="options"><i class="fa fa-yc"></i></th>
                     <th class="options"><i class="fa fa-sitemap"></i></th>
+                    <th class="options"><i class="fa fa-camera"></i></th>
                     <th>Артикул</th>
                     <th>Название</th>
                     <th class="p-base-price">Базовая цена</th>
