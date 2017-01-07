@@ -415,9 +415,9 @@
                             </a>
                         </li>
                     </ul>
-                    {{--<pre>--}}
-                    {{--@{{ $data.files | json }}--}}
-                    {{--</pre>--}}
+                    <pre>
+                    @{{ $data.files | json }}
+                    </pre>
                 </div>
             </div>
 

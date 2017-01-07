@@ -4,6 +4,7 @@ namespace App\models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Models\Brand;
 
 class File extends Model
 {
