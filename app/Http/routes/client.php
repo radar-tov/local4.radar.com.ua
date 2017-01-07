@@ -4,7 +4,7 @@ if( ! Request::is('dashboard*') and ! Request::is('auth*')){
 
 
 	/* Add review on front page */
-	post('add/review',['uses'=>'\App\Http\Controllers\Admin\ReviewsController@store','as'=>'add.review']);
+    Route::post('add/review',['uses'=>'\App\Http\Controllers\Admin\ReviewsController@store','as'=>'add.review']);
 
 	Route::group(['namespace' => '\App\Http\Controllers\Frontend', 'middleware' => 'bot'], function()
 	{
