@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Response;
 use Mockery\CountValidator\Exception;
 use App\Models\File;
 use App\Models\Cena;
+use Illuminate\Support\Facades\Session;
 
 /**
  * Class ProductsController
@@ -65,7 +66,90 @@ class ProductsController extends AdminController
     {
 
         if ($request->ajax()) {
+
             $search = $request->get('search');
+
+            //Удаляем пробелы
+//            $data = $request->all();
+//            array_walk_recursive($data, function (&$value) {
+//                if (is_string($value)) {
+//                    $value = trim($value);
+//                }
+//            });
+//            $request->merge($data);
+
+
+            //Сохраняем в сессию
+            if(!empty($request->get('sortBy'))){
+                $request->session()->put('admin_sortBy', $request->get('sortBy'));
+                $request->session()->save();
+            }else{
+                $request->merge(array('sortBy' => Session::get('admin_sortBy')));
+            }
+
+            if(!empty($request->get('sortByPor'))){
+                $request->session()->put('admin_sortByPor', $request->get('sortByPor'));
+                $request->session()->save();
+            }else{
+                $request->merge(array('sortByPor' => Session::get('admin_sortByPor')));
+            }
+
+            if(!empty($request->get('categoryId'))){
+                $request->session()->put('admin_categoryId', $request->get('categoryId'));
+                $request->session()->save();
+            }else{
+                if($request->get('categoryId') == 0){
+                    Session::forget('admin_categoryId');
+                }else{
+                    $request->merge(array('categoryId' => Session::get('admin_categoryId')));
+                }
+            }
+
+            if(!empty($request->get('brandID'))){
+                $request->session()->put('admin_brandID', $request->get('brandID'));
+                $request->session()->save();
+            }else{
+                if($request->get('brandID') == 0){
+                    Session::forget('admin_brandID');
+                }else{
+                    $request->merge(array('brandID' => Session::get('admin_brandID')));
+                }
+            }
+
+            if(!empty($request->get('cenagrupID'))){
+                $request->session()->put('admin_cenagrupID', $request->get('cenagrupID'));
+                $request->session()->save();
+            }else{
+                if($request->get('cenagrupID') == 0){
+                    Session::forget('admin_cenagrupID');
+                }else{
+                    $request->merge(array('cenagrupID' => Session::get('admin_cenagrupID')));
+                }
+            }
+
+            if(!empty($request->get('discount'))){
+                $request->session()->put('admin_discount', $request->get('discount'));
+                $request->session()->save();
+            }else{
+                $request->merge(array('discount' => Session::get('admin_discount')));
+            }
+
+            if(!empty($request->get('paginate'))){
+                $request->session()->put('admin_paginate', $request->get('paginate'));
+                $request->session()->save();
+            }else{
+                $request->merge(array('paginate' => Session::get('admin_paginate')));
+            }
+
+            if(!empty($request->get('page'))){
+                $request->session()->put('admin_page', $request->get('page'));
+                $request->session()->save();
+            }else{
+                $request->merge(array('page' => Session::get('admin_page')));
+            }
+
+            //dump($request->all());
+
 
             $products = $this->product
                 ->whereNotIn('id', !empty($request->get('selected')) ? $request->get('selected') : [0])
@@ -75,6 +159,7 @@ class ProductsController extends AdminController
                 ->where(function ($prods) use ($search) {
                     $prods->where('title', 'LIKE', '%' . $search . '%')
                         ->orWhere('article', 'LIKE', '%' . $search . '%')
+                        ->orWhere('id', 'LIKE', '%' . $search . '%')
                         ->orWhere('name', 'LIKE', '%' . $search . '%');
                 })
                 ->orderBy($request->get('sortBy') ?: 'id', $request->get('sortByPor'))

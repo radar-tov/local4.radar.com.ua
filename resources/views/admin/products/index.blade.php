@@ -50,58 +50,64 @@
                                'nacenka'    => 'По наценке',
                                'title'      => 'По названию',
                                'name'       => 'По AdminName'
-                               ], $selected = null, ['class' => 'form-control']) !!}
+                               ], $selected = Session::get('admin_sortBy'), ['class' => 'form-control']) !!}
                         </div>
 
-                        <div class="col-xs-1">
+                        <div class="col-xs-2">
                             {!! Form::select('sortByPor', [
                                'ASC'  => 'По возрастанию',
                                'DESC' => 'По убыванию'
-                               ], $selected = null, ['class' => 'form-control']) !!}
+                               ], $selected = Session::get('admin_sortByPor'), ['class' => 'form-control']) !!}
                         </div>
 
                         <div class="col-xs-2">
                             {!! Form::select('categoryId', [0 => 'Все категории'] + $categoriesProvider->getCategoriesList()->all(),
-                                $selected = null,
+                                $selected = Session::get('admin_categoryId'),
                                 ['class' => 'form-control',]) !!}
                         </div>
 
                         <div class="col-xs-2">
                             {!! Form::select('brandID', [0 => 'Все бренды'] + $brandsProvider->getList()->all(),
-                                $selected = null,
+                                $selected = Session::get('admin_brandID'),
                                 ['class' => 'form-control',]) !!}
                         </div>
 
                         <div class="col-xs-2">
                             {!! Form::select('cenagrupID', [0 => 'Все ценовые группы'] + $cenaGrupsProvider->getList()->all(),
-                                $selected = null,
+                                $selected = Session::get('admin_cenagrupID'),
                                 ['class' => 'form-control',]) !!}
                         </div>
 
                         <div class="col-xs-2">
                             {!! Form::select('discount', [
-                               0 => 'Все',
+                               0 => 'Без скидки и наценки',
                                1 => 'Без скидки',
                                2 => 'Со скидкой'
-                               ], $selected = null, ['class' => 'form-control']) !!}
+                               ], $selected = Session::get('admin_discount'), ['class' => 'form-control']) !!}
                         </div>
 
                         <div style="padding-top: 50px">
                             <div class="col-xs-2">
                                 {!! Form::select('paginate', [
-                                 50 => 'Показывать по 50 продуктов',
+                                 20 => 'Показывать по 20 продуктов',
+                                 30 => 'По 30 продуктов',
+                                 50 => 'По 50 продуктов',
                                  100 => 'По 100 продуктов',
                                  200 => 'По 200 продуктов',
-                                ], $selected = null, ['class' => 'form-control']) !!}
+                                ], $selected = Session::get('admin_paginate'), ['class' => 'form-control']) !!}
                             </div>
 
-                            <div class="col-xs-2">
+                            <div class="col-xs-3">
                                 {!! Form::text('search', $value = Request::get('q'),
                                     ['class' => 'form-control', 'placeholder' => 'Поиск', 'v-on' => 'input: filterProducts()']) !!}
                             </div>
 
                             <div class="col-xs-1 pull-right">
-                                {!! Form::submit('Обновить', ['class' => 'ace-icon fa fa-plus']) !!}
+                                <button class="btn btn-sm btn-primary" v-on="click:delFilters($event)">Сбросить фильтры</button>
+                            </div>
+
+                            <div class="col-xs-1 pull-right">
+                                {!! Form::submit('Обновить', ['class' => 'btn btn-sm btn-primary']) !!}
                             </div>
                         </div>
 
@@ -168,6 +174,7 @@
                     <th class="options"><i class="fa fa-yc"></i></th>
                     <th class="options"><i class="fa fa-sitemap"></i></th>
                     <th class="options"><i class="fa fa-camera"></i></th>
+                    <th>ID</th>
                     <th>Артикул</th>
                     <th>Название</th>
                     <th>AdminName</th>
@@ -209,39 +216,39 @@
                         {{--<img src="..@{{ product.path }}" style="max-height: 26px">--}}
                     </td>
                     <td>
-                        @{{ product.article }}
+                        @{{ product.id }}
                     </td>
                     <td>
+                        @{{ product.article }}
+                    </td>
+                    <td class="p-title">
                         <div class="bs-label-container">
-                            <span class="label label-success bs-label"
-                                  v-show="product.is_bestseller > 0">Хит продаж</span>
+                            <span class="label label-success bs-label" v-show="product.is_bestseller > 0">Хит продаж</span>
                             <span class="label label-danger bs-label" v-show="product.is_new > 0">Новинка</span>
                         </div>
                         {{--<i class="fa fa-line-chart"></i>--}}
                         <a style="color: #000000" target="_blank" href="/dashboard/products/@{{ product.id }}/edit">
                             @{{ product.title }}
                         </a>
-                        <small v-show="product.clone_of > 0" style="color:indianred">(копия)</small>
+                        {{--<small v-show="product.clone_of > 0" style="color:indianred">(копия)</small>--}}
                     </td>
                     <td>
-
-                        <div class="bs-label-container">
-                            <span class="label label-success bs-label"
-                                  v-show="product.is_bestseller > 0">Хит продаж</span>
-                            <span class="label label-danger bs-label" v-show="product.is_new > 0">Новинка</span>
-                        </div>
+                        {{--<div class="bs-label-container">--}}
+                        {{--<span class="label label-success bs-label" v-show="product.is_bestseller > 0">Хит продаж</span>--}}
+                        {{--<span class="label label-danger bs-label" v-show="product.is_new > 0">Новинка</span>--}}
+                        {{--</div>--}}
                         {{--<i class="fa fa-line-chart"></i>--}}
-                        <a style="color: #000000" target="_blank" href="/dashboard/products/@{{ product.id }}/edit">
+                        <a style="color: #000000" target="_blank" href="/dashboard/products/@{{ product.id }}/edit" v-show="product.name !== ''">
                             @{{ product.name }}
                         </a>
-                        <small v-show="product.clone_of > 0" style="color:indianred">(копия)</small>
+                        {{--<small v-show="product.clone_of > 0" style="color:indianred">(копия)</small>--}}
                     </td>
                     <td class="">
                         @{{ product.base_price }}
                         <i class="fa fa-ruble" v-show="product.get_cena.valuta == 1"></i>
                         <i class="fa fa-dollar" v-show="product.get_cena.valuta == 2"></i>
                         <i class="fa fa-euro" v-show="product.get_cena.valuta == 3"></i>
-                         * @{{ product.get_cena.curs }}
+                        * @{{ product.get_cena.curs }}
                     </td>
                     <td class="">@{{ product.price }}</td>
                     <td class="center">
@@ -263,7 +270,8 @@
                     <td class="">@{{ product.out_price }}</td>
                     <td>
                         <span>
-                            <a href="/@{{ product.category.parent.slug }}/@{{ product.category.slug }}" target="_blank">@{{ product.category.title }}</a>
+                            <a href="/@{{ product.category.parent.slug }}/@{{ product.category.slug }}"
+                               target="_blank">@{{ product.category.title }}</a>
                         </span>
                     </td>
                     <td class="options">
@@ -322,7 +330,6 @@
         @section('bottom-scripts')
 
             <script>
-
                 new Vue({
 
                     el: '#products',
@@ -353,6 +360,38 @@
 
                     methods: {
 
+                        delFilters: function (event) {
+                            event.preventDefault();
+                            var vue = this;
+                            $.ajax({
+                                dataType: "json",
+                                method: "GET",
+                                url: '/dashboard/products',
+                                data: {
+                                    _token: vue.token,
+                                    sortBy: 'id',
+                                    sortByPor: 'ASC',
+                                    categoryId: 0,
+                                    brandID: 0,
+                                    cenagrupID: 0,
+                                    discount: 0,
+                                    paginate: 20,
+                                    page: 0
+                                },
+                                success: function (response) {
+                                    console.log(response.data);
+                                    vue.products.productList = response.data;
+                                    vue.products.pagination.currentPage = response.current_page;
+                                    vue.products.pagination.lastPage = response.last_page;
+
+                                    if (vue.products.pagination.lastPage < vue.products.pagination.pageToGet) {
+                                        vue.products.pagination.pageToGet = vue.products.pagination.lastPage;
+                                        vue.filterProducts()
+                                    }
+                                }
+                            });
+                        },
+
                         getProducts: function () {
                             var vue = this;
                             $.ajax({
@@ -370,7 +409,7 @@
                         filterProducts: function () {
                             var vue = this;
                             var form = $(vue.$$.filterForm).serialize();
-//                console.log(vue.products.pagination.lastPage);
+                            //console.log(vue.products.pagination.lastPage);
                             $.ajax({
                                 method: "GET",
                                 url: '/dashboard/products',
@@ -444,8 +483,8 @@
                         },
 
                         nextPage: function () {
-//                event.preventDefault();
-//                console.log(this.products );
+                            //event.preventDefault();
+                            //console.log(this.products );
                             if (this.products.pagination.currentPage != this.products.pagination.lastPage) {
                                 this.products.pagination.pageToGet = this.products.pagination.currentPage + 1;
                                 this.filterProducts();
@@ -453,7 +492,7 @@
                         },
 
                         prevPage: function () {
-//                event.preventDefault();
+                            //event.preventDefault();
                             if (this.products.pagination.currentPage != 1) {
                                 this.products.pagination.pageToGet = this.products.pagination.currentPage - 1;
                                 this.filterProducts();
@@ -463,67 +502,66 @@
 
                 });
             </script>
-            <!-- do not uncomment me
+            <!-- do not uncomment me -->
 
-{{--<script src="{!! url('admin/assets/js/jquery.dataTables.min.js') !!}"></script>--}}
-            {{-- <script src="{!! url('admin/assets/js/jquery.dataTables.bootstrap.js') !!}"></script>--}}
-
-
-                    <!-- inline scripts related to this page -->
-            <!--         <script type="text/javascript">
-                        jQuery(function($) {
-                              var oTable1 =
-                                     $('#sample-table-2')
-                                         //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-                                             .dataTable( {
-                                                 bAutoWidth: false,
-                                                 "aoColumns": [
-                                                     { "bSortable": false },
-                                                     null, null,null, null, null,
-                                                     { "bSortable": false }
-                                                 ]
+            {{--<script src="{!! url('admin/assets/js/jquery.dataTables.min.js') !!}"></script>--}}
+            {{--<script src="{!! url('admin/assets/js/jquery.dataTables.bootstrap.js') !!}"></script>--}}
 
 
-                                                 //,
-                                                 //"sScrollY": "200px",
-                                                 //"bPaginate": false,
-
-                                                 //"sScrollX": "100%",
-                                                 //"sScrollXInner": "120%",
-                                                 //"bScrollCollapse": true,
-                                                 //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-                                                 //you may want to wrap the table inside a "div.dataTables_borderWrap" element
-
-                                                 //"iDisplayLength": 50
-                                             } );
-
-
-
-                             $(document).on('click', 'th input:checkbox' , function(){
-                                 var that = this;
-                                 $(this).closest('table').find('tr > td:first-child input:checkbox')
-                                         .each(function(){
-                                             this.checked = that.checked;
-                                             $(this).closest('tr').toggleClass('selected');
-                                         });
-                             });
+            <!-- inline scripts related to this page -->
+            {{--<script type="text/javascript">--}}
+                {{--jQuery(function ($) {--}}
+                    {{--var oTable1 =--}}
+                            {{--$('#sample-table-2')--}}
+                                    {{--.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)--}}
+                                    {{--.dataTable({--}}
+                                        {{--bAutoWidth: false,--}}
+                                        {{--"aoColumns": [--}}
+                                            {{--{"bSortable": false},--}}
+                                            {{--null, null, null, null, null,--}}
+                                            {{--{"bSortable": false}--}}
+                                        {{--]--}}
 
 
-                             $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
-                             function tooltip_placement(context, source) {
-                                 var $source = $(source);
-                                 var $parent = $source.closest('table')
-                                 var off1 = $parent.offset();
-                                 var w1 = $parent.width();
+                                        {{--,--}}
+                                        {{--"sScrollY": "200px",--}}
+                                        {{--"bPaginate": false,--}}
 
-                                 var off2 = $source.offset();
-                                 //var w2 = $source.width();
+                                        {{--"sScrollX": "100%",--}}
+                                        {{--"sScrollXInner": "120%",--}}
+                                        {{--"bScrollCollapse": true,--}}
+                                        {{--Note: if you are applying horizontal scrolling(sScrollX) on a ".table-bordered"--}}
+                                        {{--you may want to wrap the table inside a "div.dataTables_borderWrap" element--}}
 
-                                 if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
-                                 return 'left';
-                             }
+                                        {{--"iDisplayLength": 50--}}
+                                    {{--});--}}
 
-                         })
-                     </script>-->
+
+                    {{--$(document).on('click', 'th input:checkbox', function () {--}}
+                        {{--var that = this;--}}
+                        {{--$(this).closest('table').find('tr > td:first-child input:checkbox')--}}
+                                {{--.each(function () {--}}
+                                    {{--this.checked = that.checked;--}}
+                                    {{--$(this).closest('tr').toggleClass('selected');--}}
+                                {{--});--}}
+                    {{--});--}}
+
+
+                    {{--$('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});--}}
+                    {{--function tooltip_placement(context, source) {--}}
+                        {{--var $source = $(source);--}}
+                        {{--var $parent = $source.closest('table')--}}
+                        {{--var off1 = $parent.offset();--}}
+                        {{--var w1 = $parent.width();--}}
+
+                        {{--var off2 = $source.offset();--}}
+                        {{--//var w2 = $source.width();--}}
+
+                        {{--if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';--}}
+                        {{--return 'left';--}}
+                    {{--}--}}
+
+                {{--})--}}
+            {{--</script>--}}
 
 @stop
