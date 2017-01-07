@@ -41,11 +41,11 @@ abstract class Eloquent extends Model
 	 * @param array $attributes
 	 * @return mixed
 	 */
-	public function update(array $attributes = [])
-	{
-		parent::update($attributes);
+    public function update(array $attributes = [], array $options = [])
+    {
+        parent::update($attributes, $options);
 
-		return $this;
-	}
+        return $this;
+    }
 
 }
