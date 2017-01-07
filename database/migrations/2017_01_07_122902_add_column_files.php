@@ -13,7 +13,7 @@ class AddColumnFiles extends Migration
     public function up()
     {
         Schema::table('files', function (Blueprint $table) {
-            $table->integer('brand_id')->after('category_id')->default(7);
+            $table->integer('brand_id')->after('category_id');
             $table->integer('order')->after('brand_id');
         });
     }
