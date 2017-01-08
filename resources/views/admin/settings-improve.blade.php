@@ -60,6 +60,10 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="form-group">
+                                        {!! Form::label('currency','Страна') !!}
+                                        {!! Form::text('currency',$value = null,['placeholder'=>'Страна','class'=>'form-control']) !!}
+                                    </div>
+                                    <div class="form-group">
                                         {!! Form::label('address','Адрес') !!}
                                         {!! Form::text('address',$value = null,['placeholder'=>'Адрес магазина','class'=>'form-control']) !!}
                                     </div>
