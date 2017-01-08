@@ -67,6 +67,9 @@
                     @if(array_get($settingsProvider->getSettings(),'youtube'))
                         <a href="{{ array_get($settingsProvider->getSettings(),'youtube') }}" rel="nofollow" target="_blank"><i class="fa fa-youtube"></i></a>
                     @endif
+                    @if(array_get($settingsProvider->getSettings(),'twitter'))
+                        <a href="{{ array_get($settingsProvider->getSettings(),'twitter') }}" rel="nofollow" target="_blank"><i class="fa fa-twitter"></i></a>
+                    @endif
                 </div>
             </div>
             <div class="col s12 m4 l2">

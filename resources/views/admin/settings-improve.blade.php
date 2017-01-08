@@ -156,6 +156,12 @@
                                         {!! Form::text('youtube',$value = null,['placeholder'=>'Страница на youtube','class'=>'form-control']) !!}
                                     </div>
                                 </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        {!! Form::label('twitter','Страница twitter') !!}
+                                        {!! Form::text('twitter',$value = null,['placeholder'=>'Страница twitter','class'=>'form-control']) !!}
+                                    </div>
+                                </div>
                                  <div class="col-lg-4">
                                     <div class="form-group">
                                         {!! Form::label('uslovia','Условия для монтажников') !!}
