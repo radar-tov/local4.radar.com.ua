@@ -89,6 +89,10 @@
                                         {!! Form::label('footer_phone2','Телефон в футере 2') !!}
                                         {!! Form::text('footer_phone2',$value = null,['placeholder'=>'Телефон в футере 2','class'=>'form-control']) !!}
                                     </div>
+                                    <div class="form-group">
+                                        {!! Form::label('footer_phone3','Телефон в футере 3') !!}
+                                        {!! Form::text('footer_phone3',$value = null,['placeholder'=>'Телефон в футере 3','class'=>'form-control']) !!}
+                                    </div>
                                 </div>
                             </div>
 
