@@ -22,7 +22,7 @@ class DashboardController extends  AdminController
 
 		Setting::findOrFail($id)->update($request->all());
 
-		return redirect('dashboard');
+		return redirect('dashboard/index');
 	}
 
 }
