@@ -148,7 +148,11 @@ class ProductsController extends AdminController
                 $request->merge(array('page' => Session::get('admin_page')));
             }
 
-            //dump($request->all());
+            if($request->get('filters') != null){
+                $filters_mass = $request->get('filters');
+            }else{
+                $filters_mass = [];
+            }
 
 
             $products = $this->product
@@ -162,6 +166,13 @@ class ProductsController extends AdminController
                         ->orWhere('id', 'LIKE', '%' . $search . '%')
                         ->orWhere('name', 'LIKE', '%' . $search . '%');
                 })
+                ->where(function ($prods1) use ($filters_mass) {
+                    foreach ($filters_mass as $filter) {
+                        $prods1->whereHas('filters', function ($q) use ($filter) {
+                            $q->whereIn('filter_value_id', $filter);
+                        });
+                    }
+                })
                 ->orderBy($request->get('sortBy') ?: 'id', $request->get('sortByPor'))
                 ->where('category_id', $request->get('categoryId') ?: 'LIKE', '%')
                 ->where('brand_id', $request->get('brandID') ?: 'LIKE', '%')
@@ -169,7 +180,40 @@ class ProductsController extends AdminController
                 ->with('thumbnail', 'getCena')
                 ->paginate($request->get('paginate') ?: 20);
 
-            return $products;
+            if($request->get('categoryId') != null){
+                $filters = Category::where('id', $request->get('categoryId'))->with('filters')->first();
+                if(isset($filters->id)){
+                    $filters = $filters->filtersWithRelevantValues($filters->id)->get();
+                }else{
+                    $filters = [];
+                }
+            }else{
+                $filters = [];
+            }
+
+
+            if(count($filters)){
+                foreach($filters as $filter){
+                    if(count($filters_mass)){
+                        foreach($filters_mass as $key => $values){
+                            if($filter->id == $key){
+                                foreach($filter->values as $value){
+                                    foreach($values as $key2 => $values2){
+                                        if($value->id == $values2){
+                                            $value->checked = 'checked';
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            $mass = ['products' => $products, 'filters' => $filters];
+
+            return $mass;
         }
         return view('admin.products.index', compact('products'));
     }

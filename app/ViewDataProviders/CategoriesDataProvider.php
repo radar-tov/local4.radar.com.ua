@@ -14,6 +14,14 @@ class CategoriesDataProvider {
         return Category::orderBy('title')->lists('title', 'id');
 	}
 
+    public function getCategoriesListNav()
+    {
+        return Category::where('parent_id',0)
+            ->with('children')
+            ->visible()
+            ->orderBy('order')->get();
+    }
+
 	public function getListForNav()
 	{
 		if(self::$listForNav) return self::$listForNav;

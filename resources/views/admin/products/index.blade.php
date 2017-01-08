@@ -5,6 +5,15 @@
 @extends('admin.app')
 
 @section('top-scripts')
+    <style>
+        .files {
+            float: left;
+            padding: 20px 20px 10px 10px;
+        }
+        li {
+            list-style-type: none; !important
+        }
+    </style>
 @stop
 
 @section('page-title')
@@ -61,9 +70,23 @@
                         </div>
 
                         <div class="col-xs-2">
-                            {!! Form::select('categoryId', [0 => 'Все категории'] + $categoriesProvider->getCategoriesList()->all(),
-                                $selected = Session::get('admin_categoryId'),
-                                ['class' => 'form-control',]) !!}
+                            <select name="categoryId" class="form-control" selected="{{ Session::get('admin_categoryId') }}" v-model="categoryId">
+                                <option value="0">Все категории</option>
+                                @foreach($categoriesProvider->getListForNav()->all() as $item)
+                                    <optgroup label="{{ $item->title }}">
+                                        @if(count($item->children))
+                                            @foreach($item->children as $child)
+                                                <option value="{{ $child->id }}"
+                                                        v-bind:value="{{ $child->id }}"
+                                                        @if(Session::get('admin_categoryId') == $child->id)
+                                                            selected
+                                                        @endif
+                                                >{{ $child->title }}</option>
+                                            @endforeach
+                                        @endif
+                                    </optgroup>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="col-xs-2">
@@ -109,10 +132,61 @@
                             <div class="col-xs-1 pull-right">
                                 {!! Form::submit('Обновить', ['class' => 'btn btn-sm btn-primary']) !!}
                             </div>
+
                         </div>
 
 
+
+
+                        <template v-if="categoryId != 0">
+
+                            <div class="col-xs-1 pull-right">
+                                <button class="btn btn-sm btn-primary" v-on="click:showPanel($event)">Фильтры</button>
+                            </div>
+
+                            <div class="clearfix"></div>
+
+                            <input type="hidden" value="0" name="isDirty" id="isDirty"/>
+                            {{--<input type="hidden" value="{{ $subcategory->id }}" name="categoryId"/>--}}
+
+                            <div id="panel" style="display: none;">
+                                <div v-repeat="filter in filtersList" class="files">
+                                    <div class="filter-group">
+                                        <div class="filter-heading">
+                                            <div class="ft-heading-inner">
+                                                <span>@{{ filter.title }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="filter-content">
+                                            <ul class="filter-select no-margin">
+                                                <li class="filter-option" v-repeat="value in filter.values">
+                                                    <input  id="filter-option-@{{ value.id }}"
+                                                            type="checkbox"
+                                                            name="filters[@{{ filter.id }}][]"
+                                                            value="@{{ value.id }}"
+                                                            checked="@{{ value.checked }}"
+                                                    >
+                                                    <label for="filter-option-@{{ value.id }}" class="filter-option-label">
+                                                        <span class="ft-opt-name">@{{ value.value }}</span>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{--<pre>
+                            @{{ $data.filtersList | json }}
+                            </pre>--}}
+                        </template>
+
+                        <div class="clearfix"></div>
+
+
+
                         {!! Form::close() !!}
+
 
 
                     </div>
@@ -149,10 +223,11 @@
                         </div>
                         {!! Form::close() !!}
 
-
                     </div>
+
                 </div>
-                <div class="clearfix"></div>
+
+
             </div>{{--/well--}}
         </div>{{--/col-xs-12--}}
 
@@ -177,7 +252,6 @@
                     <th>ID</th>
                     <th>Артикул</th>
                     <th>Название</th>
-                    <th>AdminName</th>
                     <th class="p-base-price">Базовая цена</th>
                     <th class="p-price">Цена</th>
                     <th class="p-discount">Скидка</th>
@@ -228,18 +302,7 @@
                         </div>
                         {{--<i class="fa fa-line-chart"></i>--}}
                         <a style="color: #000000" target="_blank" href="/dashboard/products/@{{ product.id }}/edit">
-                            @{{ product.title }}
-                        </a>
-                        {{--<small v-show="product.clone_of > 0" style="color:indianred">(копия)</small>--}}
-                    </td>
-                    <td>
-                        {{--<div class="bs-label-container">--}}
-                        {{--<span class="label label-success bs-label" v-show="product.is_bestseller > 0">Хит продаж</span>--}}
-                        {{--<span class="label label-danger bs-label" v-show="product.is_new > 0">Новинка</span>--}}
-                        {{--</div>--}}
-                        {{--<i class="fa fa-line-chart"></i>--}}
-                        <a style="color: #000000" target="_blank" href="/dashboard/products/@{{ product.id }}/edit" v-show="product.name !== ''">
-                            @{{ product.name }}
+                            @{{ product.name }} - @{{ product.title }}
                         </a>
                         {{--<small v-show="product.clone_of > 0" style="color:indianred">(копия)</small>--}}
                     </td>
@@ -353,6 +416,7 @@
                         },
                         token: null,
                         categoryId: 0,
+                        filtersList: null,
                         productSel: false,
                         selectedProductsIds: [],
                         selectedAction: 'delete'
@@ -363,33 +427,9 @@
                         delFilters: function (event) {
                             event.preventDefault();
                             var vue = this;
-                            $.ajax({
-                                dataType: "json",
-                                method: "GET",
-                                url: '/dashboard/products',
-                                data: {
-                                    _token: vue.token,
-                                    sortBy: 'id',
-                                    sortByPor: 'ASC',
-                                    categoryId: 0,
-                                    brandID: 0,
-                                    cenagrupID: 0,
-                                    discount: 0,
-                                    paginate: 20,
-                                    page: 0
-                                },
-                                success: function (response) {
-                                    console.log(response.data);
-                                    vue.products.productList = response.data;
-                                    vue.products.pagination.currentPage = response.current_page;
-                                    vue.products.pagination.lastPage = response.last_page;
-
-                                    if (vue.products.pagination.lastPage < vue.products.pagination.pageToGet) {
-                                        vue.products.pagination.pageToGet = vue.products.pagination.lastPage;
-                                        vue.filterProducts()
-                                    }
-                                }
-                            });
+                            var $selectbox = $('.form-control');
+                            $selectbox.prop('selectedIndex', 0);
+                            vue.filterProducts()
                         },
 
                         getProducts: function () {
@@ -416,9 +456,10 @@
                                 data: form + '&page=' + vue.products.pagination.pageToGet,
                                 cache: false,
                                 success: function (response) {
-                                    vue.products.productList = response.data;
-                                    vue.products.pagination.currentPage = response.current_page;
-                                    vue.products.pagination.lastPage = response.last_page;
+                                    vue.filtersList = response.filters;
+                                    vue.products.productList = response.products.data;
+                                    vue.products.pagination.currentPage = response.products.current_page;
+                                    vue.products.pagination.lastPage = response.products.last_page;
 
                                     if (vue.products.pagination.lastPage < vue.products.pagination.pageToGet) {
                                         vue.products.pagination.pageToGet = vue.products.pagination.lastPage;
@@ -497,71 +538,77 @@
                                 this.products.pagination.pageToGet = this.products.pagination.currentPage - 1;
                                 this.filterProducts();
                             }
+                        },
+
+                        showPanel: function(event){
+                            event.preventDefault();
+                            $("#panel").slideToggle('slow');
                         }
+
                     }
 
                 });
             </script>
-            <!-- do not uncomment me -->
+            {{--<!-- do not uncomment me -->--}}
 
             {{--<script src="{!! url('admin/assets/js/jquery.dataTables.min.js') !!}"></script>--}}
             {{--<script src="{!! url('admin/assets/js/jquery.dataTables.bootstrap.js') !!}"></script>--}}
 
 
-            <!-- inline scripts related to this page -->
-            {{--<script type="text/javascript">--}}
-                {{--jQuery(function ($) {--}}
-                    {{--var oTable1 =--}}
-                            {{--$('#sample-table-2')--}}
-                                    {{--.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)--}}
-                                    {{--.dataTable({--}}
-                                        {{--bAutoWidth: false,--}}
-                                        {{--"aoColumns": [--}}
-                                            {{--{"bSortable": false},--}}
-                                            {{--null, null, null, null, null,--}}
-                                            {{--{"bSortable": false}--}}
-                                        {{--]--}}
+            {{--<!-- inline scripts related to this page -->--}}
+{{--            <script type="text/javascript">
+                jQuery(function ($) {
+                    var oTable1 =
+                            $('#sample-table-2')
+                                    .wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
+                                    .dataTable({
+                                        bAutoWidth: false,
+                                        "aoColumns": [
+                                            {"bSortable": false},
+                                            null, null, null, null, null,
+                                            {"bSortable": false}
+                                        ]
 
 
-                                        {{--,--}}
-                                        {{--"sScrollY": "200px",--}}
-                                        {{--"bPaginate": false,--}}
+                                        ,
+                                        "sScrollY": "200px",
+                                        "bPaginate": false,
 
-                                        {{--"sScrollX": "100%",--}}
-                                        {{--"sScrollXInner": "120%",--}}
-                                        {{--"bScrollCollapse": true,--}}
-                                        {{--Note: if you are applying horizontal scrolling(sScrollX) on a ".table-bordered"--}}
-                                        {{--you may want to wrap the table inside a "div.dataTables_borderWrap" element--}}
+                                        "sScrollX": "100%",
+                                        "sScrollXInner": "120%",
+                                        "bScrollCollapse": true,
+                                        Note: if you are applying horizontal scrolling(sScrollX) on a ".table-bordered"
+                                        you may want to wrap the table inside a "div.dataTables_borderWrap" element
 
-                                        {{--"iDisplayLength": 50--}}
-                                    {{--});--}}
-
-
-                    {{--$(document).on('click', 'th input:checkbox', function () {--}}
-                        {{--var that = this;--}}
-                        {{--$(this).closest('table').find('tr > td:first-child input:checkbox')--}}
-                                {{--.each(function () {--}}
-                                    {{--this.checked = that.checked;--}}
-                                    {{--$(this).closest('tr').toggleClass('selected');--}}
-                                {{--});--}}
-                    {{--});--}}
+                                        "iDisplayLength": 50
+                                    });
 
 
-                    {{--$('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});--}}
-                    {{--function tooltip_placement(context, source) {--}}
-                        {{--var $source = $(source);--}}
-                        {{--var $parent = $source.closest('table')--}}
-                        {{--var off1 = $parent.offset();--}}
-                        {{--var w1 = $parent.width();--}}
+                    $(document).on('click', 'th input:checkbox', function () {
+                        var that = this;
+                        $(this).closest('table').find('tr > td:first-child input:checkbox')
+                                .each(function () {
+                                    this.checked = that.checked;
+                                    $(this).closest('tr').toggleClass('selected');
+                                });
+                    });
 
-                        {{--var off2 = $source.offset();--}}
-                        {{--//var w2 = $source.width();--}}
 
-                        {{--if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';--}}
-                        {{--return 'left';--}}
-                    {{--}--}}
+                    $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+                    function tooltip_placement(context, source) {
+                        var $source = $(source);
+                        var $parent = $source.closest('table')
+                        var off1 = $parent.offset();
+                        var w1 = $parent.width();
 
-                {{--})--}}
-            {{--</script>--}}
+                        var off2 = $source.offset();
+                        //var w2 = $source.width();
 
+                        if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
+                        return 'left';
+                    }
+
+                })
+            </script>--}}
+}
 @stop

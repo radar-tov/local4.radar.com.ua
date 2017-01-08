@@ -81,6 +81,20 @@
                  'v-model' => 'category', 'v-on' => 'change:getFields()'
                 ])
             !!}
+
+
+            {{--<select name="category_id" class="form-control" form="form-data" v-model="category" v-on="change:getFields()">
+                <option value="0">Все категории</option>
+                @foreach($categoriesProvider->getListForNav()->all() as $item)
+                    <optgroup label="{{ $item->title }}">
+                        @if(count($item->children))
+                            @foreach($item->children as $child)
+                                <option value="{{ $child->id }}">{{ $child->title }}</option>
+                            @endforeach
+                        @endif
+                    </optgroup>
+                @endforeach
+            </select>--}}
             <br/>
         </div>
 
