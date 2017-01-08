@@ -31,11 +31,11 @@
                     <div class="links col s12 m6 l6">
 
                      @if(Auth::check())
-                        <span><a href="{{ url('cabinet') }}"><img src="/frontend/images/icon-login.png" />Кабинет</a></span>
-                        <span><a href="/auth/logout"> Выход</a></span>
+                        <span><a href="{{ url('cabinet') }}" rel="nofollow"><img src="/frontend/images/icon-login.png" />Кабинет</a></span>
+                        <span><a href="/auth/logout" rel="nofollow"> Выход</a></span>
                         @else
-                        <span><a href="{{ url('login') }}"><img src="/frontend/images/icon-login.png" />Вход</a></span>
-                        <span><a href="{{ url('registration') }}"><img src="/frontend/images/icon-reg.png" />Регистрация</a></span>
+                        <span><a href="{{ url('login') }}" rel="nofollow"><img src="/frontend/images/icon-login.png" />Вход</a></span>
+                        <span><a href="{{ url('registration') }}" rel="nofollow"><img src="/frontend/images/icon-reg.png" />Регистрация</a></span>
                         @endif
                     </div>
                 </form>

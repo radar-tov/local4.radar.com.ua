@@ -324,7 +324,7 @@
                                 </div>
                                 <div class="right clearleft">
                                     <div class="review-button center-align">
-                                        <a class="various fancybox.ajax" href="{{ url('comment', $product->id) }}"  title="оставить отзыв">
+                                        <a class="various fancybox.ajax" href="{{ url('comment', $product->id) }}" title="Оставить отзыв" rel="nofollow">
                                             <input type="submit" name="add_review" class="review-button white-text uppercase" value="оставить отзыв" title="оставить отзыв">
                                         </a>
                                     </div>

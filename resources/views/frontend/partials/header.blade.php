@@ -33,18 +33,18 @@
             </div>
             <div class="col s12 m4 l2 links">
                 <span>
-                    <a href="{{ url('callbeck') }}" class="various fancybox.ajax"><i class="fa fa-phone green-text"></i>Заказать звонок</a>
+                    <a href="{{ url('callbeck') }}" class="various fancybox.ajax" rel="nofollow"><i class="fa fa-phone green-text"></i>Заказать звонок</a>
                 </span><br>
                 <span>время работы: 9:00 - 17:00</span>
             </div>
             <div class="col s12 m2 l3 mini-cart-wrapper">
                 <div class="compare">
-                    <a href="/compare" class="">
+                    <a href="/compare" class="" rel="nofollow">
                         <img src="/frontend/images/compare.png"/>
                     </a>
                     <p><span class="vs">Сравнить<br><span id="com_count">{{calcProductsInCompare()}}</span> товаров</span></p>
                 </div>
-                <a href="/cart" class="go-to-cart">
+                <a href="/cart" class="go-to-cart" rel="nofollow">
                     <div class="mini-cart tabs-wrapper pin-top" id="_cart">
                         <img src="/frontend/images/mini-cart.png"/>
                         <div>

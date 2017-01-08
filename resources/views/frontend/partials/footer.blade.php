@@ -42,9 +42,9 @@
             <div class="col s12 m4 l2">
             <p class="white-text">Пользователь</p>
                     <div class="links">
-                        <a href="{{ url('login') }}">Вход</a>
-                        <a href="{{ url('registration') }}">Регистрация</a>
-                        <a href="{{ url('callbeck') }}" class="various fancybox.ajax">Обратный звонок</a>
+                        <a href="{{ url('login') }}" rel="nofollow">Вход</a>
+                        <a href="{{ url('registration') }}" rel="nofollow">Регистрация</a>
+                        <a href="{{ url('callbeck') }}" class="various fancybox.ajax" rel="nofollow">Обратный звонок</a>
                     </div>
                 </form>
             </div>
