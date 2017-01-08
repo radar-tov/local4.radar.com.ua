@@ -26,7 +26,7 @@ class UpdateRequest extends Request
 			'feedback_email'=>'required|email',
 			'contact_email'=>'email',
 			'address',
-			'currency'=>'numeric',
+			'currency',
 
 			'header_phone1',
 			'header_phone2',
