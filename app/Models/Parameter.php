@@ -14,7 +14,8 @@ class Parameter extends Eloquent
 		'category_id',
 		'brand_id',
 		'created_at',
-		'updated_at'
+		'updated_at',
+        'order'
 	];
 
 	public function values()
@@ -65,5 +66,9 @@ class Parameter extends Eloquent
 
 		return "<h3 align=эcenterэ>Удалён из продукта.</h3>";
 	}
+
+    public function brand(){
+        return $this->hasOne(Brand::class, 'id', 'brand_id');
+    }
 
 }

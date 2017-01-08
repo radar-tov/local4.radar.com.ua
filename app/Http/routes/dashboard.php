@@ -128,6 +128,9 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         Route::get("parameters/edit_param/{paramID}", ['as'=>'dashboard.parameters.edit_param','uses'=>'ParametersController@edit_param']);
         Route::post("parameters/save_param", ['as'=>'dashboard.parameters.save_param','uses'=>'ParametersController@save_param']);
         Route::post("parameters/delete", ['as'=>'dashboard.parameters.delete','uses'=>'ParametersController@delete']);
+        Route::get("parameters/get", 'ParametersController@getParam');
+        Route::get("parameters-get-order", 'ParametersController@orderList');
+        Route::post("parameters/order", 'ParametersController@orderSave');
         /* /end PARAMETER */
 
         /* FILTERS */

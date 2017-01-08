@@ -53,7 +53,9 @@
                                    {{--href="{{ $product->thumbnail->first()->path }}"--}}
                                    {{--data-lightbox="example"--}}
                                    {{--data-title="{{ $product->title }}">--}}
-                                <img class="example-image index_image" src="{{ $product->thumbnail->first()->path }}" alt="{{ $product->title }}"/>
+                                <img class="example-image index_image" src="{{ $product->thumbnail->first()->path }}"
+                                     style="min-height: 350px; min-width: 350px"
+                                     alt="{{ $product->title }}"/>
                                 {{--</a>--}}
                             @else
                                 <img class="example-image index_image" src="/frontend/images/default.png" alt="{{ $product->title }}"/>
@@ -63,8 +65,9 @@
                                 <div class="appointment"><img src="/frontend/images/present.png"/></div>
                             @endif
                         {{--</li>--}}
+
                         {{--@if(count($product->thumbnail) && file_exists(public_path($product->images->first()->path)))--}}
-                            {{--@foreach($product->images->where('is_certificate', '=', 0) as $key => $image)--}}
+                            {{--@foreach($product->images as $key => $image)--}}
                                 {{--<li>--}}
                                     {{--<a class="example-image-link fancybox"--}}
                                        {{--rel="group"--}}
@@ -76,6 +79,7 @@
                                 {{--</li>--}}
                             {{--@endforeach--}}
                         {{--@endif--}}
+
                     </div>
                 </div>
                 <div class="col s12 m6 l5 single-item-info">
@@ -231,33 +235,35 @@
                                 <div class="full-desc bordered mod">
                                     <div class="col mod col s12 l6">
                                         <div class="col col s12 l6">
-                                            <h5 class="teg mod">Характеристики</h5>
+                                            {{--<h5 class="teg mod">Характеристики</h5>--}}
                                             @foreach($product->sortedValuesCharacters($product->category_id) as $characteristics)
                                                 @if($characteristics->characteristic->isVisibleForCategory($product->category_id))
-                                                    <div class="col aspect s12">
-                                                        <p class="col s12 m8">{{ $characteristics->characteristic->title }}</p>
-                                                        <p class="col s12 m4">{{ $characteristics->value }}</p>
+                                                    <div class="col aspect s12 texxar">
+                                                        <p class="col s12 m9">{{ $characteristics->characteristic->title }}</p>
+                                                        <p class="col s12 m3">{{ $characteristics->value }}</p>
                                                     </div>
                                                 @endif
                                             @endforeach
-
-
-                                            <h5 class="teg mod">Параметры</h5>
-                                            {{--{{ dump($product->getParameters) }}--}}
-                                            @foreach($product->getParameters as $rapameter)
-                                                <div class="col aspect s12">
-                                                    <p class="col s12 m8">{{ $rapameter->parameter->title }}</p>
-                                                    <p class="col s12 m4">{{ $rapameter->value }}</p>
-                                                </div>
+                                            <p class="col s12 m9"></p>
+                                            {{--<h5 class="teg mod">Параметры</h5>--}}
+                                            {{--{{ dump($product->getParameters($product->category_id)) }}--}}
+                                            {{--@foreach($product->getParameters as $rapameter)--}}
+                                            @foreach($product->sortedValuesParam() as $rapameter)
+                                                @if($rapameter->parameter->show)
+                                                    {{--{{ dump($rapameter->parameter) }}--}}
+                                                    <div class="col aspect s12 texxar">
+                                                        <p class="col s12 m9">{{ $rapameter->parameter->title }}</p>
+                                                        <p class="col s12 m3">{{ $rapameter->value }}</p>
+                                                    </div>
+                                                @endif
                                             @endforeach
-
-
+                                            <p class="col s12 m9"></p>
                                             {{--TODO-evgenii Удалить блок после заполнения всех товаров --}}
                                             @foreach($product->sortedValues($product->category_id) as $field)
                                                 @if($field->filter->isVisibleForCategory($product->category_id))
-                                                    <div class="col aspect s12">
-                                                        <p class="col s12 m8">{{ $field->filter->title }}</p>
-                                                        <p class="col s12 m4">{{ $field->value }}</p>
+                                                    <div class="col aspect s12 texxar">
+                                                        <p class="col s12 m9">{{ $field->filter->title }}</p>
+                                                        <p class="col s12 m3">{{ $field->value }}</p>
                                                     </div>
                                                 @endif
                                             @endforeach

@@ -24,6 +24,12 @@
                 </a>
             </li>
             <li class="">
+                <a data-toggle="tab" href="#parameters" v-on="click:getParameters($event)">
+                    <i class="ace-icon fa fa-list"></i>
+                    Параметры
+                </a>
+            </li>
+            <li class="">
                 <a data-toggle="tab" href="#files" v-on="click:getFiles($event)">
                     <i class="ace-icon fa fa-file"></i>
                     Файлы
@@ -404,6 +410,21 @@
 
 
 
+            <div id="parameters" class="tab-pane">
+                <div id="parameters-data">
+                    <ul>
+                        <li v-repeat="parameter in parameters | orderBy 'brand.title'">
+                            <a href="{{ url('/dashboard/parameters-get-order') }}?brand_id=@{{ parameter.brand_id }}&category_id=@{{ parameter.category_id }}&_token={{ csrf_token() }}"
+                               class="order_files fancybox.ajax">
+                                @{{ parameter.brand.title }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+
 
             <div id="files" class="tab-pane">
                 <div id="files-data">
@@ -415,9 +436,6 @@
                             </a>
                         </li>
                     </ul>
-                    {{--<pre>--}}
-                    {{--@{{ $data.files | json }}--}}
-                    {{--</pre>--}}
                 </div>
             </div>
 

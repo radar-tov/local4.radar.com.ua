@@ -249,4 +249,22 @@ class ParametersController extends AdminController
 		}
 	}
 
+    public function getParam(Request $request){
+        return Parameter::where('category_id', $request->id)->groupBy('brand_id')->with('brand')->get();
+    }
+
+    public function orderList(Request $request){
+        $parameters = Parameter::where('category_id', $request->category_id)->where('brand_id', $request->brand_id)->orderBy('order')->get();
+        return view('admin.parameters.order', compact('parameters'));
+    }
+
+    public function orderSave(){
+
+        foreach(\Request::get('serialized') as $fileKey => $file) {
+            $result = Parameter::find($file['id'])->update(['order' => $fileKey]);
+        }
+        return ['success' => true];
+
+    }
+
 }

@@ -342,15 +342,11 @@ class Product extends Eloquent {
     }
 
 
-//    public function sortedFiles($categoryId, $brandId) {
-//        return $this->files->sortBy(function ($product, $key) use ($categoryId, $brandId) {
-//            $cat = $product->where('id', $categoryId)->where('brand_id', $brandId)->get();
-//            if (count($cat)) {
-//                return $cat->order;
-//            }
-//
-//        });
-//    }
+    public function sortedValuesParam() {
+        return $this->getParameters->sortBy(function ($parameter) {
+            return $parameter->parameter->order;
+        });
+    }
 
 
 

@@ -1,12 +1,12 @@
-<a href="#" id="saveOrder" class="btn btn-sm btn-primary">Сохрнить порядок файлов</a>
+<a href="#" id="saveOrder" class="btn btn-sm btn-primary">Сохрнить порядок параметров</a>
 <div class="dd" id="nestable">
     <ol class="dd-list">
-        @foreach($files as $file)
-            <li class="dd-item" data-id="{!! $file->id !!}">
+        @foreach($parameters as $parameter)
+            <li class="dd-item" data-id="{!! $parameter->id !!}">
                 <div class="dd-handle">
-                    <i class="ace-icon fa fa-{{ $file->show ? 'eye green' : 'eye-slash red' }} bigger-130"></i>
+                    <i class="ace-icon fa fa-{{ $parameter->show ? 'eye green' : 'eye-slash red' }} bigger-130"></i>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    {{ $file->admin_name }}
+                    {{ $parameter->title }}
                 </div>
             </li>
         @endforeach
@@ -15,10 +15,10 @@
 <script type="text/javascript">
     jQuery(function($){
         var nestable,
-            serialized,
-            settings = {maxDepth:3},
-            saveOrder = $('#saveOrder'),
-            edit = $('.edit');
+                serialized,
+                settings = {maxDepth:3},
+                saveOrder = $('#saveOrder'),
+                edit = $('.edit');
 
         nestable = $('.dd').nestable(settings);
 
@@ -28,7 +28,7 @@
 
             $.ajax({
                 method:'POST',
-                url : "{!! url('/dashboard/pdf/order') !!}",
+                url : "{!! url('/dashboard/parameters/order') !!}",
                 data: { _token: "{!! csrf_token() !!}", serialized: serialized }
 
             }).done(function (data) {

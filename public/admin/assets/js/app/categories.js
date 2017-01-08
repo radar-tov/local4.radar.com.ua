@@ -11,6 +11,7 @@ new Vue({
             icon: ''
         },
         files: [],
+        parameters: [],
         fieldList: {},
         xapactList:{},
         token: null,
@@ -120,6 +121,20 @@ new Vue({
                 }
             });
         },
+
+
+        getParameters: function(event){
+            var vue = this;
+            $.ajax({
+                method: "GET",
+                url: '/dashboard/parameters/get/',
+                data: {_token: vue.token, id: vue.categoryID },
+                success: function (response) {
+                    vue.parameters = response;
+                }
+            });
+        },
+
 
         checked: function(field){
             if(field.pivot.is_filter == true) return true;
