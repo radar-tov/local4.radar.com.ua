@@ -123,10 +123,14 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         Route::post("parameters/save", ['as'=>'dashboard.parameters.save','uses'=>'ParametersController@saveParams']);
         Route::get("parameters/list", ['as'=>'dashboard.parameters.list','uses'=>'ParametersController@show']);
         Route::get("parameters/edit_value/{productID}/{parameterID}", ['as'=>'dashboard.parameters.edit_value','uses'=>'ParametersController@edit']);
+        Route::get("parameters/edit_value_name/{valueID}", 'ParametersController@editValueName');
+        Route::post("parameters/save_value_name", 'ParametersController@saveValueName');
         Route::post("parameters/save_value", ['as'=>'dashboard.parameters.save_value','uses'=>'ParametersController@save_value']);
         Route::post("parameters/getvalue", ['as'=>'dashboard.parameters.getvalue','uses'=>'ParametersController@getvalue']);
-        Route::get("parameters/edit_param/{paramID}", ['as'=>'dashboard.parameters.edit_param','uses'=>'ParametersController@edit_param']);
+        Route::get("parameters/edit_param_name/{paramID}", ['as'=>'dashboard.parameters.edit_param','uses'=>'ParametersController@edit_param']);
+        Route::get("parameters/edit_param/{catID}/{brandID}/{productID}/{ID}", 'ParametersController@editParamName');
         Route::post("parameters/save_param", ['as'=>'dashboard.parameters.save_param','uses'=>'ParametersController@save_param']);
+        Route::post("parameters/save_param_name", ['as'=>'dashboard.parameters.save_param','uses'=>'ParametersController@saveParamName']);
         Route::post("parameters/delete", ['as'=>'dashboard.parameters.delete','uses'=>'ParametersController@delete']);
         Route::get("parameters/get", 'ParametersController@getParam');
         Route::get("parameters-get-order", 'ParametersController@orderList');
