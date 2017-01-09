@@ -45,8 +45,8 @@
             <div class="well">
 
                 <div class="row">
-                    <div v-if="!selectedProductsIds.length">
-                        {!! Form::open(['url' => '#', 'v-on' => 'change: filterProducts()', 'v-el' => 'filterForm']) !!}
+                    <div v-show="!selectedProductsIds.length">
+                        {!! Form::open(['url' => '#', 'v-on' => 'change: filterProducts()', 'v-el' => 'filterForm', 'id' => 'filterForm']) !!}
                         {!! csrf_field() !!}
 
                         <div class="col-xs-2">
@@ -449,6 +449,7 @@
                         filterProducts: function () {
                             var vue = this;
                             var form = $(vue.$$.filterForm).serialize();
+                            alert(form);
                             //console.log(vue.products.pagination.lastPage);
                             $.ajax({
                                 method: "GET",

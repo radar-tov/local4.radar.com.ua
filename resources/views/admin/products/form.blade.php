@@ -4,7 +4,8 @@
 
 @section('top-scripts')
     @parent
-    <link rel="stylesheet" href="{!! url('admin/assets/dropzone/dist/dropzone.css') !!}"/>
+    <link rel="stylesheet" href="{!! url('admin/assets/dropzone/dist/dropzone.css') !!}"
+          xmlns:v-bind="http://symfony.com/schema/routing"/>
     <script src="{!! url('admin/assets/dropzone/dist/dropzone.js') !!}"></script>
     {!! Html::script("admin/assets/js/vue.js") !!}
     {{--<script src="{!! url('admin/assets/dropzone/dist/dropzone-amd-module.js') !!}"></script>--}}
@@ -79,28 +80,40 @@
 
         <div class="col-sm-3 no-padding">
             <label for="category_id">Категория</label>
-            {!! Form::select('category_id',
+
+
+
+            {{--{!! Form::select('category_id',
                 $value = $categoriesProvider->getCategoriesList(),
                 $selected = null,
                 [
                  'class'=>'form-control','form'=>'form-data',
                  'v-model' => 'category', 'v-on' => 'change:getFields()'
                 ])
-            !!}
+            !!}--}}
 
 
-            {{--<select name="category_id" class="form-control" form="form-data" v-model="category" v-on="change:getFields()">
+
+            <select class="form-control" form="form-data" name="category_id" v-model="category" v-on="change:getFields()">
                 <option value="0">Все категории</option>
                 @foreach($categoriesProvider->getListForNav()->all() as $item)
                     <optgroup label="{{ $item->title }}">
                         @if(count($item->children))
                             @foreach($item->children as $child)
-                                <option value="{{ $child->id }}">{{ $child->title }}</option>
+                                <option value="{{ $child->id }}"
+                                        v-bind:value="{{ $child->id }}"
+                                        @if(isset($product->category_id) &&  $product->category_id == $child->id)
+                                        selected
+                                        @endif
+                                >{{ $child->title }}</option>
                             @endforeach
                         @endif
                     </optgroup>
                 @endforeach
-            </select>--}}
+            </select>
+
+
+
             <br/>
         </div>
 
