@@ -515,19 +515,29 @@
                             <td></td>
                             </thead>
                             <tbody>
+                            {{--{{ dump($product) }}--}}
                             @if(isset($product->getParameters))
-                                @foreach($product->getParameters as $parameters)
+                                {{--{{ dump($product->getParameters) }}--}}
+                                @foreach($product->sortedValuesParam() as $parameters)
                                     <tr>
                                         <td>
                                             <a class="param_edit fancybox.ajax"
-                                               href="{{ url('dashboard/parameters/edit_param/'.$parameters->parameter->id) }}"
+                                               href="{{ url('dashboard/parameters/edit_param_name/'.$parameters->parameter->id) }}"
                                                title="Редактировать название параметра">
                                                 {{ $parameters->parameter->title }}
                                             </a>
-                                            <i class="ace-icon fa fa-pencil bigger-130" style="float: right"></i>
+                                            <a class="param_value_edit fancybox.ajax"
+                                               href="{{ url('dashboard/parameters/edit_param/'.$product->category_id.'/'.$product->brand_id.'/'.$product->id.'/'.$parameters->parameter->id) }}"
+                                               title="Редактировать параметр">
+                                                <i class="ace-icon fa fa-pencil bigger-130" style="float: right"></i>
+                                            </a>
                                         </td>
                                         <td>
-                                            {{ $parameters->value }}
+                                            <a class="param_edit fancybox.ajax"
+                                               href="{{ url('dashboard/parameters/edit_value_name/'.$parameters->id) }}"
+                                               title="Редактировать название значения параметра">
+                                                {{ $parameters->value }}
+                                            </a>
                                             <a class="param_value_edit fancybox.ajax"
                                                href="{{ url('dashboard/parameters/edit_value/'.$product->id.'/'.$parameters->parameter->id) }}"
                                                title="Редактировать значение параметра">

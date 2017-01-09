@@ -76,13 +76,18 @@
                 <p class="white-text">Контакты компании</p>
                 <ul class="contact-info">
                     <li class="phone">
-                        @if(array_get($settingsProvider->getSettings(),'footer_phone2'))
+                        @if(array_get($settingsProvider->getSettings(),'footer_phone1'))
                             <a class="" href="tel:{{ preg_replace('/[^\d+]+/','',array_get($settingsProvider->getSettings(),'footer_phone1')) }} "><span class="tel">{{ array_get($settingsProvider->getSettings(),'footer_phone1') }}</span></a>
                         @endif
                     </li>
                     <li class="phone">
                         @if(array_get($settingsProvider->getSettings(),'footer_phone2'))
                             <a class="" href="tel:{{ preg_replace('/[^\d+]+/','',array_get($settingsProvider->getSettings(),'footer_phone2')) }}"><span class="tel"> {{ array_get($settingsProvider->getSettings(),'footer_phone2') }}</span></a>
+                        @endif
+                    </li>
+                    <li class="phone">
+                        @if(array_get($settingsProvider->getSettings(),'footer_phone3'))
+                            <a class="" href="tel:{{ preg_replace('/[^\d+]+/','',array_get($settingsProvider->getSettings(),'footer_phone3')) }}"><span class="tel"> {{ array_get($settingsProvider->getSettings(),'footer_phone2') }}</span></a>
                         @endif
                     </li>
 

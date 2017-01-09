@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 Use App\Models\Parameter;
 use App\Models\ParametersValue;
 use App\Models\Product;
+use App\Models\ParameterProduct;
 
 
 class ParametersController extends AdminController
@@ -150,9 +151,8 @@ class ParametersController extends AdminController
 	 */
 	public function show(Request $request, Product $product)
 	{
-		$product = $product->find($request->id)->getParameters;
-		return view('admin.parameters.list', compact('product'))->with('product_id', ['id' => $request->id]);
-
+        $product = $product->find($request->id);
+		return view('admin.parameters.list', compact('parameters', 'product'));
 	}
 
 	/**
@@ -265,6 +265,91 @@ class ParametersController extends AdminController
         }
         return ['success' => true];
 
+    }
+
+    public function editValueName($valueID){
+        $value = ParametersValue::where('id', $valueID)->first();
+        return view('admin.parameters.editValueName', compact('value'));
+    }
+
+
+    public function saveValueName(Request $request){
+        if(ParametersValue::find($request->id)->update($request->all())){
+            return "<h3 align='center'>Сохранено</h3>";
+        }else{
+            return "<h3 align='center'>Ошибка</h3>";
+        }
+    }
+
+    public function editParamName($catID, $brandID, $productID, $id){
+        $params = Parameter::where('category_id', $catID)->where('brand_id', $brandID)->orderBy('title')->get();
+
+        $data = [
+            'product_id'  => $productID,
+            'parameter_id'=> $id,
+            'category_id' => $catID,
+            'brand_id'    => $brandID
+        ];
+
+        return view('admin.parameters.editParamName', compact('params'))->with('data', $data);
+    }
+
+    public function saveParamName(Parameter $parameter, Request $request){
+        //dd($request->all());
+        if($request->value_1 == 0){
+
+            $params = [
+                'title' => trim($request->value_2),
+                'category_id' => $request->category_id,
+                'brand_id' => $request->brand_id
+            ];
+
+            $parameter_id = $parameter->add($params);
+
+            if($parameter_id) {
+
+                $value = [
+                    'parameter_id' => $parameter_id,
+                    'value' => '',
+                ];
+
+                $default_value_id = $parameter->addValue($value);
+                $parameter->where('id', $parameter_id)->update(['default_value' => $default_value_id]);
+
+                if ($default_value_id) {
+
+                    $parameter_product = [
+                        'parameter_id' => $parameter_id,
+                        'parameter_value_id' => $default_value_id,
+                        'product_id' => $request->product_id
+                    ];
+
+
+                    if ($parameter->saveParamsProduct($parameter_product)) {
+                        return "<h3 align='center'>Добавлено № $parameter_id.</h3><br>";
+                    } else {
+                        return "<h3 align='center'>Ошибка</h3><br>";
+                    }
+
+                } else {
+                    return '<h3 align="center">Ошибка добавления параметра в базу.</h3>';
+                }
+            }
+
+        }else{
+            $model = ParameterProduct::where('product_id', $request->product_id)->where('parameter_id', $request->parameter_id)->first();
+            $ar = explode(',', $request->value_1);
+            $data = [
+                'parameter_id'      => $ar[0],
+                'product_id'        => $request->product_id,
+                'parameter_value_id'=> $ar[1]
+            ];
+            if($model->update($data)){
+                return "<h3 align='center'>Сохранено</h3>";
+            }else{
+                return "<h3 align='center'>Ошибка</h3>";
+            }
+        }
     }
 
 }
