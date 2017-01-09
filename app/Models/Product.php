@@ -75,7 +75,8 @@ class Product extends Eloquent {
         'name',
         'base_price',
         'out_price',
-        'nacenka'
+        'nacenka',
+        'clone_of'
 	];
 
 

@@ -33,9 +33,15 @@
     }
 </script>
 @if(isset($product))
-    <span style="color: darkred">Дата обновления: {{ $product->updated_at }}</span><br>
-    <span style="color: darkred"><a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}/{{ $product->slug }}" target="_blank">Страница товара</a></span><br>
-    <span style="color: darkred"><a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}" target="_blank">Страница категории</a></span><br>
+    <span style="color: darkred">Дата обновления: {{ $product->updated_at }}</span>
+    @if(isset($product->category->parent->slug))
+        <span style="float: right">
+            <a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}/{{ $product->slug }}" target="_blank">Страница товара</a>
+        </span><br>
+        <span style="float: right">
+            <a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}" target="_blank">Страница категории</a>
+        </span>
+    @endif
 @endif
 <div class="col-lg-12" id="product">
     {{--<pre>--}}
@@ -196,7 +202,7 @@
                             <div class="col-sm-12">
                                 <br/>
                                 {!! Form::label('url_1', 'Ссылка на производителя №1') !!}
-                                @if($product->url_1 != '')
+                                @if(isset($product->url_1)&& $product->url_1 != '')
                                     <a href="{{ $product->url_1 }}" target="_blank"><i class="fa fa-link"></i></a>
                                 @endif
                                 {!! Form::text('url_1', $value = null, ['class'=>'form-control','form'=>'form-data']) !!}
@@ -204,7 +210,7 @@
                             <div class="col-sm-12">
                                 <br/>
                                 {!! Form::label('url_2', 'Ссылка на производителя №2') !!}
-                                @if($product->url_2 != '')
+                                @if(isset($product->url_2)&& $product->url_2 != '')
                                     <a href="{{ $product->url_2 }}" target="_blank"><i class="fa fa-link"></i></a>
                                 @endif
                                 {!! Form::text('url_2', $value = null, ['class'=>'form-control','form'=>'form-data']) !!}
@@ -212,7 +218,7 @@
                             <div class="col-sm-12">
                                 <br/>
                                 {!! Form::label('url_3', 'Ссылка на производителя №3') !!}
-                                @if($product->url_3 != '')
+                                @if(isset($product->url_3)&& $product->url_3 != '')
                                     <a href="{{ $product->url_3 }}" target="_blank"><i class="fa fa-link"></i></a>
                                 @endif
                                 {!! Form::text('url_4', $value = null, ['class'=>'form-control','form'=>'form-data']) !!}
@@ -312,19 +318,11 @@
                                      ], $selected = null, ['class' => 'form-control','form'=>'form-data']) !!}
                                 </div>
                             </div>
-                            {{--<div class="col-lg-4">--}}
-                            {{--                                {!! Form::label('','Показывать на сайте?')!!}<br/>--}}
-                            {{--<label>--}}
-                            {{--<input name="switch-field-1" class="ace ace-switch" type="radio">--}}
-                            {{--<span class="lbl" data-lbl="Да&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Нет"></span>--}}
-                            {{--</label>--}}
-                            {{--<div class="btn-group" data-toggle="buttons">--}}
-                            {{--<label class="btn btn-sm btn-primary {{ $product->active == 1 ? 'active' : null }}">--}}
-                            {{--{!!Form::radio('show',$value = 1, $product->active == 1 ? true : false,['form'=>'form-data'])!!} Да</label>--}}
-                            {{--<label class="btn btn-sm btn-primary {{ $product->active == 0 ? 'active' : null }}">--}}
-                            {{--{!!Form::radio('show',$value = 0, $product->active == 0 ? true : false, ['form'=>'form-data'])!!} Нет</label>--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
+                            <div class="col-sm-3">
+                                <label for="clone_of">Клон</label>
+                                {!! Form::text('clone_of', $value = null, ['class' => 'form-control']) !!}
+                                <br/>
+                            </div>
                         </div>
                     </div>
 
@@ -556,7 +554,7 @@
                             </tbody>
                         </table>
                     </div>
-
+                    @if(isset($product))
                     <button class="parameters_add fancybox.ajax btn btn-success btn-sm"
                             href="{{ url('dashboard/parameters/add/'.$product->category_id.'/'.$product->brand_id, $product->id) }}">
                         Добавить параметр
@@ -565,7 +563,7 @@
                             href="{{ url('dashboard/parameters/selection/'.$product->category_id.'/'.$product->brand_id, $product->id) }}">
                         Выбрать параметр
                     </button>
-
+                    @endif
                 </div>
             </div>
 

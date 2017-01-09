@@ -432,7 +432,7 @@ class ProductsController extends AdminController
             $stocks[$stock->id]['stock_price'] = $stock->pivot->stock_price;
         }
 
-        $copy->images()->sync($product->images->lists('id')->toArray());
+        //$copy->images()->sync($product->images->lists('id')->toArray());
         $copy->relatedProducts()->sync($product->relatedProducts->lists('id')->toArray());
         $copy->filters()->sync($filters);
         $copy->stocks()->sync($stocks);
