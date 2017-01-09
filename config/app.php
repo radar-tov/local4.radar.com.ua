@@ -139,7 +139,7 @@ return [
 	    Laravelrus\LocalizedCarbon\LocalizedCarbonServiceProvider::class,
 	    Barryvdh\Debugbar\ServiceProvider::class,
 	    Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        //Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         /*
          * Application Service Providers...
          */
