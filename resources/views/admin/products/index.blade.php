@@ -449,8 +449,6 @@
                         filterProducts: function () {
                             var vue = this;
                             var form = $(vue.$$.filterForm).serialize();
-                            alert(form);
-                            //console.log(vue.products.pagination.lastPage);
                             $.ajax({
                                 method: "GET",
                                 url: '/dashboard/products',
