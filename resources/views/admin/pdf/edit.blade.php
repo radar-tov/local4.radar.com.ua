@@ -1,6 +1,6 @@
 @inject('categoriesProvider', 'App\ViewDataProviders\CategoriesDataProvider')
 @inject('brandsProvider', 'App\ViewDataProviders\BrandsDataProvider')
-{{ dump($file) }}
+{{--{{ dump($file) }}--}}
 {{--{{ dump($productShow) }}--}}
 <div id="files" class="tab-pane">
     <div class="col-md-12" id="files-section">
