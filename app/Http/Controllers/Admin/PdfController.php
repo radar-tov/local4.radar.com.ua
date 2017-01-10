@@ -89,7 +89,18 @@ class PdfController extends Controller
      */
     public function update(Request $request, File $files)
     {
-        
+        function isCheckbox($request, $checkbox, $name)
+        {
+            if (isset($checkbox) && $checkbox == 'on') {
+                $request->merge([$name => true]);
+            } else {
+                $request->merge([$name => false]);
+            }
+            return $request;
+        }
+
+        $request = isCheckbox($request, $request->show, 'show');
+        $request = isCheckbox($request, $request->showProduct, 'showProduct');
         $mas = [
             'name' => $request->name,
             'path' => $request->path,
