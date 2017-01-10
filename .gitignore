@@ -4,6 +4,7 @@ storage/
 public/swf/
 public/pdf/
 composer.lock
+composer.phar
 .env
 .idea
 dashboard/.htaccess
