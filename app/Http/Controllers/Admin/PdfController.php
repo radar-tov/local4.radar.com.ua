@@ -89,9 +89,7 @@ class PdfController extends Controller
      */
     public function update(Request $request, File $files)
     {
-
-        $files->updateProduct($request);
-
+        
         $mas = [
             'name' => $request->name,
             'path' => $request->path,
@@ -101,7 +99,7 @@ class PdfController extends Controller
             'admin_name' => $request->admin_name,
             'category_id' => $request->category_id
         ];
-
+        $files->updateProduct($request);
         //dump($mas);
 
         if($files->where('id', $request->fileID)->update($mas)){

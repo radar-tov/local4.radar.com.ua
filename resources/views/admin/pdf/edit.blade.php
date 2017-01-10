@@ -1,12 +1,12 @@
 @inject('categoriesProvider', 'App\ViewDataProviders\CategoriesDataProvider')
 @inject('brandsProvider', 'App\ViewDataProviders\BrandsDataProvider')
-{{--{{ dump($file) }}--}}
+{{ dump($file) }}
 {{--{{ dump($productShow) }}--}}
 <div id="files" class="tab-pane">
     <div class="col-md-12" id="files-section">
         <div id="filesUpdate">
             <div class="response-field"></div>
-            <form action="#" method="POST">
+            <form action="#" method="POST" id="form">
                 <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" id="fileID" name="fileID" value="{{ $file->id }}"/>
                 <input type="hidden" id="productID" name="productID" value="{{ $productShow->product_id }}"/>
@@ -68,37 +68,39 @@
 </div>
 <script>
     function saveFileEdit(){
-        var _token = $("#_token").val(),
-            category_id = $("#category_id").val(),
-            admin_name = $("#admin_name").val(),
-            fileID = $("#fileID").val(),
-            productID = $("#productID").val(),
-            name = $("#name").val(),
-            path = $("#path").val(),
-            hash_name = $("#hash_name").val(),
-            downloads = $("#downloads").val(),
-            show = $("#show").is(':checked') ,
-            showProduct = $("#showProduct").is(':checked'),
-            created_at = $("#created_at").val(),
-            updated_at = $("#updated_at").val();
-
+        var form = $("#form").serialize();
+//        var _token = $("#_token").val(),
+//            category_id = $("#category_id").val(),
+//            admin_name = $("#admin_name").val(),
+//            fileID = $("#fileID").val(),
+//            productID = $("#productID").val(),
+//            name = $("#name").val(),
+//            path = $("#path").val(),
+//            hash_name = $("#hash_name").val(),
+//            downloads = $("#downloads").val(),
+//            show = $("#show").is(':checked') ,
+//            showProduct = $("#showProduct").is(':checked'),
+//            created_at = $("#created_at").val(),
+//            updated_at = $("#updated_at").val();
+//alert(name);
         $.ajax({
             url: '/dashboard/pdf',
-            data: {
-                '_token': _token,
-                'fileID': fileID,
-                'productID': productID,
-                'name': name,
-                'path': path,
-                'hash_name': hash_name,
-                'downloads': downloads,
-                'show': show,
-                'showProduct': showProduct,
-                'created_at': created_at,
-                'updated_at': updated_at,
-                'admin_name': admin_name,
-                'category_id': category_id
-            },
+            data : form,
+//            data: {
+//                '_token': _token,
+//                'fileID': fileID,
+//                'productID': productID,
+//                'name': name,
+//                'path': path,
+//                'hash_name': hash_name,
+//                'downloads': downloads,
+//                'show': show,
+//                'showProduct': showProduct,
+//                'created_at': created_at,
+//                'updated_at': updated_at,
+//                'admin_name': admin_name,
+//                'category_id': category_id
+//            },
             type: 'POST',
             success: function (response) {
                 // console.log(response);

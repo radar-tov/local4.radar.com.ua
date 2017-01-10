@@ -10,6 +10,7 @@
             float: left;
             padding: 20px 20px 10px 10px;
         }
+
         li {
             list-style-type: none; !important
         }
@@ -29,7 +30,8 @@
 @section('content')
     <div class="row _hid" id="products">
         <div class="col-xs-6">
-            <a href="{!! route('dashboard.products.create') !!}" class="btn btn-sm btn-primary" title="Добавить товар" target="_blank">
+            <a href="{!! route('dashboard.products.create') !!}" class="btn btn-sm btn-primary" title="Добавить товар"
+               target="_blank">
                 <i class="ace-icon fa fa-plus"></i> Добавить товар
             </a>
         </div>
@@ -70,7 +72,8 @@
                         </div>
 
                         <div class="col-xs-2">
-                            <select name="categoryId" class="form-control" selected="{{ Session::get('admin_categoryId') }}" v-model="categoryId">
+                            <select name="categoryId" class="form-control"
+                                    selected="{{ Session::get('admin_categoryId') }}" v-model="categoryId">
                                 <option value="0">Все категории</option>
                                 @foreach($categoriesProvider->getListForNav()->all() as $item)
                                     <optgroup label="{{ $item->title }}">
@@ -126,7 +129,9 @@
                             </div>
 
                             <div class="col-xs-1 pull-right">
-                                <button class="btn btn-sm btn-primary" v-on="click:delFilters($event)">Сбросить фильтры</button>
+                                <button class="btn btn-sm btn-primary" v-on="click:delFilters($event)">
+                                    Сбросить фильтры
+                                </button>
                             </div>
 
                             <div class="col-xs-1 pull-right">
@@ -134,8 +139,6 @@
                             </div>
 
                         </div>
-
-
 
 
                         <template v-if="categoryId != 0">
@@ -160,13 +163,14 @@
                                         <div class="filter-content">
                                             <ul class="filter-select no-margin">
                                                 <li class="filter-option" v-repeat="value in filter.values">
-                                                    <input  id="filter-option-@{{ value.id }}"
-                                                            type="checkbox"
-                                                            name="filters[@{{ filter.id }}][]"
-                                                            value="@{{ value.id }}"
-                                                            checked="@{{ value.checked }}"
+                                                    <input id="filter-option-@{{ value.id }}"
+                                                           type="checkbox"
+                                                           name="filters[@{{ filter.id }}][]"
+                                                           value="@{{ value.id }}"
+                                                           checked="@{{ value.checked }}"
                                                     >
-                                                    <label for="filter-option-@{{ value.id }}" class="filter-option-label">
+                                                    <label for="filter-option-@{{ value.id }}"
+                                                           class="filter-option-label">
                                                         <span class="ft-opt-name">@{{ value.value }}</span>
                                                     </label>
                                                 </li>
@@ -184,9 +188,7 @@
                         <div class="clearfix"></div>
 
 
-
                         {!! Form::close() !!}
-
 
 
                     </div>
@@ -268,7 +270,8 @@
                                v-on="change: selectProduct($event)"/>
                     </td>
                     <td class="options">
-                        <a href="/@{{ product.category.parent.slug }}/@{{ product.category.slug }}/@{{ product.slug }}" target="_blank">
+                        <a href="/@{{ product.category.parent.slug }}/@{{ product.category.slug }}/@{{ product.slug }}"
+                           target="_blank">
                             <i class="fa fa-eye green" v-show="product.active > 0"></i>
                         </a>
                         <i class="fa fa-eye-slash red" v-show="product.active == 0"></i>
@@ -297,7 +300,8 @@
                     </td>
                     <td class="p-title">
                         <div class="bs-label-container">
-                            <span class="label label-success bs-label" v-show="product.is_bestseller > 0">Хит продаж</span>
+                            <span class="label label-success bs-label"
+                                  v-show="product.is_bestseller > 0">Хит продаж</span>
                             <span class="label label-danger bs-label" v-show="product.is_new > 0">Новинка</span>
                         </div>
                         {{--<i class="fa fa-line-chart"></i>--}}
@@ -318,7 +322,7 @@
                             <span class="label label-sm label-success arrowed-right" v-show="product.discount > 0">
                                 @{{ product.discount }} %
                             </span>
-                            <span v-show="product.discount < 1">
+                        <span v-show="product.discount < 1">
                                 <i class="fa fa-minus"></i>
                             </span>
                     </td>
@@ -326,7 +330,7 @@
                             <span class="label label-sm label-success arrowed-right" v-show="product.nacenka > 0">
                                 @{{ product.nacenka }} %
                             </span>
-                            <span v-show="product.nacenka < 1">
+                        <span v-show="product.nacenka < 1">
                                 <i class="fa fa-minus"></i>
                             </span>
                     </td>
@@ -387,227 +391,228 @@
             <input type="hidden" value="{{ csrf_token() }}" v-model="token"/>
             {{--{!! $products->appends(['q'])->render() !!}--}}
         </div>
-        @stop
+    </div>
+@stop
 
 
-        @section('bottom-scripts')
+@section('bottom-scripts')
 
-            <script>
-                new Vue({
+    <script>
+        new Vue({
 
-                    el: '#products',
+            el: '#products',
 
-                    ready: function () {
-                        var vue = this;
+            ready: function () {
+                var vue = this;
+                this.filterProducts();
+                $(this.$el).show()
+            },
+            data: {
+                products: {
+                    category: {
+                        title: ''
+                    },
+                    pagination: {
+                        currentPage: {},
+                        lastPage: {},
+                        pageToGet: 1
+                    },
+                    productList: {}
+                },
+                token: null,
+                categoryId: 0,
+                filtersList: null,
+                productSel: false,
+                selectedProductsIds: [],
+                selectedAction: 'delete'
+            },
+
+            methods: {
+
+                delFilters: function (event) {
+                    event.preventDefault();
+                    var vue = this;
+                    var $selectbox = $('.form-control');
+                    $selectbox.prop('selectedIndex', 0);
+                    vue.filterProducts()
+                },
+
+                getProducts: function () {
+                    var vue = this;
+                    $.ajax({
+                        dataType: "json",
+                        method: "GET",
+                        url: '/dashboard/products',
+                        cache: false,
+                        success: function (response) {
+                            console.log(response.data);
+                            vue.products = response.data;
+                        }
+                    });
+                },
+
+                filterProducts: function () {
+                    var vue = this;
+                    var form = $(vue.$$.filterForm).serialize();
+                    $.ajax({
+                        method: "GET",
+                        url: '/dashboard/products',
+                        data: form + '&page=' + vue.products.pagination.pageToGet,
+                        cache: false,
+                        success: function (response) {
+                            vue.filtersList = response.filters;
+                            vue.products.productList = response.products.data;
+                            vue.products.pagination.currentPage = response.products.current_page;
+                            vue.products.pagination.lastPage = response.products.last_page;
+
+                            if (vue.products.pagination.lastPage < vue.products.pagination.pageToGet) {
+                                vue.products.pagination.pageToGet = vue.products.pagination.lastPage;
+                                vue.filterProducts()
+                            }
+                        }
+                    });
+                },
+
+                markProducts: function () {
+                    var checks = $(".productSel"),
+                        isChecked = this.$$.mainCheckbox.checked;
+                    this.selectedProductsIds = [];
+                    for (var i = 0, len = checks.length; i < len; i++) {
+                        $(checks[i]).prop('checked', isChecked);
+                        if (isChecked) {
+                            this.selectedProductsIds.push(checks[i].value)
+                        } else {
+                            this.selectedProductsIds.splice(this.selectedProductsIds.indexOf(checks[i].value), 1);
+                        }
+                    }
+                },
+
+                selectProduct: function (event) {
+                    var checkbox = event.target;
+                    if (checkbox.checked == true) {
+                        this.selectedProductsIds.push(checkbox.value)
+                    } else {
+                        this.selectedProductsIds.splice(this.selectedProductsIds.indexOf(checkbox.value), 1);
+                    }
+                },
+
+                fireAction: function (event) {
+                    event.preventDefault();
+                    var vue = this;
+                    $.ajax({
+                        method: "POST",
+                        url: '/dashboard/product-actions/' + vue.selectedAction,
+                        data: {ids: this.selectedProductsIds, _token: vue.token},
+                        cache: false,
+                        success: function () {
+                            vue.filterProducts();
+                            vue.selectedProductsIds = [];
+                            vue.$$.mainCheckbox.checked = false;
+                        }
+                    });
+                },
+                deleteProduct: function (product, event) {
+                    event.preventDefault();
+                    var vue = this;
+                    $.ajax({
+                        method: "POST",
+                        url: '/dashboard/products/' + product.id,
+                        data: {_token: vue.token, _method: 'DELETE'},
+                        cache: false,
+                        success: function () {
+                            vue.filterProducts();
+                            vue.selectedProductsIds = [];
+                            vue.$$.mainCheckbox.checked = false;
+                        }
+                    });
+                },
+
+                nextPage: function () {
+                    //event.preventDefault();
+                    //console.log(this.products );
+                    if (this.products.pagination.currentPage != this.products.pagination.lastPage) {
+                        this.products.pagination.pageToGet = this.products.pagination.currentPage + 1;
                         this.filterProducts();
-                        $(this.$el).show()
-                    },
-                    data: {
-                        products: {
-                            category: {
-                                title: ''
-                            },
-                            pagination: {
-                                currentPage: {},
-                                lastPage: {},
-                                pageToGet: 1
-                            },
-                            productList: {}
-                        },
-                        token: null,
-                        categoryId: 0,
-                        filtersList: null,
-                        productSel: false,
-                        selectedProductsIds: [],
-                        selectedAction: 'delete'
-                    },
+                    }
+                },
 
-                    methods: {
+                prevPage: function () {
+                    //event.preventDefault();
+                    if (this.products.pagination.currentPage != 1) {
+                        this.products.pagination.pageToGet = this.products.pagination.currentPage - 1;
+                        this.filterProducts();
+                    }
+                },
 
-                        delFilters: function (event) {
-                            event.preventDefault();
-                            var vue = this;
-                            var $selectbox = $('.form-control');
-                            $selectbox.prop('selectedIndex', 0);
-                            vue.filterProducts()
-                        },
+                showPanel: function (event) {
+                    event.preventDefault();
+                    $("#panel").slideToggle('slow');
+                }
 
-                        getProducts: function () {
-                            var vue = this;
-                            $.ajax({
-                                dataType: "json",
-                                method: "GET",
-                                url: '/dashboard/products',
-                                cache: false,
-                                success: function (response) {
-                                    console.log(response.data);
-                                    vue.products = response.data;
-                                }
-                            });
-                        },
+            }
 
-                        filterProducts: function () {
-                            var vue = this;
-                            var form = $(vue.$$.filterForm).serialize();
-                            $.ajax({
-                                method: "GET",
-                                url: '/dashboard/products',
-                                data: form + '&page=' + vue.products.pagination.pageToGet,
-                                cache: false,
-                                success: function (response) {
-                                    vue.filtersList = response.filters;
-                                    vue.products.productList = response.products.data;
-                                    vue.products.pagination.currentPage = response.products.current_page;
-                                    vue.products.pagination.lastPage = response.products.last_page;
+        });
+    </script>
+    {{--<!-- do not uncomment me -->--}}
 
-                                    if (vue.products.pagination.lastPage < vue.products.pagination.pageToGet) {
-                                        vue.products.pagination.pageToGet = vue.products.pagination.lastPage;
-                                        vue.filterProducts()
-                                    }
-                                }
-                            });
-                        },
+    {{--<script src="{!! url('admin/assets/js/jquery.dataTables.min.js') !!}"></script>--}}
+    {{--<script src="{!! url('admin/assets/js/jquery.dataTables.bootstrap.js') !!}"></script>--}}
 
-                        markProducts: function () {
-                            var checks = $(".productSel"),
-                                    isChecked = this.$$.mainCheckbox.checked;
-                            this.selectedProductsIds = [];
-                            for (var i = 0, len = checks.length; i < len; i++) {
-                                $(checks[i]).prop('checked', isChecked);
-                                if (isChecked) {
-                                    this.selectedProductsIds.push(checks[i].value)
-                                } else {
-                                    this.selectedProductsIds.splice(this.selectedProductsIds.indexOf(checks[i].value), 1);
-                                }
-                            }
-                        },
 
-                        selectProduct: function (event) {
-                            var checkbox = event.target;
-                            if (checkbox.checked == true) {
-                                this.selectedProductsIds.push(checkbox.value)
-                            } else {
-                                this.selectedProductsIds.splice(this.selectedProductsIds.indexOf(checkbox.value), 1);
-                            }
-                        },
+    {{--<!-- inline scripts related to this page -->--}}
+    {{--            <script type="text/javascript">
+                    jQuery(function ($) {
+                        var oTable1 =
+                                $('#sample-table-2')
+                                        .wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
+                                        .dataTable({
+                                            bAutoWidth: false,
+                                            "aoColumns": [
+                                                {"bSortable": false},
+                                                null, null, null, null, null,
+                                                {"bSortable": false}
+                                            ]
 
-                        fireAction: function (event) {
-                            event.preventDefault();
-                            var vue = this;
-                            $.ajax({
-                                method: "POST",
-                                url: '/dashboard/product-actions/' + vue.selectedAction,
-                                data: {ids: this.selectedProductsIds, _token: vue.token},
-                                cache: false,
-                                success: function () {
-                                    vue.filterProducts();
-                                    vue.selectedProductsIds = [];
-                                    vue.$$.mainCheckbox.checked = false;
-                                }
-                            });
-                        },
-                        deleteProduct: function (product, event) {
-                            event.preventDefault();
-                            var vue = this;
-                            $.ajax({
-                                method: "POST",
-                                url: '/dashboard/products/' + product.id,
-                                data: {_token: vue.token, _method: 'DELETE'},
-                                cache: false,
-                                success: function () {
-                                    vue.filterProducts();
-                                    vue.selectedProductsIds = [];
-                                    vue.$$.mainCheckbox.checked = false;
-                                }
-                            });
-                        },
 
-                        nextPage: function () {
-                            //event.preventDefault();
-                            //console.log(this.products );
-                            if (this.products.pagination.currentPage != this.products.pagination.lastPage) {
-                                this.products.pagination.pageToGet = this.products.pagination.currentPage + 1;
-                                this.filterProducts();
-                            }
-                        },
+                                            ,
+                                            "sScrollY": "200px",
+                                            "bPaginate": false,
 
-                        prevPage: function () {
-                            //event.preventDefault();
-                            if (this.products.pagination.currentPage != 1) {
-                                this.products.pagination.pageToGet = this.products.pagination.currentPage - 1;
-                                this.filterProducts();
-                            }
-                        },
+                                            "sScrollX": "100%",
+                                            "sScrollXInner": "120%",
+                                            "bScrollCollapse": true,
+                                            Note: if you are applying horizontal scrolling(sScrollX) on a ".table-bordered"
+                                            you may want to wrap the table inside a "div.dataTables_borderWrap" element
 
-                        showPanel: function(event){
-                            event.preventDefault();
-                            $("#panel").slideToggle('slow');
+                                            "iDisplayLength": 50
+                                        });
+
+
+                        $(document).on('click', 'th input:checkbox', function () {
+                            var that = this;
+                            $(this).closest('table').find('tr > td:first-child input:checkbox')
+                                    .each(function () {
+                                        this.checked = that.checked;
+                                        $(this).closest('tr').toggleClass('selected');
+                                    });
+                        });
+
+
+                        $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+                        function tooltip_placement(context, source) {
+                            var $source = $(source);
+                            var $parent = $source.closest('table')
+                            var off1 = $parent.offset();
+                            var w1 = $parent.width();
+
+                            var off2 = $source.offset();
+                            //var w2 = $source.width();
+
+                            if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
+                            return 'left';
                         }
 
-                    }
-
-                });
-            </script>
-            {{--<!-- do not uncomment me -->--}}
-
-            {{--<script src="{!! url('admin/assets/js/jquery.dataTables.min.js') !!}"></script>--}}
-            {{--<script src="{!! url('admin/assets/js/jquery.dataTables.bootstrap.js') !!}"></script>--}}
-
-
-            {{--<!-- inline scripts related to this page -->--}}
-{{--            <script type="text/javascript">
-                jQuery(function ($) {
-                    var oTable1 =
-                            $('#sample-table-2')
-                                    .wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-                                    .dataTable({
-                                        bAutoWidth: false,
-                                        "aoColumns": [
-                                            {"bSortable": false},
-                                            null, null, null, null, null,
-                                            {"bSortable": false}
-                                        ]
-
-
-                                        ,
-                                        "sScrollY": "200px",
-                                        "bPaginate": false,
-
-                                        "sScrollX": "100%",
-                                        "sScrollXInner": "120%",
-                                        "bScrollCollapse": true,
-                                        Note: if you are applying horizontal scrolling(sScrollX) on a ".table-bordered"
-                                        you may want to wrap the table inside a "div.dataTables_borderWrap" element
-
-                                        "iDisplayLength": 50
-                                    });
-
-
-                    $(document).on('click', 'th input:checkbox', function () {
-                        var that = this;
-                        $(this).closest('table').find('tr > td:first-child input:checkbox')
-                                .each(function () {
-                                    this.checked = that.checked;
-                                    $(this).closest('tr').toggleClass('selected');
-                                });
-                    });
-
-
-                    $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
-                    function tooltip_placement(context, source) {
-                        var $source = $(source);
-                        var $parent = $source.closest('table')
-                        var off1 = $parent.offset();
-                        var w1 = $parent.width();
-
-                        var off2 = $source.offset();
-                        //var w2 = $source.width();
-
-                        if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
-                        return 'left';
-                    }
-
-                })
-            </script>--}}
-}
+                    })
+                </script>
+    }--}}
 @stop
