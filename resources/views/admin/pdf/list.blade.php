@@ -1,18 +1,20 @@
 <table class="table table-bordered table-hover">
     <thead>
-    <td></td>
-    <td>Имя файла</td>
-    <td>Путь к файлу</td>
-    <td>Скачан раз</td>
-    <td></td>
-    <td></td>
+    <td align="center">На сайте</td>
+    <td align="center">В товаре</td>
+    <td align="center">Название в админке (на странице)</td>
+    <td align="center">Путь к файлу</td>
+    <td align="center">Скачан раз</td>
+    <td align="center"></td>
+    <td align="center"></td>
     </thead>
     <tbody>
     @if(isset($files))
         @foreach($files as $file)
             <tr>
-                <td>{!! ($file->show == 1) ? '1' : '0' !!}</td>
-                <td>{{ $file->admin_name }}</td>
+                <td align="center">{!! ($file->show == 1) ? '<i class="fa fa-eye green"></i>' : '<i class="fa fa-eye fa-eye-slash red"></i>' !!}</td>
+                <td align="center"></td>
+                <td>{{ $file->admin_name }}<br>( {{ $file->name }} )</td>
                 <td>{{ $file->path }}</td>
                 <td>{{ $file->downloads }}</td>
                 <td>

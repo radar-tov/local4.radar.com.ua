@@ -114,8 +114,12 @@ class Product extends Eloquent {
 	}
 
 	public function files() {
-		return $this->belongsToMany('App\Models\File', 'file_product', 'product_id', 'file_id')->orderBy('order');
+		return $this->belongsToMany('App\Models\File', 'file_product', 'product_id', 'file_id')->where('file_product.show', 1)->orderBy('order');
 	}
+
+    public function adminFiles() {
+        return $this->belongsToMany('App\Models\File', 'file_product', 'product_id', 'file_id')->orderBy('order');
+    }
 
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

@@ -318,7 +318,7 @@ class ProductsController extends AdminController
     public function edit(Category $categories, Cena $cena, $id)
     {
         $product = $this->product
-            ->with('images', 'category', 'category.filters', 'category.strain.values', 'filters', 'files', 'getParameters', 'getCena')
+            ->with('images', 'category', 'category.filters', 'category.strain.values', 'filters', 'adminFiles', 'getParameters', 'getCena')
             ->withTrashed()
             ->findOrFail($id);
 

@@ -179,6 +179,7 @@
                             <h5>Техническая документация</h5>
                             @if($product->files)
                                 @foreach($product->files as $file)
+                                    @if($file->show == 1)
                                     <a class="instruction {{ $file->path ? '' : '_disabled' }} "
                                        href="{{ url('/pdf/download', $file->id ) }}"
                                        onclick="yaCounter39848700.file('{{ $file->path }}',{params: '{{ $file->name }}'});
@@ -188,6 +189,7 @@
                                         <span>&#8811 {{ $file->name }}</span></br>
                                     </a>
                                     <a class="instruction _disabled"><span>скачан {{ $file->downloads }} раз</span></a></br>
+                                    @endif
                                 @endforeach
                             @endif
                         </div>

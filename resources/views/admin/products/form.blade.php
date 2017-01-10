@@ -734,33 +734,39 @@
             <div id="files" class="tab-pane">
                 <div class="col-md-12" id="files-section">
                     <div id="filesup" v-show="getPdfList">
+                        {{ dump($product->adminFiles) }}
+
                         <table class="table table-bordered table-hover">
                             <thead>
-                            <td></td>
-                            <td>Имя файла</td>
-                            <td>Путь к файлу</td>
-                            <td>Скачан раз</td>
-                            <td></td>
-                            <td></td>
+                            <td align="center">На сайте</td>
+                            <td align="center">В товаре</td>
+                            <td align="center">Название в админке (на странице)</td>
+                            <td align="center">Путь к файлу</td>
+                            <td align="center">Скачан раз</td>
+                            <td align="center"></td>
+                            <td align="center"></td>
                             </thead>
                             <tbody>
-                            @if(isset($product->files))
-                                @foreach($product->files as $file)
+                            @if(isset($product->adminFiles))
+                                @foreach($product->adminFiles as $file)
                                     <tr>
-                                        <td>{!! ($file->show == 1) ? '1' : '0' !!}</td>
-                                        <td>{{ $file->admin_name }}</td>
+                                        <td align="center">{!! ($file->show == 1) ? '<i class="fa fa-eye green"></i>' : '<i class="fa fa-eye fa-eye-slash red"></i>' !!}</td>
+                                        <td align="center"></td>
+                                        <td>{{ $file->admin_name }}<br>( {{ $file->name }} )</td>
                                         <td>{{ $file->path }}</td>
                                         <td>{{ $file->downloads }}</td>
                                         <td>
                                             @if(isset($product))
-                                                <a id="otvet" class="fileedit fancybox.ajax" href="{{ url('dashboard/pdf/'.$file->id.'/'.$product->id) }}">
+                                                <a id="otvet" class="fileedit fancybox.ajax"
+                                                   href="{{ url('dashboard/pdf/'.$file->id.'/'.$product->id) }}">
                                                     <i class="ace-icon fa fa-pencil bigger-130"></i>
                                                 </a>
                                             @endif
                                         </td>
                                         <td>
                                             <a href="#">
-                                                <i class="ace-icon fa fa-trash-o bigger-120" title="удалить" v-on="click: removePDF($event, {{ $file->id }})"></i>
+                                                <i class="ace-icon fa fa-trash-o bigger-120" title="удалить"
+                                                   v-on="click: removePDF($event, {{ $file->id }})"></i>
                                             </a>
                                         </td>
                                     </tr>
