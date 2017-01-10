@@ -22,8 +22,8 @@ class PdfController extends Controller
     {
         $files = DB::table('file_product')->leftJoin('files', 'files.id', '=', 'file_product.file_id')
             ->where('file_product.product_id', $request->id)->orderBy('order')->get();
-
-        return view('admin.pdf.list', compact('files'));
+        $getShowFileProduct = DB::table('file_product')->select()->where('product_id', $request->id)->get();
+        return view('admin.pdf.list', compact('files', 'getShowFileProduct'));
     }
 
     /**

@@ -9,11 +9,19 @@
     <td align="center"></td>
     </thead>
     <tbody>
+    {{--{{ dump($files) }}--}}
+    {{--{{ dump($getShowFileProduct) }}--}}
     @if(isset($files))
         @foreach($files as $file)
             <tr>
                 <td align="center">{!! ($file->show == 1) ? '<i class="fa fa-eye green"></i>' : '<i class="fa fa-eye fa-eye-slash red"></i>' !!}</td>
-                <td align="center"></td>
+                <td align="center">
+                    @foreach($getShowFileProduct as $productShow)
+                        @if($productShow->file_id == $file->file_id)
+                            {!! ($productShow->show == 1) ? '<i class="fa fa-eye green"></i>' : '<i class="fa fa-eye fa-eye-slash red"></i>' !!}
+                        @endif
+                    @endforeach
+                </td>
                 <td>{{ $file->admin_name }}<br>( {{ $file->name }} )</td>
                 <td>{{ $file->path }}</td>
                 <td>{{ $file->downloads }}</td>

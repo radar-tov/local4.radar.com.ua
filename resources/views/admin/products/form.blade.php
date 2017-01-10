@@ -735,7 +735,7 @@
                 <div class="col-md-12" id="files-section">
                     <div id="filesup" v-show="getPdfList">
                         {{--{{ dump($product->adminFiles) }}--}}
-
+                        {{--{{ dump($product->getShowFileProduct) }}--}}
                         <table class="table table-bordered table-hover">
                             <thead>
                             <td align="center">На сайте</td>
@@ -751,7 +751,13 @@
                                 @foreach($product->adminFiles as $file)
                                     <tr>
                                         <td align="center">{!! ($file->show == 1) ? '<i class="fa fa-eye green"></i>' : '<i class="fa fa-eye fa-eye-slash red"></i>' !!}</td>
-                                        <td align="center"></td>
+                                        <td align="center">
+                                            @foreach($product->getShowFileProduct as $productShow)
+                                                @if($productShow->file_id == $file->pivot->file_id)
+                                                    {!! ($productShow->show == 1) ? '<i class="fa fa-eye green"></i>' : '<i class="fa fa-eye fa-eye-slash red"></i>' !!}
+                                                @endif
+                                            @endforeach
+                                        </td>
                                         <td>{{ $file->admin_name }}<br>( {{ $file->name }} )</td>
                                         <td>{{ $file->path }}</td>
                                         <td>{{ $file->downloads }}</td>

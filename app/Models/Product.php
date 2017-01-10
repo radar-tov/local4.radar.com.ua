@@ -121,6 +121,10 @@ class Product extends Eloquent {
         return $this->belongsToMany('App\Models\File', 'file_product', 'product_id', 'file_id')->orderBy('order');
     }
 
+    public function getShowFileProduct(){
+	    return $this->hasMany('App\Models\FileProduct');
+    }
+
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
 	 */
