@@ -734,7 +734,7 @@
             <div id="files" class="tab-pane">
                 <div class="col-md-12" id="files-section">
                     <div id="filesup" v-show="getPdfList">
-                        {{ dump($product->adminFiles) }}
+                        {{--{{ dump($product->adminFiles) }}--}}
 
                         <table class="table table-bordered table-hover">
                             <thead>
