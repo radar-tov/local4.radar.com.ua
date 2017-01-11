@@ -119,7 +119,6 @@ return [
         Illuminate\Bus\BusServiceProvider::class,
         Illuminate\Cache\CacheServiceProvider::class,
         Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
-        //Illuminate\Routing\ControllerServiceProvider::class,
         Illuminate\Cookie\CookieServiceProvider::class,
         Illuminate\Database\DatabaseServiceProvider::class,
         Illuminate\Encryption\EncryptionServiceProvider::class,
@@ -137,9 +136,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 	    Laravelrus\LocalizedCarbon\LocalizedCarbonServiceProvider::class,
-	    Barryvdh\Debugbar\ServiceProvider::class,
 	    Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
-        //Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -147,7 +145,15 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\SystemServiceProvider::class,
-        Maatwebsite\Excel\ExcelServiceProvider::class
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
+
+        /*
+         *Developers
+         */
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class
+
 
     ],
 
