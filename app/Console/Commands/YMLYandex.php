@@ -210,7 +210,7 @@ class YMLYandex extends Command
                         //if($subCat->id)echo "Получены подкатегории.\n";
 
                         $products = FrontendController::getProductsYML($subCat->id, $in, $to);
-
+                        //dd($products);
                         if($products) {
 
                             foreach($products as $product){
@@ -232,15 +232,19 @@ class YMLYandex extends Command
 
                                         if(isset($product->price)) {
                                             //Цена
-                                            //$cena = $product->price;
-                                            if($product->hasDiscount()){
-                                                $cena = $product->getNewPrice();
+
+
+                                            if($product->out_price > 0){
+                                                $cena =  $product->out_price;
                                             }else{
                                                 $cena = $product->price;
                                             }
 
+
                                             $line = "\t\t\t\t<price>".round($cena)."</price>\n";
                                             File::append($path_file, $line);
+
+                                            unset($cena);
                                         }
 
                                         //Валюта
@@ -301,7 +305,7 @@ class YMLYandex extends Command
                                             File::append($path_file, $line);
                                         }
                                         //Страна производитель
-                                        if($flagVendor && $ar[1]){
+                                        if($flagVendor && isset($ar[1])){
                                             $line = "\t\t\t\t<country_of_origin>".str_replace(" ", "", $ar[1])."</country_of_origin>\n";
                                             File::append($path_file, $line);
                                         }else{
