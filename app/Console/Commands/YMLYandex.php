@@ -229,9 +229,16 @@ class YMLYandex extends Command
                                             $line = "\t\t\t\t<url>".$host.'/'.$cat->slug.'/'.$subCat->slug.'/'.$product->slug."</url>\n";
                                             File::append($path_file, $line);
                                         }
+
                                         if(isset($product->price)) {
                                             //Цена
-                                            $line = "\t\t\t\t<price>".round($product->price)."</price>\n";
+                                            if($product->hasDiscount()){
+                                                $cena = $product->getNewPrice();
+                                            }else{
+                                                $cena = $product->price;
+                                            }
+
+                                            $line = "\t\t\t\t<price>".round($cena)."</price>\n";
                                             File::append($path_file, $line);
                                         }
 
@@ -293,7 +300,7 @@ class YMLYandex extends Command
                                             File::append($path_file, $line);
                                         }
                                         //Страна производитель
-                                        if($flagVendor){
+                                        if($flagVendor && $ar[1]){
                                             $line = "\t\t\t\t<country_of_origin>".str_replace(" ", "", $ar[1])."</country_of_origin>\n";
                                             File::append($path_file, $line);
                                         }else{
