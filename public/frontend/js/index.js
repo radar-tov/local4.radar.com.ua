@@ -210,22 +210,6 @@ function filterProducts(filcl, page){
 
     if(filcl) data = data + '&click=true';
 
-/*
-    $.ajax({
-        url: location.href,
-        method: 'GET',
-        loader: '/frontend/images/loader.gif',
-        cache: false,
-        data: data + '&page=' + page
-    }).done(function(response){
-        $("#products").html(response.products);
-        $("._pagination").html(response.pagination)
-
-        initRating();
-    });
-*/
-
-
     $.ajax({
         url: location.href,
         method: 'GET',
@@ -241,15 +225,6 @@ function filterProducts(filcl, page){
             initRating();
         }
     });
-
-
-
-
-
-
-
-
-
 
 }
 

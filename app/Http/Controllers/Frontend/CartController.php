@@ -111,12 +111,17 @@ class CartController extends Controller {
             $chars[$field->filter->title] = $field->value;
         }
 
+        if($product->hasDiscount()){
+            $discount = $product->getNewPrice();
+        }else{
+            $discount = null;
+        }
+
         Cart::instance('compare')->add(
             $id = $product->id,
             $title = $product->title,
             $qty = 1,
             $price = $product->price,
-                
 
             $options = [
                 'category_name' => $product->category->title,
@@ -125,7 +130,8 @@ class CartController extends Controller {
                 'thumbnail' => count($product->thumbnail) ? $product->thumbnail->first()->path : '',
                 'categorySlug' => $parentCategorySlug[0]->slug.'/'.$product->category->slug,
                 'productSlug' => $product->slug,
-                'characteristics' => $chars
+                'characteristics' => $chars,
+                'discount' => $discount
             ]
 
             );

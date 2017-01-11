@@ -232,6 +232,7 @@ class YMLYandex extends Command
 
                                         if(isset($product->price)) {
                                             //Цена
+                                            //$cena = $product->price;
                                             if($product->hasDiscount()){
                                                 $cena = $product->getNewPrice();
                                             }else{
