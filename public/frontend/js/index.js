@@ -210,9 +210,11 @@ function filterProducts(filcl, page){
 
     if(filcl) data = data + '&click=true';
 
+/*
     $.ajax({
         url: location.href,
         method: 'GET',
+        loader: '/frontend/images/loader.gif',
         cache: false,
         data: data + '&page=' + page
     }).done(function(response){
@@ -221,6 +223,34 @@ function filterProducts(filcl, page){
 
         initRating();
     });
+*/
+
+
+    $.ajax({
+        url: location.href,
+        method: 'GET',
+        loader: '/frontend/images/loader.gif',
+        cache: false,
+        data: data + '&page=' + page,
+        beforeSend: function(){
+            $("#products").html("<div align='center'><img src='/frontend/images/loading.gif'></div>");
+        },
+        success:function(response){
+            $("#products").html(response.products);
+            $("._pagination").html(response.pagination)
+            initRating();
+        }
+    });
+
+
+
+
+
+
+
+
+
+
 }
 
 $("body").on('click', '._pagination a', function(event){
@@ -247,7 +277,7 @@ $("#range").change(function(){
 $('#rating_3').rating({
     fx: 'full',
     image: '/frontend/images/stars2.png',
-    loader: '/frontend/images/loader.gif',
+    loader: '/frontend/images/loading.gif',
     url: location.href, /*обработка результатов голосования*/
     type: 'GET',
     readOnly: !!$("#check").val(),
