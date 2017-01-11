@@ -6572,7 +6572,7 @@ div.vote-hover {
 }
 
 .characteristics.col {
-    height: 112px;
+    height: 190px;
     overflow: hidden;
 }
 
@@ -6651,7 +6651,7 @@ div.vote-hover {
     display: block;
     text-align: center;
     /*margin-top: 35px;*/
-    margin-top: 15px;
+    /*margin-top: 15px;*/
     min-height: 30px;
     letter-spacing: 1px
     font-family: "Roboto", sans-serif;

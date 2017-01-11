@@ -68,86 +68,87 @@
             </div>
             <div class="card-reveal cardAnim{{ $product->id }} ">
                 @if($product->category)
-                    <div class="linkProduct"
-                         onclick="return location.href = '/{{ $product->category->parent->slug }}/{{ $product->category->slug }}/{{ $product->slug}}'">
+                    <a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}/{{ $product->slug}}">
+                        <div class="linkProduct">
+                             {{--onclick="return location.href = '/{{ $product->category->parent->slug }}/{{ $product->category->slug }}/{{ $product->slug}}'">--}}
 
-                        <div class="stable">
-                            @if(count($product->thumbnail) && file_exists(public_path($product->thumbnail->first()->path)))
-                                <img class="hover-item" src="{{ $product->thumbnail->first()->path or null }}">
-                            @else
-                                <img class="hover-item" src="/frontend/images/default.png">
+                            <div class="stable">
+                                @if(count($product->thumbnail) && file_exists(public_path($product->thumbnail->first()->path)))
+                                    <img class="hover-item" src="{{ $product->thumbnail->first()->path or null }}">
+                                @else
+                                    <img class="hover-item" src="/frontend/images/default.png">
+                                @endif
+                            </div>
+
+                            <input type="hidden" value="{{ $product->id }}" class="_id"/>
+                            {{--<!--<div class="rating_2">--}}
+                            {{--<input type="hidden" name="vote-id" value="5"/>--}}
+                            {{--<input type="hidden" name="val" value="{{ array_sum($product->rates->lists('rate')->all()) / ($product->rates->count() ?: 1) }}">--}}
+                            {{--</div>-->--}}
+
+
+                            {{--<span class="outlook">
+                                <a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}/{{ $product->slug}}">
+                                    Посмотреть товар
+                                </a>
+                            </span>--}}
+
+                            <span class="hover-item-title">{{ $product->title }}</span>
+                            <p class="hover-sku">Код: <span>{{ $product->article }}</span></p>
+
+                            @if($product->video)
+                                <span class="video-review uppercase">видеообзор</span>
+                                {{--<a href="#video" class="modal-trigger video-review uppercase">видеообзор</a>--}}
+                                {{--<span class="_video" style="display:none;">{!!  $product->video !!}</span>--}}
                             @endif
-                        </div>
 
-                        <input type="hidden" value="{{ $product->id }}" class="_id"/>
-                        {{--<!--<div class="rating_2">--}}
-                        {{--<input type="hidden" name="vote-id" value="5"/>--}}
-                        {{--<input type="hidden" name="val" value="{{ array_sum($product->rates->lists('rate')->all()) / ($product->rates->count() ?: 1) }}">--}}
-                        {{--</div>-->--}}
+                            <div class="clearing"></div>
 
+                            @if($product->hasDiscount())
+                                <div class="item-content">
+                                    <span class="hover-old-price">{{ $product->getPrice() }} грн</span>
+                                    <span class="hover-new-price">{{ $product->getNewPrice() }} грн</span>
+                                </div>
+                            @else
+                                <div class="item-content"><span class="hover-price">{{ $product->getPrice() }} грн</span>
+                                </div>
 
-                        <span class="outlook">
-                            <a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}/{{ $product->slug}}">
-                                Посмотреть товар
-                            </a>
-                        </span>
+                            @endif
+                            <div class="clearing"></div>
 
-                        @if($product->video)
-                            <span class="video-review uppercase">видеообзор</span>
-                            {{--<a href="#video" class="modal-trigger video-review uppercase">видеообзор</a>--}}
-                            {{--<span class="_video" style="display:none;">{!!  $product->video !!}</span>--}}
-                        @endif
-
-                        <span class="hover-item-title">{{ $product->title }}</span>
-                        <p class="hover-sku">Код: <span>{{ $product->article }}</span></p>
-
-
-                        <div class="clearing"></div>
-
-                        @if($product->hasDiscount())
-                            <div class="item-content">
-                                <span class="hover-old-price">{{ $product->getPrice() }} грн</span>
-                                <span class="hover-new-price">{{ $product->getNewPrice() }} грн</span>
-                            </div>
-                        @else
-                            <div class="item-content"><span class="hover-price">{{ $product->getPrice() }} грн</span>
-                            </div>
-
-                        @endif
-                        <div class="clearing"></div>
-
-                            <div class="characteristics col s12 no-padding">
-                                @foreach($product->sortedValuesCharacters($product->category_id) as $characteristics)
-                                    @if($characteristics->characteristic->isVisibleForCategory($product->category_id))
+                                <div class="characteristics col s12 no-padding">
+                                    @foreach($product->sortedValuesCharacters($product->category_id) as $characteristics)
+                                        @if($characteristics->characteristic->isVisibleForCategory($product->category_id))
+                                            <div class="col s12 characteristic">
+                                                <div class="col s12 m6 boldy no-padding">{{ $characteristics->characteristic->title }}:</div>
+                                                <div class="col s12 m6 no-padding">{{ $characteristics->value }}</div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                    {{--TODO-evgenii Удалить блок после заполнения всех товаров --}}
+                                    @foreach($product->sortedValues($product->category_id) as $field)
+                                        @if($field->filter->isVisibleForCategory($product->category_id))
                                         <div class="col s12 characteristic">
-                                            <div class="col s12 m6 boldy no-padding">{{ $characteristics->characteristic->title }}:</div>
-                                            <div class="col s12 m6 no-padding">{{ $characteristics->value }}</div>
+                                            <div class="col s12 m6 boldy no-padding">{{ $field->filter->title }}:</div>
+                                            <div class="col s12 m6 no-padding">{{ $field->value }}</div>
                                         </div>
-                                    @endif
-                                @endforeach
-                                {{--TODO-evgenii Удалить блок после заполнения всех товаров --}}
-                                @foreach($product->sortedValues($product->category_id) as $field)
-                                    @if($field->filter->isVisibleForCategory($product->category_id))
-                                    <div class="col s12 characteristic">
-                                        <div class="col s12 m6 boldy no-padding">{{ $field->filter->title }}:</div>
-                                        <div class="col s12 m6 no-padding">{{ $field->value }}</div>
-                                    </div>
-                                    @endif
-                                @endforeach
-                                {{--TODO-evgenii END Удалить блок после заполнения всех товаров --}}
-                            </div>
+                                        @endif
+                                    @endforeach
+                                    {{--TODO-evgenii END Удалить блок после заполнения всех товаров --}}
+                                </div>
 
 
-                        <div class="clearing"></div>
-                        {{--<div class="collapsible-header open-info">...</div>--}}
-                        {{--<ul class="col s12 collapsible no-padding" data-collapsible="accordion">--}}
-                        {{--<li>--}}
-                        {{--<div class="collapsible-header open-info">...</div>--}}
-                        {{--<div class="collapsible-body"><p>Дополнительная информация о товаре. Дополнительная информация о товаре. Дополнительная информация о товаре. Дополнительная информация о товаре. Дополнительная информация о товаре. Дополнительная информация о товаре. Дополнительная информация о товаре.</p></div>--}}
-                        {{--</li>--}}
-                        {{--</ul>--}}
+                            <div class="clearing"></div>
+                            {{--<div class="collapsible-header open-info">...</div>--}}
+                            {{--<ul class="col s12 collapsible no-padding" data-collapsible="accordion">--}}
+                            {{--<li>--}}
+                            {{--<div class="collapsible-header open-info">...</div>--}}
+                            {{--<div class="collapsible-body"><p>Дополнительная информация о товаре. Дополнительная информация о товаре. Дополнительная информация о товаре. Дополнительная информация о товаре. Дополнительная информация о товаре. Дополнительная информация о товаре. Дополнительная информация о товаре.</p></div>--}}
+                            {{--</li>--}}
+                            {{--</ul>--}}
 
-                    </div>
+                        </div>
+                    </a>
                 @endif
                 <div class="compare-box-hover">
                     <input
