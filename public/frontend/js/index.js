@@ -213,7 +213,6 @@ function filterProducts(filcl, page){
     $.ajax({
         url: location.href,
         method: 'GET',
-        loader: '/frontend/images/loader.gif',
         cache: false,
         data: data + '&page=' + page,
         beforeSend: function(){

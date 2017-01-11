@@ -239,8 +239,9 @@
             {{--<pre>--}}
             {{--@{{ $data.products.pagination | json }}--}}
             {{--</pre>--}}
+            <div v-show="loader" align="center"><img src='/frontend/images/loading.gif'></div>
 
-            <table id="sample-table-2" class="table table-bordered table-hover">
+            <table id="sample-table-2" class="table table-bordered table-hover" v-show="!loader">
                 <thead>
                 <tr>
                     <th class="options">
@@ -369,7 +370,7 @@
             <p v-if="products.productList.length == 0">
                 <b>Список продуктов по текущему запросу пуст</b>
             </p>
-            <nav v-if="products.productList.length > 0">
+            <nav v-if="products.productList.length > 0"  v-show="!loader">
                 <ul class="pager">
                     <li class="previous @{{ products.pagination.currentPage == 1 ? 'disabled' : '' }}"
                         v-on="click: prevPage()">
@@ -424,7 +425,8 @@
                 filtersList: null,
                 productSel: false,
                 selectedProductsIds: [],
-                selectedAction: 'delete'
+                selectedAction: 'delete',
+                loader: null
             },
 
             methods: {
@@ -459,7 +461,12 @@
                         url: '/dashboard/products',
                         data: form + '&page=' + vue.products.pagination.pageToGet,
                         cache: false,
+                        loader: '/frontend/images/loading.gif',
+                        beforeSend: function(){
+                            vue.loader = true;
+                        },
                         success: function (response) {
+                            vue.loader = false;
                             vue.filtersList = response.filters;
                             vue.products.productList = response.products.data;
                             vue.products.pagination.currentPage = response.products.current_page;
