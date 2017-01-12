@@ -127,7 +127,7 @@
                                 {!! Form::text('search', $value = Request::get('q'),
                                     ['class' => 'form-control', 'placeholder' => 'Поиск', 'v-on' => 'input: filterProducts()']) !!}
                             </div>
-
+                            <div class="col-xs-2 pull-left" v-show="products.productList.length">Выведено : @{{ products.productList.length }} единиц</div>
                             <div class="col-xs-1 pull-right">
                                 <button class="btn btn-sm btn-danger pull-right" v-on="click:filterProductsPrim($event)">
                                     Применить
@@ -147,7 +147,7 @@
                             <div class="col-xs-1 pull-right">
                                 <button class="btn btn-sm btn-primary" v-on="click:showPanel($event)">Фильтры</button>
                             </div>
-                            <div class="col-xs-2 pull-right" v-show="products.productList.length">Выведено : @{{ products.productList.length }} единиц</div>
+
                             <div class="clearfix"></div>
 
                             <input type="hidden" value="0" name="isDirty" id="isDirty"/>
