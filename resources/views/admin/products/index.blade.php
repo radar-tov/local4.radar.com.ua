@@ -266,7 +266,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-repeat="product in products.productList">
+                <tr v-repeat="product in products.productList" v-on="click:chengeColor()">
                     <td class="options">
                         <input type="checkbox" name="selected[]" class="productSel" value="@{{ product.id }}"
                                v-on="change: selectProduct($event)"/>
@@ -584,6 +584,13 @@
                 showPanel: function (event) {
                     event.preventDefault();
                     $("#panel").slideToggle('slow');
+                },
+
+                chengeColor: function () {
+                    $('#sample-table-2 tr').click(function(){
+                        $('#sample-table-2 tr').removeClass('marked');
+                        $(this).addClass('marked');
+                    });
                 }
 
             }

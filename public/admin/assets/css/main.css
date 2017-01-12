@@ -505,3 +505,7 @@ textarea {
 .tt-suggestion.tt-selectable:hover {
     background: #e5e5e5;
 }
+
+.marked {
+    background-color: #AFEEEE;
+}
