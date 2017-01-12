@@ -48,7 +48,7 @@
 
                 <div class="row">
                     <div v-show="!selectedProductsIds.length">
-                        {!! Form::open(['url' => '#', 'v-on' => 'change: filterProducts()', 'v-el' => 'filterForm', 'id' => 'filterForm']) !!}
+                        {!! Form::open(['url' => '#', 'v-el' => 'filterForm', 'id' => 'filterForm']) !!}
                         {!! csrf_field() !!}
 
                         <div class="col-xs-2">
@@ -129,13 +129,14 @@
                             </div>
 
                             <div class="col-xs-1 pull-right">
+                                <button class="btn btn-sm btn-danger pull-right" v-on="click:filterProductsPrim($event)">
+                                    Применить
+                                </button>
+                            </div>
+                            <div class="col-xs-1 pull-right">
                                 <button class="btn btn-sm btn-primary" v-on="click:delFilters($event)">
                                     Сбросить фильтры
                                 </button>
-                            </div>
-
-                            <div class="col-xs-1 pull-right">
-                                {!! Form::submit('Обновить', ['class' => 'btn btn-sm btn-primary']) !!}
                             </div>
 
                         </div>
@@ -146,7 +147,7 @@
                             <div class="col-xs-1 pull-right">
                                 <button class="btn btn-sm btn-primary" v-on="click:showPanel($event)">Фильтры</button>
                             </div>
-
+                            <div class="col-xs-2 pull-right" v-show="products.productList.length">Выведено : @{{ products.productList.length }} единиц</div>
                             <div class="clearfix"></div>
 
                             <input type="hidden" value="0" name="isDirty" id="isDirty"/>
@@ -426,7 +427,8 @@
                 productSel: false,
                 selectedProductsIds: [],
                 selectedAction: 'delete',
-                loader: null
+                loader: null,
+                col: null
             },
 
             methods: {
@@ -454,6 +456,34 @@
                 },
 
                 filterProducts: function () {
+                    var vue = this;
+                    var form = $(vue.$$.filterForm).serialize();
+                    $.ajax({
+                        method: "GET",
+                        url: '/dashboard/products',
+                        data: form + '&page=' + vue.products.pagination.pageToGet,
+                        cache: false,
+                        loader: '/frontend/images/loading.gif',
+                        beforeSend: function(){
+                            vue.loader = true;
+                        },
+                        success: function (response) {
+                            vue.loader = false;
+                            vue.filtersList = response.filters;
+                            vue.products.productList = response.products.data;
+                            vue.products.pagination.currentPage = response.products.current_page;
+                            vue.products.pagination.lastPage = response.products.last_page;
+
+                            if (vue.products.pagination.lastPage < vue.products.pagination.pageToGet) {
+                                vue.products.pagination.pageToGet = vue.products.pagination.lastPage;
+                                vue.filterProducts()
+                            }
+                        }
+                    });
+                },
+
+                filterProductsPrim: function (event) {
+                    event.preventDefault();
                     var vue = this;
                     var form = $(vue.$$.filterForm).serialize();
                     $.ajax({
