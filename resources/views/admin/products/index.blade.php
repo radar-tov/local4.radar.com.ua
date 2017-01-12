@@ -5,16 +5,7 @@
 @extends('admin.app')
 
 @section('top-scripts')
-    <style>
-        .files {
-            float: left;
-            padding: 20px 20px 10px 10px;
-        }
 
-        li {
-            list-style-type: none; !important
-        }
-    </style>
 @stop
 
 @section('page-title')
@@ -72,7 +63,7 @@
                         </div>
 
                         <div class="col-xs-2">
-                            <select name="categoryId" class="form-control"
+                            <select name="categoryId" class="form-control" v-el="categoryIdSel" v-on="change:changeColor($event, categoryId)"
                                     selected="{{ Session::get('admin_categoryId') }}" v-model="categoryId">
                                 <option value="0">Все категории</option>
                                 @foreach($categoriesProvider->getListForNav()->all() as $item)
@@ -80,7 +71,6 @@
                                         @if(count($item->children))
                                             @foreach($item->children as $child)
                                                 <option value="{{ $child->id }}"
-                                                        v-bind:value="{{ $child->id }}"
                                                         @if(Session::get('admin_categoryId') == $child->id)
                                                             selected
                                                         @endif
@@ -195,7 +185,7 @@
                     </div>
 
 
-                    <div class="" v-if="selectedProductsIds.length">
+                    <div class="actionform" v-if="selectedProductsIds.length">
 
                         {!! Form::open(['url' => '#', 'v-el' => 'actionForm', 'v-on' => 'submit: fireAction']) !!}
 
@@ -407,7 +397,8 @@
             ready: function () {
                 var vue = this;
                 this.filterProducts();
-                $(this.$el).show()
+                $(this.$el).show();
+                this.selectColor();
             },
             data: {
                 products: {
@@ -432,6 +423,23 @@
             },
 
             methods: {
+
+                selectColor: function () {
+                    var vue = this;
+                    var cat = $(vue.$$.categoryIdSel);
+                    if(cat.val() > 0){
+                        cat.css('border-color', '#ff4d59');
+                    }
+                },
+
+                changeColor: function (select, value) {
+                    if(value == 0){
+                        console.log(select);
+                        select.style = 'border-color: ';
+                    }else{
+                        select.css('border-color', '#ff4d59');
+                    }
+                },
 
                 delFilters: function (event) {
                     event.preventDefault();
