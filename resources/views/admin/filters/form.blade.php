@@ -14,22 +14,22 @@
         </div>
     </div>
     {{--<div class="col-xs-6">--}}
-        {{--<div class="form-group">--}}
-            {{--<a href="#" class="pull-right" v-on="click:makeSlug($event)" v-show="title">--}}
-                {{--<small>Сгенерировать ссылку</small>--}}
-                {{--<i class="fa fa-sort-alpha-asc"></i>--}}
-            {{--</a>--}}
-            {{--<label for="title">Ссылка</label>--}}
-            {{--<input--}}
-                {{--type="text"--}}
-                {{--name="slug"--}}
-                {{--class="form-control"--}}
-                {{--id="slug"--}}
-                {{--value="{!! old('slug', $filter->slug) !!}"--}}
-                {{--placeholder='Ссылка'--}}
-                {{--v-model="slug"--}}
-            {{--/>--}}
-        {{--</div>--}}
+    {{--<div class="form-group">--}}
+    {{--<a href="#" class="pull-right" v-on="click:makeSlug($event)" v-show="title">--}}
+    {{--<small>Сгенерировать ссылку</small>--}}
+    {{--<i class="fa fa-sort-alpha-asc"></i>--}}
+    {{--</a>--}}
+    {{--<label for="title">Ссылка</label>--}}
+    {{--<input--}}
+    {{--type="text"--}}
+    {{--name="slug"--}}
+    {{--class="form-control"--}}
+    {{--id="slug"--}}
+    {{--value="{!! old('slug', $filter->slug) !!}"--}}
+    {{--placeholder='Ссылка'--}}
+    {{--v-model="slug"--}}
+    {{--/>--}}
+    {{--</div>--}}
     {{--</div>--}}
 </div>
 
@@ -70,8 +70,8 @@
                             @{{ v.value }}
                         </span>
                         <div class="pull-right control">
-                            <a v-on="click: editValue($event,v)"class="btn btn-xs btn-white btn-info"><i class="fa fa-edit"></i></a>
-                            <a v-on="click: removeValue($event,v)"class="btn btn-xs btn-white btn-info "><i class="fa fa-times"></i></a>
+                            <a v-on="click: editValue($event,v)" class="btn btn-xs btn-white btn-info"><i class="fa fa-edit"></i></a>
+                            <a v-on="click: removeValue($event,v)" class="btn btn-xs btn-white btn-info "><i class="fa fa-times"></i></a>
                         </div>
                     </div>
                 </li>
@@ -125,7 +125,7 @@
                     //alert("Сохранено!");
                 })
 
-                console.log(serialized);
+                //console.log(serialized);
             });
 
             saveOrder.on('click', function(e) {

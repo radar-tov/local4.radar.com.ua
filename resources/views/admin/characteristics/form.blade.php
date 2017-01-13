@@ -8,18 +8,36 @@
                 name="title"
                 class="form-control"
                 id="title"
-                value="{{ old('title',$characteristic->title) }}"
+                value="{!! old('title',$characteristic->title) !!}"
                 placeholder='Название параметра'
             />
         </div>
     </div>
+    {{--<div class="col-xs-6">--}}
+    {{--<div class="form-group">--}}
+    {{--<a href="#" class="pull-right" v-on="click:makeSlug($event)" v-show="title">--}}
+    {{--<small>Сгенерировать ссылку</small>--}}
+    {{--<i class="fa fa-sort-alpha-asc"></i>--}}
+    {{--</a>--}}
+    {{--<label for="title">Ссылка</label>--}}
+    {{--<input--}}
+    {{--type="text"--}}
+    {{--name="slug"--}}
+    {{--class="form-control"--}}
+    {{--id="slug"--}}
+    {{--value="{!! old('slug', $filter->slug) !!}"--}}
+    {{--placeholder='Ссылка'--}}
+    {{--v-model="slug"--}}
+    {{--/>--}}
+    {{--</div>--}}
+    {{--</div>--}}
 </div>
 
 @if(isset($characteristic->values))
     <div class="col-xs-12">
         <label>Доступные значения характеристики</label>
     </div>
-    <div id="values" class="col-xs-6" >
+    <div id="values" class="col-xs-6">
         <div class="form-group">
             <input type="hidden" value="{{ $characteristic->id }}" name="filterId" v-model="filterId"/>
             <div class="input-group">
@@ -52,25 +70,27 @@
                             @{{ v.value }}
                         </span>
                         <div class="pull-right control">
-                            <a v-on="click: editValue($event,v)"class="btn btn-xs btn-white btn-info"><i class="fa fa-edit"></i></a>
-                            <a v-on="click: removeValue($event,v)"class="btn btn-xs btn-white btn-info "><i class="fa fa-times"></i></a>
+                            <a v-on="click: editValue($event,v)" class="btn btn-xs btn-white btn-info"><i class="fa fa-edit"></i></a>
+                            <a v-on="click: removeValue($event,v)" class="btn btn-xs btn-white btn-info "><i class="fa fa-times"></i></a>
                         </div>
                     </div>
                 </li>
             </ol>
         </div>
 
+
         {{--<pre>--}}
             {{--@{{ $data | json }}--}}
         {{--</pre>--}}
+
     </div>
 @endif
 
 @section('top-scripts')
     <style>
         #nestable .dd-handle {
-            background: none;
-            border: none;
+             background: none;
+             border: none;
         }
     </style>
 @endsection
@@ -78,7 +98,6 @@
 @section('bottom-scripts')
     @parent
     <script src="{{ url('admin/assets/js/app/characteristics-values.js') }}"></script>
-
 
     <!-- Sortable -->
     <script src="{{ url('admin/assets/js/jquery.nestable.min.js') }}"></script>
@@ -106,7 +125,7 @@
                     //alert("Сохранено!");
                 })
 
-                console.log(serialized);
+                //console.log(serialized);
             });
 
             saveOrder.on('click', function(e) {
@@ -132,5 +151,21 @@
 
         });
 
+
+
+        //                .fail(function () {
+        //                    alert('Questions could not be loaded.');
+        //                });
+
+        //  console.log(serialized);
+
+        //          });
+
+
+
+        //            $('[data-rel="tooltip"]').tooltip();
+        //            $('[data-rel="tooltip"]').tooltip();
+        //        });
     </script>
+
 @endsection

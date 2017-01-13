@@ -76,7 +76,7 @@ if(document.getElementById('values')) {
                 this.$http.post(uri,function(data,status,request) {
                     vue.values = data;
                     //alert("OK!")
-                    //vue.reloadListeners();
+                    vue.reloadListeners();
                 });
             },
 
