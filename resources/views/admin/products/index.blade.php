@@ -35,7 +35,7 @@
 
         <div class="col-xs-12">
             <br/>
-            <div class="well">
+            <div class="well" style="min-height: 124px">
 
                 <div class="row">
                     <div v-show="!selectedProductsIds.length">
