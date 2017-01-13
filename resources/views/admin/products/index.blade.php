@@ -5,16 +5,7 @@
 @extends('admin.app')
 
 @section('top-scripts')
-    <style>
-        .files {
-            float: left;
-            padding: 20px 20px 10px 10px;
-        }
 
-        li {
-            list-style-type: none; !important
-        }
-    </style>
 @stop
 
 @section('page-title')
@@ -61,18 +52,22 @@
                                'nacenka'    => 'По наценке',
                                'title'      => 'По названию',
                                'name'       => 'По AdminName'
-                               ], $selected = Session::get('admin_sortBy'), ['class' => 'form-control']) !!}
+                               ], $selected = Session::get('admin_sortBy'),
+                               ['class' => 'form-control @{{ sortBy != "id" ? "marc" : "" }}',
+                                   'v-model' => 'sortBy' ]) !!}
                         </div>
 
                         <div class="col-xs-2">
                             {!! Form::select('sortByPor', [
                                'ASC'  => 'По возрастанию',
                                'DESC' => 'По убыванию'
-                               ], $selected = Session::get('admin_sortByPor'), ['class' => 'form-control']) !!}
+                               ], $selected = Session::get('admin_sortByPor'),
+                               ['class' => 'form-control @{{ sortByPor != "ASC" ? "marc" : "" }}',
+                                    'v-model' => 'sortByPor']) !!}
                         </div>
 
                         <div class="col-xs-2">
-                            <select name="categoryId" class="form-control"
+                            <select name="categoryId" class="form-control @{{ categoryId > 0 ? 'marc' : '' }}"
                                     selected="{{ Session::get('admin_categoryId') }}" v-model="categoryId">
                                 <option value="0">Все категории</option>
                                 @foreach($categoriesProvider->getListForNav()->all() as $item)
@@ -80,7 +75,6 @@
                                         @if(count($item->children))
                                             @foreach($item->children as $child)
                                                 <option value="{{ $child->id }}"
-                                                        v-bind:value="{{ $child->id }}"
                                                         @if(Session::get('admin_categoryId') == $child->id)
                                                             selected
                                                         @endif
@@ -93,23 +87,51 @@
                         </div>
 
                         <div class="col-xs-2">
-                            {!! Form::select('brandID', [0 => 'Все бренды'] + $brandsProvider->getList()->all(),
-                                $selected = Session::get('admin_brandID'),
-                                ['class' => 'form-control',]) !!}
+
+                            <select name="brandID" class="form-control @{{ brandID > 0 ? 'marc' : '' }}" v-model="brandID">
+                                <option value="0"
+                                        @if(!Session::get('admin_brandID'))
+                                            selected
+                                        @endif
+                                >Все бренды</option>
+                                @foreach($brandsProvider->getList()->all() as $key => $val)
+                                    <option value="{{ $key }}"
+                                            @if(Session::get('admin_brandID') == $key)
+                                                selected
+                                            @endif
+                                    >{{ $val }}</option>
+                                @endforeach
+                            </select>
+
                         </div>
 
                         <div class="col-xs-2">
-                            {!! Form::select('cenagrupID', [0 => 'Все ценовые группы'] + $cenaGrupsProvider->getList()->all(),
-                                $selected = Session::get('admin_cenagrupID'),
-                                ['class' => 'form-control',]) !!}
+
+                            <select name="cenagrupID" class="form-control @{{ cenagrupID > 0 ? 'marc' : '' }}" v-model="cenagrupID">
+                                <option value="0"
+                                        @if(!Session::get('admin_cenagrupID'))
+                                        selected
+                                        @endif
+                                >Все ценовые группы</option>
+                                @foreach($cenaGrupsProvider->getList()->all() as $key => $val)
+                                    <option value="{{ $key }}"
+                                            @if(Session::get('admin_cenagrupID') == $key)
+                                            selected
+                                            @endif
+                                    >{{ $val }}</option>
+                                @endforeach
+                            </select>
+
                         </div>
 
                         <div class="col-xs-2">
-                            {!! Form::select('discount', [
-                               0 => 'Без скидки и наценки',
-                               1 => 'Без скидки',
-                               2 => 'Со скидкой'
-                               ], $selected = Session::get('admin_discount'), ['class' => 'form-control']) !!}
+
+                            <select name="discount" class="form-control @{{ discount > 0 ? 'marc' : '' }}" v-model="discount">
+                                <option value="0" @if(!Session::get('admin_discount')) selected @endif >Без скидки и наценки</option>
+                                <option value="1" @if(Session::get('admin_discount') == 1) selected @endif >Без скидки</option>
+                                <option value="2" @if(Session::get('admin_discount') == 2) selected @endif >Со скидкой</option>
+                            </select>
+
                         </div>
 
                         <div style="padding-top: 50px">
@@ -120,7 +142,8 @@
                                  50 => 'По 50 продуктов',
                                  100 => 'По 100 продуктов',
                                  200 => 'По 200 продуктов',
-                                ], $selected = Session::get('admin_paginate'), ['class' => 'form-control']) !!}
+                                ], $selected = Session::get('admin_paginate'), ['class' => 'form-control @{{ paginate > 20 ? "marc" : "" }}',
+                                    'v-model' => 'paginate']) !!}
                             </div>
 
                             <div class="col-xs-3">

@@ -131,7 +131,12 @@ class ProductsController extends AdminController
                 $request->session()->put('admin_discount', $request->get('discount'));
                 $request->session()->save();
             }else{
-                $request->merge(array('discount' => Session::get('admin_discount')));
+                //$request->merge(array('discount' => Session::get('admin_discount')));
+                if($request->get('discount') == 0){
+                    Session::forget('admin_discount');
+                }else{
+                    $request->merge(array('discount' => Session::get('admin_discount')));
+                }
             }
 
             if(!empty($request->get('paginate'))){
