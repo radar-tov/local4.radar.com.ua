@@ -142,6 +142,8 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         Route::post('values/order',['as'=>'dashboard.values.order', 'uses'=>'FiltersValuesController@order']);
         Route::post('filters/get', 'FiltersController@getFilters');
         Route::resource('filters', 'FiltersController');
+        Route::put('values/{id}', 'FiltersValuesController@update');
+        Route::delete('values/{id}', 'FiltersValuesController@destroy');
         Route::resource('values', 'FiltersValuesController');
         /* /end FILTERS */
 
@@ -149,6 +151,7 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         Route::post('characteristics_value/{id}/characteristics',['as'=>'dashboard.values.characteristics', 'uses'=>'CharacteristicsValuesController@fetchByCharacteristic']);
         Route::post('characteristics_value/order',['as'=>'dashboard.characteristics_value.order', 'uses'=>'CharacteristicsValuesController@order']);
         Route::post('characteristics/get', 'CharacteristicsController@getCharact');
+        Route::get("characteristics/{id}/edit", ['as'=>'dashboard.characteristics.edit', 'uses'=>'CharacteristicsController@edit']);
         Route::resource('characteristics', 'CharacteristicsController');
         Route::resource('characteristics_value', 'CharacteristicsValuesController');
         /* /end CHRACTERISTICS */
