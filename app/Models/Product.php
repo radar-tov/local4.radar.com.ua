@@ -231,6 +231,9 @@ class Product extends Eloquent {
 	 * @return string
 	 */
 	public function getNewPrice() {
+        /*if($this->out_price != 0){
+            $this->price = $this->out_price;
+        }*/
 
 		if ((count($this->relevantSale) && $this->discount > $this->relevantSale->first()->discount)) {
 			$price = $this->price - ($this->price / 100 * $this->discount);
@@ -263,10 +266,17 @@ class Product extends Eloquent {
 	 * @return string
 	 */
 	public function getPrice() {
+	    /*if($this->out_price != 0){
+            $this->price = $this->out_price;
+        }*/
 		return number_format($this->price, 0, '', ' ');
 	}
 
-	/**
+	public function getOutPrice(){
+        return number_format($this->out_price, 0, '', ' ');
+    }
+
+    /**
 	 * @return string
 	 */
 	public function getStockPrice() {

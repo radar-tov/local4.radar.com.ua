@@ -41,7 +41,8 @@ class CartController extends Controller {
 			$id = $product->clone_of ?: $product->id,
 			$title = $product->title,
 			$qty = 1,
-			$price = str_replace(' ', '', $product->hasDiscount() ? $product->getNewPrice() : $product->getPrice()),
+//			$price = str_replace(' ', '', $product->hasDiscount() ? $product->getNewPrice() : $product->getPrice()),
+            $price = str_replace(' ', '', $product->out_price),
 			$options = [
                 'instance' => 'main',
 				'excerpt' => $product->excerpt,
@@ -72,7 +73,8 @@ class CartController extends Controller {
             $id = $product->clone_of ?: $product->id,
             $title = $product->title,
             $qty = $request->get('qty'),
-            $price = str_replace(' ', '', $product->hasDiscount() ? $product->getNewPrice() : $product->getPrice()),
+//          $price = str_replace(' ', '', $product->hasDiscount() ? $product->getNewPrice() : $product->getPrice()),
+            $price = str_replace(' ', '', $product->out_price),
             $options = [
                 'instance' => 'main',
                 'excerpt' => $product->excerpt,
@@ -115,13 +117,16 @@ class CartController extends Controller {
             $discount = $product->getNewPrice();
         }else{
             $discount = null;
+            /*if($product->out_price != 0){
+                $product->price = $product->out_price;
+            }*/
         }
 
         Cart::instance('compare')->add(
             $id = $product->id,
             $title = $product->title,
             $qty = 1,
-            $price = $product->price,
+            $price = $product->out_price,
 
             $options = [
                 'category_name' => $product->category->title,

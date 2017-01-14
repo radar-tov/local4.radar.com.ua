@@ -125,8 +125,9 @@ class CenaController extends Controller
                 if($cenagrup->skidka != 0){
                     $product->out_price = round((round(($product->base_price * $cenagrup->curs), 2)) - ((round(($product->base_price * $cenagrup->curs), 2)) * $product->discount / 100));
                     $out .= "<p>Новая выходная цена - ".$product->out_price."</p>";
-                }elseif($cenagrup->nacenka != 0){
-                    $product->out_price = round((round(($product->base_price * $cenagrup->curs), 2)) + ((round(($product->base_price * $cenagrup->curs), 2)) * $product->discount / 100));
+                }
+                if($cenagrup->nacenka != 0){
+                    $product->out_price = round((round(($product->base_price * $cenagrup->curs), 2)) + ((round(($product->base_price * $cenagrup->curs), 2)) * $product->nacenka / 100));
                     $out .= "<p>Новая выходная цена - ".$product->out_price."</p>";
                 }
 

@@ -97,12 +97,13 @@
                     <div class="col s12 clearleft wrap-price">
                         <div class="pricesBlock" style="width:100%;float:left">
                             <div class="col s12 item-prices">
-                                @if($product->hasDiscount())
+                                {{--@if($product->hasDiscount())
                                     <span class="item-old-price no-margin">{{ $product->getPrice() }} грн</span>
                                     <span class="item-new-price no-margin">{{ $product->getNewPrice() }} грн</span>
                                 @else
                                     <p class="item-new-price no-margin">{{ $product->getPrice() }} грн</p>
-                                @endif
+                                @endif--}}
+                                <p class="item-new-price no-margin">{{ $product->getOutPrice() }} грн</p>
                             </div>
                             <div class="col s12">
                                 <div class="center-left kol col">
