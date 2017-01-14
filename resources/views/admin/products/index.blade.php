@@ -52,7 +52,7 @@
                                'nacenka'    => 'По наценке',
                                'title'      => 'По названию',
                                'name'       => 'По AdminName'
-                               ], $selected = Session::get('admin_sortBy'),
+                               ], $selected = ( Session::get('admin_sortBy' ) ? Session::get('admin_sortBy') : 'id' ),
                                ['class' => 'form-control @{{ sortBy != "id" ? "marc" : "" }}',
                                    'v-model' => 'sortBy' ]) !!}
                         </div>
@@ -61,7 +61,7 @@
                             {!! Form::select('sortByPor', [
                                'ASC'  => 'По возрастанию',
                                'DESC' => 'По убыванию'
-                               ], $selected = Session::get('admin_sortByPor'),
+                               ], $selected = ( Session::get('admin_sortByPor') ? Session::get('admin_sortByPor') : 'ASC' ),
                                ['class' => 'form-control @{{ sortByPor != "ASC" ? "marc" : "" }}',
                                     'v-model' => 'sortByPor']) !!}
                         </div>
@@ -142,7 +142,8 @@
                                  50 => 'По 50 продуктов',
                                  100 => 'По 100 продуктов',
                                  200 => 'По 200 продуктов',
-                                ], $selected = Session::get('admin_paginate'), ['class' => 'form-control @{{ paginate > 20 ? "marc" : "" }}',
+                                ], $selected = ( Session::get('admin_paginate') ? Session::get('admin_paginate') : 20 ),
+                                ['class' => 'form-control @{{ paginate > 20 ? "marc" : "" }}',
                                     'v-model' => 'paginate']) !!}
                             </div>
 
