@@ -220,7 +220,7 @@ class Product extends Eloquent {
 	 * @return bool
 	 */
 	public function hasDiscount() {
-		if ($this->discount > 0 || (count($this->relevantSale) && $this->relevantSale->first()->discount > 0)) {
+		if (count($this->relevantSale) && $this->relevantSale->first()->discount > 0) {
 			return true;
 		}
 
