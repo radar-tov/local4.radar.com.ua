@@ -357,8 +357,14 @@ class ProductsController extends AdminController
         $request = $this->filesHandler->saveFile($request);
         $product = $this->product->withTrashed()->findOrFail($id);
 
-        $request['filters'] = $productService->prepareFiltersRequest($request->get('filters'));
-        $request['xaracts'] = $productService->prepareXaractsRequest($request->get('xaracts'));
+        if($request->get('filters')){
+            $request['filters'] = $productService->prepareFiltersRequest($request->get('filters'));
+        }
+
+        if($request->get('xaracts')){
+            $request['xaracts'] = $productService->prepareXaractsRequest($request->get('xaracts'));
+        }
+
 
         //Определяем checkbox
         $request = $this->isCheckbox($request, $request->sitemap, 'sitemap');
@@ -378,8 +384,16 @@ class ProductsController extends AdminController
 
         $product->update($request->all());
 
-        $product->filters()->sync($request->get('filters') ?: []);
-        $product->xaracts()->sync($request->get('xaracts') ?: []);
+        if($request->get('filters')){
+            $product->filters()->sync($request->get('filters'));
+        }
+
+        if($request->get('xaracts')){
+            $product->xaracts()->sync($request->get('xaracts'));
+        }
+
+        /*$product->filters()->sync($request->get('filters') ?: []);
+        $product->xaracts()->sync($request->get('xaracts') ?: []);*/
 
         $this->productService->syncImages($product, $request->get('imagesIds'));
 
