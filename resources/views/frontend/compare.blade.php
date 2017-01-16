@@ -48,13 +48,13 @@
                                     </a>
                                 </div>
 
-                                @if($product->options->discount)
+                                {{--@if($product->options->discount)
                                     <span class="item-old-price no-margin">{{ $product->price  }} грн</span>
                                     <span class="item-new-price no-margin">{{ $product->options->discount }} грн</span>
                                 @else
                                     <span class="item-new-price no-margin">{{ $product->price  }} грн</span>
-                                @endif
-                                {{--<span class="item-new-price no-margin">{{ $product->price  }} грн</span>--}}
+                                @endif--}}
+                                <span class="item-new-price no-margin">{{ $product->price  }} грн</span>
 
                                 <div><img src="{{ $product->options->thumbnail}}"></div>
 
