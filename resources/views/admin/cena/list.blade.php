@@ -32,7 +32,7 @@
             <td>{{ $cenagrup->skidka }}</td>
             <td>{{ $cenagrup->nacenka }}</td>
             <td>{{ count($cenagrup->getCountProducts) }}</td>
-            <td>{{ $cenagrup->updated_at }}</td>
+            <td>{{ $cenagrup->pereschet }}</td>
             <td>
                 <a href="{{ url('dashboard/cena/'.$cenagrup->id.'/refresh') }}" class="cena_refresh fancybox.ajax" title="Пересчитать цены в группе">
                     <i class="fa fa-calculator"></i>

@@ -132,7 +132,10 @@ $(document).ready(function () {
         autoSize: false,
         closeClick: false,
         openEffect: 'none',
-        closeEffect: 'none'
+        closeEffect: 'none',
+        afterClose: function () {
+            getCenaGrups();
+        }
     });
 
 
