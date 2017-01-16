@@ -41,8 +41,8 @@ class CartController extends Controller {
 			$id = $product->clone_of ?: $product->id,
 			$title = $product->title,
 			$qty = 1,
-//			$price = str_replace(' ', '', $product->hasDiscount() ? $product->getNewPrice() : $product->getPrice()),
-            $price = str_replace(' ', '', $product->out_price),
+			$price = str_replace(' ', '', $product->hasDiscount() ? $product->getNewPrice() : $product->getPrice()),
+            //$price = str_replace(' ', '', $product->out_price),
 			$options = [
                 'instance' => 'main',
 				'excerpt' => $product->excerpt,
@@ -73,8 +73,8 @@ class CartController extends Controller {
             $id = $product->clone_of ?: $product->id,
             $title = $product->title,
             $qty = $request->get('qty'),
-//          $price = str_replace(' ', '', $product->hasDiscount() ? $product->getNewPrice() : $product->getPrice()),
-            $price = str_replace(' ', '', $product->out_price),
+            $price = str_replace(' ', '', $product->hasDiscount() ? $product->getNewPrice() : $product->getPrice()),
+            //$price = str_replace(' ', '', $product->out_price),
             $options = [
                 'instance' => 'main',
                 'excerpt' => $product->excerpt,

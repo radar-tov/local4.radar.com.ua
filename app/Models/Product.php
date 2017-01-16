@@ -236,11 +236,11 @@ class Product extends Eloquent {
         }*/
 
 		if ((count($this->relevantSale) && $this->discount > $this->relevantSale->first()->discount)) {
-			$price = $this->price - ($this->price / 100 * $this->discount);
+			$price = $this->out_price - ($this->out_price / 100 * $this->discount);
 		} elseif (count($this->relevantSale) && $this->relevantSale->first()->discount > 0) {
-			$price = $this->price - ($this->price / 100 * $this->relevantSale->first()->discount);
+			$price = $this->out_price - ($this->out_price / 100 * $this->relevantSale->first()->discount);
 		} else {
-			$price = $this->price - ($this->price / 100 * $this->discount);
+			$price = $this->out_price - ($this->out_price / 100 * $this->discount);
 		}
 
 		return number_format($price, 0, '', ' ');
@@ -269,7 +269,8 @@ class Product extends Eloquent {
 	    /*if($this->out_price != 0){
             $this->price = $this->out_price;
         }*/
-		return number_format($this->price, 0, '', ' ');
+        //dump($this->relevantSale->first());
+		return number_format($this->out_price, 0, '', ' ');
 	}
 
 	public function getOutPrice(){

@@ -5,7 +5,7 @@
     <title></title>
 </head>
 <body>
-<div style="font:normal 15px/140% Arial;background:#ffffff;color:#333;padding:1em 2em"><a href="{{ url() }}" target="_blank"><img src="{{ url('frontend/images/logo.png') }}" alt="«Radar»"></a><!--домен и путь к картинке здесь-->
+<div style="font:normal 15px/140% Arial;background:#ffffff;color:#333;padding:1em 2em"><a href="#" target="_blank"><img src="{{ url('frontend/images/logo.png') }}" alt="«Radar»"></a><!--домен и путь к картинке здесь-->
     <p><b>Спасибо за Ваш заказ. Для уточнения деталей заказа с Вами в ближайшее рабочее время свяжется менеджер нашего Call-центра</b></p>
     <p><b>Номер заказа: {{ $order->id }}</b></p>
     <p>Заказанные продукты:</p>

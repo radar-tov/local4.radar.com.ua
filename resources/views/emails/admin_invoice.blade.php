@@ -5,8 +5,8 @@
     <title></title>
 </head>
 <body>
-<div style="font:normal 15px/140% Arial;background:#ffffff;color:#333;padding:1em 2em"><a href="{{ url() }}" target="_blank"><img src="{{ url('frontend/images/logo.png') }}" alt="«Radar»"></a><!--домен и путь к картинке здесь-->
-    <p><b>Новый заказ подтверждён на вашем сайте <a href="{{ url() }}" target="_blank">Radar</a></b></p>
+<div style="font:normal 15px/140% Arial;background:#ffffff;color:#333;padding:1em 2em"><a href="#" target="_blank"><img src="{{ url('frontend/images/logo.png') }}" alt="«Radar»"></a><!--домен и путь к картинке здесь-->
+    <p><b>Новый заказ подтверждён на вашем сайте <a href="#" target="_blank">Radar</a></b></p>
     <p><b>Покупатель: {{ $user->name }}</b></p>
     <p><b>Страна: {{ $user->country }}</b></p>
     <p><b>Город: {{ $user->city }}</b></p>

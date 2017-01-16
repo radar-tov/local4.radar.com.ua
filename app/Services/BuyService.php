@@ -113,7 +113,7 @@ class BuyService {
 					'title' => $product->title,
 					'article' => $product->article,
 					'qty' => $boughtProduct->qty,
-					'price_without_discount' => $product->price,
+					'price_without_discount' => $product->out_price,
 					'price' => str_replace(' ', '', $boughtProduct->price),
 					'total_price' => str_replace(' ', '', $boughtProduct->price) * $boughtProduct->qty,
 					'order_id' => $this->order->id,
@@ -131,7 +131,8 @@ class BuyService {
 	public function sendNotifications()
 	{
 		// email for admin
-		Mail::send('emails.invoice', [
+		//dd($this->user);
+        Mail::send('emails.invoice', [
 			'order' => $this->order->load('products','payment_method','shipping_method'), 'user' => $this->user
 		],
 		function($message)

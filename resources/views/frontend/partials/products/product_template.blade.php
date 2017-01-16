@@ -46,14 +46,15 @@
                 {{--</div>--}}
                 <div class="item-content">
 
-                    {{--@if($product->hasDiscount())
+                    @if($product->hasDiscount())
                         <span class="old-price">{{ $product->getPrice() }}грн</span>
+                        <span> - {{ $product->getDiscount() }}% </span>
                         <span class="new-price">{{ $product->getNewPrice() }}грн</span>
                     @else
                         <span class="price">{{ $product->getPrice() }}грн</span>
-                    @endif--}}
+                    @endif
 
-                    <span class="price">{{ $product->getOutPrice() }}грн</span>
+                    {{--<span class="price">{{ $product->getOutPrice() }}грн</span>--}}
 
                 </div>
 
