@@ -150,9 +150,7 @@ class CenaController extends Controller
 
         }
         $date = new \DateTime('NOW');
-        dump($cenagrup);
-        dump($cenagrup->where('id', $id)->update(['pereschet' => $date->format("Y-m-d H:i:s")]));
-        dump($cenagrup);
+        $cenagrup->where('id', $id)->update(['pereschet' => $date->format("Y-m-d H:i:s")]);
         return $out;
     }
 
