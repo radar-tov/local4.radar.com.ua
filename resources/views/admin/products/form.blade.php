@@ -897,11 +897,13 @@
                 <div class="col-xs-12">
                     <div class="form-group">
                         {!! Form::label('meta_title', 'Meta Title') !!}
-                        {!! Form::text('meta_title', $value = null, ['class' => 'form-control', "row"=>1,'form'=>'form-data']) !!}
+                        <span>@{{ coountTitle }} / от 10 до 70</span>
+                        {!! Form::text('meta_title', $value = null, ['class' => 'form-control', "row"=>1,'form'=>'form-data', 'v-model' => 'meta_title']) !!}
                     </div>
                     <div class="form-group">
                         {!! Form::label('meta_description', 'Meta Description') !!}
-                        {!! Form::text('meta_description', $value = null, ['class' => 'form-control',"row"=>2,'form'=>'form-data']) !!}
+                        <span>@{{ coountDescription }} / от 70 до 160</span>
+                        {!! Form::text('meta_description', $value = null, ['class' => 'form-control',"row"=>2,'form'=>'form-data', 'v-model' => 'meta_description']) !!}
                     </div>
                     <div class="form-group">
                         {!! Form::label('meta_keywords', 'Meta Keywords') !!}

@@ -61,10 +61,20 @@ new Vue({
         test: null,
         relatedProducts: null,
         translate: {},
-        selectedProductsIds: []
+        selectedProductsIds: [],
+        meta_description: '',
+        meta_title: ''
     },
 
     computed: {
+
+        coountTitle: function () {
+          return this.meta_title.length
+        },
+
+        coountDescription: function () {
+            return this.meta_description.length
+        },
 
         stringImagesIds: function(){
             var images = [];
