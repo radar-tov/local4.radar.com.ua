@@ -784,7 +784,7 @@
 
                     <hr>
                     @if(isset($product))
-                        <button id="otvet" class="various fancybox.ajax btn btn-success btn-sm" href="{{ url('dashboard/pdf/add/'.$product->category_id, $product->id) }}">
+                        <button id="otvet" class="various fancybox.ajax btn btn-success btn-sm" href="{{ url('dashboard/pdf/add/'.$product->category_id.'/'.$product->brand_id, $product->id) }}">
                             Выбрать файл
                         </button>
                     @endif
