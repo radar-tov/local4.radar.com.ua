@@ -7749,7 +7749,7 @@ p.single-item-sku {
 .tech_docs {
     border: 1px solid #ddd;
     padding: 15px;
-    min-height: 340px;
+    min-height: 400px;
     width: calc(100% - 10px);
     margin-left: 10px;
 }
