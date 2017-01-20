@@ -285,6 +285,8 @@
                     <th class="p-discount">Скидка</th>
                     <th class="p-nacenka">Наценка</th>
                     <th class="p-out-price">Цена +- скидка</th>
+                    <th class="p-skidka-montaj">Скидка монт</th>
+                    <th class="p-cena-montaj">Цена монт</th>
                     <th>Категория</th>
                     <th colspan="3" class="options">Опции</th>
                 </tr>
@@ -364,6 +366,8 @@
                             </span>
                     </td>
                     <td class="">@{{ product.out_price }}</td>
+                    <td class="">@{{ product.discount_montaj }}</td>
+                    <td class="">@{{ product.cena_montaj }}</td>
                     <td>
                         <span>
                             <a href="/@{{ product.category.parent.slug }}/@{{ product.category.slug }}"

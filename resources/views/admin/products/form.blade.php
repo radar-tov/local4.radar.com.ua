@@ -416,6 +416,32 @@
                     </div>
 
                 </div>
+
+                <div class="col-xs-12">
+                    <div class="col-sm-3">
+                        {!! Form::label('discount_montaj','Скидка для монтажников') !!}
+                        <label for="discount_montaj"></label>
+                        <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa  bigger-110">%</i>
+                                        </span>
+                            {!! Form::text('discount_montaj', $value = null, ['class' => 'form-control']) !!}
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        {!! Form::label('cena_montaj','Цена для монтажников') !!}
+                        <label for="cena_montaj"></label>
+                        <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa  bigger-110">&#8372;</i>
+                                        </span>
+                            {!! Form::text('cena_montaj', $value = null, ['class' => 'form-control']) !!}
+                        </div>
+                    </div>
+
+                </div>
+
                 <div class="col-md-12">
                     <div class="row">
                         <div style="padding-bottom: 30px"></div>

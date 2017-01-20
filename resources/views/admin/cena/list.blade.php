@@ -6,6 +6,7 @@
     <td>Курс</td>
     <td>Скидка</td>
     <td>Наценка</td>
+    <td>Скидка для монтажников</td>
     <td>Товаров в группе</td>
     <td>Дата обновления</td>
     <td></td>
@@ -31,6 +32,7 @@
             <td>{{ $cenagrup->curs }}</td>
             <td>{{ $cenagrup->skidka }}</td>
             <td>{{ $cenagrup->nacenka }}</td>
+            <td>{{ $cenagrup->skidka_montaj }}</td>
             <td>{{ count($cenagrup->getCountProducts) }}</td>
             <td>{{ $cenagrup->pereschet }}</td>
             <td>

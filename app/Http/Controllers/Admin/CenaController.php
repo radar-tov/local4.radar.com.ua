@@ -122,6 +122,9 @@ class CenaController extends Controller
                 $product->nacenka = $cenagrup->nacenka;
                 $out .= "<p>Наценка - ".$product->nacenka."</p>";
 
+                $product->discount_montaj = $cenagrup->skidka_montaj;
+                $out .= "<p>Скидка для монтажников - ".$product->discount_montaj."</p>";
+
                 if($cenagrup->skidka != 0){
                     $product->out_price = round((round(($product->base_price * $cenagrup->curs), 2)) - ((round(($product->base_price * $cenagrup->curs), 2)) * $product->discount / 100));
                     $out .= "<p>Новая выходная цена - ".$product->out_price."</p>";
@@ -129,6 +132,11 @@ class CenaController extends Controller
                 if($cenagrup->nacenka != 0){
                     $product->out_price = round((round(($product->base_price * $cenagrup->curs), 2)) + ((round(($product->base_price * $cenagrup->curs), 2)) * $product->nacenka / 100));
                     $out .= "<p>Новая выходная цена - ".$product->out_price."</p>";
+                }
+
+                if($cenagrup->skidka_montaj != 0){
+                    $product->cena_montaj = round($product->out_price - ($product->out_price * $cenagrup->skidka_montaj / 100));
+                    $out .= "<p>Новая цена для монтажников - ".$product->cena_montaj."</p>";
                 }
 
             }else{
@@ -140,7 +148,9 @@ class CenaController extends Controller
                     'price' => $product->price,
                     'discount' => $product->discount,
                     'out_price' => $product->out_price,
-                    'nacenka' => $product->nacenka
+                    'nacenka' => $product->nacenka,
+                    'discount_montaj' => $product->discount_montaj,
+                    'cena_montaj' => $product->cena_montaj
                 ]
             )){
                 $out .= "<p>Товар обновили.</p>";
