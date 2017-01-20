@@ -29,7 +29,7 @@
                 <input type="decimal" name="skidka" class="form-control" value="{{ $cenagrup->skidka }}">
                 <lable>Наценка</lable>
                 <input type="decimal" name="nacenka" class="form-control" value="{{ $cenagrup->nacenka }}">
-                <lable>Наценка для монтажников</lable>
+                <lable>Скидка для монтажников</lable>
                 <input type="decimal" name="skidka_montaj" class="form-control" value="{{ $cenagrup->skidka_montaj }}">
                 <lable>Комментарии</lable>
                 <input type="textarea" name="coment" class="form-control" value="{{ $cenagrup->coment }}">
