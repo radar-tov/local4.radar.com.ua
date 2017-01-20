@@ -84,9 +84,11 @@
                 </div>
                 <div class="col s12 m6 l5 single-item-info">
                     <h3>{{ $product->title }}</h3>
-
-                    <p class="single-item-sku">Код: <span class="violet-text">{{ $product->article }}</span></p>
-
+                    @if($product->article != '-')
+                        <p class="single-item-sku">Код: <span class="violet-text">{{ $product->article }}</span></p>
+                    @else
+                        <p class="single-item-sku">Код: <span class="violet-text">{{ $product->id }}</span></p>
+                    @endif
                     @if(isset($product->brand->title))
                         <p class="brand no-margin">Производитель: <span>{{ $product->brand->title }}</span></p>
                     @endif

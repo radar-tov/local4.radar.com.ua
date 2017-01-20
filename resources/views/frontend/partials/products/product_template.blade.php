@@ -97,7 +97,11 @@
                             </span>--}}
 
                             <span class="hover-item-title">{{ $product->title }}</span>
-                            <p class="hover-sku">Код: <span>{{ $product->article }}</span></p>
+                            @if($product->article != '-')
+                                <p class="hover-sku">Код: <span>{{ $product->article }}</span></p>
+                            @else
+                                <p class="hover-sku">Код: <span>{{ $product->id }}</span></p>
+                            @endif
 
                             @if($product->video)
                                 <span class="video-review uppercase">видеообзор</span>
