@@ -546,7 +546,10 @@ class FrontendController extends BaseController
         if(!$file){
             abort(404);
         }
-        $file->update(['downloads' => $file->downloads + 1]);
+        if(!$_ENV['BOT']){
+            $file->update(['downloads' => $file->downloads + 1]);
+        }
+
         $fileName = explode('__',  $file->path);
         return Response::download($file->path, $fileName[1]);
     }
