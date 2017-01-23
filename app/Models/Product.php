@@ -233,17 +233,20 @@ class Product extends Eloquent {
 	 * @return string
 	 */
 	public function getNewPrice() {
-        /*if($this->out_price != 0){
-            $this->price = $this->out_price;
-        }*/
 
-		if ((count($this->relevantSale) && $this->discount > $this->relevantSale->first()->discount)) {
+		/*if ((count($this->relevantSale) && $this->discount > $this->relevantSale->first()->discount)) {
 			$price = $this->out_price - ($this->out_price / 100 * $this->discount);
 		} elseif (count($this->relevantSale) && $this->relevantSale->first()->discount > 0) {
 			$price = $this->out_price - ($this->out_price / 100 * $this->relevantSale->first()->discount);
 		} else {
 			$price = $this->out_price - ($this->out_price / 100 * $this->discount);
-		}
+		}*/
+
+        if (count($this->relevantSale) && $this->relevantSale->first()->discount > 0) {
+            $price = $this->out_price - ($this->out_price / 100 * $this->relevantSale->first()->discount);
+        } else {
+            $price = $this->out_price - ($this->out_price / 100 * $this->discount);
+        }
 
 		return number_format($price, 0, '', ' ');
 	}
@@ -253,13 +256,20 @@ class Product extends Eloquent {
 	 */
 	public function getDiscount() {
 		if ($this->hasDiscount()) {
-			if ((count($this->relevantSale) && $this->discount > $this->relevantSale->first()->discount)) {
+			/*if ((count($this->relevantSale) && $this->discount > $this->relevantSale->first()->discount)) {
 				return $this->discount;
 			} elseif (count($this->relevantSale) && $this->relevantSale->first()->discount > 0) {
 				return $this->relevantSale->first()->discount;
 			} else {
 				return $this->discount;
-			}
+			}*/
+
+
+            if(count($this->relevantSale) && $this->relevantSale->first()->discount > 0) {
+                return $this->relevantSale->first()->discount;
+            } else {
+                return $this->discount;
+            }
 		}
 		return 0;
 	}
