@@ -75,6 +75,11 @@ class CenaController extends Controller
      */
     public function update(Cenagrup $cenagrup, Request $request, $id)
     {
+        $request->merge(array('curs' => str_replace(",",".",$request->get('curs'))));
+        $request->merge(array('skidka' => str_replace(",",".",$request->get('skidka'))));
+        $request->merge(array('nacenka' => str_replace(",",".",$request->get('nacenka'))));
+        $request->merge(array('skidka_montaj' => str_replace(",",".",$request->get('skidka_montaj'))));
+
         if($cenagrup->findOrFail($id)->update($request->all())){
             return '<h3 align="center">Сохранено.</h3>';
         }else{
