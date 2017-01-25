@@ -1,6 +1,6 @@
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <p class="formField">
-    <label for="order-name" class="col s12 m4 l4">ФИО:<span class="red-text"> *</span></label>
+    <label for="order-name" class="col s12 m4 l4">Ваше имя:<span class="red-text"> *</span></label>
     <input class="col s12 m6 l7" id="order-name" placeholder="введите имя, фамилию и отчество" tabindex="1" name="name" type="text" value="{{ old('name') }}">
 </p>
 <!--<p class="formField">-->
@@ -12,7 +12,7 @@
     <input class="col s12 m6 l7" id="order-telephone" placeholder="введите номер телефона" tabindex="3" name="phone" type="text"value="{{ old('phone') }}">
 </p>
 <p class="formField">
-    <label for="order-email" class="col s12 m4 l4">Электронная почта:<span class="red-text"> *</span></label>
+    <label for="order-email" class="col s12 m4 l4">Электронная почта:</label>
     <input class="col s12 m6 l7" id="order-email" placeholder="введите ваш email" tabindex="4" name="email" type="text" value="{{ old('email') }}">
 </p>
 <p class="formField">

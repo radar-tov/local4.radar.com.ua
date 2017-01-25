@@ -26,8 +26,9 @@ class RegistrationRequest extends Request
         return [
             'name' => 'required|max:255',
 	        'phone' => 'required|max:20',
-	        'email' => 'required|email|max:255|unique:users',
+//	        'email' => 'required|email|max:255|unique:users',
 	        'password' => 'required|confirmed|min:6',
+            'phone' => 'required|max:255|unique:users,phone',
         ];
     }
 
@@ -35,7 +36,9 @@ class RegistrationRequest extends Request
 	public function messages()
 	{
 		return [
-			'name.required' => 'Поле ФИО обязательно для заполнения',
+            'phone.unique' => 'Пользователь с таким телефоном уже существует',
+		    'phone' => 'Номер телефона обязательн для заполнения',
+			'name.required' => 'Поле имя обязательно для заполнения',
 			'phone.required' => 'Поле Телефон обязетельно для заполнения',
 			'phone.max' => 'Телефон не должен превышать 20 символов',
 			'email.required' => 'Поле E-mail обязательно для заполнения',
