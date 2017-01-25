@@ -25,10 +25,8 @@ class RegistrationRequest extends Request
     {
         return [
             'name' => 'required|max:255',
-	        'phone' => 'required|max:20',
-//	        'email' => 'required|email|max:255|unique:users',
 	        'password' => 'required|confirmed|min:6',
-            'phone' => 'required|max:255|unique:users,phone',
+            'phone' => 'required|max:17|min:7|unique:users,phone',
         ];
     }
 
@@ -36,11 +34,11 @@ class RegistrationRequest extends Request
 	public function messages()
 	{
 		return [
+            'phone.min' => 'Телефон должен состоять минимум из 7 цифр',
             'phone.unique' => 'Пользователь с таким телефоном уже существует',
-		    'phone' => 'Номер телефона обязательн для заполнения',
 			'name.required' => 'Поле имя обязательно для заполнения',
 			'phone.required' => 'Поле Телефон обязетельно для заполнения',
-			'phone.max' => 'Телефон не должен превышать 20 символов',
+			'phone.max' => 'Телефон не должен превышать 17 символов',
 			'email.required' => 'Поле E-mail обязательно для заполнения',
 			'email.email' => 'Указан неверный формат email адреса',
 			'email.max' => 'E-mail не должен превышать 255 символов',

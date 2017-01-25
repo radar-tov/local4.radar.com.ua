@@ -26,6 +26,13 @@
     <div class="container">
         <div class="row">
             <h3>Данные профиля</h3>
+            @if(Session::has('message'))
+                <div class="col s6">
+                    <ul>
+                        <li style="color: indianred">{{Session::get('message')}}</li>
+                    </ul>
+                </div>
+            @endif
             <p class="col s12 no-margin note">Обязательные поля помечены звёздочкой <span class="red-text">*</span></p>
             <div class="row">
                 <div class="col s12 cart-authentication">
@@ -49,14 +56,16 @@
                             <label for="order-telephone" class="col s12 m4 l4">Телефон:<span class="red-text"> *</span></label>
                             <input class="col s12 m8 l7" id="order-telephone" placeholder="введите номер телефона" tabindex="3" name="phone" type="text" value="{{ old('phone', $user->phone) }}">
                         </p>
+                        <p class="col s12 no-margin note">Обязательно заполните поле "Электронная почта", так как востановление пароля происходит через почтовый ящик.</p>
                         <p class="formField">
-                            <label for="order-email" class="col s12 m4 l4">Электронная почта:<span class="red-text"> *</span></label>
+                            <label for="order-email" class="col s12 m4 l4">Электронная почта:</label>
                             <input class="col s12 m8 l7" id="order-email" placeholder="введите ваш email" tabindex="4" name="email" type="text" value="{{ old('email', $user->email) }}">
+
                         </p>
                         <!--<p class="formField">
                             <label for="order-address" class="col s12 m4 l4">Страна:</label>
                             
-                            {!! Form::select('country', ['Украина' => 'Украина', 'Россия' => 'Россия', 'США' => 'США'], $selected = $user->country, ['class' => 'col s12 m6 l7 no-padding', 'id' => 'order-country', 'tabindex' => 5]) !!}
+                            {{--{!! Form::select('country', ['Украина' => 'Украина', 'Россия' => 'Россия', 'США' => 'США'], $selected = $user->country, ['class' => 'col s12 m6 l7 no-padding', 'id' => 'order-country', 'tabindex' => 5]) !!}--}}
                             {{-- <select class="col s12 m6 l7 no-padding" id="order-country" tabindex="5" name="country" type="text" >
                                 <option value="Ukraine">Украина</option>
                                 <option value="Russia">Россия</option>

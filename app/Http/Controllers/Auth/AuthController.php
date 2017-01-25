@@ -75,6 +75,12 @@ class AuthController extends Controller
 
 	public function postLogin(Request $request)
 	{
+	    if($request->email == ''){
+	        $this->username = 'phone';
+        }else{
+            $this->username = 'email';
+        }
+
 		$this->validate($request, [
 			$this->loginUsername() => 'required', 'password' => 'required',
 		]);
