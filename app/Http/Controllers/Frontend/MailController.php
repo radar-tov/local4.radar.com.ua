@@ -14,13 +14,15 @@ class MailController extends Controller
 
 	public function __construct()
 	{
-        $this->emailTo = Setting::pluck('feedback_email')->first();
-        $this->emailFrom = Setting::pluck('contact_email')->first();
+		$emailTo = Setting::pluck('feedback_email')->first();
+		$emailFrom = Setting::pluck('contact_email')->first();
 
 		if(empty($emailTo or $emailFrom)) {
 			throw new Exception("Feedback email is empty! Please set email.");
 		}
 
+		$this->emailTo = $emailTo;
+		$this->emailFrom = $emailFrom;
 	}
 
 	public function mailMe(Request $request)
