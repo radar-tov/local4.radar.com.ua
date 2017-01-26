@@ -490,10 +490,14 @@ class FrontendController extends BaseController
 	 * Update user data from cabinet
 	 *
 	 */
-	public function updateUserData(Request $request)
+	public function updateUserData(User $user, Request $request)
 	{
-		Auth::user()->update($request->only('phone','email','password', 'country','city', 'address', 'name'));
-		return redirect()->back();
+	    if(!$user->where('email', $request->email)->first()){
+            Auth::user()->update($request->only('phone','email','password', 'city', 'address', 'name'));
+            return redirect()->back();
+        }else{
+            return redirect()->back()->with('message', 'Этот email уже занят.');
+        }
 	}
 
 	/**

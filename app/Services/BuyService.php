@@ -132,23 +132,22 @@ class BuyService {
 	{
 		// email for admin
 		//dd($this->user);
-        Mail::send('emails.invoice', [
-			'order' => $this->order->load('products','payment_method','shipping_method'), 'user' => $this->user
-		],
-		function($message)
-		{
-			$message->from('house.od@gmail.com', 'Radar');
-
-			$message->to($this->user->email)->subject('Спасибо за покупку!');
-		});
-
+        if($this->user->email){
+            Mail::send('emails.invoice', [
+                'order' => $this->order->load('products','payment_method','shipping_method'), 'user' => $this->user
+            ],
+            function($message)
+            {
+                $message->from(array_get(Setting::firstOrCreate([])->toArray(),'contact_email'), 'Radar');
+                $message->to($this->user->email)->subject('Спасибо за покупку!');
+            });
+        }
 		Mail::send('emails.admin_invoice', [
 			'order' => $this->order->load('products','payment_method','shipping_method'), 'user' => $this->user
 		],
 		function($message)
 		{
-			$message->from('house.od@gmail.com', 'Radar');
-
+			$message->from(array_get(Setting::firstOrCreate([])->toArray(),'contact_email'), 'Radar');
 			$message->to(array_get(Setting::firstOrCreate([])->toArray(),'feedback_email'))->subject('Новый заказ!');
 		});
 	}
@@ -157,8 +156,8 @@ class BuyService {
 	public function validate(Request $request)
 	{
 		$validator = Validator::make($request->all(), [
-			'email' => 'unique:users|required|email',
-			'city' => 'required',
+			/*'email' => 'unique:users|required|email',
+			'city' => 'required',*/
 			'phone' => 'required',
 			'name' => 'required'
 		]);
