@@ -31,13 +31,11 @@ class PriceController extends Controller
             'from' => Setting::pluck('contact_email')->first()
         ];
 
-        dump($data);
-
         Mail::send('emails.price', ['data' => $datatext] , function($message) use ($data)
         {
             $message->from($data['from'], 'Интернет магазин Radar');
             $message->to($data['to'], $data['name'])->subject('Прайс от магазина Radar.com.ua');
-            //$message->attach($data['path']);
+            $message->attach($data['path']);
         });
         return redirect()->back();
     }
