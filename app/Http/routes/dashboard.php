@@ -162,6 +162,11 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         Route::get('cena/{id}/refresh', 'CenaController@refresh');
         Route::resource('cena', 'CenaController');
         /* /end CENA */
+
+        /* PRICE */
+        Route::get('price/download', 'PriceController@download');
+        Route::get('price/email/{id}', 'PriceController@emailUser');
+        /* /end PRICE */
     });
 
 });

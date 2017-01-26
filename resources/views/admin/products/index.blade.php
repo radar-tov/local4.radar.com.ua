@@ -20,12 +20,14 @@
 
 @section('content')
     <div class="row _hid" id="products">
+
         <div class="col-xs-6">
             <a href="{!! route('dashboard.products.create') !!}" class="btn btn-sm btn-primary" title="Добавить товар"
                target="_blank">
                 <i class="ace-icon fa fa-plus"></i> Добавить товар
             </a>
         </div>
+
         <div class="col-xs-6 ">
             <a href="{!! route('dashboard.products.trash') !!}" class="btn btn-sm btn-danger pull-right"
                title="Корзина">
@@ -152,6 +154,9 @@
                                     ['class' => 'form-control', 'placeholder' => 'Поиск', 'v-on' => 'input: filterProducts()']) !!}
                             </div>
                             <div class="col-xs-2 pull-left" v-show="products.productList.length">Выведено : @{{ products.productList.length }} единиц</div>
+                            <div class="col-xs-2 pull-left">
+                                <a href="{!! url('dashboard/price/download') !!}" target="_blank">Скачать прайс</a>
+                            </div>
                             <div class="col-xs-1 pull-right">
                                 <button class="btn btn-sm btn-danger pull-right" v-on="click:filterProductsPrim($event)">
                                     Применить

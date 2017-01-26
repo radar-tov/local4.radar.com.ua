@@ -53,7 +53,7 @@ class Price extends Command
                     echo $category->id."\n";
                     $excel->sheet(substr($category->admin_title, 0, 30), function($sheet) use ($category){
 
-                        $products = \App\Models\Product::where('category_id', $category->id)->where('active', 1)->get();
+                        $products = \App\Models\Product::where('category_id', $category->id)->where('active', 1)->orderBy('title')->get();
 
                         $sheet->loadView('admin.price.index', compact('products', 'category'));
 
@@ -63,7 +63,7 @@ class Price extends Command
 
             }
 
-        })->store('xls', 'storage/app');
+        })->store('xls', 'public/xls');
 
         echo "End recording a price.\n";
     }

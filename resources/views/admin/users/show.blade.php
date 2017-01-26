@@ -85,6 +85,9 @@
 
                     <div class="profile-info-value">
                         <span class=" -click" id="username">{{ $user->email }}</span>
+                        @if($user->email)
+                            <span><a href="{{ url('dashboard/price/email/'.$user->id) }}">Отправить прайс</a></span>
+                        @endif
                     </div>
                 </div>
                 <div class="profile-info-row">

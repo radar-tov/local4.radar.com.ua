@@ -30,6 +30,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
         $schedule->command('xmlsitemap')->dailyAt('03:00')->sendOutputTo("storage/app/shed_log.txt");
         $schedule->command('umlyandex')->dailyAt('04:00')->sendOutputTo("storage/app/yml_log.txt");
+        $schedule->command('price')->dailyAt('04:30');
         //$schedule->command('price')->cron('* * * * *')->sendOutputTo("storage/app/price.txt");
     }
 }
