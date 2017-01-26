@@ -159,6 +159,13 @@
                         <section class="order-cont">
                             <form role="form" method="POST" action="{{ url('/auth/login') }}">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <p class="formField">
+                                    Укажите Email или Ваш номер телефона.
+                                </p>
+                                <p class="formField">
+                                    <label for="order-telephone" class="col s12 m4 l4">Телефон:</label>
+                                    <input class="col s12 m6 l7" id="order-telephone" placeholder="введите номер телефона" tabindex="3" name="phone" type="text"value="">
+                                </p>
 
                                 <p class="formField">
                                     <label for="login-email" class="label label_order col s12 m4 l4">Электронная почта:</label>
@@ -173,7 +180,7 @@
                                 </div>
                                 <ol class="col s12 remember">
                                     {{--<li><a href="#" class="order-forgot-login-link">Я забыл логин</a></li>--}}
-                                    <li><a href="#" class="order-forgot-pwd-link">Забыли пароль?</a></li>
+                                    <li><a class="various fancybox.ajax" href="{{ url('password_modal') }}">Забыли пароль?</a></li>
                                 </ol>
                             </form>
                         </section>
@@ -190,12 +197,12 @@
 									<input class="col s12 m6 l7" id="order-telephone" placeholder="введите номер телефона" tabindex="3" name="phone" type="text"value="" required>
 								</p>
 								<p class="formField">
-									<label for="order-email" class="col s12 m4 l4">Электронная почта:<span class="red-text"> *</span></label>
-									<input class="col s12 m6 l7" id="order-email" placeholder="введите ваш email" tabindex="4" name="email" type="text" value="" required>
+									<label for="order-email" class="col s12 m4 l4">Электронная почта:</label>
+									<input class="col s12 m6 l7" id="order-email" placeholder="введите ваш email" tabindex="4" name="email" type="text" value="">
 								</p>
 								<p class="formField">
 									<label for="order-address" class="col s12 m4 l4">Город:</label>
-									<input class="col s12 m6 l7" id="order-city" placeholder="введите город" tabindex="6" name="city" type="text" value="" required>
+									<input class="col s12 m6 l7" id="order-city" placeholder="введите город" tabindex="6" name="city" type="text" value="">
 								</p>
 								{{--<p class="formField">--}}
 									{{--<label for="order-address" class="col s12 m4 l4">Адрес:</label>--}}
