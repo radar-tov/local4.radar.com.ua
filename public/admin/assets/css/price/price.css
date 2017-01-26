@@ -1,0 +1,12 @@
+.hed{
+    border: 1px medium #000000;
+    font-size: 15px;
+    background-color: #f7faf4;
+}
+.bod{
+    border: 1px solid #000000;
+}
+.title{
+    font-size: 17;
+    color: #311b92;
+}

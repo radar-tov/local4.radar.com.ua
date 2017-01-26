@@ -371,7 +371,7 @@
                     <td>
                         <span>
                             <a href="/@{{ product.category.parent.slug }}/@{{ product.category.slug }}"
-                               target="_blank">@{{ product.category.title }}</a>
+                               target="_blank">@{{ product.category.admin_title }}</a>
                         </span>
                     </td>
                     <td class="options">

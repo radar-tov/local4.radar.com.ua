@@ -42,43 +42,27 @@ class Price extends Command
         echo "Start recording a price.\n";
 
         Excel::create('price', function($excel) {
-            $excel->sheet('Газовые котлы', function($sheet) {
-                $products = \App\Models\Product::where('category_id', 111)->get();
-                $i=2;
 
-                $sheet->cell('A1', function($cell) {
-                    $cell->setFontWeight('bold');
-                    $cell->setFontSize(15);
-                    $cell->setBorder('solid', 'solid', 'solid', 'solid');
-                    $cell->setAlignment('center');
-                    $cell->setValue("Наименование");
-                });
-                $sheet->cell('B1', function($cell) {
-                    $cell->setFontWeight('bold');
-                    $cell->setFontSize(15   );
-                    $cell->setBorder(array(
-                        'top'   => array(
-                            'style' => 'solid'
-                        ),
-                    ));
-                    $cell->setAlignment('center');
-                    $cell->setValue("Цена");
-                });
+            $parent_cat = \App\Models\Category::where('show', 1)->where('parent_id', 0)->orderBy('order')->get();
 
-                foreach ($products as $product){
-                    if($product->name != ''){
-                        $name = $product->name;
-                    }else{
-                        $name = $product->title;
-                    }
-                    $price = round($product->cena_montaj, 2).' гр.';
+            foreach ($parent_cat as $cat){
 
-                    $sheet->row($i, array(
-                        $name, $price
-                    ));
-                    $i++;
+                $categories = \App\Models\Category::where('show', 1)->where('parent_id', $cat->id)->orderBy('order')->get();
+
+                foreach ($categories as $category){
+                    echo $category->id."\n";
+                    $excel->sheet(substr($category->admin_title, 0, 30), function($sheet) use ($category){
+
+                        $products = \App\Models\Product::where('category_id', $category->id)->where('active', 1)->get();
+
+                        $sheet->loadView('admin.price.index', compact('products', 'category'));
+
+                    });
+
                 }
-            });
+
+            }
+
         })->store('xls', 'storage/app');
 
         echo "End recording a price.\n";

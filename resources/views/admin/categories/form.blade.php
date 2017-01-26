@@ -58,6 +58,11 @@
                         ['placeholder'=>'Название категории','class'=>'form-control','v-model'=>'title']) !!}
                     </div>
                     <div class="form-group">
+                        {!! Form::label('admin_title','Название категории в админке') !!}
+                        {!! Form::text('admin_title', $value = null,
+                        ['placeholder'=>'Название категории в админке','class'=>'form-control']) !!}
+                    </div>
+                    <div class="form-group">
                         <a href="#" class="pull-right" v-on="click:makeSlug($event)">
                              <small>Сгенерировать ссылку</small>
                              <i class="fa fa-sort-alpha-asc"></i>

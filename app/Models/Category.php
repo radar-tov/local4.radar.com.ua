@@ -17,6 +17,7 @@ class Category extends Eloquent
 		'user_id',
 		'show',
 		'title',
+        'admin_title',
 		'slug',
 		'thumbnail',
 		'meta_title',
