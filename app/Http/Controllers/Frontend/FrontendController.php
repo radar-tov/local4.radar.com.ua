@@ -514,7 +514,7 @@ class FrontendController extends BaseController
 
 
 	public function otvet(){
-		switch (Session::has('from_otvet')) {
+		switch (Session::get('from_otvet')) {
 			case 'addKolProduct':
 				return view('frontend.otvet.addKolProduct');
 				break;
