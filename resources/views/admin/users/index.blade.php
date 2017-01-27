@@ -37,6 +37,7 @@
             <table id="sample-table-2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
+                    <th></th>
                     <th>Организация</th>
                     <th>Имя</th>
                     <th>Email</th>
@@ -49,10 +50,17 @@
                 <tbody>
                 @foreach($users as $user)
                     <tr>
+                        <td>
+                            @if($user->active > 0)
+                                <i class="fa fa-eye green"></i>
+                            @else
+                                <i class="fa fa-eye red"></i>
+                            @endif
+                        </td>
                         <td>{{ $user->organization }}</td>
                         <td><a href="{!! route('dashboard.users.show',[$user->id]) !!}" target="_blank">{{ $user->name }}</a></td>
                         <td>{{ $user->email }}</td>
-                        <td>{{ $user->phone }} {{ $user->phone_all }}</td>
+                        <td>{{ $user->phone }}, {{ $user->phone_all }}</td>
                         <td>{{ $user->city }} <small style="color: #808080;">  {{ $user->country }} </small></td>
                         <td class="center">
                             @if($user->isAdmin())
