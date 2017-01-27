@@ -106,7 +106,9 @@ class UsersController extends  AdminController
 	 */
 	public function update(UpdateRequest $request, User $user, CustomerGrupsUser $customerGroupuser, $id)
 	{
-	    if($user->where('phone', $request->phone)->first()){
+        $userPhone = $user->where('phone', $request->phone)->first();
+        
+	    if($userPhone && $userPhone->id != $id){
             return redirect()->route('dashboard.users.edit', $id)->with('message','<h4 align="center" style="color: red">Такой номер телефона уже занят.</h4>');
         }
 
