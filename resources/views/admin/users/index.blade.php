@@ -13,9 +13,13 @@
             <div class="col-lg-3 pull-right no-padding">
                 {!! Form::open(['route' => 'dashboard.users.index', 'method' => 'GET']) !!}
                 <div class="input-group">
+                    {{--<select name="order" id="order">
+                        <option value="ASC">По порядку</option>
+                        <option value="DESC">В обратном порядке</option>
+                    </select>--}}
                     <input type="text" name="search" class="form-control" placeholder="Поиск"
                            @if($search != '') value="{{ $search }}" @endif>
-                  <span class="input-group-btn">
+                    <span class="input-group-btn">
                     <button class="btn btn-primary btn-sm" type="submit">
                         <i class="fa fa-search"></i> Поиск
                     </button>

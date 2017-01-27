@@ -45,7 +45,8 @@ class UsersController extends  AdminController
                  ->orWhere('organization', 'LIKE', '%'.$request->get('search').'%')
                  ->orWhere('phone_all', 'LIKE', '%'.$request->get('search').'%')
 				 ->orWhere('phone', 'LIKE', '%'.$request->get('search').'%');
-		})->paginate(20);
+
+		})->orderBy('id', $request->order)->paginate(30);
 
 		$search = $request->get('search');
 		$permissions= $this->permissions;
