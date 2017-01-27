@@ -12,7 +12,8 @@
             <a class="btn btn-sm btn-primary" title="Назад" href="javascript:return false;" onclick="window.history.back()">
                 <i class="ace-icon fa fa-chevron-circle-up"></i> Назад
             </a>
-            <a href="{!! route('dashboard.users.edit',[$user->id]) !!}" class="btn btn-sm btn-primary" title="Редактировать пользователя">
+            <a href="{!! route('dashboard.users.edit',[$user->id]) !!}" class="btn btn-sm btn-primary"
+               title="Редактировать пользователя" target="_blank">
                 <i class="ace-icon fa fa-edit "></i> Редактировать пользователя
             </a>
         </div>
@@ -73,8 +74,17 @@
         <div class="col-xs-12 col-sm-9">
             <!-- #section:pages/profile.info -->
             <div class="profile-user-info profile-user-info-striped">
+
                 <div class="profile-info-row">
-                    <div class="profile-info-name"> Имя  </div>
+                    <div class="profile-info-name"> Организация  </div>
+
+                    <div class="profile-info-value">
+                        <span class=" -click" id="username">{{ $user->organization }}</span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> Контактное имя  </div>
 
                     <div class="profile-info-value">
                         <span class=" -click" id="username">{{ $user->name }}</span>
@@ -86,7 +96,7 @@
                     <div class="profile-info-value">
                         <span class=" -click" id="username">{{ $user->email }}</span>
                         @if($user->email)
-                            <span><a href="{{ url('dashboard/price/email/'.$user->id) }}">Отправить прайс</a></span>
+                            <span><a href="{{ url('dashboard/price/email/'.$user->id) }}">Отправить прайс (монт)</a></span>
                         @endif
                     </div>
                 </div>
@@ -111,6 +121,30 @@
 
                     <div class="profile-info-value">
                         <span class=" -click" id="age"> {{ $user->phone }}</span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> Телефоны </div>
+
+                    <div class="profile-info-value">
+                        <span class=" -click" id="age"> {{ $user->phone_all }}</span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> Город </div>
+
+                    <div class="profile-info-value">
+                        <span class=" -click" id="age"> {{ $user->city }}</span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> Коментарии </div>
+
+                    <div class="profile-info-value">
+                        <span class=" -click" id="age"> {{ $user->comments }}</span>
                     </div>
                 </div>
 

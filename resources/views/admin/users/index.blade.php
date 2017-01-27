@@ -13,7 +13,8 @@
             <div class="col-lg-3 pull-right no-padding">
                 {!! Form::open(['route' => 'dashboard.users.index', 'method' => 'GET']) !!}
                 <div class="input-group">
-                    <input type="text" name="search" class="form-control" placeholder="">
+                    <input type="text" name="search" class="form-control" placeholder="Поиск"
+                           @if($search != '') value="{{ $search }}" @endif>
                   <span class="input-group-btn">
                     <button class="btn btn-primary btn-sm" type="submit">
                         <i class="fa fa-search"></i> Поиск
@@ -36,6 +37,7 @@
             <table id="sample-table-2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
+                    <th>Организация</th>
                     <th>Имя</th>
                     <th>Email</th>
                     <th>Телефон</th>
@@ -47,22 +49,25 @@
                 <tbody>
                 @foreach($users as $user)
                     <tr>
-                        <td><a href="{!! route('dashboard.users.show',[$user->id]) !!}">{{ $user->name }}</a></td>
+                        <td>{{ $user->organization }}</td>
+                        <td><a href="{!! route('dashboard.users.show',[$user->id]) !!}" target="_blank">{{ $user->name }}</a></td>
                         <td>{{ $user->email }}</td>
-                        <td>{{ $user->phone }}</td>
+                        <td>{{ $user->phone }} {{ $user->phone_all }}</td>
                         <td>{{ $user->city }} <small style="color: #808080;">  {{ $user->country }} </small></td>
                         <td class="center">
                             @if($user->isAdmin())
                                 <span class="label label-danger arrowed">Админ</span>
                             @elseif($user->isCustomer())
                                 <span class="label label-info arrowed">Покупатель</span>
+                            @elseif($user->isMONTAJ())
+                                <span class="label label-info arrowed">Монтажник</span>
                             @else
                                 <span class="label label-default arrowed">Разовый покупатель</span>
                             @endif
                         <!-- Options -->
                         </td>
                         <td class="options">
-                            <a class="green" href="{!! route('dashboard.users.edit', $user->id) !!}">
+                            <a class="green" href="{!! route('dashboard.users.edit', $user->id) !!}" target="_blank">
                                 <i class="ace-icon fa fa-pencil bigger-130"></i>
                             </a>
                         </td>

@@ -5,6 +5,7 @@ use App\Http\Requests\User\CreateRequest;
 use App\Http\Requests\User\UpdateRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\CustomerGrupsUser;
 
 /**
  * Created by Igor Mazur
@@ -30,12 +31,15 @@ class UsersController extends  AdminController
 			$user->where('name', 'LIKE', '%'.$request->get('search').'%')
 				 ->orWhere('email', 'LIKE', '%'.$request->get('search').'%')
 				 ->orWhere('city', 'LIKE', '%'.$request->get('search').'%')
-				 ->orWhere('country', 'LIKE', '%'.$request->get('search').'%');
+                 ->orWhere('organization', 'LIKE', '%'.$request->get('search').'%')
+                 ->orWhere('phone_all', 'LIKE', '%'.$request->get('search').'%')
+				 ->orWhere('phone', 'LIKE', '%'.$request->get('search').'%');
 		})->paginate(20);
 
+		$search = $request->get('search');
 		$permissions= $this->permissions;
 
-		return view('admin.users.index',compact('users','permissions'));
+		return view('admin.users.index',compact('users','permissions', 'search'));
 	}
 
 	/**
@@ -78,7 +82,7 @@ class UsersController extends  AdminController
 	 */
 	public function edit(User $user, $id)
 	{
-		$user = $user->findOrFail($id);
+		$user = $user->where('id', $id)->with('customerGroups')->first();
 
 		return view('admin.users.edit',compact('user'))->withRoles($this->roles);
 	}
@@ -89,11 +93,16 @@ class UsersController extends  AdminController
 	 * @param $id
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
-	public function update(UpdateRequest $request, User $user, $id)
+	public function update(UpdateRequest $request, User $user, CustomerGrupsUser $customerGroupuser, $id)
 	{
-		$user->findOrFail($id)->update($request->all());
+	    $user->findOrFail($id)->update($request->all());
 
-
+        $customerGroupuser->where('user_id', $id)->delete();
+        $grups = [];
+        foreach ($request->customer_group_id as $key => $value){
+            $grups[] = ['user_id' => $id, 'customer_group_id' => $value];
+        }
+        $customerGroupuser->insert($grups);
 
 		if((int)$request->get('button')) {
 			return redirect()->route('dashboard.users.index')->withMessage('');

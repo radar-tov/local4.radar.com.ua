@@ -17,6 +17,7 @@ class User extends Eloquent implements AuthenticatableContract, CanResetPassword
 	const ADMIN_ID = 1; // for more security set -50 , for example
 	const CUSTOMER_ID = 2;
 	const GUEST_ID = 3;
+    const MONTAJ_ID = 4;
 
     /**
      * The database table used by the model.
@@ -30,7 +31,22 @@ class User extends Eloquent implements AuthenticatableContract, CanResetPassword
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password','thumbnail','address','phone','active','permissions','country','city'];
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'thumbnail',
+        'address',
+        'phone',
+        'active',
+        'permissions',
+        'country',
+        'city',
+        'organization',
+        'phone_all',
+        'comments',
+        'role_id'
+    ];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -72,6 +88,15 @@ class User extends Eloquent implements AuthenticatableContract, CanResetPassword
 		return false;
 	}
 
+    public function isMONTAJ()
+    {
+        if($this->role_id == self::MONTAJ_ID) {
+            return true;
+        }
+
+        return false;
+    }
+
 
 	public function orders()
 	{
@@ -94,4 +119,5 @@ class User extends Eloquent implements AuthenticatableContract, CanResetPassword
 	{
 		return $this->hasMany(Review::class);
 	}
+
 }
