@@ -3,6 +3,7 @@ node_modules/
 storage/
 public/swf/
 public/pdf/
+public/xls/
 composer.lock
 composer.phar
 .env
