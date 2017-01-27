@@ -24,6 +24,9 @@
 @section('content')
     <div class="row">
         @include('admin.partials.errors')
+        @if(count(session('message')))
+            {!! session('message') !!}
+        @endif
         {!! Form::model($user,['route'=>['dashboard.users.update',$user->id],'method'=>'put', 'id'=>'form-data']) !!}
             @include('admin.users.form')
         {!! Form::close() !!}

@@ -23,7 +23,7 @@
     </div>
     <div class="form-group">
         {!! Form::label('permissions','Уровень доступа')!!}<br/>
-        {!! Form::select('permissions',['0'=>'','5'=>'Монтажник','10'=>'Покупатель','-5'=>'Админ'], $selected = $user->permissions, ['class'=>'form-control']) !!}
+        {!! Form::select('permissions',['0'=>'','-5'=>'Админ','5'=>'Монтажник','10'=>'Покупатель'], $selected = $user->permissions, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
         {!! Form::label('role_id','Роль')!!}<br/>
@@ -32,6 +32,7 @@
     <div class="form-group">
         {!! Form::label('customer_group_id','Группа скидок')!!}<br/>
         <select name="customer_group_id[]" id="customer_group_id" size="3" class="form-control" multiple>
+            <option value="">Вне групп</option>
             @foreach($customerGrupsProvider->getList() as $key => $value)
                 <option value="{{$key}}"
                 @foreach($user->customerGroups as $customer)

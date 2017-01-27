@@ -16,9 +16,20 @@ class UsersController extends  AdminController
 	/**
 	 * @var array
 	 */
-	protected $roles = [ 1 => 'admin', 2 => 'subscriber'];
+	protected $roles = [
+        0   =>  '',
+        1   =>  'Админ',
+        2   =>  'Покупатель',
+        3   =>  'Гость',
+        4   =>  'Монтажник'
+    ];
 
-	private $permissions = [0=>'', -5=>'Admin',10=>'Customer'];
+	private $permissions = [
+	    0   =>  '',
+        -5  =>  'Админ',
+        5   =>  'Монтажник',
+        10  =>  'Покупатель'
+    ];
 
 	/**
 	 * @param User $user
@@ -95,14 +106,21 @@ class UsersController extends  AdminController
 	 */
 	public function update(UpdateRequest $request, User $user, CustomerGrupsUser $customerGroupuser, $id)
 	{
+	    if($user->where('phone', $request->phone)->first()){
+            return redirect()->route('dashboard.users.edit', $id)->with('message','<h4 align="center" style="color: red">Такой номер телефона уже занят.</h4>');
+        }
+
 	    $user->findOrFail($id)->update($request->all());
 
         $customerGroupuser->where('user_id', $id)->delete();
-        $grups = [];
-        foreach ($request->customer_group_id as $key => $value){
-            $grups[] = ['user_id' => $id, 'customer_group_id' => $value];
+        //dd($request->customer_group_id);
+        if($request->customer_group_id[0] != ''){
+            $grups = [];
+            foreach ($request->customer_group_id as $key => $value){
+                $grups[] = ['user_id' => $id, 'customer_group_id' => $value];
+            }
+            $customerGroupuser->insert($grups);
         }
-        $customerGroupuser->insert($grups);
 
 		if((int)$request->get('button')) {
 			return redirect()->route('dashboard.users.index')->withMessage('');
