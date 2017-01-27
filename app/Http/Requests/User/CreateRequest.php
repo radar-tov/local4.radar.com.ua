@@ -24,7 +24,7 @@ class CreateRequest extends Request {
 	{
 		return [
 			'name'=>'required',
-			'email'=>'required|email|unique:users,email',
+			'phone'=>'required|unique:users,phone',
 			'password'=>'required|same:password_confirmation',
 			'active'=>'required|integer',
 			'role_id'=>'',

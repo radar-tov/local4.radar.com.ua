@@ -24,7 +24,7 @@ class UpdateRequest extends Request {
 	{
 		return [
 			'name'=>'required',
-			'email'=>'required|email|unique:users,email,'.$this->segment(3),
+			'phone'=>'required|unique:users,phone,'.$this->segment(3),
 			'active'=>'required|integer',
 			'role_id'=>'',
 		];
