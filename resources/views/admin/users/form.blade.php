@@ -95,4 +95,8 @@
         {!! Form::hidden('thumbnail',$value = null, ['id'=>'thumbnail', "v-model" => "loadImage"]) !!}
         <a href="{!! route('elfinder.popup',['thumbnail']) !!}" class="popup_selector btn btn-default" data-inputid="thumbnail">Выбрать Изображение</a>
     </div>
+    <div class="form-group">
+        {!! Form::label('status','Статус')!!}<br/>
+        {!! Form::select('status',['0'=>'Новый','1'=>'Звонил','2'=>'Думает','3'=>'Отказался'], $selected = $user->status, ['class'=>'form-control']) !!}
+    </div>
 </div>

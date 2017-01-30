@@ -42,6 +42,7 @@
                 <thead>
                 <tr>
                     <th></th>
+                    <th></th>
                     <th>Организация</th>
                     <th>Имя</th>
                     <th>Email</th>
@@ -59,6 +60,13 @@
                                 <i class="fa fa-eye green"></i>
                             @else
                                 <i class="fa fa-eye red"></i>
+                            @endif
+                        </td>
+                        <td>
+                            @if($user->status == 0) Новый
+                            @elseif($user->status == 1) Звонил
+                            @elseif($user->status == 2) Думает
+                            @elseif($user->status == 3) Отказался
                             @endif
                         </td>
                         <td>{{ $user->organization }}</td>

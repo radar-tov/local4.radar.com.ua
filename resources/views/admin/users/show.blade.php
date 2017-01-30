@@ -168,6 +168,16 @@
 
                     </div>
                 </div>
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> Уровень доступа </div>
+                    <div class="profile-info-value">
+                        @if($user->status == 0) Новый
+                        @elseif($user->status == 1) Звонил
+                        @elseif($user->status == 2) Думает
+                        @elseif($user->status == 3) Отказался
+                        @endif
+                    </div>
+                </div>
             </div>
             </div>
             {{--<div class="hr hr2 hr-double"></div>--}}

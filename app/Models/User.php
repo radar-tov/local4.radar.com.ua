@@ -45,7 +45,8 @@ class User extends Eloquent implements AuthenticatableContract, CanResetPassword
         'organization',
         'phone_all',
         'comments',
-        'role_id'
+        'role_id',
+        'status'
     ];
 
     /**
