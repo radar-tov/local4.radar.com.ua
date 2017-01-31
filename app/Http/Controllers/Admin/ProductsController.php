@@ -66,6 +66,7 @@ class ProductsController extends AdminController
     {
 
         if ($request->ajax()) {
+            $params = [];
 
             $search = $request->get('search');
 
@@ -78,79 +79,146 @@ class ProductsController extends AdminController
 //            });
 //            $request->merge($data);
 
+           if($request->get('search') != ''){
+               $params['search'] = $request->get('search');
+           }
+
 
             //Сохраняем в сессию
             if(!empty($request->get('sortBy'))){
                 $request->session()->put('admin_sortBy', $request->get('sortBy'));
                 $request->session()->save();
+                $params['sortBy'] = $request->get('sortBy');
             }else{
-                $request->merge(array('sortBy' => Session::get('admin_sortBy')));
+                if(Session::get('admin_sortBy')){
+                    $request->merge(array('sortBy' => Session::get('admin_sortBy')));
+                    $params['sortBy'] = Session::get('admin_sortBy');
+                }else{
+                    $request->merge(array('sortBy' => 'id'));
+                    $params['sortBy'] = 'id';
+                }
             }
 
             if(!empty($request->get('sortByPor'))){
                 $request->session()->put('admin_sortByPor', $request->get('sortByPor'));
                 $request->session()->save();
+                $params['sortByPor'] = $request->get('sortByPor');
             }else{
-                $request->merge(array('sortByPor' => Session::get('admin_sortByPor')));
+                if(Session::get('admin_sortByPor')){
+                    $request->merge(array('sortByPor' => Session::get('admin_sortByPor')));
+                    $params['sortByPor'] = Session::get('admin_sortByPor');
+                }else{
+                    $request->merge(array('sortByPor' => 'ASC'));
+                    $params['sortByPor'] = 'ASC';
+                }
             }
 
             if(!empty($request->get('categoryId'))){
                 $request->session()->put('admin_categoryId', $request->get('categoryId'));
                 $request->session()->save();
+                $params['categoryId'] = $request->get('categoryId');
             }else{
-                if($request->get('categoryId') == 0){
+                if($request->get('categoryId') == '0'){
                     Session::forget('admin_categoryId');
-                }else{
+                    $request->merge(array('categoryId' => 0));
+                    $params['categoryId'] = 0;
+                }elseif(Session::get('admin_categoryId')){
                     $request->merge(array('categoryId' => Session::get('admin_categoryId')));
+                    $params['categoryId'] = Session::get('admin_categoryId');
+                }else{
+                    $request->merge(array('categoryId' => 0));
+                    $params['categoryId'] = 0;
                 }
             }
 
             if(!empty($request->get('brandID'))){
                 $request->session()->put('admin_brandID', $request->get('brandID'));
                 $request->session()->save();
+                $params['brandID'] = $request->get('brandID');
             }else{
-                if($request->get('brandID') == 0){
+                if($request->get('brandID') == '0'){
                     Session::forget('admin_brandID');
-                }else{
+                    $request->merge(array('brandID' => 0));
+                    $params['brandID'] = 0;
+                }elseif(Session::get('admin_brandID')){
                     $request->merge(array('brandID' => Session::get('admin_brandID')));
+                    $params['brandID'] = Session::get('admin_brandID');
+                }else{
+                    $request->merge(array('brandID' => 0));
+                    $params['brandID'] = 0;
                 }
             }
 
             if(!empty($request->get('cenagrupID'))){
                 $request->session()->put('admin_cenagrupID', $request->get('cenagrupID'));
                 $request->session()->save();
+                $params['cenagrupID'] = $request->get('cenagrupID');
             }else{
-                if($request->get('cenagrupID') == 0){
+                if($request->get('cenagrupID') == '0'){
                     Session::forget('admin_cenagrupID');
-                }else{
+                    $request->merge(array('cenagrupID' => 0));
+                    $params['cenagrupID'] = 0;
+                }elseif(Session::get('admin_cenagrupID')){
                     $request->merge(array('cenagrupID' => Session::get('admin_cenagrupID')));
+                    $params['cenagrupID'] = Session::get('admin_cenagrupID');
+                }else{
+                    $request->merge(array('cenagrupID' => 0));
+                    $params['cenagrupID'] = 0;
                 }
             }
 
             if(!empty($request->get('discount'))){
                 $request->session()->put('admin_discount', $request->get('discount'));
                 $request->session()->save();
+                $params['discount'] = $request->get('discount');
             }else{
-                //$request->merge(array('discount' => Session::get('admin_discount')));
-                if($request->get('discount') == 0){
+                if($request->get('discount') == '0'){
                     Session::forget('admin_discount');
-                }else{
+                    $request->merge(array('discount' => 0));
+                    $params['discount'] = 0;
+                }elseif(Session::get('admin_discount')){
                     $request->merge(array('discount' => Session::get('admin_discount')));
+                    $params['discount'] = Session::get('admin_discount');
+                }else{
+                    $request->merge(array('discount' => 0));
+                    $params['discount'] = 0;
                 }
             }
 
             if(!empty($request->get('paginate'))){
                 $request->session()->put('admin_paginate', $request->get('paginate'));
                 $request->session()->save();
+                $params['paginate'] = $request->get('paginate');
             }else{
-                $request->merge(array('paginate' => Session::get('admin_paginate')));
+                if($request->get('paginate') == '0'){
+                    Session::forget('admin_paginate');
+                    $request->merge(array('paginate' => 20));
+                    $params['paginate'] = 20;
+                }elseif(Session::get('admin_paginate')){
+                    $request->merge(array('paginate' => Session::get('admin_paginate')));
+                    $params['paginate'] = Session::get('admin_paginate');
+                }else{
+                    $request->merge(array('paginate' => 20));
+                    $params['paginate'] = 20;
+                }
             }
 
             if(!empty($request->get('page'))){
                 $request->session()->put('admin_page', $request->get('page'));
                 $request->session()->save();
+                $params['page'] = $request->get('page');
             }else{
-                $request->merge(array('page' => Session::get('admin_page')));
+                if($request->get('page') == '0'){
+                    Session::forget('admin_page');
+                    $request->merge(array('page' => 0));
+                    $params['page'] = 0;
+                }elseif(Session::get('admin_page')){
+                    $request->merge(array('page' => Session::get('admin_page')));
+                    $params['page'] = Session::get('admin_page');
+                }else{
+                    $request->merge(array('page' => 0));
+                    $params['page'] = 0;
+                }
             }
 
             if($request->get('filters') != null){
@@ -216,7 +284,7 @@ class ProductsController extends AdminController
             }
 
 
-            $mass = ['products' => $products, 'filters' => $filters];
+            $mass = ['products' => $products, 'filters' => $filters, 'params' => $params];
 
             return $mass;
         }
