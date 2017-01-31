@@ -137,6 +137,9 @@
                                 <div class="col-xs-2">
                                     <i class="fa fa-search-minus" v-on:click="delSearch()"></i>
                                 </div>
+                                <div class="col-xs-2">
+                                    <a href="{{ url('dashboard/price/download') }}" target="_blank">Скачать парйс(монт)</a>
+                                </div>
 
                                 <div class="col-xs-1 pull-right">
                                     <button class="btn btn-sm btn-danger pull-right"
@@ -232,7 +235,7 @@
 
                     </div>
                     <br>
-                    <nav v-if="products.productList.length > 0" v-show="!loader">
+                    <nav v-if="products.productList.length > 0 && !selectedProductsIds.length" v-show="!loader">
                         <ul class="pager">
                             <li v-bind:class="{disabled : products.pagination.currentPage == 1}"
                                 v-on:click="prevPage()">
