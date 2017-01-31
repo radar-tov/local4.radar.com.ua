@@ -38,17 +38,23 @@ class UsersController extends  AdminController
 	 */
 	public function index(User $user, Request $request)
 	{
-		$users = $user->where(function($user) use($request){
-			$user->where('name', 'LIKE', '%'.$request->get('search').'%')
-				 ->orWhere('email', 'LIKE', '%'.$request->get('search').'%')
-				 ->orWhere('city', 'LIKE', '%'.$request->get('search').'%')
-                 ->orWhere('organization', 'LIKE', '%'.$request->get('search').'%')
-                 ->orWhere('phone_all', 'LIKE', '%'.$request->get('search').'%')
-				 ->orWhere('phone', 'LIKE', '%'.$request->get('search').'%');
+	    $ar = [' ', '-', '-', '(', ')', '+38'];
+        $search = $request->get('search');
+
+        foreach ($ar as $v){
+            $search = str_replace($v, '', $search);
+        }
+
+		$users = $user->where(function($user) use($search){
+			$user->where('name', 'LIKE', '%'.$search.'%')
+				 ->orWhere('email', 'LIKE', '%'.$search.'%')
+				 ->orWhere('city', 'LIKE', '%'.$search.'%')
+                 ->orWhere('organization', 'LIKE', '%'.$search.'%')
+                 ->orWhere('phone_all', 'LIKE', '%'.$search.'%')
+				 ->orWhere('phone', 'LIKE', '%'.$search.'%');
 
 		})->orderBy('id', 'DESC')->paginate(30);
 
-		$search = $request->get('search');
 		$permissions= $this->permissions;
 
 		return view('admin.users.index',compact('users','permissions', 'search'));
