@@ -435,7 +435,7 @@
 
 
 @section('bottom-scripts')
-    <script src="{!! url('admin/assets/js/vue.js') !!}"></script>
-    <script src="{!! url('admin/assets/js/vue-resource.js') !!}"></script>
+    <script src="{!! url('admin/assets/js/vue2.js') !!}"></script>
+    <script src="{!! url('admin/assets/js/vue2-resource.js') !!}"></script>
     <script src="/admin/assets/js/product/index.js"></script>
 @stop
