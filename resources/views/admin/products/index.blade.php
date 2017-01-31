@@ -19,7 +19,8 @@
 
 
 @section('content')
-    <div class="row _hid" id="products">
+
+    <div class="row" id="productsVue">
 
         <div class="col-xs-6">
             <a href="{!! route('dashboard.products.create') !!}" class="btn btn-sm btn-primary" title="Добавить товар"
@@ -37,245 +38,237 @@
 
         <div class="col-xs-12">
             <br/>
-            <div class="well" style="min-height: 124px">
-
+            <div class="well" style="min-height: 150px">
                 <div class="row">
                     <div v-show="!selectedProductsIds.length">
-                        {!! Form::open(['url' => '#', 'v-el' => 'filterForm', 'id' => 'filterForm']) !!}
-                        {!! csrf_field() !!}
 
-                        <div class="col-xs-2">
-                            {!! Form::select('sortBy', [
-                               'id'         => 'Сортировка по умолчанию',
-                               'price'      => 'По цене',
-                               'out_price'  => 'По цене со скидкой',
-                               'base_price' => 'По базовой цене',
-                               'discount'   => 'По скидке',
-                               'nacenka'    => 'По наценке',
-                               'title'      => 'По названию',
-                               'name'       => 'По AdminName'
-                               ], $selected = ( Session::get('admin_sortBy' ) ? Session::get('admin_sortBy') : 'id' ),
-                               ['class' => 'form-control @{{ sortBy != "id" ? "marc" : "" }}',
-                                   'v-model' => 'sortBy' ]) !!}
-                        </div>
+                        <form action="#" id="filterForm">
 
-                        <div class="col-xs-2">
-                            {!! Form::select('sortByPor', [
-                               'ASC'  => 'По возрастанию',
-                               'DESC' => 'По убыванию'
-                               ], $selected = ( Session::get('admin_sortByPor') ? Session::get('admin_sortByPor') : 'ASC' ),
-                               ['class' => 'form-control @{{ sortByPor != "ASC" ? "marc" : "" }}',
-                                    'v-model' => 'sortByPor']) !!}
-                        </div>
-
-                        <div class="col-xs-2">
-                            <select name="categoryId" class="form-control @{{ categoryId > 0 ? 'marc' : '' }}"
-                                    selected="{{ Session::get('admin_categoryId') }}" v-model="categoryId">
-                                <option value="0">Все категории</option>
-                                @foreach($categoriesProvider->getListForNav()->all() as $item)
-                                    <optgroup label="{{ $item->title }}">
-                                        @if(count($item->children))
-                                            @foreach($item->children as $child)
-                                                <option value="{{ $child->id }}"
-                                                        @if(Session::get('admin_categoryId') == $child->id)
-                                                            selected
-                                                        @endif
-                                                >{{ $child->title }}</option>
-                                            @endforeach
-                                        @endif
-                                    </optgroup>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="col-xs-2">
-
-                            <select name="brandID" class="form-control @{{ brandID > 0 ? 'marc' : '' }}" v-model="brandID">
-                                <option value="0"
-                                        @if(!Session::get('admin_brandID'))
-                                            selected
-                                        @endif
-                                >Все бренды</option>
-                                @foreach($brandsProvider->getList()->all() as $key => $val)
-                                    <option value="{{ $key }}"
-                                            @if(Session::get('admin_brandID') == $key)
-                                                selected
-                                            @endif
-                                    >{{ $val }}</option>
-                                @endforeach
-                            </select>
-
-                        </div>
-
-                        <div class="col-xs-2">
-
-                            <select name="cenagrupID" class="form-control @{{ cenagrupID > 0 ? 'marc' : '' }}" v-model="cenagrupID">
-                                <option value="0"
-                                        @if(!Session::get('admin_cenagrupID'))
-                                        selected
-                                        @endif
-                                >Все ценовые группы</option>
-                                @foreach($cenaGrupsProvider->getList()->all() as $key => $val)
-                                    <option value="{{ $key }}"
-                                            @if(Session::get('admin_cenagrupID') == $key)
-                                            selected
-                                            @endif
-                                    >{{ $val }}</option>
-                                @endforeach
-                            </select>
-
-                        </div>
-
-                        <div class="col-xs-2">
-
-                            <select name="discount" class="form-control @{{ discount > 0 ? 'marc' : '' }}" v-model="discount">
-                                <option value="0" @if(!Session::get('admin_discount')) selected @endif >Без скидки и наценки</option>
-                                <option value="1" @if(Session::get('admin_discount') == 1) selected @endif >Без скидки</option>
-                                <option value="2" @if(Session::get('admin_discount') == 2) selected @endif >Со скидкой</option>
-                            </select>
-
-                        </div>
-
-                        <div style="padding-top: 50px">
                             <div class="col-xs-2">
-                                {!! Form::select('paginate', [
-                                 20 => 'Показывать по 20 продуктов',
-                                 30 => 'По 30 продуктов',
-                                 50 => 'По 50 продуктов',
-                                 100 => 'По 100 продуктов',
-                                 200 => 'По 200 продуктов',
-                                ], $selected = ( Session::get('admin_paginate') ? Session::get('admin_paginate') : 20 ),
-                                ['class' => 'form-control @{{ paginate > 20 ? "marc" : "" }}',
-                                    'v-model' => 'paginate']) !!}
+                                <select name="sortBy" class="form-control" v-bind:class="{marc : params.sortBy != 'id'}"
+                                        v-model="params.sortBy">
+                                    <option value="id">Сортировка по умолчанию</option>
+                                    <option value="title">По названию</option>
+                                    <option value="price">По цене</option>
+                                    <option value="out_price">По цене со скидкой</option>
+                                    <option value="base_price">По базовой цене</option>
+                                    <option value="discount">По скидке</option>
+                                    <option value="nacenka">По наценке</option>
+                                    <option value="name">По AdminName</option>
+                                </select>
                             </div>
 
-                            <div class="col-xs-3">
-                                {!! Form::text('search', $value = Request::get('q'),
-                                    ['class' => 'form-control', 'placeholder' => 'Поиск', 'v-on' => 'input: filterProducts()']) !!}
-                            </div>
-                            <div class="col-xs-2 pull-left" v-show="products.productList.length">Выведено : @{{ products.productList.length }} единиц</div>
-                            <div class="col-xs-2 pull-left">
-                                <a href="{!! url('dashboard/price/download') !!}" target="_blank">Скачать прайс</a>
-                            </div>
-                            <div class="col-xs-1 pull-right">
-                                <button class="btn btn-sm btn-danger pull-right" v-on="click:filterProductsPrim($event)">
-                                    Применить
-                                </button>
-                            </div>
-                            <div class="col-xs-1 pull-right">
-                                <button class="btn btn-sm btn-primary" v-on="click:delFilters($event)">
-                                    Сбросить фильтры
-                                </button>
+                            <div class="col-xs-2">
+                                <select name="sortByPor" class="form-control"
+                                        v-bind:class="{marc : params.sortByPor != 'ASC'}" v-model="params.sortByPor">
+                                    <option value="ASC">По возрастанию</option>
+                                    <option value="DESC">По убыванию</option>
+                                </select>
                             </div>
 
-                        </div>
+                            <div class="col-xs-2">
 
+                                <select name="categoryId" class="form-control"
+                                        v-bind:class="{marc : params.categoryId != 0}" v-model="params.categoryId">
+                                    <option value="0">Все категории</option>
+                                    @foreach($categoriesProvider->getListForNav()->all() as $item)
+                                        <optgroup label="{{ $item->title }}">
+                                            @if(count($item->children))
+                                                @foreach($item->children as $child)
+                                                    <option value="{{ $child->id }}">{{ $child->title }}</option>
+                                                @endforeach
+                                            @endif
+                                        </optgroup>
+                                    @endforeach
+                                </select>
 
-                        <template v-if="categoryId != 0">
-
-                            <div class="col-xs-1 pull-right">
-                                <button class="btn btn-sm btn-primary" v-on="click:showPanel($event)">Фильтры</button>
                             </div>
 
-                            <div class="clearfix"></div>
+                            <div class="col-xs-2">
+                                <select name="brandID" class="form-control" v-bind:class="{marc : params.brandID != 0}"
+                                        v-model="params.brandID">
+                                    <option value="0">Все бренды</option>
+                                    @foreach($brandsProvider->getList()->all() as $key => $val)
+                                        <option value="{{ $key }}">{{ $val }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
 
-                            <input type="hidden" value="0" name="isDirty" id="isDirty"/>
-                            {{--<input type="hidden" value="{{ $subcategory->id }}" name="categoryId"/>--}}
+                            <div class="col-xs-2">
+                                <select name="cenagrupID" class="form-control"
+                                        v-bind:class="{marc : params.cenagrupID != 0}" v-model="params.cenagrupID">
+                                    <option value="0">Все ценовые группы</option>
+                                    @foreach($cenaGrupsProvider->getList()->all() as  $key => $val)
+                                        <option value="{{ $key }}">{{ $val }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
 
-                            <div id="panel" style="display: none;">
-                                <div v-repeat="filter in filtersList" class="files">
-                                    <div class="filter-group">
-                                        <div class="filter-heading">
-                                            <div class="ft-heading-inner">
-                                                <span>@{{ filter.title }}</span>
+                            <div class="col-xs-2">
+                                <select name="discount" class="form-control"
+                                        v-bind:class="{marc : params.discount != 0}"
+                                        v-model="params.discount">
+                                    <option value="0">Всё (скидки, наценки, без них)</option>
+                                    <option value="1">Без скидки</option>
+                                    <option value="2">Со скидкой</option>
+                                </select>
+                            </div>
+
+                            <div style="padding-top: 50px">
+
+                                <div class="col-xs-2">
+                                    <select name="paginate" class="form-control"
+                                            v-bind:class="{marc : params.paginate != 20}" v-model="params.paginate">
+                                        <option value="20">Показывать по 20 продуктов</option>
+                                        <option value="30">По 30 продуктов</option>
+                                        <option value="50">По 50 продуктов</option>
+                                        <option value="100">По 100 продуктов</option>
+                                        <option value="200">По 200 продуктов</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-xs-3">
+                                    <input name="search" type="text"
+                                           class="form-control" v-bind:class="{marc : params.search != ''}"
+                                           placeholder="Поиск"
+                                           value="{{ Request::get('q') }}" v-model="params.search">
+                                </div>
+
+                                <div class="col-xs-2">
+                                    <i class="fa fa-search-minus" v-on:click="delSearch()"></i>
+                                </div>
+
+                                <div class="col-xs-1 pull-right">
+                                    <button class="btn btn-sm btn-danger pull-right"
+                                            v-on:click.prevent="filterProducts()">
+                                        Применить
+                                    </button>
+                                </div>
+
+                                <div class="col-xs-1 pull-right">
+                                    <button class="btn btn-sm btn-primary" v-on:click.prevent="delFilters()">
+                                        Сбросить фильтры
+                                    </button>
+                                </div>
+
+                            </div>
+
+                            <template v-if="params.categoryId != 0">
+
+                                <div class="col-xs-1 pull-right">
+                                    <button class="btn btn-sm btn-primary" v-on:click.prevent="showPanel()">Фильтры
+                                    </button>
+                                </div>
+
+                                <div class="clearfix"></div>
+
+                                <input type="hidden" value="0" name="isDirty" id="isDirty"/>
+
+                                <div id="panel" style="display: none;">
+                                    <div v-for="filter in filtersList" class="files">
+                                        <div class="filter-group">
+                                            <div class="filter-heading">
+                                                <div class="ft-heading-inner">
+                                                    <span>@{{ filter.title }}</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="filter-content">
-                                            <ul class="filter-select no-margin">
-                                                <li class="filter-option" v-repeat="value in filter.values">
-                                                    <input id="filter-option-@{{ value.id }}"
-                                                           type="checkbox"
-                                                           name="filters[@{{ filter.id }}][]"
-                                                           value="@{{ value.id }}"
-                                                           checked="@{{ value.checked }}"
-                                                    >
-                                                    <label for="filter-option-@{{ value.id }}"
-                                                           class="filter-option-label">
-                                                        <span class="ft-opt-name">@{{ value.value }}</span>
-                                                    </label>
-                                                </li>
-                                            </ul>
+                                            <div class="filter-content">
+                                                <ul class="filter-select no-margin">
+                                                    <li class="filter-option" v-for="value in filter.values">
+                                                        <input v-bind:id="'filter-option-' + value.id"
+                                                               v-bind:name="'filters[' +  filter.id + '][]'"
+                                                               v-bind:value="value.id"
+                                                               v-bind:checked="value.checked"
+                                                               class="filter"
+                                                               type="checkbox"
+                                                        >
+                                                        <label v-bind:for="'filter-option-' + value.id"
+                                                               class="filter-option-label">
+                                                            <span class="ft-opt-name">@{{ value.value }}</span>
+                                                        </label>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
+                            </template>
+
+                            <div class="clearfix"></div>
+
+                        </form>
+
+                    </div>
+
+                    <div class="actionform" v-if="selectedProductsIds.length">
+
+                        <form action="#" id="actionForm">
+
+                            <div class="col-xs-8">
+                                {!! Form::select('action', [
+                                    'sklad-true' => 'Есть на складе',
+                                    'sklad-false' => 'Нет на складе',
+                                    'sklad-custom' => 'Под заказ',
+                                    'deactivate' => 'Не показывать на сайте',
+                                    'activate' => 'Показывать на сайте',
+                                    'delete' => 'Удалить в корзину',
+                                    'dropDiscount' => 'Убрать скидку',
+                                    'markAsBestseller'  => 'Отметить как хит продаж',
+                                    'unmarkAsBestseller'  => 'Убрать из хитов продаж',
+                                    'markAsNew' => 'Отметить как новинку',
+                                    'unmarkAsNew' => 'Убрать из новинок',
+                                    'sitemap-true' => 'Показывать в Sitemap.xml',
+                                    'sitemap-false' => 'Не показывать в Sitemap.xml',
+                                    'yandex-true' => 'Показывать в Yandex.xml',
+                                    'yandex-false' => 'Не показывать в Yandex.xml'
+                                ], $selected = null, ['class' => 'form-control', 'v-model' => 'selectedAction']) !!}
+                            </div>
+                            <div class="col-xs-4">
+                                {!! Form::submit('Применить к выбранным', ['class' => 'btn btn-info btn-sm ', 'v-on:click.prevent' => 'fireAction']) !!}
                             </div>
 
-                            {{--<pre>
-                            @{{ $data.filtersList | json }}
-                            </pre>--}}
-                        </template>
-
-                        <div class="clearfix"></div>
-
-
-                        {!! Form::close() !!}
-
+                        </form>
 
                     </div>
-
-
-                    <div class="" v-if="selectedProductsIds.length">
-
-                        {!! Form::open(['url' => '#', 'v-el' => 'actionForm', 'v-on' => 'submit: fireAction']) !!}
-
-                        <div class="col-xs-8">
-                            {{--{!! Form::label('action', 'С выбранными') !!}--}}
-                            {!! Form::select('action', [
-                                'sklad-true' => 'Есть на складе',
-                                'sklad-false' => 'Нет на складе',
-                                'sklad-custom' => 'Под заказ',
-                                'deactivate' => 'Не показывать на сайте',
-                                'activate' => 'Показывать на сайте',
-                                'delete' => 'Удалить в корзину',
-                                'dropDiscount' => 'Убрать скидку',
-                                'markAsBestseller'  => 'Отметить как хит продаж',
-                                'unmarkAsBestseller'  => 'Убрать из хитов продаж',
-                                'markAsNew' => 'Отметить как новинку',
-                                'unmarkAsNew' => 'Убрать из новинок',
-                                'sitemap-true' => 'Показывать в Sitemap.xml',
-                                'sitemap-false' => 'Не показывать в Sitemap.xml',
-                                'yandex-true' => 'Показывать в Yandex.xml',
-                                'yandex-false' => 'Не показывать в Yandex.xml'
-
-                            ],
-                            $selected = null, ['class' => 'form-control', 'v-model' => 'selectedAction']) !!}
-                        </div>
-                        <div class="col-xs-4">
-                            {!! Form::submit('Применить к выбранным', ['class' => 'btn btn-info btn-sm ']) !!}
-                        </div>
-                        {!! Form::close() !!}
-
-                    </div>
+                    <br>
+                    <nav v-if="products.productList.length > 0" v-show="!loader">
+                        <ul class="pager">
+                            <li v-bind:class="{disabled : products.pagination.currentPage == 1}"
+                                v-on:click="prevPage()">
+                                <a href="#"><span aria-hidden="true">&larr;</span> Предыдущая</a>
+                            </li>
+                            <li>
+                                <span>Показано @{{ products.productList.length }}
+                                    из @{{ products.pagination.total }}</span>
+                            </li>
+                            <li>
+                                <span>Страница @{{ products.pagination.pageToGet }}
+                                    из @{{ products.pagination.lastPage }}</span>
+                            </li>
+                            <li
+                                    v-bind:class="{disabled : products.pagination.currentPage == products.pagination.lastPage}"
+                                    v-on:click="nextPage()">
+                                <a href="#">Следующая <span aria-hidden="true">&rarr;</span></a>
+                            </li>
+                        </ul>
+                    </nav>
 
                 </div>
 
+            </div>
 
-            </div>{{--/well--}}
-        </div>{{--/col-xs-12--}}
-
+        </div>
 
         <div class="col-xs-12">
 
-            {{--<pre>--}}
-            {{--@{{ $data.products.pagination | json }}--}}
-            {{--</pre>--}}
             <div v-show="loader" align="center"><img src='/frontend/images/loading.gif'></div>
 
             <table id="sample-table-2" class="table table-bordered table-hover" v-show="!loader">
                 <thead>
                 <tr>
                     <th class="options">
-                        <input type="checkbox" v-on="change:markProducts()" v-el="mainCheckbox"/>
+                        <input type="checkbox" id="mainCheckbox" v-on:change="markProducts($event)"/>
                     </th>
                     <th class="options"><i class="fa fa-eye"></i></th>
                     <th class="options"><i class="fa fa-plus"></i></th>
@@ -296,14 +289,18 @@
                     <th colspan="3" class="options">Опции</th>
                 </tr>
                 </thead>
+
                 <tbody>
-                <tr v-repeat="product in products.productList" v-on="click:chengeColor()">
+
+                <tr v-for="product in products.productList">
+
                     <td class="options">
-                        <input type="checkbox" name="selected[]" class="productSel" value="@{{ product.id }}"
-                               v-on="change: selectProduct($event)"/>
+                        <input type="checkbox" name="selected[]" class="productSel"
+                               v-bind:value="product.id" v-on:change="selectProduct($event)"/>
                     </td>
+
                     <td class="options">
-                        <a href="/@{{ product.category.parent.slug }}/@{{ product.category.slug }}/@{{ product.slug }}"
+                        <a v-bind:href="'/' + product.category.parent.slug + '/' + product.category.slug + '/' + product.slug"
                            target="_blank">
                             <i class="fa fa-eye green" v-show="product.active > 0"></i>
                         </a>
@@ -337,21 +334,24 @@
                                   v-show="product.is_bestseller > 0">Хит продаж</span>
                             <span class="label label-danger bs-label" v-show="product.is_new > 0">Новинка</span>
                         </div>
-                        {{--<i class="fa fa-line-chart"></i>--}}
-                        <a style="color: #000000" target="_blank" href="/dashboard/products/@{{ product.id }}/edit" v-if="product.name != ''">
+                        <a style="color: #000000" target="_blank"
+                           v-bind:href="'/dashboard/products/'+ product.id + '/edit'" v-if="product.name != ''">
                             @{{ product.name }}
                         </a>
-                        <a style="color: #000000" target="_blank" href="/dashboard/products/@{{ product.id }}/edit" v-if="product.name == ''">
+                        <a style="color: #000000" target="_blank"
+                           v-bind:href="'/dashboard/products/'+ product.id + '/edit'" v-if="product.name == ''">
                             @{{ product.title }}
                         </a>
                         {{--<small v-show="product.clone_of > 0" style="color:indianred">(копия)</small>--}}
                     </td>
                     <td class="">
                         @{{ product.base_price }}
-                        <i class="fa fa-ruble" v-show="product.get_cena.valuta == 1"></i>
-                        <i class="fa fa-dollar" v-show="product.get_cena.valuta == 2"></i>
-                        <i class="fa fa-euro" v-show="product.get_cena.valuta == 3"></i>
-                        * @{{ product.get_cena.curs }}
+                        <span v-if="product.get_cena != null">
+                            <i class="fa fa-ruble" v-show="product.get_cena.valuta == 1"></i>
+                            <i class="fa fa-dollar" v-show="product.get_cena.valuta == 2"></i>
+                            <i class="fa fa-euro" v-show="product.get_cena.valuta == 3"></i>
+                        </span>
+                        <span v-if="product.get_cena != null">* @{{ product.get_cena.curs }}</span>
                     </td>
                     <td class="">@{{ product.price }}</td>
                     <td class="center">
@@ -375,324 +375,67 @@
                     <td class="">@{{ product.cena_montaj }}</td>
                     <td>
                         <span>
-                            <a href="/@{{ product.category.parent.slug }}/@{{ product.category.slug }}"
+                            <a v-bind:href="'/' + product.category.parent.slug + '/' + product.category.slug"
                                target="_blank">@{{ product.category.admin_title }}</a>
                         </span>
                     </td>
                     <td class="options">
                         <div class="action-buttons">
-                            <a class="green" target="_blank" href="/dashboard/products/@{{ product.id }}/edit">
+                            <a class="green" target="_blank"
+                               v-bind:href="'/dashboard/products/' +  product.id + '/edit'">
                                 <i class="ace-icon fa fa-pencil bigger-130"></i>
                             </a>
                         </div>
                     </td>
                     <td class="options">
                         <div class="action-buttons">
-                            <a class="red" href="#" v-on="click: deleteProduct(product, $event)">
+                            <a class="red" href="#" v-on:click.prevent="deleteProduct(product, $event)">
                                 <i class="ace-icon fa fa-trash-o bigger-120"></i>
                             </a>
                         </div>
                     </td>
                     <td class="options">
                         <div class="action-buttons">
-                            <a class="blue" href="/dashboard/products/copy/@{{ product.id }}">
+                            <a class="blue" v-bind:href="'/dashboard/products/copy/' + product.id">
                                 <i class="ace-icon fa fa-copy bigger-120"></i>
                             </a>
                         </div>
                     </td>
+
                 </tr>
 
                 </tbody>
+
             </table>
             <p v-if="products.productList.length == 0">
                 <b>Список продуктов по текущему запросу пуст</b>
             </p>
-            <nav v-if="products.productList.length > 0"  v-show="!loader">
+            <nav v-if="products.productList.length > 0" v-show="!loader">
                 <ul class="pager">
-                    <li class="previous @{{ products.pagination.currentPage == 1 ? 'disabled' : '' }}"
-                        v-on="click: prevPage()">
+                    <li class="previous" v-bind:class="{disabled : products.pagination.currentPage == 1}"
+                        v-on:click="prevPage()">
                         <a href="#"><span aria-hidden="true">&larr;</span> Предыдущая</a>
                     </li>
                     <li>
                         @{{ products.pagination.currentPage }} / @{{ products.pagination.lastPage  }}
                     </li>
-                    <li class="next @{{ products.pagination.currentPage ==  products.pagination.lastPage ? 'disabled' : '' }}"
-                        v-on="click: nextPage()">
+                    <li class="next"
+                        v-bind:class="{disabled : products.pagination.currentPage == products.pagination.lastPage}"
+                        v-on:click="nextPage()">
                         <a href="#">Следующая <span aria-hidden="true">&rarr;</span></a>
                     </li>
                 </ul>
             </nav>
-            {{--<pre>--}}
-            {{--@{{ $data.products | json }}--}}
-            {{--</pre>--}}
 
-            <input type="hidden" value="{{ csrf_token() }}" v-model="token"/>
-            {{--{!! $products->appends(['q'])->render() !!}--}}
         </div>
+
     </div>
+
 @stop
 
 
 @section('bottom-scripts')
     <script src="{!! url('admin/assets/js/vue.js') !!}"></script>
-    <script>
-        new Vue({
-
-            el: '#products',
-
-            ready: function () {
-                var vue = this;
-                this.filterProducts();
-                $(this.$el).show()
-            },
-            data: {
-                products: {
-                    category: {
-                        title: ''
-                    },
-                    pagination: {
-                        currentPage: {},
-                        lastPage: {},
-                        pageToGet: 1
-                    },
-                    productList: {}
-                },
-                token: null,
-                categoryId: 0,
-                filtersList: null,
-                productSel: false,
-                selectedProductsIds: [],
-                selectedAction: 'delete',
-                loader: null,
-                col: null
-            },
-
-            methods: {
-
-                delFilters: function (event) {
-                    event.preventDefault();
-                    var vue = this;
-                    var $selectbox = $('.form-control');
-                    $selectbox.prop('selectedIndex', 0);
-                    vue.filterProducts()
-                },
-
-                getProducts: function () {
-                    var vue = this;
-                    $.ajax({
-                        dataType: "json",
-                        method: "GET",
-                        url: '/dashboard/products',
-                        cache: false,
-                        success: function (response) {
-                            console.log(response.data);
-                            vue.products = response.data;
-                        }
-                    });
-                },
-
-                filterProducts: function () {
-                    var vue = this;
-                    var form = $(vue.$$.filterForm).serialize();
-                    $.ajax({
-                        method: "GET",
-                        url: '/dashboard/products',
-                        data: form + '&page=' + vue.products.pagination.pageToGet,
-                        cache: false,
-                        loader: '/frontend/images/loading.gif',
-                        beforeSend: function(){
-                            vue.loader = true;
-                        },
-                        success: function (response) {
-                            vue.loader = false;
-                            vue.filtersList = response.filters;
-                            vue.products.productList = response.products.data;
-                            vue.products.pagination.currentPage = response.products.current_page;
-                            vue.products.pagination.lastPage = response.products.last_page;
-
-                            if (vue.products.pagination.lastPage < vue.products.pagination.pageToGet) {
-                                vue.products.pagination.pageToGet = vue.products.pagination.lastPage;
-                                vue.filterProducts()
-                            }
-                        }
-                    });
-                },
-
-                filterProductsPrim: function (event) {
-                    event.preventDefault();
-                    var vue = this;
-                    var form = $(vue.$$.filterForm).serialize();
-                    $.ajax({
-                        method: "GET",
-                        url: '/dashboard/products',
-                        data: form + '&page=' + vue.products.pagination.pageToGet,
-                        cache: false,
-                        loader: '/frontend/images/loading.gif',
-                        beforeSend: function(){
-                            vue.loader = true;
-                        },
-                        success: function (response) {
-                            vue.loader = false;
-                            vue.filtersList = response.filters;
-                            vue.products.productList = response.products.data;
-                            vue.products.pagination.currentPage = response.products.current_page;
-                            vue.products.pagination.lastPage = response.products.last_page;
-
-                            if (vue.products.pagination.lastPage < vue.products.pagination.pageToGet) {
-                                vue.products.pagination.pageToGet = vue.products.pagination.lastPage;
-                                vue.filterProducts()
-                            }
-                        }
-                    });
-                },
-
-                markProducts: function () {
-                    var checks = $(".productSel"),
-                        isChecked = this.$$.mainCheckbox.checked;
-                    this.selectedProductsIds = [];
-                    for (var i = 0, len = checks.length; i < len; i++) {
-                        $(checks[i]).prop('checked', isChecked);
-                        if (isChecked) {
-                            this.selectedProductsIds.push(checks[i].value)
-                        } else {
-                            this.selectedProductsIds.splice(this.selectedProductsIds.indexOf(checks[i].value), 1);
-                        }
-                    }
-                },
-
-                selectProduct: function (event) {
-                    var checkbox = event.target;
-                    if (checkbox.checked == true) {
-                        this.selectedProductsIds.push(checkbox.value)
-                    } else {
-                        this.selectedProductsIds.splice(this.selectedProductsIds.indexOf(checkbox.value), 1);
-                    }
-                },
-
-                fireAction: function (event) {
-                    event.preventDefault();
-                    var vue = this;
-                    $.ajax({
-                        method: "POST",
-                        url: '/dashboard/product-actions/' + vue.selectedAction,
-                        data: {ids: this.selectedProductsIds, _token: vue.token},
-                        cache: false,
-                        success: function () {
-                            vue.filterProducts();
-                            vue.selectedProductsIds = [];
-                            vue.$$.mainCheckbox.checked = false;
-                        }
-                    });
-                },
-                deleteProduct: function (product, event) {
-                    event.preventDefault();
-                    var vue = this;
-                    $.ajax({
-                        method: "POST",
-                        url: '/dashboard/products/' + product.id,
-                        data: {_token: vue.token, _method: 'DELETE'},
-                        cache: false,
-                        success: function () {
-                            vue.filterProducts();
-                            vue.selectedProductsIds = [];
-                            vue.$$.mainCheckbox.checked = false;
-                        }
-                    });
-                },
-
-                nextPage: function () {
-                    //event.preventDefault();
-                    //console.log(this.products );
-                    if (this.products.pagination.currentPage != this.products.pagination.lastPage) {
-                        this.products.pagination.pageToGet = this.products.pagination.currentPage + 1;
-                        this.filterProducts();
-                    }
-                },
-
-                prevPage: function () {
-                    //event.preventDefault();
-                    if (this.products.pagination.currentPage != 1) {
-                        this.products.pagination.pageToGet = this.products.pagination.currentPage - 1;
-                        this.filterProducts();
-                    }
-                },
-
-                showPanel: function (event) {
-                    event.preventDefault();
-                    $("#panel").slideToggle('slow');
-                },
-
-                chengeColor: function () {
-                    $('#sample-table-2 tr').click(function(){
-                        $('#sample-table-2 tr').removeClass('marked');
-                        $(this).addClass('marked');
-                    });
-                }
-
-            }
-
-        });
-    </script>
-    {{--<!-- do not uncomment me -->--}}
-
-    {{--<script src="{!! url('admin/assets/js/jquery.dataTables.min.js') !!}"></script>--}}
-    {{--<script src="{!! url('admin/assets/js/jquery.dataTables.bootstrap.js') !!}"></script>--}}
-
-
-    {{--<!-- inline scripts related to this page -->--}}
-    {{--            <script type="text/javascript">
-                    jQuery(function ($) {
-                        var oTable1 =
-                                $('#sample-table-2')
-                                        .wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-                                        .dataTable({
-                                            bAutoWidth: false,
-                                            "aoColumns": [
-                                                {"bSortable": false},
-                                                null, null, null, null, null,
-                                                {"bSortable": false}
-                                            ]
-
-
-                                            ,
-                                            "sScrollY": "200px",
-                                            "bPaginate": false,
-
-                                            "sScrollX": "100%",
-                                            "sScrollXInner": "120%",
-                                            "bScrollCollapse": true,
-                                            Note: if you are applying horizontal scrolling(sScrollX) on a ".table-bordered"
-                                            you may want to wrap the table inside a "div.dataTables_borderWrap" element
-
-                                            "iDisplayLength": 50
-                                        });
-
-
-                        $(document).on('click', 'th input:checkbox', function () {
-                            var that = this;
-                            $(this).closest('table').find('tr > td:first-child input:checkbox')
-                                    .each(function () {
-                                        this.checked = that.checked;
-                                        $(this).closest('tr').toggleClass('selected');
-                                    });
-                        });
-
-
-                        $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
-                        function tooltip_placement(context, source) {
-                            var $source = $(source);
-                            var $parent = $source.closest('table')
-                            var off1 = $parent.offset();
-                            var w1 = $parent.width();
-
-                            var off2 = $source.offset();
-                            //var w2 = $source.width();
-
-                            if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
-                            return 'left';
-                        }
-
-                    })
-                </script>
-    }--}}
+    <script src="{!! url('admin/assets/js/vue-resource.js') !!}"></script>
+    <script src="/admin/assets/js/product/index.js"></script>
 @stop
