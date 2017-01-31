@@ -38,6 +38,42 @@ class UsersController extends  AdminController
 	 */
 	public function index(User $user, Request $request)
 	{
+        if ($request->ajax()){
+
+            $ar = [' ', '-', '-', '(', ')', '+38'];
+            $search = $request->get('search');
+            foreach ($ar as $v){
+                $search = str_replace($v, '', $search);
+            }
+
+            $order = $request->get('sortBy') ? $request->get('sortBy') : 'id';
+            $por = $request->get('sortByPor') ? $request->get('sortByPor') : 'DESC';
+            $paginate = $request->get('paginate') ? $request->get('paginate') : 20;
+
+
+            $users = $user->where(function($user) use($search){
+                $user->where('name', 'LIKE', '%'.$search.'%')
+                    ->orWhere('email', 'LIKE', '%'.$search.'%')
+                    ->orWhere('city', 'LIKE', '%'.$search.'%')
+                    ->orWhere('organization', 'LIKE', '%'.$search.'%')
+                    ->orWhere('phone_all', 'LIKE', '%'.$search.'%')
+                    ->orWhere('phone', 'LIKE', '%'.$search.'%');
+
+            })->orderBy($order, $por)->paginate($paginate);
+
+            return [
+                'users' => $users,
+                'permissions' => $this->permissions,
+                'params' => [
+                    'search' => $search,
+                    'sortBy' =>$order,
+                    'sortByPor' => $por,
+                    'paginate' => $paginate
+                ]
+            ];
+
+        }
+
 	    $ar = [' ', '-', '-', '(', ')', '+38'];
         $search = $request->get('search');
 
@@ -59,6 +95,10 @@ class UsersController extends  AdminController
 
 		return view('admin.users.index',compact('users','permissions', 'search'));
 	}
+
+	public function indexGet(){
+        return view('admin.users.indexget');
+    }
 
 	/**
 	 * @return mixed
@@ -168,5 +208,9 @@ class UsersController extends  AdminController
 			return redirect()->route('dashboard.users.index')->withMessage($e->getMessage());
 		}
 	}
+
+	public function delete(User $user,$id){
+        $user->findOrFail($id)->delete();
+    }
 
 }

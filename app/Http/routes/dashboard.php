@@ -63,9 +63,12 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         Route::resource('sales', 'SalesController');
         Route::resource('stock', 'StockController');
 
+        /* USERS */
+        Route::get('users/index',['as'=>'dashboard.users.index','uses'=>'UsersController@indexGet']);
+        Route::get('users/{id}/delete',['as'=>'dashboard.users.delete','uses'=>'UsersController@delete']);
         Route::get('users/search',['as'=>'dashboard.users.search','uses'=>'UsersController@search']);
-
         Route::resource('users', 'UsersController');
+        /* / USERS */
 
         Route::resource('pages', 'PagesController');
         Route::resource('static_pages', 'StaticPagesController');

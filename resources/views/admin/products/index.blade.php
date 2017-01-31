@@ -264,6 +264,7 @@
         </div>
 
         <div class="col-xs-12">
+            <div id="errors"></div>
 
             <div v-show="loader" align="center"><img src='/frontend/images/loading.gif'></div>
 
