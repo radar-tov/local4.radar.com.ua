@@ -235,7 +235,7 @@
 {{--@stop--}}
 
 @section('bottom-scripts')
-
+    <script src="{!! url('admin/assets/js/vue.js') !!}"></script>
     <script src="/admin/assets/js/chosen.jquery.min.js"></script>
 
     <script>

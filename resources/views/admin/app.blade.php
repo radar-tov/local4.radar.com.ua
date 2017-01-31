@@ -305,12 +305,12 @@
 <script src="/admin/assets/js/ace.min.js"></script>
 <script src="/admin/assets/js/ace-elements.min.js"></script>
 <!-- Vue -->
-<script src="{!! url('admin/assets/js/vue.js') !!}"></script>
+{{--<script src="{!! url('admin/assets/js/vue.js') !!}"></script>--}}
 {{--<script src="{!! url('admin/assets/js/vue-resource.js') !!}"></script>--}}
 <!-- /Vue -->
 
 <script src="{!! url('admin/assets/js/jquery-ui.custom.min.js') !!}"></script>
-<script src="{!! url('admin/assets/js/vue-resource.js') !!}"></script>
+{{--<script src="{!! url('admin/assets/js/vue-resource.js') !!}"></script>--}}
 <script src="{!! url('admin/assets/js/jquery.gritter.min.js') !!}"></script>
 
 

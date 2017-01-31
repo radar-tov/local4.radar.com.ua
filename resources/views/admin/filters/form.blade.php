@@ -97,6 +97,8 @@
 
 @section('bottom-scripts')
     @parent
+    <script src="{!! url('admin/assets/js/vue.js') !!}"></script>
+    <script src="{!! url('admin/assets/js/vue-resource.js') !!}"></script>
     <script src="{{ url('admin/assets/js/app/filters-values.js') }}"></script>
 
     <!-- Sortable -->

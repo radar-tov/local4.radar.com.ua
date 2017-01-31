@@ -434,7 +434,7 @@
 
 
 @section('bottom-scripts')
-
+    <script src="{!! url('admin/assets/js/vue.js') !!}"></script>
     <script>
         new Vue({
 

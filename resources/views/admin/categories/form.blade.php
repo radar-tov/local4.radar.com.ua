@@ -508,6 +508,7 @@
 
 @section("bottom-scripts")
     @parent
+    <script src="{!! url('admin/assets/js/vue.js') !!}"></script>
     <!--Load Thumbnail -->
     <script src="{{ url('admin/assets/js/load-thumbnail.js') }}"></script>
 

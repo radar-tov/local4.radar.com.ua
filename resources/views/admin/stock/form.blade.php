@@ -140,5 +140,6 @@
 </div>
 
 @section('bottom-scripts')
+    <script src="{!! url('admin/assets/js/vue.js') !!}"></script>
     <script src="{{ url('admin/assets/js/stock_products.js') }}"></script>
 @endsection
