@@ -125,7 +125,7 @@
             </a>
         </li>
         <li  class="{{ Request::is('dashboard/users*') ? 'active' : null }}">
-            <a href="{{ route("dashboard.users.index") }}">
+            <a href="{{ route("dashboard.users.indexGet") }}">
                 <i class="menu-icon fa fa-user"></i>
                 <span class="menu-text"> Пользователи </span>
             </a>
