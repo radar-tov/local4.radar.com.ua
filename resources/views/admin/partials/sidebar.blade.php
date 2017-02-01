@@ -84,6 +84,13 @@
             </a>
             <b class="arrow"></b>
         </li>
+        <li class="{{ Request::is('dashboard/novaposhta*') ? 'active' : null }}">
+            <a href="{!! route('dashboard.novaposhta.index') !!}">
+                <i class="menu-icon fa fa-truck"></i>
+                <span class="menu-text">Новая почта</span>
+            </a>
+            <b class="arrow"></b>
+        </li>
         <li class="{{ Request::is('dashboard/payments*') ? 'active' : null }}">
             <a href="{!! route('dashboard.payments.index') !!}">
                 <i class="menu-icon fa fa-money"></i>
@@ -101,7 +108,6 @@
             </a>
             <b class="arrow"></b>
         </li>
-
         {{--
             <li class="{{ Request::is('dashboard/pages*') ? 'active' : null }}">
                 <a href="{!! route('dashboard.pages.index') !!}">

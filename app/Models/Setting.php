@@ -9,14 +9,11 @@ class Setting extends Eloquent
 		'contact_email',
 		'address',
 		'currency',
-
 		'header_phone1',
 		'header_phone2',
-
 		'footer_phone1',
 		'footer_phone2',
 		'footer_phone3',
-
 		'instagram',
 		'facebook',
 		'twitter',
@@ -28,7 +25,8 @@ class Setting extends Eloquent
 		'agreement',
 		'about',
 		'reviews',
-		'uslovia'
+		'uslovia',
+        'API_key_NP'
 
 	];
 

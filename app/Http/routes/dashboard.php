@@ -170,6 +170,14 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         Route::get('price/download', 'PriceController@download');
         Route::get('price/email/{id}', 'PriceController@emailUser');
         /* /end PRICE */
+
+        /* НОВАЯ ПОЧТА */
+        Route::get('novaposhta/index', ['as' => 'dashboard.novaposhta.index', 'uses' => 'NovaposhtaController@index']);
+        /* /end НОВАЯ ПОЧТА */
+
+        /* API */
+        Route::get('API/getAreas', 'APIAnminController@getAreas');
+        /* /end API */
     });
 
 });

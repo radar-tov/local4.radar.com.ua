@@ -47,6 +47,12 @@
                                 Условия обслуживания
                             </a>
                         </li>
+                        <li class="">
+                            <a data-toggle="tab" href="#API_NP">
+                                <i class="red ace-icon fa fa-truck bigger-120"></i>
+                                Новая почта
+                            </a>
+                        </li>
                     </ul>
 
                     <!-- /section:pages/faq -->
@@ -217,6 +223,16 @@
 
                             {!! Form::textarea('agreement', $value = null, ['rows'=>'20', 'class' => 'form-control tiny']) !!}
                         </div>
+
+                        <div id="API_NP">
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    {!! Form::label('API_key_NP','Ключ для работы с API Новой почты') !!}
+                                    {!! Form::text('API_key_NP',$value = null,['placeholder'=>'Ключ','class'=>'form-control']) !!}
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 

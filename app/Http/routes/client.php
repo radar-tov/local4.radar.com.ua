@@ -71,6 +71,9 @@ if( ! Request::is('dashboard*') and ! Request::is('auth*')){
 		Route::post('cart/delete_item', 'CartController@deleteItem');
 		Route::post('cart/delete_from_compare','CartController@deleteItemFromCompare');
 
+        /* API */
+
+        /* /end API */
 	});
 
 }
