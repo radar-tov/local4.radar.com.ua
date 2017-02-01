@@ -11,7 +11,10 @@ var productVue = new Vue({
             _token: $("#_token").val(),
             sortBy: null,
             sortByPor: null,
-            paginate: null
+            paginate: null,
+            page: null,
+            status: null,
+            role_id: null
         },
         users: {},
         loader: null,
@@ -20,7 +23,7 @@ var productVue = new Vue({
             lastPage: {},
             pageToGet: 1,
             total: null
-        },
+        }
     },
 
     created: function () {
@@ -32,6 +35,7 @@ var productVue = new Vue({
             var vue = this;
             var options = {
                 progress: this.loaderShow(),
+                before: this.addPage(),
                 params: vue.params
             };
             this.$http.get('/dashboard/users', options).then(function (response) {
@@ -73,6 +77,24 @@ var productVue = new Vue({
                     $("#errors").html(error);
                 });
             }
+        },
+
+        nextPage: function () {
+            if (this.pagination.currentPage != this.pagination.lastPage) {
+                this.pagination.pageToGet = this.pagination.currentPage + 1;
+                this.getUsers();
+            }
+        },
+
+        prevPage: function () {
+            if (this.pagination.currentPage != 1) {
+                this.pagination.pageToGet = this.pagination.currentPage - 1;
+                this.getUsers();
+            }
+        },
+
+        addPage: function () {
+            this.params.page = this.pagination.pageToGet;
         }
     }
 

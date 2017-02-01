@@ -32,16 +32,14 @@
                             </div>
 
                             <div class="col-xs-2">
-                                <select name="sortByPor" class="form-control"
-                                        v-bind:class="{marc : params.sortByPor != 'DESC'}" v-model="params.sortByPor">
+                                <select name="sortByPor" class="form-control" v-bind:class="{marc : params.sortByPor != 'DESC'}" v-model="params.sortByPor">
                                     <option value="ASC">По возрастанию</option>
                                     <option value="DESC">По убыванию</option>
                                 </select>
                             </div>
 
                             <div class="col-xs-2">
-                                <select name="paginate" class="form-control"
-                                        v-bind:class="{marc : params.paginate != 20}" v-model="params.paginate">
+                                <select name="paginate" class="form-control" v-bind:class="{marc : params.paginate != 20}" v-model="params.paginate">
                                     <option value="20">Показывать по 20</option>
                                     <option value="30">По 30</option>
                                     <option value="50">По 50</option>
@@ -50,7 +48,27 @@
                                 </select>
                             </div>
 
-                            <div class="col-xs-3">
+                            <div class="col-xs-2">
+                                <select name="status" class="form-control" v-bind:class="{marc : params.status != ''}" v-model="params.status">
+                                    <option value="">Все статусы</option>
+                                    <option value="0">Новые</option>
+                                    <option value="1">Звонил</option>
+                                    <option value="2">Думает</option>
+                                    <option value="3">Отказался</option>
+                                </select>
+                            </div>
+
+                            <div class="col-xs-2">
+                                <select name="role_id" class="form-control" v-bind:class="{marc : params.role_id != 0}" v-model="params.role_id">
+                                    <option value="0">Все роли</option>
+                                    <option value="1">Админ</option>
+                                    <option value="2">Покупатель</option>
+                                    <option value="3">Разовый покупатель</option>
+                                    <option value="4">Монтажник</option>
+                                </select>
+                            </div>
+
+                            <div class="col-xs-3" style="padding-top: 10px">
                                 <input type="text" name="search" class="form-control" placeholder="Поиск" v-model="params.search">
                             </div>
 
@@ -61,35 +79,26 @@
                             <input type="hidden" name="_token" value="{{ csrf_token() }}" id="_token">
                         </form>
                     </div>
-
-                    <div class="row">
-                        <nav v-if="users.length > 0" v-show="!loader">
-                            <ul class="pager">
-                                <li v-bind:class="{disabled : pagination.currentPage == 1}"
-                                    v-on:click="prevPage()">
-                                    <a href="#"><span aria-hidden="true">&larr;</span> Предыдущая</a>
-                                </li>
-                                <li>
-                                <span>Показано @{{ users.length }}
-                                    из @{{ pagination.total }}</span>
-                                </li>
-                                <li>
-                                <span>Страница @{{ pagination.pageToGet }}
-                                    из @{{ pagination.lastPage }}</span>
-                                </li>
-                                <li
-                                        v-bind:class="{disabled : pagination.currentPage == pagination.lastPage}"
-                                        v-on:click="nextPage()">
-                                    <a href="#">Следующая <span aria-hidden="true">&rarr;</span></a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-
                 </div>
 
-            </div>
+                <nav v-if="users.length > 0" v-show="!loader">
+                    <ul class="pager">
+                        <li class="previous" v-bind:class="{disabled : pagination.currentPage == 1}" v-on:click="prevPage()">
+                            <a href="#"><span aria-hidden="true">&larr;</span> Предыдущая</a>
+                        </li>
+                        <li>
+                            <span>Показано @{{ users.length }} из @{{ pagination.total }}</span>
+                        </li>
+                        <li>
+                            <span>Страница @{{ pagination.pageToGet }} из @{{ pagination.lastPage }}</span>
+                        </li>
+                        <li class="next" v-bind:class="{disabled : pagination.currentPage == pagination.lastPage}" v-on:click="nextPage()">
+                            <a href="#">Следующая <span aria-hidden="true">&rarr;</span></a>
+                        </li>
+                    </ul>
+                </nav>
 
+            </div>
         </div>
         <!-- / форма поиска -->
 
@@ -105,13 +114,13 @@
                 <thead>
                 <tr>
                     <th></th>
-                    <th></th>
+                    <th>Статус</th>
                     <th>Организация</th>
                     <th>Имя</th>
                     <th>Email</th>
                     <th>Телефон</th>
                     <th>Город</th>
-                    <th class="center" style="width: 135px">Уровень доступа</th>
+                    <th class="center" style="width: 135px">Роль</th>
                     <th colspan="2" class="options">Опции</th>
                 </tr>
                 </thead>
@@ -135,8 +144,8 @@
                         <td>
                             <span class="label label-danger arrowed" v-if="user.role_id == 1 && user.permissions == -5">Админ</span>
                             <span class="label label-info arrowed" v-if="user.role_id == 2">Покупатель</span>
+                            <span class="label label-default arrowed" v-if="user.role_id == 3">Разовый покупатель</span>
                             <span class="label label-info arrowed" v-if="user.role_id == 4">Монтажник</span>
-                            <span class="label label-default arrowed" v-if="user.role_id == ''">Разовый покупатель</span>
                         </td>
                         <td class="options">
                             <a class="green" v-bind:href="'/dashboard/users/' + user.id + '/edit'" target="_blank">
@@ -158,16 +167,13 @@
             </p>
             <nav v-if="users.length > 0" v-show="!loader">
                 <ul class="pager">
-                    <li class="previous" v-bind:class="{disabled : pagination.currentPage == 1}"
-                        v-on:click="prevPage()">
+                    <li class="previous" v-bind:class="{disabled : pagination.currentPage == 1}" v-on:click="prevPage()">
                         <a href="#"><span aria-hidden="true">&larr;</span> Предыдущая</a>
                     </li>
                     <li>
                         @{{ pagination.currentPage }} / @{{ pagination.lastPage  }}
                     </li>
-                    <li class="next"
-                        v-bind:class="{disabled : pagination.currentPage == pagination.lastPage}"
-                        v-on:click="nextPage()">
+                    <li class="next" v-bind:class="{disabled : pagination.currentPage == pagination.lastPage}" v-on:click="nextPage()">
                         <a href="#">Следующая <span aria-hidden="true">&rarr;</span></a>
                     </li>
                 </ul>

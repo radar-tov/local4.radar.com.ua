@@ -20,7 +20,7 @@ class UsersController extends  AdminController
         0   =>  '',
         1   =>  'Админ',
         2   =>  'Покупатель',
-        3   =>  'Гость',
+        3   =>  'Разовый покупатель',
         4   =>  'Монтажник'
     ];
 
@@ -49,7 +49,9 @@ class UsersController extends  AdminController
             $order = $request->get('sortBy') ? $request->get('sortBy') : 'id';
             $por = $request->get('sortByPor') ? $request->get('sortByPor') : 'DESC';
             $paginate = $request->get('paginate') ? $request->get('paginate') : 20;
-
+            $page = $request->get('page') ? $request->get('page') : 1;
+            $status = $request->get('status') == '' ? '' : $request->get('status');
+            $role_id = $request->get('role_id') == 0 ? 0 : $request->get('role_id');
 
             $users = $user->where(function($user) use($search){
                 $user->where('name', 'LIKE', '%'.$search.'%')
@@ -59,7 +61,9 @@ class UsersController extends  AdminController
                     ->orWhere('phone_all', 'LIKE', '%'.$search.'%')
                     ->orWhere('phone', 'LIKE', '%'.$search.'%');
 
-            })->orderBy($order, $por)->paginate($paginate);
+            })->where('status', $status ?: 'LIKE', '%')
+             ->where('role_id', $role_id ?: 'LIKE', '%')
+             ->orderBy($order, $por)->paginate($paginate);
 
             return [
                 'users' => $users,
@@ -68,7 +72,11 @@ class UsersController extends  AdminController
                     'search' => $search,
                     'sortBy' =>$order,
                     'sortByPor' => $por,
-                    'paginate' => $paginate
+                    'paginate' => $paginate,
+                    'page' => $page,
+                    '_token' => $request->get('_token'),
+                    'status' => $status,
+                    'role_id' => $role_id
                 ]
             ];
 
