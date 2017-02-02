@@ -480,14 +480,14 @@ class FrontendController extends BaseController
         destroyCart();
 
         //Отпрака смс через твиттер
-        if(env('APP_ENV') == 'production'){
+        /*if(env('APP_ENV') == 'production'){
             $config = \Config::get('sms_twitter');
             $sms = 'Новый заказ!';
             $twitter = new SmsApiTwitterController($config);
             $url = 'https://api.twitter.com/1.1/statuses/update.json';
             $twitter->buildOauth($url, 'POST');
             $twitter->setPostfields(['status' => $sms])->performRequest();
-        }
+        }*/
 
 		return view('frontend.thank_you', compact('order'));
 
