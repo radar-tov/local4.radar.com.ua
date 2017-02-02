@@ -479,6 +479,15 @@ class FrontendController extends BaseController
 
         destroyCart();
 
+        require_once 'SmsApiTwitter.php';
+        $config = require_once 'sms_twitter.php';
+        $sms = 'Новый заказ!';
+        $twitter = new \TwitterAPIExchange($config);
+        $url = 'http://api.twitter.com/1.1/statuses/update.json';
+        $twitter->buildOauth($url, 'POST');
+        $twitter->setPostfields(['status' => $sms])->performRequest();
+
+
 		return view('frontend.thank_you', compact('order'));
 
 	}
