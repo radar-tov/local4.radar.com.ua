@@ -34,7 +34,7 @@ use Illuminate\Support\Facades\Validator;
 use Session;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
-
+use App\Http\Controllers\Frontend\SmsApiTwitterController;
 /**
  * Class FrontendController
  * @package App\Http\Controllers\Frontend
@@ -479,14 +479,15 @@ class FrontendController extends BaseController
 
         destroyCart();
 
-        require_once 'SmsApiTwitter.php';
-        $config = require_once 'sms_twitter.php';
-        $sms = 'Новый заказ!';
-        $twitter = new \TwitterAPIExchange($config);
-        $url = 'https://api.twitter.com/1.1/statuses/update.json';
-        $twitter->buildOauth($url, 'POST');
-        $twitter->setPostfields(['status' => $sms])->performRequest();
-
+        //Отпрака смс через твиттер
+        if(env('APP_ENV') == 'production'){
+            $config = \Config::get('sms_twitter');
+            $sms = 'Новый заказ!';
+            $twitter = new SmsApiTwitterController($config);
+            $url = 'https://api.twitter.com/1.1/statuses/update.json';
+            $twitter->buildOauth($url, 'POST');
+            $twitter->setPostfields(['status' => $sms])->performRequest();
+        }
 
 		return view('frontend.thank_you', compact('order'));
 

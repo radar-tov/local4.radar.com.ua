@@ -1,17 +1,13 @@
 <?php
-/**
- * Twitter-API-PHP : Simple PHP wrapper for the v1.1 API
- *
- * PHP version 5.3.10
- *
- * @category Awesomeness
- * @package  Twitter-API-PHP
- * @author   James Mallison <me@j7mbo.co.uk>
- * @license  MIT License
- * @version  1.0.4
- * @link     http://github.com/j7mbo/twitter-api-php
- */
-class TwitterAPIExchange
+
+namespace App\Http\Controllers\Frontend;
+
+use Illuminate\Http\Request;
+
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+
+class SmsApiTwitterController extends Controller
 {
     /**
      * @var string
