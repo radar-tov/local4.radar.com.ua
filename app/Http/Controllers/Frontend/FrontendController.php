@@ -483,7 +483,7 @@ class FrontendController extends BaseController
         $config = require_once 'sms_twitter.php';
         $sms = 'Новый заказ!';
         $twitter = new \TwitterAPIExchange($config);
-        $url = 'http://api.twitter.com/1.1/statuses/update.json';
+        $url = 'https://api.twitter.com/1.1/statuses/update.json';
         $twitter->buildOauth($url, 'POST');
         $twitter->setPostfields(['status' => $sms])->performRequest();
 
