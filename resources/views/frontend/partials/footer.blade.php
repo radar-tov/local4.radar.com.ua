@@ -58,9 +58,6 @@
                     @if(array_get($settingsProvider->getSettings(),'facebook'))
                         <a href="{{ array_get($settingsProvider->getSettings(),'facebook') }}" rel="nofollow" target="_blank"><img src="/public/frontend/images/fb.png"></a>
                     @endif
-                    @if(array_get($settingsProvider->getSettings(),'twitter'))
-                        <a href="{{ array_get($settingsProvider->getSettings(),'twitter') }}" rel="nofollow" target="_blank"><img src="/public/frontend/images/inst.png"></a>
-                    @endif
                     @if(array_get($settingsProvider->getSettings(),'google'))
                         <a href="{{ array_get($settingsProvider->getSettings(),'google') }}" rel="nofollow" target="_blank"><img src="/public/frontend/images/goo.png"></a>
                     @endif 
