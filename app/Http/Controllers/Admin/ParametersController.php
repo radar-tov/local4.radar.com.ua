@@ -54,7 +54,7 @@ class ParametersController extends AdminController
 
 		if($request['param_1'] != ''){
 
-			for($i=0; $i < 10; $i++){
+			for($i=0; $i < 11; $i++){
 				if($request['param_'.$i] != ''){
 
 					$params = [
