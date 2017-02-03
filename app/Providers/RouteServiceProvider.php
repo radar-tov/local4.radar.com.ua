@@ -42,6 +42,7 @@ class RouteServiceProvider extends ServiceProvider
 	    require_once app_path('Http/routes/routes.php');
         require_once app_path('Http/routes/dashboard.php');
         require_once app_path('Http/routes/client.php');
+        require_once app_path('Http/routes/server.php');
 //        if(is_dir(app_path('Http/routes'))) {
 //            foreach (File::allFiles(app_path('Http/routes')) as $route) {
 //                require_once app_path('Http/routes/'.$route->getRelativePathname());

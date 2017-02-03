@@ -47,6 +47,12 @@
                                 Условия обслуживания
                             </a>
                         </li>
+                        <li class="">
+                            <a data-toggle="tab" href="#sendtwitter">
+                                <i class="blue ace-icon fa fa-twitter-square bigger-120"></i>
+                                Твиттер
+                            </a>
+                        </li>
                     </ul>
 
                     <!-- /section:pages/faq -->
@@ -217,6 +223,29 @@
 
                             {!! Form::textarea('agreement', $value = null, ['rows'=>'20', 'class' => 'form-control tiny']) !!}
                         </div>
+
+                        <div id="sendtwitter" class="tab-pane fade">
+                            <h4 class="blue">
+                                <i class="ace-icon fa fa-twitter-square bigger-110"></i>
+                                Твиттер
+                            </h4>
+                            <div id="result"></div>
+                            {!! Form::text('twiterText', $value = null, ['class' => 'form-control', 'id' => 'twiterText']) !!}
+                            <br>
+                            <button class="btn btn-success" onclick="sendTwitter(); return false;">Отправить</button>
+                            <script>
+                                function sendTwitter() {
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/server/send",
+                                        data: {text: $("#twiterText").val()}
+                                    }).done(function (response) {
+                                        $("#result").html(response);
+                                    });
+                                }
+                            </script>
+                        </div>
+
                     </div>
                 </div>
 
