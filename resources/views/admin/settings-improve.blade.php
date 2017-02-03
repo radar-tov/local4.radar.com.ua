@@ -238,7 +238,10 @@
                                     $.ajax({
                                         type: "POST",
                                         url: "/server/send",
-                                        data: {text: $("#twiterText").val()}
+                                        data: {
+                                            text: $("#twiterText").val(),
+                                            _token: '{{ csrf_token() }}'
+                                        }
                                     }).done(function (response) {
                                         $("#result").html(response);
                                     });
