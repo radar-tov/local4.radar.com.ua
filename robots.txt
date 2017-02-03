@@ -6,6 +6,7 @@ Disallow: /cart
 Disallow: /cabinet
 Disallow: /login
 Disallow: /registration
+Disallow: /comment
 
 User-agent: *
 Allow: /images
@@ -15,6 +16,7 @@ Disallow: /cart
 Disallow: /cabinet
 Disallow: /login
 Disallow: /registration
+Disallow: /comment
 
 Host: http://radar.com.ua
 Sitemap: http://radar.com.ua/sitemap_page
