@@ -22,6 +22,10 @@ class TwitterController extends Controller
         $twitter = new ApiTwitterController($this->auth);
         $url = 'https://api.twitter.com/1.1/statuses/update.json';
         $twitter->buildOauth($url, 'POST');
-        $twitter->setPostfields(['status' => $text])->performRequest();
+        if($twitter->setPostfields(['status' => $text])->performRequest()){
+            return '<h3 align="center">Отправлено</h3>';
+        }else{
+            return '<h3 align="center">Ошибка</h3>';
+        }
     }
 }
