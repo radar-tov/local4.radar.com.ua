@@ -1,14 +1,17 @@
 {{--{{ dump($parameters) }}--}}
 <table class="table table-bordered table-hover">
     <thead>
+    <td></td>
     <td>Название</td>
     <td>Значение</td>
     <td></td>
     </thead>
     <tbody>
     @if(isset($product))
+        <!--{{ $i=1 }}-->
         @foreach($product->sortedValuesParam() as $parameter)
             <tr>
+                <td>{{ $i }}</td>
                 <td>
                     <a class="param_edit fancybox.ajax"
                        href="{{ url('dashboard/parameters/edit_param_name/'.$parameter->parameter->id) }}"
@@ -39,6 +42,7 @@
                            style="float: right" onclick="deleteParam( {{ $product->id }}, {{ $parameter->parameter->id }});"></i>
                     </a>
                 </td>
+            <!--{{ $i++ }}-->
             </tr>
         @endforeach
     @endif
