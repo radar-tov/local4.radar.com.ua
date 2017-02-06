@@ -128,7 +128,7 @@
                                 </div>
 
                                 <div class="col-xs-2">
-                                    <select name="status" class="form-control" v-bind:class="{marc : params.status != active_1}" v-model="params.status">
+                                    <select name="status" class="form-control" v-bind:class="{marc : params.status != 'active_1'}" v-model="params.status">
                                         <option value="active_1">Показаные на сайте</option>
                                         <option value="active_0">Не показаные на сайте</option>
                                         <option value="available_1">В наличии</option>
