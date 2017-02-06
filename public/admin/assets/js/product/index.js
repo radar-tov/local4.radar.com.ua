@@ -20,7 +20,8 @@ var productsVue = new Vue({
             paginate: null,
             search: null,
             page: null,
-            _token: null
+            _token: null,
+            status: null
         },
         products: {
             pagination: {

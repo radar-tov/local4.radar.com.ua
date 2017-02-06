@@ -127,6 +127,19 @@
                                     </select>
                                 </div>
 
+                                <div class="col-xs-2">
+                                    <select name="status" class="form-control" v-bind:class="{marc : params.status != active_1}" v-model="params.status">
+                                        <option value="active_1">Показаные на сайте</option>
+                                        <option value="active_0">Не показаные на сайте</option>
+                                        <option value="available_1">В наличии</option>
+                                        <option value="available_0">Нет в наличии</option>
+                                        <option value="sitemap_1">Показаные в Sitemap</option>
+                                        <option value="sitemap_0">Не показаные в Sitemap</option>
+                                        <option value="yandex_1">Показаные в Yandex</option>
+                                        <option value="yandex_0">Не показаные в Yandex</option>
+                                    </select>
+                                </div>
+
                                 <div class="col-xs-3">
                                     <input name="search" type="text"
                                            class="form-control" v-bind:class="{marc : params.search != ''}"
@@ -134,10 +147,10 @@
                                            value="{{ Request::get('q') }}" v-model="params.search">
                                 </div>
 
-                                <div class="col-xs-2">
+                                <div class="col-xs-1">
                                     <i class="fa fa-search-minus" v-on:click="delSearch()"></i>
                                 </div>
-                                <div class="col-xs-2">
+                                <div class="col-xs-1">
                                     <a href="{{ url('dashboard/price/download') }}" target="_blank">Скачать парйс(монт)</a>
                                 </div>
 
