@@ -221,6 +221,28 @@ class ProductsController extends AdminController
                 }
             }
 
+            if(!empty($request->get('status'))){
+                $request->session()->put('admin_status', $request->get('status'));
+                $request->session()->save();
+                $params['status'] = $request->get('status');
+            }else{
+                if($request->get('status') == 'active_1'){
+                    Session::forget('admin_status');
+                    $request->merge(array('status' => 'active_1'));
+                    $params['status'] = 'active_1';
+                }elseif(Session::get('admin_status')){
+                    $request->merge(array('status' => Session::get('admin_status')));
+                    $params['status'] = Session::get('admin_status');
+                }else{
+                    $request->merge(array('status' => 'active_1'));
+                    $params['status'] = 'active_1';
+                }
+            }
+
+            $status = explode("_", $params['status']);
+
+
+
             if($request->get('filters') != null){
                 $filters_mass = $request->get('filters');
             }else{
@@ -232,6 +254,7 @@ class ProductsController extends AdminController
                 ->whereNotIn('id', !empty($request->get('selected')) ? $request->get('selected') : [0])
                 ->with('category')
                 ->where('category_id', $request->get('categoryId') ?: 'LIKE', '%')
+                ->where($status[0], $status[1])
                 ->whereRaw(getDiscountValue($request))
                 ->where(function ($prods) use ($search) {
                     $prods->where('title', 'LIKE', '%' . $search . '%')

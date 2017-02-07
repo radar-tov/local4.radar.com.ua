@@ -34,7 +34,7 @@ use Illuminate\Support\Facades\Validator;
 use Session;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
-
+use App\Http\Controllers\Frontend\SmsApiTwitterController;
 /**
  * Class FrontendController
  * @package App\Http\Controllers\Frontend
@@ -93,6 +93,9 @@ class FrontendController extends BaseController
         if(!$category) abort(404);
 
 		if($category->children->count() > 0 and !$subcategory){
+
+            if($subcategorySlug != null) abort(404);
+
 			$categories = $category->children;
 			$date = new \DateTime($category->updated_at);
 
@@ -478,6 +481,16 @@ class FrontendController extends BaseController
 		$order = $buyService->registerOrder($request);
 
         destroyCart();
+
+        //Отпрака смс через твиттер
+        /*if(env('APP_ENV') == 'production'){
+            $config = \Config::get('sms_twitter');
+            $sms = 'Новый заказ!';
+            $twitter = new SmsApiTwitterController($config);
+            $url = 'https://api.twitter.com/1.1/statuses/update.json';
+            $twitter->buildOauth($url, 'POST');
+            $twitter->setPostfields(['status' => $sms])->performRequest();
+        }*/
 
 		return view('frontend.thank_you', compact('order'));
 

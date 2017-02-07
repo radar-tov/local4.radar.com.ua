@@ -539,7 +539,6 @@
 
             <!-- Params -->
 
-
             <div id="params" class="tab-pane">
                 <div class="col-md-12" id="params-section">
                     <div id="error"></div>
@@ -547,6 +546,7 @@
                         {{--{{ dump($product->getParameters) }}--}}
                         <table class="table table-bordered table-hover">
                             <thead>
+                            <td></td>
                             <td>Название</td>
                             <td>Значение</td>
                             <td></td>
@@ -555,8 +555,10 @@
                             {{--{{ dump($product) }}--}}
                             @if(isset($product->getParameters))
                                 {{--{{ dump($product->getParameters) }}--}}
+                                <!--{{ $i=1 }}-->
                                 @foreach($product->sortedValuesParam() as $parameters)
                                     <tr>
+                                        <td>{{ $i }}</td>
                                         <td>
                                             <a class="param_edit fancybox.ajax"
                                                href="{{ url('dashboard/parameters/edit_param_name/'.$parameters->parameter->id) }}"
@@ -588,6 +590,7 @@
                                             </a>
                                         </td>
                                     </tr>
+                                    <!--{{ $i++ }}-->
                                 @endforeach
                             @endif
                             </tbody>

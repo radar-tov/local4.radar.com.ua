@@ -1,6 +1,9 @@
 /**
  * Created by Evgenii on 16.01.2017.
  */
+Vue.config.debug = true;
+Vue.http.headers.common['X-CSRF-TOKEN'] = document.getElementById('token').getAttribute('value');
+
 var productsVue = new Vue({
 
     el: '#productsVue',
@@ -17,7 +20,8 @@ var productsVue = new Vue({
             paginate: null,
             search: null,
             page: null,
-            _token: null
+            _token: null,
+            status: null
         },
         products: {
             pagination: {
