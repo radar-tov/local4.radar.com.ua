@@ -133,15 +133,22 @@ class CenaController extends Controller
                 if($cenagrup->skidka != 0){
                     $product->out_price = round((round(($product->base_price * $cenagrup->curs), 2)) - ((round(($product->base_price * $cenagrup->curs), 2)) * $product->discount / 100));
                     $out .= "<p>Новая выходная цена - ".$product->out_price."</p>";
+                }else{
+                    $product->out_price = round($product->base_price * $cenagrup->curs);
                 }
+
                 if($cenagrup->nacenka != 0){
                     $product->out_price = round((round(($product->base_price * $cenagrup->curs), 2)) + ((round(($product->base_price * $cenagrup->curs), 2)) * $product->nacenka / 100));
                     $out .= "<p>Новая выходная цена - ".$product->out_price."</p>";
+                }else{
+                    $product->out_price = round($product->base_price * $cenagrup->curs);
                 }
 
                 if($cenagrup->skidka_montaj != 0){
                     $product->cena_montaj = round($product->out_price - ($product->out_price * $cenagrup->skidka_montaj / 100));
                     $out .= "<p>Новая цена для монтажников - ".$product->cena_montaj."</p>";
+                }else{
+                    $product->cena_montaj = $product->out_price;
                 }
 
             }else{
