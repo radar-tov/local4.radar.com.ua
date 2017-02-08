@@ -7,11 +7,8 @@ var productVue = new Vue({
 
     data: {
         translate:  {},
-        _token:     document.getElementById("form-data")._token.value,
-        title:      document.getElementById("form-data").title.value,
-        slug:       document.getElementById("form-data").slug.value,
-        article:    document.getElementById("form-data").article.value,
-        category:   document.getElementById("form-data").category.value
+        title: document.getElementById("form-data").title.value,
+        slug: document.getElementById("form-data").slug.value
     },
 
     created: function () {
@@ -20,11 +17,10 @@ var productVue = new Vue({
         }, function (error) {
             $("#errors").html(error);
         });
-
     },
 
     methods: {
-        getXapactsClik: function () {
+        makeSlug: function () {
 
         }
     }
