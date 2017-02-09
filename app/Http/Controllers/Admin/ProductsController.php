@@ -411,7 +411,7 @@ class ProductsController extends AdminController
      * @param  int $id
      * @return Response
      */
-    public function edit(Category $categories, Cena $cena, $id)
+    public function edit(Request $request, $id)
     {
         $product = $this->product
             ->with(
@@ -419,6 +419,10 @@ class ProductsController extends AdminController
                 'filters', 'adminFiles', 'getParameters', 'getCena', 'getShowFileProduct')
             ->withTrashed()
             ->findOrFail($id);
+
+        if($request->ajax()){
+            return $product;
+        }
 
         return view('admin.products.edit', compact('product'));
     }
