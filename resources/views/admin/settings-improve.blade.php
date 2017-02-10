@@ -248,7 +248,7 @@
 
                             {!! Form::textarea('agreement', $value = null, ['rows'=>'20', 'class' => 'form-control tiny']) !!}
                         </div>
-                        <div id="apinp">
+                        <div id="apinp" class="tab-pane fade">
                             <p>Настройки новой почты</p>
                         </div>
                         <div id="sendtwitter" class="tab-pane fade">
