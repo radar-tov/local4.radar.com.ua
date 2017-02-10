@@ -152,9 +152,8 @@ $(document).ready(function () {
     });
 });
 
-function getPdfList() {
-    var token = $("input[name='_token']").val(),
-        productId = $("input[name='product-id']").val();
+function getPdfList(productId) {
+    var token = $("input[name='_token']").val();
     $.ajax({
         type: "GET",
         url: "/dashboard/pdf",
@@ -177,21 +176,19 @@ function getCenaGrups(){
 }
 
 
-function deletePDF(fileID) {
-    var token = $("input[name='_token']").val(),
-        productId = $("input[name='product-id']").val(),
-        fileId = $("input[name='fileId']").val();
+function deletePDF(fileID, productID) {
+    var token = $("input[name='_token']").val();
 
     $.ajax({
         type: "POST",
         url: "/dashboard/remove-pdf",
         data: {
             _token: token,
-            productId: productId,
+            productId: productID,
             fileId: fileID
         }
     }).done(function () {
-        getPdfList();
+        getPdfList(productID);
     });
 }
 

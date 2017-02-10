@@ -106,7 +106,7 @@
                 </a>
             </li>
             <li class="">
-                <a data-toggle="tab" href="#params">
+                <a data-toggle="tab" href="#params" v-on:click="getParam()">
                     <i class="ace-icon fa fa-list"></i>
                     Параметры
                 </a>
@@ -114,11 +114,17 @@
             <li class="">
                 <a data-toggle="tab" href="#images">
                     <i class="ace-icon fa fa-image"></i>
-                    Медиа
+                    Фото
                 </a>
             </li>
             <li class="">
-                <a data-toggle="tab" href="#files">
+                <a data-toggle="tab" href="#video">
+                    <i class="ace-icon fa  fa-video-camera"></i>
+                    Видео
+                </a>
+            </li>
+            <li class="">
+                <a data-toggle="tab" href="#files" v-on:click="getPdfList()">
                     <i class="ace-icon fa fa-file"></i>
                     Файлы
                 </a>
@@ -474,13 +480,83 @@
 
             <!-- Params -->
             <div id="params" class="tab-pane">
-
+                <label class="action-buttons pull-right" v-on:click="getParamClik()">
+                    <a href="#" id="_spin"><i class="fa fa-refresh fa-2x"></i></a>
+                </label>
+                <div class="inner clearfix">
+                    {{--This section will be ajax loaded--}}
+                </div>
+                @if(isset($product))
+                    <button class="parameters_add fancybox.ajax btn btn-success btn-sm"
+                            href="{{ url('dashboard/parameters/add/'.$product->category_id.'/'.$product->brand_id, $product->id) }}">
+                        Добавить параметр
+                    </button>
+                    <button class="parameters_selection fancybox.ajax btn btn-success btn-sm"
+                            href="{{ url('dashboard/parameters/selection/'.$product->category_id.'/'.$product->brand_id, $product->id) }}">
+                        Выбрать параметр
+                    </button>
+                @endif
+                <div class="row">
+                    <div style="padding-bottom: 200px"></div>
+                </div>
             </div>
             <!-- /End Params -->
 
+            <!-- images -->
+            <div id="images" class="tab-pane">
+                <input type="hidden" name="imagesIds" v-bind:value="stringImagesIds"/>
+                <div class="form-group">
+                    {!!Form::label('image', "Загрузить изображение",["class" => "btn btn-success btn-sm"]) !!}
+                    <input type="file" name="image" id="image" v-on:change="loadImage($event)" multiple>
+                </div>
+
+                <div class="image-box clearfix" v-show="product.images">
+                    <div class="thumb" v-for="image in product.images">
+
+                        <span class="is-thumb" v-if="image.is_thumb == 1">
+                            <i class="fa fa-check"></i>
+                        </span>
+
+                        <span class="is-thumb grey" v-if="image.is_thumb == 0" v-on:click="setAsThumbnail(image)">
+                            <i class="fa fa-check"></i>
+                        </span>
+
+                        <span class="remove" v-on:click="removeImage(image)">
+                            <i class="fa fa-remove"></i>
+                        </span>
+                        <img v-bind:src="image.path " alt="test"/>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /End images -->
+
+            <!-- video -->
+            <div id="video" class="tab-pane">
+                <div class="row">
+                    <a href="#" class="btn btn-success btn-sm" v-on:click.prevent="loadVideo($event)">Загрузить видео</a>
+                    <div class="clearfix"></div>
+                    <input type="hidden" name="video" v-model="product.video"/>
+                    <div class="m-cont" v-if="product.video" style="margin-top: 20px">
+                        @{{ product.video }}
+                        <a href="#"><i class="fa fa-remove" title="удалить видео обзор" v-on:click.prevent="removeVideo($event)"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- video -->
+
             <!-- Files -->
             <div id="files" class="tab-pane">
-
+                <div id="filesup"></div>
+                <hr>
+                @if(isset($product))
+                    <button id="otvet" class="various fancybox.ajax btn btn-success btn-sm"
+                            href="{{ url('dashboard/pdf/add/'.$product->category_id.'/'.$product->brand_id, $product->id) }}">
+                        Выбрать файл
+                    </button>
+                @endif
+                {!!Form::label('pdf', "Загрузить",["class" => "btn btn-success btn-sm"]) !!}
+                <input type="file" name="pdf" id="pdf" v-on:change="loadPDF($event)" multiple>
             </div>
             <!-- /End Files -->
 
@@ -492,7 +568,22 @@
 
             <!-- seo -->
             <div id="seo" class="tab-pane">
-
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        {!! Form::label('meta_title', 'Meta Title') !!}
+                        <span>@{{ coountTitle }} / от 10 до 70</span>
+                        {!! Form::text('meta_title', $value = '', ['class' => 'form-control', "row"=>1,'form'=>'form-data', 'v-model' => 'product.meta_title']) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('meta_description', 'Meta Description') !!}
+                        <span>@{{ coountDescription }} / от 70 до 160</span>
+                        {!! Form::text('meta_description', $value = '', ['class' => 'form-control',"row"=>2,'form'=>'form-data', 'v-model' => 'product.meta_description']) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('meta_keywords', 'Meta Keywords') !!}
+                        {!! Form::text('meta_keywords', $value = null, ['class' => 'form-control',"row"=>2,'form'=>'form-data']) !!}
+                    </div>
+                </div>
             </div>
             <!-- /End seo -->
 
@@ -509,5 +600,6 @@
     <script src="{!! url('admin/assets/js/vue2.js') !!}"></script>
     <script src="{!! url('admin/assets/js/vue2-resource.js') !!}"></script>
     <script src="/admin/assets/js/selectize.js"></script>
+    <script src="/admin/assets/js/bootbox.min.js"></script>
     <script src="/admin/assets/js/product/edit.js"></script>
 @endsection

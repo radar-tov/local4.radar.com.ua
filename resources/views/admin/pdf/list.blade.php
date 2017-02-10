@@ -32,7 +32,7 @@
                 </td>
                 <td>
                     <a href="#">
-                        <i class="ace-icon fa fa-trash-o bigger-120" title="удалить PDF" onclick="deletePDF({{ $file->id }})"></i>
+                        <i class="ace-icon fa fa-trash-o bigger-120" title="удалить PDF" onclick="deletePDF({{ $file->id.', '.$file->product_id }})"></i>
                     </a>
                 </td>
             </tr>

@@ -9,11 +9,17 @@ var productVue = new Vue({
     el: "#productVue",
 
     data: {
+        token: document.getElementById('token').getAttribute('value'),
         translate:  {},
         filterEvent: true,
         xapactEvent: true,
+        paramEvent: true,
+        fileEvent: true,
         product:{
-            id: document.getElementById("form-data").id.value
+            id: document.getElementById("form-data").id.value,
+            images: [],
+            meta_description: '',
+            meta_title: ''
         },
     },
 
@@ -28,6 +34,24 @@ var productVue = new Vue({
         }, function (error) {
             $("#errors").html(error);
         });
+    },
+
+    computed: {
+        stringImagesIds: function(){
+            var images = [];
+            for(var i = 0, len = this.product.images.length; i < len; i++ ){
+                images[i] = this.product.images[i].id;
+            }
+            return images.join(',');
+        },
+
+        coountTitle: function () {
+            return this.product.meta_title.length
+        },
+
+        coountDescription: function () {
+            return this.product.meta_description.length
+        },
     },
 
     methods: {
@@ -62,32 +86,38 @@ var productVue = new Vue({
             if(vue.filterEvent){
                 vue.filterEvent = false;
                 $("#filters").addClass('loading');
-                $.get('/dashboard/filters/'+ vue.product.id, {category_id: vue.product.category_id })
-                    .done(function(response){
-                        $("#filters .inner").html(response);
+                this.$http.get('/dashboard/filters/'+ vue.product.id + '?category_id=' + vue.product.category_id )
+                    .then(function (response) {
+                        $("#filters .inner").html(response.body);
                         $("#filters").removeClass('loading');
                         $('.selectize').selectize({
                             create: true,
                             createOnBlur: true,
                             sortField: 'text'
                         });
-                    })
+                    }, function (error) {
+                        $("#filters .inner").html(error.body);
+                        $("#filters").removeClass('loading');
+                });
             }
         },
 
         getFieldsClik: function(){
             var vue = this;
             $("#filters").addClass('loading');
-            $.get('/dashboard/filters/'+ vue.product.id, {category_id: vue.product.category_id })
-                .done(function(response){
-                    $("#filters .inner").html(response);
+            this.$http.get('/dashboard/filters/'+ vue.product.id + '?category_id=' + vue.product.category_id )
+                .then(function (response) {
+                    $("#filters .inner").html(response.body);
                     $("#filters").removeClass('loading');
                     $('.selectize').selectize({
                         create: true,
                         createOnBlur: true,
                         sortField: 'text'
                     });
-                })
+                }, function (error) {
+                    $("#filters .inner").html(error.body);
+                    $("#filters").removeClass('loading');
+                });
         },
 
         getXapacts: function () {
@@ -95,34 +125,156 @@ var productVue = new Vue({
             if(vue.xapactEvent){
                 vue.xapactEvent = false;
                 $("#characters").addClass('loading');
-                $.get('/dashboard/characteristics/'+ vue.product.id, {category_id: vue.product.category_id })
-                    .done(function(response){
-                            $("#characters .inner").html(response);
-                            $("#characters").removeClass('loading');
-                            $('.selectize_x').selectize({
-                                create: true,
-                                createOnBlur: true,
-                                sortField: 'text'
-                            });
-                        }
-                    )
-            }
+                this.$http.get('/dashboard/characteristics/'+ vue.product.id + '?category_id=' + vue.product.category_id )
+                    .then(function (response) {
+                        $("#characters .inner").html(response.body);
+                        $("#characters").removeClass('loading');
+                        $('.selectize').selectize({
+                            create: true,
+                            createOnBlur: true,
+                            sortField: 'text'
+                        });
+                    }, function (error) {
+                        $("#characters .inner").html(error.body);
+                        $("#characters").removeClass('loading');
+                    });
+             }
         },
 
         getXapactsClik: function(){
             var vue = this;
             $("#characters").addClass('loading');
-            $.get('/dashboard/characteristics/'+ vue.product.id, {category_id: vue.product.category_id })
-                .done(function(response){
-                        $("#characters .inner").html(response);
-                        $("#characters").removeClass('loading');
-                        $('.selectize_x').selectize({
-                            create: true,
-                            createOnBlur: true,
-                            sortField: 'text'
-                        });
-                    }
-                )
+            this.$http.get('/dashboard/characteristics/'+ vue.product.id + '?category_id=' + vue.product.category_id )
+                .then(function (response) {
+                    $("#characters .inner").html(response.body);
+                    $("#characters").removeClass('loading');
+                    $('.selectize').selectize({
+                        create: true,
+                        createOnBlur: true,
+                        sortField: 'text'
+                    });
+                }, function (error) {
+                    $("#characters .inner").html(error.body);
+                    $("#characters").removeClass('loading');
+                });
+        },
+
+        getParam: function () {
+            var vue = this;
+            if (vue.paramEvent) {
+                vue.paramEvent = false;
+                $("#params").addClass('loading');
+                this.$http.get('/dashboard/parameters/list?id='+ vue.product.id )
+                    .then(function (response) {
+                        $("#params .inner").html(response.body);
+                        $("#params").removeClass('loading');
+                    }, function (error) {
+                        $("#params .inner").html(error.body);
+                        $("#params").removeClass('loading');
+                    });
+
+            }
+        },
+
+        getParamClik: function () {
+            var vue = this;
+            $("#params").addClass('loading');
+            this.$http.get('/dashboard/parameters/list?id='+ vue.product.id )
+                .then(function (response) {
+                    $("#params .inner").html(response.body);
+                    $("#params").removeClass('loading');
+                }, function (error) {
+                    $("#params .inner").html(error.body);
+                    $("#params").removeClass('loading');
+                });
+        },
+
+        setAsThumbnail: function(image) {
+            var vue = this;
+            for(var img in vue.product.images){
+                vue.product.images[img].is_thumb = false;
+            }
+            vue.product.images[vue.product.images.indexOf(image)].is_thumb = true;
+
+            this.$http.post('/dashboard/set-thumbnail/' + image.id, {_token: vue.token, productId : vue.product.id} )
+                .then(function (response) {}, function (error) {});
+        },
+
+        removeImage: function (image) {
+            var vue = this;
+            this.$http.post('/dashboard/remove-image/' + image.id, {_token: vue.token} )
+                .then(function (response) {
+                    var index = vue.product.images.indexOf(image);
+                    if (index > -1)
+                        vue.product.images.splice(index, 1);
+                }, function (error) {});
+        },
+
+        loadImage: function (event) {
+            var vue = this;
+            var uploadInput = event.target;
+            for(var property in uploadInput.files) {
+                if(!isNaN(property)){
+                    var data = new FormData();
+                    //console.log(uploadInput[0].files[property]);
+                    data.append('file', uploadInput.files[property]);
+                    data.append('product_id', this.product.id);
+                    data.append('is_certificate', event.target.id == 'cerf' ? 1 : 0);
+                    this.$http.post('/dashboard/upload-image', data )
+                        .then(function (image) {
+                            vue.product.images.push(image.body);
+                            if(vue.product.images.length == 1){
+                                vue.setAsThumbnail(image);
+                            }
+                        }, function (error) {});
+                }
+            }
+            uploadInput.value = null;
+        },
+
+        loadVideo: function(){
+            var vue = this;
+            bootbox.prompt("Введите HTML код видео", function(result) {
+                if (result ) {
+                    vue.product.video = result;
+                }
+            });
+
+        },
+
+        removeVideo: function(){
+            this.product.video = null;
+        },
+
+        getPdfList: function(){
+            var vue = this;
+            if(vue.fileEvent){
+                vue.fileEvent = false;
+                this.$http.get('/dashboard/pdf?id=' + vue.product.id )
+                    .then(function (response) {
+                        $("#filesup").html(response.body);
+                    }, function (error) {});
+            }
+        },
+
+        loadPDF: function(event){
+            var vue = this;
+            var uploadInput = event.target;
+            for(var property in uploadInput.files) {
+                if(!isNaN(property)){
+                    var data = new FormData();
+                    data.append('file', uploadInput.files[property]);
+                    data.append('productID', vue.product.id);
+                    data.append('categoryID', vue.product.category_id);
+                    data.append('brandID', vue.product.brand_id);
+
+                    this.$http.post('/dashboard/upload-pdf', data )
+                        .then(function (image) {
+                            vue.getPdfList();
+                        }, function (error) {});
+                }
+            }
+            uploadInput.val(null);
         },
 
         getProducts: function () {
