@@ -804,7 +804,6 @@ class ProductsController extends AdminController
             ->with('category')
             ->where('category_id', $request->get('categoryId') ?: 'LIKE', '%')
             ->orderBy($request->get('sortBy') ?: 'id', 'ASC')
-            ->where('category_id', $request->get('categoryId') ?: 'LIKE', '%')
             ->where(function ($prod) use ($request) {
                 $prod->where('title', 'LIKE', '%' . $request->get('search') . '%')
                     ->orWhere('article', 'LIKE', '%' . $request->get('search') . '%');

@@ -562,7 +562,99 @@
 
             <!-- additionalProducts -->
             <div id="additionalProducts" class="tab-pane">
+                <div class="col-xs-12">
+                    {{--<div class="_cover" v-el="cover"></div>--}}
+                    <h4 v-if="relOptions.selected.length > 0">Cопутствующие товары</h4>
+                    <h4 v-if="relOptions.selected.length == 0">Для этого продукта не указано ни одного сопуствующего товара</h4>
+                    <input type="hidden" v-model="selectedProductsIds" name="selectedProductsIds"/>
+                    <table class="table table-hover pr-table" v-if="relOptions.selected.length > 0">
+                        <tr>
+                            <th class="mini-thumb center">Миниатюра</th>
+                            <th>Название продукта</th>
+                            <th>Артикул</th>
+                            <th>Цена</th>
+                            <th class="options">Удалить</th>
+                        </tr>
+                        <tr v-for="(relProduct, index) in relOptions.selected">
+                            <td class="center">
+                                <img v-bind:src="relProduct.thumbnail[0].path " v-if="!!relProduct.thumbnail[0]" class="mini-thumb"/>
+                                <img src="/frontend/images/default.png" v-if="!relProduct.thumbnail[0]" class="mini-thumb"/>
+                            </td>
+                            <td>
+                                @{{ relProduct.title }} <br/>
+                                <small style="color: #808080">(@{{ relProduct.category.title }})</small>
+                            </td>
+                            <td> @{{ relProduct.article }}</td>
+                            <td> @{{ relProduct.price }}</td>
+                            <td class="options">
+                                <a href="#" style="font-size: 18px; color:indianred" v-on:click.prevent="removeProduct(relProduct, index)"><i class="fa fa-remove"></i></a>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr/>
+                    <h4>Список всех товаров</h4>
+                    <div class="well clearfix">
+                        <div class="col-md-4">
+                            {!! Form::select('_category', [0 => 'Все категории'] + $categoriesProvider->getCategoriesList()->all(), $selected = null,
+                                ['class' => 'form-control', 'v-model' => 'relOptions.category', 'v-on:change' => 'getProducts()']) !!}
+                        </div>
+                        <div class="col-md-4">
+                            {{--<span>Показывать по</span>--}}
+                            {!! Form::select('_paginate', [
+                                        20 => 'Показывать по 20 продуктов',
+                                        50 => 'По 50 продуктов',
+                                        100 => 'По 100 продуктов'
+                                      ], $selected = null,
+                             ['class' => 'form-control', 'v-model' => 'relOptions.paginate', 'v-on:change' => 'getProducts()']) !!}
+                        </div>
+                        <div class="col-md-4 pull-right">
+                            {!! Form::text('search', $value = null,
+                             ['class' => 'form-control','placeholder' => 'Поиск', 'v-model' => 'relOptions.search', 'v-on:input' => 'getProducts()']) !!}
+                        </div>
+                    </div>
+                    <table class="table table-hover pr-table">
+                        <tr>
+                            <th class="mini-thumb center">Миниатюра</th>
+                            <th>Название продукта</th>
+                            <th>Артикул</th>
+                            <th>Цена</th>
+                            <th class="options">Добавить</th>
+                        </tr>
+                        <tr v-for="(relProduct, index) in productsList.products">
+                            <td class="center">
+                                <img v-bind:src="relProduct.thumbnail[0].path " v-if="!!relProduct.thumbnail[0]" class="mini-thumb"/>
+                                <img src="/frontend/images/default.png" v-if="!relProduct.thumbnail[0]" class="mini-thumb"/>
+                            </td>
+                            <td>
+                                @{{ relProduct.title }} <br/>
+                                <small style="color: #808080">(@{{ relProduct.category.title }})</small>
+                            </td>
+                            <td> @{{ relProduct.article }}</td>
+                            <td> @{{ relProduct.price }}</td>
+                            <td class="options">
+                                <a href="#" style="font-size: 18px" v-on:click.prevent="addProduct(relProduct, index)"><i class="fa fa-plus"></i></a>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr/>
+                    <p v-if="productsList.products.length == 0">
+                        <b>Список продуктов по текущему запросу пуст</b>
+                    </p>
+                    <nav v-if="productsList.products.length > 0">
+                        <ul class="pager">
+                            <li class="previous" v-bind:class="productsList.pagination.currentPage == 1 ? 'disabled' : ''">
+                                <a href="#" v-on:click.prevent="prevPage()"><span aria-hidden="true">&larr;</span> Предыдущая</a>
+                            </li>
+                            <li>
+                                @{{ productsList.pagination.currentPage }} / @{{ productsList.pagination.lastPage  }}
+                            </li>
+                            <li class="next" v-bind:class="productsList.pagination.currentPage ==  productsList.pagination.lastPage ? 'disabled' : ''" >
+                                <a href="#" v-on:click.prevent="nextPage()">Следующая <span aria-hidden="true">&rarr;</span></a>
+                            </li>
+                        </ul>
+                    </nav>
 
+                </div>
             </div>
             <!-- /End additionalProducts -->
 

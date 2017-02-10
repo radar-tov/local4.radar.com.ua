@@ -21,6 +21,22 @@ var productVue = new Vue({
             meta_description: '',
             meta_title: ''
         },
+        productsList:{
+            products:{},
+            pagination:{
+                currentPage: {},
+                lastPage: {},
+                pageToGet: 1
+            }
+        },
+        relOptions:{
+            category:0,
+            paginate: 20,
+            search: '',
+            selected: []
+        },
+        relatedProducts: null,
+        selectedProductsIds: [],
     },
 
     created: function () {
@@ -34,6 +50,7 @@ var productVue = new Vue({
         }, function (error) {
             $("#errors").html(error);
         });
+        this.getRelatedProducts();
     },
 
     computed: {
@@ -278,8 +295,82 @@ var productVue = new Vue({
         },
 
         getProducts: function () {
+            var vue = this;
+            var options = {
+                params: {
+                    categoryId: vue.relOptions.category,
+                    paginate: vue.relOptions.search,
+                    search: vue.relOptions.search,
+                    selected: vue.getSelectedProductsIds(),
+                    page: vue.productsList.pagination.pageToGet,
+                    _: Date.now()
+                }
+            };
+            this.$http.get('/dashboard/product-actions/getProducts', options)
+                .then(function (response) {
+                    vue.productsList.products = response.body.data;
+                    vue.productsList.pagination.currentPage = response.body.current_page;
+                    vue.productsList.pagination.lastPage = response.body.last_page;
+                    if(vue.productsList.pagination.lastPage < vue.productsList.pagination.pageToGet) {
+                        vue.productsList.pagination.pageToGet = vue.productsList.pagination.lastPage;
+                        vue.getProducts()
+                    }
+                }, function (error) {});
+        },
 
-        }
+        getRelatedProducts: function(){
+            var vue = this;
+            this.$http.post('/dashboard/product-actions/getRelatedProducts', {productId: this.product.id})
+                .then(function (response) {
+                    vue.relOptions.selected = response.body;
+                    vue.selectedProductsIds = this.getSelectedProductsIds();
+                }, function (error) {});
+        },
+
+        syncProducts: function(){
+            this.selectedProductsIds = this.getSelectedProductsIds();
+            var body = {
+                ids: this.getSelectedProductsIds(),
+                productId: this.product.id
+            };
+            this.$http.post('/dashboard/product-actions/syncRelated', body)
+        },
+
+        getSelectedProductsIds: function(){
+            var productsIds = [];
+            this.relOptions.selected.forEach(function(product){
+                productsIds.push(product.id);
+            });
+            return productsIds;
+        },
+
+        addProduct: function(relProduct, index){
+            this.productsList.products.splice(index, 1);
+            this.relOptions.selected.push(relProduct);
+            this.syncProducts();
+            this.getProducts();
+        },
+
+        removeProduct: function(relProduct, index){
+            this.relOptions.selected.splice(index, 1);
+            this.productsList.products.push(relProduct);
+            this.syncProducts();
+            this.getProducts();
+        },
+
+        nextPage: function(){
+            if(this.productsList.pagination.currentPage != this.productsList.pagination.lastPage){
+                this.productsList.pagination.pageToGet = this.productsList.pagination.currentPage + 1;
+                this.getProducts();
+            }
+        },
+
+        prevPage: function(){
+            if(this.productsList.pagination.currentPage != 1) {
+                this.productsList.pagination.pageToGet = this.productsList.pagination.currentPage - 1;
+                this.getProducts();
+            }
+        },
     }
 
 });
