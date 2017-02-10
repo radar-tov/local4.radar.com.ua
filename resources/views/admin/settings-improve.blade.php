@@ -49,7 +49,7 @@
                             </a>
                         </li>
                         <li class="">
-                            <a data-toggle="tab" href="#API_NP">
+                            <a data-toggle="tab" href="#apinp">
                                 <i class="red ace-icon fa fa-truck bigger-120"></i>
                                 Новая почта
                             </a>
@@ -117,7 +117,7 @@
                                     {!! Form::text('footer_phone3',$value = null,['placeholder'=>'Телефон в футере 3','class'=>'form-control']) !!}
                                 </div>
                             </div>
-                        </div>
+
 
                         <h4 class="blue">
                             <i class="ace-icon fa fa-envelope-o bigger-110"></i>
@@ -202,107 +202,108 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- -->
                     </div>
-                    <div id="map" class="tab-pane fade">
-                        <h4 class="blue">
-                            <i class="ace-icon fa fa-map bigger-110"></i>
-                            Вставка кода карты сайта
-                        </h4>
-                        <div class="space-8"></div>
-                        <div class="col-lg-10">
-                            <textarea name="map_code" id="map_code" cols="60"
-                                      rows="5">{{ old('map_code',$settings->map_code) }}</textarea>
-                        </div>
-                        <div class="col-lg-5">
-                            @if(trim($settings->map_code))
-                                <a type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-                                   data-target=".bs-example-modal-lg">Показать на карте</a>
-                            @endif
+                        <div id="map" class="tab-pane fade">
+                            <h4 class="blue">
+                                <i class="ace-icon fa fa-map bigger-110"></i>
+                                Вставка кода карты сайта
+                            </h4>
+                            <div class="space-8"></div>
+                            <div class="col-lg-10">
+                                <textarea name="map_code" id="map_code" cols="60"
+                                          rows="5">{{ old('map_code',$settings->map_code) }}</textarea>
+                            </div>
+                            <div class="col-lg-5">
+                                @if(trim($settings->map_code))
+                                    <a type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                       data-target=".bs-example-modal-lg">Показать на карте</a>
+                                @endif
 
-                            <div class="modal fade bs-example-modal-lg " tabindex="-1" role="dialog"
-                                 aria-labelledby="myLargeModalLabel">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content custom-modal">
-                                        {!! $settings->map_code !!}
+                                <div class="modal fade bs-example-modal-lg " tabindex="-1" role="dialog"
+                                     aria-labelledby="myLargeModalLabel">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content custom-modal">
+                                            {!! $settings->map_code !!}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div id="API_NP">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        {!! Form::label('API_key_NP','Ключ для работы с API Новой почты') !!}
+                                        {!! Form::text('API_key_NP',$value = null,['placeholder'=>'Ключ','class'=>'form-control']) !!}
                                     </div>
                                 </div>
                             </div>
 
                         </div>
+                        <div id="agreement" class="tab-pane fade">
+                            <h4 class="blue">
+                                <i class="ace-icon fa fa-info-circle bigger-110"></i>
+                                Условия соглашения
+                            </h4>
 
-                        <div id="API_NP">
-                            <div class="col-lg-4">
-                                <div class="form-group">
-                                    {!! Form::label('API_key_NP','Ключ для работы с API Новой почты') !!}
-                                    {!! Form::text('API_key_NP',$value = null,['placeholder'=>'Ключ','class'=>'form-control']) !!}
-                                </div>
-                            </div>
+                            {!! Form::textarea('agreement', $value = null, ['rows'=>'20', 'class' => 'form-control tiny']) !!}
                         </div>
+                        <div id="apinp">
+                            <p>Настройки новой почты</p>
+                        </div>
+                        <div id="sendtwitter" class="tab-pane fade">
+                            <h4 class="blue">
+                                <i class="ace-icon fa fa-twitter-square bigger-110"></i>
+                                Твиттер
+                            </h4>
+                            <div id="counter"></div>
+                            {!! Form::text('twiterText', $value = null, ['class' => 'form-control', 'id' => 'twiterText']) !!}
+                            <br>
+                            <button class="btn btn-success" onclick="sendTwitter(); return false;">Отправить</button>
+                            <div id="result"></div>
+                            <script>
+                                function sendTwitter() {
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/server/send",
+                                        data: {
+                                            text: $("#twiterText").val(),
+                                            _token: '{{ csrf_token() }}'
+                                        }
+                                    }).done(function (response) {
+                                        $("#result").html(response);
+                                        setTimeout(function () {
+                                            $("#result").html('');
+                                        }, 10000);
+                                    });
+                                }
 
-                    </div>
-                    <div id="agreement" class="tab-pane fade">
-                        <h4 class="blue">
-                            <i class="ace-icon fa fa-info-circle bigger-110"></i>
-                            Условия соглашения
-                        </h4>
-
-                        {!! Form::textarea('agreement', $value = null, ['rows'=>'20', 'class' => 'form-control tiny']) !!}
-                    </div>
-
-                    <div id="sendtwitter" class="tab-pane fade">
-                        <h4 class="blue">
-                            <i class="ace-icon fa fa-twitter-square bigger-110"></i>
-                            Твиттер
-                        </h4>
-                        <div id="counter"></div>
-                        {!! Form::text('twiterText', $value = null, ['class' => 'form-control', 'id' => 'twiterText']) !!}
-                        <br>
-                        <button class="btn btn-success" onclick="sendTwitter(); return false;">Отправить</button>
-                        <div id="result"></div>
-                        <script>
-                            function sendTwitter() {
-                                $.ajax({
-                                    type: "POST",
-                                    url: "/server/send",
-                                    data: {
-                                        text: $("#twiterText").val(),
-                                        _token: '{{ csrf_token() }}'
-                                    }
-                                }).done(function (response) {
-                                    $("#result").html(response);
-                                    setTimeout(function () {
-                                        $("#result").html('');
-                                    }, 10000);
+                                $(document).ready(function () {
+                                    var characters = 140;
+                                    $("#counter").append("Можете ввести ещё " + characters + " символов");
+                                    $("#twiterText").keyup(function () {
+                                        if ($(this).val().length > characters) {
+                                            $(this).val($(this).val().substr(0, characters));
+                                        }
+                                        var remaining = characters - $(this).val().length;
+                                        $("#counter").html("Можете ввести ещё " + remaining + " символов");
+                                        if (remaining <= 10) {
+                                            $("#counter").css("color", "red");
+                                        } else {
+                                            $("#counter").css("color", "black");
+                                        }
+                                    });
                                 });
-                            }
-
-                            $(document).ready(function () {
-                                var characters = 140;
-                                $("#counter").append("Можете ввести ещё " + characters + " символов");
-                                $("#twiterText").keyup(function () {
-                                    if ($(this).val().length > characters) {
-                                        $(this).val($(this).val().substr(0, characters));
-                                    }
-                                    var remaining = characters - $(this).val().length;
-                                    $("#counter").html("Можете ввести ещё " + remaining + " символов");
-                                    if (remaining <= 10) {
-                                        $("#counter").css("color", "red");
-                                    } else {
-                                        $("#counter").css("color", "black");
-                                    }
-                                });
-                            });
 
 
-                        </script>
+                            </script>
+                        </div>
                     </div>
-
                 </div>
-            </div>
 
-            <button form='form-data' class="btn btn-success btn-block">Сохранить</button>
-        {!! Form::close() !!}
+
+                <button form='form-data' class="btn btn-success btn-block">Сохранить</button>
+            {!! Form::close() !!}
         <!-- PAGE CONTENT ENDS -->
         </div>
     </div>
