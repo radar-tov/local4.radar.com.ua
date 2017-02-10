@@ -2,7 +2,7 @@
 <div class="row filter_sel">
     {{--@if(isset($category->strain))--}}
     @foreach($filters as $filter)
-        <div class="col-xs-12">
+        <div class="col-xs-5" style="padding-right: 100px">
 
             <div class="form-group">
                 <label for="">

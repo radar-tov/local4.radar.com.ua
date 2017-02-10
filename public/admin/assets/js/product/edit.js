@@ -41,15 +41,9 @@ var productVue = new Vue({
 
     created: function () {
         this.$http.get('/dashboard/products/' + this.product.id + '/edit').then(function (response) {
-            this.product = response.body;
-        }, function (error) {
-            $("#errors").html(error);
-        });
+            this.product = response.body;});
         this.$http.get('/dashboard/helpers/translate').then(function (response) {
-            this.translate = response;
-        }, function (error) {
-            $("#errors").html(error);
-        });
+            this.translate = response;});
         this.getRelatedProducts();
     },
 
@@ -72,6 +66,7 @@ var productVue = new Vue({
     },
 
     methods: {
+
         makeSlug: function () {
             this.product.slug = this.prepareSlug()
         },
@@ -214,7 +209,7 @@ var productVue = new Vue({
             vue.product.images[vue.product.images.indexOf(image)].is_thumb = true;
 
             this.$http.post('/dashboard/set-thumbnail/' + image.id, {_token: vue.token, productId : vue.product.id} )
-                .then(function (response) {}, function (error) {});
+                .then(function (response) {});
         },
 
         removeImage: function (image) {
@@ -224,7 +219,7 @@ var productVue = new Vue({
                     var index = vue.product.images.indexOf(image);
                     if (index > -1)
                         vue.product.images.splice(index, 1);
-                }, function (error) {});
+                });
         },
 
         loadImage: function (event) {
@@ -243,7 +238,7 @@ var productVue = new Vue({
                             if(vue.product.images.length == 1){
                                 vue.setAsThumbnail(image);
                             }
-                        }, function (error) {});
+                        });
                 }
             }
             uploadInput.value = null;
@@ -270,7 +265,7 @@ var productVue = new Vue({
                 this.$http.get('/dashboard/pdf?id=' + vue.product.id )
                     .then(function (response) {
                         $("#filesup").html(response.body);
-                    }, function (error) {});
+                    });
             }
         },
 
@@ -288,7 +283,7 @@ var productVue = new Vue({
                     this.$http.post('/dashboard/upload-pdf', data )
                         .then(function (image) {
                             vue.getPdfList();
-                        }, function (error) {});
+                        });
                 }
             }
             uploadInput.val(null);
@@ -315,7 +310,7 @@ var productVue = new Vue({
                         vue.productsList.pagination.pageToGet = vue.productsList.pagination.lastPage;
                         vue.getProducts()
                     }
-                }, function (error) {});
+                });
         },
 
         getRelatedProducts: function(){
@@ -324,7 +319,7 @@ var productVue = new Vue({
                 .then(function (response) {
                     vue.relOptions.selected = response.body;
                     vue.selectedProductsIds = this.getSelectedProductsIds();
-                }, function (error) {});
+                });
         },
 
         syncProducts: function(){
@@ -371,6 +366,7 @@ var productVue = new Vue({
                 this.getProducts();
             }
         },
+
     }
 
 });

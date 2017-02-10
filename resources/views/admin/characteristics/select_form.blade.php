@@ -1,7 +1,7 @@
 <div class="row xaract_sel">
     @if(count($xaracts))
         @foreach($xaracts as $xaract)
-            <div class="col-xs-12">
+            <div class="col-xs-5" style="padding-right: 100px">
 
                 <div class="form-group">
                     <label for="">
