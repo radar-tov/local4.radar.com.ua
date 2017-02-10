@@ -64,6 +64,7 @@
 
                     <!-- /section:pages/faq -->
                     <div class="tab-content no-border padding-24">
+
                         <div id="settings" class="tab-pane fade active in">
                             <h4 class="blue">
                                 <i class="ace-icon fa fa-cog  bigger-110"></i>
@@ -203,6 +204,7 @@
                             </div>
                         </div>
                     </div>
+
                         <div id="map" class="tab-pane fade">
                             <h4 class="blue">
                                 <i class="ace-icon fa fa-map bigger-110"></i>
@@ -227,30 +229,26 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
-                            <div id="API_NP">
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        {!! Form::label('API_key_NP','Ключ для работы с API Новой почты') !!}
-                                        {!! Form::text('API_key_NP',$value = null,['placeholder'=>'Ключ','class'=>'form-control']) !!}
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
+
                         <div id="agreement" class="tab-pane fade">
                             <h4 class="blue">
                                 <i class="ace-icon fa fa-info-circle bigger-110"></i>
                                 Условия соглашения
                             </h4>
-
                             {!! Form::textarea('agreement', $value = null, ['rows'=>'20', 'class' => 'form-control tiny']) !!}
                         </div>
+
                         <div id="apinp" class="tab-pane fade">
-                            <p>Настройки новой почты</p>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    {!! Form::label('API_key_NP','Ключ для работы с API Новой почты') !!}
+                                    {!! Form::text('API_key_NP',$value = null,['placeholder'=>'Ключ','class'=>'form-control']) !!}
+                                </div>
+                            </div>
                         </div>
+
                         <div id="sendtwitter" class="tab-pane fade">
                             <h4 class="blue">
                                 <i class="ace-icon fa fa-twitter-square bigger-110"></i>
@@ -298,6 +296,7 @@
 
                             </script>
                         </div>
+                        
                     </div>
                 </div>
 
