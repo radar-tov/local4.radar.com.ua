@@ -141,7 +141,7 @@ var productVue = new Vue({
                     .then(function (response) {
                         $("#characters .inner").html(response.body);
                         $("#characters").removeClass('loading');
-                        $('.selectize').selectize({
+                        $('.selectize_x').selectize({
                             create: true,
                             createOnBlur: true,
                             sortField: 'text'
@@ -160,7 +160,7 @@ var productVue = new Vue({
                 .then(function (response) {
                     $("#characters .inner").html(response.body);
                     $("#characters").removeClass('loading');
-                    $('.selectize').selectize({
+                    $('.selectize_x').selectize({
                         create: true,
                         createOnBlur: true,
                         sortField: 'text'
