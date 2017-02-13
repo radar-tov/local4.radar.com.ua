@@ -281,12 +281,11 @@ var productVue = new Vue({
                     data.append('brandID', vue.product.brand_id);
 
                     this.$http.post('/dashboard/upload-pdf', data )
-                        .then(function (image) {
+                        .then(function () {
                             vue.getPdfList();
                         });
                 }
             }
-            uploadInput.val(null);
         },
 
         getProducts: function () {
