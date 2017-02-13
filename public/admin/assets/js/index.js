@@ -212,7 +212,7 @@ function deleteParam(productID, paramID){
 
 function getParameterList() {
     var token = $("input[name='_token']").val(),
-        productId = $("input[name='product-id']").val();
+        productId = $("input[name='id']").val();
     $.ajax({
         type: "GET",
         url: "/dashboard/parameters/list",
