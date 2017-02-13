@@ -446,7 +446,7 @@ class ProductsController extends AdminController
      * @return Response
      */
     // TODO: Refactor this crap
-    public function update(UpdateProductRequest $request, $id, ProductService $productService)
+    public function update(UpdateProductRequest $request,ProductService $productService, $id)
     {
         //dd($request->all());
         $request = $this->filesHandler->saveFile($request);

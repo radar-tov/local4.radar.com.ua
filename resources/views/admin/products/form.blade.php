@@ -226,32 +226,32 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    {!! Form::checkbox('active', $selected = '', ['class' => 'form-control', 'v-model' => 'product.active']) !!}
+                                    {!! Form::checkbox('active', $selected = null, ['class' => 'form-control']) !!}
                                     {!! Form::label('active', 'Показывать на сайте?') !!}
                                 </div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    {!! Form::checkbox('sitemap', $selected = '', ['class' => 'form-control','form'=>'form-data', 'v-model' => 'product.sitemap']) !!}
+                                    {!! Form::checkbox('sitemap', $selected = null, ['class' => 'form-control','form'=>'form-data']) !!}
                                     {!! Form::label('sitemap', 'Показывать в Sitemap.xml?') !!}
                                 </div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    {!! Form::checkbox('yandex', $selected = '', ['class' => 'form-control','form'=>'form-data', 'v-model' => 'product.yandex']) !!}
+                                    {!! Form::checkbox('yandex', $selected = null, ['class' => 'form-control','form'=>'form-data']) !!}
                                     {!! Form::label('yandex', 'Показывать в Yandex.xml?') !!}
                                 </div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    {!! Form::checkbox('is_bestseller', $selected = '', ['class' => 'form-control', 'v-model' => 'product.is_bestseller']) !!}
+                                    {!! Form::checkbox('is_bestseller', $selected = null, ['class' => 'form-control']) !!}
                                     {!! Form::label('is_bestseller', 'Отметить как хит продаж?') !!}
                                 </div>
                             </div>
 
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    {!! Form::checkbox('is_new', $selected = '', ['class' => 'form-control', 'v-model' => 'product.is_new']) !!}
+                                    {!! Form::checkbox('is_new', $selected = null, ['class' => 'form-control']) !!}
                                     {!! Form::label('is_new', 'Отметить как новинку?') !!}
                                 </div>
                             </div>
