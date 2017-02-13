@@ -56,7 +56,7 @@
             <label for="article">Артикул</label>
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa  bigger-110">#</i></span>
-                {!! Form::text('article', $value = null, ['class' => 'form-control', 'placeholder' => 'Артикул',]) !!}
+                {!! Form::text('article', $value = '', ['class' => 'form-control', 'placeholder' => 'Артикул', 'v-model' => 'product.article']) !!}
             </div>
         </div>
 
@@ -155,7 +155,7 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     {!! Form::label('available', 'Товар в наличии?') !!}
-                                    {!! Form::select('available', ['1'=> 'Да', '0'=>'Нет','2'=>'Под заказ'], $selected = null, ['class' => 'form-control']) !!}
+                                    {!! Form::select('available', ['1'=> 'Да', '0'=>'Нет','2'=>'Под заказ'], $selected = '', ['class' => 'form-control', 'v-model' => 'product.available']) !!}
                                 </div>
                             </div>
 
@@ -166,7 +166,7 @@
 
                             <div class="col-sm-6">
                                 {!! Form::label('name','Название тоывара в админке') !!}
-                                {!! Form::text('name', $value = null, ['class' => 'form-control']) !!}
+                                {!! Form::text('name', $value = '', ['class' => 'form-control', 'v-model' => 'product.name']) !!}
                             </div>
                         </div>
                     </div>
@@ -179,7 +179,7 @@
                                 @if(isset($product->url_1)&& $product->url_1 != '')
                                     <a href="{{ $product->url_1 }}" target="_blank"><i class="fa fa-link"></i></a>
                                 @endif
-                                {!! Form::text('url_1', $value = null, ['class'=>'form-control','form'=>'form-data']) !!}
+                                {!! Form::text('url_1', $value = '', ['class'=>'form-control','form'=>'form-data', 'v-model' => 'product.url_1']) !!}
                             </div>
 
                             <div class="col-sm-12">
@@ -188,7 +188,7 @@
                                 @if(isset($product->url_2)&& $product->url_2 != '')
                                     <a href="{{ $product->url_2 }}" target="_blank"><i class="fa fa-link"></i></a>
                                 @endif
-                                {!! Form::text('url_2', $value = null, ['class'=>'form-control','form'=>'form-data']) !!}
+                                {!! Form::text('url_2', $value = '', ['class'=>'form-control','form'=>'form-data', 'v-model' => 'product.url_2']) !!}
                             </div>
 
                             <div class="col-sm-12">
@@ -197,13 +197,13 @@
                                 @if(isset($product->url_3)&& $product->url_3 != '')
                                     <a href="{{ $product->url_3 }}" target="_blank"><i class="fa fa-link"></i></a>
                                 @endif
-                                {!! Form::text('url_4', $value = null, ['class'=>'form-control','form'=>'form-data']) !!}
+                                {!! Form::text('url_3', $value = '', ['class'=>'form-control','form'=>'form-data', 'v-model' => 'product.url_3']) !!}
                             </div>
 
                             <div class="col-sm-12">
                                 <br/>
                                 {!! Form::label('excerpt', 'Краткое Описание') !!}
-                                {!! Form::textarea('excerpt', $value = null, ['rows'=>'3','class'=>'form-control','form'=>'form-data']) !!}
+                                {!! Form::textarea('excerpt', $value = '', ['rows'=>'3','class'=>'form-control','form'=>'form-data', 'v-model' => 'product.excerpt']) !!}
                             </div>
 
                             <div class="col-sm-12">
@@ -215,7 +215,7 @@
                             <div class="col-sm-12">
                                 {{--<br/>--}}
                                 <label for="discount">Упаковка</label>
-                                {!! Form::text('pack', $value = null, ['class' => 'form-control']) !!}
+                                {!! Form::text('pack', $value = '', ['class' => 'form-control', 'v-model' => 'product.pack']) !!}
                             </div>
                         </div>
                     </div>
@@ -226,39 +226,39 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    {!! Form::checkbox('active', $selected = null, ['class' => 'form-control']) !!}
+                                    {!! Form::checkbox('active', $selected = '', ['class' => 'form-control', 'v-model' => 'product.active']) !!}
                                     {!! Form::label('active', 'Показывать на сайте?') !!}
                                 </div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    {!! Form::checkbox('sitemap', $selected = null, ['class' => 'form-control','form'=>'form-data']) !!}
+                                    {!! Form::checkbox('sitemap', $selected = '', ['class' => 'form-control','form'=>'form-data', 'v-model' => 'product.sitemap']) !!}
                                     {!! Form::label('sitemap', 'Показывать в Sitemap.xml?') !!}
                                 </div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    {!! Form::checkbox('yandex', $selected = null, ['class' => 'form-control','form'=>'form-data']) !!}
+                                    {!! Form::checkbox('yandex', $selected = '', ['class' => 'form-control','form'=>'form-data', 'v-model' => 'product.yandex']) !!}
                                     {!! Form::label('yandex', 'Показывать в Yandex.xml?') !!}
                                 </div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    {!! Form::checkbox('is_bestseller', $selected = null, ['class' => 'form-control']) !!}
+                                    {!! Form::checkbox('is_bestseller', $selected = '', ['class' => 'form-control', 'v-model' => 'product.is_bestseller']) !!}
                                     {!! Form::label('is_bestseller', 'Отметить как хит продаж?') !!}
                                 </div>
                             </div>
 
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    {!! Form::checkbox('is_new', $selected = null, ['class' => 'form-control']) !!}
+                                    {!! Form::checkbox('is_new', $selected = '', ['class' => 'form-control', 'v-model' => 'product.is_new']) !!}
                                     {!! Form::label('is_new', 'Отметить как новинку?') !!}
                                 </div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
                                     {!! Form::label('rating', 'Оценка продукта') !!}
-                                    {!! Form::select('rating', [0,1,2,3,4,5], $selected = isset($product) ? $product->rates()->avg('rate') : 0, ['class' => 'form-control']) !!}
+                                    {!! Form::select('rating', [0,1,2,3,4,5], $selected = '', ['class' => 'form-control', 'v-model' => 'product.rating']) !!}
 
                                 </div>
                             </div>
@@ -277,7 +277,7 @@
                                         '0.8'=> '0.8',
                                         '0.9'=> '0.9',
                                         '1.0'=> '1.0'
-                                     ], $selected = null, ['class' => 'form-control','form'=>'form-data']) !!}
+                                     ], $selected = '', ['class' => 'form-control','form'=>'form-data', 'v-model' => 'product.priority']) !!}
                                 </div>
                             </div>
                             <div class="col-xs-12">
@@ -291,12 +291,12 @@
                                         'monthly'=> 'ежемесячно',
                                         'yearly'=> 'раз в год',
                                         'never'=> 'никогда'
-                                     ], $selected = null, ['class' => 'form-control','form'=>'form-data']) !!}
+                                     ], $selected = '', ['class' => 'form-control','form'=>'form-data', 'v-model' => 'product.changefreq']) !!}
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <label for="clone_of">Клон</label>
-                                {!! Form::text('clone_of', $value = null, ['class' => 'form-control']) !!}
+                                {!! Form::text('clone_of', $value = '', ['class' => 'form-control', 'v-model' => 'product.clone_of']) !!}
                                 <br/>
                             </div>
                         </div>
@@ -326,7 +326,7 @@
                                     <span class="input-group-addon">
                                         <i class="fa  bigger-110">&#8372;</i>
                                     </span>
-                            {!! Form::text('base_price', $value = null, ['class' => 'form-control']) !!}
+                            {!! Form::text('base_price', $value = '', ['class' => 'form-control', 'v-model' => 'product.base_price']) !!}
                         </div>
                     </div>
                     <div class="col-sm-1"><h3> * {{ isset($product->getCena->curs) ? $product->getCena->curs : '1'}}</h3></div>
@@ -337,7 +337,7 @@
                                     <span class="input-group-addon">
                                         <i class="fa  bigger-110">&#8372;</i>
                                     </span>
-                            {!! Form::text('price', $value = null, ['class' => 'form-control']) !!}
+                            {!! Form::text('price', $value = '', ['class' => 'form-control', 'v-model' => 'product.price']) !!}
                         </div>
                     </div>
                 </div>
@@ -354,7 +354,7 @@
                                     <span class="input-group-addon">
                                         <i class="fa  bigger-110">%</i>
                                     </span>
-                            {!! Form::text('discount', $value = null, ['class' => 'form-control']) !!}
+                            {!! Form::text('discount', $value = '', ['class' => 'form-control', 'v-model' => 'product.discount']) !!}
                         </div>
                     </div>
 
@@ -364,7 +364,7 @@
                                     <span class="input-group-addon">
                                         <i class="fa  bigger-110">%</i>
                                     </span>
-                            {!! Form::text('nacenka', $value = null, ['class' => 'form-control']) !!}
+                            {!! Form::text('nacenka', $value = '', ['class' => 'form-control', 'v-model' => 'product.nacenka']) !!}
                         </div>
                     </div>
 
@@ -375,7 +375,7 @@
                                     <span class="input-group-addon">
                                         <i class="fa  bigger-110">&#8372;</i>
                                     </span>
-                            {!! Form::text('out_price', $value = null, ['class' => 'form-control']) !!}
+                            {!! Form::text('out_price', $value = '', ['class' => 'form-control', 'v-model' => 'product.out_price']) !!}
                         </div>
                     </div>
                 </div>
@@ -393,7 +393,7 @@
                                         <span class="input-group-addon">
                                             <i class="fa  bigger-110">%</i>
                                         </span>
-                            {!! Form::text('discount_montaj', $value = null, ['class' => 'form-control']) !!}
+                            {!! Form::text('discount_montaj', $value = '', ['class' => 'form-control', 'v-model' => 'product.discount_montaj']) !!}
                         </div>
                     </div>
 
@@ -404,7 +404,7 @@
                                         <span class="input-group-addon">
                                             <i class="fa  bigger-110">&#8372;</i>
                                         </span>
-                            {!! Form::text('cena_montaj', $value = null, ['class' => 'form-control']) !!}
+                            {!! Form::text('cena_montaj', $value = '', ['class' => 'form-control', 'v-model' => 'product.cena_montaj']) !!}
                         </div>
                     </div>
                 </div>
@@ -417,7 +417,7 @@
                 <div class="col-md-12">
                     <div class="input-group">
                         {!! Form::select('cenagrup_id',
-                                $value = $cenaProvider->getList(), $selected = null, ['class'=>'form-control', 'style' => 'min-width: 300px']) !!}
+                                $value = $cenaProvider->getList(), $selected = '', ['class'=>'form-control', 'style' => 'min-width: 300px', 'v-model' => 'product.cenagrup_id']) !!}
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -604,11 +604,11 @@
                                         20 => 'Показывать по 20 продуктов',
                                         50 => 'По 50 продуктов',
                                         100 => 'По 100 продуктов'
-                                      ], $selected = null,
+                                      ], $selected = '',
                              ['class' => 'form-control', 'v-model' => 'relOptions.paginate', 'v-on:change' => 'getProducts()']) !!}
                         </div>
                         <div class="col-md-4 pull-right">
-                            {!! Form::text('search', $value = null,
+                            {!! Form::text('search', $value = '',
                              ['class' => 'form-control','placeholder' => 'Поиск', 'v-model' => 'relOptions.search', 'v-on:input' => 'getProducts()']) !!}
                         </div>
                     </div>
@@ -673,7 +673,7 @@
                     </div>
                     <div class="form-group">
                         {!! Form::label('meta_keywords', 'Meta Keywords') !!}
-                        {!! Form::text('meta_keywords', $value = null, ['class' => 'form-control',"row"=>2,'form'=>'form-data']) !!}
+                        {!! Form::text('meta_keywords', $value = '', ['class' => 'form-control',"row"=>2,'form'=>'form-data', 'v-model' => 'product.meta_keywords']) !!}
                     </div>
                 </div>
             </div>
