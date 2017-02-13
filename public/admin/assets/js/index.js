@@ -218,7 +218,7 @@ function getParameterList() {
         url: "/dashboard/parameters/list",
         data: {id: productId, _token: token}
     }).done(function (response) {
-        $("#paramsup").html(response);
+        $("#params .inner").html(response);
     });
 }
 
