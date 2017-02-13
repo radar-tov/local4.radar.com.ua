@@ -152,8 +152,9 @@ $(document).ready(function () {
     });
 });
 
-function getPdfList(productId) {
+function getPdfList() {
     var token = $("input[name='_token']").val();
+    var productId = $("input[name='id']").val();
     $.ajax({
         type: "GET",
         url: "/dashboard/pdf",
