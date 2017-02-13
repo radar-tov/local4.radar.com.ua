@@ -19,17 +19,19 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.1/css/selectize.bootstrap3.min.css"/>
 
 @if(isset($product))
-    <span style="color: darkred">ID: {{ $product->id }}</span>
-    <span style="color: darkred">Дата обновления: {{ $product->updated_at }}</span>
-    <input type="hidden" name="id" value="{{ $product->id }}">
-    @if(isset($product->category->parent->slug))
-        <span style="float: right">
-            <a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}/{{ $product->slug }}" target="_blank">Страница товара</a>
-        </span><br>
-        <span style="float: right">
-            <a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}" target="_blank">Страница категории</a>
-        </span>
-    @endif
+    <div class="col-lg-12" style="padding-bottom: 20px">
+        <div class="col-lg-3" style="float: left">ID: {{ $product->id }}</div>
+        <div class="col-lg-3" style="float: left">Дата обновления: {{ $product->updated_at }}</div>
+        <input type="hidden" name="id" value="{{ $product->id }}">
+        @if(isset($product->category->parent->slug))
+            <div class="col-lg-3" style="float: right">
+                <a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}/{{ $product->slug }}" target="_blank">Страница товара</a>
+            </div>
+            <div class="col-lg-3" style="float: right">
+                <a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}" target="_blank">Страница категории</a>
+            </div>
+        @endif
+    </div>
 @endif
 
 <div class="col-lg-12" id="productVue">
@@ -170,9 +172,54 @@
                             </div>
                         </div>
                     </div>
-
+                    
                     <div class="form-group">
                         <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-3">
+                                    <p>
+                                        Ссылка №1
+                                        @if(isset($product->url_1)&& $product->url_1 != '')
+                                            <a href="{{ $product->url_1 }}" target="_blank"><i class="fa fa-link"></i></a>
+                                        @endif
+                                    </p>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <p>
+                                        Ссылка №2
+                                        @if(isset($product->url_2)&& $product->url_2 != '')
+                                            <a href="{{ $product->url_2 }}" target="_blank"><i class="fa fa-link"></i></a>
+                                        @endif</p>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <p>
+                                        Ссылка №3
+                                        @if(isset($product->url_3)&& $product->url_3 != '')
+                                            <a href="{{ $product->url_3 }}" target="_blank"><i class="fa fa-link"></i></a>
+                                        @endif</p>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <br/>
+                                {!! Form::label('excerpt', 'Краткое Описание') !!}
+                                {!! Form::textarea('excerpt', $value = '', ['rows'=>'3','class'=>'form-control','form'=>'form-data', 'v-model' => 'product.excerpt']) !!}
+                            </div>
+
+                            <div class="col-sm-12">
+                                <br/>
+                                {!! Form::label('body', 'Полное Описание') !!}
+                                {!! Form::textarea('body', $value = null, ['rows'=>'40','class'=>'form-control tiny','form'=>'form-data']) !!}
+                            </div>
+
+                            <div class="col-sm-12">
+                                {{--<br/>--}}
+                                <label for="discount">Упаковка</label>
+                                {!! Form::text('pack', $value = '', ['class' => 'form-control', 'v-model' => 'product.pack']) !!}
+                            </div>
+
                             <div class="col-sm-12">
                                 <br/>
                                 {!! Form::label('url_1', 'Ссылка на производителя №1') !!}
@@ -200,23 +247,6 @@
                                 {!! Form::text('url_3', $value = '', ['class'=>'form-control','form'=>'form-data', 'v-model' => 'product.url_3']) !!}
                             </div>
 
-                            <div class="col-sm-12">
-                                <br/>
-                                {!! Form::label('excerpt', 'Краткое Описание') !!}
-                                {!! Form::textarea('excerpt', $value = '', ['rows'=>'3','class'=>'form-control','form'=>'form-data', 'v-model' => 'product.excerpt']) !!}
-                            </div>
-
-                            <div class="col-sm-12">
-                                <br/>
-                                {!! Form::label('body', 'Полное Описание') !!}
-                                {!! Form::textarea('body', $value = null, ['rows'=>'40','class'=>'form-control tiny','form'=>'form-data']) !!}
-                            </div>
-
-                            <div class="col-sm-12">
-                                {{--<br/>--}}
-                                <label for="discount">Упаковка</label>
-                                {!! Form::text('pack', $value = '', ['class' => 'form-control', 'v-model' => 'product.pack']) !!}
-                            </div>
                         </div>
                     </div>
                 </div>

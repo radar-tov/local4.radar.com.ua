@@ -38,7 +38,7 @@
 
         <div class="col-xs-12">
             <br/>
-            <div class="well" style="min-height: 150px">
+            <div class="well" style="min-height: 170px">
                 <div class="row">
                     <div v-show="!selectedProductsIds.length">
 
@@ -150,31 +150,9 @@
                                 <div class="col-xs-1">
                                     <i class="fa fa-search-minus" v-on:click="delSearch()"></i>
                                 </div>
-                                <div class="col-xs-1">
-                                    <a href="{{ url('dashboard/price/download') }}" target="_blank">Скачать парйс(монт)</a>
-                                </div>
-
-                                <div class="col-xs-1 pull-right">
-                                    <button class="btn btn-sm btn-danger pull-right"
-                                            v-on:click.prevent="filterProducts()">
-                                        Применить
-                                    </button>
-                                </div>
-
-                                <div class="col-xs-1 pull-right">
-                                    <button class="btn btn-sm btn-primary" v-on:click.prevent="delFilters()">
-                                        Сбросить фильтры
-                                    </button>
-                                </div>
-
                             </div>
 
                             <template v-if="params.categoryId != 0">
-
-                                <div class="col-xs-1 pull-right">
-                                    <button class="btn btn-sm btn-primary" v-on:click.prevent="showPanel()">Фильтры
-                                    </button>
-                                </div>
 
                                 <div class="clearfix"></div>
 
@@ -248,27 +226,52 @@
 
                     </div>
                     <br>
-                    <nav v-if="products.productList.length > 0 && !selectedProductsIds.length" v-show="!loader">
-                        <ul class="pager">
-                            <li v-bind:class="{disabled : products.pagination.currentPage == 1}"
-                                v-on:click="prevPage()">
-                                <a href="#"><span aria-hidden="true">&larr;</span> Предыдущая</a>
-                            </li>
-                            <li>
+                    <div class="col-xs-12" v-if="!selectedProductsIds.length">
+
+                        <div class="col-xs-6">
+                            <nav v-if="products.productList.length > 0 && !selectedProductsIds.length" v-show="!loader">
+                                <ul class="pager">
+                                    <li v-bind:class="{disabled : products.pagination.currentPage == 1}"
+                                        v-on:click="prevPage()">
+                                        <a href="#"><span aria-hidden="true">&larr;</span> Предыдущая</a>
+                                    </li>
+                                    <li>
                                 <span>Показано @{{ products.productList.length }}
                                     из @{{ products.pagination.total }}</span>
-                            </li>
-                            <li>
+                                    </li>
+                                    <li>
                                 <span>Страница @{{ products.pagination.pageToGet }}
                                     из @{{ products.pagination.lastPage }}</span>
-                            </li>
-                            <li
-                                    v-bind:class="{disabled : products.pagination.currentPage == products.pagination.lastPage}"
-                                    v-on:click="nextPage()">
-                                <a href="#">Следующая <span aria-hidden="true">&rarr;</span></a>
-                            </li>
-                        </ul>
-                    </nav>
+                                    </li>
+                                    <li
+                                            v-bind:class="{disabled : products.pagination.currentPage == products.pagination.lastPage}"
+                                            v-on:click="nextPage()">
+                                        <a href="#">Следующая <span aria-hidden="true">&rarr;</span></a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <div class="col-xs-1 pull-right">
+                            <button class="btn btn-sm btn-danger pull-right"
+                                    v-on:click.prevent="filterProducts()">
+                                Применить
+                            </button>
+                        </div>
+                        <div class="col-xs-1 pull-right">
+                            <button class="btn btn-sm btn-primary" v-on:click.prevent="delFilters()">
+                                Сбросить фильтры
+                            </button>
+                        </div>
+                        <div class="col-xs-1 pull-right" v-if="params.categoryId != 0">
+                            <button class="btn btn-sm btn-primary" v-on:click.prevent="showPanel()">Фильтры
+                            </button>
+                        </div>
+                        <div class="col-xs-1 pull-right">
+                            <a href="{{ url('dashboard/price/download') }}" target="_blank">Скачать прайс(монт)</a>
+                        </div>
+
+                    </div>
 
                 </div>
 
