@@ -269,6 +269,14 @@ var productVue = new Vue({
             }
         },
 
+        updatePdfList: function(){
+            var vue = this;
+            this.$http.get('/dashboard/pdf?id=' + vue.product.id )
+                .then(function (response) {
+                    $("#filesup").html(response.body);
+                });
+        },
+
         loadPDF: function(event){
             var vue = this;
             var uploadInput = event.target;
@@ -282,7 +290,7 @@ var productVue = new Vue({
 
                     this.$http.post('/dashboard/upload-pdf', data )
                         .then(function () {
-                            vue.getPdfList();
+                            vue.updatePdfList();
                         });
                 }
             }
