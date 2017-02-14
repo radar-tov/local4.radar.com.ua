@@ -1,7 +1,7 @@
 @inject('categoriesProvider', 'App\ViewDataProviders\CategoriesDataProvider')
 @inject('brandsProvider', 'App\ViewDataProviders\BrandsDataProvider')
 @inject('cenaProvider', 'App\ViewDataProviders\CenaDataProvider')
-
+@inject('countryProvider', 'App\ViewDataProviders\CountryDataProvider')
 
 @section('top-scripts')
 @endsection
@@ -144,6 +144,13 @@
                     SEO
                 </a>
             </li>
+
+            <li class="">
+                <a data-toggle="tab" href="#np">
+                    <i class="ace-icon fa fa-truck"></i>
+                    Новая почта
+                </a>
+            </li>
         </ul>
 
         {{-- tabs --}}
@@ -162,11 +169,28 @@
                             </div>
 
                             <div class="col-sm-3">
-                                <label for="category_id">Бренд</label>
+                                {!! Form::label('category_id','Бренд') !!}
                                 {!! Form::select('brand_id', $value = $brandsProvider->getList(), $selected = '', ['class'=>'form-control', 'v-model' => 'product.brand_id']) !!}
                             </div>
 
-                            <div class="col-sm-6">
+                            <div class="col-sm-3">
+                                {!! Form::label('country_id','Страна производитель') !!}
+                                <a href="/dashboard/country/add" class="order_files fancybox.ajax">  <i class="fa fa-plus"></i></a>
+                                <a href="#" v-on:click="updateCountry()">  <i class="fa fa-refresh"></i></a>
+
+                                {!! Form::select('country_id', $value = $countryProvider->getList(), $selected = '',
+                                ['class'=>'form-control', 'v-model' => 'product.country_id', 'v-if' => 'countryList == null']) !!}
+
+                                <select name="country_id" class="form-control" v-model="product.country_id" v-else>
+                                    <option v-bind:value="country_id" v-for="(country_name,country_id) in countryList">@{{ country_name }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-12">
                                 {!! Form::label('name','Название тоывара в админке') !!}
                                 {!! Form::text('name', $value = '', ['class' => 'form-control', 'v-model' => 'product.name']) !!}
                             </div>
@@ -175,30 +199,23 @@
                     
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-sm-12" style="padding-top: 15px">
                                 <div class="col-sm-3">
-                                    <p>
-                                        Ссылка №1
                                         @if(isset($product->url_1)&& $product->url_1 != '')
-                                            <a href="{{ $product->url_1 }}" target="_blank"><i class="fa fa-link"></i></a>
+                                        <a href="{{ $product->url_1 }}" target="_blank"><i class="fa fa-link"></i> Ссылка №1</a>
                                         @endif
-                                    </p>
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <p>
-                                        Ссылка №2
                                         @if(isset($product->url_2)&& $product->url_2 != '')
-                                            <a href="{{ $product->url_2 }}" target="_blank"><i class="fa fa-link"></i></a>
-                                        @endif</p>
+                                            <a href="{{ $product->url_2 }}" target="_blank"><i class="fa fa-link"></i> Ссылка №2</a>
+                                        @endif
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <p>
-                                        Ссылка №3
                                         @if(isset($product->url_3)&& $product->url_3 != '')
-                                            <a href="{{ $product->url_3 }}" target="_blank"><i class="fa fa-link"></i></a>
-                                        @endif</p>
+                                            <a href="{{ $product->url_3 }}" target="_blank"><i class="fa fa-link"></i> Ссылка №3</a>
+                                        @endif
                                 </div>
                             </div>
 
@@ -446,8 +463,8 @@
                 <h3>Группа цен</h3>
                 <div class="col-md-12">
                     <div class="input-group">
-                        {!! Form::select('cenagrup_id',
-                                $value = $cenaProvider->getList(), $selected = '', ['class'=>'form-control', 'style' => 'min-width: 300px', 'v-model' => 'product.cenagrup_id']) !!}
+                        {!! Form::select('cenagrup_id', $value = $cenaProvider->getList(), $selected = '',
+                        ['class'=>'form-control', 'style' => 'min-width: 300px', 'v-model' => 'product.cenagrup_id']) !!}
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -708,6 +725,54 @@
                 </div>
             </div>
             <!-- /End seo -->
+
+            <!-- np -->
+            <div id="np" class="tab-pane">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                {!! Form::label('brutto', 'Вес с упаковкой (Брутто)') !!}
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-balance-scale"></i></span>
+                                    {!! Form::text('brutto', $value = '', ['class' => 'form-control', "row"=>1,'form'=>'form-data', 'v-model' => 'product.brutto']) !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                {!! Form::label('height', 'Высота упаковки') !!}
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-arrows-v"></i></span>
+                                    {!! Form::text('height', $value = '', ['class' => 'form-control', "row"=>1,'form'=>'form-data', 'v-model' => 'product.height']) !!}
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                {!! Form::label('width', 'Ширина упаковки') !!}
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-arrows-h"></i></span>
+                                    {!! Form::text('width', $value = '', ['class' => 'form-control', "row"=>1,'form'=>'form-data', 'v-model' => 'product.width']) !!}
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                {!! Form::label('depth', 'Глубина упаковки') !!}
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-compress"></i></span>
+                                    {!! Form::text('depth', $value = '', ['class' => 'form-control', "row"=>1,'form'=>'form-data', 'v-model' => 'product.depth']) !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /End np -->
 
         </div>
         {{--tabs end--}}

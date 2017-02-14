@@ -178,6 +178,12 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         /* API */
         Route::get('API/getAreas', 'APIAnminController@getAreas');
         /* /end API */
+
+        /* Country */
+        Route::get('country/add', 'CountrysController@add');
+        Route::post('country/save', 'CountrysController@save');
+        Route::post('country/get', 'CountrysController@get');
+        /* /end Country */
     });
 
 });

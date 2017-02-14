@@ -37,6 +37,7 @@ var productVue = new Vue({
         },
         relatedProducts: null,
         selectedProductsIds: [],
+        countryList: null
     },
 
     created: function () {
@@ -373,6 +374,13 @@ var productVue = new Vue({
                 this.getProducts();
             }
         },
+
+        updateCountry: function () {
+            this.$http.post('/dashboard/country/get')
+                .then(function (response) {
+                    this.countryList = response.body;
+                });
+        }
 
     }
 

@@ -78,7 +78,12 @@ class Product extends Eloquent {
         'nacenka',
         'clone_of',
         'discount_montaj',
-        'cena_montaj'
+        'cena_montaj',
+        'brutto',
+        'height',
+        'width',
+        'depth',
+        'country_id'
 	];
 
 
