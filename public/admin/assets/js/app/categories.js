@@ -127,7 +127,7 @@ new Vue({
             var vue = this;
             $.ajax({
                 method: "GET",
-                url: '/dashboard/parameters/get/',
+                url: '/dashboard/parameters/get',
                 data: {_token: vue.token, id: vue.categoryID },
                 success: function (response) {
                     vue.parameters = response;
