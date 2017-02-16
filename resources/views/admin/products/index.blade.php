@@ -267,7 +267,7 @@
                             <button class="btn btn-sm btn-primary" v-on:click.prevent="showPanel()">Фильтры
                             </button>
                         </div>
-                        <div class="col-xs-1 pull-right">
+                        <div class="col-xs-2 pull-right">
                             <a href="{{ url('dashboard/price/download') }}" target="_blank">Скачать прайс(монт)</a>
                         </div>
 
@@ -290,21 +290,13 @@
                     <th class="options">
                         <input type="checkbox" id="mainCheckbox" v-on:change="markProducts($event)"/>
                     </th>
-                    {{--<th class="options"><i class="fa fa-eye"></i></th>
-                    <th class="options"><i class="fa fa-plus"></i></th>
-                    <th class="options"><i class="fa fa-yc"></i></th>
-                    <th class="options"><i class="fa fa-sitemap"></i></th>
-                    <th class="options"><i class="fa fa-camera"></i></th>--}}
                     <th>ID</th>
                     <th>Артикул</th>
                     <th>Название</th>
-                    <th class="p-base-price">Базовая цена</th>
-                    <th class="p-price">Цена</th>
-                    <th class="p-discount">Скидка</th>
-                    <th class="p-nacenka">Наценка</th>
-                    <th class="p-out-price">Цена +- скидка</th>
-                    <th class="p-skidka-montaj">Скидка монт</th>
-                    <th class="p-cena-montaj">Цена монт</th>
+                    <th>Цена Базовая</th>
+                    <th>Цена Розница</th>
+                    <th>Цена Монт</th>
+                    {{--<th>Цена Опт</th>--}}
                     <th>Категория</th>
                     <th colspan="3" class="options">Опции</th>
                 </tr>
@@ -318,30 +310,6 @@
                         <input type="checkbox" name="selected[]" class="productSel"
                                v-bind:value="product.id" v-on:change="selectProduct($event)"/>
                     </td>
-
-                    {{--<td class="options">
-                        <a v-bind:href="'/' + product.category.parent.slug + '/' + product.category.slug + '/' + product.slug"
-                           target="_blank">
-                            <i class="fa fa-eye green" v-show="product.active > 0"></i>
-                        </a>
-                        <i class="fa fa-eye-slash red" v-show="product.active == 0"></i>
-                    </td>
-                    <td class="options">
-                        <i class="fa fa-minus red" v-show="product.available == 0"></i>
-                        <i class="fa fa-plus green" v-show="product.available == 1"></i>
-                        <i class="fa fa-phone red" v-show="product.available == 2"></i>
-                    </td>
-                    <td class="options">
-                        <i class="fa fa-yc red" v-show="product.yandex == 0"></i>
-                        <i class="fa fa-yc green" v-show="product.yandex == 1"></i>
-                    </td>
-                    <td class="options">
-                        <i class="fa fa-sitemap red" v-show="product.sitemap == 0"></i>
-                        <i class="fa fa-sitemap green" v-show="product.sitemap == 1"></i>
-                    </td>
-                    <td class="options">
-                        --}}{{--<img src="..@{{ product.path }}" style="max-height: 26px">--}}{{--
-                    </td>--}}
                     <td>
                         @{{ product.id }}
                     </td>
@@ -382,30 +350,28 @@
                             <i class="fa fa-ruble" v-show="product.get_cena.valuta == 1"></i>
                             <i class="fa fa-dollar" v-show="product.get_cena.valuta == 2"></i>
                             <i class="fa fa-euro" v-show="product.get_cena.valuta == 3"></i>
-                        </span>
-                        <span v-if="product.get_cena != null"> * @{{ product.get_cena.curs }}</span>
+                        *@{{ product.get_cena.curs }}=@{{ product.price }}</span>
                     </td>
-                    <td class="">@{{ product.price }}</td>
-                    <td class="center">
+                    <td class="">
+
                         <span class="label label-sm label-success arrowed-right" v-show="product.discount > 0">
-                            @{{ product.discount }} %
+                            - @{{ product.discount }} %
                         </span>
-                        <span v-show="product.discount < 1"><i class="fa fa-minus"></i></span>
-                    </td>
-                    <td class="center">
-                        <span class="label label-sm label-success arrowed-right" v-show="product.nacenka > 0">
-                            @{{ product.nacenka }} %
+
+                        <span class="label label-sm label-success arrowed-right" style="background-color: brown !important" v-show="product.nacenka > 0">
+                            + @{{ product.nacenka }} %
                         </span>
-                        <span v-show="product.nacenka < 1"><i class="fa fa-minus"></i></span>
+                        @{{ product.out_price }}
                     </td>
-                    <td class="">@{{ product.out_price }}</td>
                     <td class="">
                         <span class="label label-sm label-success arrowed-right" v-show="product.discount_montaj > 0">
-                            @{{ product.discount_montaj }} %
+                            - @{{ product.discount_montaj }}%
                         </span>
-                        <span v-show="product.discount_montaj < 1"><i class="fa fa-minus"></i></span>
+                        @{{ product.cena_montaj }}
                     </td>
-                    <td class="">@{{ product.cena_montaj }}</td>
+                    {{--<td class="">
+
+                    </td>--}}
                     <td>
                         <span>
                             <a v-bind:href="'/' + product.category.parent.slug + '/' + product.category.slug"
