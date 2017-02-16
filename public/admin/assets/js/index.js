@@ -113,7 +113,7 @@ $(document).ready(function () {
         maxHeight: 1000,
         fitToView: false,
         width: '80%',
-        height: '80%',
+        height: '90%',
         autoSize: false,
         closeClick: false,
         openEffect: 'none',

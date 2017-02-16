@@ -169,7 +169,7 @@
                             </div>
 
                             <div class="col-sm-3">
-                                {!! Form::label('category_id','Бренд') !!}
+                                {!! Form::label('brand_id','Бренд') !!}
                                 {!! Form::select('brand_id', $value = $brandsProvider->getList(), $selected = '', ['class'=>'form-control', 'v-model' => 'product.brand_id']) !!}
                             </div>
 

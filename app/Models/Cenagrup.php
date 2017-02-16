@@ -15,7 +15,10 @@ class Cenagrup extends Model
         'coment',
         'file',
         'pereschet',
-        'skidka_montaj'
+        'skidka_montaj',
+        'curs_opt',
+        'skidka_opt',
+        'brand_id'
     ];
 
     public function getCountProducts(){

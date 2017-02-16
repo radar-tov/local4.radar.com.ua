@@ -4,9 +4,11 @@
     <td>Название</td>
     <td>Валюта</td>
     <td>Курс</td>
+    <td>Курс опт</td>
     <td>Скидка</td>
     <td>Наценка</td>
-    <td>Скидка для монтажников</td>
+    <td>Скидка монт</td>
+    <td>Скидка опт</td>
     <td>Товаров в группе</td>
     <td>Дата обновления</td>
     <td></td>
@@ -30,9 +32,11 @@
                 @endif
             </td>
             <td>{{ $cenagrup->curs }}</td>
+            <td>{{ $cenagrup->curs_opt }}</td>
             <td>{{ $cenagrup->skidka }}</td>
             <td>{{ $cenagrup->nacenka }}</td>
             <td>{{ $cenagrup->skidka_montaj }}</td>
+            <td>{{ $cenagrup->skidka_opt }}</td>
             <td>{{ count($cenagrup->getCountProducts) }}</td>
             <td>{{ $cenagrup->pereschet }}</td>
             <td>
