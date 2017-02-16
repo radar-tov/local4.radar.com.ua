@@ -296,7 +296,7 @@
                     <th>Цена Базовая</th>
                     <th>Цена Розница</th>
                     <th>Цена Монт</th>
-                    {{--<th>Цена Опт</th>--}}
+                    <th>Цена Опт</th>
                     <th>Категория</th>
                     <th colspan="3" class="options">Опции</th>
                 </tr>
@@ -342,7 +342,7 @@
                            v-bind:href="'/dashboard/products/'+ product.id + '/edit'" v-if="product.name == ''">
                             @{{ product.title }}
                         </a>
-                        {{--<small v-show="product.clone_of > 0" style="color:indianred">(копия)</small>--}}
+                        <small v-show="product.clone_of > 0" style="color:indianred">(копия)</small>
                     </td>
                     <td class="">
                         <span>@{{ product.base_price }}</span>
@@ -369,9 +369,12 @@
                         </span>
                         @{{ product.cena_montaj }}
                     </td>
-                    {{--<td class="">
-
-                    </td>--}}
+                    <td class="">
+                        <span class="label label-sm label-success arrowed-right" v-show="product.opt_discount > 0">
+                            - @{{ product.opt_discount }}%
+                        </span>
+                        @{{ product.opt_price }}
+                    </td>
                     <td>
                         <span>
                             <a v-bind:href="'/' + product.category.parent.slug + '/' + product.category.slug"
