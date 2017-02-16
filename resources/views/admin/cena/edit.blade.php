@@ -11,7 +11,7 @@
                 <lable>Название группы</lable>
                 <input type="text" name="name" class="form-control" value="{{ $cenagrup->name }}">
                 {!! Form::label('brand_id','Бренд') !!}
-                {!! Form::select('brand_id', $value = $brandsProvider->getList(), $selected = '', ['class'=>'form-control']) !!}
+                {!! Form::select('brand_id', $value = $brandsProvider->getList(), $selected = $cenagrup->brand_id, ['class'=>'form-control']) !!}
                 <lable>Валюта</lable>
                 <select name="valuta" class="form-control">
                     <option value="{{ $cenagrup->valuta }}">
