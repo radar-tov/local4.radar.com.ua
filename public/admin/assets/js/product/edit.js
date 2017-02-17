@@ -18,8 +18,10 @@ var productVue = new Vue({
         product:{
             id: document.getElementById("form-data").id.value,
             images: [],
-            meta_description: '',
-            meta_title: ''
+            meta_description: null,
+            meta_title: null,
+            title: null,
+            slug: null
         },
         productsList:{
             products:{},
