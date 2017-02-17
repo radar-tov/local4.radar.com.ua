@@ -130,18 +130,19 @@ class CenaController extends Controller
                 $product->discount_montaj = $cenagrup->skidka_montaj;
                 $out .= "<p>Скидка для монтажников - ".$product->discount_montaj."</p>";
 
+                $product->opt_discount = $cenagrup->skidka_opt;
+                $out .= "<p>Скидка для оптовиков - ".$product->opt_discount."</p>";
+
                 if($cenagrup->skidka != 0){
                     $product->out_price = round((round(($product->base_price * $cenagrup->curs), 2)) - ((round(($product->base_price * $cenagrup->curs), 2)) * $product->discount / 100));
                     $out .= "<p>Новая выходная цена - ".$product->out_price."</p>";
                 }else{
-                    $product->out_price = round($product->base_price * $cenagrup->curs);
-                }
-
-                if($cenagrup->nacenka != 0){
-                    $product->out_price = round((round(($product->base_price * $cenagrup->curs), 2)) + ((round(($product->base_price * $cenagrup->curs), 2)) * $product->nacenka / 100));
-                    $out .= "<p>Новая выходная цена - ".$product->out_price."</p>";
-                }else{
-                    $product->out_price = round($product->base_price * $cenagrup->curs);
+                    if($cenagrup->nacenka != 0){
+                        $product->out_price = round((round(($product->base_price * $cenagrup->curs), 2)) + ((round(($product->base_price * $cenagrup->curs), 2)) * $product->nacenka / 100));
+                        $out .= "<p>Новая выходная цена - ".$product->out_price."</p>";
+                    }else{
+                        $product->out_price = round($product->base_price * $cenagrup->curs);
+                    }
                 }
 
                 if($cenagrup->skidka_montaj != 0){
@@ -150,6 +151,15 @@ class CenaController extends Controller
                 }else{
                     $product->cena_montaj = $product->out_price;
                 }
+
+                if($cenagrup->skidka_opt != 0){
+                    $product->opt_price = round(round(($product->base_price * $cenagrup->curs_opt), 2) - (round(($product->base_price * $cenagrup->curs_opt), 2) * $cenagrup->skidka_opt / 100));
+                    $out .= "<p>Новая цена для оптовиков - ".$product->opt_price."</p>";
+                }else{
+                    $product->opt_price = round(($product->base_price * $cenagrup->curs_opt), 2) * $cenagrup->skidka_opt / 100;
+                }
+
+
 
             }else{
                 $out .= "<p>Не найдена базовая цена.</p>";
@@ -162,7 +172,9 @@ class CenaController extends Controller
                     'out_price' => $product->out_price,
                     'nacenka' => $product->nacenka,
                     'discount_montaj' => $product->discount_montaj,
-                    'cena_montaj' => $product->cena_montaj
+                    'cena_montaj' => $product->cena_montaj,
+                    'opt_price' => $product->opt_price,
+                    'opt_discount' => $product->opt_discount,
                 ]
             )){
                 $out .= "<p>Товар обновили.</p>";
