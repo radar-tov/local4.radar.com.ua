@@ -46,7 +46,7 @@
         </div>
 
         <div class="col-sm-3">
-            <a href="#" class="pull-right" v-on:click.prevent="makeSlug()" v-show="product.title">
+            <a href="#" class="pull-right" v-on:click.prevent="makeSlug()">
                 <small>Сгенерировать ссылку</small>
                 <i class="fa fa-sort-alpha-asc"></i>
             </a>
