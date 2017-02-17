@@ -43,8 +43,11 @@ var productVue = new Vue({
     },
 
     created: function () {
-        this.$http.get('/dashboard/products/' + this.product.id + '/edit').then(function (response) {
-            this.product = response.body;});
+        if(this.product.id){
+            this.$http.get('/dashboard/products/' + this.product.id + '/edit').then(function (response) {
+                this.product = response.body;});
+        }
+
         this.$http.get('/dashboard/helpers/translate').then(function (response) {
             this.translate = response;});
         this.getRelatedProducts();
@@ -60,11 +63,19 @@ var productVue = new Vue({
         },
 
         coountTitle: function () {
-            return this.product.meta_title.length
+            if(this.product.id){
+                return this.product.meta_title.length
+            }else{
+                return 0;
+            }
         },
 
         coountDescription: function () {
-            return this.product.meta_description.length
+            if(this.product.id){
+                return this.product.meta_description.length
+            }else{
+                return 0;
+            }
         },
     },
 
