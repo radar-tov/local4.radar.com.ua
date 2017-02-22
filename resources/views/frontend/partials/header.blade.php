@@ -58,7 +58,7 @@
                 </div>
                 <a href="/cart" class="go-to-cart" rel="nofollow">
                     <div class="mini-cart tabs-wrapper pin-top" id="_cart">
-                        <img src="/frontend/images/mini-cart.png"/>
+                        <img src="/frontend/images/no_product.png"/>
                         <div>
                             <p>Товаров: <span class="qty">{{ cartItemsCount() }}</span> шт</p>
                             <p>На сумму: <span class="_sum">{{ cartTotalPrice() }}</span> грн</p>
