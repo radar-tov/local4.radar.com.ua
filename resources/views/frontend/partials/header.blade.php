@@ -52,7 +52,7 @@
             <div class="col s12 m2 l3 mini-cart-wrapper">
                 <div class="compare">
                     <a href="/compare" class="" rel="nofollow">
-                        <img src="/frontend/images/compare.png"/>
+                        <img src="/frontend/images/Waage.png"/>
                     </a>
                     <p><span class="vs">Сравнить<br><span id="com_count">{{calcProductsInCompare()}}</span> товаров</span></p>
                 </div>
