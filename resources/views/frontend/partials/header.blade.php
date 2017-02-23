@@ -16,17 +16,17 @@
                 {{--@endif--}}
                 <div class="for_code">
                     @if(array_get($settingsProvider->getSettings(),'header_phone1'))
-                        <span class="phone code right-align"><img src="/frontend/images/tel.png"/>
+                        <span class="phone code right-align"><img src="/frontend/images/phone-icon_blue.png"/>
                             {{ array_get($settingsProvider->getSettings(),'header_phone1') }}
                         </span><br>
                     @endif
                     @if(array_get($settingsProvider->getSettings(),'header_phone2'))
-                        <span class="phone code right-align"><img src="/frontend/images/tel.png"/>
+                        <span class="phone code right-align"><img src="/frontend/images/phone-icon_blue.png"/>
                             {{ array_get($settingsProvider->getSettings(),'header_phone2') }}
                     </span><br>
                     @endif
                     @if(array_get($settingsProvider->getSettings(),'footer_phone1'))
-                        <span class="phone code right-align"><img src="/frontend/images/tel.png"/>
+                        <span class="phone code right-align"><img src="/frontend/images/phone-icon_blue.png"/>
                             {{ array_get($settingsProvider->getSettings(),'footer_phone1') }}
                     </span><br>
                     @endif
