@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+   <sitemap>
+
+      <loc>https://radar.com.ua/sitemap_page</loc>
+	  
+   </sitemap>
+
+   <sitemap>
+
+      <loc>https://radar.com.ua/sitemap_stati</loc>
+
+   </sitemap>
+    
+	<sitemap>
+
+      <loc>https://radar.com.ua/sitemap_categories</loc>
+
+   </sitemap>
+   
+   <sitemap>
+
+      <loc>https://radar.com.ua/sitemap_products</loc>
+
+   </sitemap>
+
+</sitemapindex>
