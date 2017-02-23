@@ -19,7 +19,4 @@ Disallow: /registration
 Disallow: /comment
 
 Host: https://radar.com.ua
-Sitemap: https://radar.com.ua/sitemap_page
-Sitemap: https://radar.com.ua/sitemap_stati
-Sitemap: https://radar.com.ua/sitemap_categories
-Sitemap: https://radar.com.ua/sitemap_products
+Sitemap: https://radar.com.ua/sitemap.xml
