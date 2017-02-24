@@ -34,6 +34,7 @@ class BotDefinition
         foreach($bots as $bot){
             if(stripos($_SERVER['HTTP_USER_AGENT'], $bot) !== false){
                 $_ENV['BOT'] = true;
+                break;
             }else{
                 $_ENV['BOT'] = false;
             }
