@@ -24,14 +24,20 @@ class BotDefinition
             'liveinternet.ru','xml-sitemaps.com','agama','metadatalabs.com','h1.hrn.ru',
             'googlealert.com','seo-rus.com','yaDirectBot','yandeG','yandex',
             'yandexSomething','Copyscape.com','AdsBot-Google','domaintools.com',
-            'Nigma.ru','bing.com','dotnetdotcom'
+            'Nigma.ru','bing.com','dotnetdotcom','bot', 'Yandex\/1.01.001', 'YandexMetrika',
+            'YandexMarket', 'spider', 'crawler', 'Mediapartners-Google', 'WordPress', 'Xap',
+            'LWP', 'TNX', 'META',  'SISTRIX', 'Yandex\/2.01.000', 'Deepnet Explorer', 'XMPP',
+            'Yahoo! Slurp', '\/search?', 'Mail.Ru\/1.0', 'InfoPath', 'feedfetcher', 'Feedfetcher',
+            'Yandex.Commerce.Pinger'
         );
 
-        foreach($bots as $bot)
+        foreach($bots as $bot){
             if(stripos($_SERVER['HTTP_USER_AGENT'], $bot) !== false){
                 $_ENV['BOT'] = true;
+            }else{
+                $_ENV['BOT'] = false;
             }
-        $_ENV['BOT'] = false;
+        }
 
         return $next($request);
     }
