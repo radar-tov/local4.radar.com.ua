@@ -4,6 +4,7 @@
     // frontend
     public\frontend\css\print.css
     public\frontend\css\style.css
+    public\frontend\css\font.css
     public\css\additional.css
 
     //авторизация при входе в админку
@@ -40,7 +41,7 @@ elixir(function(mix) {
         'jquery.rating.css',
         'print.css',
         'range.css',*/
-        'elexir/style.css',
+        'public/frontend/style.css',
         'elexir/additional.css'
         ]
         ,'public/build/css/all.css' // куда положить файл и как назвать

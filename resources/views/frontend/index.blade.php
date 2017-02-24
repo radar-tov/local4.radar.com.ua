@@ -27,6 +27,16 @@
         </div>
         {{--@include('frontend.partials.sale_slider')--}}
         <div class="container">
+            <!--   Icon Section   -->
+            <div class="row">
+                <div class="col s12 m12 l6 about-us">
+                    @if(array_get($settingsProvider->getSettings(),'about'))
+                        {!! array_get($settingsProvider->getSettings(),'about') !!}
+                    @endif
+                </div>
+            </div>
+        </div>
+        <div class="container">
             <div class="row">
                 @include('frontend.partials.products.sale_products_slider')
                 @include('frontend.partials.products.new_products_slider')
@@ -34,6 +44,8 @@
         </div>
 
     </section>
+
+
     <section class="advantages">
         <div class="container">
             <div class="row">
@@ -64,7 +76,7 @@
         </div>
     </section>
 
-    <section class="description">
+{{--    <section class="description">
         <div class="container">
 
             <!--   Icon Section   -->
@@ -89,19 +101,19 @@
 
                 </div>
 
-                {{--<div class="col s12 m12 l6 feedback">--}}
-                    {{--<h4>Отзывы</h4>--}}
+                <div class="col s12 m12 l6 feedback">
+                    <h4>Отзывы</h4>
 
-                    {{--@if(array_get($settingsProvider->getSettings(),'reviews'))--}}
+                    @if(array_get($settingsProvider->getSettings(),'reviews'))
 
-                        {{--{!! array_get($settingsProvider->getSettings(),'reviews') !!}--}}
+                        {!! array_get($settingsProvider->getSettings(),'reviews') !!}
 
-                    {{--@endif--}}
+                    @endif
 
-                {{--</div>--}}
+                </div>
             </div>
         </div>
-    </section>
+    </section>--}}
 @endsection
 
 
