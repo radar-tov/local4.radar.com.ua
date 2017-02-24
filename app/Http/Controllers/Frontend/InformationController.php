@@ -44,8 +44,8 @@ class InformationController extends BaseController
                 }
             }
 
-            return Response::view('frontend.single-post',compact('article'));
-                //->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT')
+            return Response::view('frontend.single-post',compact('article'))
+                ->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
 
 		}
 
