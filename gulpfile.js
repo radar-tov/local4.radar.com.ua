@@ -34,32 +34,33 @@ var elixir = require('laravel-elixir');
 elixir(function(mix) {
     mix.styles(
         [
-     /* 'materialize.css',
-        'style.css',
-        'animate.css',
-        'lightbox.css',
-        'jquery.rating.css',
-        'print.css',
-        'range.css',*/
-        'public/frontend/font.css',
-        'public/frontend/print.css',
-        'public/frontend/stile.css',
-        'public/css/additional.css'
+            '/frontend/css/style.css',
+            '/frontend/css/print.css',
+            '/css/additional.css',
+            '/fancybox/source/jquery.fancybox.css',
+            '/frontend/css/font.css',
         ]
-        ,'public/build/css/all.css' // куда положить файл и как назвать
-        //,'resources/assets/css' //где искать файлы
+        ,'public/frontend/css/all.css' // куда положить файл и как назвать
+        ,'public' //где искать файлы
     );
 
-    /*
-    mix.scripts([
-        'jquery-2.1.3.min.js',
-        'materialize.js',
-        'ion.rangeSlider.js',
-        'lightbox.js',
-        'jquery.glide.js',
-        'wow.min.js',
-        'jquery.rating-2.0.min.js',
-        'init.js'
-    ]);*/
+
+    mix.scripts(
+        [
+            '/frontend/js/jquery-2.1.3.min.js',
+            '/fancybox/lib/jquery.mousewheel.pack.js',
+            '/fancybox/source/jquery.fancybox.pack.js',
+            '/frontend/js/index.js'
+        ]
+        ,'public/frontend/js/all.js' // куда положить файл и как назвать
+        ,'public' //где искать файлы
+    );
+
+    mix.version(
+        [
+            'public/frontend/css/all.css',
+            'public/frontend/js/all.js'
+        ]
+    );
 
 });
