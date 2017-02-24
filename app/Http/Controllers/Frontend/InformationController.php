@@ -38,8 +38,7 @@ class InformationController extends BaseController
                 if($ifModifiedSince >= $LastModified){
 					if(env('APP_ENV') == 'production'){
 						if($_ENV['BOT']){
-							return Response::view('frontend.single-post',compact('article'), 304)
-                                ->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
+							return Response::view('frontend.single-post',compact('article'), 304);
 						}
 					}
                 }
