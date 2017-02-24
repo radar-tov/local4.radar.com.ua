@@ -11,6 +11,7 @@
     <!-- CSS  -->  {{--  !!!   последовательность css не менять--}}
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="{{ elixir('css/all.css') }}" type="text/css">
+    <link rel="stylesheet" href="/frontend/css/print.css" type="text/css" media="print">
     <!-- / CSS  -->
     <!-- SCRIPTS  -->
     <script type="text/javascript" src="{{ elixir('js/all.js') }}"></script>
