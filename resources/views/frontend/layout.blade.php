@@ -10,21 +10,10 @@
     <link rel="canonical" href="{{ $_SERVER['REQUEST_URI'] }}">
     <!-- CSS  -->  {{--  !!!   последовательность css не менять--}}
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="{{ elixir('/frontend/css/all.cs') }}" type="text/css">
-
-    {{--<link rel="stylesheet" href="/frontend/css/style.css" type="text/css" media="screen,projection">
-    <link rel="stylesheet" href="/frontend/css/print.css" type="text/css" media="print">
-    <link rel="stylesheet" href="/css/additional.css" type="text/css">
-    <link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{{ elixir('css/all.css') }}" type="text/css">
     <!-- / CSS  -->
-    <!-- FONTS  -->
-    <link href="/frontend/css/font.css" rel="stylesheet" type="text/css"/>
-    <!-- / FONTS  -->--}}
     <!-- SCRIPTS  -->
-    <script type="text/javascript" src="{{ elixir('/frontend/js/all.js') }}"></script>
-    {{--{!! Html::script("frontend/js/jquery-2.1.3.min.js") !!}
-    <script type="text/javascript" src="/fancybox/lib/jquery.mousewheel.pack.js"></script>
-    <script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js"></script>--}}
+    <script type="text/javascript" src="{{ elixir('js/all.js') }}"></script>
     <!-- section top-scripts  -->
     @yield('top-scripts')
     <!-- / section top-scripts  -->
