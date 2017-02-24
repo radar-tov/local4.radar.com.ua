@@ -93,7 +93,7 @@ class FrontendController extends BaseController
         if(!$category) abort(404);
 
 		if($category->children->count() > 0 and !$subcategory){
-
+            // Список подкатегорий без фильтров
             if($subcategorySlug != null) abort(404);
 
 			$categories = $category->children;
@@ -112,8 +112,8 @@ class FrontendController extends BaseController
                 }
             }
 
-			return Response::view('frontend.subcategories', compact('categories','category'));
-				//->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT')
+			return Response::view('frontend.subcategories', compact('categories','category'))
+				->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
 	  	}
 
 		if($request->ajax()){
