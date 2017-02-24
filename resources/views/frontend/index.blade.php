@@ -1,10 +1,9 @@
 @extends('frontend.layout')
 @inject('settingsProvider', '\App\ViewDataProviders\SettingsDataProvider')
 @section('seo')
-    <title>{{ 'Интернет-магазин отопительного оборудования и сантехники Radar' }}</title>
-
-    <meta name="description"
-          content="В интернет-магазине Radar предоставляеться огромный выбор котлов по лучшим ценам! Техника высокого качества. Доставка по Одессе и Украине. Наш тел: +38-063-881-83-83"/>
+    <title>{{ 'Купить качественное отопительное оборудование в Одессе' }}</title>
+    <meta name="description" content="Продажа надежного отопительного оборудования в интернет
+    магазине оборудования для отопления частного дома «Radar» в Украине."/>
     <meta name="keyword" content=""/>
 @endsection
 

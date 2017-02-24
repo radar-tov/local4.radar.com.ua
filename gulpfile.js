@@ -41,8 +41,10 @@ elixir(function(mix) {
         'jquery.rating.css',
         'print.css',
         'range.css',*/
-        'public/frontend/style.css',
-        'elexir/additional.css'
+        'public/frontend/font.css',
+        'public/frontend/print.css',
+        'public/frontend/stile.css',
+        'public/css/additional.css'
         ]
         ,'public/build/css/all.css' // куда положить файл и как назвать
         //,'resources/assets/css' //где искать файлы
