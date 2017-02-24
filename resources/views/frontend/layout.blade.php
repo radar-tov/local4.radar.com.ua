@@ -16,12 +16,7 @@
     <link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css" type="text/css" media="screen" />
     <!-- / CSS  -->
     <!-- FONTS  -->
-    <link href="http://allfont.ru/allfont.css?fonts=a_avantetck-medium" rel="stylesheet" type="text/css"/>
-    <link href="http://allfont.ru/allfont.css?fonts=a_avantetck-heavy" rel="stylesheet" type="text/css"/>
-    <link href="http://allfont.ru/allfont.css?fonts=a_avantebs" rel="stylesheet" type="text/css"/>
-    <link href="http://allfont.ru/allfont.css?fonts=a_avanteltnr-thinitalic" rel="stylesheet" type="text/css"/>
-    <link href="http://allfont.ru/allfont.css?fonts=a_avantebsnr-light" rel="stylesheet" type="text/css"/>
-    <link href="http://allfont.ru/allfont.css?fonts=a_avantebsnr-bold" rel="stylesheet" type="text/css"/>
+    <link href="/frontend/css/font.css" rel="stylesheet" type="text/css"/>
     <!-- / FONTS  -->
     <!-- SCRIPTS  -->
     {!! Html::script("frontend/js/jquery-2.1.3.min.js") !!}
