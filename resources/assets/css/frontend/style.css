@@ -38,7 +38,7 @@
 }
 
 body {
-    padding: 0 !important
+    padding: 0 !important;
 }
 
 a, button, input {
@@ -4833,7 +4833,9 @@ body {
 
 @font-face {
     font-family: "MyriadPro";
-    src: url("/frontend/font/myriad-pro/myriad-pro.eot?#iefix") format("embedded-opentype"), url("/frontend/font/myriad-pro/myriad-pro.woff") format("woff"), url("/frontend/font/myriad-pro/myriad-pro.ttf") format("truetype"));
+    src: url("/frontend/font/myriad-pro/myriad-pro.eot?#iefix") format("embedded-opentype"),
+    url("/frontend/font/myriad-pro/myriad-pro.woff") format("woff"),
+    url("/frontend/font/myriad-pro/myriad-pro.ttf") format("truetype");
     font-weight: normal;
     font-style: normal
 }
@@ -6373,7 +6375,7 @@ div.vote-hover {
     display: block;
     text-align: center;
     min-height: 30px;
-    letter-spacing: 1px
+    letter-spacing: 1px;
     font-family: "Roboto", sans-serif;
     font-weight: 600;
     font-size: 14px
@@ -9791,9 +9793,6 @@ nav .button-collapse img {
     top: 10%
 }
 
-*
-
-/
 #products {
     min-height: 500px
 }

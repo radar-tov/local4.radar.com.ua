@@ -10,11 +10,13 @@
     <link rel="canonical" href="{{ $_SERVER['REQUEST_URI'] }}">
     <!-- CSS  -->  {{--  !!!   последовательность css не менять--}}
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="{{ elixir('css/all.css') }}" type="text/css">
+    {{--<link rel="stylesheet" href="{{ elixir('css/all.css') }}" type="text/css">--}}
+    <link rel="stylesheet" href="/css/frontend/all.min.css" type="text/css">
     <link rel="stylesheet" href="/frontend/css/print.css" type="text/css" media="print">
     <!-- / CSS  -->
     <!-- SCRIPTS  -->
-    <script type="text/javascript" src="{{ elixir('js/all.js') }}"></script>
+    {{--<script type="text/javascript" src="{{ elixir('js/all.js') }}"></script>--}}
+    <script type="text/javascript" src="/js/frontend/all.js"></script>
     <!-- section top-scripts  -->
     @yield('top-scripts')
     <!-- / section top-scripts  -->
