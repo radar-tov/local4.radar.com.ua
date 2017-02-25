@@ -1,10 +1,30 @@
 {
   "private": true,
   "devDependencies": {
-    "gulp": "^3.8.8"
+    "gulp": "^3.9.1"
   },
   "dependencies": {
     "laravel-elixir": "^2.0.0",
     "bootstrap-sass": "^3.0.0"
-  }
+  },
+  "name": "radar",
+  "description": "Интернет магазин Radar.com.ua",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/radar-tov/radar.com.ua.git"
+  },
+  "author": "Tanasenko Evgenii",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/radar-tov/radar.com.ua/issues"
+  },
+  "homepage": "https://github.com/radar-tov/radar.com.ua#readme"
 }
