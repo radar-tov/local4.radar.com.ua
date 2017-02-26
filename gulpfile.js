@@ -4,10 +4,9 @@ elixir(function(mix) {
 
     mix.styles(
         [
-            'frontend/style.css',
-            'frontend/additional.css',
-            'frontend/jquery.fancybox.css',
             'frontend/font.css',
+            'frontend/style.css',
+            'frontend/jquery.fancybox.css',
         ], 'public/css/frontend'
     );
 

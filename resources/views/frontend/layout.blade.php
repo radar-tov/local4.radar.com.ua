@@ -10,7 +10,7 @@
     <link rel="canonical" href="{{ $_SERVER['REQUEST_URI'] }}">
     <!-- CSS  -->  {{--  !!!   последовательность css не менять--}}
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="{{ elixir('css/frontend/all.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ elixir('css/frontend/all.css') }}" type="text/css"  media="screen">
     <link rel="stylesheet" href="/frontend/css/print.css" type="text/css" media="print">
     <!-- / CSS  -->
     <!-- SCRIPTS  -->
