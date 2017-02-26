@@ -4,6 +4,7 @@ storage/
 public/swf/
 public/pdf/
 public/xls/
+resources/assets/libs
 composer.lock
 composer.phar
 .env
