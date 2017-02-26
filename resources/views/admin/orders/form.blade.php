@@ -95,7 +95,7 @@
         <div class="col-xs-12">
             <div class="form-group">
                 {!! Form::label('comment', 'Примечание менеджера') !!}
-                {!! Form::textarea('comment', $value = null, ['class' => 'form-control', 'rows' => 5]) !!}
+                {!! Form::textarea('comment', $value = null, ['class' => 'form-control', 'rows' => 10]) !!}
             </div>
         </div>
 
@@ -120,9 +120,45 @@
         @else
             <b>Пользователь не найден</b>
         @endif
+
+
+        <div id="np-tracking" class="np-widget-hz np-w-br-0" style="width: 434px; min-height: 76px;">
+            <div id="np-first-state">
+                <div id="np-tracking-logo"></div>
+                <div id="np-title">
+                    <div class="np-h1">ВІДСТЕЖЕННЯ<br>ПОСИЛОК</div>
+                </div>
+                <div id="np-input-container">
+                    <div id="np-clear-input"></div>
+                    <input id="np-user-input" type="text" name="number" placeholder="Номер посилки"></div>
+                <div id="np-warning-message"></div>
+                <button id="np-submit-tracking" type="button"><span id="np-text-button-tracking">ВІДСТЕЖИТИ</span>
+                    <div id="np-load-image-tracking"></div>
+                </button>
+                <div id="np-error-status"></div>
+            </div>
+            <div id="np-second-state">
+                <div id="np-status-icon"></div>
+                <div id="np-status-message"></div>
+                <div class="np-track-mini-logo">
+                    <div class="np-line-right"></div>
+                    <div class="np-line-left"></div>
+                </div>
+                <a href="#" id="np-more">Детальніше на сайті</a>
+                <div id="np-return-button"><span>Інша посилка</span></div>
+            </div>
+        </div>
+
+
+
     </div>
 </div>
 <div class="clearfix"></div>
+
+
+
+
+
 @section('bottom-scripts')
 
     <script>
@@ -138,5 +174,8 @@
             })
         })
     </script>
+
+    <link rel='stylesheet' href='https://apimgmtstorelinmtekiynqw.blob.core.windows.net/content/MediaLibrary/Widget/Tracking/styles/tracking.css' />
+    <script type='text/javascript' src='https://apimgmtstorelinmtekiynqw.blob.core.windows.net/content/MediaLibrary/Widget/Tracking/dist/track.min.js'></script>
 
 @endsection
