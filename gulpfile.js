@@ -1,4 +1,6 @@
 var elixir = require('laravel-elixir');
+var gulp = require('gulp');
+var imagemin = require('gulp-imagemin');
 
 elixir(function(mix) {
 
@@ -31,3 +33,16 @@ elixir(function(mix) {
     });
 
 });
+
+gulp.task('compress', function() {
+    gulp.src('public/frontend/images/**/*')
+        .pipe(imagemin())
+        .pipe(gulp.dest('public/frontend/images/'));
+});
+
+/*
+gulp.task('compress-big', function() {
+    gulp.src('public/images/!**!/!*')
+        .pipe(imagemin())
+        .pipe(gulp.dest('public/images/'));
+});*/
