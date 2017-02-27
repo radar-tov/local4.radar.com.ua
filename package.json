@@ -19,7 +19,8 @@
     "laravel-elixir-browser-sync": "^1.0.0",
     "laravel-elixir-browsersync": "^0.1.5",
     "laravel-elixir-livereload": "^1.1.6",
-    "laravel-elixir-uncss": "^2.2.0"
+    "laravel-elixir-uncss": "^2.2.0",
+    "vueify": "^9.4.0"
   },
   "dependencies": {
     "laravel-elixir": "^5.0",

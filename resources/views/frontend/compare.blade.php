@@ -10,7 +10,7 @@
 @extends('frontend.layout')
 
 @section('top-scripts')
-    {!! Html::script("admin/assets/js/vue.js") !!}
+    {!! Html::script("admin/assets/js/vue.min.js") !!}
 @endsection
 
 
@@ -172,21 +172,11 @@
 
 
             <input type="hidden" value="{{ csrf_token() }}" v-model="token"/>
-            {{--<pre>--}}
-            {{--@{{ $data | json}}--}}
-            {{--</pre>--}}
         </div>
-        {{--<div id="otc" class="modal">--}}
-        {{--<div class="modal-content">--}}
-        {{--<a href="#!" class="modal-action modal-close waves-effect btn-flat "><i class="fa fa-close"></i></a>--}}
-        {{--<p>{!! $settingsProvider->getAgreement() !!}</p>тег p можно убрать--}}
-        {{--</div>--}}
-        {{--</div>--}}
     </section>
 
 @endsection
 
 @section('bottom-scripts')
     {!! Html::script("frontend/js/compare.js") !!}
-    {{--{!! Html::script("frontend/js/index.js") !!}--}}
 @endsection
