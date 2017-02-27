@@ -93,8 +93,8 @@
                     @endif
                 </ul>
                 <noindex>
-                    <img src="http://seosolution.ua/sslogo.png" style="float: left; padding-right: 20px">
-                    <a rel="nofollow" href="https://seosolution.ua/odessa.html" class="white-text" style="padding-left: 20px">Продвижение в Одессе</a>
+                    <img src="http://seosolution.ua/sslogo.png" class="seo-img">
+                    <a rel="nofollow" href="https://seosolution.ua/odessa.html" class="white-text seo-a">Продвижение в Одессе</a>
                 </noindex>
             </div>
         </div>
@@ -103,6 +103,6 @@
 </footer>
 <section class="footer-copyright">
     <div class="container center-align">
-        <span style="font-size: 9px; padding-left: 40px">© Все права защищены.</span>
+        <span class="copyright">© Все права защищены.</span>
     </div>
 </section>

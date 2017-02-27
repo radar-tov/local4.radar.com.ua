@@ -9820,3 +9820,15 @@ h3 {
 .addtocart-button.compare:hover {
     background-color: #ff8c00
 }
+
+.copyright{
+    font-size: 9px;
+    padding-left: 40px
+}
+.seo-a{
+    padding-left: 20px
+}
+.seo-img{
+    float: left;
+    padding-right: 20px
+}
