@@ -66,7 +66,7 @@ $("body").on('click', '.buyKol', function () {
     $(this).parents('.item').find('.buy').val('В корзине');
     setTimeout(function () {
         $("#otvet").click();
-    }, 1000);
+    }, 1500);
 });
 $(".buySet").click(function () {
     var stockId = $(this).attr('data-stockid'), token = $("#token").val();
