@@ -24,10 +24,13 @@ elixir(function(mix) {
         ], 'public/js/frontend'
     );
 
+    mix.scripts('frontend/indexFooter.js', 'public/js/frontend');
+
     mix.version(
         [
             'css/frontend/all.css',
-            'js/frontend/all.js'
+            'js/frontend/all.js',
+            'js/frontend/indexFooter.js'
         ]
     ).browserSync({
         proxy: 'local.radar.com.ua',
