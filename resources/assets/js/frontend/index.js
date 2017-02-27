@@ -51,7 +51,7 @@ $("body").on('click', '.buy', function () {
     $(this).parents('.item').find('.buy').val('В корзине');
     setTimeout(function () {
         $("#otvet").click();
-    }, 1000);
+    }, 1500);
 });
 $("body").on('click', '.buyKol', function () {
     var productId = $(this).attr('data-productid'), qty = $("#colichestvo").val(), token = $("#token").val();
