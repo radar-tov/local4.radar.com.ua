@@ -11,16 +11,18 @@
     "gulp-minify-css": "^1.2.4",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
+    "gulp-shell": "^0.6.1",
     "gulp-uglifyjs": "^0.6.2",
     "gulp-uncss": "^1.0.6",
-    "laravel-browser-sync": "0.0.1",
+    "laravel-browser-sync": "^0.0.1",
+    "laravel-elixir": "^5.0",
     "laravel-elixir-browser-sync": "^1.0.0",
     "laravel-elixir-browsersync": "^0.1.5",
     "laravel-elixir-livereload": "^1.1.6",
     "laravel-elixir-uncss": "^2.2.0"
   },
   "dependencies": {
-    "laravel-elixir": "^*",
+    "laravel-elixir": "^5.0",
     "bootstrap-sass": "^3.0.0"
   },
   "name": "radar",
