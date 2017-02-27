@@ -38,6 +38,7 @@
 @yield('filter_handler')
 <!-- / section filter_handler -->
 <!-- section bottom-scripts -->
+{!! Html::script("frontend/js/index.js") !!}
 @yield('bottom-scripts')
 <!-- / section bottom-scripts -->
 <!-- section rate -->
