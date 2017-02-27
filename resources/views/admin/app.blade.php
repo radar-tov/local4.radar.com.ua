@@ -9,82 +9,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
     <!-- bootstrap & fontawesome -->
-    {{--{!!Html::style('admin/assets/css/bootstrap.min.css') !!}--}}
     <link rel="stylesheet" href="{!! url('admin/assets/css/bootstrap.min.css') !!}">
     <link rel="stylesheet" href="{!! url('admin/assets/css/font-awesome.min.css') !!}">
-
     <link rel="stylesheet" href="{!! url('admin/assets/css/jquery-ui.custom.min.css') !!}" />
     <link rel="stylesheet" href="{!! url('admin/assets/css/jquery.gritter.css') !!}" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    {{--{!!Html::style('admin/assets/css/font-awesome.min.css')!!}--}}
-
-    <!-- page specific plugin styles -->
-
-    <!-- text fonts -->
     <link rel="stylesheet" href="{!! url('admin/assets/css/ace-fonts.css') !!}"/>
-
-    <!-- ace styles -->
     <link rel="stylesheet" href="{!! url('admin/assets/css/uncompressed/ace.css') !!}"/>
+    <link rel="stylesheet" href="{!! url('admin/assets/css/main.css') !!}"/>
+    <link rel="stylesheet" href="{!! url('packages/colorbox/colorbox.css') !!}">
+    <link rel="stylesheet" href="{!! url('fancybox/source/jquery.fancybox.css') !!}">
+    <!-- page specific plugin styles -->
 
     <!--[if lte IE 9]>
     <link rel="stylesheet" href="{!! url('admin/assets/css/uncompressed/ace-part2.css') !!}"/>
+    <link rel="stylesheet" href="{!! url('admin/assets/css/ace-ie.min.css') !!}"/>
     <![endif]-->
-
-
-    {{--<!-- Burn after reading -->--}}
-    {{--{!!Html::style('admin/assets/css/ace-skins.min.css')!!}--}}
-    {{--{!!Html::style('admin/assets/css/ace-rtl.min.css')!!}--}}
-    {{--<!-- Burn after reading -->--}}
-
-
-    <!--[if lte IE 9]>
-        <link rel="stylesheet" href="{!! url('admin/assets/css/ace-ie.min.css') !!}"/>
-    <![endif]-->
-
-    <!-- Custom admin templates -->
-    <link rel="stylesheet" href="{!! url('admin/assets/css/main.css') !!}"/>
-    <link rel="stylesheet" href="{{ url('packages/colorbox/colorbox.css') }}">
-    {{--<link rel="stylesheet" href="{{ url('admin/assets/css/chosen.css') }}">--}}
-
-
-    {{--<!-- Burn after reading -->--}}
-        {{--{!!Html::style('packages/colorbox/colorbox.css')!!}--}}
-        {{--{!!Html::style('admin/assets/css/jquery-ui.min.css')!!}--}}
-        {{--{!!Html::style('admin/assets/css/chosen.css')!!}--}}
-    {{--<!-- Burn after reading -->--}}
-
-    <!--/Custom admin templates -->
-
-    <!-- inline styles related to this page -->
-
-    <!-- ace settings handler -->
-
-    {{--{!!Html::script('admin/assets/js/ace-extra.min.js')!!}--}}
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
     <!--[if lte IE 8]>
-        <script src="{!! url('admin/assets/js/html5shiv.js') !!}"></script>
-        <script src="{!! url('admin/assets/js/respond.min.js') !!}"></script>
-
+    <script src="{!! url('admin/assets/js/html5shiv.js') !!}"></script>
+    <script src="{!! url('admin/assets/js/respond.min.js') !!}"></script>
     <![endif]-->
+
     <!--[if !IE]> -->
     <script type="text/javascript">
         window.jQuery || document.write("<script src='/admin/assets/js/jquery.min.js'>"+"<"+"/script>");
     </script>
     <!-- <![endif]-->
-
     <!--[if IE]>
     <script type="text/javascript">
         window.jQuery || document.write("<script src='/admin/assets/js/jquery1x.min.js'>"+"<"+"/script>");
     </script>
     <![endif]-->
-    <link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css" type="text/css" media="screen" />
-    <script type="text/javascript" src="/fancybox/lib/jquery.mousewheel.pack.js"></script>
-    <script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js"></script>
+
     @yield('top-scripts')
     @yield('tiny')
 </head>
+
+
+
+
 <body class="no-skin">
 <!-- #section:basics/navbar.layout -->
 <div id="navbar" class="navbar navbar-default">
@@ -231,93 +194,30 @@
     </a>
 </div><!-- /.main-container -->
 
-<!-- basic scripts -->
+
+
+
 
 <script type="text/javascript">
     if('ontouchstart' in document.documentElement) document.write("<script src='/admin/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 </script>
 
-<!-- page specific plugin scripts -->
-
 <!--[if lte IE 8]>
 <script src="{!! url('admin/assets/js/excanvas.min.js') !!}"></script>
 <![endif]-->
 
-
-{{--{!!Html::script('admin/assets/js/jquery-ui.custom.min.js')!!}--}}
-{{--{!!Html::script('admin/assets/js/jquery.ui.touch-punch.min.js')!!}--}}
-{{--{!!Html::script('admin/assets/js/jquery.easypiechart.min.js')!!}--}}
-{{--{!!Html::script('admin/assets/js/jquery.sparkline.min.js')!!}--}}
-{{--{!!Html::script('admin/assets/js/jquery.gritter.min.js')!!}--}}
-
-
-{{--<script src="../assets/js/jquery.gritter.min.js"></script>--}}
-
-
-{{--{!!Html::script('admin/assets/js/flot/jquery.flot.min.js')!!}--}}
-{{--{!!Html::script('admin/assets/js/flot/jquery.flot.pie.min.js')!!}--}}
-{{--{!!Html::script('admin/assets/js/flot/jquery.flot.resize.min.js')!!}--}}
-
-
-<!-- ace scripts -->
-{{--{!!Html::script('admin/assets/js/ace-elements.min.js')!!}--}}
-{{--{!!Html::script('admin/assets/js/ace.min.js')!!}--}}
-<!-- inline scripts related to this page -->
-
-
-{{--{!!Html::style('admin/assets/css/ace.onpage-help.css')!!}--}}
-{{--{!!Html::style('admin/docs/assets/js/themes/sunburst.css')!!}--}}
-
-{{--<script type="text/javascript"> ace.vars['base'] = '..'; </script>--}}
-
-{{--{!! Html::script('admin/assets/js/ace/ace.onpage-help.js') !!}--}}
-{{--{!! Html::script('admin/assets/js/ace/ace.onpage-help.js') !!}--}}
-
-
-{{--{!! Html::script('admin/docs/assets/js/rainbow.js') !!}--}}
-{{--{!! Html::script('admin/docs/assets/js/language/generic.js') !!}--}}
-{{--{!! Html::script('admin/docs/assets/js/language/html.js') !!}--}}
-{{--{!! Html::script('admin/docs/assets/js/language/css.js') !!}--}}
-{{--{!! Html::script('admin/docs/assets/js/language/javascript.js') !!}--}}
-
-<!-- page specific plugin scripts -->
-{{--{!! Html::script('admin/assets/js/jquery-ui.min.js') !!}--}}
-{{--{!! Html::script('admin/assets/js/jquery.ui.touch-punch.min.js') !!}--}}
-<!-- /page specific plugin scripts -->
-
-{{--{!! Html::script('admin/assets/js/fuelux/fuelux.spinner.min.js') !!}--}}
-{{--{!! Html::script('admin/assets/js/chosen.jquery.min.js') !!}--}}
-
-{{--assets/js/jquery.hotkeys.min.js --}}
-{{--{!! Html::script('admin/assets/js/jquery.hotkeys.min.js') !!}--}}
-{{--{!! Html::script('admin/assets/js/bootstrap-wysiwyg.min.js') !!}--}}
-
-<!-- Colorbox -->
 <script src="{!! url('packages/colorbox/jquery.colorbox-min.js') !!}"></script>
-{{--{!! Html::script('packages/colorbox/jquery.colorbox-min.js') !!}--}}
-<!--/Colorbox -->
-
-<!-- Standalonepopup -->
 <script src="{!! url('packages/barryvdh/elfinder/js/standalonepopup.js') !!}"></script>
-<!-- /Standalonepopup-->
-
-<!-- ace scripts -->
-<script src="/admin/assets/js/ace.min.js"></script>
-<script src="/admin/assets/js/ace-elements.min.js"></script>
-<!-- Vue -->
-{{--<script src="{!! url('admin/assets/js/vue.js') !!}"></script>--}}
-{{--<script src="{!! url('admin/assets/js/vue-resource.js') !!}"></script>--}}
-<!-- /Vue -->
-
+<script src="{!! url('admin/assets/js/ace.min.js') !!}"></script>
+<script src="{!! url('admin/assets/js/ace-elements.min.js') !!}"></script>
 <script src="{!! url('admin/assets/js/jquery-ui.custom.min.js') !!}"></script>
-{{--<script src="{!! url('admin/assets/js/vue-resource.js') !!}"></script>--}}
 <script src="{!! url('admin/assets/js/jquery.gritter.min.js') !!}"></script>
-
-
+<script src="{!! url('admin/assets/js/bootstrap.min.js') !!}"></script>
+<script src="{!! url('fancybox/lib/jquery.mousewheel.pack.js') !!}"></script>
+<script src="{!! url('fancybox/source/jquery.fancybox.pack.js') !!}"></script>
+<script src="{!! url('admin/assets/js/index.js') !!}"></script>
 
 @yield('bottom-scripts')
-{{--@include('admin.partials.messages')--}}
-<script src="{!! url('admin/assets/js/bootstrap.min.js') !!}"></script>
-<script src="{!! url('admin/assets/js/index.js') !!}"></script>
+
 </body>
 </html>
