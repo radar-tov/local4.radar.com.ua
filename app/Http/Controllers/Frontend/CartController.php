@@ -52,9 +52,9 @@ class CartController extends Controller {
 				'productSlug' => $product->slug,
 			]);
 
-        $data_otvet = ['qty'=>$qty, 'count' => $this->calcProductsInCart(), 'total' => $this->calcTotalPrice()];
+        //$data_otvet = ['qty'=>$qty, 'count' => $this->calcProductsInCart(), 'total' => $this->calcTotalPrice()];
         Session::put('from_otvet', 'addProduct');
-        Session::put('otvet', $data_otvet);
+        //Session::put('otvet', $data_otvet);
         Session::save();
 
 		return ['count' => $this->calcProductsInCart(), 'total' => $this->calcTotalPrice()];
