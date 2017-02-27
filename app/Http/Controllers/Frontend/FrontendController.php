@@ -527,6 +527,7 @@ class FrontendController extends BaseController
 
 
 	public function otvet(){
+	    dump(Session::all());
 	    if(Session::get('from_otvet')){
             switch (Session::get('from_otvet')) {
                 case 'addKolProduct':
