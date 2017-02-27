@@ -6,10 +6,10 @@ var csso = require('gulp-csso');
 
 
 //Наблюдение и минимизация файлов для frontend
-/*elixir(function(mix) {
-/!*
+elixir(function(mix) {
+/*
     mix.sass('frontend/all.sass', 'public/css/frontend');
-*!/
+*/
     mix.styles(
         [
             'frontend/font.css',
@@ -27,36 +27,57 @@ var csso = require('gulp-csso');
         ], 'public/js/frontend'
     );
 
-    mix.version(
+/*    mix.version(
         [
             'css/frontend/all.css',
-            'js/frontend/all.js'
+            'js/frontend/all.js',
+            'css/admin/all.css',
+            'js/admin/all.js',
         ]
     ).browserSync({
         proxy: 'local.radar.com.ua',
         notify: false
-    });
-});*/
+    });*/
+});
 
 
 //Наблюдение и минимизация файлов для admin
 elixir(function(mix) {
 
-    mix.sass('admin/all.sass', 'public/css/admin');
+   mix.styles(
+        [
+            'admin/bootstrap.min.css',
+            'admin/font-awesome.min.css',
+            'admin/ace.css',
+            'admin/ace-fonts.css',
+            'admin/main.css',
+            'admin/jquery-ui.custom.min.css',
+            'admin/jquery.gritter.css',
+            'admin/colorbox.css',
+            'admin/jquery.fancybox.css'
+        ], 'public/css/admin'
+    );
 
     mix.scripts(
         [
-            'admin/jquery-2.1.3.min.js',
+            'admin/jquery.colorbox-min.js',
+            'admin/standalonepopup.min.js',
+            'admin/ace.min.js',
+            'admin/ace-elements.min.js',
+            'admin/jquery-ui.custom.min.js',
+            'admin/jquery.gritter.min.js',
+            'admin/bootstrap.min.js',
             'admin/jquery.mousewheel.pack.js',
             'admin/jquery.fancybox.pack.js',
             'admin/index.js'
         ], 'public/js/admin'
     );
-
     mix.version(
         [
-            'css/admin/all.css',
-            'js/admin/all.js'
+             'css/frontend/all.css',
+             'js/frontend/all.js',
+             'css/admin/all.css',
+             'js/admin/all.js',
         ]
     ).browserSync({
         proxy: 'local.radar.com.ua',

@@ -9,15 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
     <!-- bootstrap & fontawesome -->
-    <link rel="stylesheet" href="{!! url('admin/assets/css/bootstrap.min.css') !!}">
-    <link rel="stylesheet" href="{!! url('admin/assets/css/font-awesome.min.css') !!}">
-    <link rel="stylesheet" href="{!! url('admin/assets/css/jquery-ui.custom.min.css') !!}" />
-    <link rel="stylesheet" href="{!! url('admin/assets/css/jquery.gritter.css') !!}" />
-    <link rel="stylesheet" href="{!! url('admin/assets/css/ace-fonts.css') !!}"/>
-    <link rel="stylesheet" href="{!! url('admin/assets/css/uncompressed/ace.css') !!}"/>
-    <link rel="stylesheet" href="{!! url('admin/assets/css/main.css') !!}"/>
-    <link rel="stylesheet" href="{!! url('packages/colorbox/colorbox.css') !!}">
-    <link rel="stylesheet" href="{!! url('fancybox/source/jquery.fancybox.css') !!}">
+    <link rel="stylesheet" href="{{ elixir('css/admin/all.css') }}" type="text/css">
     <!-- page specific plugin styles -->
 
     <!--[if lte IE 9]>
@@ -206,16 +198,7 @@
 <script src="{!! url('admin/assets/js/excanvas.min.js') !!}"></script>
 <![endif]-->
 
-<script src="{!! url('packages/colorbox/jquery.colorbox-min.js') !!}"></script>
-<script src="{!! url('packages/barryvdh/elfinder/js/standalonepopup.js') !!}"></script>
-<script src="{!! url('admin/assets/js/ace.min.js') !!}"></script>
-<script src="{!! url('admin/assets/js/ace-elements.min.js') !!}"></script>
-<script src="{!! url('admin/assets/js/jquery-ui.custom.min.js') !!}"></script>
-<script src="{!! url('admin/assets/js/jquery.gritter.min.js') !!}"></script>
-<script src="{!! url('admin/assets/js/bootstrap.min.js') !!}"></script>
-<script src="{!! url('fancybox/lib/jquery.mousewheel.pack.js') !!}"></script>
-<script src="{!! url('fancybox/source/jquery.fancybox.pack.js') !!}"></script>
-<script src="{!! url('admin/assets/js/index.js') !!}"></script>
+<script type="text/javascript" src="{{ elixir('js/admin/all.js') }}"></script>
 
 @yield('bottom-scripts')
 
