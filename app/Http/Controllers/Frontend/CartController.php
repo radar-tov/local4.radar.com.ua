@@ -53,9 +53,9 @@ class CartController extends Controller {
 			]);
 
         //$data_otvet = ['qty'=>$qty, 'count' => $this->calcProductsInCart(), 'total' => $this->calcTotalPrice()];
-        Session::put('from_otvet', 'addProduct');
+        $request->session()->put('from_otvet', 'addProduct');
         //Session::put('otvet', $data_otvet);
-        Session::save();
+        $request->session()->save();
 
 		return ['count' => $this->calcProductsInCart(), 'total' => $this->calcTotalPrice()];
 	}
