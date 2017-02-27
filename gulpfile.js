@@ -4,9 +4,12 @@ var gulp = require('gulp');
 var imagemin = require('gulp-imagemin');
 var csso = require('gulp-csso');
 
-//Наблюдение и минимизация файлов
-elixir(function(mix) {
 
+//Наблюдение и минимизация файлов для frontend
+/*elixir(function(mix) {
+/!*
+    mix.sass('frontend/all.sass', 'public/css/frontend');
+*!/
     mix.styles(
         [
             'frontend/font.css',
@@ -14,7 +17,6 @@ elixir(function(mix) {
             'frontend/jquery.fancybox.css',
         ], 'public/css/frontend'
     );
-
 
     mix.scripts(
         [
@@ -34,23 +36,55 @@ elixir(function(mix) {
         proxy: 'local.radar.com.ua',
         notify: false
     });
+});*/
 
+
+//Наблюдение и минимизация файлов для admin
+elixir(function(mix) {
+
+    mix.sass('admin/all.sass', 'public/css/admin');
+
+    mix.scripts(
+        [
+            'admin/jquery-2.1.3.min.js',
+            'admin/jquery.mousewheel.pack.js',
+            'admin/jquery.fancybox.pack.js',
+            'admin/index.js'
+        ], 'public/js/admin'
+    );
+
+    mix.version(
+        [
+            'css/admin/all.css',
+            'js/admin/all.js'
+        ]
+    ).browserSync({
+        proxy: 'local.radar.com.ua',
+        notify: false
+    });
 });
 
+
 //Уменьшить изображения интерфеса
-/*gulp.task('compress', function() {
-    gulp.src('public/frontend/images/!**!/!*')
+gulp.task('compress', function() {
+    gulp.src('public/frontend/images/**/*')
         .pipe(imagemin())
         .pipe(gulp.dest('public/frontend/images/'));
-});*/
+});
 
 //Уменьшить изображения продуктов
-/*
 gulp.task('compress-big', function() {
-    gulp.src('public/images/!**!/!*')
+    gulp.src('public/images/**/*')
         .pipe(imagemin())
         .pipe(gulp.dest('public/images/'));
-});*/
+});
+
+//Оптимизация css
+gulp.task('csso', function () {
+    return gulp.src('resources/assets/css/frontend/style.css')
+        .pipe(csso())
+        .pipe(gulp.dest('resources/assets/css'));
+});
 
 //Удалить неиспользуемые css правила
 /*require('laravel-elixir-uncss');
@@ -62,12 +96,4 @@ elixir(function (mix) {
         ]), {
             html: ['resources/views/frontend/!**!/!*.php']
         });
-});*/
-
-//Оптимизация css
-/*
-gulp.task('csso', function () {
-    return gulp.src('resources/assets/css/frontend/style.css')
-        .pipe(csso())
-        .pipe(gulp.dest('resources/assets/css'));
 });*/
