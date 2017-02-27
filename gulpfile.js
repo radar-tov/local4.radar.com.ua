@@ -24,11 +24,13 @@ elixir(function(mix) {
         ], 'public/js/frontend'
     );
 
+    mix.scripts('frontend/indexFooter.js', 'public/js/frontend');
 
     mix.version(
         [
             'css/frontend/all.css',
             'js/frontend/all.js',
+            'js/frontend/indexFooter.js',
             'css/admin/all.css',
             'js/admin/all.js',
         ]
@@ -80,10 +82,11 @@ elixir(function(mix) {
     );
     mix.version(
         [
-             'css/frontend/all.css',
-             'js/frontend/all.js',
-             'css/admin/all.css',
-             'js/admin/all.js',
+            'css/frontend/all.css',
+            'js/frontend/all.js',
+            'js/frontend/indexFooter.js',
+            'css/admin/all.css',
+            'js/admin/all.js',
         ]
     ).browserSync({
         proxy: 'local.radar.com.ua',
