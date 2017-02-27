@@ -23,12 +23,12 @@
                     @if(array_get($settingsProvider->getSettings(),'header_phone2'))
                         <span class="phone code right-align"><img src="/frontend/images/phone-icon_blue.png"/>
                             {{ array_get($settingsProvider->getSettings(),'header_phone2') }}
-                    </span><br>
+                        </span><br>
                     @endif
                     @if(array_get($settingsProvider->getSettings(),'footer_phone1'))
                         <span class="phone code right-align"><img src="/frontend/images/phone-icon_blue.png"/>
                             {{ array_get($settingsProvider->getSettings(),'footer_phone1') }}
-                    </span><br>
+                        </span><br>
                     @endif
                 </div>
 
@@ -39,7 +39,9 @@
                 {{--</div>--}}
                 @if(array_get($settingsProvider->getSettings(),'contact_email'))
                     <a href="mailto:{{ array_get($settingsProvider->getSettings(),'contact_email') }}">
-                        <span class="mail">{{ array_get($settingsProvider->getSettings(),'contact_email') }}</span>
+                        <span class="mail">
+                            {{ array_get($settingsProvider->getSettings(),'contact_email') }}
+                        </span><br>
                     </a>
                 @endif
             </div>

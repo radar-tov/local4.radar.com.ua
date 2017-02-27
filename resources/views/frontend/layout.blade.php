@@ -38,7 +38,7 @@
 @yield('filter_handler')
 <!-- / section filter_handler -->
 <!-- section bottom-scripts -->
-{!! Html::script("frontend/js/index.js") !!}
+<script type="text/javascript" src="{{ elixir('js/frontend/indexFooter.js') }}"></script>
 @yield('bottom-scripts')
 <!-- / section bottom-scripts -->
 <!-- section rate -->

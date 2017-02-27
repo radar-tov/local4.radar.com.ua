@@ -6635,13 +6635,13 @@ div.addtocart-box-hover {
 }
 
 .header .contacts .mail:before {
-    content: '';
+    content: url(/frontend/images/mail-icon_2_blue.png);
     width: 11px;
     height: 9px;
     background-size: 11px;
     position: absolute;
-    bottom: 2px;
-    left: 10px
+    bottom: 5px;
+    left: -5px
 }
 
 .contact-info li.mail {
@@ -9819,4 +9819,16 @@ h3 {
 
 .addtocart-button.compare:hover {
     background-color: #ff8c00
+}
+
+.copyright{
+    font-size: 9px;
+    padding-left: 40px
+}
+.seo-a{
+    padding-left: 20px
+}
+.seo-img{
+    float: left;
+    padding-right: 20px
 }

@@ -3,13 +3,11 @@ var elixir = require('laravel-elixir');
 var gulp = require('gulp');
 var imagemin = require('gulp-imagemin');
 var csso = require('gulp-csso');
-
+var browserSync = require("browser-sync");
 
 //Наблюдение и минимизация файлов для frontend
 elixir(function(mix) {
-/*
-    mix.sass('frontend/all.sass', 'public/css/frontend');
-*/
+
     mix.styles(
         [
             'frontend/font.css',
@@ -22,12 +20,12 @@ elixir(function(mix) {
         [
             'frontend/jquery-2.1.3.min.js',
             'frontend/jquery.mousewheel.pack.js',
-            'frontend/jquery.fancybox.pack.js',
-            'frontend/index.js'
+            'frontend/jquery.fancybox.pack.js'
         ], 'public/js/frontend'
     );
 
-/*    mix.version(
+
+    mix.version(
         [
             'css/frontend/all.css',
             'js/frontend/all.js',
@@ -37,12 +35,20 @@ elixir(function(mix) {
     ).browserSync({
         proxy: 'local.radar.com.ua',
         notify: false
-    });*/
+
+    });
+
+    var Task = elixir.Task;
+    new Task('blade', function() {
+        browserSync.reload();
+    }).watch('resources/views/**/*.blade.php');
+
+
 });
 
 
 //Наблюдение и минимизация файлов для admin
-elixir(function(mix) {
+/*elixir(function(mix) {
 
    mix.styles(
         [
@@ -83,7 +89,7 @@ elixir(function(mix) {
         proxy: 'local.radar.com.ua',
         notify: false
     });
-});
+});*/
 
 
 //Уменьшить изображения интерфеса

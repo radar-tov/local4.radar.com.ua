@@ -571,7 +571,8 @@
                         <span class="remove" v-on:click="removeImage(image)">
                             <i class="fa fa-remove"></i>
                         </span>
-                        <img v-bind:src="image.path " alt="test"/>
+                        <img v-bind:src="image.path" alt="test"/>
+                        <a class="fancybox" rel="gallery" v-bind:href="image.path"><i class="fa fa-photo"></i></a>
                     </div>
 
                 </div>

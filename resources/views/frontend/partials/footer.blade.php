@@ -92,12 +92,17 @@
                         <li class="mail"><a href="mailto:{{ array_get($settingsProvider->getSettings(),'contact_email') }}"><span class="mail">{{ array_get($settingsProvider->getSettings(),'contact_email') }}</span></a></li>
                     @endif
                 </ul>
+                <noindex>
+                    <img src="http://seosolution.ua/sslogo.png" class="seo-img">
+                    <a rel="nofollow" href="https://seosolution.ua/odessa.html" class="white-text seo-a">Продвижение в Одессе</a>
+                </noindex>
             </div>
         </div>
     </div>
+
 </footer>
 <section class="footer-copyright">
     <div class="container center-align">
-        <p class="no-margin white-text">© Все права защищены.</p>
+        <span class="copyright">© Все права защищены.</span>
     </div>
 </section>
