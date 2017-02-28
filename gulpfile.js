@@ -26,7 +26,7 @@ elixir(function(mix) {
 
     mix.scripts('frontend/indexFooter.js', 'public/js/frontend');
 
-    mix.version(
+/*    mix.version(
         [
             'css/frontend/all.css',
             'js/frontend/all.js',
@@ -38,7 +38,7 @@ elixir(function(mix) {
         proxy: 'local.radar.com.ua',
         notify: false
 
-    });
+    });*/
 
     var Task = elixir.Task;
     new Task('blade', function() {
@@ -50,7 +50,7 @@ elixir(function(mix) {
 
 
 //Наблюдение и минимизация файлов для admin
-/*elixir(function(mix) {
+elixir(function(mix) {
 
    mix.styles(
         [
@@ -92,7 +92,7 @@ elixir(function(mix) {
         proxy: 'local.radar.com.ua',
         notify: false
     });
-});*/
+});
 
 
 //Уменьшить изображения интерфеса

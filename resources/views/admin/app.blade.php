@@ -10,6 +10,7 @@
 
     <!-- bootstrap & fontawesome -->
     <link rel="stylesheet" href="{{ elixir('css/admin/all.css') }}" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <!-- page specific plugin styles -->
 
     <!--[if lte IE 9]>
