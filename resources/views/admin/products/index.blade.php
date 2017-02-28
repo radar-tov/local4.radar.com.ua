@@ -42,7 +42,7 @@
                 <div class="row">
                     <div v-show="!selectedProductsIds.length">
 
-                        <form action="#" id="filterForm">
+                        <form action="#" id="filterForm" onsubmit="return false">
 
                             <div class="col-xs-2">
                                 <select name="sortBy" class="form-control" v-bind:class="{marc : params.sortBy != 'id'}"
@@ -128,7 +128,9 @@
                                 </div>
 
                                 <div class="col-xs-2">
-                                    <select name="status" class="form-control" v-bind:class="{marc : params.status != 'active_1'}" v-model="params.status">
+                                    <select name="status" class="form-control"
+                                            v-bind:class="{marc : params.status != 'active_1'}"
+                                            v-model="params.status">
                                         <option value="active_1">Показаные на сайте</option>
                                         <option value="active_0">Не показаные на сайте</option>
                                         <option value="available_1">В наличии</option>
@@ -144,7 +146,8 @@
                                     <input name="search" type="text"
                                            class="form-control" v-bind:class="{marc : params.search != ''}"
                                            placeholder="Поиск"
-                                           value="{{ Request::get('q') }}" v-model="params.search">
+                                           value="{{ Request::get('q') }}" v-model="params.search"
+                                           v-on:keyup.enter.stop="filterProducts()">
                                 </div>
 
                                 <div class="col-xs-1">
@@ -254,7 +257,7 @@
 
                         <div class="col-xs-1 pull-right">
                             <button class="btn btn-sm btn-danger pull-right"
-                                    v-on:click.prevent="filterProducts()">
+                                    v-on:click.prevent="filterProducts()" v-on:keyup.enter.prevent="filterProducts()">
                                 Применить
                             </button>
                         </div>
