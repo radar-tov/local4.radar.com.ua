@@ -2,39 +2,51 @@
 
 @font-face {
     font-family: 'a_avantetckmedium';
-    src: url('/frontend/font/aavantetck_medium/aavantetck_medium-webfont.eot');
-    src: url('/frontend/font/aavantetck_medium/aavantetck_medium-webfont.eot?#iefix') format('embedded-opentype'), url('/frontend/font/aavantetck_medium/aavantetck_medium-webfont.woff2') format('woff2'), url('/frontend/font/aavantetck_medium/aavantetck_medium-webfont.woff') format('woff'), url('/frontend/font/aavantetck_medium/aavantetck_medium-webfont.ttf') format('truetype'), url('/frontend/font/aavantetck_medium/aavantetck_medium-webfont.svg#a_avantetckmedium') format('svg');
+    src: url('/fonts/aavantetck_medium/aavantetck_medium-webfont.eot');
+    src: url('/fonts/aavantetck_medium/aavantetck_medium-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/aavantetck_medium/aavantetck_medium-webfont.woff2') format('woff2'),
+    url('/fonts/aavantetck_medium/aavantetck_medium-webfont.woff') format('woff'),
+    url('/fonts/aavantetck_medium/aavantetck_medium-webfont.ttf') format('truetype'),
+    url('/fonts/aavantetck_medium/aavantetck_medium-webfont.svg#a_avantetckmedium') format('svg');
     font-weight: normal;
     font-style: normal
 }
 
 @font-face {
     font-family: "Roboto";
-    src: url("/frontend/font/roboto/Roboto-Thin.woff2") format("woff2"), url("/frontend/font/roboto/Roboto-Thin.woff") format("woff"), url("/frontend/font/roboto/Roboto-Thin.ttf") format("truetype");
+    src: url("/fonts/roboto/Roboto-Thin.woff2") format("woff2"),
+    url("/fonts/roboto/Roboto-Thin.woff") format("woff"),
+    url("/fonts/roboto/Roboto-Thin.ttf") format("truetype");
     font-weight: 200
 }
 
 @font-face {
     font-family: "Roboto-Light";
-    src: url('/frontend/font/roboto/Roboto-Light.eot'), url('/frontend/font/roboto/Roboto-Light.svg'), url("/frontend/font/roboto/Roboto-Light.woff2") format("woff2"), url("/frontend/font/roboto/Roboto-Light.woff") format("woff"), url("/frontend/font/roboto/Roboto-Light.ttf") format("truetype");
+    src: url('/fonts/roboto/Roboto-Light.eot'),
+    url('/fonts/roboto/Roboto-Light.svg'),
+    url("/fonts/roboto/Roboto-Light.woff2") format("woff2"),
+    url("/fonts/roboto/Roboto-Light.woff") format("woff"),
+    url("/fonts/roboto/Roboto-Light.ttf") format("truetype");
     font-weight: 300
 }
 
 @font-face {
     font-family: "Roboto";
-    src: url("/frontend/font/roboto/Roboto-Regular.woff2") format("woff2"), url("/frontend/font/roboto/Roboto-Regular.woff") format("woff"), url("/frontend/font/roboto/Roboto-Regular.ttf") format("truetype");
+    src: url("/fonts/roboto/Roboto-Regular.woff2") format("woff2"),
+    url("/fonts/roboto/Roboto-Regular.woff") format("woff"),
+    url("/fonts/roboto/Roboto-Regular.ttf") format("truetype");
     font-weight: 400
 }
 
 @font-face {
     font-family: "Roboto";
-    src: url("/frontend/font/roboto/Roboto-Medium.woff2") format("woff2"), url("/frontend/font/roboto/Roboto-Medium.woff") format("woff"), url("/frontend/font/roboto/Roboto-Medium.ttf") format("truetype");
+    src: url("/fonts/roboto/Roboto-Medium.woff2") format("woff2"), url("/fonts/roboto/Roboto-Medium.woff") format("woff"), url("/fonts/roboto/Roboto-Medium.ttf") format("truetype");
     font-weight: 500
 }
 
 @font-face {
     font-family: "Roboto";
-    src: url("/frontend/font/roboto/Roboto-Bold.woff2") format("woff2"), url("/frontend/font/roboto/Roboto-Bold.woff") format("woff"), url("/frontend/font/roboto/Roboto-Bold.ttf") format("truetype");
+    src: url("/fonts/roboto/Roboto-Bold.woff2") format("woff2"), url("/fonts/roboto/Roboto-Bold.woff") format("woff"), url("/fonts/roboto/Roboto-Bold.ttf") format("truetype");
     font-weight: 700
 }
 
@@ -82,59 +94,59 @@
 
 @font-face {
     font-family: 'HelveticaNeueCyr';
-    src: url('/frontend/font/helvetica/Helvetica-Light-Light.eot');
-    src: url('/frontend/font/helvetica/Helvetica-Light-Light.eot?#iefix') format('embedded-opentype'), url('/frontend/font/helvetica/Helvetica-Light-Light.woff') format('woff'), url('/frontend/font/helvetica/Helvetica-Light-Light.ttf') format('truetype'), url('/frontend/font/helvetica/Helvetica-Light-Light.svg#HelveticaNeueCyr-Light') format('svg');
+    src: url('/fonts/helvetica/Helvetica-Light-Light.eot');
+    src: url('/fonts/helvetica/Helvetica-Light-Light.eot?#iefix') format('embedded-opentype'), url('/fonts/helvetica/Helvetica-Light-Light.woff') format('woff'), url('/fonts/helvetica/Helvetica-Light-Light.ttf') format('truetype'), url('/fonts/helvetica/Helvetica-Light-Light.svg#HelveticaNeueCyr-Light') format('svg');
     font-weight: 300;
     font-style: normal
 }
 
 @font-face {
     font-family: 'Helvetica-Light-Light';
-    src: url('/frontend/font/helvetica/Helvetica-Light-Light.eot');
-    src: url('/frontend/font/helvetica/Helvetica-Light-Light.eot?#iefix') format('embedded-opentype'), url('/frontend/font/helvetica/Helvetica-Light-Light.woff') format('woff'), url('/frontend/font/helvetica/Helvetica-Light-Light.ttf') format('truetype'), url('/frontend/font/helvetica/Helvetica-Light-Light.svg#Helvetica-Light-Light') format('svg');
+    src: url('/fonts/helvetica/Helvetica-Light-Light.eot');
+    src: url('/fonts/helvetica/Helvetica-Light-Light.eot?#iefix') format('embedded-opentype'), url('/fonts/helvetica/Helvetica-Light-Light.woff') format('woff'), url('/fonts/helvetica/Helvetica-Light-Light.ttf') format('truetype'), url('/fonts/helvetica/Helvetica-Light-Light.svg#Helvetica-Light-Light') format('svg');
     font-weight: normal;
     font-style: normal
 }
 
 @font-face {
     font-family: 'FontAwesome';
-    src: url('/frontend/font/awesome/fontawesome-webfont.eot');
-    src: url('/frontend/font/awesome/fontawesome-webfont.eot') format('embedded-opentype'), url('/frontend/font/awesome/fontawesome-webfont.woff') format('woff'), url('/frontend/font/awesome/fontawesome-webfont.ttf') format('truetype'), url('/frontend/font/awesome/fontawesome-webfont.svg') format('svg');
+    src: url('/fonts/awesome/fontawesome-webfont.eot');
+    src: url('/fonts/awesome/fontawesome-webfont.eot') format('embedded-opentype'), url('/fonts/awesome/fontawesome-webfont.woff') format('woff'), url('/fonts/awesome/fontawesome-webfont.ttf') format('truetype'), url('/fonts/awesome/fontawesome-webfont.svg') format('svg');
     font-weight: normal;
     font-style: normal
 }
 
 @font-face {
     font-family: 'MyriadProBold';
-    src: url('/frontend/font/myriad/MyriadProBold.eot');
-    src: url('/frontend/font/myriad/MyriadProBold.eot') format('embedded-opentype'), url('/frontend/font/myriad/MyriadProBold.woff2') format('woff2'), url('/frontend/font/myriad/MyriadProBold.woff') format('woff'), url('/frontend/font/myriad/MyriadProBold.ttf') format('truetype'), url('/frontend/font/myriad/MyriadProBold.svg#MyriadProBold') format('svg')
+    src: url('/fonts/myriad/MyriadProBold.eot');
+    src: url('/fonts/myriad/MyriadProBold.eot') format('embedded-opentype'), url('/fonts/myriad/MyriadProBold.woff2') format('woff2'), url('/fonts/myriad/MyriadProBold.woff') format('woff'), url('/fonts/myriad/MyriadProBold.ttf') format('truetype'), url('/fonts/myriad/MyriadProBold.svg#MyriadProBold') format('svg')
 }
 
 @font-face {
     font-family: 'ACLine';
-    src: url('/frontend/font/acline/ACLine.eot');
-    src: url('/frontend/font/acline/ACLine.eot') format('embedded-opentype'), url('/frontend/font/acline/ACLine.woff2') format('woff2'), url('/frontend/font/acline/ACLine.woff') format('woff'), url('/frontend/font/acline/ACLine.ttf') format('truetype'), url('/frontend/font/acline/ACLine.svg#ACLine') format('svg')
+    src: url('/fonts/acline/ACLine.eot');
+    src: url('/fonts/acline/ACLine.eot') format('embedded-opentype'), url('/fonts/acline/ACLine.woff2') format('woff2'), url('/fonts/acline/ACLine.woff') format('woff'), url('/fonts/acline/ACLine.ttf') format('truetype'), url('/fonts/acline/ACLine.svg#ACLine') format('svg')
 }
 
 @font-face {
     font-family: "Myriad";
-    src: url("/frontend/font/myriad/MyriadPro-LightSemiExt.eot?#iefix") format("embedded-opentype"), url("/frontend/font/myriad/MyriadPro-LightSemiExt.woff") format("woff"), url("/frontend/font/myriad/MyriadPro-LightSemiExt.ttf") format("truetype"), url("/frontend/font/myriad/MyriadPro-LightSemiExt.svg#Material-Design-Icons") format("svg");
+    src: url("/fonts/myriad/MyriadPro-LightSemiExt.eot?#iefix") format("embedded-opentype"), url("/fonts/myriad/MyriadPro-LightSemiExt.woff") format("woff"), url("/fonts/myriad/MyriadPro-LightSemiExt.ttf") format("truetype"), url("/fonts/myriad/MyriadPro-LightSemiExt.svg#Material-Design-Icons") format("svg");
     font-weight: normal;
     font-style: normal
 }
 
 @font-face {
     font-family: "MyriadPro";
-    src: url("/frontend/font/myriad-pro/myriad-pro.eot?#iefix") format("embedded-opentype"),
-    url("/frontend/font/myriad-pro/myriad-pro.woff") format("woff"),
-    url("/frontend/font/myriad-pro/myriad-pro.ttf") format("truetype");
+    src: url("/fonts/myriad-pro/myriad-pro.eot?#iefix") format("embedded-opentype"),
+    url("/fonts/myriad-pro/myriad-pro.woff") format("woff"),
+    url("/fonts/myriad-pro/myriad-pro.ttf") format("truetype");
     font-weight: normal;
     font-style: normal
 }
 
 @font-face {
     font-family: "Russo";
-    src: url("/frontend/font/russo/Russo_One.eot?#iefix") format("embedded-opentype"), url("/frontend/font/russo/Russo_One.woff") format("woff"), url("/frontend/font/russo/Russo_One.ttf") format("truetype"), url("/frontend/font/russo/Russo_One.svg#Material-Design-Icons") format("svg");
+    src: url("/fonts/russo/Russo_One.eot?#iefix") format("embedded-opentype"), url("/fonts/russo/Russo_One.woff") format("woff"), url("/fonts/russo/Russo_One.ttf") format("truetype"), url("/fonts/russo/Russo_One.svg#Material-Design-Icons") format("svg");
     font-weight: normal;
     font-style: normal
 }

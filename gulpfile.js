@@ -5,7 +5,7 @@ var imagemin = require('gulp-imagemin');
 var csso = require('gulp-csso');
 var browserSync = require("browser-sync");
 
-//Наблюдение и минимизация файлов для frontend
+
 elixir(function(mix) {
 
     mix.styles(
@@ -14,6 +14,19 @@ elixir(function(mix) {
             'frontend/style.css',
             'frontend/jquery.fancybox.css',
         ], 'public/css/frontend'
+    );
+
+    mix.styles(
+        [
+            'admin/bootstrap.min.css',
+            'admin/font-awesome.min.css',
+            'admin/ace.css',
+            'admin/main.css',
+            'admin/jquery-ui.custom.min.css',
+            'admin/jquery.gritter.css',
+            'admin/colorbox.css',
+            'admin/jquery.fancybox.css'
+        ], 'public/css/admin'
     );
 
     mix.scripts(
@@ -25,46 +38,6 @@ elixir(function(mix) {
     );
 
     mix.scripts('frontend/indexFooter.js', 'public/js/frontend');
-
-/*    mix.version(
-        [
-            'css/frontend/all.css',
-            'js/frontend/all.js',
-            'js/frontend/indexFooter.js',
-            'css/admin/all.css',
-            'js/admin/all.js',
-        ]
-    ).browserSync({
-        proxy: 'local.radar.com.ua',
-        notify: false
-
-    });*/
-
-    var Task = elixir.Task;
-    new Task('blade', function() {
-        browserSync.reload();
-    }).watch('resources/views/**/*.blade.php');
-
-
-});
-
-
-//Наблюдение и минимизация файлов для admin
-elixir(function(mix) {
-
-   mix.styles(
-        [
-            'admin/bootstrap.min.css',
-            'admin/font-awesome.min.css',
-            'admin/ace.css',
-            'admin/ace-fonts.css',
-            'admin/main.css',
-            'admin/jquery-ui.custom.min.css',
-            'admin/jquery.gritter.css',
-            'admin/colorbox.css',
-            'admin/jquery.fancybox.css'
-        ], 'public/css/admin'
-    );
 
     mix.scripts(
         [
@@ -80,6 +53,7 @@ elixir(function(mix) {
             'admin/index.js'
         ], 'public/js/admin'
     );
+
     mix.version(
         [
             'css/frontend/all.css',
@@ -92,6 +66,12 @@ elixir(function(mix) {
         proxy: 'local.radar.com.ua',
         notify: false
     });
+
+    var Task = elixir.Task;
+    new Task('blade', function() {
+        browserSync.reload();
+    }).watch('resources/views/**/*.blade.php');
+
 });
 
 
