@@ -94,7 +94,8 @@
                 </ul>
                 <noindex>
                     <img src="http://seosolution.ua/sslogo.png" class="seo-img">
-                    <a rel="nofollow" href="https://seosolution.ua/odessa.html" class="white-text seo-a">Продвижение в Одессе</a>
+                    <a rel="nofollow" href="https://seosolution.ua/odessa.html"
+                       class="white-text seo-a" target="_blank">Продвижение в Одессе</a>
                 </noindex>
             </div>
         </div>
