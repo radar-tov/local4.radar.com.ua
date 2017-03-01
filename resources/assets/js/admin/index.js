@@ -152,7 +152,7 @@ $(document).ready(function () {
     });
 
     setTimeout(function () {
-        alert(getCookie('menu'));
+        //alert(getCookie('menu'));
         if(getCookie('menu') == 'false'){
             try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
         }
@@ -322,5 +322,5 @@ function menuCookie() {
     }
 
     setCookie('menu', value, options)
-    alert(getCookie('menu'));
+    //alert(getCookie('menu'));
 }
