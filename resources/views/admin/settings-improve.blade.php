@@ -83,10 +83,6 @@
                                     </div>
 
                                 </div>
-                                <div class="form-group">
-                                    {!! Form::label('address','Адрес') !!}
-                                    {!! Form::text('address',$value = null,['placeholder'=>'Адрес магазина','class'=>'form-control']) !!}
-                                </div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group">

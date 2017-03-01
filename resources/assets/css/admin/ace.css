@@ -4646,12 +4646,12 @@ body.mob-safari .sidebar.sidebar-fixed {
 }
 .breadcrumb > li,
 .breadcrumb > li.active {
-  color: #555555;
+  color: #ffffff;
   padding: 0 3px 0 3px;
 }
 .breadcrumb > li > a {
   display: inline-block;
-  color: #4c8fbd;
+  color: #ffffff;
 }
 .breadcrumb > li + li:before {
   font-family: FontAwesome;
