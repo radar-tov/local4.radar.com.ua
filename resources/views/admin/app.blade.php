@@ -39,14 +39,11 @@
 </head>
 
 
-<body class="no-skin">
+<body class="skin-3 no-skin">
 <!-- #section:basics/navbar.layout -->
 <div id="navbar" class="navbar navbar-default">
     <script type="text/javascript">
-        try {
-            ace.settings.check('navbar', 'fixed')
-        } catch (e) {
-        }
+        try {ace.settings.check('navbar', 'fixed')} catch (e) {}
     </script>
     <div class="navbar-container" id="navbar-container">
         <!-- #section:basics/sidebar.mobile.toggle -->

@@ -21,6 +21,7 @@ elixir(function(mix) {
             'admin/bootstrap.min.css',
             'admin/font-awesome.min.css',
             'admin/ace.css',
+            'admin/ace-skins.min.css',
             'admin/main.css',
             'admin/jquery-ui.custom.min.css',
             'admin/jquery.gritter.css',

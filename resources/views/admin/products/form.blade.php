@@ -273,33 +273,48 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    {!! Form::checkbox('active', $selected = null, ['class' => 'form-control']) !!}
-                                    {!! Form::label('active', 'Показывать на сайте?') !!}
+                                    <label>
+                                        {!! Form::checkbox('active', $selected = null, '',
+                                        ['class' => 'ace ace-switch ace-switch-5 form-control','form'=>'form-data']) !!}
+                                        <span class="lbl">&nbsp;&nbsp;&nbsp;Показывать на сайте?</span>
+                                    </label>
                                 </div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    {!! Form::checkbox('sitemap', $selected = null, ['class' => 'form-control','form'=>'form-data']) !!}
-                                    {!! Form::label('sitemap', 'Показывать в Sitemap.xml?') !!}
+                                    <label>
+                                        {!! Form::checkbox('sitemap', $selected = null, '',
+                                        ['class' => 'ace ace-switch ace-switch-5 form-control','form'=>'form-data']) !!}
+                                        <span class="lbl">&nbsp;&nbsp;&nbsp;Показывать в Sitemap.xml?</span>
+                                    </label>
                                 </div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    {!! Form::checkbox('yandex', $selected = null, ['class' => 'form-control','form'=>'form-data']) !!}
-                                    {!! Form::label('yandex', 'Показывать в Yandex.xml?') !!}
+                                    <label>
+                                        {!! Form::checkbox('yandex', $selected = null, '',
+                                        ['class' => 'ace ace-switch ace-switch-5 form-control','form'=>'form-data']) !!}
+                                        <span class="lbl">&nbsp;&nbsp;&nbsp;Показывать в Yandex.xml?</span>
+                                    </label>
                                 </div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    {!! Form::checkbox('is_bestseller', $selected = null, ['class' => 'form-control']) !!}
-                                    {!! Form::label('is_bestseller', 'Отметить как хит продаж?') !!}
+                                    <label>
+                                        {!! Form::checkbox('is_bestseller', $selected = null, '',
+                                        ['class' => 'ace ace-switch ace-switch-5 form-control','form'=>'form-data']) !!}
+                                        <span class="lbl">&nbsp;&nbsp;&nbsp;Отметить как хит продаж?</span>
+                                    </label>
                                 </div>
                             </div>
 
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                    {!! Form::checkbox('is_new', $selected = null, ['class' => 'form-control']) !!}
-                                    {!! Form::label('is_new', 'Отметить как новинку?') !!}
+                                    <label>
+                                        {!! Form::checkbox('is_new', $selected = null, '',
+                                        ['class' => 'ace ace-switch ace-switch-5 form-control','form'=>'form-data']) !!}
+                                        <span class="lbl">&nbsp;&nbsp;&nbsp;Отметить как новинку?</span>
+                                    </label>
                                 </div>
                             </div>
                             <div class="col-xs-12">
