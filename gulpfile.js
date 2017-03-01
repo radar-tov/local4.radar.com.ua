@@ -45,6 +45,7 @@ elixir(function(mix) {
             'admin/standalonepopup.min.js',
             'admin/ace.min.js',
             'admin/ace-elements.min.js',
+            'admin/ace-extra.min.js',
             'admin/jquery-ui.custom.min.js',
             'admin/jquery.gritter.min.js',
             'admin/bootstrap.min.js',
