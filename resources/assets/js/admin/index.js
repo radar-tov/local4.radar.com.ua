@@ -150,7 +150,18 @@ $(document).ready(function () {
         openEffect: 'none',
         closeEffect: 'none'
     });
+
+    setTimeout(function () {
+        //alert(getCookie('menu'));
+        if(getCookie('menu') == 'false'){
+            try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+        }
+        if(getCookie('menu') == 'true'){
+            try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+        }
+    }, 1000);
 });
+
 
 function getPdfList() {
     var token = $("input[name='_token']").val();
@@ -240,4 +251,76 @@ function deleteCenaGrup(ID, token){
             }, 5000);
         });
     }
+}
+
+// возвращает cookie с именем name, если есть, если нет, то undefined
+function getCookie(name) {
+    var matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+// устанавливает cookie с именем name и значением value
+// options - объект с свойствами cookie (expires, path, domain, secure)
+function setCookie(name, value, options) {
+    options = options || {};
+
+    var expires = options.expires;
+
+    if (typeof expires == "number" && expires) {
+        var d = new Date();
+        d.setTime(d.getTime() + expires * 1000);
+        expires = options.expires = d;
+    }
+    if (expires && expires.toUTCString) {
+        options.expires = expires.toUTCString();
+    }
+
+    value = encodeURIComponent(value);
+
+    var updatedCookie = name + "=" + value;
+
+    for (var propName in options) {
+        updatedCookie += "; " + propName;
+        var propValue = options[propName];
+        if (propValue !== true) {
+            updatedCookie += "=" + propValue;
+        }
+    }
+
+    document.cookie = updatedCookie;
+}
+
+// удаляет cookie с именем name
+function deleteCookie(name) {
+    setCookie(name, "", {
+        expires: -1
+    })
+}
+
+function menuCookie() {
+    var value = null,
+        options = {};
+
+    if(getCookie('menu') == 'false'){
+        try{
+            ace.settings.check('sidebar' , 'fixed');
+            value = 'true';
+        }catch(e){
+            value = 'false';
+        }
+
+    }
+    if(getCookie('menu') == 'true'){
+        try{
+            ace.settings.check('sidebar' , 'collapsed');
+            value = 'false';
+        }catch(e){
+            value = 'true';
+        }
+    }
+
+    setCookie('menu', value, options)
+    //alert(getCookie('menu'));
 }
