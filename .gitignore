@@ -10,8 +10,10 @@ composer.phar
 .env
 .idea
 admin/.htaccess
+aceadmin/.htaccess
 dashboard/.htaccess
 yandex/.htaccess
 dashboard/htaccess
 yandex/htaccess
 admin/htaccess
+aceadmin/htaccess
