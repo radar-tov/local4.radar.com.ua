@@ -9,7 +9,9 @@ composer.lock
 composer.phar
 .env
 .idea
+admin/.htaccess
 dashboard/.htaccess
 yandex/.htaccess
 dashboard/htaccess
 yandex/htaccess
+admin/htaccess
