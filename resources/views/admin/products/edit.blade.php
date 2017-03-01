@@ -1,7 +1,7 @@
 @extends('admin.form')
 
 @section('page-title')
-    Редактировать товар
+    {{ $product->name }} - Редактирование
 @stop
 
 @section('content')
