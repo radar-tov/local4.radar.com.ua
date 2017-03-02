@@ -38,7 +38,6 @@
 <!-- / section filter_handler -->
 <!-- section bottom-scripts -->
 <script type="text/javascript" src="{{ elixir('js/frontend/all.js') }}"></script>
-<script type="text/javascript" src="{{ elixir('js/frontend/indexFooter.js') }}"></script>
 @yield('bottom-scripts')
 <!-- / section bottom-scripts -->
 <!-- section rate -->

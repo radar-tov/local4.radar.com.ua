@@ -59,7 +59,6 @@ elixir(function(mix) {
         [
             'css/frontend/all.css',
             'js/frontend/all.js',
-            'js/frontend/indexFooter.js',
             'css/admin/all.css',
             'js/admin/all.js',
         ]
