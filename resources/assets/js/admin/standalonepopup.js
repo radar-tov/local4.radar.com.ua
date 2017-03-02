@@ -10,9 +10,10 @@ $(document).on('click','.popup_selector',function (event) {
         href: triggerUrl,
         fastIframe: true,
         iframe: true,
-        width: '90%',
-        height: '90%'
+        width: '95%',
+        height: '85%'
     });
+
 });
 // function to update the file selected by elfinder
 function processSelectedFile(filePath, requestingField) {

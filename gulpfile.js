@@ -42,7 +42,7 @@ elixir(function(mix) {
     mix.scripts(
         [
             'admin/jquery.colorbox-min.js',
-            'admin/standalonepopup.min.js',
+            'admin/standalonepopup.js',
             'admin/ace.min.js',
             'admin/ace-elements.min.js',
             'admin/ace-extra.min.js',
