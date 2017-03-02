@@ -151,15 +151,6 @@ $(document).ready(function () {
         closeEffect: 'none'
     });
 
-    setTimeout(function () {
-        //alert(getCookie('menu'));
-        if(getCookie('menu') == 'false'){
-            try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
-        }
-        if(getCookie('menu') == 'true'){
-            try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
-        }
-    }, 1000);
 });
 
 
@@ -297,30 +288,4 @@ function deleteCookie(name) {
     setCookie(name, "", {
         expires: -1
     })
-}
-
-function menuCookie() {
-    var value = null,
-        options = {};
-
-    if(getCookie('menu') == 'false'){
-        try{
-            ace.settings.check('sidebar' , 'fixed');
-            value = 'true';
-        }catch(e){
-            value = 'false';
-        }
-
-    }
-    if(getCookie('menu') == 'true'){
-        try{
-            ace.settings.check('sidebar' , 'collapsed');
-            value = 'false';
-        }catch(e){
-            value = 'true';
-        }
-    }
-
-    setCookie('menu', value, options)
-    //alert(getCookie('menu'));
 }

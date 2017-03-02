@@ -7,8 +7,7 @@
         <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
             <i class="ace-icon fa fa-angle-double-left"
                data-icon1="ace-icon fa fa-angle-double-left"
-               data-icon2="ace-icon fa fa-angle-double-right"
-               onclick="menuCookie()" id="sidebar-collapse-click"></i>
+               data-icon2="ace-icon fa fa-angle-double-right" id="sidebar-collapse-click"></i>
         </div>
 
         <!-- /section:basics/sidebar.layout.minimize -->
