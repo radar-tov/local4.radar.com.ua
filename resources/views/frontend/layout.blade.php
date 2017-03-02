@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="/frontend/css/print.css" type="text/css" media="print">
     <!-- / CSS  -->
     <!-- SCRIPTS  -->
-    <script type="text/javascript" src="{{ elixir('js/frontend/all.js') }}"></script>
     <!-- section top-scripts  -->
     @yield('top-scripts')
     <!-- / section top-scripts  -->
@@ -38,6 +37,7 @@
 @yield('filter_handler')
 <!-- / section filter_handler -->
 <!-- section bottom-scripts -->
+<script type="text/javascript" src="{{ elixir('js/frontend/all.js') }}"></script>
 <script type="text/javascript" src="{{ elixir('js/frontend/indexFooter.js') }}"></script>
 @yield('bottom-scripts')
 <!-- / section bottom-scripts -->
