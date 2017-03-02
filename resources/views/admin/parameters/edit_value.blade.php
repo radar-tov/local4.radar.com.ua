@@ -60,4 +60,6 @@
         return false;
     });
 
+    document.getElementById("value_2").focus();
+
 </script>
