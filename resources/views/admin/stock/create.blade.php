@@ -2,7 +2,7 @@
 
 
 @section('page-title')
-    Добавить акцию
+    Добавить комплект
 @stop
 
 @section('page-nav')

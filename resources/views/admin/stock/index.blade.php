@@ -4,7 +4,7 @@
 @stop
 
 @section('page-title')
-    Статьи
+    Акционные комплекты
 @stop
 
 @section('content')

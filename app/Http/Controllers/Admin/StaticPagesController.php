@@ -22,8 +22,8 @@ class StaticPagesController extends AdminController
 
 
     public function create(){
-        StaticPage::create([]);
-        return redirect()->route('dashboard.static_pages.index');
+        $staticPage = StaticPage::create([]);
+        return redirect()->route('dashboard.static_pages.edit', [$staticPage->id]);
     }
 
 
