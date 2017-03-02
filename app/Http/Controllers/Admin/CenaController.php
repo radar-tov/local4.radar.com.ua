@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cenagrup;
 use App\Models\Product;
 
-class CenaController extends Controller
+class CenaController extends AdminController
 {
     /**
      * Display a listing of the resource.

@@ -43,7 +43,10 @@
 <!-- #section:basics/navbar.layout -->
 <div id="navbar" class="navbar navbar-default">
     <script type="text/javascript">
-        try {ace.settings.check('navbar', 'fixed')} catch (e) {}
+        try {
+            ace.settings.check('navbar', 'fixed')
+        } catch (e) {
+        }
     </script>
     <div class="navbar-container" id="navbar-container">
         <!-- #section:basics/sidebar.mobile.toggle -->
@@ -56,7 +59,6 @@
 
             <span class="icon-bar"></span>
         </button>
-
         <!-- /section:basics/sidebar.mobile.toggle -->
         <div class="navbar-header pull-left">
             <!-- #section:basics/navbar.layout.brand -->
@@ -65,57 +67,105 @@
                     Перейти на сайт
                 </small>
             </a>
-            <ul class="breadcrumb">
+           {{-- <ul class="breadcrumb">
                 {!! Breadcrumbs::renderIfExists() !!}
-            </ul>
+            </ul>--}}
         </div>
-    </div>
-
-    <!-- #section:basics/navbar.dropdown -->
-    <div class="navbar-buttons navbar-header pull-right" role="navigation">
-        <ul class="nav ace-nav">
-        {{--<li class="light-blue"><a href="{{ url('/dashboard/flush') }}" onclick="return confirm('Это действие удалит весь кэш на сайте?')">Очистить кеш?</a></li>--}}
-        <!-- #section:basics/navbar.user_menu -->
-            <li class="light-blue">
-                <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                    {{--<img class="nav-user-photo" src="../assets/avatars/user.jpg" alt="Jason's Photo" />--}}
-                    <span class="user-info">
-									<small>Здравствуйте,</small>
-                        {{ $currentUser->name or "Neo!" }}
-								</span>
-
-                    <i class="ace-icon fa fa-caret-down"></i>
-                </a>
-
-                <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-
-                    @if(isset($currentUser))
+        <!-- #section:basics/navbar.dropdown -->
+        <div class="navbar-buttons navbar-header pull-right" role="navigation">
+            <ul class="nav ace-nav">
+            <!-- #section:basics/navbar.user_menu -->
+                <li class="light-blue">
+                    <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                        <img class="nav-user-photo"
+                            @if(is_file(public_path($currentUser->thumbnail)))
+                                src="{!! asset($currentUser->thumbnail) !!}"
+                            @else
+                                src="{!! url('/images/users/default.jpg') !!}"
+                            @endif
+                                alt="{{ $currentUser->name or "Neo!" }} Photo"
+                        />
+                        <span class="user-info"><small>Здравствуйте,</small> {{ $currentUser->name or "Neo!" }} </span>
+                        <i class="ace-icon fa fa-caret-down"></i>
+                    </a>
+                    <ul class="user-menu dropdown-menu dropdown-menu-right dropdown-yellow dropdown-caret dropdown-close">
+                        @if(isset($currentUser))
                         <li>
                             <a href="{!! route('dashboard.users.edit',[$currentUser->id]) !!}">
-                                <i class="ace-icon fa fa-user"></i>
-                                Мой профиль
+                                <i class="ace-icon fa fa-user"></i> Мой профиль
                             </a>
                         </li>
-                    @endif
+                        @endif
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/auth/logout">
+                                <i class="ace-icon fa fa-power-off"></i> Выход
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
-                    <li class="divider"></li>
-
+                <!-- /section:basics/navbar.user_menu -->
+            </ul>
+        </div>
+        <!-- /section:basics/navbar.dropdown -->
+        <nav role="navigation" class="navbar-menu pull-right collapse navbar-collapse">
+            {{--<form class="navbar-form navbar-left form-search" role="search">
+                <div class="form-group">
+                    <input type="text" placeholder="search"/>
+                </div>
+                <button type="button" class="btn btn-xs btn-info2">
+                    <i class="ace-icon fa fa-search icon-only bigger-110"></i>
+                </button>
+            </form>--}}
+            <nav role="navigation" class="navbar-menu pull-left collapse navbar-collapse">
+                <!-- #section:basics/navbar.nav -->
+                <ul class="nav navbar-nav">
                     <li>
-                        <a href="/auth/logout">
-                            <i class="ace-icon fa fa-power-off"></i>
-                            Выход
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Overview
+                            <i class="ace-icon fa fa-angle-down bigger-110"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-light-blue dropdown-caret">
+                            <li>
+                                <a href="#">
+                                    <i class="ace-icon fa fa-eye bigger-110 blue"></i> Monthly Visitors
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="ace-icon fa fa-user bigger-110 blue"></i> Active Users
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="ace-icon fa fa-cog bigger-110 blue"></i> Settings
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="ace-icon fa fa-envelope"></i> Отзывы <span class="badge badge-warning">5</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="ace-icon fa fa-envelope"></i> Заказы <span class="badge badge-warning">1</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="ace-icon fa fa-envelope"></i> Корзина <span class="badge badge-warning">0</span>
                         </a>
                     </li>
                 </ul>
-            </li>
-
-            <!-- /section:basics/navbar.user_menu -->
-        </ul>
-    </div>
-    <!-- /section:basics/navbar.dropdown -->
-</div><!-- /.navbar-container -->
+                <!-- /section:basics/navbar.nav -->
+            </nav>
+            <!-- you can also have a form here -->
+        </nav><!-- /.navbar-menu -->
+    </div><!-- /.navbar-container -->
 </div>
-
 <!-- /section:basics/navbar.layout -->
 <div class="main-container" id="main-container">
     <script type="text/javascript">
@@ -128,18 +178,21 @@
 @include('admin.partials.sidebar')
 <!-- /section:basics/sidebar -->
     <div class="main-content">
+        <div class="breadcrumbs" id="breadcrumbs">
+            <ul class="breadcrumb">
+                {!! Breadcrumbs::renderIfExists() !!}
+            </ul>
+        </div>
+        <div class="page-header">
+            <h1>
+                @yield('page-title')
+                <small>
+                    <i class="ace-icon fa fa-angle-double-right"></i>
+                    overview &amp; stats
+                </small>
+            </h1>
+        </div><!-- /.page-header -->
         <div class="page-content">
-
-            {{--<div class="page-header">--}}
-            {{--<h1>--}}
-            {{--@yield('page-title')--}}
-            {{--<!--<small>--}}
-            {{--<i class="ace-icon fa fa-angle-double-right"></i>--}}
-            {{--overview &amp; stats--}}
-            {{--</small>-->--}}
-            {{--</h1>--}}
-            {{--</div><!-- /.page-header -->--}}
-
             @yield('page-nav')
             @yield('content')
             <div class="row"></div><!-- /.row -->
