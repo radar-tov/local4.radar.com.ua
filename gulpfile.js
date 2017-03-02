@@ -49,6 +49,7 @@ elixir(function(mix) {
             'admin/jquery-ui.custom.min.js',
             'admin/jquery.gritter.min.js',
             'admin/bootstrap.min.js',
+            'admin/jquery.maskedinput.js',
             'admin/jquery.mousewheel.pack.js',
             'admin/jquery.fancybox.pack.js',
             'admin/index.js'

@@ -228,8 +228,15 @@
                             <div class="col-sm-12">
                                 <br/>
                                 {!! Form::label('body', 'Полное Описание') !!}
-                                {!! Form::textarea('body', $value = null, ['rows'=>'40','class'=>'form-control tiny','form'=>'form-data']) !!}
+                                {!! Form::textarea('body', $value = null,
+                                [
+                                    'rows'=>'10',
+                                    'class'=>'form-control tiny',
+                                    'form'=>'form-data'
+                                ]) !!}
                             </div>
+
+
 
                             <div class="col-sm-12">
                                 {{--<br/>--}}
@@ -263,7 +270,6 @@
                                 @endif
                                 {!! Form::text('url_3', $value = '', ['class'=>'form-control','form'=>'form-data', 'v-model' => 'product.url_3']) !!}
                             </div>
-
                         </div>
                     </div>
                 </div>

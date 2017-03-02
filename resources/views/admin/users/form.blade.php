@@ -59,8 +59,23 @@
         {!! Form::text('address',$value = null, ['class'=>'form-control','placeholder'=>'Адрес пользователя']) !!}
     </div>
     <div class="form-group">
-        {!! Form::label('phone','Основной телефон')!!}<br/>
-        {!! Form::text('phone',$value = null, ['class'=>'form-control','placeholder'=>'Основной телефон пользователя']) !!}
+        {{--{!! Form::label('phone','Основной телефон')!!}<br/>--}}
+        <label for="form-field-mask-2"> Основной телефон <small class="text-warning">(999) 999-9999</small></label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="ace-icon fa fa-phone"></i>
+            </span>
+            {!! Form::text('phone',$value = null, [
+                'class'=>'form-control form-control input-mask-phone',
+                'placeholder'=>'Основной телефон пользователя',
+                'id' => 'form-field-mask-2'
+            ]) !!}
+        </div>
+        <script>
+            jQuery(function($){
+                $("#form-field-mask-2").mask("(999) 999-99-99");
+            });
+        </script>
     </div>
     <div class="form-group">
         {!! Form::label('phone_all','Доп. телефоны')!!}<br/>

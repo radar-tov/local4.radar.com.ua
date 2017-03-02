@@ -52,49 +52,44 @@
         <!-- #section:basics/sidebar.mobile.toggle -->
         <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler">
             <span class="sr-only">Toggle sidebar</span>
-
             <span class="icon-bar"></span>
-
             <span class="icon-bar"></span>
-
             <span class="icon-bar"></span>
         </button>
         <!-- /section:basics/sidebar.mobile.toggle -->
         <div class="navbar-header pull-left">
             <!-- #section:basics/navbar.layout.brand -->
             <a href="/" class="navbar-brand">
-                <small>
-                    Перейти на сайт
-                </small>
+                <small>Перейти на сайт</small>
             </a>
-           {{-- <ul class="breadcrumb">
+            <ul class="breadcrumb">
                 {!! Breadcrumbs::renderIfExists() !!}
-            </ul>--}}
+            </ul>
         </div>
         <!-- #section:basics/navbar.dropdown -->
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
-            <!-- #section:basics/navbar.user_menu -->
+                <!-- #section:basics/navbar.user_menu -->
                 <li class="light-blue">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                         <img class="nav-user-photo"
-                            @if(is_file(public_path($currentUser->thumbnail)))
-                                src="{!! asset($currentUser->thumbnail) !!}"
-                            @else
-                                src="{!! url('/images/users/default.jpg') !!}"
-                            @endif
-                                alt="{{ $currentUser->name or "Neo!" }} Photo"
+                             @if(is_file(public_path($currentUser->thumbnail)))
+                             src="{!! asset($currentUser->thumbnail) !!}"
+                             @else
+                             src="{!! url('/images/users/default.jpg') !!}"
+                             @endif
+                             alt="{{ $currentUser->name or "Neo!" }} Photo"
                         />
                         <span class="user-info"><small>Здравствуйте,</small> {{ $currentUser->name or "Neo!" }} </span>
                         <i class="ace-icon fa fa-caret-down"></i>
                     </a>
                     <ul class="user-menu dropdown-menu dropdown-menu-right dropdown-yellow dropdown-caret dropdown-close">
                         @if(isset($currentUser))
-                        <li>
-                            <a href="{!! route('dashboard.users.edit',[$currentUser->id]) !!}">
-                                <i class="ace-icon fa fa-user"></i> Мой профиль
-                            </a>
-                        </li>
+                            <li>
+                                <a href="{!! route('dashboard.users.edit',[$currentUser->id]) !!}">
+                                    <i class="ace-icon fa fa-user"></i> Мой профиль
+                                </a>
+                            </li>
                         @endif
                         <li class="divider"></li>
                         <li>
@@ -178,12 +173,12 @@
 @include('admin.partials.sidebar')
 <!-- /section:basics/sidebar -->
     <div class="main-content">
-        <div class="breadcrumbs" id="breadcrumbs">
+        {{--<div class="breadcrumbs" id="breadcrumbs">
             <ul class="breadcrumb">
                 {!! Breadcrumbs::renderIfExists() !!}
             </ul>
-        </div>
-        <div class="page-header">
+        </div>--}}
+        {{--<div class="page-header">
             <h1>
                 @yield('page-title')
                 <small>
@@ -191,7 +186,7 @@
                     overview &amp; stats
                 </small>
             </h1>
-        </div><!-- /.page-header -->
+        </div><!-- /.page-header -->--}}
         <div class="page-content">
             @yield('page-nav')
             @yield('content')
@@ -203,13 +198,11 @@
         <div class="footer-inner">
             <!-- #section:basics/footer -->
             <div class="footer-content">
-						<span class="bigger-120">
-							<span class="blue bolder">Radar</span>
-                            &copy; {{ date('Y') }}{{ date('Y') > 2015 ? ' - ' .date('Y') : null }}
+						<span class="bigger-100">
+							<span class="blue bolder">Radar.com.ua</span> &copy; {{ date('Y.m.d') }}
+                            {{--{{ date('Y') > 2015 ? ' - ' .date('Y') : null }}--}}
 						</span>
-                &nbsp; &nbsp;
             </div>
-
             <!-- /section:basics/footer -->
         </div>
     </div>
