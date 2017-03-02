@@ -30,6 +30,7 @@
             success: function (response) {
                 //console.log(response);
                 $("#valueUpdate").html(response);
+                $.fancybox.close();
             },
             error: function (errors) {
                 output = "<div class='alert alert-danger'><ul>";
