@@ -25,7 +25,7 @@
                             Добавить значение:
                         </td>
                         <td>
-                            <input type="text" name="value_2" id="value_2" class="form-control">
+                            <input type="text" name="value_2" id="value_2" class="form-control" autofocus>
                         </td>
                     </tr>
                 </table>
