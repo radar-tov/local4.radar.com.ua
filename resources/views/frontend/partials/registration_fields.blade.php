@@ -40,4 +40,10 @@
     <label for="order-address" class="col s12 m4 l4">Подтвердите пароль:<span class="red-text"> *</span></label>
     <input class="col s12 m6 l7" name="password_confirmation" placeholder="подтвердите пароль" type="password">
 </p>
-<div class="col s12 no-padding"><button class="btn waves-effect waves-light" type="submit" name="action">Создать аккаунт</button></div>
+<p class="formField">
+    <div class="g-recaptcha" data-sitekey="6LfpexcUAAAAAMDrzPG75jsHxVuaJL0sfaLbWuIH"></div>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+</p>
+<div class="col s12" style="padding-top: 100px">
+    <button class="btn waves-effect waves-light" type="submit" name="action">Создать аккаунт</button>
+</div>

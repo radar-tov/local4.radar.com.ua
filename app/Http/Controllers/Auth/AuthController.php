@@ -14,6 +14,7 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use App\Http\Controllers\Auth\ReCaptcha;
 
 class AuthController extends Controller
 {
@@ -141,10 +142,27 @@ class AuthController extends Controller
 		}
 
 
-		Auth::login(User::create($request->all()));
-
+        //Для разработки
+        //Site key: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
+        //Secret key: 6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe
+        // ваш секретный ключ
+        $secret = "6LfpexcUAAAAAJEmr1veZ-1F7uzRXT8W7H8QC6UD";
+        // пустой ответ
+        $response = null;
+        // проверка секретного ключа
+        $reCaptcha = new ReCaptcha($secret);
+        $sitekey = $request->input('g-recaptcha-response');
+        // if submitted check response
+        if ($sitekey) {
+            $response = $reCaptcha->verifyResponse($_SERVER["REMOTE_ADDR"], $sitekey);
+        }
+        if ($response != null && $response->success) {
+            Auth::login(User::create($request->all()));
+            return redirect()->back();
+        } else {
+            return redirect()->back();
+        }
 		//return redirect($this->redirectPath());
-        return redirect()->back();
 	}
 
 }
