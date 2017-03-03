@@ -522,3 +522,7 @@ li {
 .marc{
     border-color: red;
 }
+
+.menu_top{
+    padding-right: 7px;
+}

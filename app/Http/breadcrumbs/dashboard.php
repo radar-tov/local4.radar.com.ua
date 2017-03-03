@@ -381,3 +381,12 @@ Breadcrumbs::register('dashboard.reviews.edit', function($breadcrumbs)
     $breadcrumbs->parent('dashboard.reviews.index');
     $breadcrumbs->push('Редактировать отзыв', route('dashboard.reviews.edit',  '#'));
 });
+
+
+
+// Dashboard > cart
+Breadcrumbs::register('dashboard.admincart.index', function($breadcrumbs)
+{
+    $breadcrumbs->parent('dashboard.index');
+    $breadcrumbs->push('Корзина', route('dashboard.admincart.index'));
+});

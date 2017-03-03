@@ -5872,20 +5872,21 @@ ol.breadcrumb {
 
 .slides {
     height: 100%;
-    /*-webkit-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     -webkit-transform-style: preserve-3d;
     -webkit-transition: all 500ms cubic-bezier(.165, .84, .44, 1);
     -moz-transition: all 500ms cubic-bezier(.165, .84, .44, 1);
     -ms-transition: all 500ms cubic-bezier(.165, .84, .44, 1);
     -o-transition: all 500ms cubic-bezier(.165, .84, .44, 1);
-    transition: all 500ms cubic-bezier(.165, .84, .44, 1);*/
-    -webkit-backface-visibility: hidden;
+    transition: all 1500ms cubic-bezier(.165, .84, .44, 1);
+    /*-webkit-backface-visibility: hidden;
     -webkit-transform-style: preserve-3d;
     -webkit-transition: step-start;
     -moz-transition: step-start;
     -ms-transition: step-start;
     -o-transition: step-start;
-    transition: step-start;
+    transition: step-start;*/
+
     margin: 0;
 }
 
