@@ -4,7 +4,27 @@
 @extends('admin.app')
 
 @section('top-scripts')
-
+    <style>
+        img.responsive-img {
+            max-width: 150px;
+            height: auto
+        }
+        input.item-quantity {
+            font-size: 14px;
+            font-family: "Roboto", sans-serif
+        }
+        input.item-quantity {
+            float: left;
+            height: 28px;
+            line-height: 28px;
+            padding: 0;
+            box-sizing: border-box;
+            max-width: 60px;
+            text-align: center;
+            margin-bottom: 5px;
+            font-size: 13px
+        }
+    </style>
 @stop
 
 @section('page-title')
@@ -22,6 +42,72 @@
                 {{--<h1>@{{ len == 0 }}</h1>--}}
 
                 <div>
+                    <table style="border: black 1px solid">
+                        <th>
+                            <td>Фото</td>
+                            <td>Артикул</td>
+                            <td>Название</td>
+                            <td>Кол-во</td>
+                            <td>Всего</td>
+                        </th>
+                        <tr v-repeat="product in cart" style="border: black 1px solid">
+                            <td>
+                                <a href="/@{{ product.options.categorySlug }}/@{{ product.options.productSlug }}">
+                                    <img v-attr="src: product.options.thumbnail" class="responsive-img"
+                                         v-if="product.options.thumbnail"/>
+                                    <img src="/frontend/images/default.png" class="responsive-img"
+                                         v-if="!product.options.thumbnail"/>
+                                </a>
+                            </td>
+                            <td>
+                                @{{ product.options.article }}
+                            </td>
+                            <td>
+                                <p>
+                                    <a href="/@{{ product.options.categorySlug }}/@{{ product.options.productSlug }}">@{{ product.name }}</a>
+                                </p>
+                                <p>@{{ product.options.excerpt }}</p>
+                            </td>
+                            <td>
+                                <input type='number'
+                                       value="@{{ product.qty }}"
+                                       v-on="input: updateItem(product, this)"
+                                       debounce="500"
+                                       class="item-quantity"
+                                       v-attr='disabled: product.options.in_set_with'>
+
+                                <div class="options">
+                                    <button type="submit" v-on="click: deleteItem(product.rowid)"><i class="fa fa-trash"></i></button>
+                                </div>
+                            </td>
+                            <td>
+                                <p v-show="product.subtotal > 0">
+                                    @{{ product.subtotal }} <span>грн</span>
+                                </p>
+                                <p v-show="product.subtotal == 0">
+                                    <span style="color:indianred;font-size:16px">В подарок!</span>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <p class="bold">Всего:</p>
+                            </td>
+                            <td>
+                                <p class="bold">@{{ total }} грн</p>
+                            </td>
+                        </tr>
+                    </table>
+
+
+
+
+
+
+
                     <div class="basket-row col s12 no-padding">
                         <div class="col m1 hide-on-small-and-down center">Фото</div>
                         {{--<div class="col s1">№</div>--}}
