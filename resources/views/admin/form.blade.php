@@ -18,10 +18,11 @@
 <script type="text/javascript">
     tinymce.init({
         selector: "textarea.tiny",
+        language: 'ru',
         fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
-        plugins: 'image,table,colorpicker,textcolor,code,fullscreen,link',
+        plugins: 'image, table, colorpicker, textcolor, code, fullscreen, link, autoresize, anchor, autolink, autosave, charmap, code, textcolor colorpicker, contextmenu, emoticons, hr',
         toolbar: [
-            "undo redo | bold italic | fontselect |  fontsizeselect | alignleft aligncenter alignright | outdent indent | bullist numlist | indent | link | image fullscreen | forecolor backcolor"
+            "undo redo | bold italic | fontselect |  fontsizeselect | alignleft aligncenter alignright | outdent indent | bullist numlist | indent | link | image fullscreen | forecolor backcolor | anchor | restoredraft | charmap | code | forecolor backcolor | link image inserttable | cell row column deletetable | emoticons"
         ],
         tools: "inserttable",
 
