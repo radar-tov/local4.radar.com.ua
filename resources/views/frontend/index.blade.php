@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        @include('frontend.partials.sale_slider')
+        {{--@include('frontend.partials.sale_slider')--}}
         <div class="container">
             <!--   Icon Section   -->
             <div class="row">
