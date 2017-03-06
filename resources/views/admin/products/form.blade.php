@@ -20,15 +20,23 @@
 
 @if(isset($product))
     <div class="col-lg-12" style="padding-bottom: 20px">
-        <div class="col-lg-3" style="float: left">ID: {{ $product->id }}</div>
-        <div class="col-lg-3" style="float: left">Дата обновления: {{ $product->updated_at }}</div>
+        <div class="col-lg-2" style="float: left; font-size: 20px">ID: {{ $product->id }}</div>
+        @if($product->hasDiscount())
+            <div class="col-lg-2" style="float: left; font-size: 20px">Цена: {{ $product->getNewPrice().' гр (Акция)'}}</div>
+        @else
+            <div class="col-lg-2" style="float: left; font-size: 20px">Цена: {{ $product->getPrice().' гр' }}</div>
+        @endif
+        <div class="col-lg-2" style="float: left">Дата обновления: {{ $product->updated_at }}</div>
         <input type="hidden" name="id" value="{{ $product->id }}">
         @if(isset($product->category->parent->slug))
             <div class="col-lg-3" style="float: right">
-                <a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}/{{ $product->slug }}" target="_blank">Страница товара</a>
-            </div>
-            <div class="col-lg-3" style="float: right">
-                <a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}" target="_blank">Страница категории</a>
+                <a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}" target="_blank">
+                    <i class="fa green fa-align-justify fa-2x"></i>
+                </a>
+                /
+                <a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}/{{ $product->slug }}" target="_blank">
+                    <i class="fa fa-eye green fa-2x"></i>
+                </a>
             </div>
         @endif
     </div>

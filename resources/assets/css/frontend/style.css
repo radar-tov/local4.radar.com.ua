@@ -255,7 +255,7 @@ p {
 }
 
 li {
-    font: 400 13px "Roboto", sans-serif
+    font: 400 14.5px "Roboto", sans-serif
 }
 
 .slider3 li {
@@ -420,7 +420,7 @@ legend, ul {
 }
 
 ul, ul li {
-    list-style-type: none
+    list-style-type: disc;
 }
 
 .clearfix {
@@ -5879,14 +5879,6 @@ ol.breadcrumb {
     -ms-transition: all 500ms cubic-bezier(.165, .84, .44, 1);
     -o-transition: all 500ms cubic-bezier(.165, .84, .44, 1);
     transition: all 1500ms cubic-bezier(.165, .84, .44, 1);
-    /*-webkit-backface-visibility: hidden;
-    -webkit-transform-style: preserve-3d;
-    -webkit-transition: step-start;
-    -moz-transition: step-start;
-    -ms-transition: step-start;
-    -o-transition: step-start;
-    transition: step-start;*/
-
     margin: 0;
 }
 

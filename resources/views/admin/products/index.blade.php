@@ -296,10 +296,10 @@
                     <th>ID</th>
                     <th>Артикул</th>
                     <th>Название</th>
-                    <th>Цена Базовая</th>
-                    <th>Цена Розница</th>
-                    <th>Цена Монт</th>
-                    <th>Цена Опт</th>
+                    <th>Базовая</th>
+                    <th>Розница</th>
+                    <th>Монт</th>
+                    <th>Опт</th>
                     <th>Категория</th>
                     <th colspan="3" class="options">Опции</th>
                 </tr>
@@ -321,10 +321,6 @@
                     </td>
                     <td class="p-title">
                         <div class="bs-label-container">
-                            <a v-bind:href="'/' + product.category.parent.slug + '/' + product.category.slug + '/' + product.slug"
-                               target="_blank">
-                                <i class="fa fa-eye green" v-show="product.active > 0"></i>
-                            </a>
                             <i class="fa fa-eye-slash red" v-show="product.active == 0"></i>
                             <i class="fa fa-minus red" v-show="product.available == 0"></i>
                             <i class="fa fa-plus green" v-show="product.available == 1"></i>
@@ -381,7 +377,12 @@
                     <td>
                         <span>
                             <a v-bind:href="'/' + product.category.parent.slug + '/' + product.category.slug"
-                               target="_blank">@{{ product.category.admin_title }}</a>
+                               target="_blank">@{{ product.category.admin_title }}
+                            </a> /
+                            <a v-bind:href="'/' + product.category.parent.slug + '/' + product.category.slug + '/' + product.slug"
+                               target="_blank">
+                                <i class="fa fa-eye green" v-show="product.active > 0"></i>
+                            </a>
                         </span>
                     </td>
                     <td class="options">
