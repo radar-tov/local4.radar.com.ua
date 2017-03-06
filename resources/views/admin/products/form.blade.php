@@ -30,10 +30,13 @@
         <input type="hidden" name="id" value="{{ $product->id }}">
         @if(isset($product->category->parent->slug))
             <div class="col-lg-3" style="float: right">
-                <a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}/{{ $product->slug }}" target="_blank">Страница товара</a>
-            </div>
-            <div class="col-lg-3" style="float: right">
-                <a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}" target="_blank">Страница категории</a>
+                <a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}" target="_blank">
+                    <i class="fa green fa-align-justify fa-2x"></i>
+                </a>
+                /
+                <a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}/{{ $product->slug }}" target="_blank">
+                    <i class="fa fa-eye green fa-2x"></i>
+                </a>
             </div>
         @endif
     </div>
