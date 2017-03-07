@@ -534,7 +534,8 @@ img.responsive-img, video.responsive-video {
     border: 1px solid #d2d2d2;
     margin: 0 1px;
     height: 22px;
-    width: 22px
+    width: 22px;
+    list-style-type: none;
 }
 
 .pagination li a.pg i {
@@ -6568,7 +6569,8 @@ div.addtocart-box-hover {
 .page-footer a, .page-footer p, .page-footer ul li, .page-footer ul li a {
     color: #d8d8d8;
     font: 400 13px "Roboto", sans-serif;
-    line-height: 20px
+    line-height: 20px;
+    list-style-type: none;
 }
 
 .page-footer a {
@@ -9838,4 +9840,7 @@ h3 {
 .seo-img{
     float: left;
     padding-right: 20px
+}
+.filter-option{
+    list-style-type: none;
 }
