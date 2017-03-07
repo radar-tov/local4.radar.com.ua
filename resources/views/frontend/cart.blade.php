@@ -10,7 +10,7 @@
 @extends('frontend.layout')
 
 @section('top-scripts')
-    {!! Html::script("admin/assets/js/vue.min.js") !!}
+    {!! Html::script("frontend/js/vue.min.js") !!}
 @endsection
 
 
