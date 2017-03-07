@@ -1759,7 +1759,8 @@ nav ul li {
     -o-transition: background-color .3s;
     -ms-transition: background-color .3s;
     transition: background-color .3s;
-    padding: 0
+    padding: 0;
+    list-style-type: none;
 }
 
 nav ul.left li.active, nav ul.left > li:hover {
@@ -1770,7 +1771,7 @@ nav ul.left > li > a {
     font-size: 1rem;
     color: #fff;
     display: block;
-    padding: 0 12px 0 0
+    padding: 0 12px 0 0;
 }
 
 nav ul li, nav ul.left {
@@ -4448,7 +4449,7 @@ body:after {
 }
 
 .autoplay.responsive img.activator, .autoplay.responsive img.hover-item, .nav-menu nav ul#nav-mobile input + label, .slider.autoplay {
-    height: auto
+    height: auto;
 }
 
 .slider.new_product .slick-dots, .slider.sale_product .slick-dots {
@@ -5212,7 +5213,7 @@ p.note {
     line-height: 20px;
     text-transform: uppercase;
     position: relative;
-    letter-spacing: 1px
+    letter-spacing: 1px;
 }
 
 .nav-menu nav ul.left > li > a:after {
@@ -5221,7 +5222,8 @@ p.note {
     height: 12px;
     right: 6px;
     bottom: calc(50% - 6px);
-    position: absolute
+    position: absolute;
+    padding: 0 5px 0 5px;
 }
 
 .nav-menu nav ul.left li:last-child a:after {
@@ -5646,7 +5648,8 @@ i.subcategories-open {
     height: 100%;
     float: left;
     clear: none;
-    position: relative
+    position: relative;
+    list-style-type: none;
 }
 
 .slide h4:after, .slide h4:before, .slider-arrow {
