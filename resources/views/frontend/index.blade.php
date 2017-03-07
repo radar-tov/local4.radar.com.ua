@@ -26,6 +26,12 @@
         </div>
         @include('frontend.partials.sale_slider')
         <div class="container">
+            <div class="row">
+                @include('frontend.partials.products.sale_products_slider')
+                @include('frontend.partials.products.new_products_slider')
+            </div>
+        </div>
+        <div class="container">
             <!--   Icon Section   -->
             <div class="row">
                 <div class="col s12 m12 l6 about-us">
@@ -35,13 +41,6 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="row">
-                @include('frontend.partials.products.sale_products_slider')
-                @include('frontend.partials.products.new_products_slider')
-            </div>
-        </div>
-
     </section>
 
 

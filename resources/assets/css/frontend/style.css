@@ -534,7 +534,8 @@ img.responsive-img, video.responsive-video {
     border: 1px solid #d2d2d2;
     margin: 0 1px;
     height: 22px;
-    width: 22px
+    width: 22px;
+    list-style-type: none;
 }
 
 .pagination li a.pg i {
@@ -1759,7 +1760,8 @@ nav ul li {
     -o-transition: background-color .3s;
     -ms-transition: background-color .3s;
     transition: background-color .3s;
-    padding: 0
+    padding: 0;
+    list-style-type: none;
 }
 
 nav ul.left li.active, nav ul.left > li:hover {
@@ -1770,7 +1772,7 @@ nav ul.left > li > a {
     font-size: 1rem;
     color: #fff;
     display: block;
-    padding: 0 12px 0 0
+    padding: 0 12px 0 0;
 }
 
 nav ul li, nav ul.left {
@@ -4448,7 +4450,7 @@ body:after {
 }
 
 .autoplay.responsive img.activator, .autoplay.responsive img.hover-item, .nav-menu nav ul#nav-mobile input + label, .slider.autoplay {
-    height: auto
+    height: auto;
 }
 
 .slider.new_product .slick-dots, .slider.sale_product .slick-dots {
@@ -5212,7 +5214,7 @@ p.note {
     line-height: 20px;
     text-transform: uppercase;
     position: relative;
-    letter-spacing: 1px
+    letter-spacing: 1px;
 }
 
 .nav-menu nav ul.left > li > a:after {
@@ -5221,7 +5223,8 @@ p.note {
     height: 12px;
     right: 6px;
     bottom: calc(50% - 6px);
-    position: absolute
+    position: absolute;
+    padding: 0 5px 0 5px;
 }
 
 .nav-menu nav ul.left li:last-child a:after {
@@ -5646,7 +5649,8 @@ i.subcategories-open {
     height: 100%;
     float: left;
     clear: none;
-    position: relative
+    position: relative;
+    list-style-type: none;
 }
 
 .slide h4:after, .slide h4:before, .slider-arrow {
@@ -6558,7 +6562,8 @@ div.addtocart-box-hover {
 .page-footer a, .page-footer p, .page-footer ul li, .page-footer ul li a {
     color: #d8d8d8;
     font: 400 13px "Roboto", sans-serif;
-    line-height: 20px
+    line-height: 20px;
+    list-style-type: none;
 }
 
 .page-footer a {
@@ -9828,4 +9833,7 @@ h3 {
 .seo-img{
     float: left;
     padding-right: 20px
+}
+.filter-option{
+    list-style-type: none;
 }
