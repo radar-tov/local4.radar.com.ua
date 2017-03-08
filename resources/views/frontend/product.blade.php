@@ -45,6 +45,12 @@
 
                 {{--{{ $product->id }}--}}
                 <div class="col s12 m6 l4 divLightBox no-padding">
+                    {{--@if($product->is_bestseller)--}}
+                        <img src="/frontend/images/hit.png" class="hit-img">
+                    {{--@endif--}}
+                    @if($product->is_new)
+                        <img src="/frontend/images/new.png" class="new-img">
+                    @endif
                     <div class="listLightbox">
                         <a class="fancybox" rel="gallery" href="{{ $product->images->first()->path }}">
 

@@ -9857,3 +9857,9 @@ h3 {
 .slick-slide .hit-img{
     margin: -10px 0 0 190px !important;
 }
+.divLightBox .hit-img{
+    margin: -10px 0 0 330px !important;
+}
+.divLightBox .new-img{
+    margin: -10px 0 0 -10px !important;
+}
