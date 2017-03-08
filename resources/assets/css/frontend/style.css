@@ -9844,3 +9844,16 @@ h3 {
 .filter-option{
     list-style-type: none;
 }
+.new-img{
+    width: 75px;
+    position: absolute;
+    margin: -10px 0 0 -10px !important;
+}
+.hit-img{
+    width: 75px;
+    position: absolute;
+    margin: -10px 0 0 215px !important;
+}
+.slick-slide .hit-img{
+    margin: -10px 0 0 190px !important;
+}

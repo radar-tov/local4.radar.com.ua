@@ -1,15 +1,20 @@
 {{--{{ dump($product) }}--}}
-<div class="col s12 m4 l4 item-inner">
+<div class="col s12 m4 l4 item-inner" style="margin-top: 7px">
     <div class="card item itemAnim{{ $product->id }}">
         <div class="item-image">
-
+            @if($product->is_bestseller)
+                <img src="/frontend/images/hit.png" class="hit-img">
+            @endif
+            @if($product->is_new)
+                <img src="/frontend/images/new.png" class="new-img">
+            @endif
             @if(count($product->thumbnail) && file_exists(public_path($product->thumbnail->first()->path)))
                 <span class="outlook">
                 @if($product->category)
-                        <a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}/{{ $product->slug}}">
-                            <img class="activator" src="{{ $product->thumbnail->first()->path or null }}">
-                        </a>
-                    @endif
+                    <a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}/{{ $product->slug}}">
+                        <img class="activator" src="{{ $product->thumbnail->first()->path or null }}">
+                    </a>
+                @endif
             </span>
             @else
                 <img class="activator" src="/frontend/images/default.png">
