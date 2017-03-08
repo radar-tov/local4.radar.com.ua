@@ -46,7 +46,7 @@
                 {{--{{ $product->id }}--}}
                 <div class="col s12 m6 l4 divLightBox no-padding">
                     <div class="listLightbox">
-                        {{--<li>--}}
+                        <a class="fancybox" rel="gallery" href="{{ $product->images->first()->path }}">
 
                             @if(count($product->thumbnail) && file_exists(public_path($product->thumbnail->first()->path)))
                                 {{--<a class="bigImage"--}}
@@ -64,7 +64,7 @@
                             @if(hasGift($product))
                                 <div class="appointment"><img src="/frontend/images/present.png"/></div>
                             @endif
-                        {{--</li>--}}
+                        </a>
 
                         {{--@if(count($product->thumbnail) && file_exists(public_path($product->images->first()->path)))--}}
                             {{--@foreach($product->images as $key => $image)--}}
