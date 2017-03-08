@@ -45,11 +45,14 @@
 
                 {{--{{ $product->id }}--}}
                 <div class="col s12 m6 l4 divLightBox no-padding">
-                    {{--@if($product->is_bestseller)--}}
+                    @if($product->is_bestseller)
                         <img src="/frontend/images/hit.png" class="hit-img">
-                    {{--@endif--}}
+                    @endif
                     @if($product->is_new)
                         <img src="/frontend/images/new.png" class="new-img">
+                    @endif
+                    @if($product->hasDiscount())
+                        <img src="/frontend/images/sale.png" class="sale-img">
                     @endif
                     <div class="listLightbox">
                         <a class="fancybox" rel="gallery" href="{{ $product->images->first()->path }}">

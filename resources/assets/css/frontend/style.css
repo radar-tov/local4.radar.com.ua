@@ -9863,3 +9863,11 @@ h3 {
 .divLightBox .new-img{
     margin: -10px 0 0 -10px !important;
 }
+.sale-img{
+    position: absolute;
+    width: 70px;
+    margin: 320px 0 0 0 !important;
+}
+.slick-slide .sale-img{
+    margin: 280px 0 0 0 !important;
+}

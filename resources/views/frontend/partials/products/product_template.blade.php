@@ -8,6 +8,9 @@
             @if($product->is_new)
                 <img src="/frontend/images/new.png" class="new-img">
             @endif
+            @if($product->hasDiscount())
+                    <img src="/frontend/images/sale.png" class="sale-img">
+            @endif
             @if(count($product->thumbnail) && file_exists(public_path($product->thumbnail->first()->path)))
                 <span class="outlook">
                 @if($product->category)
