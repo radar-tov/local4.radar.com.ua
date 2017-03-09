@@ -12,7 +12,7 @@
                 <p class="white-text">О интернет-магазине</p>
                 <ul>
                     <li><a class="" href="/">Главная</a></li>
-                    <li><a class="" href="/kotli">Каталог</a></li>
+                    {{--<li><a class="" href="/kotli">Каталог</a></li>--}}
                     <li><a class="" href="/about">О нас</a></li>
                     <li><a class="" href="/proizvoditeli">Наши производители</a></li>
                     <li><a class="" href="/delivery">Доставка и оплата</a></li>
