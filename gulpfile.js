@@ -5,8 +5,44 @@ var imagemin = require('gulp-imagemin');
 var csso = require('gulp-csso');
 var browserSync = require("browser-sync");
 
+var concat = require('gulp-concat');
+var cssmin = require('gulp-cssmin');
+var rename = require('gulp-rename');
+var sourcemaps = require('gulp-sourcemaps');
+var rev = require('gulp-rev');
 
-elixir(function(mix) {
+gulp.task('style-frontend', function() {
+    gulp.src('resources/assets/css/frontend/*.css')
+        .pipe(sourcemaps.init())
+            .pipe(concat('all-frontend.css'))
+            .pipe(cssmin())
+            .pipe(rename({suffix: '.min'}))
+        .pipe(sourcemaps.write('/'))
+        .pipe(rev())
+        .pipe(gulp.dest('public/build/css/frontend'))
+        .pipe(rev.manifest({merge: true}))
+        .pipe(gulp.dest('public/build/'));
+});
+
+gulp.task('style-admin', function() {
+    gulp.src('resources/assets/css/admin/*.css')
+        .pipe(sourcemaps.init())
+            .pipe(concat('all-admin.css'))
+            .pipe(cssmin())
+            .pipe(rename({suffix: '.min'}))
+        .pipe(sourcemaps.write('/'))
+        .pipe(rev())
+        .pipe(gulp.dest('public/build/css/admin'))
+        .pipe(rev.manifest({merge: true}))
+        .pipe(gulp.dest('public/build/'));
+
+});
+
+
+
+
+
+/*elixir(function(mix) {
 
     mix.styles(
         [
@@ -71,31 +107,31 @@ elixir(function(mix) {
     var Task = elixir.Task;
     new Task('blade', function() {
         browserSync.reload();
-    }).watch('resources/views/**/*.blade.php');
+    }).watch('resources/views/!**!/!*.blade.php');
 
-});
+});*/
 
 
 //Уменьшить изображения интерфеса
-gulp.task('compress', function() {
-    gulp.src('public/frontend/images/**/*')
+/*gulp.task('compress', function() {
+    gulp.src('public/frontend/images/!**!/!*')
         .pipe(imagemin())
         .pipe(gulp.dest('public/frontend/images/'));
-});
+});*/
 
 //Уменьшить изображения продуктов
-gulp.task('compress-big', function() {
-    gulp.src('public/images/**/*')
+/*gulp.task('compress-big', function() {
+    gulp.src('public/images/!**!/!*')
         .pipe(imagemin())
         .pipe(gulp.dest('public/images/'));
-});
+});*/
 
 //Оптимизация css
-gulp.task('csso', function () {
+/*gulp.task('csso', function () {
     return gulp.src('resources/assets/css/frontend/style.css')
         .pipe(csso())
         .pipe(gulp.dest('resources/assets/css'));
-});
+});*/
 
 //Удалить неиспользуемые css правила
 /*require('laravel-elixir-uncss');

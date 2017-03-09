@@ -1,6 +1,6 @@
 {
-  "css/admin/all.css": "css/admin/all-3616d044d0.css",
-  "css/frontend/all.css": "css/frontend/all-6923facb4d.css",
-  "js/admin/all.js": "js/admin/all-3612b4e142.js",
-  "js/frontend/all.js": "js/frontend/all-b246f912d7.js"
+  "all-admin.min.css": "all-admin-8f7080a888.min.css",
+  "all-admin.min.css.map": "all-admin-ea7d990c7d.min.css.map",
+  "all.min.css": "all-bb73577611.min.css",
+  "all.min.css.map": "all-6fbfbe066b.min.css.map"
 }
