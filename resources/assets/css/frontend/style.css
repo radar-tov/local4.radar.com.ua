@@ -9871,3 +9871,7 @@ h3 {
 .slick-slide .sale-img{
     margin: 280px 0 0 0 !important;
 }
+.one-click-img{
+    width: 40px;
+    margin: -15px 0 0 -15px;
+}

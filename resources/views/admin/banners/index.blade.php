@@ -3,7 +3,7 @@
 @section('top-scripts')@stop
 
 @section('page-title')
-    Слайдер
+    Баннер
 @stop
 
 @section('content')

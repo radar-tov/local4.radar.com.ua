@@ -587,4 +587,9 @@ class FrontendController extends BaseController
         $fileName = explode('__',  $file->path);
         return Response::download($file->path, $fileName[1]);
     }
+
+    public function oneClick($id){
+        $product = Product::find($id);
+        return view('frontend.otvet.oneClick', compact('product'));
+    }
 }

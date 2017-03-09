@@ -54,6 +54,16 @@ class MailController extends Controller
 			], $messages);
 		}
 
+        if($data['_view'] == 'oneclick'){
+            $messages = [
+                'required' => "Поле :attribute обязательно к заполнению."
+            ];
+
+            $this->validate($request, [
+                'phone' => 'required|max:255'
+            ], $messages);
+        }
+
 
 
 
@@ -66,10 +76,13 @@ class MailController extends Controller
 		}elseif($data['_view'] == 'callback'){
 			$data['subject'] = 'Заказ обратного звонка.';
 			$message = '<h3 align="center">Спасибо, мы обязательно с Вами свяжемся.</h3>';
-		}elseif($data['_view'] == 'skidka'){
-			$data['subject'] = 'Запрос на получение скидки.';
-			$message = '<h3 align="center">Ваш запрос расматривается. Мы обязательно с Вами свяжемся.</h3>';
-		}else{
+		}elseif($data['_view'] == 'skidka') {
+            $data['subject'] = 'Запрос на получение скидки.';
+            $message = '<h3 align="center">Ваш запрос расматривается. Мы обязательно с Вами свяжемся.</h3>';
+        }elseif($data['_view'] == 'oneclick') {
+            $data['subject'] = 'Покупка в 1 клик.';
+            $message = '<h3 align="center">Спасибо за покупку. Мы обязательно с Вами свяжемся.</h3>';
+        }else{
 
 		}
 
@@ -82,6 +95,9 @@ class MailController extends Controller
 		if(empty($data['email'])){
 			$data['email'] = 'Не указан.';
 		}
+        if(empty($data['name'])){
+            $data['name'] = 'Не указан.';
+        }
 
 		$this->sendMessage($data);
 
@@ -94,6 +110,11 @@ class MailController extends Controller
 			return response($message);
 			exit;
 		}
+
+        if($data['_view'] == 'oneclick'){
+            return response($message);
+            exit;
+        }
 
 		$request->session()->put('from_otvet', $data['_view']);
 		$request->session()->put('otvet', $message);

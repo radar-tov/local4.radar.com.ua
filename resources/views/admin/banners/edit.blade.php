@@ -3,7 +3,7 @@
 @section('top-scripts')@stop
 
 @section('page-title')
-    Редактировать cлайдер
+    Редактировать баннера
 @stop
 
 @section('page-nav')
