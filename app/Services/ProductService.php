@@ -68,7 +68,11 @@ class ProductService {
 				$query->where('discount', '>', 0)->orHas('relevantSale');
 			})
 			->has('category', '>', 0)
-            ->orderByRaw('RAND()')->original()->withRelations()->visible()->paginate(15);
+            ->original()
+            ->orderByRaw('RAND()')
+            ->visible()
+            ->withRelations()
+            ->paginate(15);
 
 		return $products;
 	}
@@ -81,10 +85,9 @@ class ProductService {
 		$products = Product::where('is_new', true)
 			->has('category', '>', 0)
             ->original()
-            ->orderBy('id', 'DESC')
+            ->orderByRaw('RAND()')
             ->visible()
             ->withRelations()
-            ->orderByRaw('RAND()')
             ->paginate(15);
 
 		return $products;
@@ -96,9 +99,9 @@ class ProductService {
     public function getBestsellerProducts()
 	{
 		return Product::where('is_bestseller', true)
-            ->orderByRaw('RAND()')
-        	->has('category', '>', 0)
+            ->has('category', '>', 0)
             ->original()
+            ->orderByRaw('RAND()')
             ->withRelations()
             ->visible()
             ->paginate(15);

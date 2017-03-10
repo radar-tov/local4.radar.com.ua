@@ -102,6 +102,28 @@ Breadcrumbs::register('dashboard.slider2.edit', function($breadcrumbs)
 
 
 
+// Dashboard > Baners
+Breadcrumbs::register('dashboard.banners.index', function($breadcrumbs)
+{
+    $breadcrumbs->parent('dashboard.index');
+    $breadcrumbs->push('Баннеры', route('dashboard.banners.index'));
+});
+// Dashboard > Baners > Edit
+Breadcrumbs::register('dashboard.banners.edit', function($breadcrumbs)
+{
+    $breadcrumbs->parent('dashboard.banners.index');
+    $breadcrumbs->push('Редактировать баннер', route('dashboard.banners.edit',  '#'));
+});
+// Dashboard > Sliders > Create
+Breadcrumbs::register('dashboard.banners.create', function($breadcrumbs)
+{
+    $breadcrumbs->parent('dashboard.banners.index');
+    $breadcrumbs->push('Добавить баннер', route('dashboard.banners.create'));
+});
+
+
+
+
 
 
 // Dashboard > Categories
@@ -179,13 +201,13 @@ Breadcrumbs::register('dashboard.sales.index', function($breadcrumbs)
     $breadcrumbs->parent('dashboard.index');
     $breadcrumbs->push('Акции', route('dashboard.sales.index'));
 });
-// Dashboard > Categories > Create
+// Dashboard > Sales > Create
 Breadcrumbs::register('dashboard.sales.create', function($breadcrumbs)
 {
     $breadcrumbs->parent('dashboard.sales.index');
     $breadcrumbs->push('Добавить акцию', route('dashboard.sales.create'));
 });
-// Dashboard > Characteristics > Edit
+// Dashboard > Sales > Edit
 Breadcrumbs::register('dashboard.sales.edit', function($breadcrumbs)
 {
     $breadcrumbs->parent('dashboard.sales.index');

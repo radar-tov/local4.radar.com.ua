@@ -12,7 +12,7 @@
                 <p class="white-text">О интернет-магазине</p>
                 <ul>
                     <li><a class="" href="/">Главная</a></li>
-                    <li><a class="" href="/kotli">Каталог</a></li>
+                    {{--<li><a class="" href="/kotli">Каталог</a></li>--}}
                     <li><a class="" href="/about">О нас</a></li>
                     <li><a class="" href="/proizvoditeli">Наши производители</a></li>
                     <li><a class="" href="/delivery">Доставка и оплата</a></li>
@@ -27,11 +27,11 @@
                 <ul>
                     @foreach($categoriesProvider->getListForFooter() as $category)
                         <li><a class="" href="/{{ $category->slug }}">{{ $category->title }}</a>
-                        @if(count($category->children))
-                    @foreach($category->children as $child)
-                            <li style="display: none"><a href="/{{ $child->slug }}"> {{ $child->title }}</a></li>
-                        @endforeach
-                        @endif
+                        {{--@if(count($category->children))
+                            @foreach($category->children as $child)
+                                <li style="display: none"><a href="/{{ $child->slug }}"> {{ $child->title }}</a></li>
+                            @endforeach
+                        @endif--}}
                         </li>
                     @endforeach
 

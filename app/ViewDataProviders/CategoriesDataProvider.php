@@ -45,7 +45,7 @@ class CategoriesDataProvider {
 					->where('in_footer', true)
 					->where('parent_id', 0)
 					->limit(8)
-					->orderBy('order','desc')
+					->orderBy('order', 'asc')
 					->get();
 		});
 	}

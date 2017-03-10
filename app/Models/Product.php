@@ -188,14 +188,6 @@ class Product extends Eloquent {
 	}
 
 	/**
-	 * @return mixed
-	 */
-	public function getCharacteristics() {
-		return $this->belongsToMany(CharacteristicValue::class, 'characteristic_value_product', 'product_id', 'characteristic_value_id')
-			->with('characteristic');
-	}
-
-	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
 	 */
 	public function sale() {
@@ -328,6 +320,15 @@ class Product extends Eloquent {
 	public function filterValues() {
 		return $this->belongsToMany(FilterValue::class, 'filter_product', 'product_id', 'filter_value_id');
 	}
+
+
+    /**
+     * @return mixed
+     */
+    public function getCharacteristics() {
+        return $this->belongsToMany(CharacteristicValue::class, 'characteristic_value_product', 'product_id', 'characteristic_value_id')
+            ->with('characteristic.categories');
+    }
 
 	/**
 	 * @return mixed
