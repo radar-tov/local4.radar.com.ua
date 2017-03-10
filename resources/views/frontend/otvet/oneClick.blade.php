@@ -3,7 +3,7 @@
     <div class="modal-content">
         <div class="input-field col s12 center-align">
             <h3 align="center">Купить {{ $product->title }}</h3>
-            <form action="{!! route('mail.me') !!}" method="POST">
+            <form action="#" method="POST">
                 <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" id="view" name="_view" value="oneclick"/>
                 <input required="required" placeholder="Ваш номер телефона" id="phone" name="phone" type="text" class="validate">
@@ -20,7 +20,7 @@
     $("#phone").mask("(999) 999-99-99");
     function oneclick(){
         $.ajax({
-            url: '{!! route('mail.me') !!}',
+            url: '{!! route('mail.oneclick') !!}',
             data: {
                 '_view': $("#view").val(),
                 '_token': $("#token").val(),

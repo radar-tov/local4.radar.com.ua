@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Mail;
 use App\Models\Setting;
 use Symfony\Component\Process\Exception\LogicException;
+use PHPMailer;
 
 class MailController extends Controller
 {
@@ -153,4 +154,45 @@ class MailController extends Controller
 
 		return true;
 	}
+
+	public function oneclick(Request $request){
+
+
+
+	    $data = [
+	        'title' => $request->title,
+            'id' => $request->id,
+            'phone' => $request->phone,
+        ];
+
+        $body = view('mail/zakaz1click', $data)->render();
+
+	    $mail = new PHPMailer;
+        //$mail->SMTPDebug = 3;
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = '8818383@gmail.com';
+        $mail->Password = 'slmR161716';
+        /*$mail->SMTPSecure = 'ssl';
+        $mail->Port = 465;*/
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 587;
+        $mail->CharSet = 'UTF-8';
+        $mail->setFrom('8818383@gmail.com', 'Администратор сайта Radar.com.ua');
+        $mail->addAddress('radar.tov@gmail.com', 'Администратору сайта Radar.com.ua');
+        $mail->Subject = 'Заказ в 1 клик';
+        $mail->isHTML(true);
+        $mail->msgHTML($body);
+        $mail->addAttachment("frontend/images/logo.png");
+
+        if(!$mail->send()) {
+            echo "<h3 align='center'>Извините, произошла ошибка. Сообщение не отправлено.</h3>";
+            /*echo 'Message could not be sent.';
+            echo 'Mailer Error: ' . $mail->ErrorInfo;*/
+        } else {
+//            echo 'Message has been sent';
+            echo "<h3 align='center'>Ваша заявка принята. В ближайшее время с Вами свяжутся. Спасибо.</h3>";
+        }
+    }
 }
