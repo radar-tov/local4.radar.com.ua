@@ -9,7 +9,7 @@ if( ! Request::is('dashboard*') and ! Request::is('auth*')){
 	Route::group(['namespace' => '\App\Http\Controllers\Frontend', 'middleware' => 'bot'], function()
 	{
 		Route::get('rate', 'FrontendController@rateProduct');
-
+        Route::get('oneclick/{id}', ['uses'=>'FrontendController@oneClick','as'=>'frontend.oneclick']);
 		Route::get('/', 'FrontendController@index');
 
 		Route::get('stati',['uses'=>'InformationController@getPage','as'=>'frontend.page']);
@@ -17,6 +17,7 @@ if( ! Request::is('dashboard*') and ! Request::is('auth*')){
 
 		/* send mail from site */
 		Route::post("mail/me",["uses"=>"MailController@mailMe",'as'=>'mail.me']);
+        Route::post("mail/oneclick",["uses"=>"MailController@oneclick",'as'=>'mail.oneclick']);
 
         Route::get('compare','FrontendController@compare');
 		Route::get('cart', ['as' => 'cart', 'uses' => 'FrontendController@cart']);
