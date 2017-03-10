@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2017-01-09.
+    * Generated on 2017-03-10.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -38,8 +38,6 @@ namespace PHPSTORM_META {
             'view.finder' instanceof \Illuminate\View\FileViewFinder,
             'view' instanceof \Illuminate\View\Factory,
             'difffactory' instanceof \Laravelrus\LocalizedCarbon\DiffFormatterFactory,
-            'debugbar' instanceof \Barryvdh\Debugbar\LaravelDebugbar,
-            'command.debugbar.clear' instanceof \Barryvdh\Debugbar\Console\ClearCommand,
             'cart' instanceof \Gloudemans\Shoppingcart\Cart,
             'command.laracasts.seed' instanceof \Laracasts\Generators\Commands\SeedMakeCommand,
             'command.laracasts.migrate' instanceof \Laracasts\Generators\Commands\MigrationMakeCommand,
@@ -57,6 +55,8 @@ namespace PHPSTORM_META {
             'phpexcel' instanceof \Maatwebsite\Excel\Classes\PHPExcel,
             'excel.writer' instanceof \Maatwebsite\Excel\Writers\LaravelExcelWriter,
             'excel' instanceof \Maatwebsite\Excel\Excel,
+            'debugbar' instanceof \Barryvdh\Debugbar\LaravelDebugbar,
+            'command.debugbar.clear' instanceof \Barryvdh\Debugbar\Console\ClearCommand,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
@@ -167,8 +167,6 @@ namespace PHPSTORM_META {
             'view.finder' instanceof \Illuminate\View\FileViewFinder,
             'view' instanceof \Illuminate\View\Factory,
             'difffactory' instanceof \Laravelrus\LocalizedCarbon\DiffFormatterFactory,
-            'debugbar' instanceof \Barryvdh\Debugbar\LaravelDebugbar,
-            'command.debugbar.clear' instanceof \Barryvdh\Debugbar\Console\ClearCommand,
             'cart' instanceof \Gloudemans\Shoppingcart\Cart,
             'command.laracasts.seed' instanceof \Laracasts\Generators\Commands\SeedMakeCommand,
             'command.laracasts.migrate' instanceof \Laracasts\Generators\Commands\MigrationMakeCommand,
@@ -186,6 +184,8 @@ namespace PHPSTORM_META {
             'phpexcel' instanceof \Maatwebsite\Excel\Classes\PHPExcel,
             'excel.writer' instanceof \Maatwebsite\Excel\Writers\LaravelExcelWriter,
             'excel' instanceof \Maatwebsite\Excel\Excel,
+            'debugbar' instanceof \Barryvdh\Debugbar\LaravelDebugbar,
+            'command.debugbar.clear' instanceof \Barryvdh\Debugbar\Console\ClearCommand,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
@@ -296,8 +296,6 @@ namespace PHPSTORM_META {
             'view.finder' instanceof \Illuminate\View\FileViewFinder,
             'view' instanceof \Illuminate\View\Factory,
             'difffactory' instanceof \Laravelrus\LocalizedCarbon\DiffFormatterFactory,
-            'debugbar' instanceof \Barryvdh\Debugbar\LaravelDebugbar,
-            'command.debugbar.clear' instanceof \Barryvdh\Debugbar\Console\ClearCommand,
             'cart' instanceof \Gloudemans\Shoppingcart\Cart,
             'command.laracasts.seed' instanceof \Laracasts\Generators\Commands\SeedMakeCommand,
             'command.laracasts.migrate' instanceof \Laracasts\Generators\Commands\MigrationMakeCommand,
@@ -315,6 +313,8 @@ namespace PHPSTORM_META {
             'phpexcel' instanceof \Maatwebsite\Excel\Classes\PHPExcel,
             'excel.writer' instanceof \Maatwebsite\Excel\Writers\LaravelExcelWriter,
             'excel' instanceof \Maatwebsite\Excel\Excel,
+            'debugbar' instanceof \Barryvdh\Debugbar\LaravelDebugbar,
+            'command.debugbar.clear' instanceof \Barryvdh\Debugbar\Console\ClearCommand,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
@@ -425,8 +425,6 @@ namespace PHPSTORM_META {
             'view.finder' instanceof \Illuminate\View\FileViewFinder,
             'view' instanceof \Illuminate\View\Factory,
             'difffactory' instanceof \Laravelrus\LocalizedCarbon\DiffFormatterFactory,
-            'debugbar' instanceof \Barryvdh\Debugbar\LaravelDebugbar,
-            'command.debugbar.clear' instanceof \Barryvdh\Debugbar\Console\ClearCommand,
             'cart' instanceof \Gloudemans\Shoppingcart\Cart,
             'command.laracasts.seed' instanceof \Laracasts\Generators\Commands\SeedMakeCommand,
             'command.laracasts.migrate' instanceof \Laracasts\Generators\Commands\MigrationMakeCommand,
@@ -444,6 +442,8 @@ namespace PHPSTORM_META {
             'phpexcel' instanceof \Maatwebsite\Excel\Classes\PHPExcel,
             'excel.writer' instanceof \Maatwebsite\Excel\Writers\LaravelExcelWriter,
             'excel' instanceof \Maatwebsite\Excel\Excel,
+            'debugbar' instanceof \Barryvdh\Debugbar\LaravelDebugbar,
+            'command.debugbar.clear' instanceof \Barryvdh\Debugbar\Console\ClearCommand,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,

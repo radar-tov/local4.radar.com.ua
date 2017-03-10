@@ -4,41 +4,39 @@
     <meta charset="UTF-8">
     <title>Заказ в 1 клик</title>
     <style>
+        body{
+            background-color: #ede9e9;
+        }
         .tab {
             width: 100%;
         }
     </style>
 </head>
 <body>
-<table class="tab">
+<table class="tab" border="1" cellpadding="10">
     <tr>
-        <td>
-            <img src="https://radar.com.ua/frontend/images/logo.png">
+        <td width="33%">
+            <a href="https://radar.com.ua/">
+                <img src="https://radar.com.ua/frontend/images/logo.png">
+            </a>
         </td>
-        <td><h3>Заказ в 1 клик</h3></td>
-    </tr>
-    <tr>
-        <td>
-            <p>Id товара:</p>
-        </td>
-        <td>
-            <p>{{ $id }}</p>
+        <td align="center">
+            <h3>Заказ в 1 клик</h3>
         </td>
     </tr>
     <tr>
-        <td>
-            <p>Название товара:</p>
-        </td>
-        <td>
-            <p>{{ $title }}</p>
+        <td colspan="2">
+            <p>Id товара: {{ $id }}</p>
+            <p>Название товара: {{ $title }}</p>
+            <p>Номер телефона клиента: {{ $phone }}</p>
         </td>
     </tr>
     <tr>
-        <td>
-            <p>Номер телефона клиента:</p>
-        </td>
-        <td>
-            <p>{{ $phone }}</p>
+        <td colspan="2" align="center">
+            <p>(063)881-83-83&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                (095)881-83-83&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                (068)881-83-83&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="mailto:8818383@gmail.com">8818383@gmail.com</a></p>
         </td>
     </tr>
 </table>

@@ -31,7 +31,8 @@
         "laracasts/testdummy": "^2.3",
         "fzaninotto/faker": "^1.5",
         "symfony/dom-crawler": "~3.0",
-        "symfony/css-selector": "~3.0"
+        "symfony/css-selector": "~3.0",
+        "barryvdh/laravel-ide-helper": "^2.3"
     },
     "autoload": {
         "classmap": [
@@ -51,13 +52,13 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "php artisan clear-compiled",
+            "Illuminate\\Foundation\\ComposerScripts::postInstall",
             "php artisan optimize"
         ],
-        "pre-update-cmd": [
-            "php artisan clear-compiled"
-        ],
         "post-update-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "php artisan ide-helper:generate",
+            "php artisan ide-helper:meta",
             "php artisan optimize"
         ],
         "post-root-package-install": [

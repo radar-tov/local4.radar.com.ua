@@ -137,7 +137,6 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 	    Laravelrus\LocalizedCarbon\LocalizedCarbonServiceProvider::class,
-	    Barryvdh\Debugbar\ServiceProvider::class,
 	    Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
 
         /*
@@ -147,7 +146,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\SystemServiceProvider::class,
-        Maatwebsite\Excel\ExcelServiceProvider::class
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class
 
     ],
 
