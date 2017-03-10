@@ -14,5 +14,6 @@
 <p>{{ $data['phone'] }}</p>
 <h3>Коментарий</h3>
 <text>{{ $data['comment'] }}</text>
+{{print_r($data)}}
 </body>
 </html>

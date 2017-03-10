@@ -158,19 +158,6 @@
                                     @endif
                                 </div>
 
-                                {{--<div class="video-button-item center-align col s4">--}}
-                                    {{--@if(!empty($product->video))--}}
-                                        {{--<a href="#video" class="review-button white-text uppercase modal-trigger" title="video">--}}
-                                            {{--<input type="button"--}}
-                                                   {{--name="video"--}}
-                                                   {{--class="video-button video-button-hover compare anim"--}}
-                                                   {{--data-productId="{{ $product->id }}"--}}
-                                                   {{--onclick="yaCounter39848700.reachGoal('playVideo'); ga('send', 'event', 'Knopka', 'playVideo'); return true;"--}}
-                                                   {{--value="ВИДЕО"--}}
-                                                   {{--title="Видео">--}}
-                                        {{--</a>--}}
-                                    {{--@endif--}}
-                                {{--</div>--}}
                                 <div class="addtocart-button-item center-align col s4">
                                     <input type="submit"
                                            name="compare"
@@ -180,6 +167,12 @@
                                            value="{{ Cart::instance('compare')->search(['id' => $product->id]) ? 'В сравнении' : 'Сравнить' }}"
                                            title="Сравнить">
 
+                                </div>
+
+                                <div class="col short-desc s4 no-margin">
+                                    <a href="{{ route('frontend.oneclick', $product->id) }}" class="oneClick fancybox.ajax">
+                                        <p class="availability green-text no-margin"><img src="/frontend/images/no_product.png" class="one-click-img"/>Купить в 1 клик</p>
+                                    </a>
                                 </div>
                             </div>
 
