@@ -169,12 +169,11 @@
 
                                 </div>
 
-                                {{--<div class="col short-desc s4 no-margin">
+                                <div class="col short-desc s4 no-margin">
                                     <a href="{{ route('frontend.oneclick', $product->id) }}" class="oneClick fancybox.ajax">
                                         <p class="availability green-text no-margin"><img src="/frontend/images/no_product.png" class="one-click-img"/>Купить в 1 клик</p>
                                     </a>
                                 </div>
---}}
                             </div>
 
                         </div>
