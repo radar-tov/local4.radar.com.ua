@@ -6812,7 +6812,7 @@ form.col.card {
 }
 
 .ft-opt-name {
-    font: 400 12px "Roboto", sans-serif;
+    font: 400 14px "Roboto", sans-serif;
     color: #444;
     line-height: 25px
 }
@@ -9843,4 +9843,31 @@ h3 {
 }
 .filter-option{
     list-style-type: none;
+}
+.new-img{
+    width: 75px;
+    position: absolute;
+    margin: -10px 0 0 -10px !important;
+}
+.hit-img{
+    width: 75px;
+    position: absolute;
+    margin: -10px 0 0 215px !important;
+}
+.slick-slide .hit-img{
+    margin: -10px 0 0 190px !important;
+}
+.divLightBox .hit-img{
+    margin: -10px 0 0 330px !important;
+}
+.divLightBox .new-img{
+    margin: -10px 0 0 -10px !important;
+}
+.sale-img{
+    position: absolute;
+    width: 70px;
+    margin: 320px 0 0 0 !important;
+}
+.slick-slide .sale-img{
+    margin: 280px 0 0 0 !important;
 }

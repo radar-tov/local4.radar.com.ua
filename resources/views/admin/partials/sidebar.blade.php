@@ -278,6 +278,20 @@
             </ul>
         </li>
 
+        <li  class="{{ Request::is('dashboard/banners*') ? 'active' : null }} highlight">
+            <a href="{{ route("dashboard.banners.index") }}">
+                <i class="menu-icon fa fa-file-image-o"></i>
+                <span class="menu-text"> Банеры </span>
+            </a>
+            <b class="arrow"></b>
+            <ul class="submenu">
+                <li  class="hover {{ Route::is('dashboard.banners.create') ? 'active' : null }}">
+                    <a href="{{ route("dashboard.sliders.create") }}">
+                        <span class="menu-text"> Добавить баннер </span>
+                    </a>
+                </li>
+            </ul>
+        </li>
 
         <li  class="{{ Request::is('dashboard/reviews*') ? 'active' : null }} highlight">
             <a href="{{ route("dashboard.reviews.index") }}">

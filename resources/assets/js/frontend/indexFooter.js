@@ -26,6 +26,7 @@ $(document).ready(function () {
         var partner = document.getElementById("partner");
         partner.style.display = "block";
     }, 1000);
+
 });
 var disabled = $(".disabled").prop("disabled", true);
 $("._disabled").click(function () {

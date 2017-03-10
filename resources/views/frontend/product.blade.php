@@ -16,9 +16,10 @@
         <div class="container">
             <div class="row">
                 <ol class="breadcrumb">
+                    {{--{{dd($product)}}--}}
                     <li><a href="/">Главная</a></li>
-                    <li><a href="/{{ $product->parentSlug()->slug }}">{{ $product->parentSlug()->title }}</a></li>
-                    <li><a href="/{{ $product->parentSlug()->slug }}/{{ $product->category->slug }}">{{ $product->category->title }}</a></li>
+                    <li><a href="/{{ $product->category->parent->slug }}">{{ $product->category->parent->title }}</a></li>
+                    <li><a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}">{{ $product->category->title }}</a></li>
                     <li class="active">{{ $product->title }}</li>
                 </ol>
             </div>
@@ -33,18 +34,27 @@
 
                 <div class="left linksBlock">
                     @if($product->prevProductSlug())
-                        <a class="link left" href="/{{ $product->parentSlug()->slug }}/{{ $product->category->slug.'/'.$product->prevProductSlug() }}">&#5176
+                        <a class="link left" href="/{{ $product->category->parent->slug }}/{{ $product->category->slug.'/'.$product->prevProductSlug() }}">&#5176
                             Предыдущий товар</a>
                     @endif
 
                     @if($product->nextProductSlug())
-                        <a class="link right" href="/{{ $product->parentSlug()->slug }}/{{ $product->category->slug.'/'.$product->nextProductSlug() }}">Следующий
+                        <a class="link right" href="/{{ $product->category->parent->slug }}/{{ $product->category->slug.'/'.$product->nextProductSlug() }}">Следующий
                             товар &#5171</a>
                     @endif
                 </div>
 
                 {{--{{ $product->id }}--}}
                 <div class="col s12 m6 l4 divLightBox no-padding">
+                    @if($product->is_bestseller)
+                        <img src="/frontend/images/hit.png" class="hit-img">
+                    @endif
+                    @if($product->is_new)
+                        <img src="/frontend/images/new.png" class="new-img">
+                    @endif
+                    @if($product->hasDiscount())
+                        <img src="/frontend/images/sale.png" class="sale-img">
+                    @endif
                     <div class="listLightbox">
                         <a class="fancybox" rel="gallery" href="{{ $product->images->first()->path }}">
 
