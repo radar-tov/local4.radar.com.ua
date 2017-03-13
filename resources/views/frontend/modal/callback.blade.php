@@ -6,7 +6,7 @@
                 <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" id="view" name="_view" value="callback"/>
                 <input required="required" placeholder="Ваше имя" id="name" name="name" type="text" class="validate">
-                <input required="required" placeholder="Номер телефона" id="phone" name="phone" type="text" class="validate">
+                <input required="required" placeholder="Номер телефона" id="phone1" name="phone" type="text" class="validate">
                 <button class="btn waves-effect waves-light" type="submit" name="action"
                         onclick="yaCounter39848700.reachGoal('callBack'); ga('send', 'event', 'Knopka', 'callBack'); callbeck(); return false;">
                     <i class="fa fa-phone"></i>Заказать
@@ -17,13 +17,13 @@
 </div>
 <script src="/frontend/js/jquery.maskedinput.min.js"></script>
 <script>
-    $("#phone").mask("(999) 999-99-99");
+    $("#phone1").mask("(999) 999-99-99");
 
     function callbeck(){
         var token = $("#token").val(),
             view = $("#view").val(),
             name = $("#name").val(),
-            phone = $("#phone").val();
+            phone = $("#phone1").val();
 
         $.ajax({
             url: '{!! route('mail.callback') !!}',

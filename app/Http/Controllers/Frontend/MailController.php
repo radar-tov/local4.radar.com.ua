@@ -81,7 +81,7 @@ class MailController extends Controller
 
         $this->validate($request, [
             'name' 	=> 'required|max:255|min:3',
-            'email' => 'required',
+            'email' => 'required|email',
             'comment' => 'required'
         ], $messages);
 
@@ -119,7 +119,7 @@ class MailController extends Controller
             'name.max' => "Поле ИМЯ не может быть боее 255 символов.",
             'name.min' => "Поле ИМЯ не может быть менее 3 символов.",
             'phone.required' => "Поле ТЕЛЕФОН обязательно к заполнению.",
-            'phone.min' => "Поле ТЕЛЕФОН не может быть менее 10 символов.",
+            'phone.min' => "Поле ТЕЛЕФОН не может быть менее 10 символов."
         ];
 
         $this->validate($request, [
