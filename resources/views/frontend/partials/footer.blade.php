@@ -44,7 +44,7 @@
                     <div class="links">
                         <a href="{{ url('login') }}" rel="nofollow">Вход</a>
                         <a href="{{ url('registration') }}" rel="nofollow">Регистрация</a>
-                        <a href="{{ url('callbeck') }}" class="various fancybox.ajax" rel="nofollow">Обратный звонок</a>
+                        <a href="{{ url('callback') }}" class="various fancybox.ajax" rel="nofollow">Обратный звонок</a>
                     </div>
                 </form>
             </div>

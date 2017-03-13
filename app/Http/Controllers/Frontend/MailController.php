@@ -11,49 +11,207 @@ use PHPMailer;
 
 class MailController extends Controller
 {
-	protected $messageTo;
+	protected $emailTo;
+    protected $emailFrom;
+    protected $mail;
 
 	public function __construct()
 	{
-		$emailTo = Setting::pluck('feedback_email')->first();
-		$emailFrom = Setting::pluck('contact_email')->first();
+        $this->emailTo = Setting::pluck('feedback_email')->first();
+        $this->emailFrom = Setting::pluck('contact_email')->first();
 
-		if(empty($emailTo or $emailFrom)) {
+		if(empty($this->emailTo or $this->emailFrom)) {
 			throw new Exception("Feedback email is empty! Please set email.");
 		}
 
-		$this->emailTo = $emailTo;
-		$this->emailFrom = $emailFrom;
+        $this->mail = new PHPMailer;
+        //$this->mail->SMTPDebug = 3;
+        $this->mail->isSMTP();
+        $this->mail->Host = 'smtp.gmail.com';
+        $this->mail->SMTPAuth = true;
+        $this->mail->Username = $this->emailFrom;
+        $this->mail->Password = 'slmR161716';
+        $this->mail->SMTPSecure = 'tls';
+        $this->mail->Port = 587;
+        $this->mail->CharSet = 'UTF-8';
+        $this->mail->isHTML(true);
+        $this->mail->setFrom($this->emailFrom, 'Radar.com.ua');
 	}
 
-	public function mailMe(Request $request)
-	{
-		$data = $request->all();
-		if($data['_view'] == 'callback'){
-			$messages = [
-				'required' => "Поле :attribute обязательно к заполнению.",
-				'phone' => "Поле :attribute обязательно к заполнению."
-			];
+	public function oneclick(Request $request){
 
-			$this->validate($request, [
-				'name' 	=> 'required|max:255',
-				'phone' => 'required|max:255'
-			], $messages);
-		}
+        $messages = [
+            'phone.required' => "Поле ТЕЛЕФОН обязательно к заполнению.",
+            'phone.min' => "Поле ТЕЛЕФОН не может быть менее 10 символов.",
+        ];
 
-		if($data['_view'] == 'skidka'){
-			$messages = [
-				'required' => "Поле :attribute обязательно к заполнению.",
-				'email' => "Поле :attributeдолжно быть электронным адресом."
-			];
+        $this->validate($request, [
+            'phone' => 'required|min:10',
+        ], $messages);
 
-			$this->validate($request, [
-				'name' 	=> 'required|max:255',
-				'phone' => 'required|max:255',
-				'email' => 'required|email',
-				'comment' => 'required|max:255'
-			], $messages);
-		}
+	    $data = [
+	        'title' => $request->title,
+            'id' => $request->id,
+            'phone' => $request->phone,
+        ];
+
+        $body = view('mail/zakaz1click', $data)->render();
+
+        $this->mail->Subject = 'Заказ в 1 клик';
+        $this->mail->addAddress($this->emailTo, 'Администратору сайта Radar.com.ua');
+        $this->mail->msgHTML($body);
+        //$this->mail->addAttachment("frontend/images/logo.png");
+
+        if(!$this->mail->send()) {
+            echo "<h3 align='center'>Извините, произошла ошибка. Сообщение не отправлено.</h3>";
+        } else {
+            echo "<h3 align='center'>Ваша заявка принята. В ближайшее время с Вами свяжутся. Спасибо.</h3>";
+        }
+    }
+
+    public function contact(Request $request){
+
+        $messages = [
+            'name.required' => "Поле ИМЯ обязательно к заполнению.",
+            'name.max' => "Поле ИМЯ не может быть боее 255 символов.",
+            'name.min' => "Поле ИМЯ не может быть менее 3 символов.",
+            'email.required' => "Поле Email обязательно к заполнению.",
+            'comment.required' => "Поле КОМЕНТАРИИ обязательно к заполнению.",
+        ];
+
+        $this->validate($request, [
+            'name' 	=> 'required|max:255|min:3',
+            'email' => 'required|email',
+            'comment' => 'required'
+        ], $messages);
+
+	    $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'comment' => $request->comment
+        ];
+
+        $body = view('mail/contact', $data)->render();
+
+        $this->mail->Subject = 'Сообщение из формы обратной связи.';
+        $this->mail->addAddress($this->emailTo, 'Администратору сайта Radar.com.ua');
+        $this->mail->msgHTML($body);
+        //$this->mail->addAttachment("frontend/images/logo.png");
+
+        if(!$this->mail->send()) {
+            $message = "Извините, произошла ошибка. Сообщение не отправлено.";
+        } else {
+            $message = "Ваше письмо отправлено!. В ближайшее время с Вами свяжутся. Спасибо.";
+        }
+
+        $request->session()->put('from_otvet', 'contact');
+        $request->session()->put('otvet', $message);
+        $request->session()->save();
+
+        return redirect()->back();
+    }
+
+    public function callback(Request $request){
+
+        $messages = [
+            'name.required' => "Поле ИМЯ обязательно к заполнению.",
+            'name.max' => "Поле ИМЯ не может быть боее 255 символов.",
+            'name.min' => "Поле ИМЯ не может быть менее 3 символов.",
+            'phone.required' => "Поле ТЕЛЕФОН обязательно к заполнению.",
+            'phone.min' => "Поле ТЕЛЕФОН не может быть менее 10 символов."
+        ];
+
+        $this->validate($request, [
+            'name' 	=> 'required|max:255|min:3',
+            'phone' => 'required|min:10'
+        ], $messages);
+
+        $data = [
+            'name' => $request->name,
+            'phone' => $request->phone
+        ];
+
+        $body = view('mail/callback', $data)->render();
+
+        $this->mail->Subject = 'Заказ обратного звонка';
+        $this->mail->addAddress($this->emailTo, 'Администратору сайта Radar.com.ua');
+        $this->mail->msgHTML($body);
+        //$this->mail->addAttachment("frontend/images/logo.png");
+
+        if(!$this->mail->send()) {
+            echo "<h3 align='center'>Извините, произошла ошибка. Сообщение не отправлено.</h3>";
+        } else {
+            echo "<h3 align='center'>Ваша заявка принята. В ближайшее время с Вами свяжутся. Спасибо.</h3>";
+        }
+    }
+
+    public function skidka(Request $request){
+
+        $messages = [
+            'name.required' => "Поле ИМЯ обязательно к заполнению.",
+            'name.max' => "Поле ИМЯ не может быть боее 255 символов.",
+            'name.min' => "Поле ИМЯ не может быть менее 3 символов.",
+            'phone.required' => "Поле ТЕЛЕФОН обязательно к заполнению.",
+            'phone.min' => "Поле ТЕЛЕФОН не может быть менее 10 символов."
+        ];
+
+        $this->validate($request, [
+            'name' 	=> 'required|max:255|min:3',
+            'phone' => 'required|min:10'
+        ], $messages);
+
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'comment' => $request->comment
+        ];
+
+        $body = view('mail/skidka', $data)->render();
+
+        $this->mail->Subject = 'Заказ скидки.';
+        $this->mail->addAddress($this->emailTo, 'Администратору сайта Radar.com.ua');
+        $this->mail->msgHTML($body);
+        //$this->mail->addAttachment("frontend/images/logo.png");
+
+        if(!$this->mail->send()) {
+            echo "<h3 align='center'>Извините, произошла ошибка. Сообщение не отправлено.</h3>";
+        } else {
+            echo "<h3 align='center'>Ваша заявка принята. В ближайшее время с Вами свяжутся. Спасибо.</h3>";
+        }
+
+    }
+
+
+    public function mailMe(Request $request)
+    {
+        $data = $request->all();
+        if($data['_view'] == 'callback'){
+            $messages = [
+                'required' => "Поле :attribute обязательно к заполнению.",
+                'phone' => "Поле :attribute обязательно к заполнению."
+            ];
+
+            $this->validate($request, [
+                'name' 	=> 'required|max:255',
+                'phone' => 'required|max:255'
+            ], $messages);
+        }
+
+        if($data['_view'] == 'skidka'){
+            $messages = [
+                'required' => "Поле :attribute обязательно к заполнению.",
+                'email' => "Поле :attributeдолжно быть электронным адресом."
+            ];
+
+            $this->validate($request, [
+                'name' 	=> 'required|max:255',
+                'phone' => 'required|max:255',
+                'email' => 'required|email',
+                'comment' => 'required|max:255'
+            ], $messages);
+        }
 
         if($data['_view'] == 'oneclick'){
             $messages = [
@@ -70,14 +228,14 @@ class MailController extends Controller
 
 
 
-		//Тема сообщения
-		if($data['_view'] == 'contact'){
-			$data['subject'] = 'Новое оповещение из формы обратной связи.';
-			$message = 'Ваше письмо отправлено!';
-		}elseif($data['_view'] == 'callback'){
-			$data['subject'] = 'Заказ обратного звонка.';
-			$message = '<h3 align="center">Спасибо, мы обязательно с Вами свяжемся.</h3>';
-		}elseif($data['_view'] == 'skidka') {
+        //Тема сообщения
+        if($data['_view'] == 'contact'){
+            $data['subject'] = 'Новое оповещение из формы обратной связи.';
+            $message = 'Ваше письмо отправлено!';
+        }elseif($data['_view'] == 'callback'){
+            $data['subject'] = 'Заказ обратного звонка.';
+            $message = '<h3 align="center">Спасибо, мы обязательно с Вами свяжемся.</h3>';
+        }elseif($data['_view'] == 'skidka') {
             $data['subject'] = 'Запрос на получение скидки.';
             $message = '<h3 align="center">Ваш запрос расматривается. Мы обязательно с Вами свяжемся.</h3>';
         }elseif($data['_view'] == 'oneclick') {
@@ -85,57 +243,53 @@ class MailController extends Controller
             $message = '<h3 align="center">Спасибо за покупку. Мы обязательно с Вами свяжемся.</h3>';
         }else{
 
-		}
+        }
 
-		if(empty($data['phone'])){
-			$data['phone'] = 'Не указан.';
-		}
-		if(empty($data['comment'])){
-			$data['comment'] = 'Не указан.';
-		}
-		if(empty($data['email'])){
-			$data['email'] = 'Не указан.';
-		}
+        if(empty($data['phone'])){
+            $data['phone'] = 'Не указан.';
+        }
+        if(empty($data['comment'])){
+            $data['comment'] = 'Не указан.';
+        }
+        if(empty($data['email'])){
+            $data['email'] = 'Не указан.';
+        }
         if(empty($data['name'])){
             $data['name'] = 'Не указан.';
         }
 
-		$this->sendMessage($data);
+        $this->sendMessage($data);
 
-		if($data['_view'] == 'callback'){
-			return response($message);
-			exit;
-		}
+        if($data['_view'] == 'callback'){
+            return response($message);
+            exit;
+        }
 
-		if($data['_view'] == 'skidka'){
-			return response($message);
-			exit;
-		}
+        if($data['_view'] == 'skidka'){
+            return response($message);
+            exit;
+        }
 
         if($data['_view'] == 'oneclick'){
             return response($message);
             exit;
         }
 
-		$request->session()->put('from_otvet', $data['_view']);
-		$request->session()->put('otvet', $message);
-		$request->session()->save();
+        $request->session()->put('from_otvet', $data['_view']);
+        $request->session()->put('otvet', $message);
+        $request->session()->save();
 
-		return redirect()->back();
-	}
+        return redirect()->back();
+    }
 
-	/**
-	 * @param array $data
-	 * @return bool
-	 */
-	protected function sendMessage(array $data)
-	{
-		$result = Mail::send('mail.contact', ['data' => $data] , function($message) use ($data)
-		{
-			//dd($this->emailFrom, $this->messageTo);
-			$message->from($this->emailFrom, 'Интернет магазин Radar');
-			$message->to($this->emailTo, 'Mr. Admin')->subject($data['subject']);//->subject(array_get($data,'subject',''))
-		});
+    protected function sendMessage(array $data)
+    {
+        $result = Mail::send('mail.contact', ['data' => $data] , function($message) use ($data)
+        {
+            //dd($this->emailFrom, $this->messageTo);
+            $message->from($this->emailFrom, 'Интернет магазин Radar');
+            $message->to($this->emailTo, 'Mr. Admin')->subject($data['subject']);//->subject(array_get($data,'subject',''))
+        });
 
 //		$result = Mail::send('mail.contact', ['data' => $date], function($message) use ($data){
 //
@@ -146,53 +300,12 @@ class MailController extends Controller
 //
 //		});
 
-		if($result){
-			return true;
-		}else{
-			return false;
-		}
-
-		return true;
-	}
-
-	public function oneclick(Request $request){
-
-
-
-	    $data = [
-	        'title' => $request->title,
-            'id' => $request->id,
-            'phone' => $request->phone,
-        ];
-
-        $body = view('mail/zakaz1click', $data)->render();
-
-	    $mail = new PHPMailer;
-        //$mail->SMTPDebug = 3;
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = '8818383@gmail.com';
-        $mail->Password = 'slmR161716';
-        /*$mail->SMTPSecure = 'ssl';
-        $mail->Port = 465;*/
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = 587;
-        $mail->CharSet = 'UTF-8';
-        $mail->setFrom('8818383@gmail.com', 'Администратор сайта Radar.com.ua');
-        $mail->addAddress('radar.tov@gmail.com', 'Администратору сайта Radar.com.ua');
-        $mail->Subject = 'Заказ в 1 клик';
-        $mail->isHTML(true);
-        $mail->msgHTML($body);
-        $mail->addAttachment("frontend/images/logo.png");
-
-        if(!$mail->send()) {
-            echo "<h3 align='center'>Извините, произошла ошибка. Сообщение не отправлено.</h3>";
-            /*echo 'Message could not be sent.';
-            echo 'Mailer Error: ' . $mail->ErrorInfo;*/
-        } else {
-//            echo 'Message has been sent';
-            echo "<h3 align='center'>Ваша заявка принята. В ближайшее время с Вами свяжутся. Спасибо.</h3>";
+        if($result){
+            return true;
+        }else{
+            return false;
         }
+
+        return true;
     }
 }

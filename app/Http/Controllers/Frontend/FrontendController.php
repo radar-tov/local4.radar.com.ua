@@ -558,8 +558,8 @@ class FrontendController extends BaseController
 		//dump(Session::all());
 	}
 
-	public function callbeck(){
-		return view('frontend.modal.callbeck');
+	public function callback(){
+		return view('frontend.modal.callback');
 	}
 
 	public function montagniki(){

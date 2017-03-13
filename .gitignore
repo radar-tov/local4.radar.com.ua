@@ -17,3 +17,4 @@ dashboard/htaccess
 yandex/htaccess
 admin/htaccess
 aceadmin/htaccess
+composer_local.json
