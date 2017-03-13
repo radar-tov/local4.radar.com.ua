@@ -237,4 +237,27 @@ class MailController extends Controller
             echo "<h3 align='center'>Ваша заявка принята. В ближайшее время с Вами свяжутся. Спасибо.</h3>";
         }
     }
+
+    public function skidka(Request $request){
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'comment' => $request->comment
+        ];
+
+        $body = view('mail/skidka', $data)->render();
+
+        $this->mail->Subject = 'Заказ скидки.';
+        $this->mail->addAddress($this->emailTo, 'Администратору сайта Radar.com.ua');
+        $this->mail->msgHTML($body);
+        //$this->mail->addAttachment("frontend/images/logo.png");
+
+        if(!$this->mail->send()) {
+            echo "<h3 align='center'>Извините, произошла ошибка. Сообщение не отправлено.</h3>";
+        } else {
+            echo "<h3 align='center'>Ваша заявка принята. В ближайшее время с Вами свяжутся. Спасибо.</h3>";
+        }
+
+    }
 }

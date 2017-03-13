@@ -20,6 +20,7 @@ if( ! Request::is('dashboard*') and ! Request::is('auth*')){
         Route::post("mail/oneclick",["uses"=>"MailController@oneclick",'as'=>'mail.oneclick']);
         Route::post("mail/contact",["uses"=>"MailController@contact",'as'=>'mail.contact']);
         Route::post("mail/callback",["uses"=>"MailController@callback",'as'=>'mail.callback']);
+        Route::post("mail/skidka",["uses"=>"MailController@skidka",'as'=>'mail.skidka']);
         /* / send mail from site */
 
         Route::get('compare','FrontendController@compare');
