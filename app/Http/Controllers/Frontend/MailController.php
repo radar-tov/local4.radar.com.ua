@@ -75,13 +75,13 @@ class MailController extends Controller
             'name.required' => "Поле ИМЯ обязательно к заполнению.",
             'name.max' => "Поле ИМЯ не может быть боее 255 символов.",
             'name.min' => "Поле ИМЯ не может быть менее 3 символов.",
-            'mail.required' => "Поле Email обязательно к заполнению.",
+            'email.required' => "Поле Email обязательно к заполнению.",
             'comment.required' => "Поле КОМЕНТАРИИ обязательно к заполнению.",
         ];
 
         $this->validate($request, [
             'name' 	=> 'required|max:255|min:3',
-            'mail' => 'required',
+            'email' => 'required',
             'comment' => 'required'
         ], $messages);
 
