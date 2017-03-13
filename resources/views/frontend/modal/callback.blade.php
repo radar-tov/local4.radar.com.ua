@@ -2,7 +2,7 @@
     <div class="response-field"></div>
     <div class="modal-content">
         <div class="input-field col s12 center-align">
-            <form action="{!! route('mail.me') !!}" method="POST">
+            <form action="{!! route('mail.callback') !!}" method="POST">
                 <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" id="view" name="_view" value="callback"/>
                 <input required="required" placeholder="Ваше имя" id="name" name="name" type="text" class="validate">
@@ -15,7 +15,10 @@
         </div>
     </div>
 </div>
+<script src="/frontend/js/jquery.maskedinput.min.js"></script>
 <script>
+    $("#phone").mask("(999) 999-99-99");
+    
     function callbeck(){
         var token = $("#token").val(),
             view = $("#view").val(),
@@ -23,7 +26,7 @@
             phone = $("#phone").val();
 
         $.ajax({
-            url: '{!! route('mail.me') !!}',
+            url: '{!! route('mail.callback') !!}',
             data: {'_view': view, 'name': name,  '_token': token,  'phone': phone},
             type: 'POST',
             success: function (response) {

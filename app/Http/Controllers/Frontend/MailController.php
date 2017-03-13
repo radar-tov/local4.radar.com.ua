@@ -217,4 +217,24 @@ class MailController extends Controller
 
         return redirect()->back();
     }
+
+    public function callback(Request $request){
+        $data = [
+            'name' => $request->name,
+            'phone' => $request->phone
+        ];
+
+        $body = view('mail/callback', $data)->render();
+
+        $this->mail->Subject = 'Заказ обратного звонка';
+        $this->mail->addAddress($this->emailTo, 'Администратору сайта Radar.com.ua');
+        $this->mail->msgHTML($body);
+        //$this->mail->addAttachment("frontend/images/logo.png");
+
+        if(!$this->mail->send()) {
+            echo "<h3 align='center'>Извините, произошла ошибка. Сообщение не отправлено.</h3>";
+        } else {
+            echo "<h3 align='center'>Ваша заявка принята. В ближайшее время с Вами свяжутся. Спасибо.</h3>";
+        }
+    }
 }

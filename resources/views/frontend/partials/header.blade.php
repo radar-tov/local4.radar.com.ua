@@ -47,7 +47,7 @@
             </div>
             <div class="col s12 m4 l2 links">
                 <span>
-                    <a href="{{ url('callbeck') }}" class="various fancybox.ajax" rel="nofollow"><i class="fa fa-phone green-text"></i>Заказать звонок</a>
+                    <a href="{{ url('callback') }}" class="various fancybox.ajax" rel="nofollow"><i class="fa fa-phone green-text"></i>Заказать звонок</a>
                 </span><br>
                 <span>время работы: 9:00 - 17:00</span>
             </div>

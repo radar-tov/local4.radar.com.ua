@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Заказ в 1 клик</title>
+    <title>Сообщение из формы обратной связи</title>
     <style>
         body{
             background-color: #ede9e9;
@@ -28,7 +28,7 @@
         <td colspan="2">
             <p>Имя: {{ $name }}</p>
             <p>Email: {{ $email }}</p>
-            <p>Номер телефона клиента: {{ $phone }}</p>
+            <p>Номер телефона: {{ $phone }}</p>
             <p>Комментарий: {{ $comment }}</p>
             <p>Время отправления: {{ date("Y-m-d h:i:s") }}</p>
         </td>

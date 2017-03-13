@@ -17,8 +17,9 @@ if( ! Request::is('dashboard*') and ! Request::is('auth*')){
 
 		/* send mail from site */
 		Route::post("mail/me",["uses"=>"MailController@mailMe",'as'=>'mail.me']);
-        Route::post("mail/contact",["uses"=>"MailController@contact",'as'=>'mail.contact']);
         Route::post("mail/oneclick",["uses"=>"MailController@oneclick",'as'=>'mail.oneclick']);
+        Route::post("mail/contact",["uses"=>"MailController@contact",'as'=>'mail.contact']);
+        Route::post("mail/callback",["uses"=>"MailController@callback",'as'=>'mail.callback']);
         /* / send mail from site */
 
         Route::get('compare','FrontendController@compare');
@@ -26,7 +27,7 @@ if( ! Request::is('dashboard*') and ! Request::is('auth*')){
 		Route::post('buy', 'FrontendController@buy');
 		Route::get('thank-you', 'FrontendController@thanks');
 		Route::get('otvet', 'FrontendController@otvet');
-		Route::get('callbeck', ['as' => 'callbeck', 'uses' => 'FrontendController@callbeck']);
+		Route::get('callback', ['as' => 'callback', 'uses' => 'FrontendController@callback']);
 		Route::get('montagniki', ['as' => 'montagniki', 'uses' => 'FrontendController@montagniki']);
 		Route::get('comment/{id}', ['as' => 'comment', 'uses' => 'FrontendController@comment']);
 
