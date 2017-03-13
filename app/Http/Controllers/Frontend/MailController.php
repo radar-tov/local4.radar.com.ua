@@ -188,4 +188,8 @@ class MailController extends Controller
             echo "<h3 align='center'>Ваша заявка принята. В ближайшее время с Вами свяжутся. Спасибо.</h3>";
         }
     }
+
+    public function contact(){
+
+    }
 }

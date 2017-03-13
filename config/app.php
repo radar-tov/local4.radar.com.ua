@@ -148,7 +148,7 @@ return [
         App\Providers\SystemServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class
+        Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
 
@@ -201,6 +201,7 @@ return [
 	    'DiffFormatter'     => Laravelrus\LocalizedCarbon\DiffFactoryFacade::class,
 		'Cart'              => Gloudemans\Shoppingcart\Facades\Cart::class,
         'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 
