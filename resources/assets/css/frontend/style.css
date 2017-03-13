@@ -6633,7 +6633,8 @@ div.addtocart-box-hover {
     padding-left: 15px;
     position: relative;
     letter-spacing: 1px;
-    font-weight: 600
+    font-weight: 600;
+    display: block;
 }
 
 .header .contacts .mail:before {
