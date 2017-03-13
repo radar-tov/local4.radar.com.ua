@@ -47,7 +47,10 @@
         </div>
     </div>
 </div>
+<script src="/frontend/js/jquery.maskedinput.min.js"></script>
 <script>
+    $("#phone").mask("(999) 999-99-99");
+
     function montagniki(){
         var token = $("#token").val(),
             view = $("#view").val(),
@@ -57,7 +60,7 @@
             comment = $("#comment").val();
 
         $.ajax({
-            url: '{!! route('mail.me') !!}',
+            url: '{!! route('mail.skidka') !!}',
             data: {'_view': view, 'name': name,  '_token': token,  'phone': phone, 'email': email, 'comment': comment},
             type: 'POST',
             success: function (response) {

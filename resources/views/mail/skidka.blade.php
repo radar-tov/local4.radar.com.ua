@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Заказ в 1 клик</title>
+    <title>Заказ скидки</title>
     <style>
         body{
             background-color: #ede9e9;
@@ -21,14 +21,15 @@
             </a>
         </td>
         <td align="center">
-            <h3>Заказ в 1 клик</h3>
+            <h3>Заказ скидки.</h3>
         </td>
     </tr>
     <tr>
         <td colspan="2">
-            <p>Id товара: <a href="https://radar.com.ua/dashboard/products/{{ $id }}/edit">{{ $id }}</a></p>
-            <p>Название товара: {{ $title }}</p>
+            <p>Имя: {{ $name }}</p>
+            <p>Email: {{ $email }}</p>
             <p>Номер телефона: {{ $phone }}</p>
+            <p>Комментарий: {{ $comment }}</p>
             <p>Время отправления: {{ date("Y-m-d h:i:s") }}</p>
         </td>
     </tr>

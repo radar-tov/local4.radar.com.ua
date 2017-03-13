@@ -83,7 +83,7 @@
                         <div class="col s12 m12 feedback">
                             <h4>Обратная связь</h4>
                             <p class="col s12 no-padding">Отправьте нам е-мейл. Все поля, помеченные *, обязательны для заполнения.</p>
-                            <form action="{!! route('mail.me') !!}" id="contactForm" method="post">
+                            <form action="{!! route('mail.contact') !!}" id="contactForm" method="post">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="_view" value="contact"/>
                                 <div class="row">
@@ -99,7 +99,7 @@
                                         </div>
                                         <div class="form-group">
                                             <input class="input-text col form-control" name="phone" id="phone"
-                                                   placeholder="Ваш номер телефона" title="Telephone" value="" type="text">
+                                                   placeholder="Ваш номер телефона (*)" title="Telephone" value="" type="text">
                                         </div>
                                     </div>
                                     <div class="col s12 m6 no-padding">
@@ -135,6 +135,10 @@
 @endsection
 
 @section('bottom-scripts')
+    <script src="frontend/js/jquery.maskedinput.min.js"></script>
+    <script>
+        $("#phone").mask("(999) 999-99-99");
+    </script>
     @if(Session::get('from_otvet'))
         <script>
             $(document).ready(function () {

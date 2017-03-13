@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use PHPMailer;
 
 /**
  * Class BuyService
@@ -130,26 +131,105 @@ class BuyService {
 	 */
 	public function sendNotifications()
 	{
-		// email for admin
-		//dd($this->user);
-        if($this->user->email){
-            Mail::send('emails.invoice', [
-                'order' => $this->order->load('products','payment_method','shipping_method'), 'user' => $this->user
-            ],
-            function($message)
-            {
-                $message->from(array_get(Setting::firstOrCreate([])->toArray(),'contact_email'), 'Radar');
-                $message->to($this->user->email)->subject('Спасибо за покупку!');
-            });
+	    if(env('APP_ENV') == 'production'){
+            //Готовим адреса и подключение к почте
+            $emailTo = Setting::pluck('feedback_email')->first();
+            $emailFrom = Setting::pluck('contact_email')->first();
+
+            if(empty($emailTo or $emailFrom)) {
+                throw new Exception("Feedback email is empty! Please set email.");
+            }
+
+            $mail = new PHPMailer;
+            //$mail->SMTPDebug = 3;
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = $emailFrom;
+            $mail->Password = 'slmR161716';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587;
+            $mail->CharSet = 'UTF-8';
+            $mail->isHTML(true);
+            $mail->setFrom($emailFrom, 'Radar.com.ua');
+
+
+            if($this->user->email){
+
+                $body = view('emails.invoice',
+                    [
+                        'order' => $this->order->load('products','payment_method','shipping_method'), 'user' => $this->user
+                    ]
+                )->render();
+
+                $mail->Subject = 'Спасибо за покупку!';
+                $mail->addAddress($this->user->email);
+                $mail->msgHTML($body);
+                //$mail->addAttachment("frontend/images/logo.png");
+                if(!$mail->send()) {
+                    Mail::send('emails.invoice',
+                        [
+                            'order' => $this->order->load('products','payment_method','shipping_method'), 'user' => $this->user
+                        ],
+                        function($message)
+                        {
+                            $message->from(array_get(Setting::firstOrCreate([])->toArray(),'contact_email'), 'Radar');
+                            $message->to($this->user->email)->subject('Спасибо за покупку!');
+                        }
+                    );
+                }
+            }
+
+
+            $body = view('emails.invoice',
+                [
+                    'order' => $this->order->load('products','payment_method','shipping_method'), 'user' => $this->user
+                ]
+            )->render();
+
+            $mail->Subject = 'Новый заказ!';
+            $mail->addAddress($emailTo, 'Администратору сайта Radar.com.ua');
+            $mail->msgHTML($body);
+            //$mail->addAttachment("frontend/images/logo.png");
+            if(!$mail->send()) {
+                Mail::send('emails.admin_invoice',
+                    [
+                        'order' => $this->order->load('products','payment_method','shipping_method'), 'user' => $this->user
+                    ],
+                    function($message)
+                    {
+                        $message->from(array_get(Setting::firstOrCreate([])->toArray(),'contact_email'), 'Radar');
+                        $message->to(array_get(Setting::firstOrCreate([])->toArray(),'feedback_email'))->subject('Новый заказ!');
+                    }
+                );
+            }
+        }else{
+            if($this->user->email){
+                Mail::send('emails.invoice',
+                    [
+                        'order' => $this->order->load('products','payment_method','shipping_method'), 'user' => $this->user
+                    ],
+                    function($message)
+                    {
+                        $message->from(array_get(Setting::firstOrCreate([])->toArray(),'contact_email'), 'Radar');
+                        $message->to($this->user->email)->subject('Спасибо за покупку!');
+                    }
+                );
+            }
+            Mail::send('emails.admin_invoice',
+                [
+                    'order' => $this->order->load('products','payment_method','shipping_method'), 'user' => $this->user
+                ],
+                function($message)
+                {
+                    $message->from(array_get(Setting::firstOrCreate([])->toArray(),'contact_email'), 'Radar');
+                    $message->to(array_get(Setting::firstOrCreate([])->toArray(),'feedback_email'))->subject('Новый заказ!');
+                }
+            );
         }
-		Mail::send('emails.admin_invoice', [
-			'order' => $this->order->load('products','payment_method','shipping_method'), 'user' => $this->user
-		],
-		function($message)
-		{
-			$message->from(array_get(Setting::firstOrCreate([])->toArray(),'contact_email'), 'Radar');
-			$message->to(array_get(Setting::firstOrCreate([])->toArray(),'feedback_email'))->subject('Новый заказ!');
-		});
+
+
+
 	}
 
 
