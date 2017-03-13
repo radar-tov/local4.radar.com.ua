@@ -9,10 +9,12 @@
             max-width: 150px;
             height: auto
         }
+
         input.item-quantity {
             font-size: 14px;
             font-family: "Roboto", sans-serif
         }
+
         input.item-quantity {
             float: left;
             height: 28px;
@@ -32,180 +34,114 @@
 @stop
 
 @section('content')
-    <section class="content" id="cart">
-        <div class="container" v-el="cartContent" style="display: none;">
-            <h3>Корзина</h3>
+    <section id="cartVue">
+        <div id="cartContent" style="display: none;">
 
             <h5 v-if="!len > 0">Корзина пуста</h5>
-            <div class="row" v-show="len > 0">
 
-                {{--<h1>@{{ len == 0 }}</h1>--}}
-
-                <div>
-                    <table style="border: black 1px solid">
-                        <th>
-                            <td>Фото</td>
-                            <td>Артикул</td>
-                            <td>Название</td>
-                            <td>Кол-во</td>
-                            <td>Всего</td>
-                        </th>
-                        <tr v-repeat="product in cart" style="border: black 1px solid">
-                            <td>
-                                <a href="/@{{ product.options.categorySlug }}/@{{ product.options.productSlug }}">
-                                    <img v-attr="src: product.options.thumbnail" class="responsive-img"
-                                         v-if="product.options.thumbnail"/>
-                                    <img src="/frontend/images/default.png" class="responsive-img"
-                                         v-if="!product.options.thumbnail"/>
-                                </a>
-                            </td>
-                            <td>
-                                @{{ product.options.article }}
-                            </td>
-                            <td>
-                                <p>
-                                    <a href="/@{{ product.options.categorySlug }}/@{{ product.options.productSlug }}">@{{ product.name }}</a>
-                                </p>
-                                <p>@{{ product.options.excerpt }}</p>
-                            </td>
-                            <td>
-                                <input type='number'
-                                       value="@{{ product.qty }}"
-                                       v-on="input: updateItem(product, this)"
-                                       debounce="500"
-                                       class="item-quantity"
-                                       v-attr='disabled: product.options.in_set_with'>
-
-                                <div class="options">
-                                    <button type="submit" v-on="click: deleteItem(product.rowid)"><i class="fa fa-trash"></i></button>
-                                </div>
-                            </td>
-                            <td>
-                                <p v-show="product.subtotal > 0">
-                                    @{{ product.subtotal }} <span>грн</span>
-                                </p>
-                                <p v-show="product.subtotal == 0">
-                                    <span style="color:indianred;font-size:16px">В подарок!</span>
-                                </p>
-                            </td>
-                        </tr>
+            <div class="col-xs-12" v-show="len > 0">
+                <h3>Корзина</h3>
+                <table class="table table-bordered table-hover">
+                    <thead>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <p class="bold">Всего:</p>
-                            </td>
-                            <td>
-                                <p class="bold">@{{ total }} грн</p>
-                            </td>
+                            <th>Фото</th>
+                            <th>Артикул</th>
+                            <th>Название</th>
+                            <th>Кол-во</th>
+                            <th>Всего</th>
                         </tr>
-                    </table>
+                    </thead>
+                    <tr v-for="product in cart">
+                        <td>
+                            <a v-bind:href="product.options.categorySlug + '/' + product.options.productSlug">
+                                <img v-bind:src="product.options.thumbnail" class="responsive-img"
+                                     v-if="product.options.thumbnail"/>
+                                <img src="/frontend/images/default.png" class="responsive-img"
+                                     v-if="!product.options.thumbnail"/>
+                            </a>
+                        </td>
+                        <td>
+                            @{{ product.options.article }}
+                        </td>
+                        <td>
+                            <p>
+                                <a v-bind:href="product.options.categorySlug + '/' + product.options.productSlug">@{{ product.name }}</a>
+                            </p>
+                            <p>@{{ product.options.excerpt }}</p>
+                        </td>
+                        <td>
+                            <input type='number'
+                                   v-bind:value="product.qty"
+                                   v-on:input="updateItem(product, this)"
+                                   debounce="500"
+                                   class="item-quantity"
+                                   v-bind:disabled="product.options.in_set_with">
 
-
-
-
-
-
-
-                    <div class="basket-row col s12 no-padding">
-                        <div class="col m1 hide-on-small-and-down center">Фото</div>
-                        {{--<div class="col s1">№</div>--}}
-                        <div class="col m2 hide-on-small-and-down">Код</div>
-                        <div class="col s5 m4">Название</div>
-                        <div class="col s3 m3">Кол-во</div>
-                        <div class="col s3 center m2">Всего</div>
-                    </div>
-                    <!--Товар в корзине-->
-
-                    {{--@foreach(cart->getContent() as product)--}}
-                    {{--stockProducts--}}
-
-
-                    <div v-repeat="productsSet in stockProducts" class="col s12 no-padding _set row">
-                        <h5>Акционное предложение</h5>
-                        <div class="basket-item col s12 no-padding" v-repeat="product in productsSet">
-
-                            <div class="col m1 hide-on-small-and-down item-image">
-                                <a href="/@{{ product.options.categorySlug }}/@{{ product.options.productSlug }}">
-                                    <img v-attr="src: product.options.thumbnail" class="responsive-img"
-                                         v-if="product.options.thumbnail"/>
-                                    <img src="/frontend/images/default.png" class="responsive-img"
-                                         v-if="!product.options.thumbnail"/>
-                                </a>
+                            <div class="options">
+                                <button type="submit" v-on:click="deleteItem(product.rowid)"><i class="fa fa-trash"></i></button>
                             </div>
+                        </td>
+                        <td>
+                            <p v-show="product.subtotal > 0">
+                                @{{ product.subtotal }} <span>грн</span>
+                            </p>
+                            <p v-show="product.subtotal == 0">
+                                <span style="color:indianred;font-size:16px">В подарок!</span>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <p class="bold">Всего:</p>
+                        </td>
+                        <td>
+                            <p class="bold">@{{ total }} грн</p>
+                        </td>
+                    </tr>
+                </table>
+                <div v-for="productsSet in stockProducts" class="col s12 no-padding _set row">
+                    <h5>Акционное предложение</h5>
+                    <div class="basket-item col s12 no-padding" v-for="product in productsSet">
 
-                            <div class="col m1 hide-on-small-and-down">
-                                <p>@{{ product.options.article }}</p>
-                            </div>
-                            <div class="col s5 m4">
-                                <p>
-                                    <a href="/@{{ product.options.categorySlug }}/@{{ product.options.productSlug }}">@{{ product.name }}</a>
-                                </p>
-                                <p>@{{ product.options.excerpt }}</p>
-                            </div>
-                            <div class="col s3 m2 center">
-
-                                <span class="quantity"
-                                      v-show="product.id != product.options.main_in_set">@{{ product.qty }}</span>
-
-                                <input type='number'
-                                       value="@{{ product.qty }}"
-                                       v-on="input: updateItem(product, this)"
-                                       debounce="500"
-                                       class="item-quantity"
-                                       v-show="product.id == product.options.main_in_set">
-
-                                <div class="options" v-show="product.id == product.options.main_in_set">
-                                    <button type="submit" v-on="click: deleteItem(product.rowid)"><i
-                                                class="fa fa-trash"></i></button>
-                                </div>
-                            </div>
-                            <div class="col s3 m3 center">
-                                <p v-show="product.subtotal > 0">
-                                    @{{ product.subtotal }} <span>грн</span>
-                                </p>
-                                <p v-show="product.subtotal == 0">
-                                    <span style="color:indianred;font-size:16px">В подарок!</span>
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="basket-item col s12" v-repeat="product in cart">
                         <div class="col m1 hide-on-small-and-down item-image">
-                            <a href="/@{{ product.options.categorySlug }}/@{{ product.options.productSlug }}">
-                                <img v-attr="src: product.options.thumbnail" class="responsive-img"
+                            <a v-bind:href="product.options.categorySlug + '/' + product.options.productSlug">
+                                <img v-bind:src="product.options.thumbnail" class="responsive-img"
                                      v-if="product.options.thumbnail"/>
                                 <img src="/frontend/images/default.png" class="responsive-img"
                                      v-if="!product.options.thumbnail"/>
                             </a>
                         </div>
 
-                        {{--<div class="col s1"><p>1</p></div>--}}
-                        <div class="col m2 hide-on-small-and-down">
+                        <div class="col m1 hide-on-small-and-down">
                             <p>@{{ product.options.article }}</p>
                         </div>
                         <div class="col s5 m4">
                             <p>
-                                <a href="/@{{ product.options.categorySlug }}/@{{ product.options.productSlug }}">@{{ product.name }}</a>
+                                <a v-bind:href="product.options.categorySlug + '/' + product.options.productSlug">@{{ product.name }}</a>
                             </p>
                             <p>@{{ product.options.excerpt }}</p>
                         </div>
-                        <div class="col s3 m3 center">
+                        <div class="col s3 m2 center">
+
+                            <span class="quantity"
+                                  v-show="product.id != product.options.main_in_set">@{{ product.qty }}</span>
+
                             <input type='number'
-                                   value="@{{ product.qty }}"
-                                   v-on="input: updateItem(product, this)"
+                                   v-bind:value="product.qty"
+                                   v-on:input="updateItem(product, this)"
                                    debounce="500"
                                    class="item-quantity"
-                                   v-attr='disabled: product.options.in_set_with'>
+                                   v-show="product.id == product.options.main_in_set">
 
-                            <div class="options">
-                                <button type="submit" v-on="click: deleteItem(product.rowid)"><i
+                            <div class="options" v-show="product.id == product.options.main_in_set">
+                                <button type="submit" v-on:click="deleteItem(product.rowid)"><i
                                             class="fa fa-trash"></i></button>
                             </div>
                         </div>
-                        <div class="col s3 m2 center">
+                        <div class="col s3 m3 center">
                             <p v-show="product.subtotal > 0">
                                 @{{ product.subtotal }} <span>грн</span>
                             </p>
@@ -216,12 +152,6 @@
                         </div>
                     </div>
                 </div>
-                <!--конец товара в корзине. ха ха ха-.-->
-                <div class="col s12 no-padding grey">
-                    <div class="col s6 l10 right-align" id="order_subtotal"><p class="bold">Всего:</p></div>
-                    <div class="col s6 l2 center" id="order_subtotal_basket"><p class="bold">@{{ total }} грн</p></div>
-                </div>
-                <!--Registration - DON'T show if user authorized on the site-->
 
                 <div class="row">
                     @if(!Auth::check())
@@ -391,9 +321,7 @@
                         </div>
                     </div>
                     <div class="col s12 m6">
-
                         <div id="onepage_info_above_button">
-
                             <form action="/buy" method="POST" id="buy">
                             {!! csrf_field() !!}
                             <!-- show TOS and checkbox before button -->
@@ -415,28 +343,27 @@
                                 </div>
                             </form>
                         </div>
-
-
-                        @endif
                     </div>
-                    @if (count($errors) > 0)
-                        <div class="col s6">
-                            <ul style="padding-top: 20px;">
-                                @foreach ($errors->all() as $error)
-                                    <li style="color: indianred">{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    <div class="col s12 offset-top-30px"></div>
+                @endif
+
+                @if (count($errors) > 0)
+                    <div class="col s6">
+                        <ul style="padding-top: 20px;">
+                            @foreach ($errors->all() as $error)
+                                <li style="color: indianred">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <div class="col s12 offset-top-30px"></div>
             </div>
-            <input type="hidden" value="{{ csrf_token() }}" v-model="token"/>
-        </div>
+
         </div>
     </section>
 @stop
 
 @section('bottom-scripts')
-    {!! Html::script("admin/assets/js/vue.min.js") !!}
-    {!! Html::script("frontend/js/myVue.js") !!}
+    {!! Html::script("/admin/assets/js/vue2.js") !!}
+    {!! Html::script("/admin/assets/js/vue2-resource.js") !!}
+    {!! Html::script("/admin/assets/js/cart.js") !!}
 @stop
