@@ -83,7 +83,7 @@
                         <div class="col s12 m12 feedback">
                             <h4>Обратная связь</h4>
                             <p class="col s12 no-padding">Отправьте нам е-мейл. Все поля, помеченные *, обязательны для заполнения.</p>
-                            <form action="{!! route('mail.me') !!}" id="contactForm" method="post">
+                            <form action="{!! route('mail.contact') !!}" id="contactForm" method="post">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="_view" value="contact"/>
                                 <div class="row">

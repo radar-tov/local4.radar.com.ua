@@ -17,7 +17,8 @@ if( ! Request::is('dashboard*') and ! Request::is('auth*')){
 
 		/* send mail from site */
 		Route::post("mail/me",["uses"=>"MailController@mailMe",'as'=>'mail.me']);
-        Route::post("mail/oneclick",["uses"=>"MailController@oneclick",'as'=>'mail.oneclick']);
+        Route::post("mail/contact",["uses"=>"MailController@contact",'as'=>'mail.contact']);
+        /* / send mail from site */
 
         Route::get('compare','FrontendController@compare');
 		Route::get('cart', ['as' => 'cart', 'uses' => 'FrontendController@cart']);

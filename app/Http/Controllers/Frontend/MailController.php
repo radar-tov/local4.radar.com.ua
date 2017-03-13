@@ -180,7 +180,7 @@ class MailController extends Controller
         $this->mail->Subject = 'Заказ в 1 клик';
         $this->mail->addAddress($this->emailTo, 'Администратору сайта Radar.com.ua');
         $this->mail->msgHTML($body);
-        $this->mail->addAttachment("frontend/images/logo.png");
+        //$this->mail->addAttachment("frontend/images/logo.png");
 
         if(!$this->mail->send()) {
             echo "<h3 align='center'>Извините, произошла ошибка. Сообщение не отправлено.</h3>";
@@ -189,7 +189,32 @@ class MailController extends Controller
         }
     }
 
-    public function contact(){
+    public function contact(Request $request){
+        //dd($request->all());
+	    $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'comment' => $request->comment
+        ];
 
+        $body = view('mail/contact', $data)->render();
+
+        $this->mail->Subject = 'Сообщение из формы обратной связи.';
+        $this->mail->addAddress($this->emailTo, 'Администратору сайта Radar.com.ua');
+        $this->mail->msgHTML($body);
+        //$this->mail->addAttachment("frontend/images/logo.png");
+
+        if(!$this->mail->send()) {
+            $message = "Извините, произошла ошибка. Сообщение не отправлено.";
+        } else {
+            $message = "Ваше письмо отправлено!. В ближайшее время с Вами свяжутся. Спасибо.";
+        }
+
+        $request->session()->put('from_otvet', 'contact');
+        $request->session()->put('otvet', $message);
+        $request->session()->save();
+
+        return redirect()->back();
     }
 }

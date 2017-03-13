@@ -1,19 +1,45 @@
-<!doctype html>
-<html lang="ru">
-<head>
+<!DOCTYPE html>
+<html>
+<head lang="en">
     <meta charset="UTF-8">
-    <title>{{ $data['subject'] }}</title>
+    <title>Заказ в 1 клик</title>
+    <style>
+        body{
+            background-color: #ede9e9;
+        }
+        .tab {
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-<h1>{{ $data['subject'] }}</h1>
-<h2>Имя:</h2>
-<p>{{ $data['name'] }}</p>
-<h2>Email:</h2>
-<p>{{ $data['email'] }}</p>
-<h2>Телефон:</h2>
-<p>{{ $data['phone'] }}</p>
-<h3>Коментарий</h3>
-<text>{{ $data['comment'] }}</text>
-{{print_r($data)}}
+<table class="tab" border="1" cellpadding="10">
+    <tr>
+        <td width="33%">
+            <a href="https://radar.com.ua/">
+                <img src="https://radar.com.ua/frontend/images/logo.png">
+            </a>
+        </td>
+        <td align="center">
+            <h3>Заказ в 1 клик</h3>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <p>Имя: {{ $name }}</p>
+            <p>Email: {{ $email }}</p>
+            <p>Номер телефона клиента: {{ $phone }}</p>
+            <p>Комментарий: {{ $comment }}</p>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">
+            <p>(063)881-83-83&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                (095)881-83-83&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                (068)881-83-83&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="mailto:8818383@gmail.com">8818383@gmail.com</a></p>
+        </td>
+    </tr>
+</table>
 </body>
 </html>
