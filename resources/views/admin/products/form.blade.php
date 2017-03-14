@@ -20,13 +20,13 @@
 
 @if(isset($product))
     <div class="col-lg-12" style="padding-bottom: 20px">
-        <div class="col-lg-1" style="float: left; font-size: 20px">ID: {{ $product->id }}</div>
+        <div class="col-lg-2" style="float: left; font-size: 20px">ID: {{ $product->id }}</div>
         @if($product->hasDiscount())
             <div class="col-lg-2" style="float: left; font-size: 22px; color: red">Цена: {{ $product->getNewPrice().' гр (Акция)'}}</div>
         @else
             <div class="col-lg-2" style="float: left; font-size: 22px; color: red">Цена: {{ $product->getPrice().' гр' }}</div>
         @endif
-        <div class="col-lg-2" style="float: left">Дата обновления: {{ $product->updated_at }}</div>
+        <div class="col-lg-3" style="float: left">Дата обновления: {{ $product->updated_at }}</div>
         <input type="hidden" name="id" value="{{ $product->id }}">
         <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
         <div class="col-lg-2" style="float: right;">

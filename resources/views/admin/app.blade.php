@@ -126,11 +126,11 @@
                             <i class="ace-icon fa fa-shopping-cart menu_top"></i> Корзина <span class="badge badge-warning"> 0 </span>
                         </a>
                     </li>
-                    <li>
+                    {{--<li>
                         <a href="#">
                             <i class="ace-icon fa fa-envelope menu_top"></i> Почта <span class="badge badge-info"> 5 </span>
                         </a>
-                    </li>
+                    </li>--}}
                     <li>
                         <a href="{{ route("dashboard.reviews.index") }}">
                             <i class="ace-icon fa fa-comments-o menu_top"></i> Отзывы <span class="badge badge-purple"> 5 </span>
