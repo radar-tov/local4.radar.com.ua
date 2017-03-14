@@ -179,7 +179,8 @@ class BuyService {
                     );
                 }
             }
-
+            
+            $mail->ClearAddresses();
             $mail->Subject = 'Новый заказ!';
             $mail->addAddress($emailTo, 'Администратору сайта Radar.com.ua');
             $mail->msgHTML($body);
