@@ -60,7 +60,6 @@ class BuyService {
         $user = $this->setUserAdmin($request);
         $this->createNewOrderAdmin($request, $user->id);
         $this->attachProductsToOrder();
-        $this->sendNotifications();
 
         return $this->order;
     }
