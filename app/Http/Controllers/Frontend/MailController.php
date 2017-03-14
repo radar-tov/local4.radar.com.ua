@@ -13,6 +13,7 @@ class MailController extends Controller
 {
 	protected $emailTo;
     protected $emailFrom;
+    protected $auth;
     protected $mail;
 
 	public function __construct()
@@ -24,15 +25,17 @@ class MailController extends Controller
 			throw new Exception("Feedback email is empty! Please set email.");
 		}
 
+        $this->auth = \Config::get('gmail');
+
         $this->mail = new PHPMailer;
-        //$this->mail->SMTPDebug = 3;
+        $this->mail->SMTPDebug = 3;
         $this->mail->isSMTP();
-        $this->mail->Host = 'smtp.gmail.com';
+        $this->mail->Host = $this->auth['gmail_host'];
         $this->mail->SMTPAuth = true;
-        $this->mail->Username = $this->emailFrom;
-        $this->mail->Password = 'slmR161716';
-        $this->mail->SMTPSecure = 'tls';
-        $this->mail->Port = 587;
+        $this->mail->Username = $this->auth['gmail_username'];
+        $this->mail->Password = $this->auth['gmail_password'];
+        $this->mail->SMTPSecure = $this->auth['gmail_secure'];
+        $this->mail->Port = $this->auth['gmail_port'];
         $this->mail->CharSet = 'UTF-8';
         $this->mail->isHTML(true);
         $this->mail->setFrom($this->emailFrom, 'Radar.com.ua');

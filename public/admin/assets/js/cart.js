@@ -43,7 +43,7 @@ var cartVue = new Vue({
         },
 
         updateItem: function (product, _qty) {
-            var vue = this, qty = $(_qty.$el).find(".item-quantity");
+            var vue = this, qty = $("#" + _qty);
             qty.css("border-color", "#7cb342");
             if (qty.val().match(/^[0-9]{1,3}$/) && qty.val() > 0) {
                 $.post("/cart/update_item", {
@@ -58,7 +58,7 @@ var cartVue = new Vue({
                 if (qty.val().match(/^\d{0}$/)) {
                     qty.css("border-color", "red");
                 } else {
-                    $(_qty.$el).find(".item-quantity").val(product.qty);
+                    qty.val(product.qty);
                 }
             }
         }
