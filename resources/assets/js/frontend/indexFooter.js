@@ -35,8 +35,12 @@ $(document).ready(function () {
     });
     setTimeout(function () {
         var partner = document.getElementById("partner");
-        partner.style.display = "block";
+        if(partner){
+            partner.style.display = "block";
+        }
     }, 1000);
+    getData();
+    setInterval(getData, 15000);
 
 });
 var disabled = $(".disabled").prop("disabled", true);
@@ -154,6 +158,13 @@ function filterProducts(filcl, page) {
     if (filcl) {
         data = data + "&click=true";
     }
+    if(filcl == 'cliar'){
+        data = data + "&cliar=true";
+        $('input[type=checkbox]:checked').prop("checked", false);
+        var slider = $("#range").data("ionRangeSlider");
+        slider.reset();
+        $('.select-dropdown').val('Сначало недорогие');
+    }
     $.ajax({
         url: location.href, method: "GET", cache: false, data: data + "&page=" + page, beforeSend: function () {
             $("#products").html("<div align='center'><img src='/frontend/images/loading.gif'></div>");
@@ -201,3 +212,24 @@ setTimeout(function () {
         });
     });
 }, 1000);
+
+//Определение фокуса
+var fokus;
+function focusHere(){
+    window.fokus = true;
+}
+function focusOut(){
+    window.fokus = false;
+}
+
+//Выборка данных по заказам и корзине
+function getData() {
+    if(window.fokus) {
+        $.ajax({
+            type: "GET",
+            url: "/getcart"
+        }).done(function (response) {
+            $("#_cart").html(response);
+        });
+    };
+}

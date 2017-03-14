@@ -90,7 +90,7 @@
                                    class="item-quantity"
                                    v-bind:disabled="product.options.in_set_with">
 
-                            <a v-on:click.stop="deleteItem(product.rowid)"><i class="fa fa-times red"></i></a>
+                            <a v-on:click.stop="deleteItem(product.rowid)" style="cursor: pointer"><i class="fa fa-times red"></i></a>
 
                         </td>
                         <td>
@@ -116,51 +116,80 @@
                 </table>
 
                 <!-- Секция создания клиента -->
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <p class="formField">
-                    <label for="order-name" class="col s12 m4 l4">Ваше имя:<span class="red-text"> *</span></label>
-                    <input class="col s12 m6 l7" id="order-name" placeholder="введите имя, фамилию и отчество" tabindex="1" name="name" type="text" value="{{ old('name') }}">
-                </p>
-                <!--<p class="formField">-->
-                <!--<label for="order-surname" class="col s12 m4 l4">Фамилия:<span class="red-text"> *</span></label>-->
-                <!--<input class="col s12 m6 l7" id="order-surname" placeholder="введите вашу фамилию" tabindex="2" name="Orders[surname]" type="text">-->
-                <!--</p>-->
-                <p class="formField">
-                    <label for="order-telephone" class="col s12 m4 l4">Телефон:<span class="red-text"> *</span></label>
-                    <input class="col s12 m6 l7" id="order-telephone" placeholder="введите номер телефона" tabindex="3" name="phone" type="text"value="{{ old('phone') }}">
-                </p>
-                <p class="col s12 no-margin note">Заполните поле "Электронная почта", так как востановление пароля происходит через почтовый ящик.</p>
-                <p class="formField">
-                    <label for="order-email" class="col s12 m4 l4">Электронная почта:</label>
-                    <input class="col s12 m6 l7" id="order-email" placeholder="введите ваш email" tabindex="4" name="email" type="text" value="{{ old('email') }}">
-                </p>
-                <p class="formField">
-                    <label for="order-address" class="col s12 m4 l4">Страна:</label>
-                    <select class="col s12 m6 l7 no-padding" id="order-country" tabindex="5" name="country" type="text">
-                        <option value="Украина">Украина</option>
-                        <option value="Россия">Россия</option>
-                        <option value="США">США</option>
-                    </select>
-                </p>
-                <p class="formField">
-                    <label for="order-address" class="col s12 m4 l4">Город:</label>
-                    <input class="col s12 m6 l7" id="order-city" placeholder="введите город" tabindex="6" name="city" type="text" value="{{ old('city') }}">
-                </p>
-                <p class="formField">
-                    <label for="order-address" class="col s12 m4 l4">Адрес:</label>
-                    <input class="col s12 m6 l7" id="order-address" placeholder="введите адрес" tabindex="7" name="address" type="text" value="{{ old('address') }}">
-                </p>
-                <p class="formField">
-                    <label for="order-address" class="col s12 m4 l4">Пароль:<span class="red-text"> *</span></label>
-                    <input class="col s12 m6 l7" name="password" placeholder="введите пароль" type="password">
-                </p>
-                <p class="formField">
-                    <label for="order-address" class="col s12 m4 l4">Подтвердите пароль:<span class="red-text"> *</span></label>
-                    <input class="col s12 m6 l7" name="password_confirmation" placeholder="подтвердите пароль" type="password">
-                </p>
-                <div class="col s12" style="padding-top: 100px">
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Создать аккаунт</button>
-                </div>
+                <form action="{{ route('server.addzakaz') }}">
+                    <div class="col-xs-12">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <div class="col-xs-6">
+                            <p class="formField">
+                                <label for="order-name" class="col s12 m4 l4">Имя:<span class="red-text"> *</span></label>
+                                <input class="col s12 m6 l7" id="order-name" placeholder="введите имя, фамилию и отчество" tabindex="1" name="name" type="text" value="{{ old('name') }}">
+                            </p>
+                            <p class="formField">
+                                <label for="order-telephone" class="col s12 m4 l4">Телефон:<span class="red-text"> *</span></label>
+                                <input class="col s12 m6 l7" id="order-telephone" placeholder="введите номер телефона" tabindex="3" name="phone" type="text"value="{{ old('phone') }}">
+                            </p>
+                            <p class="formField">
+                                <label for="order-address" class="col s12 m4 l4">Пароль:<span class="red-text"> *</span></label>
+                                <input class="col s12 m6 l7" name="password" placeholder="введите пароль" type="password">
+                            </p>
+                            <p class="formField">
+                                <label for="order-address" class="col s12 m4 l4">Подтвердите пароль:<span class="red-text"> *</span></label>
+                                <input class="col s12 m6 l7" name="password_confirmation" placeholder="подтвердите пароль" type="password">
+                            </p>
+                        </div>
+                        <div class="col-xs-6">
+                            <p class="formField">
+                                <label for="order-email" class="col s12 m4 l4">Электронная почта:</label>
+                                <input class="col s12 m6 l7" id="order-email" placeholder="введите ваш email" tabindex="4" name="email" type="text" value="{{ old('email') }}">
+                            </p>
+                            <p class="formField">
+                                <label for="order-address" class="col s12 m4 l4">Город:</label>
+                                <input class="col s12 m6 l7" id="order-city" placeholder="введите город" tabindex="6" name="city" type="text" value="{{ old('city') }}">
+                            </p>
+                            <p class="formField">
+                                <label for="order-address" class="col s12 m4 l4">Адрес:</label>
+                                <input class="col s12 m6 l7" id="order-address" placeholder="введите адрес" tabindex="7" name="address" type="text" value="{{ old('address') }}">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6">
+                            <label for="form_shipping" class="green-text bold uppercase">Способ оплаты:</label>
+                            @foreach($cartProvider->getPaymentMethods() as $key => $method)
+                                <p>
+                                    {!! Form::radio('payment', $value = $method->id, $checked = null, ['class' => 'with-gap', 'id' => 'payment'.$key,'name' => 'payment' ]) !!}
+                                    {{--<input class="with-gap" name="payment" form="buy" type="radio" id="payment{{ $key }}" value="{{ old('payment', $method->id) }}" />--}}
+                                    <label for="payment{{ $key }}">{{ $method->title }}</label>
+                                </p>
+                            @endforeach
+                            <div id="agreed_div" class=" clearfix">
+                                <br/>
+                                <input  name="checked" id="agreed_field" value="1" type="checkbox" checked class="terms-of-service">
+                                <label for="agreed_field">
+                                    <p class="no-margin">Я согласен с условиями обслуживания
+                                        <a class="modal-trigger" href="#">(Условия обслуживания *)</a>
+                                    </p>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <label for="form_payment" class="green-text bold uppercase">Способ доставки:</label>
+                            @foreach($cartProvider->getShipmentMethods() as $key => $method)
+                                <p>
+                                    {!! Form::radio('shipment', $value = $method->id, $checked = null, ['class' => 'with-gap', 'id' => 'shipping'.$key, 'name' => 'shipment' ]) !!}
+                                    {{--<input class="with-gap" name="shipment" form="buy"  type="radio" id="shipping{{ $key }}" value="{{ old('shipment', $method->id) }}"/>--}}
+                                    <label for="shipping{{ $key }}">{{ $method->title }}</label>
+                                </p>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <div class="col s12" style="padding-top: 100px">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Создать аккаунт</button>
+                    </div>
+                </form>
+
                 <!-- / Секция создания клиента -->
 
                 @if (count($errors) > 0)

@@ -4880,7 +4880,7 @@ li.parent:hover .child {
     right: 0;
     background-color: #fff;
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, .3), 0 2px 10px 0 rgba(0, 0, 0, .2);
-    z-index: 0;
+    z-index: 99;
     top: 55px;
     -webkit-transition: all .5s cubic-bezier(.165, .885, .935, 1.005);
     -moz-transition: all .5s cubic-bezier(.165, .885, .935, 1.005);
@@ -5286,7 +5286,8 @@ p.note {
 
 .compare {
     width: 40%;
-    float: left
+    float: left;
+    z-index: 10;
 }
 
 .compare img {
@@ -5318,7 +5319,7 @@ p.note {
 
 .mini-cart {
     border-radius: 50px;
-    float: right;
+    /*float: right;*/
     margin: 0 0 7px
 }
 

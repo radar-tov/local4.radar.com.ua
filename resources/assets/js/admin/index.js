@@ -151,6 +151,8 @@ $(document).ready(function () {
         closeEffect: 'none'
     });
 
+    setInterval(getData, 15000);
+
 });
 
 $("body").on("click", ".buy", function () {
@@ -300,4 +302,28 @@ function deleteCookie(name) {
     setCookie(name, "", {
         expires: -1
     })
+}
+
+//Определение фокуса
+var fokus;
+function focusHere(){
+    window.fokus = true;
+}
+function focusOut(){
+    window.fokus = false;
+}
+
+//Выборка данных по заказам и корзине
+function getData() {
+    var token = $("input[name='_token']").val();
+    if(window.fokus) {
+        $.ajax({
+            type: "GET",
+            url: "/server/getdata",
+            data: {_token: token}
+        }).done(function (response) {
+            $("#cart").html(response.cart);
+            $("#order").html(response.order);
+        });
+    };
 }

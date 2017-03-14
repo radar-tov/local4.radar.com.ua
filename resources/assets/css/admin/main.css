@@ -175,7 +175,7 @@ img {
 }
 
 .p-title {
-    width: 35%;
+    /*width: 35%;*/
     position: relative;
     padding-right: 90px !important;
     box-sizing: border-box;

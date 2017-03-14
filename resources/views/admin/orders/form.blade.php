@@ -106,7 +106,9 @@
         <h4>Информация о покупателе</h4>
         @if(count($order->user))
         <ul class="list-group no-padding">
-            <li class="list-group-item"><b>ФИО покупателя: </b>{{ $order->user->name or 'Не указано'}}</li>
+            <li class="list-group-item"><b>ФИО покупателя: </b>
+                <a href="/dashboard/users/{{ $order->user->id }}">{{ $order->user->name or 'Не указано'}}</a>
+            </li>
             <li class="list-group-item"><b>Телефон: </b>{{ $order->user->phone }}</li>
             <li class="list-group-item"><b>E-mail: </b>{{ $order->user->email }}</li>
             <li class="list-group-item"><b>Адрес: </b>{{ $order->user->address }}</li>

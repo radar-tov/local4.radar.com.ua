@@ -50,6 +50,20 @@ class BuyService {
 		return $this->order;
 	}
 
+    /**
+     * @param Request $request
+     *
+     * Register new order
+     */
+    public function registerOrderAdmin(Request $request)
+    {
+        $user = $this->setUserAdmin($request);
+        $this->createNewOrderAdmin($request, $user->id);
+        $this->attachProductsToOrder();
+
+        return $this->order;
+    }
+
 
 	/**
 	 * @param Request $request
@@ -75,6 +89,25 @@ class BuyService {
 		$this->user = $user;
 	}
 
+    /**
+     * @param Request $request
+     * @return User
+     *
+     * Get Auth user or create new with guest role_id
+     */
+    public function setUserAdmin(Request $request)
+    {
+        $user = new User();
+        $user->email = $request->get('email');
+        $user->name = $request->get('name');
+        $user->phone = $request->get('phone');
+        $user->city = $request->get('city');
+        $user->role_id = User::GUEST_ID;
+        $user->save();
+        $this->user = $user;
+        return $user;
+    }
+
 
 	/**
 	 * @param $request
@@ -94,6 +127,20 @@ class BuyService {
 
 		$this->order = $order;
 	}
+
+    public function createNewOrderAdmin($request , $id)
+    {
+        $order = Order::create([
+            'user_id' => $id,
+            'total' => Cart::total(),
+            'payment_method_id' => $request->get('payment'),
+            'shipment_method_id' => $request->get('shipment'),
+            'status_id' => Order::STATUS_NEW,
+            'note' => $request->get('note') ?: '',
+        ]);
+
+        $this->order = $order;
+    }
 
 
 	/**
