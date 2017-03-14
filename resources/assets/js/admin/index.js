@@ -151,7 +151,7 @@ $(document).ready(function () {
         closeEffect: 'none'
     });
 
-    setInterval(getData, 15000)
+    setInterval(getData, 15000);
 
 });
 

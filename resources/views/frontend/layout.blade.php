@@ -20,7 +20,7 @@
     @include('frontend.googleAnalistic')
     <!-- / SCRIPTS  -->
 </head>
-<body>
+<body onmouseover="focusHere();" onmouseout="focusOut();">
 <!-- include  -->
 @include('frontend.partials.nav_menu')
 @include('frontend.partials.header')

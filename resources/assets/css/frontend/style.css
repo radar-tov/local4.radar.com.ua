@@ -5286,7 +5286,8 @@ p.note {
 
 .compare {
     width: 40%;
-    float: left
+    float: left;
+    z-index: 10;
 }
 
 .compare img {
@@ -5318,7 +5319,7 @@ p.note {
 
 .mini-cart {
     border-radius: 50px;
-    float: right;
+    /*float: right;*/
     margin: 0 0 7px
 }
 

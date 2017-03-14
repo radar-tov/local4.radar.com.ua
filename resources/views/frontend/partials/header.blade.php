@@ -58,41 +58,40 @@
                     </a>
                     <p><span class="vs">Сравнить<br><span id="com_count">{{calcProductsInCompare()}}</span> товаров</span></p>
                 </div>
-                <a href="/cart" class="go-to-cart" rel="nofollow">
-                    <div class="mini-cart tabs-wrapper pin-top" id="_cart">
-                        <img src="/frontend/images/no_product.png"/>
+                {{--<a href="/cart" class="go-to-cart" rel="nofollow">--}}
+                <div class="mini-cart tabs-wrapper pin-top" id="_cart">
+                    <img src="/frontend/images/no_product.png"/>
+                    <div>
+                        <p>Товаров: <span class="qty">{{ cartItemsCount() }}</span> шт</p>
+                        <p>На сумму: <span class="_sum">{{ cartTotalPrice() }}</span> грн</p>
                         <div>
-                            <p>Товаров: <span class="qty">{{ cartItemsCount() }}</span> шт</p>
-                            <p>На сумму: <span class="_sum">{{ cartTotalPrice() }}</span> грн</p>
-                            <div>
-
-                                <div class="cart-content">
-                                    <div class="col s12 cart_filled"
-                                         style="display: {{ cartItemsCount() ? 'block' : 'none' }}">
-                                        <strong>В корзине <span class="qty-items">{{  cartItemsCount() }}</span>товар/ов</strong>
-                                        <strong>На сумму
-                                            <span class="sum-payment">
-                                                <span class="_sum">{{ cartTotalPrice() }}</span>
-                                                <span class="currency"> грн</span>
-                                            </span>
-                                        </strong>
-                                        <a href="/cart" class="waves-effect waves-light btn">Перейти в корзину</a>
-                                    </div>
-                                    <!--Empty-->
-                                    <div class="cols4 cart_empty"
-                                         style="display: {{ cartItemsCount() ? 'none' : 'block' }}">
-                                        {{--<img src="/frontend/images/mini-cart-empty.png" class="left no-padding"/>--}}
-                                    </div>
-                                    <div class="col s8 cart_empty"
-                                         style="display: {{ cartItemsCount() ? 'none' : 'block' }}">
-                                        <span class="left">В корзине ещё нет товаров</span>
-                                    </div>
-
+                            <div class="cart-content">
+                                <div class="col s12 cart_filled"
+                                     style="display: {{ cartItemsCount() ? 'block' : 'none' }}">
+                                    <strong>В корзине <span class="qty-items">{{  cartItemsCount() }}</span>товар/ов</strong>
+                                    <strong>На сумму
+                                        <span class="sum-payment">
+                                            <span class="_sum">{{ cartTotalPrice() }}</span>
+                                            <span class="currency"> грн</span>
+                                        </span>
+                                    </strong>
+                                    <a href="/cart" class="waves-effect waves-light btn">Перейти в корзину</a>
                                 </div>
+                                <!--Empty-->
+                                {{--<div class="cols4 cart_empty"
+                                     style="display: {{ cartItemsCount() ? 'none' : 'block' }}">
+                                    <img src="/frontend/images/mini-cart-empty.png" class="left no-padding"/>
+                                </div>--}}
+                                <div class="col s8 cart_empty"
+                                     style="display: {{ cartItemsCount() ? 'none' : 'block' }}">
+                                    <strong><span class="left">В корзине ещё нет товаров</span></strong>
+                                </div>
+
                             </div>
                         </div>
                     </div>
-                </a>
+                </div>
+                {{--</a>--}}
             </div>
         </div>
     </div>

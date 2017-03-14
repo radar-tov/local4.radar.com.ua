@@ -592,4 +592,54 @@ class FrontendController extends BaseController
         $product = Product::find($id);
         return view('frontend.otvet.oneClick', compact('product'));
     }
+
+    public function getcart(){
+        $data = "<img src=\"/frontend/images/no_product.png\"/>
+                        <div>
+                            <p>Товаров: <span class='qty'>".cartItemsCount()."</span> шт</p>
+                            <p>На сумму: <span class='_sum'>".cartTotalPrice()."</span> грн</p>
+                               <div>
+                                    <div class='cart-content'>";
+        if(cartItemsCount()){
+            $data .= "
+                <div class='col s12 cart_filled' style='display:block'>
+                    <strong>В корзине <span class='qty-items'>".cartItemsCount()."</span>товар/ов</strong>
+                    <strong>На сумму
+                        <span class='sum-payment'>
+                            <span class='_sum'>".cartTotalPrice()."</span>
+                            <span class='currency'> грн</span>
+                        </span>
+                    </strong>
+                    <a href='/cart' class='waves-effect waves-light btn'>Перейти в корзину</a>
+                </div>
+                <div class='col s8 cart_empty' style='display:none'>
+                    <strong><span class='left'>В корзине ещё нет товаров</span></strong>
+                </div>
+            ";
+        }else{
+            $data .= "
+                    <div class='col s12 cart_filled' style='display:none'>
+                    <strong>В корзине <span class='qty-items'>".cartItemsCount()."</span>товар/ов</strong>
+                    <strong>На сумму
+                        <span class='sum-payment'>
+                            <span class='_sum'>".cartTotalPrice()."</span>
+                            <span class='currency'> грн</span>
+                        </span>
+                    </strong>
+                    <a href='/cart' class='waves-effect waves-light btn'>Перейти в корзину</a>
+                </div>
+                <div class='col s8 cart_empty' style='display:block'>
+                    <strong><span class='left'>В корзине ещё нет товаров</span></strong>
+                </div>
+            ";
+        }
+
+        $data .= "
+                    </div>
+                </div>
+            </div>
+        ";
+
+        return $data;
+    }
 }

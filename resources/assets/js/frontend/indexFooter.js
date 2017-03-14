@@ -38,6 +38,8 @@ $(document).ready(function () {
         partner.style.display = "block";
     }, 1000);
 
+    setInterval(getData, 15000);
+
 });
 var disabled = $(".disabled").prop("disabled", true);
 $("._disabled").click(function () {
@@ -201,3 +203,24 @@ setTimeout(function () {
         });
     });
 }, 1000);
+
+//Определение фокуса
+var fokus;
+function focusHere(){
+    window.fokus = true;
+}
+function focusOut(){
+    window.fokus = false;
+}
+
+//Выборка данных по заказам и корзине
+function getData() {
+    if(window.fokus) {
+        $.ajax({
+            type: "GET",
+            url: "/getcart"
+        }).done(function (response) {
+            $("#_cart").html(response);
+        });
+    };
+}

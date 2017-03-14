@@ -25,6 +25,7 @@ if( ! Request::is('dashboard*') and ! Request::is('auth*') and ! Request::is('se
 
         Route::get('compare','FrontendController@compare');
 		Route::get('cart', ['as' => 'cart', 'uses' => 'FrontendController@cart']);
+        Route::get('getcart', ['as' => 'getcart', 'uses' => 'FrontendController@getcart']);
 		Route::post('buy', 'FrontendController@buy');
 		Route::get('thank-you', 'FrontendController@thanks');
 		Route::get('otvet', 'FrontendController@otvet');
