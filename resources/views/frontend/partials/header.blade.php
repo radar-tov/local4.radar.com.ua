@@ -66,29 +66,29 @@
                             <p>На сумму: <span class="_sum">{{ cartTotalPrice() }}</span> грн</p>
                             <div>
 
-                                {{--<div class="cart-content">--}}
-                                    {{--<div class="col s12 cart_filled"--}}
-                                         {{--style="display: {{ cartItemsCount() ? 'block' : 'none' }}">--}}
-                                        {{--<strong>В корзине <span class="qty-items">{{  cartItemsCount() }}</span>товар/ов</strong>--}}
-                                        {{--<strong>На сумму--}}
-                                            {{--<span class="sum-payment">--}}
-                                                {{--<span class="_sum">{{ cartTotalPrice() }}</span>--}}
-                                                {{--<span class="currency"> грн</span>--}}
-                                            {{--</span>--}}
-                                        {{--</strong>--}}
-                                        {{--<a href="/cart" class="waves-effect waves-light btn">Перейти в корзину</a>--}}
-                                    {{--</div>--}}
-                                    {{--<!--Empty-->--}}
-                                    {{--<div class="cols4 cart_empty"--}}
-                                         {{--style="display: {{ cartItemsCount() ? 'none' : 'block' }}">--}}
+                                <div class="cart-content">
+                                    <div class="col s12 cart_filled"
+                                         style="display: {{ cartItemsCount() ? 'block' : 'none' }}">
+                                        <strong>В корзине <span class="qty-items">{{  cartItemsCount() }}</span>товар/ов</strong>
+                                        <strong>На сумму
+                                            <span class="sum-payment">
+                                                <span class="_sum">{{ cartTotalPrice() }}</span>
+                                                <span class="currency"> грн</span>
+                                            </span>
+                                        </strong>
+                                        <a href="/cart" class="waves-effect waves-light btn">Перейти в корзину</a>
+                                    </div>
+                                    <!--Empty-->
+                                    <div class="cols4 cart_empty"
+                                         style="display: {{ cartItemsCount() ? 'none' : 'block' }}">
                                         {{--<img src="/frontend/images/mini-cart-empty.png" class="left no-padding"/>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="col s8 cart_empty"--}}
-                                         {{--style="display: {{ cartItemsCount() ? 'none' : 'block' }}">--}}
-                                        {{--<span class="left">В корзине ещё нет товаров</span>--}}
-                                    {{--</div>--}}
+                                    </div>
+                                    <div class="col s8 cart_empty"
+                                         style="display: {{ cartItemsCount() ? 'none' : 'block' }}">
+                                        <span class="left">В корзине ещё нет товаров</span>
+                                    </div>
 
-                                {{--</div>--}}
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -10,6 +10,9 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         /* Заказ из админки */
         Route::get('addzakaz', ['as' => 'server.addzakaz', 'uses' => 'OfficialController@addZakaz']);
 
+        /* Данные для админке корзина и остальное */
+        Route::get('getdata', ['as' => 'server.getdata', 'uses' => 'OfficialController@getdata']);
+
         /* TWITTER */
         Route::post('send', 'TwitterController@send');
         /* /end TWITTER */

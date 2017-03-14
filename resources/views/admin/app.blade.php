@@ -123,7 +123,12 @@
                     </li>
                     <li>
                         <a href="{{ route("dashboard.admincart.index") }}">
-                            <i class="ace-icon fa fa-shopping-cart menu_top"></i> Корзина <span class="badge badge-warning"> 0 </span>
+                            <i class="ace-icon fa fa-shopping-cart menu_top"></i> Корзина
+                            <span id="cart">
+                                @if(cartItemsCount() > 0)
+                                    <span class="badge badge-warning"> {{ cartItemsCount() }} </span>
+                                @endif
+                            </span>
                         </a>
                     </li>
                     {{--<li>

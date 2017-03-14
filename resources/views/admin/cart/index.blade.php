@@ -90,7 +90,7 @@
                                    class="item-quantity"
                                    v-bind:disabled="product.options.in_set_with">
 
-                            <a v-on:click.stop="deleteItem(product.rowid)"><i class="fa fa-times red"></i></a>
+                            <a v-on:click.stop="deleteItem(product.rowid)" style="cursor: pointer"><i class="fa fa-times red"></i></a>
 
                         </td>
                         <td>

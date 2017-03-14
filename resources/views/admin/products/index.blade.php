@@ -21,7 +21,7 @@
 @section('content')
 
     <div class="row" id="productsVue">
-
+        <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
         <div class="col-xs-6">
             <a href="{!! route('dashboard.products.create') !!}" class="btn btn-sm btn-primary" title="Добавить товар"
                target="_blank">
@@ -301,7 +301,7 @@
                     <th>Монт</th>
                     <th>Опт</th>
                     <th>Категория</th>
-                    <th colspan="3" class="options">Опции</th>
+                    <th colspan="4" class="options">Опции</th>
                 </tr>
                 </thead>
 
@@ -389,24 +389,32 @@
                         <div class="action-buttons">
                             <a class="green" target="_blank"
                                v-bind:href="'/dashboard/products/' +  product.id + '/edit'">
-                                <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                <i class="ace-icon fa fa-pencil"></i>
                             </a>
                         </div>
                     </td>
                     <td class="options">
                         <div class="action-buttons">
-                            <a class="red" href="#" v-on:click.prevent="deleteProduct(product, $event)">
-                                <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                            <a class="buy" v-bind:data-productid="product.id" onclick="return false" style="cursor: pointer">
+                                <i class="ace-icon fa fa-cart-plus green"></i>
                             </a>
                         </div>
                     </td>
                     <td class="options">
                         <div class="action-buttons">
                             <a class="blue" v-bind:href="'/dashboard/products/copy/' + product.id">
-                                <i class="ace-icon fa fa-copy bigger-120"></i>
+                                <i class="ace-icon fa fa-copy"></i>
                             </a>
                         </div>
                     </td>
+                    <td class="options">
+                        <div class="action-buttons">
+                            <a class="red" href="#" v-on:click.prevent="deleteProduct(product, $event)">
+                                <i class="ace-icon fa fa-trash-o"></i>
+                            </a>
+                        </div>
+                    </td>
+
 
                 </tr>
 

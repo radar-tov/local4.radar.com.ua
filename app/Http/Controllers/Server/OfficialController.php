@@ -27,4 +27,12 @@ class OfficialController extends ServerController
 
         return redirect()->route('dashboard.orders.index');
     }
+
+    public function getdata(){
+        if(cartItemsCount() > 0){
+            return "<span class='badge badge-warning'>".cartItemsCount()."</span>";
+        }else{
+            return '';
+        }
+    }
 }
