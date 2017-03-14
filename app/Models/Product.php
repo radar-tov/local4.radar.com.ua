@@ -208,7 +208,7 @@ class Product extends Eloquent {
 							$user->load('customerGroups');
 						}
 
-						$group->whereIn('id', isset($user->customerGroups) ? $user->customerGroups->lists("id")->all() : []);
+						$group->whereIn('id', isset($user->customerGroups) ? $user->customerGroups->pluck("id")->all() : []);
 					});
 
 			})

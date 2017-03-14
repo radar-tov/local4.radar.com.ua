@@ -19,6 +19,6 @@ class CountrysController extends Controller
     }
 
     public function get(){
-        return Country::orderBy('name')->lists('name', 'id');
+        return Country::orderBy('name')->pluck('name', 'id');
     }
 }

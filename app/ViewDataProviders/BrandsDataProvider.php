@@ -8,6 +8,6 @@ class BrandsDataProvider {
 
 	public function getList()
 	{
-		return Brand::orderBy('title')->lists('title', 'id');
+		return Brand::orderBy('title')->pluck('title', 'id');
 	}
 }

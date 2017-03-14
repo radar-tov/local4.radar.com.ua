@@ -31,7 +31,7 @@ class ArticlesController extends AdminController
 	public function create(Page $page)
 	{
 		return view('admin.articles.create')
-			->withPages($page->lists('title','id'))
+			->withPages($page->pluck('title','id'))
 				->withArticle(new Article);
 	}
 
@@ -62,7 +62,7 @@ class ArticlesController extends AdminController
 	{
 		$article = $article->findOrFail($id);
 
-		$pages = $page->lists('title','id');
+		$pages = $page->pluck('title','id');
 
 		return view('admin.articles.edit',compact('article','pages'));
 	}

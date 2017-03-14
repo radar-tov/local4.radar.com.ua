@@ -8,6 +8,6 @@ class CountryDataProvider {
 
     public function getList()
     {
-        return Country::orderBy('name')->lists('name', 'id');
+        return Country::orderBy('name')->pluck('name', 'id');
     }
 }

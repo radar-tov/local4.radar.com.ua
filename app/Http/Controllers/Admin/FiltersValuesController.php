@@ -19,7 +19,7 @@ class FiltersValuesController extends AdminController
 	 */
 	public function index(Request $request, FilterValue $filterValue, $filterId = 0)
 	{
-		if($request->ajax()) return FilterValue::groupBy('value')->lists('value');
+		if($request->ajax()) return FilterValue::groupBy('value')->pluck('value');
 		return $filterValue->where('filter_id',$filterId)->orderBy('id','desc')->get();
 	}
 
@@ -44,7 +44,7 @@ class FiltersValuesController extends AdminController
 	 */
 	public function create(Filter $filter)
 	{
-		return view('admin.filter-values.create')->withFilters($filter->lists('title','id'));
+		return view('admin.filter-values.create')->withFilters($filter->pluck('title','id'));
 	}
 
 	/**
@@ -72,7 +72,7 @@ class FiltersValuesController extends AdminController
 	public function edit(FilterValues $values, Filter $filter, $id)
 	{
 		$filterValue = $values->findOrFail($id);
-		$filters = $filter->lists('title','id');
+		$filters = $filter->pluck('title','id');
 
 		return view('admin.filter-values.edit',compact('filterValue','filters'));
 	}

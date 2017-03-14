@@ -535,7 +535,7 @@ class ProductsController extends AdminController
 
         // prepare filters data for sync
         $filters = [];
-        foreach ($product->filters->lists('pivot') as $pivot) {
+        foreach ($product->filters->pluck('pivot') as $pivot) {
             $filters[$pivot->filter_id]['product_id'] = $copy->id;
             $filters[$pivot->filter_id]['filter_id'] = $pivot->filter_id;
             $filters[$pivot->filter_id]['filter_value_id'] = $pivot->filter_value_id;
@@ -548,8 +548,8 @@ class ProductsController extends AdminController
             $stocks[$stock->id]['stock_price'] = $stock->pivot->stock_price;
         }
 
-        //$copy->images()->sync($product->images->lists('id')->toArray());
-        $copy->relatedProducts()->sync($product->relatedProducts->lists('id')->toArray());
+        //$copy->images()->sync($product->images->pluck('id')->toArray());
+        $copy->relatedProducts()->sync($product->relatedProducts->pluck('id')->toArray());
         $copy->filters()->sync($filters);
         $copy->stocks()->sync($stocks);
 
@@ -875,7 +875,7 @@ class ProductsController extends AdminController
                 ->paginate($request->get('paginate') ?: 20);
 
 
-            $productsIds = Product::bySale($request)->lists('id');
+            $productsIds = Product::bySale($request)->pluck('id');
 
             return ['paginatedProducts' => $paginatedProducts->toArray(), 'productsIds' => $productsIds];
 

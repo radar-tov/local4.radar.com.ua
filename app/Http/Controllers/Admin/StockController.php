@@ -103,7 +103,7 @@ class StockController extends AdminController
     {
         if(!count($requestProducts)) return [];
 
-        $products = Product::whereIn('clone_of', array_keys($requestProducts))->lists('clone_of', 'id')->all();
+        $products = Product::whereIn('clone_of', array_keys($requestProducts))->pluck('clone_of', 'id')->all();
         foreach ($products as $product_id => $masterProductId) {
             if(isset($requestProducts[$masterProductId])){
                 $master = $requestProducts[$masterProductId];

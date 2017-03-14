@@ -53,7 +53,7 @@ class AccommodationsController extends AdminController
 		}
 
 		$accommodations->load("city","category");
-		$categories = [0=>'Не выбрано'] + Category::where('parent_id', '<>', 0)->lists('title','id');
+		$categories = [0=>'Не выбрано'] + Category::where('parent_id', '<>', 0)->pluck('title','id');
 
 		return view("admin.accommodations.index", compact("accommodations", 'categories', 'search'));
 	}
@@ -163,7 +163,7 @@ class AccommodationsController extends AdminController
 
 		$accommodations = Accommodation::where('category_id',$selected->id)->paginate(20);
 
-		$categories = [0=>'Не выбрано'] + Category::where('parent_id', '<>', 0)->lists('title','id');
+		$categories = [0=>'Не выбрано'] + Category::where('parent_id', '<>', 0)->pluck('title','id');
 
 		return view("admin.accommodations.index", compact('accommodations','categories', 'selected'));
 	}

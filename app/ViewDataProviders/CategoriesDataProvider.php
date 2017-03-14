@@ -11,7 +11,7 @@ class CategoriesDataProvider {
 
 	public function getCategoriesList()
 	{
-        return Category::orderBy('title')->lists('title', 'id');
+        return Category::orderBy('title')->pluck('title', 'id');
 	}
 
     public function getCategoriesListNav()

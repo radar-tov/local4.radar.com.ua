@@ -8,6 +8,6 @@ class CustomerGrupsDataProvider {
 
     public function getList()
     {
-        return CustomerGroup::orderBy('title')->lists('title', 'id');
+        return CustomerGroup::orderBy('title')->pluck('title', 'id');
     }
 }

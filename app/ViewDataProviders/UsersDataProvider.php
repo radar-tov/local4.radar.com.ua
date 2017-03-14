@@ -9,7 +9,7 @@ class UsersDataProvider {
 
 	public function getCustomersList()
 	{
-		return User::lists('name', 'id');
+		return User::pluck('name', 'id');
 	}
 
 
@@ -17,20 +17,20 @@ class UsersDataProvider {
 	{
 		return User::whereHas('customerGroups', function($group) use($groupId){
 			$group->where('id', $groupId);
-		})->lists('id', 'name')->all();
+		})->pluck('id', 'name')->all();
 	}
 
 
 	public function getCustomersGroupsList()
 	{
-		return CustomerGroup::lists('title', 'id');
+		return CustomerGroup::pluck('title', 'id');
 	}
 
 	public function getAttachedGroupsList($saleId)
 	{
 		return CustomerGroup::whereHas('sales', function($sale) use($saleId){
 			$sale->where('id', $saleId);
-		})->lists('id', 'title')->all();
+		})->pluck('id', 'title')->all();
 	}
 
 

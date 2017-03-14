@@ -1,19 +1,19 @@
 <?php
 
 namespace App\Services;
-use Illuminate\Pagination\BootstrapThreePresenter;
+use Illuminate\Pagination\Paginator;
 
 
 /**
  * Created by Igor Mazur
  * Date: 05.07.15 21:51
  */
-class CustomPagination extends BootstrapThreePresenter
+class CustomPagination extends Paginator
 {
 
 
 
-	public function render()
+	public function render($view = null)
 	{
 		if ($this->hasPages()) {
 			return sprintf(
@@ -34,14 +34,14 @@ class CustomPagination extends BootstrapThreePresenter
 		// If the current page is less than or equal to one, it means we can't go any
 		// further back in the pages, so we will render a disabled previous button
 		// when that is the case. Otherwise, we will give it an active "status".
-		if ($this->paginator->currentPage() <= 1)
+		if ($this->currentPage() <= 1)
 		{
 			return $this->getDisabledTextWrapper($text);
 		}
 
-		$previousPage = $this->paginator->currentPage() - 1;
+		$previousPage = $this->currentPage() - 1;
 
-		$url = $this->paginator->url(
+		$url = $this->url(
 			$previousPage
 		);
 
@@ -56,13 +56,13 @@ class CustomPagination extends BootstrapThreePresenter
 		// can't go any further into the pages, as we're already on this last page
 		// that is available, so we will make it the "next" link style disabled.
 
-		if ( ! $this->paginator->hasMorePages())
+		if ( ! $this->hasMorePages())
 		{
 			return $this->getDisabledTextWrapper($text);
 		}
-		$page = $this->paginator->currentPage() + 1 ;
+		$page = $this->currentPage() + 1 ;
 
-		$url = $this->paginator->url($page);
+		$url = $this->url($page);
 
 		return '<li class="">
 					<a href="'.$url.'" class="pg" rel="'.$page.'">'.$text.'</a>

@@ -39,7 +39,7 @@ class ProductsDataProvider {
 		
 		if($categoryId){
 			$category = Category::where('id', $categoryId)->with('children')->first();
-			$categories = [$category->id] + $category->children->lists('id')->toArray();
+			$categories = [$category->id] + $category->children->pluck('id')->toArray();
 
 			$price = Product::whereIn('category_id', $categories)->visible()->max('price');
 		} else {
