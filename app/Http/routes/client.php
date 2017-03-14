@@ -1,6 +1,6 @@
 <?php
 
-if( ! Request::is('dashboard*') and ! Request::is('auth*')){
+if( ! Request::is('dashboard*') and ! Request::is('auth*') and ! Request::is('server*') and ! Request::is('_debugbar*')){
 
 
 	/* Add review on front page */
@@ -50,7 +50,6 @@ if( ! Request::is('dashboard*') and ! Request::is('auth*')){
 		Route::get('delivery',['as'=>'delivery','uses'=>'FrontendController@staticPage']);
 		Route::get('proizvoditeli',['as'=>'proizvoditeli','uses'=>'FrontendController@staticPage']);
 		Route::get('garantiya',['as'=>'garantiya','uses'=>'FrontendController@staticPage']);
-        
 
 		Route::get('login', ['as' => 'login', 'uses' => 'FrontendController@login']);
 		Route::get('registration', ['as' => 'register', 'uses' => 'FrontendController@registration']);
@@ -63,9 +62,6 @@ if( ! Request::is('dashboard*') and ! Request::is('auth*')){
 		Route::post('user_update', ['as' => 'user_update', 'uses' => 'FrontendController@updateUserData']);
 		Route::get('cabinet/orders/{order_id}', ['as' => 'order', 'uses' => 'FrontendController@showOrder']);
 
-		Route::get('{categorySlug}', 'FrontendController@catalog');
-		Route::get('{categorySlug}/{subcategorySlug}', 'FrontendController@catalog');
-		Route::get('{categorySlug}/{subcategorySlug}/{productSlug}', 'FrontendController@product');
         Route::post('add_to_compare','CartController@addToCompare');
 		Route::post('add_to_cart', 'CartController@addProduct');
 		Route::post('addKol_to_cart', 'CartController@addKolProduct');
@@ -76,9 +72,11 @@ if( ! Request::is('dashboard*') and ! Request::is('auth*')){
 		Route::post('cart/delete_item', 'CartController@deleteItem');
 		Route::post('cart/delete_from_compare','CartController@deleteItemFromCompare');
 
-        /* API */
-
-        /* /end API */
+        /* Всегда самые последние */
+        Route::get('{categorySlug}', 'FrontendController@catalog');
+        Route::get('{categorySlug}/{subcategorySlug}', 'FrontendController@catalog');
+        Route::get('{categorySlug}/{subcategorySlug}/{productSlug}', 'FrontendController@product');
+        /* /Всегда самые последние */
 	});
 
 }
