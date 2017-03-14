@@ -48,14 +48,17 @@
                 <span>Цена</span>
             </div>
         </div>
-         <div class="filter-content">
-		 	<div id="form">
-				<input type="text" id="range" name="price" value="" name="range">
-			</div>
-
+        <div class="filter-content">
+            <div id="form">
+                <input type="text" id="range" name="price" value="" name="range">
+            </div>
         </div>
-
+        <div class="filter-content">
+            <a href="#" onclick="filterProducts('cliar'); return false;">Сбросить все фильтры</a>
+        </div>
     </div>
 
+
 </form>
+
 @endif

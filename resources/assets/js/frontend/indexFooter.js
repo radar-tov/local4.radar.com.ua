@@ -35,9 +35,11 @@ $(document).ready(function () {
     });
     setTimeout(function () {
         var partner = document.getElementById("partner");
-        partner.style.display = "block";
+        if(partner){
+            partner.style.display = "block";
+        }
     }, 1000);
-
+    getData();
     setInterval(getData, 15000);
 
 });
@@ -155,6 +157,13 @@ function filterProducts(filcl, page) {
     }
     if (filcl) {
         data = data + "&click=true";
+    }
+    if(filcl == 'cliar'){
+        data = data + "&cliar=true";
+        $('input[type=checkbox]:checked').prop("checked", false);
+        var slider = $("#range").data("ionRangeSlider");
+        slider.reset();
+        $('.select-dropdown').val('Сначало недорогие');
     }
     $.ajax({
         url: location.href, method: "GET", cache: false, data: data + "&page=" + page, beforeSend: function () {

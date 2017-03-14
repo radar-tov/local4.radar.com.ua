@@ -69,7 +69,16 @@ class FilterService
             $request->merge(array('price' => Session::get('price.'.$request->get('categoryId'))));
         }
 
-
+        if($request->get('cliar') == true){
+            $request->session()->forget('filters');
+            $filters = [];
+            $request->session()->forget('orderBy');
+            $request->merge(array('orderBy' => 'price:asc'));
+            $request->session()->forget('page');
+            $request->merge(array('page' => 1));
+            $request->session()->forget('price');
+            $request->merge(array('price' => ''));
+        }
 
         $category = Category::where('id', $request->get('categoryId'))->with('children')->with('filters')->first();
 
