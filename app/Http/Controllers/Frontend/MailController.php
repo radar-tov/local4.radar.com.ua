@@ -28,7 +28,7 @@ class MailController extends Controller
         $this->auth = \Config::get('gmail');
 
         $this->mail = new PHPMailer;
-        $this->mail->SMTPDebug = 3;
+        //$this->mail->SMTPDebug = 3;
         $this->mail->isSMTP();
         $this->mail->Host = $this->auth['gmail_host'];
         $this->mail->SMTPAuth = true;
