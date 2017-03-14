@@ -117,7 +117,12 @@
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="{!! route('dashboard.orders.index') !!}">
-                            <i class="ace-icon fa fa-shopping-basket menu_top"></i> Заказы <span class="badge badge-danger"> 1 </span>
+                            <i class="ace-icon fa fa-shopping-basket menu_top"></i> Заказы
+                            <span id="order">
+                                @if(orderItemsCount() > 0)
+                                    <span class="badge badge-danger">{{ orderItemsCount() }}</span>
+                                @endif
+                            </span>
                         </a>
                     </li>
                     <li>
@@ -130,30 +135,28 @@
                             </span>
                         </a>
                     </li>
-                    {{--<li>
-                        <a href="#">
-                            <i class="ace-icon fa fa-envelope menu_top"></i> Почта <span class="badge badge-info"> 5 </span>
-                        </a>
-                    </li>--}}
                     <li>
-                        <a href="{{ route("dashboard.reviews.index") }}">
-                            <i class="ace-icon fa fa-comments-o menu_top"></i> Отзывы <span class="badge badge-purple"> 5 </span>
+                        <a href="#">
+                            <i class="ace-icon fa fa-male menu_top"></i>Онлайн
+                            {{--@if(cartItemsCount() > 0)
+                                <span class="badge badge-purple"> {{ cartItemsCount() }} </span>
+                            @endif--}}
                         </a>
                     </li>
                     <li>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Overview
-                            <i class="ace-icon fa fa-angle-down bigger-110"></i>
+                            Остальное
+                            {{--<i class="ace-icon fa fa-angle-down bigger-110"></i>--}}
                         </a>
                         <ul class="dropdown-menu dropdown-light-blue dropdown-caret">
                             <li>
-                                <a href="#">
-                                    <i class="ace-icon fa fa-eye bigger-110 blue"></i> Monthly Visitors
+                                <a href="{{ route("dashboard.reviews.index") }}">
+                                    <i class="ace-icon fa fa-comments-o menu_top"></i> Отзывы <span class="badge badge-purple"> 5 </span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <i class="ace-icon fa fa-user bigger-110 blue"></i> Active Users
+                                    <i class="ace-icon fa fa-envelope menu_top"></i> Почта <span class="badge badge-info"> 5 </span>
                                 </a>
                             </li>
                             <li>

@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BuyRequest;
 use App\Services\BuyService;
+use App\Models\Order;
 
 class OfficialController extends ServerController
 {
@@ -28,11 +29,20 @@ class OfficialController extends ServerController
         return redirect()->route('dashboard.orders.index');
     }
 
-    public function getdata(){
+    public function getdata(Order $order){
         if(cartItemsCount() > 0){
-            return "<span class='badge badge-warning'>".cartItemsCount()."</span>";
+            $data['cart'] = "<span class='badge badge-warning'>".cartItemsCount()."</span>";
         }else{
-            return '';
+            $data['cart'] = '';
         }
+
+        $order = $order->getNewOrder();
+        if($order > 0){
+            $data['order'] = "<span class='badge badge-danger'>".$order."</span>";
+        }else{
+            $data['order'] = '';
+        }
+
+        return $data;
     }
 }

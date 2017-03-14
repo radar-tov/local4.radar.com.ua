@@ -73,5 +73,9 @@ class Order extends Model
 		return $this->belongsTo(User::class);
 	}
 
+	public function getNewOrder(){
+        return $this->where('status_id', 1)->count();
+    }
+
 
 }

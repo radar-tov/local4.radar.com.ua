@@ -322,7 +322,8 @@ function getData() {
             url: "/server/getdata",
             data: {_token: token}
         }).done(function (response) {
-            $("#cart").html(response);
+            $("#cart").html(response.cart);
+            $("#order").html(response.order);
         });
     };
 }

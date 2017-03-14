@@ -113,4 +113,8 @@ class OrdersController extends AdminController
         Order::destroy($id);
 	    return redirect()->back();
     }
+
+    public function newOrder(){
+        return Order::where('status_id', 1)->count();
+    }
 }

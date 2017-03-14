@@ -75,6 +75,10 @@ function productHasDiscount($product) {
 	return false;
 }
 
+function orderItemsCount() {
+    return (new \App\Http\Controllers\Admin\OrdersController())->newOrder();
+}
+
 function cartItemsCount() {
 	return (new \App\Http\Controllers\Frontend\CartController())->calcProductsInCart();
 }
