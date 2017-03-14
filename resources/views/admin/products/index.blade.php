@@ -38,7 +38,7 @@
 
         <div class="col-xs-12">
             <br/>
-            <div class="well" style="min-height: 170px">
+            <div class="well" style="min-height: 170px; padding: 19px 0 40px 0">
                 <div class="row">
                     <div v-show="!selectedProductsIds.length">
 
@@ -151,7 +151,12 @@
                                 </div>
 
                                 <div class="col-xs-1">
-                                    <i class="fa fa-search-minus" v-on:click="delSearch()"></i>
+                                    <i class="fa fa-search-minus" v-on:click="delSearch()" style="cursor: pointer"></i>
+                                </div>
+                                <div class="col-xs-1">
+                                    <a href="{{ url('dashboard/price/download') }}" target="_blank">
+                                        <i class="fa fa-download"></i> Прайс
+                                    </a>
                                 </div>
                             </div>
 
@@ -231,7 +236,7 @@
                     <br>
                     <div class="col-xs-12" v-if="!selectedProductsIds.length">
 
-                        <div class="col-xs-6">
+                        <div class="col-xs-8" style="padding-bottom: 20px">
                             <nav v-if="products.productList.length > 0 && !selectedProductsIds.length" v-show="!loader">
                                 <ul class="pager">
                                     <li v-bind:class="{disabled : products.pagination.currentPage == 1}"
@@ -261,17 +266,11 @@
                                 Применить
                             </button>
                         </div>
-                        <div class="col-xs-1 pull-right">
-                            <button class="btn btn-sm btn-primary" v-on:click.prevent="delFilters()">
-                                Сбросить фильтры
-                            </button>
+                        <div class="col-xs-2 pull-right">
+                            <button class="btn btn-sm btn-primary" v-on:click.prevent="delFilters()"> Сбросить фильтры </button>
                         </div>
                         <div class="col-xs-1 pull-right" v-if="params.categoryId != 0">
-                            <button class="btn btn-sm btn-primary" v-on:click.prevent="showPanel()">Фильтры
-                            </button>
-                        </div>
-                        <div class="col-xs-2 pull-right">
-                            <a href="{{ url('dashboard/price/download') }}" target="_blank">Скачать прайс(монт)</a>
+                            <button class="btn btn-sm btn-primary" v-on:click.prevent="showPanel()"> Фильтры </button>
                         </div>
 
                     </div>
