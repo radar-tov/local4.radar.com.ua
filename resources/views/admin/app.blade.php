@@ -33,13 +33,12 @@
         window.jQuery || document.write("<script src='/admin/assets/js/jquery1x.min.js'>" + "<" + "/script>");
     </script>
     <![endif]-->
-
     @yield('top-scripts')
     @yield('tiny')
 </head>
 
 
-<body class="skin-3 no-skin">
+<body class="skin-3 no-skin" onmouseover="focusHere();" onmouseout="focusOut();">
 <!-- #section:basics/navbar.layout -->
 <div id="navbar" class="navbar navbar-default">
     <script type="text/javascript">
