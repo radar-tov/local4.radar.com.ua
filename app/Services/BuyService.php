@@ -134,33 +134,33 @@ class BuyService {
 	    if(env('APP_ENV') == 'production'){
             //Готовим адреса и подключение к почте
             $emailTo = Setting::pluck('feedback_email')->first();
-            $emailFrom = Setting::pluck('contact_email')->first();
 
-            if(empty($emailTo or $emailFrom)) {
+            if(empty($emailTo)) {
                 throw new Exception("Feedback email is empty! Please set email.");
             }
+
+            $auth = \Config::get('gmail');
 
             $mail = new PHPMailer;
             //$mail->SMTPDebug = 3;
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
+            $mail->Host = $auth['gmail_host'];
             $mail->SMTPAuth = true;
-            $mail->Username = $emailFrom;
-            $mail->Password = 'slmR161716';
-            $mail->SMTPSecure = 'tls';
-            $mail->Port = 587;
+            $mail->Username = $auth['gmail_username'];
+            $mail->Password = $auth['gmail_password'];
+            $mail->SMTPSecure = $auth['gmail_secure'];
+            $mail->Port = $auth['gmail_port'];
             $mail->CharSet = 'UTF-8';
             $mail->isHTML(true);
-            $mail->setFrom($emailFrom, 'Radar.com.ua');
+            $mail->setFrom($auth['gmail_username'], 'Radar.com.ua');
 
+            $body = view('emails.invoice',
+                [
+                    'order' => $this->order->load('products','payment_method','shipping_method'), 'user' => $this->user
+                ]
+            )->render();
 
             if($this->user->email){
-
-                $body = view('emails.invoice',
-                    [
-                        'order' => $this->order->load('products','payment_method','shipping_method'), 'user' => $this->user
-                    ]
-                )->render();
 
                 $mail->Subject = 'Спасибо за покупку!';
                 $mail->addAddress($this->user->email);
@@ -179,14 +179,8 @@ class BuyService {
                     );
                 }
             }
-
-
-            $body = view('emails.invoice',
-                [
-                    'order' => $this->order->load('products','payment_method','shipping_method'), 'user' => $this->user
-                ]
-            )->render();
-
+            
+            $mail->ClearAddresses();
             $mail->Subject = 'Новый заказ!';
             $mail->addAddress($emailTo, 'Администратору сайта Radar.com.ua');
             $mail->msgHTML($body);

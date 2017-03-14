@@ -30,8 +30,6 @@
 <a id="otvet" class="various fancybox.ajax" href="/otvet"></a>
 <!-- / section CONTENT  -->
 @include('frontend.partials.footer')
-<!--Modals-->
-<!-- / Modals-->
 <!-- Scripts -->
 <!-- section filter_handler -->
 @yield('filter_handler')

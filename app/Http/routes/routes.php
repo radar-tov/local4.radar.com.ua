@@ -20,7 +20,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Auth'],function(){
 	// Registration routes...
 	Route::get('auth/register', 'AuthController@getRegister');
 	Route::post('auth/register', 'AuthController@postRegister');
-	Route::controller('password','PasswordController');
+//	Route::controller('password','PasswordController');
 //	Route::get('password/email', 'PasswordController@getEmail');
 //	Route::post('password/email', 'PasswordController@postEmail');
 //	Route::get('password/reset', 'PasswordController@getEmail');

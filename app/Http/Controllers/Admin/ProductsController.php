@@ -590,7 +590,7 @@ class ProductsController extends AdminController
         $product = Product::withTrashed()->find($id);
         $product->relImages()->delete();
         $product->clones()->forceDelete();
-        $product->characteristicsValues()->delete();
+        //$product->characteristicsValues()->delete();
         $product->forceDelete();
         return redirect()->back();
     }

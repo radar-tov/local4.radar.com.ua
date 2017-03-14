@@ -117,6 +117,26 @@
                 <!-- #section:basics/navbar.nav -->
                 <ul class="nav navbar-nav">
                     <li>
+                        <a href="{!! route('dashboard.orders.index') !!}">
+                            <i class="ace-icon fa fa-shopping-basket menu_top"></i> Заказы <span class="badge badge-danger"> 1 </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route("dashboard.admincart.index") }}">
+                            <i class="ace-icon fa fa-shopping-cart menu_top"></i> Корзина <span class="badge badge-warning"> 0 </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="ace-icon fa fa-envelope menu_top"></i> Почта <span class="badge badge-info"> 5 </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route("dashboard.reviews.index") }}">
+                            <i class="ace-icon fa fa-comments-o menu_top"></i> Отзывы <span class="badge badge-purple"> 5 </span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             Overview
                             <i class="ace-icon fa fa-angle-down bigger-110"></i>
@@ -138,21 +158,6 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="ace-icon fa fa-envelope"></i> Отзывы <span class="badge badge-warning">5</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="ace-icon fa fa-envelope"></i> Заказы <span class="badge badge-warning">1</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="ace-icon fa fa-envelope"></i> Корзина <span class="badge badge-warning">0</span>
-                        </a>
                     </li>
                 </ul>
                 <!-- /section:basics/navbar.nav -->
