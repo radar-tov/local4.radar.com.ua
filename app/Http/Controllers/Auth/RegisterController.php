@@ -1,9 +1,14 @@
 <?php
 namespace App\Http\Controllers\Auth;
-use App\User;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+
+use App\Http\Controllers\Auth\ReCaptcha;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
+
 class RegisterController extends Controller
 {
     /*
@@ -22,7 +27,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/cabinet';
     /**
      * Create a new controller instance.
      *
@@ -42,7 +47,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'phone' => 'required|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
     }
@@ -56,8 +61,46 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
+            'phone' => $data['phone'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    //Переопределяем метод
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        //Для разработки
+        //Site key: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
+        ////Secret key: 6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe
+
+        // ваш секретный ключ
+//        $secret = "6LfpexcUAAAAAJEmr1veZ-1F7uzRXT8W7H8QC6UD";
+        $secret = "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe";
+        // пустой ответ
+        $response = null;
+        // проверка секретного ключа
+        $reCaptcha = new ReCaptcha($secret);
+        $sitekey = $request->input('g-recaptcha-response');
+        // if submitted check response
+        if ($sitekey) {
+            $response = $reCaptcha->verifyResponse($_SERVER["REMOTE_ADDR"], $sitekey);
+        }
+        if ($response != null && $response->success) {
+            event(new Registered($user = $this->create($request->all())));
+
+            $this->guard()->login($user);
+
+            return $this->registered($request, $user) ?: redirect()->back();
+        } else {
+            return redirect()->back();
+        }
     }
 }
