@@ -37,7 +37,7 @@ class CartController extends Controller {
             ->where('id', '=', Category::where('id', '=', $product->category->id)->value('parent_id'))
             ->get();
 
-		Cart::add(
+        Cart::instance('main')->add(
 			$id = $product->clone_of ?: $product->id,
 			$title = $product->title,
 			$qty = 1,
@@ -69,7 +69,7 @@ class CartController extends Controller {
             ->where('id', '=', Category::where('id', '=', $product->category->id)->value('parent_id'))
             ->get();
 
-        Cart::add(
+        Cart::instance('main')->add(
             $id = $product->clone_of ?: $product->id,
             $title = $product->title,
             $qty = $request->get('qty'),
@@ -93,8 +93,8 @@ class CartController extends Controller {
         return ['count' => $this->calcProductsInCart(), 'total' => $this->calcTotalPrice()];
     }
 
-    public function search($id){
-        return Cart::search(function($item) use ($id) {
+    public function searchCompare($id){
+        return Cart::instance('compare')->search(function($item) use ($id) {
             return $id == $item->id;
         })->count();
     }
@@ -111,7 +111,7 @@ class CartController extends Controller {
             ->where('id', '=', Category::where('id', '=', $product->category->id)->value('parent_id'))
             ->get();
         
-        if($this->search($product->id)) return null;
+        if($this->searchCompare($product->id)) return null;
 
 
         $chars = [];
@@ -206,6 +206,7 @@ class CartController extends Controller {
      * @return array
      */
     public function getContent() {
+        Cart::instance('main');
         return [
 			'content' => Cart::content(),
 			'stockProducts' => $this->getStockSets(),
@@ -232,13 +233,18 @@ class CartController extends Controller {
      * @param Request $request
      */
     public function updateItem(Request $request) {
+        //dd($request->all());
 		$product = $request->get('product');
         $instance = $request->get('instance');
-        $product = Cart::instance($instance)->get($product['rowid']);
-		Cart::instance($instance)
-                    ->update($product['rowid'], $request->get('qty'));
+        $product = Cart::instance($instance)->get($product['rowId']);
+		Cart::instance($instance)->update($product->rowId, $request->get('qty'));
 
-        $productsInSet = Cart::instance($instance)->search(['options' => ['main_in_set' => $product->id]]);
+
+        $productsInSet = Cart::instance($instance)->search(
+            function($item) use ($product) {
+                return $product->id == $item->options->main_in_set;
+            }
+        );
 
         if($productsInSet){
             foreach($productsInSet as $rowId){
@@ -279,7 +285,7 @@ class CartController extends Controller {
         Cart::instance('compare');
        
         $productId = $request->get('product_id');
-        $product = $this->search((int)$productId);
+        $product = $this->searchCompare((int)$productId);
         
         if($product){
             Cart::remove($product[0]);    
