@@ -126,9 +126,9 @@ class UsersController extends  AdminController
 		$user = $user->create($request->all());
 
 		if((int)$request->get('button')) {
-			return redirect()->route('dashboard.users.index')->withMessage('');
+			return redirect()->route('users.index')->withMessage('');
 		}
-		return redirect()->route('dashboard.users.edit',$user->id);
+		return redirect()->route('users.edit',$user->id);
 	}
 
 	/**
@@ -164,7 +164,7 @@ class UsersController extends  AdminController
         $userPhone = $user->where('phone', $request->phone)->first();
 
 	    if($userPhone && $userPhone->id != $id){
-            return redirect()->route('dashboard.users.edit', $id)->with('message','<h4 align="center" style="color: red">Такой номер телефона уже занят.</h4>');
+            return redirect()->route('users.edit', $id)->with('message','<h4 align="center" style="color: red">Такой номер телефона уже занят.</h4>');
         }
 
 	    $user->findOrFail($id)->update($request->all());
@@ -180,10 +180,10 @@ class UsersController extends  AdminController
         }
 
 		if((int)$request->get('button')) {
-			return redirect()->route('dashboard.users.index')->withMessage('');
+			return redirect()->route('users.index')->withMessage('');
 		}
 
-		return redirect()->route('dashboard.users.edit',$id);
+		return redirect()->route('users.edit',$id);
 	}
 
 	/**
@@ -195,7 +195,7 @@ class UsersController extends  AdminController
 	{
 		$user->findOrFail($id)->delete();
 
-		return redirect()->route('dashboard.users.index');
+		return redirect()->route('users.index');
 	}
 
 
@@ -213,7 +213,7 @@ class UsersController extends  AdminController
 			return view('admin.users.index')->withUsers($users)->withPermissions($this->permissions)->withQ($request->get('q'));
 
 		} catch(\Exception $e) {
-			return redirect()->route('dashboard.users.index')->withMessage($e->getMessage());
+			return redirect()->route('users.index')->withMessage($e->getMessage());
 		}
 	}
 

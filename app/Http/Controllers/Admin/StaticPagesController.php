@@ -23,7 +23,7 @@ class StaticPagesController extends AdminController
 
     public function create(){
         $staticPage = StaticPage::create([]);
-        return redirect()->route('dashboard.static_pages.edit', [$staticPage->id]);
+        return redirect()->route('static_pages.edit', [$staticPage->id]);
     }
 
 
@@ -54,10 +54,10 @@ class StaticPagesController extends AdminController
         
 
         if((int)$request->get('button')) {
-            return redirect()->route('dashboard.static_pages.index')->withMessage('');
+            return redirect()->route('static_pages.index')->withMessage('');
         }
 
-        return redirect()->route('dashboard.static_pages.edit',$page->id);
+        return redirect()->route('static_pages.edit',$page->id);
     }
 
     /**

@@ -45,10 +45,10 @@ class ArticlesController extends AdminController
 		$article = $article->create($request->all());
 
 		if((int)$request->get('button')) {
-			return redirect()->route('dashboard.articles.index')->withMessage('');
+			return redirect()->route('articles.index')->withMessage('');
 		}
 
-		return redirect()->route('dashboard.articles.edit',[$article->id]);
+		return redirect()->route('articles.edit',[$article->id]);
 
 	}
 
@@ -78,10 +78,10 @@ class ArticlesController extends AdminController
 		$article = $article->findOrFail($id)->update($request->all());
 
 		if((int)$request->get('button')) {
-			return redirect()->route('dashboard.articles.index')->withMessage('');
+			return redirect()->route('articles.index')->withMessage('');
 		}
 
-		return redirect()->route('dashboard.articles.edit',[$article->id]);
+		return redirect()->route('articles.edit',[$article->id]);
 
 	}
 
@@ -94,7 +94,7 @@ class ArticlesController extends AdminController
 	{
 		$article->findOrFail($id)->delete();
 
-		return redirect()->route('dashboard.articles.index');
+		return redirect()->route('articles.index');
 	}
 
 }

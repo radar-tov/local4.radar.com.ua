@@ -31,7 +31,7 @@ class FiltersController extends AdminController
 	{
 		$filter = Filter::create([]);
 
-		return redirect()->route('dashboard.filters.edit',[$filter->id]);
+		return redirect()->route('filters.edit',[$filter->id]);
 		//return view('admin.filters.create')->withFilter(new Filter);
 	}
 
@@ -47,10 +47,10 @@ class FiltersController extends AdminController
 		$filter = $filter->create($request->all());
 
 		if((int)$request->get('button')) {
-			return redirect()->route('dashboard.filters.index')->withMessage('');
+			return redirect()->route('filters.index')->withMessage('');
 		}
 
-		return redirect()->route('dashboard.filters.edit',[$filter->id])->withFilter($filter);
+		return redirect()->route('filters.edit',[$filter->id])->withFilter($filter);
 	}
 
 	/**
@@ -100,10 +100,10 @@ class FiltersController extends AdminController
 		$filter = $filter->findOrFail($id)->update($request->all())->with('values');
 
 		if((int)$request->get('button')) {
-			return redirect()->route('dashboard.filters.index')->withMessage('');
+			return redirect()->route('filters.index')->withMessage('');
 		}
 
-		return redirect()->route('dashboard.filters.edit',[$id])->withFilter($filter);
+		return redirect()->route('filters.edit',[$id])->withFilter($filter);
 	}
 
 	/**
@@ -117,7 +117,7 @@ class FiltersController extends AdminController
 	{
 		$filter->findOrFail($id)->delete();
 
-		return redirect()->route('dashboard.filters.index');
+		return redirect()->route('filters.index');
 	}
 
 	/**

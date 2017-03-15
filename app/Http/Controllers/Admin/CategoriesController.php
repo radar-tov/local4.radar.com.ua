@@ -78,10 +78,10 @@ class CategoriesController extends AdminController
 //		Characteristic::whereIn('id', $idsArray)->update(['category_id' => $category->id]);
 
 		if((int)$request->get('button')) {
-			return redirect()->route('dashboard.categories.index')->withMessage('');
+			return redirect()->route('categories.index')->withMessage('');
 		}
 
-		return redirect()->route('dashboard.categories.edit',$category->id);
+		return redirect()->route('categories.edit',$category->id);
 	}
 
 	/**
@@ -148,10 +148,10 @@ class CategoriesController extends AdminController
         $category->saveXapacts()->sync($xap);
 
 		if((int)$request->get('button')) {
-			return redirect()->route('dashboard.categories.index')->withMessage('');
+			return redirect()->route('categories.index')->withMessage('');
 		}
 
-		return redirect()->route('dashboard.categories.edit',$id);
+		return redirect()->route('categories.edit',$id);
 
 	}
 
@@ -165,7 +165,7 @@ class CategoriesController extends AdminController
 
 		$this->category->findOrFail($id)->delete();
 
-		return redirect()->route('dashboard.categories.index');
+		return redirect()->route('categories.index');
 	}
 
 	/**

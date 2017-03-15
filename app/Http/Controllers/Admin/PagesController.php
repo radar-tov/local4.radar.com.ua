@@ -41,10 +41,10 @@ class PagesController extends AdminController
 		$page = $page->create($request->all());
 
 		if((int)$request->get('button')) {
-			return redirect()->route('dashboard.pages.index');
+			return redirect()->route('pages.index');
 		}
 
-		return redirect()->route('dashboard.pages.edit',[$page->id])->withMessage('');
+		return redirect()->route('pages.edit',[$page->id])->withMessage('');
 	}
 
 	/**
@@ -70,10 +70,10 @@ class PagesController extends AdminController
 		$page = $page->findOrFail($id)->update($request->all());
 
 		if((int)$request->get('button')) {
-			return redirect()->route('dashboard.pages.index');
+			return redirect()->route('pages.index');
 		}
 
-		return redirect()->route('dashboard.pages.edit',[$page->id])->withMessage('');
+		return redirect()->route('pages.edit',[$page->id])->withMessage('');
 
 	}
 
@@ -86,7 +86,7 @@ class PagesController extends AdminController
 	{
 		$page->findOrFail($id)->delete();
 
-		return redirect()->route('dashboard.pages.index');
+		return redirect()->route('pages.index');
 	}
 
 }

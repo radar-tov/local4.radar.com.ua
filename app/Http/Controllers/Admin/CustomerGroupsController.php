@@ -44,14 +44,14 @@ class CustomerGroupsController extends AdminController
 
 
 	    if((int)$request->get('button')) {
-		    return redirect()->route('dashboard.groups.index');
+		    return redirect()->route('groups.index');
 	    }
 
 	    if((int)$request->get('button')) {
-		    return redirect()->route('dashboard.groups.index')->withMessage('');
+		    return redirect()->route('groups.index')->withMessage('');
 	    }
 
-	    return redirect()->route('dashboard.groups.edit',$group->id);
+	    return redirect()->route('groups.edit',$group->id);
     }
 
     /**
@@ -91,10 +91,10 @@ class CustomerGroupsController extends AdminController
 	    $group->customers()->sync($request->get('customers') ?: []);
 
 	    if((int)$request->get('button')) {
-		    return redirect()->route('dashboard.groups.index');
+		    return redirect()->route('groups.index');
 	    }
 
-	    return redirect()->route('dashboard.groups.edit',$id);
+	    return redirect()->route('groups.edit',$id);
     }
 
     /**
@@ -106,6 +106,6 @@ class CustomerGroupsController extends AdminController
     public function destroy($id)
     {
         CustomerGroup::destroy($id);
-	    return redirect()->route('dashboard.groups.index');
+	    return redirect()->route('groups.index');
     }
 }

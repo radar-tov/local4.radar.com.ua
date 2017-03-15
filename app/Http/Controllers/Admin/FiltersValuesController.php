@@ -58,7 +58,7 @@ class FiltersValuesController extends AdminController
 	{
 		return $values->create($request->all());
 
-//		return redirect()->route('dashboard.filter-values.edit',[$filterValue->id]);
+//		return redirect()->route('filter-values.edit',[$filterValue->id]);
 	}
 
 	/**
@@ -89,7 +89,7 @@ class FiltersValuesController extends AdminController
 	{
 		return ['success'=>true,$values->findOrFail($id)->update($request->all())];
 
-//		return redirect()->route('dashboard.filter-values.edit',[$id]);
+//		return redirect()->route('filter-values.edit',[$id]);
 	}
 
 	/**

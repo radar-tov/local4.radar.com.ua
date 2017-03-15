@@ -366,10 +366,10 @@ class ProductsController extends AdminController
 
 
         if ((int)$request->get('button')) {
-            return redirect()->route('dashboard.products.index');
+            return redirect()->route('products.index');
         }
 
-        return redirect()->route('dashboard.products.edit', $product->id);
+        return redirect()->route('products.edit', $product->id);
         /*
         $request = $this->filesHandler->saveFile($request, "pdf/");
 
@@ -387,10 +387,10 @@ class ProductsController extends AdminController
         $product->relatedProducts()->sync($request->get('selectedProductsIds') ? $idsList : []);
 
         if((int)$request->get('button')) {
-            return redirect()->route('dashboard.products.index')->withMessage('');
+            return redirect()->route('products.index')->withMessage('');
         }
 
-        return redirect()->route('dashboard.products.edit',$product->id);*/
+        return redirect()->route('products.edit',$product->id);*/
     }
 
     /**
@@ -496,10 +496,10 @@ class ProductsController extends AdminController
 
 
         if ((int)$request->get('button')) {
-            return redirect()->route('dashboard.products.index');
+            return redirect()->route('products.index');
         }
 
-        return redirect()->route('dashboard.products.edit', $id);
+        return redirect()->route('products.edit', $id);
     }
 
     /**
@@ -519,7 +519,7 @@ class ProductsController extends AdminController
             return redirect()->to($request->get('redirect'));
         }
 
-        return redirect()->route('dashboard.products.index');
+        return redirect()->route('products.index');
     }
 
 
@@ -604,7 +604,7 @@ class ProductsController extends AdminController
         $product = $this->product->onlyTrashed()->findOrFail($id);
         $product->forceDelete();
 
-        return redirect()->route('dashboard.products.trash')->withMessage('');
+        return redirect()->route('products.trash')->withMessage('');
     }
 
     // Drafts

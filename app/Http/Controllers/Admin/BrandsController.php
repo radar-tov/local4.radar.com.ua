@@ -42,10 +42,10 @@ class BrandsController extends AdminController
         $brand = Brand::create($request->all());
 
 	    if((int)$request->get('button')) {
-		    return redirect()->route('dashboard.brands.index');
+		    return redirect()->route('brands.index');
 	    }
 
-	    return redirect()->route('dashboard.brands.edit', $brand->id);
+	    return redirect()->route('brands.edit', $brand->id);
     }
 
     /**
@@ -85,10 +85,10 @@ class BrandsController extends AdminController
 	    $brand->update($request->all());
 
 	    if((int)$request->get('button')) {
-		    return redirect()->route('dashboard.brands.index');
+		    return redirect()->route('brands.index');
 	    }
 
-	    return redirect()->route('dashboard.brands.edit', $brand->id);
+	    return redirect()->route('brands.edit', $brand->id);
     }
 
     /**

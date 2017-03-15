@@ -42,10 +42,10 @@ class ShipmentMethodsController extends AdminController
         $method = ShipmentMethod::create($request->all());
 
 	    if((int)$request->get('button')) {
-		    return redirect()->route('dashboard.shipments.index');
+		    return redirect()->route('shipments.index');
 	    }
 
-	    return redirect()->route('dashboard.shipments.edit', $method->id);
+	    return redirect()->route('shipments.edit', $method->id);
     }
 
     /**
@@ -84,10 +84,10 @@ class ShipmentMethodsController extends AdminController
 	    $method->update($request->all());
 
 	    if((int)$request->get('button')) {
-		    return redirect()->route('dashboard.shipments.index');
+		    return redirect()->route('shipments.index');
 	    }
 
-	    return redirect()->route('dashboard.shipments.edit', $method->id);
+	    return redirect()->route('shipments.edit', $method->id);
     }
 
     /**

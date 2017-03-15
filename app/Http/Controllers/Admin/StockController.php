@@ -44,10 +44,10 @@ class StockController extends AdminController
         $stock->products()->sync($requestProducts ?: []);
         
         if((int)$request->get('button')) {
-            return redirect()->route('dashboard.stock.index')->withMessage('');
+            return redirect()->route('stock.index')->withMessage('');
         }
 
-        return redirect()->route('dashboard.stock.edit', $stock->id);
+        return redirect()->route('stock.edit', $stock->id);
     }
 
     /**
@@ -80,10 +80,10 @@ class StockController extends AdminController
         $stock->products()->sync($requestProducts ?: []);
 
         if((int)$request->get('button')) {
-            return redirect()->route('dashboard.stock.index')->withMessage('');
+            return redirect()->route('stock.index')->withMessage('');
         }
 
-        return redirect()->route('dashboard.stock.edit', $stock->id);
+        return redirect()->route('stock.edit', $stock->id);
     }
 
     /**
