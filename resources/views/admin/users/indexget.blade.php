@@ -13,7 +13,7 @@
         <div class="row">
 
             <div class="col-xs-6">
-                <a href="{{ route("dashboard.users.create") }}" class="btn btn-sm btn-primary"><i class="ace-icon fa fa-plus"></i>Добавить пользователя</a>
+                <a href="{{ route("users.create") }}" class="btn btn-sm btn-primary"><i class="ace-icon fa fa-plus"></i>Добавить пользователя</a>
             </div>
 
             <div class="col-xs-12">

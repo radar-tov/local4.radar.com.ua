@@ -11,7 +11,7 @@
             <div class="col-xs-12">
                 <div class="row h50">
                     <div class="col-md-4 col-md-offset-8 col-xs-12 no-pad">
-                        <form action="{!! route('dashboard.reviews.search') !!}" id="form-data" method="GET">
+                        <form action="{!! route('reviews.search') !!}" id="form-data" method="GET">
                             <div class="input-group">
                                 <input type="text" class="form-control search-query" name = 'q' value="{{ $q or '' }}" placeholder="">
                                 <span class="input-group-btn">
@@ -42,14 +42,14 @@
                             <tr>
                                 <td>
                                     @if(count($review->product))
-                                        <a href="{!! route('dashboard.products.edit',[$review->product->id]) !!}">{{ $review->product->title }}</a>
+                                        <a href="{!! route('products.edit',[$review->product->id]) !!}">{{ $review->product->title }}</a>
                                     @else
                                         <span>Продукт удален</span>
                                     @endif
                                 </td>
                                 <td>
                                     @if(count($review->user))
-                                        <a href="{!! route('dashboard.users.show',[$review->user->id]) !!}">{{ $review->user->name }}</a>
+                                        <a href="{!! route('users.show',[$review->user->id]) !!}">{{ $review->user->name }}</a>
                                     @else
                                         <span>Пользователь удален</span>
                                     @endif
@@ -85,13 +85,13 @@
                                 </td>
                                 <!-- Options -->
                                 <td class="options">
-                                    <a class="green" href="{!! route('dashboard.reviews.edit', $review->id) !!}">
+                                    <a class="green" href="{!! route('reviews.edit', $review->id) !!}">
                                         <i class="ace-icon fa fa-pencil bigger-130"></i>
                                     </a>
                                 </td>
                                 <td class="options">
                                     <div class="hidden-sm hidden-xs action-buttons">
-                                        {!! Form::open(['route'=>['dashboard.reviews.destroy', $review->id],'method'=>'delete' ]) !!}
+                                        {!! Form::open(['route'=>['reviews.destroy', $review->id],'method'=>'delete' ]) !!}
                                         <label class="red" style="display: inline-block; cursor: pointer;">
                                             <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                             {!! Form::submit('Удалить',

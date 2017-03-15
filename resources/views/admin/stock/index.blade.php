@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div>
-                <a href="{{ route("dashboard.stock.create") }}" class="btn btn-sm btn-primary">
+                <a href="{{ route("stock.create") }}" class="btn btn-sm btn-primary">
                     <i class="ace-icon fa fa-plus"></i>Добавить комплект
                 </a>
                 <br/>
@@ -33,16 +33,16 @@
                             <td>{{ $stock->title }}</td>
                             <td>{{ $stock->active ? 'Да' : 'Нет' }}</td>
                             <td>{{ date('Y-m-d', strtotime($stock->created_at)) }}</td>
-                            {{--<td><a href="{{ route('dashboard.pages.edit',[ isset($stock->page->id) ?$stock->page->id : null ]) }}">{{ $stock->page->title or '' }}</a></td>--}}
+                            {{--<td><a href="{{ route('pages.edit',[ isset($stock->page->id) ?$stock->page->id : null ]) }}">{{ $stock->page->title or '' }}</a></td>--}}
                             <!-- Options -->
                             <td class="options">
-                                <a class="green" href="{!! route('dashboard.stock.edit', $stock->id) !!}">
+                                <a class="green" href="{!! route('stock.edit', $stock->id) !!}">
                                     <i class="ace-icon fa fa-pencil bigger-130"></i>
                                 </a>
                             </td>
                             <td class="options">
                                 <div class="action-buttons">
-                                    {!! Form::open(['route'=>['dashboard.stock.destroy', $stock->id],'method'=>'delete' ]) !!}
+                                    {!! Form::open(['route'=>['stock.destroy', $stock->id],'method'=>'delete' ]) !!}
                                     <label class="red" style="display: inline-block; cursor: pointer;">
                                         <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                         {!! Form::submit('Удалить',

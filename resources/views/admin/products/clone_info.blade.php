@@ -4,7 +4,7 @@
         <div class="alert alert-warning">
             <h4>
                 Данный товар является клоном.
-                <a  href="{{ route('dashboard.products.edit', $product->clone_of) }}">
+                <a  href="{{ route('products.edit', $product->clone_of) }}">
                     Перейти к оригиналу
                 </a>
             </h4>

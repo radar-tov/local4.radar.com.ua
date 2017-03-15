@@ -23,14 +23,14 @@
     <div class="row" id="productsVue">
         <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
         <div class="col-xs-6">
-            <a href="{!! route('dashboard.products.create') !!}" class="btn btn-sm btn-primary" title="Добавить товар"
+            <a href="{!! route('products.create') !!}" class="btn btn-sm btn-primary" title="Добавить товар"
                target="_blank">
                 <i class="ace-icon fa fa-plus"></i> Добавить товар
             </a>
         </div>
 
         <div class="col-xs-6 ">
-            <a href="{!! route('dashboard.products.trash') !!}" class="btn btn-sm btn-danger pull-right"
+            <a href="{!! route('products.trash') !!}" class="btn btn-sm btn-danger pull-right"
                title="Корзина">
                 <i class="ace-icon fa  fa-trash"></i> Корзина
             </a>

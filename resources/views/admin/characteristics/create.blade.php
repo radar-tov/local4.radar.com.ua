@@ -20,7 +20,7 @@
 
 @section('content')
     @include('admin.partials.errors')
-    <form action="{!! route('dashboard.characteristics.store') !!}" method="POST" id="form-data">
+    <form action="{!! route('characteristics.store') !!}" method="POST" id="form-data">
         {!! csrf_field() !!}
         @include("admin.characteristics.form")
     </form>

@@ -27,15 +27,15 @@
             {{--<p class="col s12 deeppurple no-margin note">Обязательные поля помечены звёздочкой <span class="red-text">*</span></p>--}}
             <div id="register" class="col s12 no-padding">
                 @include('frontend.partials.errors')
-                <form id="order-form" action="{{ url('/auth/login') }}" method="post" class="registration col s12 m10 l6" >
+                <form id="order-form" action="{{ url('/login') }}" method="post" class="registration col s12 m10 l6" >
                     {!! csrf_field() !!}
                     <p class="formField">
-                        Укажите Email или Ваш номер телефона.
+                        Укажите Ваш номер телефона.
                     </p>
-                    <p class="formField">
+                    {{--<p class="formField">
                         <label for="order-email" class="col s12 m4 l4">Электронная почта:</label>
                         <input class="col s12 m6 l7" id="order-email" placeholder="введите ваш email" tabindex="4" name="email" type="text">
-                    </p>
+                    </p>--}}
                     <p class="formField">
                         <label for="order-phone" class="col s12 m4 l4">Номер телефона:</label>
                         <input class="col s12 m6 l7" id="order-phone" placeholder="введите ваш телефон" tabindex="4" name="phone" type="text">

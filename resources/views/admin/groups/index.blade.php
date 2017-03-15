@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div>
-                    <a href="{{ route("dashboard.groups.create") }}" class="btn btn-sm btn-primary">
+                    <a href="{{ route("groups.create") }}" class="btn btn-sm btn-primary">
                         <i class="fa fa-plus"></i>
                         Добавить группу
                     </a>
@@ -36,13 +36,13 @@
                                 <td class="center">{{ $group->customers->count() }}</td>
                                 <!-- Options -->
                                 <td class="options">
-                                    <a class="green" href="{!! route('dashboard.groups.edit', $group->id) !!}">
+                                    <a class="green" href="{!! route('groups.edit', $group->id) !!}">
                                         <i class="ace-icon fa fa-pencil bigger-130"></i>
                                     </a>
                                 </td>
                                 <td class="options">
                                     <div class="hidden-sm hidden-xs action-buttons">
-                                        {!! Form::open(['route'=>['dashboard.groups.destroy', $group->id],'method'=>'delete' ]) !!}
+                                        {!! Form::open(['route'=>['groups.destroy', $group->id],'method'=>'delete' ]) !!}
                                         <label class="red" style="display: inline-block; cursor: pointer;">
                                             <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                             {!! Form::submit('Удалить',

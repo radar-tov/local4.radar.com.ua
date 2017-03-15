@@ -9,7 +9,7 @@
 
 @section('page-nav')
     <div class="col-xs-12">
-        <a href="{!! route('dashboard.characteristics.create') !!}" class="btn btn-sm btn-primary" title="Добавить Параметр Товара">
+        <a href="{!! route('characteristics.create') !!}" class="btn btn-sm btn-primary" title="Добавить Параметр Товара">
             <i class="ace-icon fa fa fa-plus"></i> Добавить характеристику
         </a>
     </div>
@@ -33,24 +33,24 @@
             <tbody>
                 @foreach($characteristics as $characteristic)
                     <tr>
-                        <td><a href="{!! route('dashboard.characteristics.edit', $characteristic->id) !!}">{{ $characteristic->title }}</a></td>
+                        <td><a href="{!! route('characteristics.edit', $characteristic->id) !!}">{{ $characteristic->title }}</a></td>
                         <td>
                             {!!
                                 $characteristic->categories->map(function($item){
-                                    return "<a href=\"". route('dashboard.categories.edit',[$item->id])."\">{$item->title}</a>";
+                                    return "<a href=\"". route('categories.edit',[$item->id])."\">{$item->title}</a>";
                                 })->implode(', ')
                             !!}
                         </td>
                         <td>{{ $characteristic->slug }}</td>
                         <!-- Options -->
                         <td class="options">
-                            <a class="green" href="{!! route('dashboard.characteristics.edit', $characteristic->id) !!}">
+                            <a class="green" href="{!! route('characteristics.edit', $characteristic->id) !!}">
                                 <i class="ace-icon fa fa-pencil bigger-130"></i>
                             </a>
                         </td>
                         <td class="options">
                             <div class="hidden-sm hidden-xs action-buttons">
-                                {!! Form::open(['route'=>['dashboard.characteristics.destroy', $characteristic->id],'method'=>'delete' ]) !!}
+                                {!! Form::open(['route'=>['characteristics.destroy', $characteristic->id],'method'=>'delete' ]) !!}
                                 <label class="red" style="display: inline-block; cursor: pointer;">
                                     <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                     {!! Form::submit('Удалить',

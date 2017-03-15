@@ -13,24 +13,11 @@
 
 
 Route::group(['namespace'=>'App\Http\Controllers'],function(){
-//	Route::get('auth/login', 'AuthController@getLogin');
-//	Route::post('auth/login', 'AuthController@postLogin');
-//	Route::get('auth/logout', 'AuthController@getLogout');
 
-	// Registration routes...
-//	Route::get('auth/register', 'AuthController@getRegister');
-//	Route::post('auth/register', 'AuthController@postRegister');
-
-
+    Route::get('/logout', 'Auth\LoginController@logout');
     Route::auth();
 
-
-//	Route::controller('password','PasswordController');
-//	Route::get('password/email', 'PasswordController@getEmail');
-//	Route::post('password/email', 'PasswordController@postEmail');
-//	Route::get('password/reset', 'PasswordController@getEmail');
 });
-
 
 
 Route::get('glide/{path}', function($path){

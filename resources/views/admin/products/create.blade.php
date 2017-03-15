@@ -11,7 +11,7 @@
 @section('content')
     <div class="row">
         @include('admin.partials.errors')
-        {!! Form::open(['route' => 'dashboard.products.store', 'method' => 'POST', 'files' => true, 'id' => 'form-data']) !!}
+        {!! Form::open(['route' => 'products.store', 'method' => 'POST', 'files' => true, 'id' => 'form-data']) !!}
 
             @include("admin.products.form")
 

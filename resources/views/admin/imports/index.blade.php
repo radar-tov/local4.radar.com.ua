@@ -26,7 +26,7 @@
                 {{--</div>--}}
                 {{--<div class="col-xs-12 no-pad">--}}
                     {{--<div class="form-group">--}}
-                        {{--<form id="form-data" action="{{ route('dashboard.transfer.store') }}" method="post" enctype="multipart/form-data">--}}
+                        {{--<form id="form-data" action="{{ route('transfer.store') }}" method="post" enctype="multipart/form-data">--}}
                             {{--<input type="hidden" name="_token" value="{{ csrf_token() }}"/>--}}
                             {{--<div class="form-group">--}}
                                 {{--<input name="import" type="file"/>--}}
@@ -43,7 +43,7 @@
                     {{--</div>--}}
                 {{--</div>--}}
                 {{--<div class="col-xs-6 no-pad">--}}
-                    {{--<form action="{{ route('dashboard.transfer.rollback') }}">--}}
+                    {{--<form action="{{ route('transfer.rollback') }}">--}}
                         {{--<button type="submit"--}}
                                 {{--class="btn btn-sm btn-danger pull-right"--}}
                                 {{--{{ $backup->count() == 0 ? 'disabled' : ''}}--}}
@@ -114,7 +114,7 @@
                             </div>
                             <div class="col-xs-12 no-pad">
                                 <div class="form-group">
-                                    <form id="form-data" action="{{ route('dashboard.transfer.store') }}" method="post" enctype="multipart/form-data">
+                                    <form id="form-data" action="{{ route('transfer.store') }}" method="post" enctype="multipart/form-data">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                                         <div class="form-group">
                                             <input name="import" type="file"/>
@@ -139,7 +139,7 @@
                                     <span class="badge badge-gray">{{ $backup->count() }}</span>
                                     Откатиться
                                 </button> -->
-                                <form action="{{ route('dashboard.transfer.rollback') }}" id="rollback" name="rollback">
+                                <form action="{{ route('transfer.rollback') }}" id="rollback" name="rollback">
                                     {{--
                                         <button type="submit"
                                                 class="btn btn-sm btn-danger pull-right"
@@ -165,7 +165,7 @@
                             </div>
                             <div class="col-xs-6 no-pad">
                                 <div class="form-group">
-                                    <a href="{{ route('dashboard.transfer.export') }}" class="btn btn-sm btn-primary">
+                                    <a href="{{ route('transfer.export') }}" class="btn btn-sm btn-primary">
                                         <i class="ace-icon fa fa-plus"></i>
                                         Загрузить
                                     </a>

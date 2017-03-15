@@ -75,7 +75,7 @@
 @section('content')
     <div id="categories" class="row">
         @include('admin.partials.errors')
-        {!! Form::model($category,['route'=>['dashboard.categories.update',$category->id],'method'=>'put', 'id'=>'form-data']) !!}
+        {!! Form::model($category,['route'=>['categories.update',$category->id],'method'=>'put', 'id'=>'form-data']) !!}
             @include("admin.categories.form")
         {!! Form::close() !!}
     </div>

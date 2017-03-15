@@ -22,7 +22,7 @@
 @section('content')
     <div class="row">
         @include('admin.partials.errors')
-        {!! Form::model($slider,['route'=>['dashboard.slider2.update',$slider->id],'method'=>'put', 'id'=>'form-data']) !!}
+        {!! Form::model($slider,['route'=>['slider2.update',$slider->id],'method'=>'put', 'id'=>'form-data']) !!}
             @include('admin.slider2.form')
         {!! Form::close() !!}
     </div>

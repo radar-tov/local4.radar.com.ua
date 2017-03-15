@@ -5,18 +5,18 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
     Route::group(['prefix'=>'dashboard'], function () {
 
         // Images
-        Route::post('products/{id}/images/add',['as'=>'dashboard.products.images', 'uses'=>'ProductsController@images']);
+        Route::post('products/{id}/images/add',['as'=>'products.images', 'uses'=>'ProductsController@images']);
         //copy
-        Route::get('products/copy/{id}',['as' => 'dashboard.products.copy', 'uses' => 'ProductsController@copyProduct']);
+        Route::get('products/copy/{id}',['as' => 'products.copy', 'uses' => 'ProductsController@copyProduct']);
         // Trash
-        Route::get('products/trash',['as'=>'dashboard.products.trash', 'uses'=>'ProductsController@trash']);
-        Route::get('products/{id}/trash',['as'=>'dashboard.products.trash.restore', 'uses'=>'ProductsController@restore']);
-        Route::delete('products/{id}/trash',['as'=>'dashboard.products.trash.remove', 'uses'=>'ProductsController@remove']);
+        Route::get('products/trash',['as'=>'products.trash', 'uses'=>'ProductsController@trash']);
+        Route::get('products/{id}/trash',['as'=>'products.trash.restore', 'uses'=>'ProductsController@restore']);
+        Route::delete('products/{id}/trash',['as'=>'products.trash.remove', 'uses'=>'ProductsController@remove']);
         // Drafts
-        Route::get('products/drafts',['as'=>'dashboard.products.drafts', 'uses'=>'ProductsController@drafts']);
+        Route::get('products/drafts',['as'=>'products.drafts', 'uses'=>'ProductsController@drafts']);
 
-        Route::get('transfer/rollback',['as'=>'dashboard.transfer.rollback','uses'=>'TransferController@rollback']);
-        Route::get('transfer/export',['as'=>'dashboard.transfer.export','uses'=>'TransferController@export']);
+        Route::get('transfer/rollback',['as'=>'transfer.rollback','uses'=>'TransferController@rollback']);
+        Route::get('transfer/export',['as'=>'transfer.export','uses'=>'TransferController@export']);
         Route::resource('transfer','TransferController');
         /**
          * Products routes begin
@@ -43,7 +43,7 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         Route::post('product-actions/yandex-true','ProductsController@massYandexTrue');
         Route::post('product-actions/yandex-false','ProductsController@massYandexFalse');
 
-        Route::get('products/trash',['as'=>'dashboard.products.trash', 'uses'=>'ProductsController@trash']);
+        Route::get('products/trash',['as'=>'products.trash', 'uses'=>'ProductsController@trash']);
         Route::post('get-products', 'ProductsController@getProducts');
         Route::delete('products/destroy-from-trash/{product_id}', 'ProductsController@destroyFromTrash');
         Route::get('products/restore-from-trash/{product_id}', 'ProductsController@restoreFromTrash');
@@ -64,9 +64,9 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         Route::resource('stock', 'StockController');
 
         /* USERS */
-        Route::get('users/index',['as'=>'dashboard.users.indexGet','uses'=>'UsersController@indexGet']);
-        Route::get('users/{id}/delete',['as'=>'dashboard.users.delete','uses'=>'UsersController@delete']);
-        Route::get('users/search',['as'=>'dashboard.users.search','uses'=>'UsersController@search']);
+        Route::get('users/index',['as'=>'users.indexGet','uses'=>'UsersController@indexGet']);
+        Route::get('users/{id}/delete',['as'=>'users.delete','uses'=>'UsersController@delete']);
+        Route::get('users/search',['as'=>'users.search','uses'=>'UsersController@search']);
         Route::resource('users', 'UsersController');
         /* / USERS */
 
@@ -75,11 +75,11 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         Route::resource('articles', 'ArticlesController');
         Route::resource('sliders', 'SlidersController');
         Route::resource('slider2','Slider2Controller');
-        Route::post('categories/order', ['as' => 'dashboard.categories.order', 'uses' => 'CategoriesController@order']);
+        Route::post('categories/order', ['as' => 'categories.order', 'uses' => 'CategoriesController@order']);
         Route::resource('categories', 'CategoriesController');
         Route::resource('banners', 'BannersController');
 
-        Route::get('reviews/search',['as'=>'dashboard.reviews.search','uses'=>'ReviewsController@search']);
+        Route::get('reviews/search',['as'=>'reviews.search','uses'=>'ReviewsController@search']);
         Route::resource('reviews', 'ReviewsController');
 
         Route::post("categories/get-fields/{category_id}", "CategoriesController@loadCategoryFields");
@@ -97,14 +97,14 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
 
 
         Route::get('elfinder-popup/{input_id}',
-            ['as' => 'dashboard.elfinder-popup',
+            ['as' => 'elfinder-popup',
                 'uses' => '\Barryvdh\Elfinder\ElfinderController@showPopup'
             ]
         );
 
 
-        Route::get('/index',['as'=>'dashboard.index','uses'=>'DashboardController@getIndex']);
-        Route::put('/{id}',['as'=>'dashboard.update','uses'=>'DashboardController@putIndex']);
+        Route::get('/index',['as'=>'index','uses'=>'DashboardController@getIndex']);
+        Route::put('/{id}',['as'=>'update','uses'=>'DashboardController@putIndex']);
 
         /* PDF */
         Route::post("upload-pdf","ProductsController@uploadPDF");
@@ -120,29 +120,29 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         /* /end PDF */
 
         /* PARAMETERS */
-        Route::get("parameters/add/{categoryID}/{brandID}/{productID}", ['as'=>'dashboard.parameters.add','uses'=>'ParametersController@create']);
-        Route::post("parameters/addparams", ['as'=>'dashboard.parameters.addparams','uses'=>'ParametersController@addparams']);
-        Route::get("parameters/selection/{categoryID}/{brandID}/{productID}", ['as'=>'dashboard.parameters.selection','uses'=>'ParametersController@index']);
-        Route::post("parameters/save", ['as'=>'dashboard.parameters.save','uses'=>'ParametersController@saveParams']);
-        Route::get("parameters/list", ['as'=>'dashboard.parameters.list','uses'=>'ParametersController@show']);
-        Route::get("parameters/edit_value/{productID}/{parameterID}", ['as'=>'dashboard.parameters.edit_value','uses'=>'ParametersController@edit']);
+        Route::get("parameters/add/{categoryID}/{brandID}/{productID}", ['as'=>'parameters.add','uses'=>'ParametersController@create']);
+        Route::post("parameters/addparams", ['as'=>'parameters.addparams','uses'=>'ParametersController@addparams']);
+        Route::get("parameters/selection/{categoryID}/{brandID}/{productID}", ['as'=>'parameters.selection','uses'=>'ParametersController@index']);
+        Route::post("parameters/save", ['as'=>'parameters.save','uses'=>'ParametersController@saveParams']);
+        Route::get("parameters/list", ['as'=>'parameters.list','uses'=>'ParametersController@show']);
+        Route::get("parameters/edit_value/{productID}/{parameterID}", ['as'=>'parameters.edit_value','uses'=>'ParametersController@edit']);
         Route::get("parameters/edit_value_name/{valueID}", 'ParametersController@editValueName');
         Route::post("parameters/save_value_name", 'ParametersController@saveValueName');
-        Route::post("parameters/save_value", ['as'=>'dashboard.parameters.save_value','uses'=>'ParametersController@save_value']);
-        Route::post("parameters/getvalue", ['as'=>'dashboard.parameters.getvalue','uses'=>'ParametersController@getvalue']);
-        Route::get("parameters/edit_param_name/{paramID}", ['as'=>'dashboard.parameters.edit_param','uses'=>'ParametersController@edit_param']);
+        Route::post("parameters/save_value", ['as'=>'parameters.save_value','uses'=>'ParametersController@save_value']);
+        Route::post("parameters/getvalue", ['as'=>'parameters.getvalue','uses'=>'ParametersController@getvalue']);
+        Route::get("parameters/edit_param_name/{paramID}", ['as'=>'parameters.edit_param','uses'=>'ParametersController@edit_param']);
         Route::get("parameters/edit_param/{catID}/{brandID}/{productID}/{ID}", 'ParametersController@editParamName');
-        Route::post("parameters/save_param", ['as'=>'dashboard.parameters.save_param','uses'=>'ParametersController@save_param']);
-        Route::post("parameters/save_param_name", ['as'=>'dashboard.parameters.save_param','uses'=>'ParametersController@saveParamName']);
-        Route::post("parameters/delete", ['as'=>'dashboard.parameters.delete','uses'=>'ParametersController@delete']);
+        Route::post("parameters/save_param", ['as'=>'parameters.save_param','uses'=>'ParametersController@save_param']);
+        Route::post("parameters/save_param_name", ['as'=>'parameters.save_param','uses'=>'ParametersController@saveParamName']);
+        Route::post("parameters/delete", ['as'=>'parameters.delete','uses'=>'ParametersController@delete']);
         Route::get("parameters/get", 'ParametersController@getParam');
         Route::get("parameters-get-order", 'ParametersController@orderList');
         Route::post("parameters/order", 'ParametersController@orderSave');
         /* /end PARAMETER */
 
         /* FILTERS */
-        Route::post('values/{id}/filter',['as'=>'dashboard.values.filter', 'uses'=>'FiltersValuesController@fetchByFilter']);
-        Route::post('values/order',['as'=>'dashboard.values.order', 'uses'=>'FiltersValuesController@order']);
+        Route::post('values/{id}/filter',['as'=>'values.filter', 'uses'=>'FiltersValuesController@fetchByFilter']);
+        Route::post('values/order',['as'=>'values.order', 'uses'=>'FiltersValuesController@order']);
         Route::post('filters/get', 'FiltersController@getFilters');
         Route::resource('filters', 'FiltersController');
         Route::put('values/{id}', 'FiltersValuesController@update');
@@ -151,10 +151,10 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         /* /end FILTERS */
 
         /* CHRACTERISTICS */
-        Route::post('characteristics_value/{id}/characteristics',['as'=>'dashboard.values.characteristics', 'uses'=>'CharacteristicsValuesController@fetchByCharacteristic']);
-        Route::post('characteristics_value/order',['as'=>'dashboard.characteristics_value.order', 'uses'=>'CharacteristicsValuesController@order']);
+        Route::post('characteristics_value/{id}/characteristics',['as'=>'values.characteristics', 'uses'=>'CharacteristicsValuesController@fetchByCharacteristic']);
+        Route::post('characteristics_value/order',['as'=>'characteristics_value.order', 'uses'=>'CharacteristicsValuesController@order']);
         Route::post('characteristics/get', 'CharacteristicsController@getCharact');
-        Route::get("characteristics/{id}/edit", ['as'=>'dashboard.characteristics.edit', 'uses'=>'CharacteristicsController@edit']);
+        Route::get("characteristics/{id}/edit", ['as'=>'characteristics.edit', 'uses'=>'CharacteristicsController@edit']);
         Route::resource('characteristics', 'CharacteristicsController');
         Route::resource('characteristics_value', 'CharacteristicsValuesController');
         /* /end CHRACTERISTICS */
@@ -172,7 +172,7 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         /* /end PRICE */
 
         /* НОВАЯ ПОЧТА */
-        Route::get('novaposhta/index', ['as' => 'dashboard.novaposhta.index', 'uses' => 'NovaposhtaController@index']);
+        Route::get('novaposhta/index', ['as' => 'novaposhta.index', 'uses' => 'NovaposhtaController@index']);
         /* /end НОВАЯ ПОЧТА */
 
         /* API */
@@ -185,7 +185,7 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         Route::post('country/get', 'CountrysController@get');
         /* /end Country */
         /* Cart */
-        Route::get('admincart', ['as' => 'dashboard.admincart.index', 'uses' => 'AdminCartController@index']);
+        Route::get('admincart', ['as' => 'admincart.index', 'uses' => 'AdminCartController@index']);
         /* / Cart */
     });
 

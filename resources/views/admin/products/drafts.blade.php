@@ -9,15 +9,15 @@
 
 @section('page-nav')
         <div class="col-xs-12">
-            <a href="{!! route('dashboard.products.create') !!}" class="btn btn-sm btn-primary" title="Добавить товар">
+            <a href="{!! route('products.create') !!}" class="btn btn-sm btn-primary" title="Добавить товар">
                 <i class="ace-icon fa fa-2x fa-plus-circle"></i>
             </a>
-            <a href="{!! route('dashboard.products.trash') !!}" class="btn btn-info btn-white  pull-right" title="Корзина">
+            <a href="{!! route('products.trash') !!}" class="btn btn-info btn-white  pull-right" title="Корзина">
                 <i class="ace-icon fa fa-2x fa-trash"></i>
             </a>
 
             {{--
-                <a href="{!! route('dashboard.products.drafts') !!}" class="btn btn-sm btn-primary pull-right" title="Черновики">
+                <a href="{!! route('products.drafts') !!}" class="btn btn-sm btn-primary pull-right" title="Черновики">
                     <i class="ace-icon fa fa-2x fa-pencil-square-o"></i>
                 </a>
             --}}
@@ -57,7 +57,7 @@
                         <td>{{ $product->category->title or "Не указана" }}</td>
                         <td>{{ $product->created_at }}</td>
                         <td class="options">
-                            <a class="green" href="{!! route('dashboard.products.edit', $product->id) !!}">
+                            <a class="green" href="{!! route('products.edit', $product->id) !!}">
                                 <i class="ace-icon fa fa-pencil bigger-130"></i>
                             </a>
                         </td>
@@ -66,7 +66,7 @@
                                 <label for="destroy" class="red pointer" style="display: inline-block;">
                                     <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                 </label>
-                                {!! Form::open(['route'=>['dashboard.products.destroy', $product->id],'method'=>'delete', 'class'=>'hide' ]) !!}
+                                {!! Form::open(['route'=>['products.destroy', $product->id],'method'=>'delete', 'class'=>'hide' ]) !!}
                                     <input type="hidden" name="redirect" value="dashboard/products/drafts"/>
                                     {!! Form::submit('Удалить',["class" => "ace-icon fa fa-trash-o bigger-120", "id" => "destroy", "style" => "display:none"]) !!}
                                 {!! Form::close() !!}

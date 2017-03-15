@@ -9,10 +9,11 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Laravelrus\LocalizedCarbon\Traits\LocalizedEloquentTrait;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Eloquent implements AuthenticatableContract, CanResetPasswordContract
 {
-    use Authenticatable, CanResetPassword, LocalizedEloquentTrait;
+    use Authenticatable, CanResetPassword, LocalizedEloquentTrait, Notifiable;
 
 	const ADMIN_ID = 1; // for more security set -50 , for example
 	const CUSTOMER_ID = 2;

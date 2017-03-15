@@ -9,7 +9,7 @@
 
 @section('page-nav')
     <div class="col-xs-12">
-        <a href="{!! route('dashboard.cena.create') !!}" class="btn btn-sm btn-primary cena_create fancybox.ajax" title="Добавить группу цен">
+        <a href="{!! route('cena.create') !!}" class="btn btn-sm btn-primary cena_create fancybox.ajax" title="Добавить группу цен">
             <i class="ace-icon fa fa fa-plus"></i> Добавить группу цен
         </a>
     </div>

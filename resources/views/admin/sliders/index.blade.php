@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div>
-                    <a href="{{ route("dashboard.sliders.create") }}" class="btn btn-sm btn-primary"><i class="ace-icon fa fa-plus"></i>Добавить слайдер</a>
+                    <a href="{{ route("sliders.create") }}" class="btn btn-sm btn-primary"><i class="ace-icon fa fa-plus"></i>Добавить слайдер</a>
                     <br/>
                     <br/>
                 </div>
@@ -47,13 +47,13 @@
                                 </td>
                                 <!-- Options -->
                                 <td>
-                                    <a class="green" href="{!! route('dashboard.sliders.edit', $slider->id) !!}">
+                                    <a class="green" href="{!! route('sliders.edit', $slider->id) !!}">
                                         <i class="ace-icon fa fa-pencil bigger-130"></i>
                                     </a>
                                 </td>
                                 <td>
                                     <div class="hidden-sm hidden-xs action-buttons">
-                                        {!! Form::open(['route'=>['dashboard.sliders.destroy', $slider->id],'method'=>'delete' ]) !!}
+                                        {!! Form::open(['route'=>['sliders.destroy', $slider->id],'method'=>'delete' ]) !!}
                                         <label class="red" style="display: inline-block; cursor: pointer;">
                                             <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                             {!! Form::submit('Удалить',

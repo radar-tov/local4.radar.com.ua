@@ -19,7 +19,7 @@
 
 @section('content')
         @include('admin.partials.errors')
-        <form action="{!! route('dashboard.characteristics.update',[$characteristic->id]) !!}" method="POST" id="form-data">
+        <form action="{!! route('characteristics.update',[$characteristic->id]) !!}" method="POST" id="form-data">
             {!! csrf_field() !!}
             <input name="_method" type="hidden" value="PUT">
             @include("admin.characteristics.form")

@@ -70,7 +70,7 @@
                         title="Сохранить и выйти">
                     <i class="ace-icon fa fa-chevron-circle-up "></i> Сохранить и выйти
                 </button>
-                <a href="{!! route('dashboard.products.create') !!}" class="btn btn-sm btn-primary pull-right" title="Добавить товар"
+                <a href="{!! route('products.create') !!}" class="btn btn-sm btn-primary pull-right" title="Добавить товар"
                    target="_blank">
                     <i class="ace-icon fa fa-plus"></i> Добавить товар
                 </a>

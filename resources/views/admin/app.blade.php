@@ -85,14 +85,14 @@
                     <ul class="user-menu dropdown-menu dropdown-menu-right dropdown-yellow dropdown-caret dropdown-close">
                         @if(isset($currentUser))
                             <li>
-                                <a href="{!! route('dashboard.users.edit',[$currentUser->id]) !!}">
+                                <a href="{!! route('users.edit',[$currentUser->id]) !!}">
                                     <i class="ace-icon fa fa-user"></i> Мой профиль
                                 </a>
                             </li>
                         @endif
                         <li class="divider"></li>
                         <li>
-                            <a href="/auth/logout">
+                            <a href="/logout">
                                 <i class="ace-icon fa fa-power-off"></i> Выход
                             </a>
                         </li>
@@ -116,7 +116,7 @@
                 <!-- #section:basics/navbar.nav -->
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="{!! route('dashboard.orders.index') !!}">
+                        <a href="{!! route('orders.index') !!}">
                             <i class="ace-icon fa fa-shopping-basket menu_top"></i> Заказы
                             <span id="order">
                                 @if(orderItemsCount() > 0)
@@ -126,7 +126,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route("dashboard.admincart.index") }}">
+                        <a href="{{ route("admincart.index") }}">
                             <i class="ace-icon fa fa-shopping-cart menu_top"></i> Корзина
                             <span id="cart">
                                 @if(cartItemsCount() > 0)
@@ -150,7 +150,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-light-blue dropdown-caret">
                             <li>
-                                <a href="{{ route("dashboard.reviews.index") }}">
+                                <a href="{{ route("reviews.index") }}">
                                     <i class="ace-icon fa fa-comments-o menu_top"></i> Отзывы <span class="badge badge-purple"> 5 </span>
                                 </a>
                             </li>

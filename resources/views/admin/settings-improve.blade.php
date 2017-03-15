@@ -25,7 +25,7 @@
     <div class="row">
         <div class="col-xs-12">
 
-            {!! Form::model($settings,['route'=>['dashboard.update',$settings->id],'method'=>'put', 'id'=>'form-data']) !!}
+            {!! Form::model($settings,['route'=>['update',$settings->id],'method'=>'put', 'id'=>'form-data']) !!}
                 <!-- PAGE CONTENT BEGINS -->
                 <div class="tabbable">
                     <!-- #section:pages/faq -->
