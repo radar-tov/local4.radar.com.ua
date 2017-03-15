@@ -93,6 +93,12 @@ class CartController extends Controller {
         return ['count' => $this->calcProductsInCart(), 'total' => $this->calcTotalPrice()];
     }
 
+    public function search($id){
+        return Cart::search(function($item) use ($id) {
+            return $id == $item->id;
+        })->count();
+    }
+
 
     public function addToCompare(Request $request)
     {
@@ -105,7 +111,7 @@ class CartController extends Controller {
             ->where('id', '=', Category::where('id', '=', $product->category->id)->value('parent_id'))
             ->get();
         
-        if(Cart::search(['id' => $product->id])) return null;
+        if($this->search($product->id)) return null;
 
 
         $chars = [];
@@ -273,7 +279,7 @@ class CartController extends Controller {
         Cart::instance('compare');
        
         $productId = $request->get('product_id');
-        $product = Cart::search(['id' => (int)$productId]);
+        $product = $this->search((int)$productId);
         
         if($product){
             Cart::remove($product[0]);    

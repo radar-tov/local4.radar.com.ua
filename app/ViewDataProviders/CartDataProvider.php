@@ -40,10 +40,20 @@ class CartDataProvider {
 
         $content = Cart::content();
         $content = $content->groupBy("options.category_name");
-	
-       
 
         return $content ;
+    }
+
+    public function search($id){
+	    return Cart::search(function($item) use ($id) {
+            return $id == $item->id;
+        })->count();
+    }
+
+    public function searchCompare($id){
+        return Cart::instance('compare')->search(function($item) use ($id) {
+            return $id == $item->id;
+        })->count();
     }
 
 }

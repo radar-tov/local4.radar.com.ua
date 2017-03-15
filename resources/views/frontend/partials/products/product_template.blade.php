@@ -1,4 +1,4 @@
-{{--{{ dump($product) }}--}}
+@inject('cartProvider', '\App\ViewDataProviders\CartDataProvider')
 <div class="col s12 m4 l4 item-inner" style="margin-top: 7px">
     <div class="card item itemAnim{{ $product->id }}">
         <div class="item-image">
@@ -73,7 +73,7 @@
                             name="addtocart"
                             data-productId="{{ $product->id }}"
                             class="addtocart-button-hover buy"
-                            value="{{ Cart::search(['id' => $product->id]) ? 'В корзине' : 'Купить' }}"
+                            value="{{ $cartProvider->search($product->id) ? 'В корзине' : 'Купить' }}"
                             title="Купить">
                 </div>
             </div>
@@ -171,7 +171,8 @@
                             name="compare"
                             data-productId="{{ $product->id }}"
                             class="compare-button-hover compare anim"
-                            value="{{ Cart::instance('compare')->search(['id' => $product->id]) ? 'В сравнении' : 'Сравнить' }}"
+                            value="{{ $cartProvider->searchCompare($product->id) ? 'В сравнении' : 'Сравнить' }}"
+                            {{--value="{{ Cart::instance('compare')->search(['id' => $product->id]) ? 'В сравнении' : 'Сравнить' }}"--}}
                             title="Сравнить">
                 </div>
                 <div class="addtocart-box-hover">
@@ -181,7 +182,7 @@
                             onclick="yaCounter39848700.reachGoal('addCart'); ga('send', 'event', 'Knopka', 'addCart'); return true;"
                             data-productId="{{ $product->id }}"
                             class="addtocart-button-hover buy anim"
-                            value="{{ Cart::search(['id' => $product->id]) ? 'В корзине' : 'Добавить в корзину' }}"
+                            value="{{ $cartProvider->search($product->id) ? 'В корзине' : 'Добавить в корзину' }}"
                             title="добавить в корзину">
                 </div>
             </div>
