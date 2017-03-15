@@ -31,9 +31,6 @@
 <!-- / section CONTENT  -->
 @include('frontend.partials.footer')
 <!-- Scripts -->
-<!-- section filter_handler -->
-@yield('filter_handler')
-<!-- / section filter_handler -->
 <!-- section bottom-scripts -->
 <script type="text/javascript" src="{{ elixir('js/frontend/all.js') }}"></script>
 @yield('bottom-scripts')

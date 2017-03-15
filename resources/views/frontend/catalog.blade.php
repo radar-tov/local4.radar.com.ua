@@ -77,12 +77,7 @@
 
 @endsection
 
-@section('filter_handler')
-
-@include('frontend.partials.scripts.filter_handler')
-
-@endsection
 
 @section('bottom-scripts')
-
+    @include('frontend.partials.scripts.filter_handler')
 @endsection
