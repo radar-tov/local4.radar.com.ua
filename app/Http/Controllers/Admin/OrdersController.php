@@ -96,10 +96,10 @@ class OrdersController extends AdminController
         Order::find($id)->update($request->all());
 
 	    if((int)$request->get('button')) {
-		    return redirect()->route('dashboard.orders.index');
+		    return redirect()->route('orders.index');
 	    }
 
-	    return redirect()->route('dashboard.orders.show', $id);
+	    return redirect()->route('orders.show', $id);
     }
 
     /**
