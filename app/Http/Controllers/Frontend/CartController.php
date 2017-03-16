@@ -96,7 +96,7 @@ class CartController extends Controller {
     public function searchCompare($id){
         return Cart::instance('compare')->search(function($item) use ($id) {
             return $id == $item->id;
-        })->count();
+        });
     }
 
 
@@ -156,8 +156,6 @@ class CartController extends Controller {
     {
         Cart::instance('compare');
         return Cart::count();
-        
-
     }
 
     /**
@@ -220,11 +218,8 @@ class CartController extends Controller {
     
     public function getToCompare()
     {
-
         Cart::instance('compare');
-
         $content = Cart::content();
-
         return $content->groupBy("options.category_name");
     }
 
@@ -258,11 +253,11 @@ class CartController extends Controller {
      * @return array
      */
     public function deleteItem(Request $request) {
-        $rowId = $request->get('rowid');
+        $rowId = $request->get('rowId');
 
-        $product = Cart::get($rowId);
+        $product = Cart::instance('main')->get($rowId);
 
-//        dd(session('stocks'));
+        //dd($product, session('stocks'));
 
         if(!$product){
             foreach(session('stocks') as $instance){
@@ -275,7 +270,7 @@ class CartController extends Controller {
             Cart::instance($product->options->instance)->destroy();
             $request->session()->forget('stocks.'.$product->options->stock);
         } else {
-            Cart::remove($product->rowid);
+            Cart::instance('main')->remove($product->rowId);
         }
 
 		return [true];
@@ -283,16 +278,14 @@ class CartController extends Controller {
 
     public function deleteItemFromCompare(Request $request){
         Cart::instance('compare');
-       
         $productId = $request->get('product_id');
         $product = $this->searchCompare((int)$productId);
-        
-        if($product){
-            Cart::remove($product[0]);    
-        }
-        
-        return "OK";
 
+        //dd($product->first()->rowId);
+        if($product){
+            Cart::remove($product->first()->rowId);
+        }
+        return "OK";
     }
 
     /**
@@ -323,8 +316,7 @@ class CartController extends Controller {
                 $stockProductsTotal[] = Cart::instance($stockInstance)->total();
             }
         }
-        $sum = Cart::instance('main')->total() + array_sum($stockProductsTotal);
-        return $sum;
+        return (int)Cart::instance('main')->total() + array_sum($stockProductsTotal);
     }
 
     public function getStockSets()

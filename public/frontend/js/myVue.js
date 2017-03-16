@@ -1,9 +1,17 @@
 new Vue({
-    el: "#cart", data: {cart: {}, token: null, len: 0, total: 0, stockProducts: null}, ready: function () {
+    el: "#cart", data: {
+        cart: {},
+        token: null,
+        len: 0,
+        total: 0,
+        stockProducts: null
+    },
+    ready: function () {
         var vue = this;
         vue.getContent();
         $(this.$$.cartContent).show();
-    }, methods: {
+    },
+    methods: {
         getContent: function () {
             var vue = this;
             $(this.$$.cartContent).css("opacity", ".4");
@@ -20,7 +28,7 @@ new Vue({
             });
         }, deleteItem: function (id) {
             var vue = this;
-            $.post("/cart/delete_item", {_token: this.token, rowid: id}).done(function () {
+            $.post("/cart/delete_item", {_token: this.token, rowId: id}).done(function () {
                 vue.getContent();
             });
         }, updateItem: function (product, _qty) {

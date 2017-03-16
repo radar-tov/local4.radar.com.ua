@@ -80,9 +80,8 @@
                                debounce="500"
                                class="item-quantity"
                                v-show="product.id == product.options.main_in_set">
-
                         <div class="options" v-show="product.id == product.options.main_in_set">
-                            <button type="submit" v-on="click: deleteItem(product.rowid)"><i class="fa fa-trash"></i></button>
+                            <button type="submit" v-on="click: deleteItem(product.rowId)"><i class="fa fa-trash"></i></button>
                         </div>
                     </div>
                     <div class="col s3 m3 center">
@@ -121,7 +120,7 @@
                             v-attr='disabled: product.options.in_set_with'>
 
                         <div class="options">
-                            <button type="submit" v-on="click: deleteItem(product.rowid)"><i class="fa fa-trash"></i></button>
+                            <button type="submit" v-on="click: deleteItem(product.rowId)"><i class="fa fa-trash"></i></button>
                         </div>
                     </div>
                     <div class="col s3 m2 center">
