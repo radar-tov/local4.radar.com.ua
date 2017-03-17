@@ -98,13 +98,14 @@ function productInCart($product) {
 		$prod = Cart::instance($instance)->search(function($item) use ($id) {
             return $id == $item->id;
         });
-		if ($prod) {
-			break;
+		if (!emptyArray($prod)) {
+		    return true;
+		    break;
 		}
 
 	}
 
-	return !!$prod;
+	return false;
 }
 
  function calcProductsInCompare()

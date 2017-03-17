@@ -140,7 +140,7 @@
                                            onclick="yaCounter39848700.reachGoal('addCart'); ga('send', 'event', 'Knopka', 'addCart'); return true;"
                                            data-productId="{{ $product->id }}"
                                            data-productPrice="{{ $product->getPrice() }}"
-                                           value="@if($product->available==1) {{ productInCart($product) ? 'В корзине' : 'Купить' }} @elseif($product->available==2) Под заказ @endif"
+                                           value="@if($product->available==1) {{ $cartProvider->search($product->id) ? 'В корзине' : 'Купить' }} @elseif($product->available==2) Под заказ @endif"
                                            title="@if($product->available==1) Купить @elseif($product->available==2) Под заказ @elseif($product->available==0) Нет в наличии @endif"
                                            @if($product->available != 1) disabled @endif>
                                 </div>
