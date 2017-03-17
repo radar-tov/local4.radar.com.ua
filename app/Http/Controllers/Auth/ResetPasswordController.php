@@ -34,7 +34,7 @@ class ResetPasswordController extends Controller
 
     public function showResetForm(Request $request, $token = null)
     {
-        return view('frontend/reset')->with(
+        return view('frontend.reset')->with(
             ['token' => $token, 'email' => $request->email]
         );
     }
