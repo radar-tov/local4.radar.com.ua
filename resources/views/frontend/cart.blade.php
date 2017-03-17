@@ -15,8 +15,6 @@
 
 
 @section('content')
-
-{{ dump(Session::all()) }}
     <section class="breadcrumbs">
     <div class="container">
         <div class="row">
