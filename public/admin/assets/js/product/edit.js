@@ -49,7 +49,7 @@ var productVue = new Vue({
         }
 
         this.$http.get('/dashboard/helpers/translate').then(function (response) {
-            this.translate = response;});
+            this.translate = response.body;});
         this.getRelatedProducts();
     },
 

@@ -1,6 +1,5 @@
-@inject('cartProvider', '\App\ViewDataProviders\CartDataProvider')
-
 @extends('frontend.layout')
+
 
 @section('seo')
     <title xmlns="http://www.w3.org/1999/html">{{ $product->meta_title ?: $product->title }}</title>
@@ -57,26 +56,19 @@
                         <img src="/frontend/images/sale.png" class="sale-img">
                     @endif
                     <div class="listLightbox">
-                        <a class="fancybox" rel="gallery" href="{{ $product->images->first()->path }}">
-
-                            @if(count($product->thumbnail) && file_exists(public_path($product->thumbnail->first()->path)))
-                                {{--<a class="bigImage"--}}
-                                   {{--href="{{ $product->thumbnail->first()->path }}"--}}
-                                   {{--data-lightbox="example"--}}
-                                   {{--data-title="{{ $product->title }}">--}}
+                        @if(count($product->thumbnail) && file_exists(public_path($product->thumbnail->first()->path)))
+                            <a class="fancybox" rel="gallery" href="{{ $product->images->first()->path }}">
                                 <img class="example-image index_image" src="{{ $product->thumbnail->first()->path }}"
                                      style="min-height: 350px; min-width: 350px"
                                      alt="{{ $product->title }}"/>
-                                {{--</a>--}}
-                            @else
-                                <img class="example-image index_image" src="/frontend/images/default.png" alt="{{ $product->title }}"/>
-                            @endif
+                            </a>
+                        @else
+                            <img class="example-image index_image" src="/frontend/images/default.png" alt="{{ $product->title }}"/>
+                        @endif
 
-                            @if(hasGift($product))
-                                <div class="appointment"><img src="/frontend/images/present.png"/></div>
-                            @endif
-                        </a>
-
+                        @if(hasGift($product))
+                            <div class="appointment"><img src="/frontend/images/present.png"/></div>
+                        @endif
                         {{--@if(count($product->thumbnail) && file_exists(public_path($product->images->first()->path)))--}}
                             {{--@foreach($product->images as $key => $image)--}}
                                 {{--<li>--}}
@@ -140,7 +132,7 @@
                                            onclick="yaCounter39848700.reachGoal('addCart'); ga('send', 'event', 'Knopka', 'addCart'); return true;"
                                            data-productId="{{ $product->id }}"
                                            data-productPrice="{{ $product->getPrice() }}"
-                                           value="@if($product->available==1) {{ $cartProvider->search($product->id) ? 'В корзине' : 'Купить' }} @elseif($product->available==2) Под заказ @endif"
+                                           value="@if($product->available==1) {{ productInCart($product) ? 'В корзине' : 'Купить' }} @elseif($product->available==2) Под заказ @endif"
                                            title="@if($product->available==1) Купить @elseif($product->available==2) Под заказ @elseif($product->available==0) Нет в наличии @endif"
                                            @if($product->available != 1) disabled @endif>
                                 </div>
@@ -165,7 +157,7 @@
                                            class="addtocart-button compare"
                                            data-productId="{{ $product->id }}"
                                            class="compare-button-hover compare anim"
-                                           value="{{ $cartProvider->searchCompare( $product->id) ? 'В сравнении' : 'Сравнить' }}"
+                                           value="{{ Cart::instance('compare')->search(['id' => $product->id]) ? 'В сравнении' : 'Сравнить' }}"
                                            title="Сравнить">
 
                                 </div>
