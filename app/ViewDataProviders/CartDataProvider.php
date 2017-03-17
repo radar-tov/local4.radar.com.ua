@@ -45,7 +45,7 @@ class CartDataProvider {
     }
 
     public function search($id){
-	    return Cart::search(function($item) use ($id) {
+	    return Cart::instance('main')->search(function($item) use ($id) {
             return $id == $item->id;
         })->count();
     }

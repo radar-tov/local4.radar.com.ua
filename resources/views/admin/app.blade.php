@@ -35,6 +35,7 @@
     <![endif]-->
     @yield('top-scripts')
     @yield('tiny')
+    <script>var fokus;function focusHere(){window.fokus=true;}function focusOut(){window.fokus=false;}</script>
 </head>
 
 

@@ -93,13 +93,6 @@ class CartController extends Controller {
         return ['count' => $this->calcProductsInCart(), 'total' => $this->calcTotalPrice()];
     }
 
-    public function searchCompare($id){
-        return Cart::instance('compare')->search(function($item) use ($id) {
-            return $id == $item->id;
-        });
-    }
-
-
     public function addToCompare(Request $request)
     {
 
@@ -110,9 +103,8 @@ class CartController extends Controller {
         $parentCategorySlug = Category::select('slug', 'title')
             ->where('id', '=', Category::where('id', '=', $product->category->id)->value('parent_id'))
             ->get();
-        
-        if($this->searchCompare($product->id)) return null;
 
+        if(!emptyArray($this->searchCompare($product->id))) return null;
 
         $chars = [];
         foreach($product->sortedValues($product->category_id) as $field){
@@ -275,6 +267,12 @@ class CartController extends Controller {
 
 		return [true];
 	}
+
+    public function searchCompare($id){
+        return Cart::instance('compare')->search(function($item) use ($id) {
+            return $id == $item->id;
+        });
+    }
 
     public function deleteItemFromCompare(Request $request){
         Cart::instance('compare');

@@ -5318,8 +5318,8 @@ p.note {
 }
 
 .mini-cart {
-    border-radius: 50px;
-    /*float: right;*/
+    width: 60%;
+    float: left;
     margin: 0 0 7px
 }
 

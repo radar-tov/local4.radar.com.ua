@@ -1,5 +1,6 @@
-@extends('frontend.layout')
+@inject('cartProvider', '\App\ViewDataProviders\CartDataProvider')
 
+@extends('frontend.layout')
 
 @section('seo')
     <title xmlns="http://www.w3.org/1999/html">{{ $product->meta_title ?: $product->title }}</title>
@@ -164,7 +165,7 @@
                                            class="addtocart-button compare"
                                            data-productId="{{ $product->id }}"
                                            class="compare-button-hover compare anim"
-                                           value="{{ Cart::instance('compare')->search(['id' => $product->id]) ? 'В сравнении' : 'Сравнить' }}"
+                                           value="{{ $cartProvider->searchCompare( $product->id) ? 'В сравнении' : 'Сравнить' }}"
                                            title="Сравнить">
 
                                 </div>

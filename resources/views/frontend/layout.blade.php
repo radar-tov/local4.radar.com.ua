@@ -18,6 +18,7 @@
     @yield('top-scripts')
     <!-- / section top-scripts  -->
     @include('frontend.googleAnalistic')
+    <script>var fokus;function focusHere(){window.fokus=true;}function focusOut(){window.fokus=false;}</script>
     <!-- / SCRIPTS  -->
 </head>
 <body onmouseover="focusHere();" onmouseout="focusOut();">
