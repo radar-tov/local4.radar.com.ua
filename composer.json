@@ -31,7 +31,9 @@
         "symfony/dom-crawler": "~3.1",
         "symfony/css-selector": "~2.1",
         "barryvdh/laravel-debugbar": "^2.3",
-        "barryvdh/laravel-ide-helper": "^2.3"
+        "barryvdh/laravel-ide-helper": "^2.3",
+        "laravel/dusk": "^1.0",
+        "phpspec/phpspec": "^3.2"
     },
     "autoload": {
         "classmap": [
@@ -47,15 +49,23 @@
     "autoload-dev": {
         "classmap": [
             "tests/TestCase.php"
-        ]
+        ],
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     },
     "scripts": {
         "post-install-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postInstall",
             "php artisan optimize"
         ],
+        "pre-update-cmd": [
+            "php artisan clear-compiled"
+        ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "php artisan ide-helper:generate",
+            "php artisan ide-helper:meta",
             "php artisan optimize"
         ],
         "post-root-package-install": [

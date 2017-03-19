@@ -139,6 +139,7 @@ return [
 	    Laravelrus\LocalizedCarbon\LocalizedCarbonServiceProvider::class,
 	    Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
         Illuminate\Notifications\NotificationServiceProvider::class,
+        Laravel\Dusk\DuskServiceProvider::class,
 
         /*
          * Application Service Providers...
