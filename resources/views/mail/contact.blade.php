@@ -31,6 +31,7 @@
             <p>Номер телефона: {{ $phone }}</p>
             <p>Комментарий: {{ $comment }}</p>
             <p>Время отправления: {{ date("Y-m-d h:i:s") }}</p>
+            <p>IP: {{ $_SERVER['REMOTE_ADDR'] }}</p>
         </td>
     </tr>
     <tr>
