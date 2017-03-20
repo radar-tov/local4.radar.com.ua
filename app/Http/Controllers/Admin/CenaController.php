@@ -115,10 +115,10 @@ class CenaController extends AdminController
             $out .= "<p>Товар:".$product->title."</p>";
             if($product->base_price != 0){
 
-                $product->price = round(($product->base_price * $cenagrup->curs), 2);
+                $product->price = round(($product->base_price * $cenagrup->curs));
                 $out .= "<p>Цена - ".$product->price."</p>";
 
-                $product->out_price = round(($product->base_price * $cenagrup->curs), 2);
+                $product->out_price = round(($product->base_price * $cenagrup->curs));
                 $out .= "<p>Выходная цена - ".$product->out_price."</p>";
 
                 $product->discount = $cenagrup->skidka;
@@ -134,11 +134,11 @@ class CenaController extends AdminController
                 $out .= "<p>Скидка для оптовиков - ".$product->opt_discount."</p>";
 
                 if($cenagrup->skidka != 0){
-                    $product->out_price = round((round(($product->base_price * $cenagrup->curs), 2)) - ((round(($product->base_price * $cenagrup->curs), 2)) * $product->discount / 100));
+                    $product->out_price = round((round(($product->base_price * $cenagrup->curs))) - ((round(($product->base_price * $cenagrup->curs))) * $product->discount / 100));
                     $out .= "<p>Новая выходная цена - ".$product->out_price."</p>";
                 }else{
                     if($cenagrup->nacenka != 0){
-                        $product->out_price = round((round(($product->base_price * $cenagrup->curs), 2)) + ((round(($product->base_price * $cenagrup->curs), 2)) * $product->nacenka / 100));
+                        $product->out_price = round((round(($product->base_price * $cenagrup->curs))) + ((round(($product->base_price * $cenagrup->curs))) * $product->nacenka / 100));
                         $out .= "<p>Новая выходная цена - ".$product->out_price."</p>";
                     }else{
                         $product->out_price = round($product->base_price * $cenagrup->curs);
@@ -153,10 +153,10 @@ class CenaController extends AdminController
                 }
 
                 if($cenagrup->skidka_opt != 0){
-                    $product->opt_price = round(round(($product->base_price * $cenagrup->curs_opt), 2) - (round(($product->base_price * $cenagrup->curs_opt), 2) * $cenagrup->skidka_opt / 100));
+                    $product->opt_price = round(round(($product->base_price * $cenagrup->curs_opt)) - (round(($product->base_price * $cenagrup->curs_opt)) * $cenagrup->skidka_opt / 100));
                     $out .= "<p>Новая цена для оптовиков - ".$product->opt_price."</p>";
                 }else{
-                    $product->opt_price = round(($product->base_price * $cenagrup->curs_opt), 2) * $cenagrup->skidka_opt / 100;
+                    $product->opt_price = round(($product->base_price * $cenagrup->curs_opt)) * $cenagrup->skidka_opt / 100;
                 }
 
 
