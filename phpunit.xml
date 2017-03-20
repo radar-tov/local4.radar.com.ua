@@ -7,7 +7,8 @@
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          processIsolation="false"
-         stopOnFailure="false">
+         stopOnFailure="false"
+         verbose="true">
     <testsuites>
         <testsuite name="Feature Tests">
             <directory suffix="Test.php">./tests/Feature</directory>
@@ -15,6 +16,10 @@
 
         <testsuite name="Unit Tests">
             <directory suffix="Test.php">./tests/Unit</directory>
+        </testsuite>
+
+        <testsuite name="Browser Test Suite">
+            <directory suffix="Test.php">./tests/Browser</directory>
         </testsuite>
     </testsuites>
     <filter>

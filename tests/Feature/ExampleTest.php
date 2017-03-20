@@ -16,8 +16,10 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
+//        $this->assertEquals(1,1);
+//        $this->assertTrue(true);
+        /*$response = $this->get('/');
+        $response->assertStatus(200);*/
+//        $this->visit('/');
     }
 }
