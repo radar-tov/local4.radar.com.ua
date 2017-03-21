@@ -47,7 +47,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'phone' => 'required|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
     }
@@ -61,7 +61,7 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
+            'phone' => $data['phone'],
             'password' => $data['password'],
         ]);
     }
@@ -73,7 +73,7 @@ class RegisterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
- /*   public function register(Request $request)
+    public function register(Request $request)
     {
         $this->validator($request->all())->validate();
 
@@ -102,5 +102,5 @@ class RegisterController extends Controller
         } else {
             return redirect()->back();
         }
-    }*/
+    }
 }

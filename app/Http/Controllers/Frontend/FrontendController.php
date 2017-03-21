@@ -505,11 +505,11 @@ class FrontendController extends BaseController
 	 */
 	public function updateUserData(User $user, Request $request)
 	{
-	    if($user->where('email', $request->email)->first()){
+	    if($user->where('phone', $request->phone)->first()){
             Auth::user()->update($request->only('phone','email','password', 'city', 'address', 'name'));
             return redirect()->back();
         }else{
-            return redirect()->back()->with('message', 'Этот email уже занят.');
+            return redirect()->back()->with('message', 'Этот телефон уже занят.');
         }
 	}
 

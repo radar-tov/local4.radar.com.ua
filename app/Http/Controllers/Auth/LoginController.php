@@ -40,9 +40,9 @@ class LoginController extends Controller
 
 
     //Переопределяем метод
-/*    public function username()
+    public function username()
     {
         return 'phone';
-    }*/
+    }
 
 }

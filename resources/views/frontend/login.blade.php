@@ -32,14 +32,14 @@
                     {{--<p class="formField">
                         Укажите Ваш номер телефона.
                     </p>--}}
-                    <p class="formField">
+                    {{--<p class="formField">
                         <label for="order-email" class="col s12 m4 l4">Электронная почта:</label>
                         <input class="col s12 m6 l7" id="order-email" placeholder="введите ваш email" tabindex="4" name="email" type="text">
-                    </p>
-                    {{--<p class="formField">
+                    </p>--}}
+                    <p class="formField">
                         <label for="order-phone" class="col s12 m4 l4">Номер телефона:<span class="red-text"> *</span></label>
                         <input class="col s12 m6 l7" id="order-phone" placeholder="введите ваш телефон" tabindex="4" name="phone" type="text">
-                    </p>--}}
+                    </p>
 
                     <p class="formField">
                         <label for="order-address" class="col s12 m4 l4">Пароль:<span class="red-text"> *</span></label>
