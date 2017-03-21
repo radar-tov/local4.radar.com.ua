@@ -96,10 +96,10 @@
                     @if(isset($product->brand->title))
                         <p class="brand no-margin">Производитель: <span>{{ $product->brand->title }}</span></p>
                     @endif
-                    <div id="rating_3" class="item-rating left">
+                    {{--<div id="rating_3" class="item-rating left">
                         <input type="hidden" name="vote-id" value="5" id=""/>
                         <input type="hidden" name="val" value="{{ array_sum($product->rates->pluck('rate')->all()) / ($product->rates->count() ?: 1) }}">
-                    </div>
+                    </div>--}}
                     <div class="col s12 clearleft wrap-price">
                         <div class="pricesBlock" style="width:100%;float:left">
                             <div class="col s12 item-prices">
