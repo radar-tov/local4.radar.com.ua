@@ -25,6 +25,8 @@ class ForgotPasswordController extends Controller
         $this->middleware('guest');
     }
 
+
+    //Переопределяем метод
     protected function sendResetLinkResponse($response)
     {
         //return back()->with('status', trans($response));

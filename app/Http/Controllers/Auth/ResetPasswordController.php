@@ -3,6 +3,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 class ResetPasswordController extends Controller
 {
     /*
@@ -32,10 +34,31 @@ class ResetPasswordController extends Controller
         $this->middleware('guest');
     }
 
+
+    //Переопределяем метод
     public function showResetForm(Request $request, $token = null)
     {
         return view('frontend.reset')->with(
             ['token' => $token, 'email' => $request->email]
         );
+    }
+
+
+    //Переопределяем метод
+    /**
+     * Reset the given user's password.
+     *
+     * @param  \Illuminate\Contracts\Auth\CanResetPassword  $user
+     * @param  string  $password
+     * @return void
+     */
+    protected function resetPassword($user, $password)
+    {
+        $user->forceFill([
+            'password' => $password,
+            'remember_token' => Str::random(60),
+        ])->save();
+
+        $this->guard()->login($user);
     }
 }

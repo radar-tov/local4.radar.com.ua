@@ -505,7 +505,7 @@ class FrontendController extends BaseController
 	 */
 	public function updateUserData(User $user, Request $request)
 	{
-	    if(!$user->where('email', $request->email)->first()){
+	    if($user->where('email', $request->email)->first()){
             Auth::user()->update($request->only('phone','email','password', 'city', 'address', 'name'));
             return redirect()->back();
         }else{
