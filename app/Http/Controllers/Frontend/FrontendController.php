@@ -204,8 +204,7 @@ class FrontendController extends BaseController
 		// for assess product
 		if($request->ajax()){
 			$product->rates()->create(['rate' => $request->get('val')]);
-			$request->session()->push('rated', $product->id );
-
+            $request->session()->push('rated', $product->id );
 			return $product->rates()->avg('rate');
 		}
 

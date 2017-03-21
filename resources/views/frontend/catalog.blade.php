@@ -74,10 +74,10 @@
     <!--/Menu-->
 </section>
 
-
+@include('frontend.partials.scripts.filter_handler')
 @endsection
 
 
 @section('bottom-scripts')
-    @include('frontend.partials.scripts.filter_handler')
+
 @endsection

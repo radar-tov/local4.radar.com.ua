@@ -92,10 +92,10 @@
                             </div>
 
                             <input type="hidden" value="{{ $product->id }}" class="_id"/>
-                            {{--<!--<div class="rating_2">--}}
-                            {{--<input type="hidden" name="vote-id" value="5"/>--}}
-                            {{--<input type="hidden" name="val" value="{{ array_sum($product->rates->lists('rate')->all()) / ($product->rates->count() ?: 1) }}">--}}
-                            {{--</div>-->--}}
+                            <div class="rating_2">
+                                <input type="hidden" name="vote-id" value="5"/>
+                                <input type="hidden" name="val" value="{{ array_sum($product->rates->pluck('rate')->all()) / ($product->rates->count() ?: 1) }}">
+                            </div>
 
 
                             {{--<span class="outlook">

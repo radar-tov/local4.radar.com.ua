@@ -148,26 +148,26 @@
                         <li class="tab col s12 l3"><a class="waves-effect waves-light" href="#ones">Разовая покупка</a></li>
                     </ul>
                     <div id="register" class="col s12 no-padding">
-                        <form id="order-form" role="form" method="POST" action="{{ url('/auth/register') }}">
+                        <form id="order-form" role="form" method="POST" action="{{ url('/register') }}">
                             @include('frontend.partials.registration_fields')
                         </form>
                     </div>
                     <div id="login" class="col s12 no-padding">
                         <section class="order-cont">
-                            <form role="form" method="POST" action="{{ url('/auth/login') }}">
+                            <form role="form" method="POST" action="{{ url('/login') }}">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <p class="formField">
-                                    Укажите Email или Ваш номер телефона.
+                                    Укажите Ваш номер телефона.
                                 </p>
                                 <p class="formField">
                                     <label for="order-telephone" class="col s12 m4 l4">Телефон:</label>
                                     <input class="col s12 m6 l7" id="order-telephone" placeholder="введите номер телефона" tabindex="3" name="phone" type="text"value="">
                                 </p>
 
-                                <p class="formField">
+                                {{--<p class="formField">
                                     <label for="login-email" class="label label_order col s12 m4 l4">Электронная почта:</label>
                                     <input id="login-email" autocomplete="off" maxlength="100" class="input input_l input_order login-email col s12 m6 l7" tabindex="1" name="email" type="text" value="">
-                                </p>
+                                </p>--}}
                                 <p class="formField">
                                     <label for="login-password" class="label label_order col s12 m4 l4">Пароль:</label>
                                     <input id="login-password" autocomplete="off" maxlength="100" class="input input_l input_order login-password col s12 m6 l7" tabindex="2" name="password" type="password" value="">

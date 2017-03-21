@@ -110,7 +110,7 @@ $("body").on("click", ".video-review", function (e) {
     var video = $(this).siblings("._video").html();
     $("#video").find(".video-container").html(video);
 });
-if(!typeof(maxPrice) == "undefined"){
+if(window.maxPrice !== 'undefined'){
     $("#range").ionRangeSlider({
         type: "double",
         min: 0,

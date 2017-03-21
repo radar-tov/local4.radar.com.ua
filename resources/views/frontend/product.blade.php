@@ -1,5 +1,6 @@
-@extends('frontend.layout')
+@inject('cartProvider', '\App\ViewDataProviders\CartDataProvider')
 
+@extends('frontend.layout')
 
 @section('seo')
     <title xmlns="http://www.w3.org/1999/html">{{ $product->meta_title ?: $product->title }}</title>
@@ -97,7 +98,7 @@
                     @endif
                     <div id="rating_3" class="item-rating left">
                         <input type="hidden" name="vote-id" value="5" id=""/>
-                        <input type="hidden" name="val" value="{{ round($product->rates()->avg('rate'))}}">
+                        <input type="hidden" name="val" value="{{ array_sum($product->rates->pluck('rate')->all()) / ($product->rates->count() ?: 1) }}">
                     </div>
                     <div class="col s12 clearleft wrap-price">
                         <div class="pricesBlock" style="width:100%;float:left">
@@ -157,7 +158,7 @@
                                            class="addtocart-button compare"
                                            data-productId="{{ $product->id }}"
                                            class="compare-button-hover compare anim"
-                                           value="{{ Cart::instance('compare')->search(['id' => $product->id]) ? 'В сравнении' : 'Сравнить' }}"
+                                           value="{{ $cartProvider->searchCompare($product->id) ? 'В сравнении' : 'Сравнить' }}"
                                            title="Сравнить">
 
                                 </div>
