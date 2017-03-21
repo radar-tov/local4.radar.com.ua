@@ -43,15 +43,15 @@
             {{--</div>--}}{{--end--}}
             <div class="item-info">
                 <p class="item-title">{!! $product->title !!}</p>
-                {{--<div class="col s8 no-padding">--}}
-                    {{--<p class="sku">Код: <span>{{ $product->article }}</span></p>--}}
-                {{--</div>--}}
-                {{--<div class="col s4 no-padding">--}}
-                {{--<div class="rating_1">--}}
-                {{--<input type="hidden" name="vote-id" value="5"/>--}}
-                {{--<input type="hidden" name="val" value="{{ array_sum($product->rates->lists('rate')->all()) / ($product->rates->count() ?: 1) }}">--}}
-                {{--</div>--}}
-                {{--</div>--}}
+                {{--<div class="col s8 no-padding">
+                    <p class="sku">Код: <span>{{ $product->article }}</span></p>
+                </div>--}}
+                {{--<div class="col s4 no-padding">
+                    <div class="rating_1">
+                        <input type="hidden" name="vote-id" value="5"/>
+                        <input type="hidden" name="val" value="{{ array_sum($product->rates->pluck('rate')->all()) / ($product->rates->count() ?: 1) }}">
+                    </div>
+                </div>--}}
                 <div class="item-content">
 
                     @if($product->hasDiscount())
