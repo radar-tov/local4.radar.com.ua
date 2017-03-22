@@ -691,8 +691,22 @@
                     <h4>Список всех товаров</h4>
                     <div class="well clearfix">
                         <div class="col-md-4">
-                            {!! Form::select('_category', [0 => 'Все категории'] + $categoriesProvider->getCategoriesList()->all(), $selected = null,
-                                ['class' => 'form-control', 'v-model' => 'simOptions.category', 'v-on:change' => 'getSimProducts()']) !!}
+                            <select class="form-control" form="form-data" name="category_id" v-model="simOptions.category" v-on:change="getSimProducts()">
+                                <option value="0">Все категории</option>
+                                @foreach($categoriesProvider->getListForNav()->all() as $item)
+                                    <optgroup label="{{ $item->title }}">
+                                        @if(count($item->children))
+                                            @foreach($item->children as $child)
+                                                <option value="{{ $child->id }}">{{ $child->title }}</option>
+                                            @endforeach
+                                        @endif
+                                    </optgroup>
+                                @endforeach
+                            </select>
+
+
+                            {{--{!! Form::select('_category', [0 => 'Все категории'] + $categoriesProvider->getCategoriesList()->all(), $selected = null,
+                                ['class' => 'form-control', 'v-model' => 'simOptions.category', 'v-on:change' => 'getSimProducts()']) !!}--}}
                         </div>
                         <div class="col-md-4">
                             {!! Form::select('_paginate', [
@@ -791,8 +805,20 @@
                     <h4>Список всех товаров</h4>
                     <div class="well clearfix">
                         <div class="col-md-4">
-                            {!! Form::select('_category', [0 => 'Все категории'] + $categoriesProvider->getCategoriesList()->all(), $selected = null,
-                                ['class' => 'form-control', 'v-model' => 'relOptions.category', 'v-on:change' => 'getProducts()']) !!}
+                            <select class="form-control" form="form-data" name="category_id" v-model="relOptions.category" v-on:change="getProducts()">
+                                <option value="0">Все категории</option>
+                                @foreach($categoriesProvider->getListForNav()->all() as $item)
+                                    <optgroup label="{{ $item->title }}">
+                                        @if(count($item->children))
+                                            @foreach($item->children as $child)
+                                                <option value="{{ $child->id }}">{{ $child->title }}</option>
+                                            @endforeach
+                                        @endif
+                                    </optgroup>
+                                @endforeach
+                            </select>
+                            {{--{!! Form::select('_category', [0 => 'Все категории'] + $categoriesProvider->getCategoriesList()->all(), $selected = null,
+                                ['class' => 'form-control', 'v-model' => 'relOptions.category', 'v-on:change' => 'getProducts()']) !!}--}}
                         </div>
                         <div class="col-md-4">
                             {{--<span>Показывать по</span>--}}
