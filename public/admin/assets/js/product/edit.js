@@ -393,6 +393,15 @@ var productVue = new Vue({
                 });
         },
 
+        syncSimProducts: function(){
+            this.selectedSimProductsIds = this.getSelectedSimProductsIds();
+            var body = {
+                ids: this.getSelectedSimProductsIds(),
+                productId: this.product.id
+            };
+            this.$http.post('/dashboard/product-actions/syncSimilar', body)
+        },
+
         syncProducts: function(){
             this.selectedProductsIds = this.getSelectedProductsIds();
             var body = {
@@ -432,6 +441,20 @@ var productVue = new Vue({
             this.getProducts();
         },
 
+        addSimProduct: function(relProduct, index){
+            this.productsSimList.products.splice(index, 1);
+            this.simOptions.selected.push(relProduct);
+            this.syncSimProducts();
+            this.getSimProducts();
+        },
+
+        removeSimProduct: function(relProduct, index){
+            this.simOptions.selected.splice(index, 1);
+            this.productsSimList.products.push(relProduct);
+            this.syncSimProducts();
+            this.getSimProducts();
+        },
+
         nextPage: function(){
             if(this.productsList.pagination.currentPage != this.productsList.pagination.lastPage){
                 this.productsList.pagination.pageToGet = this.productsList.pagination.currentPage + 1;
@@ -443,6 +466,20 @@ var productVue = new Vue({
             if(this.productsList.pagination.currentPage != 1) {
                 this.productsList.pagination.pageToGet = this.productsList.pagination.currentPage - 1;
                 this.getProducts();
+            }
+        },
+
+        nextSimPage: function(){
+            if(this.productsSimList.pagination.currentPage != this.productsSimList.pagination.lastPage){
+                this.productsSimList.pagination.pageToGet = this.productsSimList.pagination.currentPage + 1;
+                this.getSimProducts();
+            }
+        },
+
+        prevSimPage: function(){
+            if(this.productsSimList.pagination.currentPage != 1) {
+                this.productsSimList.pagination.pageToGet = this.productsSimList.pagination.currentPage - 1;
+                this.getSimProducts();
             }
         },
 

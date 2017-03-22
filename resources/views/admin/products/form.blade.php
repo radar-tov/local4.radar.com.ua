@@ -683,7 +683,7 @@
                             <td v-else> @{{ relProduct.id }}</td>
                             <td> @{{ relProduct.price }}</td>
                             <td class="options">
-                                <a href="#" style="font-size: 18px; color:indianred" v-on:click.prevent="removeProduct(relProduct, index)"><i class="fa fa-remove"></i></a>
+                                <a href="#" style="font-size: 18px; color:indianred" v-on:click.prevent="removeSimProduct(relProduct, index)"><i class="fa fa-remove"></i></a>
                             </td>
                         </tr>
                     </table>
@@ -727,7 +727,7 @@
                             <td> @{{ relProduct.article }}</td>
                             <td> @{{ relProduct.price }}</td>
                             <td class="options">
-                                <a href="#" style="font-size: 18px" v-on:click.prevent="addProduct(relProduct, index)"><i class="fa fa-plus"></i></a>
+                                <a href="#" style="font-size: 18px" v-on:click.prevent="addSimProduct(relProduct, index)"><i class="fa fa-plus"></i></a>
                             </td>
                         </tr>
                     </table>
@@ -738,13 +738,13 @@
                     <nav v-if="productsSimList.products.length > 0">
                         <ul class="pager">
                             <li class="previous" v-bind:class="productsSimList.pagination.currentPage == 1 ? 'disabled' : ''">
-                                <a href="#" v-on:click.prevent="prevPage()"><span aria-hidden="true">&larr;</span> Предыдущая</a>
+                                <a href="#" v-on:click.prevent="prevSimPage()"><span aria-hidden="true">&larr;</span> Предыдущая</a>
                             </li>
                             <li>
                                 @{{ productsSimList.pagination.currentPage }} / @{{ productsSimList.pagination.lastPage  }}
                             </li>
                             <li class="next" v-bind:class="productsSimList.pagination.currentPage ==  productsSimList.pagination.lastPage ? 'disabled' : ''" >
-                                <a href="#" v-on:click.prevent="nextPage()">Следующая <span aria-hidden="true">&rarr;</span></a>
+                                <a href="#" v-on:click.prevent="nextSimPage()">Следующая <span aria-hidden="true">&rarr;</span></a>
                             </li>
                         </ul>
                     </nav>

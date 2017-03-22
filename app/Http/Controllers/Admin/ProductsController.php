@@ -827,6 +827,17 @@ class ProductsController extends AdminController
         }
     }
 
+    /**
+     * @param Request $request
+     */
+    public function syncSimilarProducts(Request $request)
+    {
+        $product = Product::find($request->get('productId'));
+        if ($product) {
+            $product->similarProducts()->sync($request->get('ids') ?: []);
+        }
+    }
+
 
     /**
      * @param Request $request
