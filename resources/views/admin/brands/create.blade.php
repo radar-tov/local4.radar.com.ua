@@ -25,7 +25,7 @@
 @section('content')
     <div id="brands" class="row">
         @include('admin.partials.errors')
-        {!! Form::open(['route'=>'dashboard.brands.store', 'method'=>'post', 'id'=>'form-data']) !!}
+        {!! Form::open(['route'=>'brands.store', 'method'=>'post', 'id'=>'form-data']) !!}
             @include("admin.brands.form")
         {!! Form::close() !!}
     </div>
