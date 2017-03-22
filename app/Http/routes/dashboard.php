@@ -24,6 +24,7 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         Route::post('product-actions/getProductsBySale','ProductsController@getProductsBySale');
         Route::post('product-actions/getProductsForSale','ProductsController@getProductsForSale');
         Route::post('product-actions/getRelatedProducts','ProductsController@getRelatedProducts');
+        Route::post('product-actions/getSimilarProducts','ProductsController@getSimilarProducts');
         Route::post('product-actions/syncRelated','ProductsController@syncRelatedProducts');
         Route::get('product-actions/getProducts','ProductsController@getProducts');
         Route::post('product-actions/delete','ProductsController@massDelete');

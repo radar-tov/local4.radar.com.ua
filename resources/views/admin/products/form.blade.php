@@ -147,6 +147,14 @@
                     Файлы
                 </a>
             </li>
+
+            <li class="">
+                <a data-toggle="tab" href="#similarProducts" v-on:click="getSimProducts()">
+                    <i class="ace-icon fa fa-copy"></i>
+                    Похожие. товары
+                </a>
+            </li>
+
             <li class="">
                 <a data-toggle="tab" href="#additionalProducts" v-on:click="getProducts()">
                     <i class="ace-icon fa fa-cart-plus"></i>
@@ -645,6 +653,108 @@
             </div>
             <!-- /End Files -->
 
+
+
+            <!-- similarProducts -->
+            <div id="similarProducts" class="tab-pane">
+                <div class="col-xs-12">
+                    {{--<div class="_cover" v-el="cover"></div>--}}
+                    <h4 v-if="simOptions.selected.length > 0">Похожие товары</h4>
+                    <h4 v-if="simOptions.selected.length == 0">Для этого продукта не указано ни одного похожего товара</h4>
+                    <input type="hidden" v-model="selectedSimProductsIds" name="selectedSimProductsIds"/>
+                    <table class="table table-hover pr-table" v-if="simOptions.selected.length > 0">
+                        <tr>
+                            <th class="mini-thumb center">Миниатюра</th>
+                            <th>Название продукта</th>
+                            <th>Артикул</th>
+                            <th>Цена</th>
+                            <th class="options">Удалить</th>
+                        </tr>
+                        <tr v-for="(relProduct, index) in simOptions.selected">
+                            <td class="center">
+                                <img v-bind:src="relProduct.thumbnail[0].path " v-if="!!relProduct.thumbnail[0]" class="mini-thumb"/>
+                                <img src="/frontend/images/default.png" v-if="!relProduct.thumbnail[0]" class="mini-thumb"/>
+                            </td>
+                            <td>
+                                @{{ relProduct.title }} <br/>
+                                <small style="color: #808080">(@{{ relProduct.category.title }})</small>
+                            </td>
+                            <td v-if="relProduct.article != '-'"> @{{ relProduct.article }}</td>
+                            <td v-else> @{{ relProduct.id }}</td>
+                            <td> @{{ relProduct.price }}</td>
+                            <td class="options">
+                                <a href="#" style="font-size: 18px; color:indianred" v-on:click.prevent="removeProduct(relProduct, index)"><i class="fa fa-remove"></i></a>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr/>
+                    <h4>Список всех товаров</h4>
+                    <div class="well clearfix">
+                        <div class="col-md-4">
+                            {!! Form::select('_category', [0 => 'Все категории'] + $categoriesProvider->getCategoriesList()->all(), $selected = null,
+                                ['class' => 'form-control', 'v-model' => 'simOptions.category', 'v-on:change' => 'getSimProducts()']) !!}
+                        </div>
+                        <div class="col-md-4">
+                            {!! Form::select('_paginate', [
+                                        20 => 'Показывать по 20 продуктов',
+                                        50 => 'По 50 продуктов',
+                                        100 => 'По 100 продуктов'
+                                      ], $selected = '',
+                             ['class' => 'form-control', 'v-model' => 'simOptions.paginate', 'v-on:change' => 'getSimProducts()']) !!}
+                        </div>
+                        <div class="col-md-4 pull-right">
+                            {!! Form::text('search', $value = '',
+                             ['class' => 'form-control','placeholder' => 'Поиск', 'v-model' => 'simOptions.search', 'v-on:input' => 'getSimProducts()']) !!}
+                        </div>
+                    </div>
+                    <table class="table table-hover pr-table">
+                        <tr>
+                            <th class="mini-thumb center">Миниатюра</th>
+                            <th>Название продукта</th>
+                            <th>Артикул</th>
+                            <th>Цена</th>
+                            <th class="options">Добавить</th>
+                        </tr>
+                        <tr v-for="(relProduct, index) in productsSimList.products">
+                            <td class="center">
+                                <img v-bind:src="relProduct.thumbnail[0].path " v-if="!!relProduct.thumbnail[0]" class="mini-thumb"/>
+                                <img src="/frontend/images/default.png" v-if="!relProduct.thumbnail[0]" class="mini-thumb"/>
+                            </td>
+                            <td>
+                                @{{ relProduct.title }} <br/>
+                                <small style="color: #808080">(@{{ relProduct.category.title }})</small>
+                            </td>
+                            <td> @{{ relProduct.article }}</td>
+                            <td> @{{ relProduct.price }}</td>
+                            <td class="options">
+                                <a href="#" style="font-size: 18px" v-on:click.prevent="addProduct(relProduct, index)"><i class="fa fa-plus"></i></a>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr/>
+                    <p v-if="productsSimList.products.length == 0">
+                        <b>Список продуктов по текущему запросу пуст</b>
+                    </p>
+                    <nav v-if="productsSimList.products.length > 0">
+                        <ul class="pager">
+                            <li class="previous" v-bind:class="productsSimList.pagination.currentPage == 1 ? 'disabled' : ''">
+                                <a href="#" v-on:click.prevent="prevPage()"><span aria-hidden="true">&larr;</span> Предыдущая</a>
+                            </li>
+                            <li>
+                                @{{ productsSimList.pagination.currentPage }} / @{{ productsSimList.pagination.lastPage  }}
+                            </li>
+                            <li class="next" v-bind:class="productsSimList.pagination.currentPage ==  productsSimList.pagination.lastPage ? 'disabled' : ''" >
+                                <a href="#" v-on:click.prevent="nextPage()">Следующая <span aria-hidden="true">&rarr;</span></a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                </div>
+            </div>
+            <!-- /End similarProducts -->
+
+
+
             <!-- additionalProducts -->
             <div id="additionalProducts" class="tab-pane">
                 <div class="col-xs-12">
@@ -669,7 +779,8 @@
                                 @{{ relProduct.title }} <br/>
                                 <small style="color: #808080">(@{{ relProduct.category.title }})</small>
                             </td>
-                            <td> @{{ relProduct.article }}</td>
+                            <td v-if="relProduct.article != '-'"> @{{ relProduct.article }}</td>
+                            <td v-else> @{{ relProduct.id }}</td>
                             <td> @{{ relProduct.price }}</td>
                             <td class="options">
                                 <a href="#" style="font-size: 18px; color:indianred" v-on:click.prevent="removeProduct(relProduct, index)"><i class="fa fa-remove"></i></a>

@@ -844,6 +844,19 @@ class ProductsController extends AdminController
 
     /**
      * @param Request $request
+     * @return array
+     */
+    public function getSimilarProducts(Request $request)
+    {
+        $product = Product::find($request->get('productId'));
+        if ($product) {
+            return $product->similarProducts->load('category', 'thumbnail');
+        }
+        return [];
+    }
+
+    /**
+     * @param Request $request
      * @return mixed
      */
     public function getProductsForSale(Request $request)
