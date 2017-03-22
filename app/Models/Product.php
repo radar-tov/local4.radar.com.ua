@@ -187,6 +187,14 @@ class Product extends Eloquent {
 			->visible()->withRelations();
 	}
 
+    /**
+     * @return mixed
+     */
+    public function similarProducts() {
+        return $this->belongsToMany(static::class, 'product_similarproduct', 'product_id', 'similar_product_id')
+            ->visible()->withRelations();
+    }
+
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
 	 */

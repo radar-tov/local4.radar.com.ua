@@ -344,25 +344,44 @@
 
                     </div>
                     <div class="col s12 m12 l3">
-                        <section class="related">
+                        <section class="similar">
                             <div class="col s12 product no-padding">
-                                @if(count($product->relatedProducts))
-                                    <h3>Подходящие аксессуары</h3>
-                                    <div class="related-products">
+                                {{--{{ dump($product) }}--}}
+                                @if(count($product->similarProducts))
+                                    <h3>Похожие товары</h3>
+                                    <div class="similar-products">
 
-                                        @foreach($product->relatedProducts as $product)
+                                        @foreach($product->similarProducts as $pivet_product)
 
-                                            @include('frontend.partials.products.product_template')
+                                            @include('frontend.partials.products.template_product')
 
                                         @endforeach
 
                                     </div>
                                 @endif
                             </div>
-                            <!--/Menu-->
-                            <input type="hidden" value="{{ csrf_token() }}" id="token"/>
                         </section>
                     </div>
+                    <div class="col s12 m12 l3">
+                        <section class="related">
+                            <div class="col s12 product no-padding">
+                                {{--{{ dump($product->relatedProducts) }}--}}
+                                @if(count($product->relatedProducts))
+                                    <h3>Подходящие аксессуары</h3>
+                                    <div class="related-products">
+
+                                        @foreach($product->relatedProducts as $pivet_product)
+
+                                            @include('frontend.partials.products.template_product')
+
+                                        @endforeach
+
+                                    </div>
+                                @endif
+                            </div>
+                        </section>
+                    </div>
+                    <input type="hidden" value="{{ csrf_token() }}" id="token"/>
                 </div>
             </div>
         </div>

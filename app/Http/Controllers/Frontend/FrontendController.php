@@ -189,6 +189,7 @@ class FrontendController extends BaseController
 			'files',
             'category',
             'relatedProducts',
+            'similarProducts',
             'rates.users',
             'reviews.user',
             'stocks.orderedProducts',
