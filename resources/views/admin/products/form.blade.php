@@ -691,7 +691,7 @@
                     <h4>Список всех товаров</h4>
                     <div class="well clearfix">
                         <div class="col-md-4">
-                            <select class="form-control" form="form-data" name="category_id" v-model="simOptions.category" v-on:change="getSimProducts()">
+                            <select class="form-control" form="form-data" name="_category" v-model="simOptions.category" v-on:change="getSimProducts()">
                                 <option value="0">Все категории</option>
                                 @foreach($categoriesProvider->getListForNav()->all() as $item)
                                     <optgroup label="{{ $item->title }}">
@@ -805,7 +805,7 @@
                     <h4>Список всех товаров</h4>
                     <div class="well clearfix">
                         <div class="col-md-4">
-                            <select class="form-control" form="form-data" name="category_id" v-model="relOptions.category" v-on:change="getProducts()">
+                            <select class="form-control" form="form-data" name="_category" v-model="relOptions.category" v-on:change="getProducts()">
                                 <option value="0">Все категории</option>
                                 @foreach($categoriesProvider->getListForNav()->all() as $item)
                                     <optgroup label="{{ $item->title }}">
