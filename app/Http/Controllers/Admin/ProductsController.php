@@ -240,7 +240,9 @@ class ProductsController extends AdminController
             }
             //dump($params['status']);
             $status = explode(".", $params['status']);
-            //dump($status);
+            if(!$status[1]){
+                $status = explode("_", $params['status']);
+            }
 
 
             if($request->get('filters') != null){
