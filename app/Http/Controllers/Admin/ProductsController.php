@@ -252,7 +252,7 @@ class ProductsController extends AdminController
 
             $products = $this->product
                 ->whereNotIn('id', !empty($request->get('selected')) ? $request->get('selected') : [0])
-                ->with('category')
+                ->with('category', 'sale')
                 ->where('category_id', $request->get('categoryId') ?: 'LIKE', '%')
                 ->where($status[0], $status[1])
                 ->whereRaw(getDiscountValue($request))

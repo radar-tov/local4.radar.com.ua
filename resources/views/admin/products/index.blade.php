@@ -343,6 +343,7 @@
                            v-bind:href="'/dashboard/products/'+ product.id + '/edit'" v-if="product.name == ''">
                             @{{ product.title }}
                         </a>
+                        <small v-for="sale in product.sale" style="color:indianred; float: right;">@{{ sale.title }}</small>
                         <small v-show="product.clone_of > 0" style="color:indianred">(копия)</small>
                     </td>
                     <td class="middle">
@@ -363,6 +364,7 @@
                             + @{{ product.nacenka }} %
                         </span>
                         @{{ product.out_price }}
+                        <small v-for="sale in product.sale" style="color:indianred; float: right;">@{{ sale.discount }} %</small>
                     </td>
                     <td class="middle">
                         <span class="label label-sm label-success arrowed-right" v-show="product.discount_montaj > 0">
