@@ -50,7 +50,7 @@
             <b class="arrow"></b>
             <ul class="submenu">
                 <li class="hover {{ Route::is('cena.create') ? 'active' : null }}">
-                    <a href="{!! route('cena.create') !!}">
+                    <a href="{!! route('cena.create') !!}" class="cena_create fancybox.ajax">
                         <span class="menu-text"> Добавить группу </span>
                     </a>
                 </li>
