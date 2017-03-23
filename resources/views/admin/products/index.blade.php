@@ -400,7 +400,7 @@
                             </a>
                         </div>
                     </td>
-                    <td class="options">
+                    <td class="options middle">
                         <div class="action-buttons">
                             <a class="blue" v-bind:href="'/dashboard/products/copy/' + product.id">
                                 <i class="ace-icon fa fa-copy"></i>
