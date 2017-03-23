@@ -132,6 +132,7 @@ var productsVue = new Vue({
             this.params.discount = 0;
             this.params.paginate = 20;
             this.params.search = '';
+            this.params.status = 'active.1';
         },
 
         delSearch: function () {

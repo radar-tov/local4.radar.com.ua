@@ -42,9 +42,18 @@
             {{--@endif-->--}}
             {{--</div>--}}{{--end--}}
             <div class="item-info">
-                <p class="item-title">{!! $product->title !!}</p>
-                {{--<div class="col s8 no-padding">
-                    <p class="sku">Код: <span>{{ $product->article }}</span></p>
+                <p class="item-title">{!! $product->title !!}<br>
+                    <span class="item-title" style="font-size: 12px">( {!! $product->category->title !!} )</span>
+                </p>
+
+                {{--<div class="col s4 no-padding">
+                    --}}{{--<p class="sku">Код: <span>{{ $product->article }}</span></p>--}}{{--
+
+                    @if($product->article != '-')
+                        <p class="sku">Код: <span>{{ $product->article }}</span></p>
+                    @else
+                        <p class="sku">Код: <span>{{ $product->id }}</span></p>
+                    @endif
                 </div>--}}
                 {{--<div class="col s4 no-padding">
                     <div class="rating_1">

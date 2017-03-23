@@ -161,8 +161,38 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    <i class="ace-icon fa fa-cog bigger-110 blue"></i> Settings
+                                <a href="/aceadmin/html/index.html" target="_blank">
+                                    <i class="ace-icon fa fa-cog bigger-110 blue"></i> Пример html админки
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/aceadmin/html/ajax/index.html" target="_blank">
+                                    <i class="ace-icon fa fa-cog bigger-110 blue"></i> Пример ajax админки
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/aceadmin/docs/index.html" target="_blank">
+                                    <i class="ace-icon fa fa-cog bigger-110 blue"></i> Документация админки
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/aceadmin/build/css.html" target="_blank">
+                                    <i class="ace-icon fa fa-cog bigger-110 blue"></i> CSS построитель
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/aceadmin/build/js.html" target="_blank">
+                                    <i class="ace-icon fa fa-cog bigger-110 blue"></i> Script построитель
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/aceadmin/build/email.html" target="_blank">
+                                    <i class="ace-icon fa fa-cog bigger-110 blue"></i> Email построитель
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/aceadmin/examples/index.html" target="_blank">
+                                    <i class="ace-icon fa fa-cog bigger-110 blue"></i> Examples админки
                                 </a>
                             </li>
                         </ul>
