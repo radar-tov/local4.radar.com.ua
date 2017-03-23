@@ -308,17 +308,17 @@
 
                 <tr v-for="product in products.productList">
 
-                    <td class="options">
+                    <td class="options middle">
                         <input type="checkbox" name="selected[]" class="productSel"
                                v-bind:value="product.id" v-on:change="selectProduct($event)"/>
                     </td>
-                    <td>
+                    <td class="middle">
                         @{{ product.id }}
                     </td>
-                    <td>
+                    <td class="middle">
                         @{{ product.article }}
                     </td>
-                    <td class="p-title">
+                    <td class="p-title middle">
                         <div class="bs-label-container">
                             <i class="fa fa-eye-slash red" v-show="product.active == 0"></i>
                             <i class="fa fa-minus red" v-show="product.available == 0"></i>
@@ -332,6 +332,7 @@
                                   v-show="product.is_bestseller > 0">Хит продаж</span>
                             <span class="label label-danger bs-label" v-show="product.is_new > 0">Новинка</span>
                         </div>
+                        <img v-bind:src="product.thumbnail[0].path " v-if="!!product.thumbnail[0]" class="mini-thumb"/>
                         <a style="color: #000000" target="_blank"
                            v-bind:href="'/dashboard/products/'+ product.id + '/edit'" v-if="product.name != ''">
                             @{{ product.name }}
@@ -342,7 +343,7 @@
                         </a>
                         <small v-show="product.clone_of > 0" style="color:indianred">(копия)</small>
                     </td>
-                    <td class="">
+                    <td class="middle">
                         <span>@{{ product.base_price }}</span>
                         <span v-if="product.get_cena != null">
                             <i class="fa fa-ruble" v-show="product.get_cena.valuta == 1"></i>
@@ -350,7 +351,7 @@
                             <i class="fa fa-euro" v-show="product.get_cena.valuta == 3"></i>
                         *@{{ product.get_cena.curs }}=@{{ product.price }}</span>
                     </td>
-                    <td class="">
+                    <td class="middle">
 
                         <span class="label label-sm label-success arrowed-right" v-show="product.discount > 0">
                             - @{{ product.discount }} %
@@ -361,19 +362,19 @@
                         </span>
                         @{{ product.out_price }}
                     </td>
-                    <td class="">
+                    <td class="middle">
                         <span class="label label-sm label-success arrowed-right" v-show="product.discount_montaj > 0">
                             - @{{ product.discount_montaj }}%
                         </span>
                         @{{ product.cena_montaj }}
                     </td>
-                    <td class="">
+                    <td class="middle">
                         <span class="label label-sm label-success arrowed-right" v-show="product.opt_discount > 0">
                             - @{{ product.opt_discount }}%
                         </span>
                         @{{ product.opt_price }}
                     </td>
-                    <td>
+                    <td class="middle">
                         <span>
                             <a v-bind:href="'/' + product.category.parent.slug + '/' + product.category.slug"
                                target="_blank">@{{ product.category.admin_title }}
@@ -384,7 +385,7 @@
                             </a>
                         </span>
                     </td>
-                    <td class="options">
+                    <td class="options middle">
                         <div class="action-buttons">
                             <a class="green" target="_blank"
                                v-bind:href="'/dashboard/products/' +  product.id + '/edit'">
@@ -392,7 +393,7 @@
                             </a>
                         </div>
                     </td>
-                    <td class="options">
+                    <td class="options middle">
                         <div class="action-buttons">
                             <a class="buy" v-bind:data-productid="product.id" onclick="return false" style="cursor: pointer">
                                 <i class="ace-icon fa fa-cart-plus green"></i>
@@ -406,7 +407,7 @@
                             </a>
                         </div>
                     </td>
-                    <td class="options">
+                    <td class="options middle">
                         <div class="action-buttons">
                             <a class="red" href="#" v-on:click.prevent="deleteProduct(product, $event)">
                                 <i class="ace-icon fa fa-trash-o"></i>
