@@ -177,10 +177,10 @@ class TransferController extends AdminController
 	public function rollBack()
 	{
 		if($this->backup->rollback()) {
-			return redirect()->route('dashboard.transfer.index')->with('message','Успех!')->with('success',true);
+			return redirect()->route('transfer.index')->with('message','Успех!')->with('success',true);
 		}
 
-		return redirect()->route('dashboard.transfer.index')->with('message','Ошибка при чтении файла резервной копии!')->with('success',false);
+		return redirect()->route('transfer.index')->with('message','Ошибка при чтении файла резервной копии!')->with('success',false);
 	}
 
 	protected function handleCsvFile(Request $request)

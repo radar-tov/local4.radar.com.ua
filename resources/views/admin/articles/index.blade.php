@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div>
-                <a href="{{ route("dashboard.articles.create") }}" class="btn btn-sm btn-primary">
+                <a href="{{ route("articles.create") }}" class="btn btn-sm btn-primary">
                     <i class="ace-icon fa fa-plus"></i>Добавить статью
                 </a>
                 <br/>
@@ -41,16 +41,16 @@
                                     <span class="label label-sm label-warning">Скрыта</span>
                                 @endif
                             </td>
-                            {{--<td><a href="{{ route('dashboard.pages.edit',[ isset($article->page->id) ?$article->page->id : null ]) }}">{{ $article->page->title or '' }}</a></td>--}}
+                            {{--<td><a href="{{ route('pages.edit',[ isset($article->page->id) ?$article->page->id : null ]) }}">{{ $article->page->title or '' }}</a></td>--}}
                             <!-- Options -->
                             <td>
-                                <a class="green" href="{!! route('dashboard.articles.edit', $article->id) !!}">
+                                <a class="green" href="{!! route('articles.edit', $article->id) !!}">
                                     <i class="ace-icon fa fa-pencil bigger-130"></i>
                                 </a>
                             </td>
                             <td>
                                 <div class="action-buttons">
-                                    {!! Form::open(['route'=>['dashboard.articles.destroy', $article->id],'method'=>'delete' ]) !!}
+                                    {!! Form::open(['route'=>['articles.destroy', $article->id],'method'=>'delete' ]) !!}
                                     <label class="red" style="display: inline-block; cursor: pointer;">
                                         <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                         {!! Form::submit('Удалить',

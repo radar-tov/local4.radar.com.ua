@@ -41,9 +41,9 @@ class BannersController extends AdminController
 		$banner = $banner->create($request->all());
 
 		if((int)$request->get('button')) {
-			return redirect()->route('dashboard.banners.index')->withMessage('');
+			return redirect()->route('banners.index')->withMessage('');
 		}
-		return redirect()->route('dashboard.banners.edit',[$banner->id]);
+		return redirect()->route('banners.edit',[$banner->id]);
 	}
 
 	/**
@@ -69,9 +69,9 @@ class BannersController extends AdminController
 		$banner->findOrFail($id)->update($request->all());
 
 		if((int)$request->get('button')) {
-			return redirect()->route('dashboard.banners.index')->withMessage('');
+			return redirect()->route('banners.index')->withMessage('');
 		}
-		return redirect()->route('dashboard.banners.edit',[$id]);
+		return redirect()->route('banners.edit',[$id]);
 	}
 
 	/**
@@ -83,7 +83,7 @@ class BannersController extends AdminController
 	{
 		$banner->findOrFail($id)->delete();
 
-		return redirect()->route('dashboard.banners.index');
+		return redirect()->route('banners.index');
 	}
 
 }

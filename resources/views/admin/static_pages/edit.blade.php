@@ -69,7 +69,7 @@
 @section('content')
         
         @include('admin/partials/errors')
-        {!! Form::model($page,['route'=>['dashboard.static_pages.update',$page->id],'method'=>'put', 'id'=>'form-data']) !!}
+        {!! Form::model($page,['route'=>['static_pages.update',$page->id],'method'=>'put', 'id'=>'form-data']) !!}
         <div class="col-lg-12">
             <div class="col-lg-8">
                 <div class="form-group">

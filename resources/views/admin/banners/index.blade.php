@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div>
-                    <a href="{{ route("dashboard.banners.create") }}" class="btn btn-sm btn-primary">
+                    <a href="{{ route("banners.create") }}" class="btn btn-sm btn-primary">
                         <i class="ace-icon fa fa-plus"></i>Добавить баннер</a>
                     <br/>
                     <br/>
@@ -48,13 +48,13 @@
                                 </td>
                                 <!-- Options -->
                                 <td>
-                                    <a class="green" href="{!! route('dashboard.banners.edit', $banner->id) !!}">
+                                    <a class="green" href="{!! route('banners.edit', $banner->id) !!}">
                                         <i class="ace-icon fa fa-pencil bigger-130"></i>
                                     </a>
                                 </td>
                                 <td>
                                     <div class="hidden-sm hidden-xs action-buttons">
-                                        {!! Form::open(['route'=>['dashboard.banners.destroy', $banner->id],'method'=>'delete' ]) !!}
+                                        {!! Form::open(['route'=>['banners.destroy', $banner->id],'method'=>'delete' ]) !!}
                                         <label class="red" style="display: inline-block; cursor: pointer;">
                                             <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                             {!! Form::submit('Удалить',

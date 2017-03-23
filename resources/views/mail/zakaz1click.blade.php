@@ -30,6 +30,9 @@
             <p>Название товара: {{ $title }}</p>
             <p>Номер телефона: {{ $phone }}</p>
             <p>Время отправления: {{ date("Y-m-d h:i:s") }}</p>
+            <p>IP: {{ $_SERVER['REMOTE_ADDR'] }}</p>
+            <p>Браузер: {{ $_SERVER['HTTP_USER_AGENT'] }}</p>
+            <p>Referer: {{ $_SERVER['HTTP_REFERER'] }}</p>
         </td>
     </tr>
     <tr>

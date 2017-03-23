@@ -7,7 +7,7 @@
                     <label for="">
                         {{ $xaract->title }}
                     </label>
-                    <a href="{{ route('dashboard.characteristics.edit', $xaract->id) }}" class="pull-right" target="_blank">
+                    <a href="{{ route('characteristics.edit', $xaract->id) }}" class="pull-right" target="_blank">
                         <small>Редактировать характеристику</small>
                     </a>
 

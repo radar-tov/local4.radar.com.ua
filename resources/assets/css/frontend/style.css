@@ -5318,8 +5318,8 @@ p.note {
 }
 
 .mini-cart {
-    border-radius: 50px;
-    /*float: right;*/
+    width: 60%;
+    float: left;
     margin: 0 0 7px
 }
 
@@ -6052,6 +6052,11 @@ img.activator {
 }
 
 .related-products {
+    padding-bottom: 40px;
+    position: relative
+}
+
+.similar-products {
     padding-bottom: 40px;
     position: relative
 }
@@ -6865,6 +6870,11 @@ section.related {
 }
 
 .related h3 {
+    text-transform: none;
+    letter-spacing: .5px
+}
+
+.similar h3 {
     text-transform: none;
     letter-spacing: .5px
 }

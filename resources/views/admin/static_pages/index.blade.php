@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div>
-                 <a href="{{ route('dashboard.static_pages.create') }}" class="btn btn-sm btn-primary">
+                 <a href="{{ route('static_pages.create') }}" class="btn btn-sm btn-primary">
                     <i class="ace-icon fa fa-plus"></i>Добавить страницу</a>
                 <br/>
                 <br/> 
@@ -31,13 +31,13 @@
 
                     <!-- Options -->
                     <td class="options">
-                        <a class="green" href="{!! route('dashboard.static_pages.edit', $page->id) !!}">
+                        <a class="green" href="{!! route('static_pages.edit', $page->id) !!}">
                             <i class="ace-icon fa fa-pencil bigger-130"></i>
                         </a>
                     </td>
                      <td class="options">
                         <div class="action-buttons">
-                            {!! Form::open(['route'=>['dashboard.static_pages.destroy', $page->id],'method'=>'delete' ]) !!}
+                            {!! Form::open(['route'=>['static_pages.destroy', $page->id],'method'=>'delete' ]) !!}
                             <label class="red" style="display: inline-block; cursor: pointer;">
                                 <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                 {!! Form::submit('Удалить',

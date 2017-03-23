@@ -9,6 +9,6 @@ class CenaDataProvider {
 
     public function getList()
     {
-        return Cena::orderBy('name')->lists('name', 'id');
+        return Cena::orderBy('name')->pluck('name', 'id');
     }
 }

@@ -26,7 +26,7 @@ class OfficialController extends ServerController
 
         destroyCart();
 
-        return redirect()->route('dashboard.orders.index');
+        return redirect()->route('orders.index');
     }
 
     public function getdata(Order $order){

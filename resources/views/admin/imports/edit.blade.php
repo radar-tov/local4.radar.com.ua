@@ -22,7 +22,7 @@
 @section('content')
     <div class="row">
         @include('admin.partials.errors')
-        {!! Form::model($banner,['route'=>['dashboard.banners.update',$banner->id],'method'=>'put', 'id'=>'form-data']) !!}
+        {!! Form::model($banner,['route'=>['banners.update',$banner->id],'method'=>'put', 'id'=>'form-data']) !!}
             @include('admin.banners.form')
         {!! Form::close() !!}
     </div>

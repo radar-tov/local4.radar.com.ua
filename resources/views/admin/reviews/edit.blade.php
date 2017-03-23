@@ -22,7 +22,7 @@
 @section('content')
     <div class="row">
         @include('admin.partials.errors')
-        {!! Form::model($review,['route'=>['dashboard.reviews.update',$review->id],'method'=>'put', 'id'=>'form-data']) !!}
+        {!! Form::model($review,['route'=>['reviews.update',$review->id],'method'=>'put', 'id'=>'form-data']) !!}
             @include('admin.reviews.form')
         {!! Form::close() !!}
     </div>

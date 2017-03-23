@@ -110,13 +110,13 @@ class ReviewsController extends AdminController
         Review::findOrFail($id)->update($request->all());
 
         if((int)$request->get('button')) {
-            return redirect()->route('dashboard.reviews.index');
+            return redirect()->route('reviews.index');
         }
 
         $date = new \DateTime('NOW');
         $product->where('id', $request->product_id)->update(['updated_at' => $date->format("Y-m-d H:i:s")]);
 
-        return redirect()->route('dashboard.reviews.edit',$id);
+        return redirect()->route('reviews.edit',$id);
     }
 
     /**
@@ -129,7 +129,7 @@ class ReviewsController extends AdminController
     {
         Review::findOrFail($id)->delete();
 
-        return redirect()->route('dashboard.reviews.index')->withMessage("Review with id {$id} successfully deleted!");
+        return redirect()->route('reviews.index')->withMessage("Review with id {$id} successfully deleted!");
     }
 
     /**
@@ -146,7 +146,7 @@ class ReviewsController extends AdminController
             return view('admin.reviews.index')->withReviews($reviews)->withQ($request->get('q'));
 
         } catch(\Exception $e) {
-            return redirect()->route('dashboard.reviews.index')->withMessage($e->getMessage());
+            return redirect()->route('reviews.index')->withMessage($e->getMessage());
         }
     }
 }

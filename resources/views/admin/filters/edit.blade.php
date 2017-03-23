@@ -20,7 +20,7 @@
 
 @section('content')
         @include('admin.partials.errors')
-        <form action="{!! route('dashboard.filters.update',[$filter->id]) !!}" method="POST" id="form-data">
+        <form action="{!! route('filters.update',[$filter->id]) !!}" method="POST" id="form-data">
             {!! csrf_field() !!}
             <input name="_method" type="hidden" value="PUT">
             @include("admin.filters.form")

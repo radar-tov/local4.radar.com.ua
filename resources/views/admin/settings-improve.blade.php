@@ -25,7 +25,7 @@
     <div class="row">
         <div class="col-xs-12">
 
-            {!! Form::model($settings,['route'=>['dashboard.update',$settings->id],'method'=>'put', 'id'=>'form-data']) !!}
+            {!! Form::model($settings,['route'=>['update',$settings->id],'method'=>'put', 'id'=>'form-data']) !!}
                 <!-- PAGE CONTENT BEGINS -->
                 <div class="tabbable">
                     <!-- #section:pages/faq -->
@@ -156,8 +156,8 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    {!! Form::label('twitter','Страница в Instagram') !!}
-                                    {!! Form::text('twitter',$value = null,['placeholder'=>'Страница в Instagram','class'=>'form-control']) !!}
+                                    {!! Form::label('instagram','Страница в Instagram') !!}
+                                    {!! Form::text('instagram',$value = null,['placeholder'=>'Страница в Instagram','class'=>'form-control']) !!}
                                 </div>
                             </div>
                             <div class="col-lg-4">

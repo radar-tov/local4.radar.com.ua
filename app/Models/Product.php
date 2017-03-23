@@ -187,6 +187,14 @@ class Product extends Eloquent {
 			->visible()->withRelations();
 	}
 
+    /**
+     * @return mixed
+     */
+    public function similarProducts() {
+        return $this->belongsToMany(static::class, 'product_similarproduct', 'product_id', 'similar_product_id')
+            ->visible()->withRelations();
+    }
+
 	/**
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
 	 */
@@ -208,7 +216,7 @@ class Product extends Eloquent {
 							$user->load('customerGroups');
 						}
 
-						$group->whereIn('id', isset($user->customerGroups) ? $user->customerGroups->lists("id")->all() : []);
+						$group->whereIn('id', isset($user->customerGroups) ? $user->customerGroups->pluck("id")->all() : []);
 					});
 
 			})

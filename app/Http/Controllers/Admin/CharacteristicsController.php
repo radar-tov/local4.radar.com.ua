@@ -32,7 +32,7 @@ class CharacteristicsController extends AdminController
 
 		$characteristics = Characteristic::create([]);
 
-		return redirect()->route('dashboard.characteristics.edit',[$characteristics->id]);
+		return redirect()->route('characteristics.edit',[$characteristics->id]);
 
 		//return view('admin.characteristics.create');
 	}
@@ -51,10 +51,10 @@ class CharacteristicsController extends AdminController
 		$characteristic = $characteristic->create($request->all());
 
 		if((int)$request->get('button')) {
-			return redirect()->route('dashboard.characteristics.index')->withMessage('');
+			return redirect()->route('characteristics.index')->withMessage('');
 		}
 
-		return redirect()->route('dashboard.characteristics.edit',[$characteristic->id])->withFilter($characteristic);
+		return redirect()->route('characteristics.edit',[$characteristic->id])->withFilter($characteristic);
 	}
 
 
@@ -63,10 +63,10 @@ class CharacteristicsController extends AdminController
 		$characteristic = $characteristic->findOrFail($id)->update($request->all())->with('values');
 
 		if((int)$request->get('button')) {
-			return redirect()->route('dashboard.characteristics.index')->withMessage('');
+			return redirect()->route('characteristics.index')->withMessage('');
 		}
 
-		return redirect()->route('dashboard.characteristics.edit',[$id])->withFilter($characteristic);
+		return redirect()->route('characteristics.edit',[$id])->withFilter($characteristic);
 	}
 
 
@@ -74,7 +74,7 @@ class CharacteristicsController extends AdminController
     {
         $characteristic->findOrFail($id)->delete();
 
-        return redirect()->route('dashboard.characteristics.index');
+        return redirect()->route('characteristics.index');
     }
 
 

@@ -304,15 +304,6 @@ function deleteCookie(name) {
     })
 }
 
-//Определение фокуса
-var fokus;
-function focusHere(){
-    window.fokus = true;
-}
-function focusOut(){
-    window.fokus = false;
-}
-
 //Выборка данных по заказам и корзине
 function getData() {
     var token = $("input[name='_token']").val();

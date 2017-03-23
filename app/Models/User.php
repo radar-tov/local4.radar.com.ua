@@ -9,10 +9,12 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Laravelrus\LocalizedCarbon\Traits\LocalizedEloquentTrait;
+use Illuminate\Notifications\Notifiable;
+use App\Http\Controllers\Auth\MyResetPassword;
 
 class User extends Eloquent implements AuthenticatableContract, CanResetPasswordContract
 {
-    use Authenticatable, CanResetPassword, LocalizedEloquentTrait;
+    use Authenticatable, CanResetPassword, LocalizedEloquentTrait, Notifiable;
 
 	const ADMIN_ID = 1; // for more security set -50 , for example
 	const CUSTOMER_ID = 2;
@@ -120,5 +122,16 @@ class User extends Eloquent implements AuthenticatableContract, CanResetPassword
 	{
 		return $this->hasMany(Review::class);
 	}
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new MyResetPassword($token));
+    }
 
 }

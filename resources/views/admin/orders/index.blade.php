@@ -20,7 +20,7 @@
 
 
             <div class="col-lg-3 pull-right">
-                {!! Form::open(['route' => 'dashboard.orders.index', 'method' => 'GET']) !!}
+                {!! Form::open(['route' => 'orders.index', 'method' => 'GET']) !!}
                 <div class="input-group">
                     <input type="text" name="search" class="form-control" placeholder="">
                           <span class="input-group-btn">
@@ -36,7 +36,7 @@
 
             @if(Request::has('search'))
                 <div class="col-xs-2 pull-right">
-                    <a href="{{ route('dashboard.orders.index') }}" class="btn btn-primary btn-sm pull-right">
+                    <a href="{{ route('orders.index') }}" class="btn btn-primary btn-sm pull-right">
                         <i class="fa fa-chevron-left"></i> Вернуться
                     </a>
                 </div>
@@ -60,7 +60,7 @@
                         @foreach($orders as $order)
                             <tr>
                                 <td class="center">
-                                    <a href="{{ route('dashboard.orders.show', $order->id) }}">
+                                    <a href="{{ route('orders.show', $order->id) }}">
                                         {{ $order->id }}
                                     </a>
                                 </td>
@@ -71,7 +71,7 @@
                                 </td>
                                 <td>
                                     @if(count($order->user))
-                                        <a href="{{ route('dashboard.users.show', $order->user->id) }}">
+                                        <a href="{{ route('users.show', $order->user->id) }}">
                                             {{ $order->user->name }}
                                         </a>
                                         <br/>
@@ -90,7 +90,7 @@
                                 </td>
                                 <td class="options">
                                     <div class="action-buttons">
-                                        {!! Form::open(['route' => ['dashboard.orders.destroy', $order->id], 'method'=>'delete' ]) !!}
+                                        {!! Form::open(['route' => ['orders.destroy', $order->id], 'method'=>'delete' ]) !!}
                                         <label class="red" style="display: inline-block; cursor: pointer;">
                                             <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                             {!! Form::submit('Удалить',

@@ -17,7 +17,7 @@ class BusinessCentersController extends Controller
 	public function index(Request $request)
 	{
 		$complexes = BusinessCenter::with("city")->simplePaginate(20);
-		$citiesList = City::lists("name","id");
+		$citiesList = City::pluck("name","id");
 		if($request->ajax()) return $complexes->toArray();
 
 		return view("admin.business-centers.index", compact("complexes", "citiesList"));

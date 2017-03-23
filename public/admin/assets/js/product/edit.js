@@ -37,8 +37,24 @@ var productVue = new Vue({
             search: '',
             selected: []
         },
+        productsSimList:{
+            products:{},
+            pagination:{
+                currentPage: {},
+                lastPage: {},
+                pageToGet: 1
+            }
+        },
+        simOptions:{
+            category:0,
+            paginate: 20,
+            search: '',
+            selected: []
+        },
         relatedProducts: null,
+        similarProducts: null,
         selectedProductsIds: [],
+        selectedSimProductsIds: [],
         countryList: null
     },
 
@@ -49,8 +65,9 @@ var productVue = new Vue({
         }
 
         this.$http.get('/dashboard/helpers/translate').then(function (response) {
-            this.translate = response;});
+            this.translate = response.body;});
         this.getRelatedProducts();
+        this.getSimilarProducts();
     },
 
     computed: {
@@ -343,6 +360,48 @@ var productVue = new Vue({
                 });
         },
 
+        getSimProducts: function () {
+            var vue = this;
+            var options = {
+                params: {
+                    categoryId: vue.simOptions.category,
+                    paginate: vue.simOptions.search,
+                    search: vue.simOptions.search,
+                    selected: vue.getSelectedSimProductsIds(),
+                    page: vue.productsSimList.pagination.pageToGet,
+                    _: Date.now()
+                }
+            };
+            this.$http.get('/dashboard/product-actions/getProducts', options)
+                .then(function (response) {
+                    vue.productsSimList.products = response.body.data;
+                    vue.productsSimList.pagination.currentPage = response.body.current_page;
+                    vue.productsSimList.pagination.lastPage = response.body.last_page;
+                    if(vue.productsSimList.pagination.lastPage < vue.productsSimList.pagination.pageToGet) {
+                        vue.productsSimList.pagination.pageToGet = vue.productsSimList.pagination.lastPage;
+                        vue.getSimProducts()
+                    }
+                });
+        },
+
+        getSimilarProducts: function(){
+            var vue = this;
+            this.$http.post('/dashboard/product-actions/getSimilarProducts', {productId: this.product.id})
+                .then(function (response) {
+                    vue.simOptions.selected = response.body;
+                    vue.selectedSimProductsIds = this.getSelectedSimProductsIds();
+                });
+        },
+
+        syncSimProducts: function(){
+            this.selectedSimProductsIds = this.getSelectedSimProductsIds();
+            var body = {
+                ids: this.getSelectedSimProductsIds(),
+                productId: this.product.id
+            };
+            this.$http.post('/dashboard/product-actions/syncSimilar', body)
+        },
+
         syncProducts: function(){
             this.selectedProductsIds = this.getSelectedProductsIds();
             var body = {
@@ -355,6 +414,14 @@ var productVue = new Vue({
         getSelectedProductsIds: function(){
             var productsIds = [];
             this.relOptions.selected.forEach(function(product){
+                productsIds.push(product.id);
+            });
+            return productsIds;
+        },
+
+        getSelectedSimProductsIds: function(){
+            var productsIds = [];
+            this.simOptions.selected.forEach(function(product){
                 productsIds.push(product.id);
             });
             return productsIds;
@@ -374,6 +441,20 @@ var productVue = new Vue({
             this.getProducts();
         },
 
+        addSimProduct: function(relProduct, index){
+            this.productsSimList.products.splice(index, 1);
+            this.simOptions.selected.push(relProduct);
+            this.syncSimProducts();
+            this.getSimProducts();
+        },
+
+        removeSimProduct: function(relProduct, index){
+            this.simOptions.selected.splice(index, 1);
+            this.productsSimList.products.push(relProduct);
+            this.syncSimProducts();
+            this.getSimProducts();
+        },
+
         nextPage: function(){
             if(this.productsList.pagination.currentPage != this.productsList.pagination.lastPage){
                 this.productsList.pagination.pageToGet = this.productsList.pagination.currentPage + 1;
@@ -385,6 +466,20 @@ var productVue = new Vue({
             if(this.productsList.pagination.currentPage != 1) {
                 this.productsList.pagination.pageToGet = this.productsList.pagination.currentPage - 1;
                 this.getProducts();
+            }
+        },
+
+        nextSimPage: function(){
+            if(this.productsSimList.pagination.currentPage != this.productsSimList.pagination.lastPage){
+                this.productsSimList.pagination.pageToGet = this.productsSimList.pagination.currentPage + 1;
+                this.getSimProducts();
+            }
+        },
+
+        prevSimPage: function(){
+            if(this.productsSimList.pagination.currentPage != 1) {
+                this.productsSimList.pagination.pageToGet = this.productsSimList.pagination.currentPage - 1;
+                this.getSimProducts();
             }
         },
 

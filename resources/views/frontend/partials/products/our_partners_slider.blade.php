@@ -20,5 +20,6 @@
   <div><a href="/proizvoditeli"><img src="frontend/images/partners/titan_logo.gif" alt="Slider 17"/></a></div>
   <div><a href="/proizvoditeli"><img src="frontend/images/partners/Vaillant_logo.png" alt="Slider 18"/></a></div>
   <div><a href="/proizvoditeli"><img src="frontend/images/partners/viadrus_logo.jpg" alt="Slider 19"/></a></div>
+  <div><a href="/proizvoditeli"><img src="frontend/images/partners/koller1.png" alt="Slider 20"/></a></div>
 </div>
 <!-- / resources.views.frontend.partials.products.our_partners_slider -->

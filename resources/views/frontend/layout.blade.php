@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-    {{--<meta name="bot" content="@if($_ENV['BOT']) BOT @endif {{ $_SERVER['HTTP_USER_AGENT'] }}"/>--}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- section SEO  -->
     @yield('seo')
     <!-- / section SEO  -->
@@ -18,6 +18,7 @@
     @yield('top-scripts')
     <!-- / section top-scripts  -->
     @include('frontend.googleAnalistic')
+    <script>var fokus;function focusHere(){window.fokus=true;}function focusOut(){window.fokus=false;}</script>
     <!-- / SCRIPTS  -->
 </head>
 <body onmouseover="focusHere();" onmouseout="focusOut();">
@@ -31,9 +32,6 @@
 <!-- / section CONTENT  -->
 @include('frontend.partials.footer')
 <!-- Scripts -->
-<!-- section filter_handler -->
-@yield('filter_handler')
-<!-- / section filter_handler -->
 <!-- section bottom-scripts -->
 <script type="text/javascript" src="{{ elixir('js/frontend/all.js') }}"></script>
 @yield('bottom-scripts')

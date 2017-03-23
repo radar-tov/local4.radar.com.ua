@@ -82,7 +82,7 @@ class FilterService
 
         $category = Category::where('id', $request->get('categoryId'))->with('children')->with('filters')->first();
 
-        $categories = [$category->id] + $category->children->lists('id')->all();
+        $categories = [$category->id] + $category->children->pluck('id')->all();
 
         $products = Product::whereIn('category_id', $categories);
 

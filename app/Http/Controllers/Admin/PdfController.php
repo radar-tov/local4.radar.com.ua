@@ -63,7 +63,7 @@ class PdfController extends Controller
     public function show(File $file, $category_id, $brand_id, $id)
     {
         $file = $file->orderBy('admin_name')->where('category_id', $category_id)
-            ->where('brand_id', $brand_id)->lists('admin_name', 'id');
+            ->where('brand_id', $brand_id)->pluck('admin_name', 'id');
         return view('admin.pdf.add', compact('file') )->with('id', $id);
     }
 

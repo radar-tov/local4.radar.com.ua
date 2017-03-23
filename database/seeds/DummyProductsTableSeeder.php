@@ -12,7 +12,7 @@ class DummyProductsTableSeeder extends Seeder
     public function run()
     {
 
-        $brands = \App\Models\Brand::lists('id');
+        $brands = \App\Models\Brand::pluck('id');
         $characteristics = \App\Models\FilterValue::get(['id']);
 
 	    $faker = Factory::create();

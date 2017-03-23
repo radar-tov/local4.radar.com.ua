@@ -120,7 +120,7 @@
 
                 $.ajax({
                     method:'POST',
-                    url : "{!! route('dashboard.characteristics_value.order') !!}",
+                    url : "{!! route('characteristics_value.order') !!}",
                     data: { _token: "{!! csrf_token() !!}", serialized: serialized }
 
                 }).done(function (data) {
@@ -136,7 +136,7 @@
 
                 $.ajax({
                     method:'POST',
-                    url : "{!! route('dashboard.categories.order') !!}",
+                    url : "{!! route('categories.order') !!}",
                     data: { _token: "{!! csrf_token() !!}", serialized: serialized }
 
                 }).done(function (data) {

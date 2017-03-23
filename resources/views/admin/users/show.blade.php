@@ -12,7 +12,7 @@
             <a class="btn btn-sm btn-primary" title="Назад" href="javascript:return false;" onclick="window.history.back()">
                 <i class="ace-icon fa fa-chevron-circle-up"></i> Назад
             </a>
-            <a href="{!! route('dashboard.users.edit',[$user->id]) !!}" class="btn btn-sm btn-primary"
+            <a href="{!! route('users.edit',[$user->id]) !!}" class="btn btn-sm btn-primary"
                title="Редактировать пользователя" target="_blank">
                 <i class="ace-icon fa fa-edit "></i> Редактировать пользователя
             </a>
@@ -201,7 +201,7 @@
                 @foreach($user->orders as $order)
                     <tr>
                         <td class="center">
-                            <a href="{{ route('dashboard.orders.show', $order->id) }}">
+                            <a href="{{ route('orders.show', $order->id) }}">
                                 {{ $order->id }}
                             </a>
                         </td>
@@ -212,7 +212,7 @@
                         </td>
                         <td>
                             @if(count($order->user))
-                                <a href="{{ route('dashboard.users.show', $order->user->id) }}">
+                                <a href="{{ route('users.show', $order->user->id) }}">
                                     {{ $order->user->name }}
                                 </a>
                                 <br/>
@@ -231,7 +231,7 @@
                         </td>
                         <td class="options">
                             <div class="action-buttons">
-                                {!! Form::open(['route' => ['dashboard.orders.destroy', $order->id], 'method'=>'delete' ]) !!}
+                                {!! Form::open(['route' => ['orders.destroy', $order->id], 'method'=>'delete' ]) !!}
                                 <label class="red" style="display: inline-block; cursor: pointer;">
                                     <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                     {!! Form::submit('Удалить',
@@ -265,7 +265,7 @@
                     <tr>
                         <td>
                             @if(count($review->product))
-                                <a href="{!! route('dashboard.products.edit',[$review->product->id]) !!}">{{ $review->product->title }}</a>
+                                <a href="{!! route('products.edit',[$review->product->id]) !!}">{{ $review->product->title }}</a>
                             @else
                                 <span>Продукт удален</span>
                             @endif
@@ -301,13 +301,13 @@
                         </td>
                         <!-- Options -->
                         <td class="options">
-                            <a class="green" href="{!! route('dashboard.reviews.edit', $review->id) !!}">
+                            <a class="green" href="{!! route('reviews.edit', $review->id) !!}">
                                 <i class="ace-icon fa fa-pencil bigger-130"></i>
                             </a>
                         </td>
                         <td class="options">
                             <div class="hidden-sm hidden-xs action-buttons">
-                                {!! Form::open(['route'=>['dashboard.reviews.destroy', $review->id],'method'=>'delete' ]) !!}
+                                {!! Form::open(['route'=>['reviews.destroy', $review->id],'method'=>'delete' ]) !!}
                                 <label class="red" style="display: inline-block; cursor: pointer;">
                                     <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                     {!! Form::submit('Удалить',

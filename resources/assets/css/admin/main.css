@@ -526,3 +526,6 @@ li {
 .menu_top{
     padding-right: 7px;
 }
+.middle{
+    vertical-align: middle !important;
+}

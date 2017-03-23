@@ -8,7 +8,7 @@
 
     <div class="row">
         @include('admin.partials.errors')
-        {!! Form::model($product,['route' => ['dashboard.products.update', $product->id], 'method' => 'PUT', 'id' => 'form-data', 'files' => true]) !!}
+        {!! Form::model($product,['route' => ['products.update', $product->id], 'method' => 'PUT', 'id' => 'form-data', 'files' => true]) !!}
 
             @include("admin.products.form")
 

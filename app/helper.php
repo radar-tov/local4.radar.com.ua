@@ -95,14 +95,17 @@ function productInCart($product) {
 	$id = $product->clone_of ?: $product->id;
 	$prod = null;
 	foreach ((array) session('stocks') + ['main'] as $instance) {
-		$prod = Cart::instance($instance)->search(['id' => $id]);
-		if ($prod) {
-			break;
+		$prod = Cart::instance($instance)->search(function($item) use ($id) {
+            return $id == $item->id;
+        });
+		if (!emptyArray($prod)) {
+		    return true;
+		    break;
 		}
 
 	}
 
-	return !!$prod;
+	return false;
 }
 
  function calcProductsInCompare()

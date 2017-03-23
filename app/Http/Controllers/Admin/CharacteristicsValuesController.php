@@ -21,7 +21,7 @@ class CharacteristicsValuesController extends Controller
     public function index(Request $request, CharacteristicValue $characteristicValue, $characteristicId = 0)
     {
         if($request->ajax()){
-            return CharacteristicValue::groupBy('value')->lists('value');
+            return CharacteristicValue::groupBy('value')->pluck('value');
         }
         return $characteristicValue->where('characteristic_id', $characteristicId)->orderBy('id','desc')->get();
     }
@@ -34,7 +34,7 @@ class CharacteristicsValuesController extends Controller
      */
     public function create(Characteristic $characteristic)
     {
-        //return view('admin.filter-values.create')->withFilters($characteristic->lists('title','id'));
+        //return view('admin.filter-values.create')->withFilters($characteristic->pluck('title','id'));
     }
 
     /**

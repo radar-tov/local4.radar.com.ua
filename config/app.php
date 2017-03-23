@@ -138,6 +138,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 	    Laravelrus\LocalizedCarbon\LocalizedCarbonServiceProvider::class,
 	    Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+        Illuminate\Notifications\NotificationServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -146,10 +147,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\SystemServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
-
+        Laravel\Dusk\DuskServiceProvider::class,
     ],
 
     /*
@@ -202,6 +204,7 @@ return [
 		'Cart'              => Gloudemans\Shoppingcart\Facades\Cart::class,
         'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Notification' => Illuminate\Support\Facades\Notification::class,
 
     ],
 

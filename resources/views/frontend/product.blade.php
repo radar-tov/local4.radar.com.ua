@@ -1,5 +1,6 @@
-@extends('frontend.layout')
+@inject('cartProvider', '\App\ViewDataProviders\CartDataProvider')
 
+@extends('frontend.layout')
 
 @section('seo')
     <title xmlns="http://www.w3.org/1999/html">{{ $product->meta_title ?: $product->title }}</title>
@@ -56,26 +57,19 @@
                         <img src="/frontend/images/sale.png" class="sale-img">
                     @endif
                     <div class="listLightbox">
-                        <a class="fancybox" rel="gallery" href="{{ $product->images->first()->path }}">
-
-                            @if(count($product->thumbnail) && file_exists(public_path($product->thumbnail->first()->path)))
-                                {{--<a class="bigImage"--}}
-                                   {{--href="{{ $product->thumbnail->first()->path }}"--}}
-                                   {{--data-lightbox="example"--}}
-                                   {{--data-title="{{ $product->title }}">--}}
+                        @if(count($product->thumbnail) && file_exists(public_path($product->thumbnail->first()->path)))
+                            <a class="fancybox" rel="gallery" href="{{ $product->images->first()->path }}">
                                 <img class="example-image index_image" src="{{ $product->thumbnail->first()->path }}"
                                      style="min-height: 350px; min-width: 350px"
                                      alt="{{ $product->title }}"/>
-                                {{--</a>--}}
-                            @else
-                                <img class="example-image index_image" src="/frontend/images/default.png" alt="{{ $product->title }}"/>
-                            @endif
+                            </a>
+                        @else
+                            <img class="example-image index_image" src="/frontend/images/default.png" alt="{{ $product->title }}"/>
+                        @endif
 
-                            @if(hasGift($product))
-                                <div class="appointment"><img src="/frontend/images/present.png"/></div>
-                            @endif
-                        </a>
-
+                        @if(hasGift($product))
+                            <div class="appointment"><img src="/frontend/images/present.png"/></div>
+                        @endif
                         {{--@if(count($product->thumbnail) && file_exists(public_path($product->images->first()->path)))--}}
                             {{--@foreach($product->images as $key => $image)--}}
                                 {{--<li>--}}
@@ -102,10 +96,10 @@
                     @if(isset($product->brand->title))
                         <p class="brand no-margin">Производитель: <span>{{ $product->brand->title }}</span></p>
                     @endif
-                    <div id="rating_3" class="item-rating left">
+                    {{--<div id="rating_3" class="item-rating left">
                         <input type="hidden" name="vote-id" value="5" id=""/>
-                        <input type="hidden" name="val" value="{{ round($product->rates()->avg('rate'))}}">
-                    </div>
+                        <input type="hidden" name="val" value="{{ array_sum($product->rates->pluck('rate')->all()) / ($product->rates->count() ?: 1) }}">
+                    </div>--}}
                     <div class="col s12 clearleft wrap-price">
                         <div class="pricesBlock" style="width:100%;float:left">
                             <div class="col s12 item-prices">
@@ -164,7 +158,7 @@
                                            class="addtocart-button compare"
                                            data-productId="{{ $product->id }}"
                                            class="compare-button-hover compare anim"
-                                           value="{{ Cart::instance('compare')->search(['id' => $product->id]) ? 'В сравнении' : 'Сравнить' }}"
+                                           value="{{ $cartProvider->searchCompare($product->id) ? 'В сравнении' : 'Сравнить' }}"
                                            title="Сравнить">
 
                                 </div>
@@ -350,25 +344,44 @@
 
                     </div>
                     <div class="col s12 m12 l3">
-                        <section class="related">
+                        <section class="similar">
                             <div class="col s12 product no-padding">
-                                @if(count($product->relatedProducts))
-                                    <h3>Подходящие аксессуары</h3>
-                                    <div class="related-products">
+                                {{--{{ dump($product) }}--}}
+                                @if(count($product->similarProducts))
+                                    <h3>Похожие товары</h3>
+                                    <div class="similar-products">
 
-                                        @foreach($product->relatedProducts as $product)
+                                        @foreach($product->similarProducts as $pivet_product)
 
-                                            @include('frontend.partials.products.product_template')
+                                            @include('frontend.partials.products.template_product')
 
                                         @endforeach
 
                                     </div>
                                 @endif
                             </div>
-                            <!--/Menu-->
-                            <input type="hidden" value="{{ csrf_token() }}" id="token"/>
                         </section>
                     </div>
+                    <div class="col s12 m12 l3">
+                        <section class="related">
+                            <div class="col s12 product no-padding">
+                                {{--{{ dump($product->relatedProducts) }}--}}
+                                @if(count($product->relatedProducts))
+                                    <h3>Подходящие аксессуары</h3>
+                                    <div class="related-products">
+
+                                        @foreach($product->relatedProducts as $pivet_product)
+
+                                            @include('frontend.partials.products.template_product')
+
+                                        @endforeach
+
+                                    </div>
+                                @endif
+                            </div>
+                        </section>
+                    </div>
+                    <input type="hidden" value="{{ csrf_token() }}" id="token"/>
                 </div>
             </div>
         </div>

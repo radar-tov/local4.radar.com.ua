@@ -10,13 +10,13 @@
         {!! Form::label('','Товар')!!}<br/>
         @if(isset($review->product->id))
             {!! Form::hidden("product_id", $value = isset($review->product->id) ? $review->product->id : null) !!}
-            <a href="{{ route('dashboard.products.edit',[$review->product->id]) }}" class=""> {{ $review->product->title }}</a>
+            <a href="{{ route('products.edit',[$review->product->id]) }}" class=""> {{ $review->product->title }}</a>
         @endif
     </div>
     <div class="form-group">
         {!! Form::label('','Пользователь')!!}<br/>
         @if(isset($review->user->id))
-            <a href="{{ route('dashboard.users.edit',[$review->user->id]) }}" class="">{{ $review->user->name }}</a>
+            <a href="{{ route('users.edit',[$review->user->id]) }}" class="">{{ $review->user->name }}</a>
         @endif
     </div>
     <div class="form-group">

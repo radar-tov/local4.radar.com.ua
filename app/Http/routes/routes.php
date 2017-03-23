@@ -12,20 +12,32 @@
 */
 
 
-Route::group(['namespace'=>'App\Http\Controllers\Auth'],function(){
-	Route::get('auth/login', 'AuthController@getLogin');
-	Route::post('auth/login', 'AuthController@postLogin');
-	Route::get('auth/logout', 'AuthController@getLogout');
+Route::group(['namespace'=>'App\Http\Controllers'],function(){
 
-	// Registration routes...
-	Route::get('auth/register', 'AuthController@getRegister');
-	Route::post('auth/register', 'AuthController@postRegister');
-//	Route::controller('password','PasswordController');
-//	Route::get('password/email', 'PasswordController@getEmail');
-//	Route::post('password/email', 'PasswordController@postEmail');
-//	Route::get('password/reset', 'PasswordController@getEmail');
+    Route::get('/logout', 'Auth\LoginController@logout');
+    Route::auth();
+
+/*
+GET|HEAD     login                   login              App\Http\Controllers\Frontend\FrontendController@login                  bot,guest
+POST         login                                      App\Http\Controllers\Auth\LoginController@login                         guest
+GET|HEAD     logout                                     App\Http\Controllers\Auth\LoginController@logout
+POST         logout                  logout             App\Http\Controllers\Auth\LoginController@logout
+
+POST         password/email          password.email     App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail   guest
+GET|HEAD     password/reset          password.request   App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm  guest
+POST         password/reset                             App\Http\Controllers\Auth\ResetPasswordController@reset                 guest
+GET|HEAD     password/reset/{token}  password.reset     App\Http\Controllers\Auth\ResetPasswordController@showResetForm         guest
+
+POST         register                                   App\Http\Controllers\Auth\RegisterController@register                   guest
+GET|HEAD     register                register           App\Http\Controllers\Auth\RegisterController@showRegistrationForm       guest
+
+GET|HEAD     password                password           App\Http\Controllers\Frontend\FrontendController@                       bot
+GET|HEAD     registration            register           App\Http\Controllers\Frontend\FrontendController@registration           bot,guest
+*/
+
+
+
 });
-
 
 
 Route::get('glide/{path}', function($path){

@@ -9,9 +9,9 @@
 @section('content')
     <div class="row">
         <div class="">
-            <a href="{{ route("dashboard.users.create") }}" class="btn btn-sm btn-primary"><i class="ace-icon fa fa-plus"></i>Добавить пользователя</a>
+            <a href="{{ route("users.create") }}" class="btn btn-sm btn-primary"><i class="ace-icon fa fa-plus"></i>Добавить пользователя</a>
             <div class="col-lg-3 pull-right no-padding">
-                {!! Form::open(['route' => 'dashboard.users.index', 'method' => 'GET']) !!}
+                {!! Form::open(['route' => 'users.index', 'method' => 'GET']) !!}
                 <div class="input-group">
                     {{--<select name="order" id="order">
                         <option value="ASC">По порядку</option>
@@ -30,7 +30,7 @@
 
             @if(Request::has('search'))
                 <div class="col-xs-2 pull-right">
-                    <a href="{{ route('dashboard.users.index') }}" class="btn btn-primary btn-sm pull-right">
+                    <a href="{{ route('users.index') }}" class="btn btn-primary btn-sm pull-right">
                         <i class="fa fa-chevron-left"></i> Вернуться
                     </a>
                 </div>
@@ -70,7 +70,7 @@
                             @endif
                         </td>
                         <td>{{ $user->organization }}</td>
-                        <td><a href="{!! route('dashboard.users.show',[$user->id]) !!}" target="_blank">{{ $user->name }}</a></td>
+                        <td><a href="{!! route('users.show',[$user->id]) !!}" target="_blank">{{ $user->name }}</a></td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->phone }}, {{ $user->phone_all }}</td>
                         <td>{{ $user->city }} <small style="color: #808080;">  {{ $user->country }} </small></td>
@@ -87,13 +87,13 @@
                         <!-- Options -->
                         </td>
                         <td class="options">
-                            <a class="green" href="{!! route('dashboard.users.edit', $user->id) !!}" target="_blank">
+                            <a class="green" href="{!! route('users.edit', $user->id) !!}" target="_blank">
                                 <i class="ace-icon fa fa-pencil bigger-130"></i>
                             </a>
                         </td>
                         <td class="options">
                             <div class="action-buttons">
-                                {!! Form::open(['route'=>['dashboard.users.destroy', $user->id],'method'=>'delete' ]) !!}
+                                {!! Form::open(['route'=>['users.destroy', $user->id],'method'=>'delete' ]) !!}
                                 <label class="red" style="display: inline-block; cursor: pointer;">
                                     <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                     {!! Form::submit('Удалить',

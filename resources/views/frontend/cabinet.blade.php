@@ -45,7 +45,7 @@
                     <form id="order-form" action="/user_update" method="post" class="registration col s12 m12 l6">
                         {!! csrf_field() !!}
                         <p class="formField">
-                            <label for="order-name" class="col s12 m4 l4">ФИО:<span class="red-text"> *</span></label>
+                            <label for="order-name" class="col s12 m4 l4">ФИО:</label>
                             <input class="col s12 m8 l7" id="order-name" placeholder="введите имя, фамилию и отчество" tabindex="1" name="name" type="text" value="{{ old('name', $user->name) }}">
                         </p>
                         <!--<p class="formField">-->
@@ -81,11 +81,11 @@
                             <input class="col s12 m8 l7" id="order-address" placeholder="введите адрес" tabindex="7" name="address" type="text" value="{{ old('address', $user->address) }}">
                         </p>
                         <p class="formField">
-                            <label for="order-address" class="col s12 m4 l4">Пароль:</label>
+                            <label for="order-address" class="col s12 m4 l4">Пароль:<span class="red-text"> *</span></label>
                             <input class="col s12 m8 l7" name="password" placeholder="введите пароль" type="password" value="">
                         </p>
                         <p class="formField">
-                            <label for="order-address" class="col s12 m4 l4">Подтвердите пароль:</label>
+                            <label for="order-address" class="col s12 m4 l4">Подтвердите пароль:<span class="red-text"> *</span></label>
                             <input class="col s12 m8 l7" name="password_confirmation" placeholder="подтвердите пароль" type="password" value="">
                         </p>
                         <div class="col s12"><button class="btn waves-effect waves-light" type="submit" name="action">Сохранить</button></div>

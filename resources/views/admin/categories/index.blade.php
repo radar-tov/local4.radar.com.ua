@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="row">
-                    <a href="{!! route('dashboard.categories.create') !!}"
+                    <a href="{!! route('categories.create') !!}"
                        class="btn btn-sm btn-primary">
                         <i class="fa fa-plus"></i>
                         Добавить категорию
@@ -29,13 +29,13 @@
                                         &nbsp;&nbsp;
                                         {{ $category->title }}
                                         <div class="pull-right action-buttons">
-                                            <a class="blue" href="{!! route('dashboard.categories.edit',$category->id) !!}">
+                                            <a class="blue" href="{!! route('categories.edit',$category->id) !!}">
                                                 <i class="ace-icon fa fa-pencil bigger-130"></i>
                                             </a>
                                             <a class="red" href="#">
                                                 <label for="{{ $category->id }}" class="label-delete">
                                                     <i class="ace-icon fa fa-trash-o bigger-130"></i>
-                                                    {!! Form::open(['route'=>['dashboard.categories.destroy', $category->id],'method'=>'delete' ]) !!}
+                                                    {!! Form::open(['route'=>['categories.destroy', $category->id],'method'=>'delete' ]) !!}
                                                     {!! Form::submit('Удалить',["class" => "ace-icon fa fa-trash-o bigger-120", "id" => $category->id, "style" => "display:none"]) !!}
                                                     {!! Form::close() !!}
                                                 </label>
@@ -51,13 +51,13 @@
                                                         &nbsp;&nbsp;
                                                         {{ $child->title }}
                                                         <div class="pull-right action-buttons">
-                                                            <a class="blue" href="{!! route('dashboard.categories.edit',$child->id) !!}">
+                                                            <a class="blue" href="{!! route('categories.edit',$child->id) !!}">
                                                                 <i class="ace-icon fa fa-pencil bigger-130"></i>
                                                             </a>
                                                             <a class="red" href="#">
                                                                 <label for="{{ $child->id }}" class="label-delete">
                                                                         <i class="ace-icon fa fa-trash-o bigger-130"></i>
-                                                                    {!! Form::open(['route'=>['dashboard.categories.destroy', $child->id],'method'=>'delete' ]) !!}
+                                                                    {!! Form::open(['route'=>['categories.destroy', $child->id],'method'=>'delete' ]) !!}
                                                                         {!! Form::submit('Удалить',["class" => "ace-icon fa fa-trash-o bigger-120", "id" => $child->id, "style" => "display:none"]) !!}
                                                                     {!! Form::close() !!}
                                                                 </label>
@@ -98,7 +98,7 @@
 
                 $.ajax({
                     method:'POST',
-                    url : "{!! route('dashboard.categories.order') !!}",
+                    url : "{!! route('categories.order') !!}",
                     data: { _token: "{!! csrf_token() !!}", serialized: serialized }
 
                 }).done(function (data) {

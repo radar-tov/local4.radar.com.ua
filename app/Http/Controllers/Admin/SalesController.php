@@ -60,9 +60,9 @@ class SalesController extends AdminController
 	    $sale->customerGroups()->sync($request->get('groups') ?: []);
 
 	    if((int)$request->get('button')) {
-		    return redirect()->route('dashboard.sales.index')->withMessage('');
+		    return redirect()->route('sales.index')->withMessage('');
 	    }
-	    return redirect()->route('dashboard.sales.edit', $sale->id);
+	    return redirect()->route('sales.edit', $sale->id);
     }
 
     /**
@@ -109,10 +109,10 @@ class SalesController extends AdminController
 //	    dd($this->prepareIds($request->get('selectedProductsIds')));
 
 	    if((int)$request->get('button')) {
-		    return redirect()->route('dashboard.sales.index')->withMessage('');
+		    return redirect()->route('sales.index')->withMessage('');
 	    }
 
-	    return redirect()->route('dashboard.sales.edit', $sale->id);
+	    return redirect()->route('sales.edit', $sale->id);
     }
 
     /**
@@ -143,7 +143,7 @@ class SalesController extends AdminController
 
 	public function prepareIds($idsString, $all = null)
 	{
-		if($all) return Product::lists('id')->all();
+		if($all) return Product::pluck('id')->all();
 		if(empty($idsString)) return [];
 
 		return explode(',', $idsString);

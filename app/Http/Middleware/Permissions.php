@@ -23,7 +23,7 @@ class Permissions
 //				Auth::logout();
 				return redirect()->back();
 			}
-			return redirect('auth/login');
+			return redirect('/login');
 		}
 
 		return $next($request);

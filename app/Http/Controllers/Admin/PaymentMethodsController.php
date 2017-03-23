@@ -42,10 +42,10 @@ class PaymentMethodsController extends AdminController
 		$method = PaymentMethod::create($request->all());
 
 		if((int)$request->get('button')) {
-			return redirect()->route('dashboard.payments.index');
+			return redirect()->route('payments.index');
 		}
 
-		return redirect()->route('dashboard.payments.edit', $method->id);
+		return redirect()->route('payments.edit', $method->id);
 	}
 
 	/**
@@ -84,10 +84,10 @@ class PaymentMethodsController extends AdminController
 		$method->update($request->all());
 
 		if((int)$request->get('button')) {
-			return redirect()->route('dashboard.payments.index');
+			return redirect()->route('payments.index');
 		}
 
-		return redirect()->route('dashboard.payments.edit', $method->id);
+		return redirect()->route('payments.edit', $method->id);
 	}
 
 	/**

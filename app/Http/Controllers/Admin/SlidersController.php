@@ -41,9 +41,9 @@ class SlidersController extends AdminController
 		$slider = $slider->create($request->all());
 
 		if((int)$request->get('button')) {
-			return redirect()->route('dashboard.sliders.index')->withMessage('');
+			return redirect()->route('sliders.index')->withMessage('');
 		}
-		return redirect()->route('dashboard.sliders.edit', $slider->id);
+		return redirect()->route('sliders.edit', $slider->id);
 	}
 
 	/**
@@ -69,9 +69,9 @@ class SlidersController extends AdminController
 		$slider->findOrFail($id)->update($request->all());
 
 		if((int)$request->get('button')) {
-			return redirect()->route('dashboard.sliders.index')->withMessage('');
+			return redirect()->route('sliders.index')->withMessage('');
 		}
-		return redirect()->route('dashboard.sliders.edit',$id);
+		return redirect()->route('sliders.edit',$id);
 	}
 
 	/**
@@ -83,7 +83,7 @@ class SlidersController extends AdminController
 	{
 		$slider->findOrFail($id)->delete();
 
-		return redirect()->route('dashboard.sliders.index');
+		return redirect()->route('sliders.index');
 	}
 
 }

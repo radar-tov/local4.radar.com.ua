@@ -66,8 +66,8 @@ class OrdersController extends AdminController
     public function show($id)
     {
         $order = Order::find($id);
-	    $payments = PaymentMethod::lists('title', 'id');
-	    $shipping = ShipmentMethod::lists('title', 'id');
+	    $payments = PaymentMethod::pluck('title', 'id');
+	    $shipping = ShipmentMethod::pluck('title', 'id');
 
 	    return view('admin.orders.show', compact('order','payments', 'shipping'));
     }
@@ -96,10 +96,10 @@ class OrdersController extends AdminController
         Order::find($id)->update($request->all());
 
 	    if((int)$request->get('button')) {
-		    return redirect()->route('dashboard.orders.index');
+		    return redirect()->route('orders.index');
 	    }
 
-	    return redirect()->route('dashboard.orders.show', $id);
+	    return redirect()->route('orders.show', $id);
     }
 
     /**

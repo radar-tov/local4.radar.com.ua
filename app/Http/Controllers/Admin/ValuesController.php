@@ -48,10 +48,10 @@ class ValuesController extends AdminController
 		$parameter = $parameter->create($request->all());
 
 		if((int)$request->get('button')) {
-			return redirect()->route('dashboard.parameters.index')->withMessage('');
+			return redirect()->route('parameters.index')->withMessage('');
 		}
 
-		return redirect()->route('dashboard.parameters.edit',[$parameter->id])->withParameter($parameter);
+		return redirect()->route('parameters.edit',[$parameter->id])->withParameter($parameter);
 	}
 
 	/**
@@ -92,10 +92,10 @@ class ValuesController extends AdminController
 		$parameter = $parameter->findOrFail($id)->update($request->all())->with('values');
 
 		if((int)$request->get('button')) {
-			return redirect()->route('dashboard.parameters.index')->withMessage('');
+			return redirect()->route('parameters.index')->withMessage('');
 		}
 
-		return redirect()->route('dashboard.parameters.edit',[$parameter->id])->withParameter($parameter);
+		return redirect()->route('parameters.edit',[$parameter->id])->withParameter($parameter);
 	}
 
 	/**
@@ -109,7 +109,7 @@ class ValuesController extends AdminController
 	{
 		$parameter->findOrFail($id)->delete();
 
-		return redirect()->route('dashboard.parameters.index');
+		return redirect()->route('parameters.index');
 	}
 
 	public function values(ParametersValue $value, $id)

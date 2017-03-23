@@ -37,7 +37,7 @@ class CartController extends Controller {
             ->where('id', '=', Category::where('id', '=', $product->category->id)->value('parent_id'))
             ->get();
 
-		Cart::add(
+        Cart::instance('main')->add(
 			$id = $product->clone_of ?: $product->id,
 			$title = $product->title,
 			$qty = 1,
@@ -69,7 +69,7 @@ class CartController extends Controller {
             ->where('id', '=', Category::where('id', '=', $product->category->id)->value('parent_id'))
             ->get();
 
-        Cart::add(
+        Cart::instance('main')->add(
             $id = $product->clone_of ?: $product->id,
             $title = $product->title,
             $qty = $request->get('qty'),
@@ -93,7 +93,6 @@ class CartController extends Controller {
         return ['count' => $this->calcProductsInCart(), 'total' => $this->calcTotalPrice()];
     }
 
-
     public function addToCompare(Request $request)
     {
 
@@ -104,9 +103,8 @@ class CartController extends Controller {
         $parentCategorySlug = Category::select('slug', 'title')
             ->where('id', '=', Category::where('id', '=', $product->category->id)->value('parent_id'))
             ->get();
-        
-        if(Cart::search(['id' => $product->id])) return null;
 
+        if(!emptyArray($this->searchCompare($product->id))) return null;
 
         $chars = [];
         foreach($product->sortedValues($product->category_id) as $field){
@@ -150,8 +148,6 @@ class CartController extends Controller {
     {
         Cart::instance('compare');
         return Cart::count();
-        
-
     }
 
     /**
@@ -200,6 +196,7 @@ class CartController extends Controller {
      * @return array
      */
     public function getContent() {
+        Cart::instance('main');
         return [
 			'content' => Cart::content(),
 			'stockProducts' => $this->getStockSets(),
@@ -213,11 +210,8 @@ class CartController extends Controller {
     
     public function getToCompare()
     {
-
         Cart::instance('compare');
-
         $content = Cart::content();
-
         return $content->groupBy("options.category_name");
     }
 
@@ -226,13 +220,18 @@ class CartController extends Controller {
      * @param Request $request
      */
     public function updateItem(Request $request) {
+        //dd($request->all());
 		$product = $request->get('product');
         $instance = $request->get('instance');
-        $product = Cart::instance($instance)->get($product['rowid']);
-		Cart::instance($instance)
-                    ->update($product['rowid'], $request->get('qty'));
+        $product = Cart::instance($instance)->get($product['rowId']);
+		Cart::instance($instance)->update($product->rowId, $request->get('qty'));
 
-        $productsInSet = Cart::instance($instance)->search(['options' => ['main_in_set' => $product->id]]);
+
+        $productsInSet = Cart::instance($instance)->search(
+            function($item) use ($product) {
+                return $product->id == $item->options->main_in_set;
+            }
+        );
 
         if($productsInSet){
             foreach($productsInSet as $rowId){
@@ -246,11 +245,11 @@ class CartController extends Controller {
      * @return array
      */
     public function deleteItem(Request $request) {
-        $rowId = $request->get('rowid');
+        $rowId = $request->get('rowId');
 
-        $product = Cart::get($rowId);
+        $product = Cart::instance('main')->get($rowId);
 
-//        dd(session('stocks'));
+        //dd($product, session('stocks'));
 
         if(!$product){
             foreach(session('stocks') as $instance){
@@ -263,24 +262,28 @@ class CartController extends Controller {
             Cart::instance($product->options->instance)->destroy();
             $request->session()->forget('stocks.'.$product->options->stock);
         } else {
-            Cart::remove($product->rowid);
+            Cart::instance('main')->remove($product->rowId);
         }
 
 		return [true];
 	}
 
+    public function searchCompare($id){
+        return Cart::instance('compare')->search(function($item) use ($id) {
+            return $id == $item->id;
+        });
+    }
+
     public function deleteItemFromCompare(Request $request){
         Cart::instance('compare');
-       
         $productId = $request->get('product_id');
-        $product = Cart::search(['id' => (int)$productId]);
-        
-        if($product){
-            Cart::remove($product[0]);    
-        }
-        
-        return "OK";
+        $product = $this->searchCompare((int)$productId);
 
+        //dd($product->first()->rowId);
+        if($product){
+            Cart::remove($product->first()->rowId);
+        }
+        return "OK";
     }
 
     /**
@@ -311,8 +314,7 @@ class CartController extends Controller {
                 $stockProductsTotal[] = Cart::instance($stockInstance)->total();
             }
         }
-        $sum = Cart::instance('main')->total() + array_sum($stockProductsTotal);
-        return $sum;
+        return (int)Cart::instance('main')->total() + array_sum($stockProductsTotal);
     }
 
     public function getStockSets()

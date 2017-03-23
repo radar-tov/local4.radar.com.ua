@@ -28,7 +28,7 @@
             <p class="col s12 note">Обязательные поля помечены звёздочкой <span class="red-text">*</span></p>
             <div id="register" class="col s12 no-padding">
                 {{--<form id="order-form" action="" method="post" class="registration col s12 m10 l6">--}}
-                <form class="registration col s12 m10 l6"  id="order-form" role="form" method="POST" action="{{ url('/auth/register') }}">
+                <form class="registration col s12 m10 l6"  id="order-form" role="form" method="POST" action="{{ url('/register') }}">
                     @include('frontend.partials.registration_fields')
                 </form>
             </div>

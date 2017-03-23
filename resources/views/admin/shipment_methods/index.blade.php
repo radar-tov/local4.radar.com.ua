@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div>
-                    <a href="{{ route("dashboard.shipments.create") }}" class="btn btn-sm btn-primary">
+                    <a href="{{ route("shipments.create") }}" class="btn btn-sm btn-primary">
                         <i class="fa fa-plus"></i>
                         Добавить способ доставки
                     </a>
@@ -32,13 +32,13 @@
                                 <td>{{ $method->title }}</td>
                                 <!-- Options -->
                                 <td class="options">
-                                    <a class="green" href="{!! route('dashboard.shipments.edit', $method->id) !!}">
+                                    <a class="green" href="{!! route('shipments.edit', $method->id) !!}">
                                         <i class="ace-icon fa fa-pencil bigger-130"></i>
                                     </a>
                                 </td>
                                 <td class="options">
                                     <div class="hidden-sm hidden-xs action-buttons">
-                                        {!! Form::open(['route'=>['dashboard.shipments.destroy', $method->id],'method'=>'delete' ]) !!}
+                                        {!! Form::open(['route'=>['shipments.destroy', $method->id],'method'=>'delete' ]) !!}
                                         <label class="red" style="display: inline-block; cursor: pointer;">
                                             <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                             {!! Form::submit('Удалить',

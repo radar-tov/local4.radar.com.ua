@@ -1,4 +1,4 @@
-{{--{{ dump($product) }}--}}
+@inject('cartProvider', '\App\ViewDataProviders\CartDataProvider')
 <div class="col s12 m4 l4 item-inner" style="margin-top: 7px">
     <div class="card item itemAnim{{ $product->id }}">
         <div class="item-image">
@@ -42,16 +42,25 @@
             {{--@endif-->--}}
             {{--</div>--}}{{--end--}}
             <div class="item-info">
-                <p class="item-title">{!! $product->title !!}</p>
-                {{--<div class="col s8 no-padding">--}}
-                    {{--<p class="sku">Код: <span>{{ $product->article }}</span></p>--}}
-                {{--</div>--}}
-                {{--<div class="col s4 no-padding">--}}
-                {{--<div class="rating_1">--}}
-                {{--<input type="hidden" name="vote-id" value="5"/>--}}
-                {{--<input type="hidden" name="val" value="{{ array_sum($product->rates->lists('rate')->all()) / ($product->rates->count() ?: 1) }}">--}}
-                {{--</div>--}}
-                {{--</div>--}}
+                <p class="item-title">{!! $product->title !!}<br>
+                    <span class="item-title" style="font-size: 12px">( {!! $product->category->title !!} )</span>
+                </p>
+
+                {{--<div class="col s4 no-padding">
+                    --}}{{--<p class="sku">Код: <span>{{ $product->article }}</span></p>--}}{{--
+
+                    @if($product->article != '-')
+                        <p class="sku">Код: <span>{{ $product->article }}</span></p>
+                    @else
+                        <p class="sku">Код: <span>{{ $product->id }}</span></p>
+                    @endif
+                </div>--}}
+                {{--<div class="col s4 no-padding">
+                    <div class="rating_1">
+                        <input type="hidden" name="vote-id" value="5"/>
+                        <input type="hidden" name="val" value="{{ array_sum($product->rates->pluck('rate')->all()) / ($product->rates->count() ?: 1) }}">
+                    </div>
+                </div>--}}
                 <div class="item-content">
 
                     @if($product->hasDiscount())
@@ -73,7 +82,7 @@
                             name="addtocart"
                             data-productId="{{ $product->id }}"
                             class="addtocart-button-hover buy"
-                            value="{{ Cart::search(['id' => $product->id]) ? 'В корзине' : 'Купить' }}"
+                            value="{{ $cartProvider->search($product->id) ? 'В корзине' : 'Купить' }}"
                             title="Купить">
                 </div>
             </div>
@@ -92,10 +101,10 @@
                             </div>
 
                             <input type="hidden" value="{{ $product->id }}" class="_id"/>
-                            {{--<!--<div class="rating_2">--}}
-                            {{--<input type="hidden" name="vote-id" value="5"/>--}}
-                            {{--<input type="hidden" name="val" value="{{ array_sum($product->rates->lists('rate')->all()) / ($product->rates->count() ?: 1) }}">--}}
-                            {{--</div>-->--}}
+                            {{--<div class="rating_2">
+                                <input type="hidden" name="vote-id" value="5"/>
+                                <input type="hidden" name="val" value="{{ array_sum($product->rates->pluck('rate')->all()) / ($product->rates->count() ?: 1) }}">
+                            </div>--}}
 
 
                             {{--<span class="outlook">
@@ -171,7 +180,8 @@
                             name="compare"
                             data-productId="{{ $product->id }}"
                             class="compare-button-hover compare anim"
-                            value="{{ Cart::instance('compare')->search(['id' => $product->id]) ? 'В сравнении' : 'Сравнить' }}"
+                            value="{{ $cartProvider->searchCompare($product->id) ? 'В сравнении' : 'Сравнить' }}"
+                            {{--value="{{ Cart::instance('compare')->search(['id' => $product->id]) ? 'В сравнении' : 'Сравнить' }}"--}}
                             title="Сравнить">
                 </div>
                 <div class="addtocart-box-hover">
@@ -181,7 +191,7 @@
                             onclick="yaCounter39848700.reachGoal('addCart'); ga('send', 'event', 'Knopka', 'addCart'); return true;"
                             data-productId="{{ $product->id }}"
                             class="addtocart-button-hover buy anim"
-                            value="{{ Cart::search(['id' => $product->id]) ? 'В корзине' : 'Добавить в корзину' }}"
+                            value="{{ $cartProvider->search($product->id) ? 'В корзине' : 'Добавить в корзину' }}"
                             title="добавить в корзину">
                 </div>
             </div>

@@ -10,7 +10,7 @@
 @section('page-nav')
 
     <div class="">
-        <a href="{!! route('dashboard.products.index') !!}" class="btn btn-sm btn-success" title="Вернуться">
+        <a href="{!! route('products.index') !!}" class="btn btn-sm btn-success" title="Вернуться">
             <i class="ace-icon fa fa-arrow-left"></i> Вернуться к продуктам
         </a>
     </div>
@@ -54,7 +54,7 @@
                             </a>
                         </td>
                         <td class="options">
-                            <a class="green" href="{!! route('dashboard.products.edit', $product->id) !!}">
+                            <a class="green" href="{!! route('products.edit', $product->id) !!}">
                                 <i class="ace-icon fa fa-pencil bigger-130"></i>
                             </a>
                         </td>

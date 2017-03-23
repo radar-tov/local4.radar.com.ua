@@ -21,7 +21,7 @@
 @section('content')
     <div id="orders" class="row">
         @include('admin.partials.errors')
-        {!! Form::model($order,['route'=>['dashboard.orders.update',$order->id],'method'=>'put', 'id'=>'form-data']) !!}
+        {!! Form::model($order,['route'=>['orders.update',$order->id],'method'=>'put', 'id'=>'form-data']) !!}
             @include("admin.orders.form")
         {!! Form::close() !!}
     </div>

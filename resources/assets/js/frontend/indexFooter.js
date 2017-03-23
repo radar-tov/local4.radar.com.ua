@@ -110,22 +110,25 @@ $("body").on("click", ".video-review", function (e) {
     var video = $(this).siblings("._video").html();
     $("#video").find(".video-container").html(video);
 });
-$("#range").ionRangeSlider({
-    type: "double",
-    min: 0,
-    max: maxPrice,
-    from: 0,
-    to: filtrPrice,
-    prefix: "",
-    step: 100,
-    onFinish: function (data) {
-        $("#filter").change();
-    },
-    prettify: function (num) {
-        var endSign = "";
-        return (num) + " грн." + endSign;
-    }
-});
+if(window.maxPrice !== 'undefined'){
+    $("#range").ionRangeSlider({
+        type: "double",
+        min: 0,
+        max: maxPrice,
+        from: 0,
+        to: filtrPrice,
+        prefix: "",
+        step: 100,
+        onFinish: function (data) {
+            $("#filter").change();
+        },
+        prettify: function (num) {
+            var endSign = "";
+            return (num) + " грн." + endSign;
+        }
+    });
+}
+
 var getParameterByName = function (name, href) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"), results = regex.exec(!!href ? href : location.search);
@@ -212,15 +215,6 @@ setTimeout(function () {
         });
     });
 }, 1000);
-
-//Определение фокуса
-var fokus;
-function focusHere(){
-    window.fokus = true;
-}
-function focusOut(){
-    window.fokus = false;
-}
 
 //Выборка данных по заказам и корзине
 function getData() {

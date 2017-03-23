@@ -32,7 +32,7 @@
 
                      @if(Auth::check())
                         <span><a href="{{ url('cabinet') }}" rel="nofollow"><img src="/frontend/images/icon-login.png" />Кабинет</a></span>
-                        <span><a href="/auth/logout" rel="nofollow"> Выход</a></span>
+                        <span><a href="/logout" rel="nofollow"> Выход</a></span>
                         @else
                         <span><a href="{{ url('login') }}" rel="nofollow"><img src="/frontend/images/icon-login.png" />Вход</a></span>
                         <span><a href="{{ url('registration') }}" rel="nofollow"><img src="/frontend/images/icon-reg.png" />Регистрация</a></span>

@@ -8,7 +8,7 @@
                 <label for="">
                     {{ $filter->title }}
                 </label>
-                <a href="{{ route('dashboard.filters.edit', $filter->id) }}" class="pull-right" target="_blank">
+                <a href="{{ route('filters.edit', $filter->id) }}" class="pull-right" target="_blank">
                     <small>Редактировать характеристику</small>
                 </a>
 {{--                @if(count($filter->values))--}}

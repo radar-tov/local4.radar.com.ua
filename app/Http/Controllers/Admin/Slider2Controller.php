@@ -41,9 +41,9 @@ class Slider2Controller extends AdminController
 		$slider = $slider->create($request->all());
 
 		if((int)$request->get('button')) {
-			return redirect()->route('dashboard.slider2.index')->withMessage('');
+			return redirect()->route('slider2.index')->withMessage('');
 		}
-		return redirect()->route('dashboard.slider2.edit', $slider->id);
+		return redirect()->route('slider2.edit', $slider->id);
 	}
 
 	/**
@@ -69,9 +69,9 @@ class Slider2Controller extends AdminController
 		$slider->findOrFail($id)->update($request->all());
 
 		if((int)$request->get('button')) {
-			return redirect()->route('dashboard.slider2.index')->withMessage('');
+			return redirect()->route('slider2.index')->withMessage('');
 		}
-		return redirect()->route('dashboard.slider2.edit',$id);
+		return redirect()->route('slider2.edit',$id);
 	}
 
 	/**
@@ -83,7 +83,7 @@ class Slider2Controller extends AdminController
 	{
 		$slider->findOrFail($id)->delete();
 
-		return redirect()->route('dashboard.slider2.index');
+		return redirect()->route('slider2.index');
 	}
 
 }

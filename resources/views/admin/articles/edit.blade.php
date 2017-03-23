@@ -66,7 +66,7 @@
 @section('content')
     <div class="row">
         @include('admin.partials.errors')
-        {!! Form::model($article,['route'=>['dashboard.articles.update',$article->id],'method'=>'put', 'id'=>'form-data']) !!}
+        {!! Form::model($article,['route'=>['articles.update',$article->id],'method'=>'put', 'id'=>'form-data']) !!}
         @include('admin.articles.form')
         {!! Form::close() !!}
     </div>

@@ -9,7 +9,7 @@
 
 @section('page-nav')
     <div class="col-xs-12">
-        <a href="{!! route('dashboard.filters.create') !!}" class="btn btn-sm btn-primary" title="Добавить Параметр Товара">
+        <a href="{!! route('filters.create') !!}" class="btn btn-sm btn-primary" title="Добавить Параметр Товара">
             <i class="ace-icon fa fa fa-plus"></i> Добавиль фильтр
         </a>
     </div>
@@ -29,23 +29,23 @@
             <tbody>
                 @foreach($filters as $filter)
                     <tr>
-                        <td><a href="{!! route('dashboard.filters.edit', $filter->id) !!}">{{ $filter->title }}</a></td>
+                        <td><a href="{!! route('filters.edit', $filter->id) !!}">{{ $filter->title }}</a></td>
                         <td>
                             {!!
                                 $filter->categories->map(function($item){
-                                    return "<a href=\"". route('dashboard.categories.edit',[$item->id])."\">{$item->title}</a>";
+                                    return "<a href=\"". route('categories.edit',[$item->id])."\">{$item->title}</a>";
                                 })->implode(', ')
                             !!}
                         </td>
                         <!-- Options -->
                         <td class="options">
-                            <a class="green" href="{!! route('dashboard.filters.edit', $filter->id) !!}">
+                            <a class="green" href="{!! route('filters.edit', $filter->id) !!}">
                                 <i class="ace-icon fa fa-pencil bigger-130"></i>
                             </a>
                         </td>
                         <td class="options">
                             <div class="hidden-sm hidden-xs action-buttons">
-                                {!! Form::open(['route'=>['dashboard.filters.destroy', $filter->id],'method'=>'delete' ]) !!}
+                                {!! Form::open(['route'=>['filters.destroy', $filter->id],'method'=>'delete' ]) !!}
                                 <label class="red" style="display: inline-block; cursor: pointer;">
                                     <i class="ace-icon fa fa-trash-o bigger-130"></i>
                                     {!! Form::submit('Удалить',

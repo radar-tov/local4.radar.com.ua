@@ -238,9 +238,11 @@ class ProductsController extends AdminController
                     $params['status'] = 'active_1';
                 }
             }
-
-            $status = explode("_", $params['status']);
-
+            //dump($params['status']);
+            $status = explode(".", $params['status']);
+            if(!isset($status[1])){
+                $status = explode("_", $params['status']);
+            }
 
 
             if($request->get('filters') != null){
@@ -252,7 +254,7 @@ class ProductsController extends AdminController
 
             $products = $this->product
                 ->whereNotIn('id', !empty($request->get('selected')) ? $request->get('selected') : [0])
-                ->with('category')
+                ->with('category', 'sale')
                 ->where('category_id', $request->get('categoryId') ?: 'LIKE', '%')
                 ->where($status[0], $status[1])
                 ->whereRaw(getDiscountValue($request))
@@ -366,10 +368,10 @@ class ProductsController extends AdminController
 
 
         if ((int)$request->get('button')) {
-            return redirect()->route('dashboard.products.index');
+            return redirect()->route('products.index');
         }
 
-        return redirect()->route('dashboard.products.edit', $product->id);
+        return redirect()->route('products.edit', $product->id);
         /*
         $request = $this->filesHandler->saveFile($request, "pdf/");
 
@@ -387,10 +389,10 @@ class ProductsController extends AdminController
         $product->relatedProducts()->sync($request->get('selectedProductsIds') ? $idsList : []);
 
         if((int)$request->get('button')) {
-            return redirect()->route('dashboard.products.index')->withMessage('');
+            return redirect()->route('products.index')->withMessage('');
         }
 
-        return redirect()->route('dashboard.products.edit',$product->id);*/
+        return redirect()->route('products.edit',$product->id);*/
     }
 
     /**
@@ -496,10 +498,10 @@ class ProductsController extends AdminController
 
 
         if ((int)$request->get('button')) {
-            return redirect()->route('dashboard.products.index');
+            return redirect()->route('products.index');
         }
 
-        return redirect()->route('dashboard.products.edit', $id);
+        return redirect()->route('products.edit', $id);
     }
 
     /**
@@ -519,7 +521,7 @@ class ProductsController extends AdminController
             return redirect()->to($request->get('redirect'));
         }
 
-        return redirect()->route('dashboard.products.index');
+        return redirect()->route('products.index');
     }
 
 
@@ -535,7 +537,7 @@ class ProductsController extends AdminController
 
         // prepare filters data for sync
         $filters = [];
-        foreach ($product->filters->lists('pivot') as $pivot) {
+        foreach ($product->filters->pluck('pivot') as $pivot) {
             $filters[$pivot->filter_id]['product_id'] = $copy->id;
             $filters[$pivot->filter_id]['filter_id'] = $pivot->filter_id;
             $filters[$pivot->filter_id]['filter_value_id'] = $pivot->filter_value_id;
@@ -548,8 +550,8 @@ class ProductsController extends AdminController
             $stocks[$stock->id]['stock_price'] = $stock->pivot->stock_price;
         }
 
-        //$copy->images()->sync($product->images->lists('id')->toArray());
-        $copy->relatedProducts()->sync($product->relatedProducts->lists('id')->toArray());
+        //$copy->images()->sync($product->images->pluck('id')->toArray());
+        $copy->relatedProducts()->sync($product->relatedProducts->pluck('id')->toArray());
         $copy->filters()->sync($filters);
         $copy->stocks()->sync($stocks);
 
@@ -604,7 +606,7 @@ class ProductsController extends AdminController
         $product = $this->product->onlyTrashed()->findOrFail($id);
         $product->forceDelete();
 
-        return redirect()->route('dashboard.products.trash')->withMessage('');
+        return redirect()->route('products.trash')->withMessage('');
     }
 
     // Drafts
@@ -827,6 +829,17 @@ class ProductsController extends AdminController
         }
     }
 
+    /**
+     * @param Request $request
+     */
+    public function syncSimilarProducts(Request $request)
+    {
+        $product = Product::find($request->get('productId'));
+        if ($product) {
+            $product->similarProducts()->sync($request->get('ids') ?: []);
+        }
+    }
+
 
     /**
      * @param Request $request
@@ -841,6 +854,19 @@ class ProductsController extends AdminController
         return [];
     }
 
+
+    /**
+     * @param Request $request
+     * @return array
+     */
+    public function getSimilarProducts(Request $request)
+    {
+        $product = Product::find($request->get('productId'));
+        if ($product) {
+            return $product->similarProducts->load('category', 'thumbnail');
+        }
+        return [];
+    }
 
     /**
      * @param Request $request
@@ -875,7 +901,7 @@ class ProductsController extends AdminController
                 ->paginate($request->get('paginate') ?: 20);
 
 
-            $productsIds = Product::bySale($request)->lists('id');
+            $productsIds = Product::bySale($request)->pluck('id');
 
             return ['paginatedProducts' => $paginatedProducts->toArray(), 'productsIds' => $productsIds];
 
