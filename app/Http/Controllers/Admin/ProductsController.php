@@ -238,9 +238,9 @@ class ProductsController extends AdminController
                     $params['status'] = 'active_1';
                 }
             }
-
-            $status = explode("_", $params['status']);
-
+            //dump($params['status']);
+            $status = explode(".", $params['status']);
+            //dump($status);
 
 
             if($request->get('filters') != null){

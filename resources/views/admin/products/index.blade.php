@@ -129,16 +129,18 @@
 
                                 <div class="col-xs-2">
                                     <select name="status" class="form-control"
-                                            v-bind:class="{marc : params.status != 'active_1'}"
+                                            v-bind:class="{marc : params.status != 'active.1'}"
                                             v-model="params.status">
-                                        <option value="active_1">Показаные на сайте</option>
-                                        <option value="active_0">Не показаные на сайте</option>
-                                        <option value="available_1">В наличии</option>
-                                        <option value="available_0">Нет в наличии</option>
-                                        <option value="sitemap_1">Показаные в Sitemap</option>
-                                        <option value="sitemap_0">Не показаные в Sitemap</option>
-                                        <option value="yandex_1">Показаные в Yandex</option>
-                                        <option value="yandex_0">Не показаные в Yandex</option>
+                                        <option value="active.1">Показаные на сайте</option>
+                                        <option value="active.0">Не показаные на сайте</option>
+                                        <option value="available.1">В наличии</option>
+                                        <option value="available.0">Нет в наличии</option>
+                                        <option value="sitemap.1">Показаные в Sitemap</option>
+                                        <option value="sitemap.0">Не показаные в Sitemap</option>
+                                        <option value="yandex.1">Показаные в Yandex</option>
+                                        <option value="yandex.0">Не показаные в Yandex</option>
+                                        <option value="is_new.1">Новинки</option>
+                                        <option value="is_bestseller.1">Хит продаж</option>
                                     </select>
                                 </div>
 
@@ -402,7 +404,7 @@
                     </td>
                     <td class="options middle">
                         <div class="action-buttons">
-                            <a class="blue" v-bind:href="'/dashboard/products/copy/' + product.id">
+                            <a class="blue" v-bind:href="'/dashboard/products/copy/' + product.id" target="_blank">
                                 <i class="ace-icon fa fa-copy"></i>
                             </a>
                         </div>
