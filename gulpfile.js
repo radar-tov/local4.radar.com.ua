@@ -32,6 +32,8 @@ elixir(function(mix) {
 
     mix.scripts(
         [
+            'frontend/jquery--2.1.3.min.js',
+            'frontend/jquery.easing.1.3.js',
             'frontend/jquery-2.1.3.min.js',
             'frontend/jquery.mousewheel.pack.js',
             'frontend/jquery.fancybox.pack.js',
