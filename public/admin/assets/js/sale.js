@@ -122,7 +122,6 @@ var saleVue = new Vue({
         this.getRelatedProducts();
         setTimeout(function(){
             vue.getProducts();
-            vue.getSelectedProductsIds();
         }, 1000)
     },
 
@@ -209,7 +208,7 @@ var saleVue = new Vue({
         addProduct: function(relProduct, index){
             this.productsList.products.splice(index, 1);
             this.relOptions.selected.push(relProduct)
-            this.selectedProductsIds = this.getSelectedProductsIds();
+            this.selectedProductsIds.push(relProduct.id);
             this.syncProducts();
             this.getRelatedProducts();
             this.getProducts();
@@ -218,24 +217,15 @@ var saleVue = new Vue({
         removeProduct: function(relProduct, index){
             this.relOptions.selected.splice(index, 1);
             this.productsList.products.push(relProduct)
-            this.selectedProductsIds = this.getSelectedProductsIds();
+            this.selectedProductsIds.splice(index, 1);
             this.syncProducts();
             this.getRelatedProducts();
             this.getProducts();
         },
 
-        getSelectedProductsIds: function(){
-            var productsIds = [];
-            this.relOptions.selected.forEach(function(product){
-                productsIds.push(product.id);
-            });
-            return productsIds;
-        },
-
         syncProducts: function(){
-            this.selectedProductsIds = this.getSelectedProductsIds();
             var body = {
-                ids: this.getSelectedProductsIds(),
+                ids: this.selectedProductsIds,
                 saleId: this.saleId
             };
             this.$http.post('/dashboard/product-actions/syncSaleProducts', body)
