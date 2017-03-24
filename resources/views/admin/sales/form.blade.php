@@ -89,7 +89,7 @@
 
 
 
-        <h4 v-if="relOptions.selected.length > 0">Товары включенные в акцию @{{ relOptions.selected.length }} шт</h4>
+        <h4 v-if="relOptions.selected.length > 0">Товары включенные в акцию @{{ pagination.total }} шт</h4>
         <h4 v-if="relOptions.selected.length == 0">В эту акцию не входит ни один продукт</h4>
         <input type="hidden" v-model="selectedProductsIds" name="selectedProductsIds"/>
         <input type="hidden" id="token" value="{{ csrf_token() }}"/>
