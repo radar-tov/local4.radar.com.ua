@@ -89,15 +89,29 @@
 
 
 
-        <h4 v-if="relOptions.selected.length > 0">Товары включенные в акцию</h4>
+        <h4 v-if="relOptions.selected.length > 0">Товары включенные в акцию @{{ relOptions.selected.length }} шт</h4>
         <h4 v-if="relOptions.selected.length == 0">В эту акцию не входит ни один продукт</h4>
         <input type="hidden" v-model="selectedProductsIds" name="selectedProductsIds"/>
         <input type="hidden" id="token" value="{{ csrf_token() }}"/>
         <input type="hidden" id="saleId" value="{{ isset($sale) ? $sale->id : null }}"/>
         <div class="well clearfix">
             <div class="col-md-4">
-                {!! Form::select('_category', [0 => 'Все категории'] + $categoriesProvider->getCategoriesList()->all(), $selected = null,
-                    ['class' => 'form-control', 'v-model' => 'options.category', 'v-on:change.stop' => 'getRelatedProducts()']) !!}
+                <select class="form-control" form="form-data" name="_category" v-model="options.category" v-on:change.stop="getRelatedProducts()">
+                    <option value="0">Все категории</option>
+                    @foreach($categories->getListForNav()->all() as $item)
+                        <optgroup label="{{ $item->title }}">
+                            @if(count($item->children))
+                                @foreach($item->children as $child)
+                                    <option value="{{ $child->id }}">{{ $child->title }}</option>
+                                @endforeach
+                            @endif
+                        </optgroup>
+                    @endforeach
+                </select>
+
+
+                {{--{!! Form::select('_category', [0 => 'Все категории'] + $categoriesProvider->getCategoriesList()->all(), $selected = null,
+                    ['class' => 'form-control', 'v-model' => 'options.category', 'v-on:change.stop' => 'getRelatedProducts()']) !!}--}}
             </div>
             <div class="col-md-4">
                 {{--<span>Показывать по</span>--}}
@@ -154,15 +168,30 @@
         </nav>
 
         <hr/>
-        <h4>Список всех товаров</h4>
+        <h4>Список всех товаров @{{ productsList.pagination.total }} шт</h4>
         <label>
             Применить акцию ко всем товарам
             <input type="checkbox" name="all" value="1"/>
         </label>
         <div class="well clearfix">
             <div class="col-md-4">
-                {!! Form::select('_category', [0 => 'Все категории'] + $categoriesProvider->getCategoriesList()->all(), $selected = null,
-                    ['class' => 'form-control', 'v-model' => 'relOptions.category', 'v-on:change.stop' => 'getProducts()']) !!}
+                <select class="form-control" form="form-data" name="_category" v-model="relOptions.category" v-on:change.stop="getProducts()">
+                    <option value="0">Все категории</option>
+                    @foreach($categories->getListForNav()->all() as $item)
+                        <optgroup label="{{ $item->title }}">
+                            @if(count($item->children))
+                                @foreach($item->children as $child)
+                                    <option value="{{ $child->id }}">{{ $child->title }}</option>
+                                @endforeach
+                            @endif
+                        </optgroup>
+                    @endforeach
+                </select>
+
+
+
+                {{--{!! Form::select('_category', [0 => 'Все категории'] + $categoriesProvider->getCategoriesList()->all(), $selected = null,
+                    ['class' => 'form-control', 'v-model' => 'relOptions.category', 'v-on:change.stop' => 'getProducts()']) !!}--}}
             </div>
             <div class="col-md-4">
                 {{--<span>Показывать по</span>--}}

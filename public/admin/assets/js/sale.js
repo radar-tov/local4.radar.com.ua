@@ -108,7 +108,8 @@ var saleVue = new Vue({
         pagination:{
             currentPage: {},
             lastPage: {},
-            pageToGet: 1
+            pageToGet: 1,
+            total: null
         },
 
         selectedProductsIds: []
@@ -167,6 +168,7 @@ var saleVue = new Vue({
                 vue.productsList.products = response.body.data;
                 vue.productsList.pagination.currentPage = response.body.current_page;
                 vue.productsList.pagination.lastPage = response.body.last_page;
+                vue.productsList.pagination.total = response.body.total;
                 if(vue.productsList.pagination.lastPage < vue.productsList.pagination.pageToGet) {
                     vue.productsList.pagination.pageToGet = vue.productsList.pagination.lastPage;
                     vue.getProducts()
