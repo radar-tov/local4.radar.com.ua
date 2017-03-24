@@ -294,14 +294,12 @@
                     <th class="options">
                         <input type="checkbox" id="mainCheckbox" v-on:change="markProducts($event)"/>
                     </th>
-                    <th>ID</th>
-                    <th>Артикул</th>
+                    <th>ID/Арт</th>
                     <th>Название</th>
                     <th>Базовая</th>
                     <th>Розница</th>
                     <th>Монт</th>
                     <th>Опт</th>
-                    <th>Категория</th>
                     <th colspan="4" class="options">Опции</th>
                 </tr>
                 </thead>
@@ -316,11 +314,14 @@
                     </td>
                     <td class="middle">
                         @{{ product.id }}
-                    </td>
-                    <td class="middle">
+                        <a v-bind:href="'/' + product.category.parent.slug + '/' + product.category.slug + '/' + product.slug"
+                           target="_blank">
+                            <i class="fa fa-eye green" v-show="product.active > 0"></i>
+                        </a>
+                        <br>
                         @{{ product.article }}
                     </td>
-                    <td class="p-title middle">
+                    <td class="p-title middle td-pad">
                         <div class="bs-label-container">
                             <i class="fa fa-eye-slash red" v-show="product.active == 0"></i>
                             <i class="fa fa-minus red" v-show="product.available == 0"></i>
@@ -334,17 +335,33 @@
                                   v-show="product.is_bestseller > 0">Хит продаж</span>
                             <span class="label label-danger bs-label" v-show="product.is_new > 0">Новинка</span>
                         </div>
-                        <img v-bind:src="product.thumbnail[0].path " v-if="!!product.thumbnail[0]" class="mini-thumb"/>
-                        <a style="color: #000000" target="_blank"
-                           v-bind:href="'/dashboard/products/'+ product.id + '/edit'" v-if="product.name != ''">
-                            @{{ product.name }}
-                        </a>
-                        <a style="color: #000000" target="_blank"
-                           v-bind:href="'/dashboard/products/'+ product.id + '/edit'" v-if="product.name == ''">
-                            @{{ product.title }}
-                        </a>
-                        <small v-for="sale in product.sale" style="color:indianred; float: right;">@{{ sale.title }}</small>
-                        <small v-show="product.clone_of > 0" style="color:indianred">(копия)</small>
+                        <table width="85%">
+                            <tr>
+                                <td class="middle td-pad" width="5%">
+                                    <img v-bind:src="product.thumbnail[0].path " v-if="!!product.thumbnail[0]" class="mini-thumb"/>
+                                </td>
+                                <td class="middle td-pad">
+                                    <a style="color: #000000" target="_blank"
+                                       v-bind:href="'/dashboard/products/'+ product.id + '/edit'" v-if="product.name != ''">
+                                        @{{ product.name }}
+                                    </a>
+                                    <a style="color: #000000" target="_blank"
+                                       v-bind:href="'/dashboard/products/'+ product.id + '/edit'" v-if="product.name == ''">
+                                        @{{ product.title }}
+                                    </a>
+                                    <small v-show="product.clone_of > 0" style="color:indianred">(копия)</small>
+                                    <br>
+                                    <small>
+                                        <a v-bind:href="'/' + product.category.parent.slug + '/' + product.category.slug"
+                                           target="_blank">( @{{ product.category.admin_title }} )
+                                        </a>
+                                    </small>
+                                </td>
+                                <td class="sale-title middle td-pad" >
+                                    <p v-for="sale in product.sale" class="akcii">@{{ sale.title }}</p>
+                                </td>
+                            </tr>
+                        </table>
                     </td>
                     <td class="middle">
                         <span>@{{ product.base_price }}</span>
@@ -352,7 +369,8 @@
                             <i class="fa fa-ruble" v-show="product.get_cena.valuta == 1"></i>
                             <i class="fa fa-dollar" v-show="product.get_cena.valuta == 2"></i>
                             <i class="fa fa-euro" v-show="product.get_cena.valuta == 3"></i>
-                        *@{{ product.get_cena.curs }}=@{{ product.price }}</span>
+                            *@{{ product.get_cena.curs }}<br>=@{{ product.price }}
+                        </span>
                     </td>
                     <td class="middle">
 
@@ -364,7 +382,7 @@
                             + @{{ product.nacenka }} %
                         </span>
                         @{{ product.out_price }}
-                        <small v-for="sale in product.sale" style="color:indianred; float: right;">@{{ sale.discount }} %</small>
+                        <p><span v-for="sale in product.sale"class="akcii"> - @{{ sale.discount }} %</span></p>
                     </td>
                     <td class="middle">
                         <span class="label label-sm label-success arrowed-right" v-show="product.discount_montaj > 0">
@@ -378,17 +396,6 @@
                         </span>
                         @{{ product.opt_price }}
                     </td>
-                    <td class="middle">
-                        <span>
-                            <a v-bind:href="'/' + product.category.parent.slug + '/' + product.category.slug"
-                               target="_blank">@{{ product.category.admin_title }}
-                            </a> /
-                            <a v-bind:href="'/' + product.category.parent.slug + '/' + product.category.slug + '/' + product.slug"
-                               target="_blank">
-                                <i class="fa fa-eye green" v-show="product.active > 0"></i>
-                            </a>
-                        </span>
-                    </td>
                     <td class="options middle">
                         <div class="action-buttons">
                             <a class="green" target="_blank"
@@ -396,8 +403,6 @@
                                 <i class="ace-icon fa fa-pencil"></i>
                             </a>
                         </div>
-                    </td>
-                    <td class="options middle">
                         <div class="action-buttons">
                             <a class="buy" v-bind:data-productid="product.id" onclick="return false" style="cursor: pointer">
                                 <i class="ace-icon fa fa-cart-plus green"></i>
@@ -410,8 +415,6 @@
                                 <i class="ace-icon fa fa-copy"></i>
                             </a>
                         </div>
-                    </td>
-                    <td class="options middle">
                         <div class="action-buttons">
                             <a class="red" href="#" v-on:click.prevent="deleteProduct(product, $event)">
                                 <i class="ace-icon fa fa-trash-o"></i>
