@@ -68,11 +68,7 @@
 </div>
 <div id="saleVue">
 
-    {{--<pre>--}}
-
-        {{--@{{ $data.options | json }}--}}
-    {{--</pre>--}}
-    <div class="col-xs-12">
+    <div class="col-xs-6">
 
         {{--<label for="groups[]">--}}
             {{--Укажите категории, на который будет распространяться скидка--}}
@@ -128,15 +124,32 @@
                  ['class' => 'form-control','placeholder' => 'Поиск', 'v-model' => 'options.search', 'v-on:input.stop' => 'getRelatedProducts()']) !!}
             </div>
         </div>
+        <nav v-if="relOptions.selected.length > 0">
+            <ul class="pager">
+                <li class="previous" v-bind:class="pagination.currentPage == 1 ? 'disabled' : ''">
+                    <a href="#" v-on:click.stop="_prevPage()"><span aria-hidden="true">&larr;</span> Предыдущая</a>
+                </li>
+                <li>
+                    @{{ pagination.currentPage }} / @{{ pagination.lastPage  }}
+                </li>
+                <li class="next" v-bind:class="pagination.currentPage ==  pagination.lastPage ? 'disabled' : ''">
+                    <a href="#" v-on:click.stop="_nextPage()">Следующая <span aria-hidden="true">&rarr;</span></a>
+                </li>
+            </ul>
+        </nav>
         <table class="table table-hover pr-table" v-if="relOptions.selected.length > 0">
             <tr>
-                <th class="mini-thumb center">Миниатюра</th>
+                <th class="mini-thumb center"><input type="checkbox" id="mainCheckboxdel" v-on:change="markProductsdel($event)"/></th>
+                <th></th>
                 <th>Название продукта</th>
                 <th>Артикул</th>
                 <th>Цена</th>
                 <th class="options">Удалить</th>
             </tr>
             <tr v-for="(relProduct, index) in relOptions.selected">
+                <td>
+                    <input type="checkbox" name="selected[]" class="productSeldel" v-bind:value="relProduct.id"/>
+                </td>
                 <td class="center mini-thumb center">
                     <img v-bind:src="relProduct.thumbnail[0].path" v-if="!!relProduct.thumbnail[0]" class="mini-thumb"/>
                     <img src="/frontend/images/default.png" v-if="!relProduct.thumbnail[0]" class="mini-thumb"/>
@@ -166,13 +179,11 @@
                 </li>
             </ul>
         </nav>
+    </div>
 
-        <hr/>
+
+    <div class="col-xs-6">
         <h4>Список всех товаров @{{ productsList.pagination.total }} шт</h4>
-        <label>
-            Применить акцию ко всем товарам
-            <input type="checkbox" name="all" value="1"/>
-        </label>
         <div class="well clearfix">
             <div class="col-md-4">
                 <select class="form-control" form="form-data" name="_category" v-model="relOptions.category" v-on:change.stop="getProducts()">
@@ -187,11 +198,6 @@
                         </optgroup>
                     @endforeach
                 </select>
-
-
-
-                {{--{!! Form::select('_category', [0 => 'Все категории'] + $categoriesProvider->getCategoriesList()->all(), $selected = null,
-                    ['class' => 'form-control', 'v-model' => 'relOptions.category', 'v-on:change.stop' => 'getProducts()']) !!}--}}
             </div>
             <div class="col-md-4">
                 {{--<span>Показывать по</span>--}}
@@ -207,15 +213,32 @@
                  ['class' => 'form-control','placeholder' => 'Поиск', 'v-model' => 'relOptions.search', 'v-on:input.stop' => 'getProducts()']) !!}
             </div>
         </div>
+        <nav v-if="productsList.products.length > 0">
+            <ul class="pager">
+                <li class="previous" v-bind:class="productsList.pagination.currentPage == 1 ? 'disabled' : ''">
+                    <a href="#" v-on:click.stop="prevPage(productsList.products)"><span aria-hidden="true">&larr;</span> Предыдущая</a>
+                </li>
+                <li>
+                    @{{ productsList.pagination.currentPage }} / @{{ productsList.pagination.lastPage  }}
+                </li>
+                <li class="next" v-bind:class="productsList.pagination.currentPage ==  productsList.pagination.lastPage ? 'disabled' : ''">
+                    <a href="#" v-on:click.stop="nextPage(productsList.products)">Следующая <span aria-hidden="true">&rarr;</span></a>
+                </li>
+            </ul>
+        </nav>
         <table class="table table-hover pr-table">
             <tr>
-                <th class="mini-thumb center">Миниатюра</th>
+                <th class="mini-thumb center"><input type="checkbox" id="mainCheckbox" v-on:change="markProducts($event)"/></th>
+                <th></th>
                 <th>Название продукта</th>
                 <th>Артикул</th>
                 <th>Цена</th>
                 <th class="options">Добавить</th>
             </tr>
             <tr v-for="(relProduct, index) in productsList.products">
+                <td>
+                    <input type="checkbox" name="selected[]" class="productSel" v-bind:value="relProduct.id"/>
+                </td>
                 <td class="center">
                     <img v-bind:src="relProduct.thumbnail[0].path " v-if="!!relProduct.thumbnail[0]" class="mini-thumb"/>
                     <img src="/frontend/images/default.png" v-if="!relProduct.thumbnail[0]" class="mini-thumb"/>

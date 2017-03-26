@@ -229,6 +229,36 @@ var saleVue = new Vue({
                 saleId: this.saleId
             };
             this.$http.post('/dashboard/product-actions/syncSaleProducts', body)
+        },
+
+        markProducts: function () {
+            var checks = $(".productSel"),
+                isChecked = document.getElementById("mainCheckbox").checked;
+            //this.selectedProductsIds = [];
+            for (var i = 0, len = checks.length; i < len; i++) {
+                $(checks[i]).prop('checked', isChecked);
+                if (isChecked) {
+                    this.selectedProductsIds.push(checks[i].value)
+                }
+            }
+            this.syncProducts();
+            this.getRelatedProducts();
+            this.getProducts();
+        },
+
+        markProductsdel: function () {
+            var checks = $(".productSeldel"),
+                isChecked = document.getElementById("mainCheckboxdel").checked;
+            //this.selectedProductsIds = [];
+            for (var i = 0, len = checks.length; i < len; i++) {
+                $(checks[i]).prop('checked', isChecked);
+                if (isChecked) {
+                    this.selectedProductsIds.splice(this.selectedProductsIds.indexOf(checks[i].value), 1);
+                }
+            }
+            this.syncProducts();
+            this.getRelatedProducts();
+            this.getProducts();
         }
 
     }
