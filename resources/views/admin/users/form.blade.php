@@ -73,7 +73,7 @@
         </div>
         <script>
             jQuery(function($){
-                $("#form-field-mask-2").mask("(999) 999-99-99");
+                $("#form-field-mask-2").mask("(999)999-99-99");
             });
         </script>
     </div>

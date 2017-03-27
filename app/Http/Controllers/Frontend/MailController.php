@@ -11,19 +11,19 @@ use PHPMailer;
 
 class MailController extends Controller
 {
-	protected $emailTo;
+    protected $emailTo;
     protected $emailFrom;
     protected $auth;
     protected $mail;
 
-	public function __construct()
-	{
+    public function __construct()
+    {
         $this->emailTo = Setting::pluck('feedback_email')->first();
         $this->emailFrom = Setting::pluck('contact_email')->first();
 
-		if(empty($this->emailTo or $this->emailFrom)) {
-			throw new Exception("Feedback email is empty! Please set email.");
-		}
+        if(empty($this->emailTo or $this->emailFrom)) {
+            throw new Exception("Feedback email is empty! Please set email.");
+        }
 
         $this->auth = \Config::get('gmail');
 
@@ -39,9 +39,9 @@ class MailController extends Controller
         $this->mail->CharSet = 'UTF-8';
         $this->mail->isHTML(true);
         $this->mail->setFrom($this->emailFrom, 'Radar.com.ua');
-	}
+    }
 
-	public function oneclick(Request $request){
+    public function oneclick(Request $request){
 
         $messages = [
             'phone.required' => "Поле ТЕЛЕФОН обязательно к заполнению.",
@@ -52,8 +52,8 @@ class MailController extends Controller
             'phone' => 'required|min:10',
         ], $messages);
 
-	    $data = [
-	        'title' => $request->title,
+        $data = [
+            'title' => $request->title,
             'id' => $request->id,
             'phone' => $request->phone,
         ];
@@ -68,7 +68,7 @@ class MailController extends Controller
         if(!$this->mail->send()) {
             echo "<h3 align='center'>Извините, произошла ошибка. Сообщение не отправлено.</h3>";
         } else {
-            echo "<h3 align='center'>Ваша заявка принята. В ближайшее время с Вами свяжутся. Спасибо.</h3>";
+            echo "<h3 align='center' class='res'>Ваша заявка принята. В ближайшее время с Вами свяжутся. Спасибо.</h3>";
         }
     }
 
@@ -88,7 +88,7 @@ class MailController extends Controller
             'comment' => 'required'
         ], $messages);
 
-	    $data = [
+        $data = [
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -145,7 +145,7 @@ class MailController extends Controller
         if(!$this->mail->send()) {
             echo "<h3 align='center'>Извините, произошла ошибка. Сообщение не отправлено.</h3>";
         } else {
-            echo "<h3 align='center'>Ваша заявка принята. В ближайшее время с Вами свяжутся. Спасибо.</h3>";
+            echo "<h3 align='center' class='res'>Ваша заявка принята. В ближайшее время с Вами свяжутся. Спасибо.</h3>";
         }
     }
 
@@ -181,7 +181,7 @@ class MailController extends Controller
         if(!$this->mail->send()) {
             echo "<h3 align='center'>Извините, произошла ошибка. Сообщение не отправлено.</h3>";
         } else {
-            echo "<h3 align='center'>Ваша заявка принята. В ближайшее время с Вами свяжутся. Спасибо.</h3>";
+            echo "<h3 align='center' class='res'>Ваша заявка принята. В ближайшее время с Вами свяжутся. Спасибо.</h3>";
         }
 
     }

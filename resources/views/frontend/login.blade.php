@@ -38,7 +38,7 @@
                     </p>--}}
                     <p class="formField">
                         <label for="order-phone" class="col s12 m4 l4">Номер телефона:<span class="red-text"> *</span></label>
-                        <input class="col s12 m6 l7" id="order-phone" placeholder="введите ваш телефон" tabindex="4" name="phone" type="text">
+                        <input class="col s12 m6 l7" id="phone" placeholder="введите ваш телефон" tabindex="4" name="phone" type="text">
                     </p>
 
                     <p class="formField">
@@ -60,4 +60,11 @@
         </div>
     </div>
 </section>
+@endsection
+
+@section('bottom-scripts')
+    <script src="frontend/js/jquery.maskedinput.min.js"></script>
+    <script>
+        $("#phone").mask("(999)999-99-99");
+    </script>
 @endsection

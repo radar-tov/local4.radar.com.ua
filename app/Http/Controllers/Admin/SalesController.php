@@ -97,14 +97,13 @@ class SalesController extends AdminController
 	 */
     public function update(SalesRequest $request, $id)
     {
-
 	    $request = $this->formatRequestDate($request);
 	    $sale = Sale::find($id);
 	    $sale->update($request->all());
 //	    dd($sale->products()->count());
 //		dd($this->prepareIds($request->get('selectedProductsIds'), $request->get('all')));
 	    $sale->customerGroups()->sync($request->get('groups') ?: []);
-	    $sale->products()->sync($this->prepareIds($request->get('selectedProductsIds'), $request->get('all')));
+	    //$sale->products()->sync($this->prepareIds($request->get('selectedProductsIds'), $request->get('all')));
 
 //	    dd($this->prepareIds($request->get('selectedProductsIds')));
 

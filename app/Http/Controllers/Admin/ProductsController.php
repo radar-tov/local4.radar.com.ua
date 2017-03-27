@@ -9,6 +9,7 @@ use App\Models\CharacteristicValue;
 use App\Models\Image;
 use App\Models\Product;
 use App\Models\Stock;
+use App\Models\Sale;
 use App\ProductRate;
 use App\Services\FilesHandler;
 use App\Services\ProductService;
@@ -874,7 +875,6 @@ class ProductsController extends AdminController
      */
     public function getProductsForSale(Request $request)
     {
-//		dd($request->all());
         $products = Product::whereNotIn('id', !empty($request->get('selected')) ? $request->get('selected') : [0])
             ->searchable($request)
             ->with('thumbnail', 'category')
@@ -890,9 +890,6 @@ class ProductsController extends AdminController
      */
     public function getProductsBySale(Request $request)
     {
-
-//		dd($request->get('selected'));
-
         if ($request->get('saleId')) {
             $paginatedProducts = $this->product
                 ->bySale($request)
@@ -900,14 +897,23 @@ class ProductsController extends AdminController
                 ->with('thumbnail', 'category')
                 ->paginate($request->get('paginate') ?: 20);
 
-
             $productsIds = Product::bySale($request)->pluck('id');
 
-            return ['paginatedProducts' => $paginatedProducts->toArray(), 'productsIds' => $productsIds];
+            $res = $paginatedProducts->toArray();
+            $ids = ['productsIds' => $productsIds];
+            $response = array_merge($res, $ids);
 
+            return $response;
         }
     }
 
+    public function syncSaleProducts(Request $request)
+    {
+        $sale = Sale::find($request->get('saleId'));
+        if ($sale) {
+            $sale->products()->sync($request->get('ids') ?: []);
+        }
+    }
 
     public function getStockProducts(Request $request)
     {
@@ -918,5 +924,6 @@ class ProductsController extends AdminController
 
         return [];
     }
+
 
 }
