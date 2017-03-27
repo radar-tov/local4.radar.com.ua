@@ -12,7 +12,15 @@ class IndexTest extends DuskTestCase
 {
     use DatabaseTransactions, WithoutMiddleware;
 
-/*    public function testindexSee()
+    public function __construct($name = null, array $data = [], $dataName = '')
+    {
+        parent::__construct($name, $data, $dataName);
+        $this->browse(function ($browser){
+            $browser->maximize();
+        });
+    }
+
+    public function testindexSee()
     {
         $this->browse(function ($browser){
             $browser->visit('/')
@@ -24,10 +32,12 @@ class IndexTest extends DuskTestCase
     {
         $this->browse(function ($browser){
             $browser->visit('/')
-                ->mouseover('.slick-active')
-                ->press('.slick-active .compare-box-hover')
-                ->pause(2000)
-                ->assertSeeIn('.vs', '1');
+                ->mouseover('.slick-active', function ($mod){
+                    $mod->press('.compare-box-hover')
+                        ->pause(2000)
+                        ->assertSeeIn('.vs', '1');
+                });
+
         });
     }
 
@@ -35,10 +45,11 @@ class IndexTest extends DuskTestCase
     {
         $this->browse(function ($browser){
             $browser->visit('/')
-                ->mouseover('.slick-active')
-                ->press('.slick-active .addtocart-box-hover')
-                ->pause(2000)
-                ->assertSeeIn('.qty', '1');
+                ->mouseover('.slick-active', function ($mod){
+                    $mod->press('.slick-active .buy')
+                        ->pause(2000)
+                        ->assertSeeIn('.qty', '1');
+                });
         });
     }
 
@@ -76,7 +87,7 @@ class IndexTest extends DuskTestCase
                         ->waitForText('Поле ТЕЛЕФОН обязательно к заполнению.');
                 });
         });
-    }*/
+    }
 
     public function testSendCallBackTrue()
     {
@@ -91,8 +102,8 @@ class IndexTest extends DuskTestCase
                     $modal->type('name', 'BOT')
                         ->type('phone', '4444444444')
                         ->press('.btn')
-                        ->waitFor('.res')
-                        ->assertSeeIn('.res', 'Ваша заявка принята.');
+                        ->pause(2000)
+                        ->waitFor('.res');
                 });
         });
     }
