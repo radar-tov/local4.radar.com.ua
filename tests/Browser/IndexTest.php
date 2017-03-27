@@ -91,7 +91,7 @@ class IndexTest extends DuskTestCase
                     $modal->type('name', 'BOT')
                         ->type('phone', '4444444444')
                         ->press('.btn')
-                        ->waitUntilMissing('.res')
+                        ->waitFor('.res')
                         ->assertSeeIn('.res', 'Ваша заявка принята.');
                 });
         });
