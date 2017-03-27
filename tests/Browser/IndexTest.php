@@ -11,32 +11,88 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 class IndexTest extends DuskTestCase
 {
     use DatabaseTransactions, WithoutMiddleware;
-    /**
-     * A Dusk test example.
-     *
-     * @return void
-     */
-    public function testExample()
+
+/*    public function testindexSee()
     {
-        /*\Session::start();
-        $this->withoutMiddleware();
-        $credentials = array(
-            'username' => 'wronguser',
-            'password' => 'wrongpass',
-            '_token' => csrf_token()
-        );*/
-
-        /*$user = factory(User::class)->create([
-            'phone' => '12345678901',
-        ]);*/
-        /*$this->browse(function ($browser) use ($credentials) {
+        $this->browse(function ($browser){
             $browser->visit('/')
-                ->assertSee('СПЕЦПРЕДЛОЖЕНИЯ');
-        });*/
+                ->assertSee('© Все права защищены.');
+        });
+    }
 
-        /*$this->browse(function ($browser) {
+    public function testAddToCompare()
+    {
+        $this->browse(function ($browser){
             $browser->visit('/')
-                    ->assertSee('СПЕЦПРЕДЛОЖЕНИЯ');
-        });*/
+                ->mouseover('.slick-active')
+                ->press('.slick-active .compare-box-hover')
+                ->pause(2000)
+                ->assertSeeIn('.vs', '1');
+        });
+    }
+
+    public function testAddToCart()
+    {
+        $this->browse(function ($browser){
+            $browser->visit('/')
+                ->mouseover('.slick-active')
+                ->press('.slick-active .addtocart-box-hover')
+                ->pause(2000)
+                ->assertSeeIn('.qty', '1');
+        });
+    }
+
+    public function testSendCallBackFalseName()
+    {
+        $user = factory(User::class)->create([
+            'phone' => '4444444444',
+        ]);
+
+        $this->browse(function ($browser) use ($user){
+            $browser->visit('/')
+                ->press('.various')
+                ->whenAvailable('.fancybox-inner', function ($modal){
+                    $modal->type('name', '')
+                        ->type('phone', '')
+                        ->press('.btn')
+                        ->waitForText('Поле ИМЯ обязательно к заполнению.');
+                });
+        });
+    }
+
+    public function testSendCallBackFalsePhone()
+    {
+        $user = factory(User::class)->create([
+            'phone' => '4444444444',
+        ]);
+
+        $this->browse(function ($browser) use ($user){
+            $browser->visit('/')
+                ->press('.various')
+                ->whenAvailable('.fancybox-inner', function ($modal){
+                    $modal->type('name', 'BOT')
+                        ->type('phone', '')
+                        ->press('.btn')
+                        ->waitForText('Поле ТЕЛЕФОН обязательно к заполнению.');
+                });
+        });
+    }*/
+
+    public function testSendCallBackTrue()
+    {
+        $user = factory(User::class)->create([
+            'phone' => '4444444444',
+        ]);
+
+        $this->browse(function ($browser) use ($user){
+            $browser->visit('/')
+                ->press('.various')
+                ->whenAvailable('.fancybox-inner', function ($modal){
+                    $modal->type('name', 'BOT')
+                        ->type('phone', '4444444444')
+                        ->press('.btn')
+                        ->waitForText('Ваша заявка принята. В ближайшее время с Вами свяжутся. Спасибо.');
+                });
+        });
     }
 }
