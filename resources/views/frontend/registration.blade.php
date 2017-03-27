@@ -36,3 +36,10 @@
     </div>
 </section>
 @endsection
+
+@section('bottom-scripts')
+    <script src="frontend/js/jquery.maskedinput.min.js"></script>
+    <script>
+        $("#phone").mask("(999)999-99-99");
+    </script>
+@endsection

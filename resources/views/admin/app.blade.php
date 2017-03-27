@@ -150,7 +150,7 @@
                             {{--<i class="ace-icon fa fa-angle-down bigger-110"></i>--}}
                         </a>
                         <ul class="dropdown-menu dropdown-light-blue dropdown-caret">
-                            <li>
+                            {{--<li>
                                 <a href="{{ route("reviews.index") }}">
                                     <i class="ace-icon fa fa-comments-o menu_top"></i> Отзывы <span class="badge badge-purple"> 5 </span>
                                 </a>
@@ -158,6 +158,16 @@
                             <li>
                                 <a href="#">
                                     <i class="ace-icon fa fa-envelope menu_top"></i> Почта <span class="badge badge-info"> 5 </span>
+                                </a>
+                            </li>--}}
+                            <li>
+                                <a href="https://seosolution.ua/executed-work.html" target="_blank">
+                                    <i class="ace-icon fa fa-cog bigger-110 blue"></i> SEO
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://client.seosolution.ua/admin.site.list.html?login=success" target="_blank">
+                                    <i class="ace-icon fa fa-cog bigger-110 blue"></i> SEO stat
                                 </a>
                             </li>
                             <li>

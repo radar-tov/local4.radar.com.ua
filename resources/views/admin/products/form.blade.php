@@ -657,14 +657,13 @@
 
             <!-- similarProducts -->
             <div id="similarProducts" class="tab-pane">
-                <div class="col-xs-12">
-                    {{--<div class="_cover" v-el="cover"></div>--}}
+                <div class="col-xs-6">
                     <h4 v-if="simOptions.selected.length > 0">Похожие товары</h4>
                     <h4 v-if="simOptions.selected.length == 0">Для этого продукта не указано ни одного похожего товара</h4>
                     <input type="hidden" v-model="selectedSimProductsIds" name="selectedSimProductsIds"/>
                     <table class="table table-hover pr-table" v-if="simOptions.selected.length > 0">
                         <tr>
-                            <th class="mini-thumb center">Миниатюра</th>
+                            <th class="mini-thumb center"></th>
                             <th>Название продукта</th>
                             <th>Артикул</th>
                             <th>Цена</th>
@@ -687,7 +686,8 @@
                             </td>
                         </tr>
                     </table>
-                    <hr/>
+                </div>
+                <div class="col-xs-6">
                     <h4>Список всех товаров</h4>
                     <div class="well clearfix">
                         <div class="col-md-4">
@@ -703,10 +703,6 @@
                                     </optgroup>
                                 @endforeach
                             </select>
-
-
-                            {{--{!! Form::select('_category', [0 => 'Все категории'] + $categoriesProvider->getCategoriesList()->all(), $selected = null,
-                                ['class' => 'form-control', 'v-model' => 'simOptions.category', 'v-on:change' => 'getSimProducts()']) !!}--}}
                         </div>
                         <div class="col-md-4">
                             {!! Form::select('_paginate', [
@@ -723,7 +719,7 @@
                     </div>
                     <table class="table table-hover pr-table">
                         <tr>
-                            <th class="mini-thumb center">Миниатюра</th>
+                            <th class="mini-thumb center"></th>
                             <th>Название продукта</th>
                             <th>Артикул</th>
                             <th>Цена</th>
@@ -771,14 +767,13 @@
 
             <!-- additionalProducts -->
             <div id="additionalProducts" class="tab-pane">
-                <div class="col-xs-12">
-                    {{--<div class="_cover" v-el="cover"></div>--}}
+                <div class="col-xs-6">
                     <h4 v-if="relOptions.selected.length > 0">Cопутствующие товары</h4>
                     <h4 v-if="relOptions.selected.length == 0">Для этого продукта не указано ни одного сопуствующего товара</h4>
                     <input type="hidden" v-model="selectedProductsIds" name="selectedProductsIds"/>
                     <table class="table table-hover pr-table" v-if="relOptions.selected.length > 0">
                         <tr>
-                            <th class="mini-thumb center">Миниатюра</th>
+                            <th class="mini-thumb center"></th>
                             <th>Название продукта</th>
                             <th>Артикул</th>
                             <th>Цена</th>
@@ -801,7 +796,8 @@
                             </td>
                         </tr>
                     </table>
-                    <hr/>
+                </div>
+                <div class="col-xs-6">
                     <h4>Список всех товаров</h4>
                     <div class="well clearfix">
                         <div class="col-md-4">
@@ -817,11 +813,8 @@
                                     </optgroup>
                                 @endforeach
                             </select>
-                            {{--{!! Form::select('_category', [0 => 'Все категории'] + $categoriesProvider->getCategoriesList()->all(), $selected = null,
-                                ['class' => 'form-control', 'v-model' => 'relOptions.category', 'v-on:change' => 'getProducts()']) !!}--}}
                         </div>
                         <div class="col-md-4">
-                            {{--<span>Показывать по</span>--}}
                             {!! Form::select('_paginate', [
                                         20 => 'Показывать по 20 продуктов',
                                         50 => 'По 50 продуктов',
@@ -836,7 +829,7 @@
                     </div>
                     <table class="table table-hover pr-table">
                         <tr>
-                            <th class="mini-thumb center">Миниатюра</th>
+                            <th class="mini-thumb center"></th>
                             <th>Название продукта</th>
                             <th>Артикул</th>
                             <th>Цена</th>

@@ -17,7 +17,7 @@
 </div>
 <script src="/frontend/js/jquery.maskedinput.min.js"></script>
 <script>
-    $("#phone").mask("(999) 999-99-99");
+    $("#phone").mask("(999)999-99-99");
     function oneclick(){
         $.ajax({
             url: '{!! route('mail.oneclick') !!}',

@@ -21,13 +21,18 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         /**
          * Products routes begin
          * */
+
+
         Route::post('product-actions/getProductsBySale','ProductsController@getProductsBySale');
         Route::post('product-actions/getProductsForSale','ProductsController@getProductsForSale');
+        Route::post('product-actions/syncSaleProducts','ProductsController@syncSaleProducts');
+
+        Route::get('product-actions/getProducts','ProductsController@getProducts');
         Route::post('product-actions/getRelatedProducts','ProductsController@getRelatedProducts');
         Route::post('product-actions/getSimilarProducts','ProductsController@getSimilarProducts');
         Route::post('product-actions/syncRelated','ProductsController@syncRelatedProducts');
         Route::post('product-actions/syncSimilar','ProductsController@syncSimilarProducts');
-        Route::get('product-actions/getProducts','ProductsController@getProducts');
+
         Route::post('product-actions/delete','ProductsController@massDelete');
         Route::post('product-actions/deactivate','ProductsController@massDeactivate');
         Route::post('product-actions/activate','ProductsController@massActivate');

@@ -95,7 +95,7 @@ class FilterService
         }
 
         if ($request->get('price')) {
-            $products = $products->whereBetween('price', explode(';', $request->get('price')));
+            $products = $products->whereBetween('out_price', explode(';', $request->get('price')));
             $products = $products->ordered($request)->visible()->withRelations()->paginate();
         } else {
             $products = $products->ordered($request)->visible()->withRelations()->paginate();

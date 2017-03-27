@@ -9,7 +9,7 @@
 <!--</p>-->
 <p class="formField">
     <label for="order-telephone" class="col s12 m4 l4">Телефон:<span class="red-text"> *</span></label>
-    <input class="col s12 m6 l7" id="order-telephone" placeholder="введите номер телефона" tabindex="3" name="phone" type="text"value="{{ old('phone') }}">
+    <input class="col s12 m6 l7" id="phone" placeholder="введите номер телефона" tabindex="3" name="phone" type="text"value="{{ old('phone') }}">
 </p>
 <p class="col s12 no-margin note">Заполните поле "Электронная почта", так как востановление пароля происходит через почтовый ящик.</p>
 <p class="formField">
