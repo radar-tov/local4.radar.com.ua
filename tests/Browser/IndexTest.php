@@ -107,4 +107,67 @@ class IndexTest extends DuskTestCase
                 });
         });
     }
+
+    public function testSendSkidkaFalseName()
+    {
+        $user = factory(User::class)->create([
+            'phone' => '4444444444',
+        ]);
+
+        $this->browse(function ($browser) use ($user){
+            $browser->visit('/')
+                ->press('.various1')
+                ->whenAvailable('.fancybox-inner', function ($modal){
+                    $modal->type('name', '')
+                        ->type('email', '')
+                        ->type('phone', '')
+                        ->type('comment', '')
+                        ->press('.btn')
+                        ->pause(2000)
+                        ->waitForText('Поле ИМЯ обязательно к заполнению.');
+                });
+        });
+    }
+
+    public function testSendSkidkaFalsePhone()
+    {
+        $user = factory(User::class)->create([
+            'phone' => '4444444444',
+        ]);
+
+        $this->browse(function ($browser) use ($user){
+            $browser->visit('/')
+                ->press('.various1')
+                ->whenAvailable('.fancybox-inner', function ($modal){
+                    $modal->type('name', 'BOT')
+                        ->type('email', '')
+                        ->type('phone', '')
+                        ->type('comment', '')
+                        ->press('.btn')
+                        ->pause(2000)
+                        ->waitForText('Поле ТЕЛЕФОН обязательно к заполнению.');
+                });
+        });
+    }
+
+    public function testSendSkidkaTrue()
+    {
+        $user = factory(User::class)->create([
+            'phone' => '4444444444',
+        ]);
+
+        $this->browse(function ($browser) use ($user){
+            $browser->visit('/')
+                ->press('.various1')
+                ->whenAvailable('.fancybox-inner', function ($modal){
+                    $modal->type('name', 'BOT')
+                        ->type('email', 'bot@gmail.com')
+                        ->type('phone', '4444444444')
+                        ->type('comment', 'Коментарий')
+                        ->press('.btn')
+                        ->pause(2000)
+                        ->waitFor('.res');
+                });
+        });
+    }
 }

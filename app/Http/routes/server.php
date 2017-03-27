@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Http\Controllers\Server'], function() {
+Route::group(['middleware' => ['permissionsserver','handleSlug'],'namespace'=>'\App\Http\Controllers\Server'], function() {
 
     Route::group(['prefix'=>'server'], function () {
 

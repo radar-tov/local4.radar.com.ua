@@ -9,6 +9,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ExampleTest extends TestCase
 {
+    use DatabaseTransactions, WithoutMiddleware;
     /**
      * A basic test example.
      *
@@ -18,7 +19,7 @@ class ExampleTest extends TestCase
     {
 //        $this->assertEquals(1,1);
 //        $this->assertTrue(true);
-        /*$response = $this->get('/');
+/*        $response = $this->get('/');
         $response->assertStatus(200);*/
 //        $this->visit('/');
     }

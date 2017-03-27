@@ -191,9 +191,12 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         Route::post('country/save', 'CountrysController@save');
         Route::post('country/get', 'CountrysController@get');
         /* /end Country */
+
         /* Cart */
         Route::get('admincart', ['as' => 'admincart.index', 'uses' => 'AdminCartController@index']);
         /* / Cart */
+
+        Route::get('config/index', ['as' => 'config.index', 'uses' => 'ConfigController@index']);
     });
 
 });

@@ -19,3 +19,5 @@ yandex/htaccess
 admin/htaccess
 aceadmin/htaccess
 composer_local.json
+.phpstorm.meta.php
+_ide_helper.php
