@@ -17,7 +17,7 @@
 </div>
 <script src="/frontend/js/jquery.maskedinput.min.js"></script>
 <script>
-    $("#phone1").mask("(999) 999-99-99");
+    $("#phone1").mask("(999)999-99-99");
 
     function callbeck(){
         var token = $("#token").val(),
