@@ -23,8 +23,7 @@
     <div class="row" id="productsVue">
         <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
         <div class="col-xs-6">
-            <a href="{!! route('products.create') !!}" class="btn btn-sm btn-primary" title="Добавить товар"
-               target="_blank">
+            <a href="{!! route('products.create') !!}" class="btn btn-sm btn-primary" title="Добавить товар">
                 <i class="ace-icon fa fa-plus"></i> Добавить товар
             </a>
         </div>
@@ -156,7 +155,7 @@
                                     <i class="fa fa-search-minus" v-on:click="delSearch()" style="cursor: pointer"></i>
                                 </div>
                                 <div class="col-xs-1">
-                                    <a href="{{ url('dashboard/price/download') }}" target="_blank">
+                                    <a href="{{ url('dashboard/price/download') }}">
                                         <i class="fa fa-download"></i> Прайс
                                     </a>
                                 </div>
@@ -341,12 +340,10 @@
                                     <img v-bind:src="product.thumbnail[0].path " v-if="!!product.thumbnail[0]" class="mini-thumb"/>
                                 </td>
                                 <td class="middle td-pad">
-                                    <a style="color: #000000" target="_blank"
-                                       v-bind:href="'/dashboard/products/'+ product.id + '/edit'" v-if="product.name != ''">
+                                    <a style="color: #000000" v-bind:href="'/dashboard/products/'+ product.id + '/edit'" v-if="product.name != ''">
                                         @{{ product.name }}
                                     </a>
-                                    <a style="color: #000000" target="_blank"
-                                       v-bind:href="'/dashboard/products/'+ product.id + '/edit'" v-if="product.name == ''">
+                                    <a style="color: #000000" v-bind:href="'/dashboard/products/'+ product.id + '/edit'" v-if="product.name == ''">
                                         @{{ product.title }}
                                     </a>
                                     <small v-show="product.clone_of > 0" style="color:indianred">(копия)</small>
@@ -398,8 +395,7 @@
                     </td>
                     <td class="options middle">
                         <div class="action-buttons">
-                            <a class="green" target="_blank"
-                               v-bind:href="'/dashboard/products/' +  product.id + '/edit'">
+                            <a class="green" v-bind:href="'/dashboard/products/' +  product.id + '/edit'">
                                 <i class="ace-icon fa fa-pencil"></i>
                             </a>
                         </div>
@@ -411,7 +407,7 @@
                     </td>
                     <td class="options middle">
                         <div class="action-buttons">
-                            <a class="blue" v-bind:href="'/dashboard/products/copy/' + product.id" target="_blank">
+                            <a class="blue" v-bind:href="'/dashboard/products/copy/' + product.id">
                                 <i class="ace-icon fa fa-copy"></i>
                             </a>
                         </div>
