@@ -179,9 +179,9 @@ class MailController extends Controller
         //$this->mail->addAttachment("frontend/images/logo.png");
 
         if(!$this->mail->send()) {
-            echo "<h3 align='center'>Извините, произошла ошибка. Сообщение не отправлено.</h3>";
+            echo "<h3 align='center' class='res'>Извините, произошла ошибка. Сообщение не отправлено.</h3>";
         } else {
-            echo "<h3 align='center'>Ваша заявка принята. В ближайшее время с Вами свяжутся. Спасибо.</h3>";
+            echo "<h3 align='center' class='res'>Ваша заявка принята. В ближайшее время с Вами свяжутся. Спасибо.</h3>";
         }
 
     }
