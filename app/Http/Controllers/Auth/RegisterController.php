@@ -101,7 +101,7 @@ class RegisterController extends Controller
 
                 return $this->registered($request, $user) ?: redirect()->back();
             } else {
-                return redirect()->back();
+                return redirect()->back()->with('message', 'Подтвердите, пожалуйста, что Вы не робот. Спасибо.')->withInput();
             }
         }else{
             event(new Registered($user = $this->create($request->all())));
