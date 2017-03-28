@@ -48,29 +48,29 @@ class YMLYandex extends Command
         $in = 41055;
         $to = 41105;
 
-        echo "Запись файла началась. $date\n";
+        echo "File recording started. $date\n";
 
         if(!$this->headerYML($host, $path_file, $date)){
-            echo "Ошибка записи шапки.\n";
+            echo "Error writing header.\n";
             exit();
         }
 
         $i = 1; $id = 0;
-        while($id < 41777){
+        while($id < 42000){
             if($i > 1){
                 $in = $id + 1;
                 $to = $in + 50;
             }
-            echo "$i. от $in до $to \n";
+            echo "$i. from $in to $to \n";
             $id = $this->tovarYML($host, $path_file, $in, $to);
             $i++;
         }
 
         if($this->footerYML($path_file)){
-            echo "Запись завершена.\n";
+            echo "Recording completed.\n";
             exit();
         }else{
-            echo "Ошибка записи подвала.\n";
+            echo "Error recording footer.\n";
             exit();
         };
 

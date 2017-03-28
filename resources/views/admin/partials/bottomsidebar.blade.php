@@ -90,7 +90,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Настройки</a>
                     <ul class="dropdown-menu dropdown-light-blue dropdown-caret">
                         <li>
-                            <a href="{{ route("config.index") }}">
+                            <a href="{{ route("config.index") }}" class="config fancybox.ajax">
                                 <i class="ace-icon fa fa-cog bigger-110 blue"></i> Конфигурация
                             </a>
                         </li>

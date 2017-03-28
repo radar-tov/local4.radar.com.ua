@@ -4,7 +4,7 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use App\Models\Config;
 use App\Http\Controllers\Auth\ReCaptcha;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -80,27 +80,36 @@ class RegisterController extends Controller
         //Для разработки
         //Site key: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
         ////Secret key: 6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe
+        $isCaptcha = Config::where('key', 'captcha')->first();
+        if($isCaptcha->value){
+            // ваш секретный ключ
+            // $secret = "6LfpexcUAAAAAJEmr1veZ-1F7uzRXT8W7H8QC6UD";
+            $secret = "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe";
+            // пустой ответ
+            $response = null;
+            // проверка секретного ключа
+            $reCaptcha = new ReCaptcha($secret);
+            $sitekey = $request->input('g-recaptcha-response');
+            // if submitted check response
+            if ($sitekey) {
+                $response = $reCaptcha->verifyResponse($_SERVER["REMOTE_ADDR"], $sitekey);
+            }
+            if ($response != null && $response->success) {
+                event(new Registered($user = $this->create($request->all())));
 
-        // ваш секретный ключ
-//        $secret = "6LfpexcUAAAAAJEmr1veZ-1F7uzRXT8W7H8QC6UD";
-        $secret = "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe";
-        // пустой ответ
-        $response = null;
-        // проверка секретного ключа
-        $reCaptcha = new ReCaptcha($secret);
-        $sitekey = $request->input('g-recaptcha-response');
-        // if submitted check response
-        if ($sitekey) {
-            $response = $reCaptcha->verifyResponse($_SERVER["REMOTE_ADDR"], $sitekey);
-        }
-        if ($response != null && $response->success) {
+                $this->guard()->login($user);
+
+                return $this->registered($request, $user) ?: redirect()->back();
+            } else {
+                return redirect()->back();
+            }
+        }else{
             event(new Registered($user = $this->create($request->all())));
 
             $this->guard()->login($user);
 
             return $this->registered($request, $user) ?: redirect()->back();
-        } else {
-            return redirect()->back();
         }
+
     }
 }

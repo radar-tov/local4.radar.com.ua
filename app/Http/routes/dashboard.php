@@ -197,6 +197,7 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         /* / Cart */
 
         Route::get('config/index', ['as' => 'config.index', 'uses' => 'ConfigController@index']);
+        Route::post('config/update', ['as' => 'config.update', 'uses' => 'ConfigController@update']);
     });
 
 });
