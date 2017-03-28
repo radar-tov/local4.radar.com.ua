@@ -3,6 +3,8 @@ RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\ HTTP/
 RewriteRule ^index\.php$ http://radar.com.ua/ [R=301,L]
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.html\ HTTP/ 
 RewriteRule ^index\.html$ http://radar.com.ua/ [R=301,L]
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /{2,}
+RewriteRule ^(.*) /$1 [R=301,L]
 
 RewriteEngine On
 RewriteRule ^(.*)$ public/$1 [L]
@@ -13,6 +15,9 @@ RewriteCond %{HTTP_HOST} ^www\.radar\.com\.ua$ [NC]
 RewriteRule ^(.*)$ http://radar.com.ua/$1 [R=301,L]
 #RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^/]+/)*(default|index|main)\.(html|php|htm)\ HTTP/ [NC]
 #RewriteRule ^(([^/]+/)*)(default|main|index)\.(html|php|htm)$ http://radar.com.ua/$1 [L,R=301]
+
+
+
 
 #RewriteEngine On
 #RewriteCond %{HTTP:SSL} !=1 [NC]
