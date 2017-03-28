@@ -20,7 +20,7 @@ class IndexTest extends DuskTestCase
         });
     }
 
-    public function testindexSee()
+/*    public function testindexSee()
     {
         $this->browse(function ($browser){
             $browser->visit('/')
@@ -39,21 +39,23 @@ class IndexTest extends DuskTestCase
                 });
 
         });
-    }
+    }*/
 
     public function testAddToCart()
     {
         $this->browse(function ($browser){
             $browser->visit('/')
                 ->mouseover('.slick-active', function ($mod){
-                    $mod->press('.slick-active .buy')
-                        ->pause(2000)
-                        ->assertSeeIn('.qty', '1');
+                    $mod->press('.addtocart-box-hove');
+                })->pause(5000)
+                ->assertSeeIn('.qty', '1')
+                ->whenAvailable('.fancybox-inner', function ($fansy){
+                    $fansy->assertSee('ТОВАР В КОРЗИНУ ДОБАВЛЕН');
                 });
         });
     }
 
-    public function testSendCallBackFalseName()
+ /*   public function testSendCallBackFalseName()
     {
         $user = factory(User::class)->create([
             'phone' => '4444444444',
@@ -169,5 +171,5 @@ class IndexTest extends DuskTestCase
                         ->waitFor('.res');
                 });
         });
-    }
+    }*/
 }
