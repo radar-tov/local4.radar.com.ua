@@ -12,50 +12,94 @@ class CatalogTest extends DuskTestCase
 {
     use DatabaseTransactions, WithoutMiddleware;
 
-    public function __construct($name = null, array $data = [], $dataName = '')
+    public function testCatalogSee()
     {
-        parent::__construct($name, $data, $dataName);
-        $this->browse(function ($browser){
-            $browser->maximize();
+        $this->browse(function ($browser) {
+            $browser->maximize()
+                    ->visit('/')
+                    ->clickLink('Котлы')
+                    ->assertPathIs('/kotli')
+                    ->assertSee('© Все права защищены.')
+                    ->mouseover('.havechild')
+                    ->clickLink('Газовые котлы')
+                    ->assertPathIs('/kotli/gazovie-kotli')
+                    ->assertSee('© Все права защищены.');
         });
     }
 
-/*    public function testCatalogSee()
+    public function testCataligAddToCompare()
     {
         $this->browse(function ($browser) {
-            $browser->visit('/')
-                ->clickLink('Котлы')
-                ->assertPathIs('/kotli')
-                ->assertSee('© Все права защищены.')
-                ->mouseover('.havechild')
-                ->clickLink('Газовые котлы')
-                ->assertPathIs('/kotli/gazovie-kotli')
-                ->assertSee('© Все права защищены.');
+            $browser->whenAvailable('.item-inner', function ($modal) {
+                $modal->mouseover('.item')
+                    ->whenAvailable('.item .compare-box-hover', function ($item) {
+                        $item->press('Сравнить');
+                    });
+            })->mouseover('.vs')
+                ->pause(2000)
+                ->assertSeeIn('.vs', '1');
         });
     }
 
-    public function testCataligAddToCompare(){
+    public function testCataligAddToCart()
+    {
         $this->browse(function ($browser) {
-            $browser->visit('/kotli/gazovie-kotli')
-                    ->whenAvailable('.item-inner', function ($modal){
-                        $modal->mouseover('.item')
-                                ->press('.compare-box-hover')
-                                ->pause(2000);
-
-                    })->assertSeeIn('.vs', '1');
-        });
-    }*/
-
-    public function testCataligAddToCart(){
-        $this->browse(function ($browser) {
-            $browser->visit('/kotli/gazovie-kotli')
-                ->whenAvailable('.item-inner', function ($modal){
-                    $modal->mouseover('.item')
-                        ->press('.addtocart-box-hover')
-                        ->pause(2000);
-                })->assertSeeIn('.qty', '1')
-                ->whenAvailable('.fancybox-inner', function ($fansy){
+            $browser->mouseover('.item')
+                ->press('.addtocart-box-hover')
+                ->mouseover('.qty')
+                ->pause(2000)
+                ->assertSeeIn('.qty', '1')
+                ->whenAvailable('.fancybox-inner', function ($fansy) {
                     $fansy->assertSee('ТОВАР В КОРЗИНУ ДОБАВЛЕН');
+                })->press('.fancybox-close')
+                ->pause(2000);
+        });
+    }
+
+    public function testPagination()
+    {
+        $this->browse(function ($browser) {
+            $browser->mouseover('.pagination')
+                ->clickLink('2')
+                ->whenAvailable('.item-inner', function ($inner) {
+                    $inner->mouseover('.item')
+                        ->assertSee('Код:');
+                });
+        });
+    }
+
+    public function testPaginationNabr()
+    {
+        $this->browse(function ($browser) {
+            $browser->mouseover('.pagination')
+                ->clickLink('4')
+                ->whenAvailable('.item-inner', function ($inner) {
+                    $inner->mouseover('.item')
+                        ->assertSee('Код:');
+                });
+        });
+    }
+
+    public function testPaginationNext()
+    {
+        $this->browse(function ($browser) {
+            $browser->mouseover('.pagination')
+                ->clickLink('»')
+                ->whenAvailable('.item-inner', function ($inner) {
+                    $inner->mouseover('.item')
+                        ->assertSee('Код:');
+                });
+        });
+    }
+
+    public function testPaginationBack()
+    {
+        $this->browse(function ($browser) {
+            $browser->mouseover('.pagination')
+                ->clickLink('«')
+                ->whenAvailable('.item-inner', function ($inner) {
+                    $inner->mouseover('.item')
+                        ->assertSee('Код:');
                 });
         });
     }
