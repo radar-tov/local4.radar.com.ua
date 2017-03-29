@@ -11,6 +11,9 @@ class StatiTest extends DuskTestCase
 {
     use DatabaseTransactions, WithoutMiddleware;
 
+    /**
+     *
+     */
     public function testStatis()
     {
         $this->browse(function ($browser) {
@@ -22,9 +25,10 @@ class StatiTest extends DuskTestCase
 
     public function testStatya(){
         $this->browse(function ($browser) {
-            $attribute = $browser->attribute('.media-inner > a', 'href');
+            $attribute = str_replace(env('APP_URL'), '', $browser->attribute('.media-inner > a', 'href'));
             $browser->press('.media-inner > a > img')
-                    ->assertPathIs($attribute);
+                    ->assertPathIs($attribute)
+                    ->assertSee('© Все права защищены.');;
         });
     }
 }
