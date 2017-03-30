@@ -153,6 +153,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Laravel\Dusk\DuskServiceProvider::class,
+        App\Providers\DuskBrowserServiceProvider::class,
     ],
 
     /*

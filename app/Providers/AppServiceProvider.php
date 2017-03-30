@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\DB;
+use Laravel\Dusk\DuskServiceProvider;
+use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
+use App\Providers\DuskBrowserServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,10 +31,11 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         if ($this->app->environment() !== 'production') {
-            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+            $this->app->register(IdeHelperServiceProvider::class);
         }
         if ($this->app->environment('local', 'testing')) {
-            $this->app->register(\Laravel\Dusk\DuskServiceProvider::class);
+            $this->app->register(DuskServiceProvider::class);
+            $this->app->register(\App\Providers\DuskBrowserServiceProvider::class);
         }
     }
 }

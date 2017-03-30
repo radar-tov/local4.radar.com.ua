@@ -103,9 +103,9 @@ class MailController extends Controller
         //$this->mail->addAttachment("frontend/images/logo.png");
 
         if(!$this->mail->send()) {
-            $message = "Извините, произошла ошибка. Сообщение не отправлено.";
+            $message = "<h3 align='center'>Извините, произошла ошибка. Сообщение не отправлено.</h3>";
         } else {
-            $message = "Ваше письмо отправлено!. В ближайшее время с Вами свяжутся. Спасибо.";
+            $message = "<h3 align='center class='res''>Ваше письмо отправлено! В ближайшее время с Вами свяжутся. Спасибо.</h3>";
         }
 
         $request->session()->put('from_otvet', 'contact');

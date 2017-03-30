@@ -28,7 +28,7 @@ class StatiTest extends DuskTestCase
             $attribute = str_replace(env('APP_URL'), '', $browser->attribute('.media-inner > a', 'href'));
             $browser->press('.media-inner > a > img')
                     ->assertPathIs($attribute)
-                    ->assertSee('© Все права защищены.');;
+                    ->assertSee('© Все права защищены.');
         });
     }
 }
