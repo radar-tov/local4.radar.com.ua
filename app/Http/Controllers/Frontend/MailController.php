@@ -105,7 +105,7 @@ class MailController extends Controller
         if(!$this->mail->send()) {
             $message = "<h3 align='center'>Извините, произошла ошибка. Сообщение не отправлено.</h3>";
         } else {
-            $message = "<h3 align='center class='res''>Ваше письмо отправлено! В ближайшее время с Вами свяжутся. Спасибо.</h3>";
+            $message = "<h3 align='center' class='res'>Ваше письмо отправлено! В ближайшее время с Вами свяжутся. Спасибо.</h3>";
         }
 
         $request->session()->put('from_otvet', 'contact');
