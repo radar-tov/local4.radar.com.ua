@@ -40,6 +40,7 @@ $(document).ready(function () {
         }
     }, 1000);
     getData();
+    initRating();
     setInterval(getData, 15000);
 
 });
@@ -187,19 +188,6 @@ $("body").on("click", "._pagination a", function (event) {
 $("#range").change(function () {
     return false;
 });
-$("#rating_3").rating({
-    fx: "full",
-    image: "/frontend/images/stars2.png",
-    loader: "/frontend/images/loading.gif",
-    url: location.href,
-    type: "GET",
-    readOnly: !!$("#check").val(),
-    callback: function (responce) {
-        this._data.val = Math.round(responce);
-        this.set();
-        this.vote_success.fadeOut(2000);
-    }
-});
 setTimeout(function () {
     $(".compare-list").each(function () {
         var min_height = 0;
@@ -226,4 +214,43 @@ function getData() {
             $("#_cart").html(response);
         });
     };
+}
+
+function initRating() {
+    $('.rating_1').rating({
+        fx: 'full',
+        image: '/frontend/images/stars2.png',
+        loader: '/frontend/images/ajax-loader.gif',
+        url: '/rate',
+        readOnly: true,
+        callback: function (responce) {
+            this.vote_success.fadeOut(2000);
+        }
+    });
+    $('.rating_2').each(function () {
+        var self = $(this);
+        self.rating({
+            fx: 'full',
+            image: '/frontend/images/stars2.png',
+            loader: '/frontend/images/ajax-loader.gif',
+            url: '/rate',
+            readOnly: true,
+            callback: function (responce) {
+                this.vote_success.fadeOut(2000);
+            }
+        });
+    })
+    $("#rating_3").rating({
+        fx: "full",
+        image: "/frontend/images/stars2.png",
+        loader: "/frontend/images/ajax-loader.gif",
+        url: location.href,
+        type: "GET",
+        readOnly: !!$("#check").val(),
+        callback: function (responce) {
+            this._data.val = Math.round(responce);
+            this.set();
+            this.vote_success.fadeOut(2000);
+        }
+    });
 }
