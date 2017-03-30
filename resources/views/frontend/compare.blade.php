@@ -54,7 +54,7 @@
                                 @else
                                     <span class="item-new-price no-margin">{{ $product->price  }} грн</span>
                                 @endif
-                                {{--<span class="item-new-price no-margin">{{ $product->price  }} грн</span>--}}
+                                <span class="item-new-price no-margin">{{ $product->price  }} грн</span>
 
                                 <div><img src="{{ $product->options->thumbnail}}"></div>
 
@@ -87,15 +87,17 @@
 
             @endforeach
 
-
-        <!--<h5 v-if="!len > 0"> Нет товаров для сравнения</h5>-->
+            @if(count($cartProvider->getToCompare()) == 0)
+                <h4>Нет товаров для сравнения</h4>
+            @endif
+            {{--<h5 v-if="!len > 0"> Нет товаров для сравнения</h5>
             <div class="row" v-show="len > 0">
-                {{--<h1>@{{ len == 0 }}</h1>--}}
+                --}}{{--<h1>@{{ len == 0 }}</h1>--}}{{--
 
                 <div>
                     <div class="basket-row col s12 no-padding">
                         <div class="col m1 hide-on-small-and-down center">Фото</div>
-                        {{--<div class="col s1">№</div>--}}
+                        --}}{{--<div class="col s1">№</div>--}}{{--
                         <div class="col m2 hide-on-small-and-down">Код</div>
                         <div class="col s5 m4">Название</div>
                         <div class="col s3 m3">Кол-во</div>
@@ -114,7 +116,7 @@
                             </a>
                         </div>
 
-                        {{--<div class="col s1"><p>1</p></div>--}}
+                        --}}{{--<div class="col s1"><p>1</p></div>--}}{{--
                         <div class="col m2 hide-on-small-and-down">
                             <p>@{{ product.options.article }}</p>
                         </div>
@@ -168,7 +170,7 @@
                     </div>
                 @endif
                 <div class="col s12 offset-top-30px"></div>
-            </div>
+            </div>--}}
 
 
             <input type="hidden" value="{{ csrf_token() }}" v-model="token"/>

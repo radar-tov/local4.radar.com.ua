@@ -11,10 +11,7 @@ class ContactTest extends DuskTestCase
 {
     use DatabaseTransactions, WithoutMiddleware;
 
-    /**
-     *
-     */
-/*    public function testContactMap()
+    public function testContactMap()
     {
         $this->browse(function ($browser) {
             $browser->maximize()
@@ -25,7 +22,7 @@ class ContactTest extends DuskTestCase
                     $inner->assertSee('Україна, Одеса');
                 });
         });
-    }*/
+    }
 
     public function testContactFormNameFalse(){
         $this->browse(function ($browser) {
