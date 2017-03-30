@@ -10051,27 +10051,6 @@ if ($) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ;(function ($, document, window, navigator, undefined) {
     "use strict";
     var plugin_count = 0;
@@ -11606,38 +11585,55 @@ if ($) {
         });
     });
 })(jQuery);
-;(function ($) {
-    $.rating = function (e, o) {
+/** Рейтинг заметок в виде звезд jquery.rating.js
+ *  http://biznesguide.ru/coding/156.html
+ *  Copyright (c) 2011 Шамшур Иван (http://twitter.com/ivanshamshur)
+ *  Dual licensed under the MIT and GPL licenses
+ */
+
+;(function($){
+
+
+    $.rating = function(e, o){
+
         this.options = $.extend({
             fx: 'float',
             image: '/images/stars.png',
             stars: 5,
             minimal: 0,
-            titles: ['голос', 'голоса', 'голосов'],
+            titles: ['голос','голоса','голосов'],
             readOnly: false,
             url: '',
             type: 'post',
             loader: '/images/ajax-loader.gif',
-            click: function () {
-            },
-            callback: function () {
-            }
+            click: function(){},
+            callback: function(){}
         }, o || {});
+
         this.el = $(e);
         this.left = 0;
         this.width = 0;
         this.height = 0;
         this._data = {};
+
         var self = this;
-        this.el.find(':hidden').each(function () {
+
+        this.el.find(':hidden').each(function(){
+
             var $this = $(this);
             self._data[$this.attr('name')] = $this.val();
+
         });
+
         this._data.val = parseFloat(this._data.val) || 0;
         this._data.votes = parseFloat(this._data.votes) || '';
-        if (this._data.val > this.options.stars) this._data.val = this.options.stars;
-        if (this._data.val < 0) this._data.val = 0;
+
+
+        if(this._data.val > this.options.stars) this._data.val = this.options.stars;
+        if(this._data.val < 0) this._data.val = 0;
+
         this.old = this._data.val;
+
         this.vote_wrap = $('<div class="vote-wrap"></div>');
         this.vote_block = $('<div class="vote-block"></div>');
         this.vote_hover = $('<div class="vote-hover"></div>');
@@ -11645,132 +11641,214 @@ if ($) {
         this.vote_active = $('<div class="vote-active"></div>');
         this.vote_result = $('<div class="vote-result"></div>');
         this.vote_success = $('<div class="vote-success"></div>');
-        this.loader = $('<img src="' + this.options.loader + '" alt="load...">');
+        this.loader = $('<img src="'+this.options.loader+'" alt="load...">');
+
         this.el.html(this.loader);
+
+        //Загружаем изображение звезд и высчитываем ширину и высоту одной звезды
         var img = new Image();
         img.src = this.options.image;
-        img.onload = function () {
-            self.width = this.width;
-            self.height = this.height / 3;
+        img.onload = function() {
+            self.width = this.width; //Ширина одной звезды
+            self.height = this.height/3; //Высота одной звезды
             self.init();
         };
+
     };
+
+
     var $r = $.rating;
-    $r.fn = $r.prototype = {rating: '2.0'};
+
+    $r.fn = $r.prototype = {
+        rating: '2.0'
+    };
+
     $r.fn.extend = $r.extend = $.extend;
+
     $r.fn.extend({
-        init: function () {
+
+        init: function(){
+
             this.render();
-            if (this.options.readOnly)return;
+
+            if(this.options.readOnly) return;
+
             var self = this, left = 0, width = 0;
-            this.vote_hover.bind('mousemove mouseover', function (e) {
-                if (self.options.readOnly)return;
-                var $this = $(this), score = 0;
-                left = e.clientX > 0 ? e.clientX : e.pageX;
+
+            this.vote_hover.bind('mousemove mouseover',function(e){
+
+                if(self.options.readOnly) return;
+
+                var $this = $(this),
+                    score = 0;
+
+                left = e.clientX>0 ? e.clientX: e.pageX;
                 width = left - $this.offset().left - 2;
-                var max = self.width * self.options.stars, min = self.options.minimal * self.width;
-                if (width > max) width = max;
-                if (width < min) width = min;
-                score = Math.round(width / self.width * 10) / 10;
-                if (self.options.fx == 'half') {
-                    width = Math.ceil(width / self.width * 2) * self.width / 2;
-                } else if (self.options.fx != 'float') {
-                    width = Math.ceil(width / self.width) * self.width;
+
+                var max = self.width*self.options.stars,
+                    min = self.options.minimal*self.width;
+
+                if(width > max) width = max;
+                if(width < min) width = min;
+
+                score = Math.round( width/self.width * 10 ) / 10; //округляем до 1 знака после запятой
+
+                if(self.options.fx == 'half'){
+                    width = Math.ceil(width/self.width*2)*self.width/2;
                 }
-                score = Math.round(width / self.width * 10) / 10;
-                self.vote_active.css({'width': width, 'background-position': 'left center'});
-                self.vote_success.html('Ваша оценка:' + score);
-            }).bind('mouseout', function () {
-                if (self.options.readOnly)return;
-                self.reset();
-                self.vote_success.empty();
-            }).bind('click.rating', function () {
-                if (self.options.readOnly)return;
-                var score = Math.round(width / self.width * 10) / 10;
-                if (score > self.options.stars) score = self.options.stars;
-                if (score < 0) score = 0;
+                else if(self.options.fx != 'float'){
+                    width = Math.ceil(width/self.width) * self.width;
+                }
+
+                score = Math.round( width/self.width * 10 ) / 10;
+
+                self.vote_active.css({
+                    'width':width,
+                    'background-position':'left center'
+                });
+
+                self.vote_success.html('Ваша оценка: '+score);
+
+            })
+                .bind('mouseout',function(){
+                    if(self.options.readOnly) return;
+                    self.reset();
+                    self.vote_success.empty();
+                }).
+            bind('click.rating',function(){
+
+                if(self.options.readOnly) return;
+
+                var score = Math.round( width/self.width * 10 ) / 10;
+
+                if(score > self.options.stars) score = self.options.stars;
+                if(score < 0) score = 0;
+
                 self.old = self._data.val;
-                self._data.val = (self._data.val * self._data.votes + score) / (self._data.votes + 1);
-                self._data.val = Math.round(self._data.val * 100) / 100;
+                self._data.val = (self._data.val*self._data.votes +score)/(self._data.votes + 1);
+                self._data.val = Math.round( self._data.val * 100 ) / 100;
                 self._data.score = score;
-                self.vote_success.html('Ваша оценка:' + score);
-                if (self.options.url != '') {
+                self.vote_success.html('Ваша оценка: '+score);
+
+                if(self.options.url != ''){
+
                     self.send();
                 }
+
                 self.options.readOnly = true;
-                self.options.click.apply(this, [score]);
+                self.options.click.apply(this,[score]);
             });
-        }, set: function () {
-            this.vote_active.css({'width': this._data.val * this.width, 'background-position': 'left bottom'});
-        }, reset: function () {
-            this.vote_active.css({'width': this.old * this.width, 'background-position': 'left bottom'});
-        }, setvoters: function () {
+
+        },
+        set: function(){
+            this.vote_active.css({
+                'width':this._data.val*this.width,
+                'background-position':'left bottom'
+            });
+        },
+        reset: function(){
+            this.vote_active.css({
+                'width':this.old*this.width,
+                'background-position':'left bottom'
+            });
+        },
+        setvoters: function(){
             this.vote_result.html(this.declOfNum(this._data.votes));
-        }, render: function () {
-            this.el.html(this.vote_wrap.append(this.vote_hover.css({
-                padding: '0 4px',
-                height: this.height,
-                width: this.width * this.options.stars
-            }), this.vote_result.text(this.declOfNum(this._data.votes)), this.vote_success));
-            this.vote_block.append(this.vote_stars.css({
-                height: this.height,
-                width: this.width * this.options.stars,
-                background: "url('" + this.options.image + "') left top"
-            }), this.vote_active.css({
-                height: this.height,
-                width: this._data.val * this.width,
-                background: "url('" + this.options.image + "') left bottom"
-            })).appendTo(this.vote_hover);
-        }, send: function (score) {
+        },
+        render: function(){
+
+            this.el.html(this.vote_wrap.append(
+                this.vote_hover.css({
+                    padding:'0 4px',
+                    height:this.height,
+                    width:this.width*this.options.stars
+                }),
+                this.vote_result.text(this.declOfNum(this._data.votes)),
+                this.vote_success
+            ));
+
+
+            this.vote_block.append(
+                this.vote_stars.css({
+                    height:this.height,
+                    width:this.width*this.options.stars,
+                    background:"url('"+this.options.image+"') left top"
+                }),
+                this.vote_active.css({
+                    height:this.height,
+                    width:this._data.val*this.width,
+                    background:"url('"+this.options.image+"') left bottom"
+                })
+            ).appendTo(this.vote_hover);
+
+        },
+        send: function(score){
+
             var self = this;
             this.vote_result.html(this.loader);
+
             this._data.votes++;
+
             $.ajax({
                 url: self.options.url,
                 type: self.options.type,
                 data: this._data,
                 dataType: 'json',
-                success: function (data) {
-                    if (data.status == 'OK') {
+                success: function(data){
+                    if(data.status == 'OK') {
+
                         self.set();
-                    } else {
+                    }
+                    else{
                         self._data.votes--;
                         self.reset();
                     }
+
                     self.setvoters();
-                    if (data.msg) self.vote_success.html(data.msg);
-                    if (typeof self.options.callback == 'function') {
-                        self.options.callback.apply(self, [data]);
+
+                    if(data.msg)self.vote_success.html(data.msg);
+
+                    if(typeof self.options.callback == 'function'){
+
+                        self.options.callback.apply(self,[data]);
                     }
                 }
             });
-        }, declOfNum: function (number) {
-            if (number <= 0)return '';
+
+        },
+        declOfNum: function(number){
+            if(number <= 0) return '';
             number = Math.abs(Math.floor(number));
             cases = [2, 0, 1, 1, 1, 2];
-            return number + ' ' + this.options.titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
+            return number+' '+ this.options.titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];
         }
     });
-    $.fn.rating = function (o) {
+
+
+    $.fn.rating = function(o){
+
         if (typeof o == 'string') {
             var instance = $(this).data('rating'), args = Array.prototype.slice.call(arguments, 1);
             return instance[o].apply(instance, args);
         } else {
-            return this.each(function () {
+            return this.each(function() {
                 var instance = $(this).data('rating');
                 if (instance) {
                     if (o) {
                         $.extend(instance.options, o);
                     }
+
                     instance.init();
+
                 } else {
+
                     $(this).data('rating', new $r(this, o));
                 }
             });
         }
     };
-})(jQuery);
 
+})(jQuery);
 ;(function(c){"function"===typeof define&&define.amd?define(["jquery"],c):"object"===typeof exports?module.exports=c:c(jQuery)})(function(c){function l(b){var a=b||window.event,h=[].slice.call(arguments,1),d=0,e=0,f=0,g=0,g=0;b=c.event.fix(a);b.type="mousewheel";a.wheelDelta&&(d=a.wheelDelta);a.detail&&(d=-1*a.detail);a.deltaY&&(d=f=-1*a.deltaY);a.deltaX&&(e=a.deltaX,d=-1*e);void 0!==a.wheelDeltaY&&(f=a.wheelDeltaY);void 0!==a.wheelDeltaX&&(e=-1*a.wheelDeltaX);g=Math.abs(d);if(!m||g<m)m=g;g=Math.max(Math.abs(f),Math.abs(e));if(!k||g<k)k=g;a=0<d?"floor":"ceil";d=Math[a](d/m);e=Math[a](e/k);f=Math[a](f/k);try{b.originalEvent.hasOwnProperty("wheelDelta")}catch(l){f=d}h.unshift(b,d,e,f);return(c.event.dispatch||c.event.handle).apply(this,h)}var n=["wheel","mousewheel","DOMMouseScroll","MozMousePixelScroll"],h="onwheel"in document||9<=document.documentMode?["wheel"]:["mousewheel","DomMouseScroll","MozMousePixelScroll"],m,k;if(c.event.fixHooks)for(var p=n.length;p;)c.event.fixHooks[n[--p]]=c.event.mouseHooks;c.event.special.mousewheel={setup:function(){if(this.addEventListener)for(var b=h.length;b;)this.addEventListener(h[--b],l,!1);else this.onmousewheel=l},teardown:function(){if(this.removeEventListener)for(var b=h.length;b;)this.removeEventListener(h[--b],l,!1);else this.onmousewheel=null}};c.fn.extend({mousewheel:function(b){return b?this.bind("mousewheel",b):this.trigger("mousewheel")},unmousewheel:function(b){return this.unbind("mousewheel",b)}})});
 /*! fancyBox v2.1.5 fancyapps.com | fancyapps.com/fancybox/#license */
 (function(s,H,f,w){var K=f("html"),q=f(s),p=f(H),b=f.fancybox=function(){b.open.apply(this,arguments)},J=navigator.userAgent.match(/msie/i),C=null,t=H.createTouch!==w,u=function(a){return a&&a.hasOwnProperty&&a instanceof f},r=function(a){return a&&"string"===f.type(a)},F=function(a){return r(a)&&0<a.indexOf("%")},m=function(a,d){var e=parseInt(a,10)||0;d&&F(a)&&(e*=b.getViewport()[d]/100);return Math.ceil(e)},x=function(a,b){return m(a,b)+"px"};f.extend(b,{version:"2.1.5",defaults:{padding:15,margin:20,
