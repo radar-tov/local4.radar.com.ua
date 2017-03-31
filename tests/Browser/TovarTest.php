@@ -26,7 +26,7 @@ class TovarTest extends DuskTestCase
         });
     }
 
-    public function testTovarNext()
+/*    public function testTovarNext()
     {
         $this->browse(function ($browser) {
             $browser->press('.linksBlock > .right')
@@ -118,6 +118,19 @@ class TovarTest extends DuskTestCase
                             ->press('.btn')
                             ->pause(2000)
                             ->assertSee('ВАШ ОТЗЫВ БУДЕТ ОПУБЛИКОВАН ПОСЛЕ МОДЕРАЦИИ');
+                    })->press('.fancybox-close')
+                    ->pause(1000);
+        });
+    }*/
+
+    public function testTovarFotoIndex(){
+        $this->browse(function ($browser) {
+            $browser->press(".listLightbox")
+                    ->whenAvailable('.fancybox-inner', function ($modal) {
+                        /*$modal->mouseover('.fancybox-inner')
+                              ->mouseover('a')
+                              ->press('a')
+                              ->pause(1000);*/
                     })->press('.fancybox-close')
                     ->pause(1000);
         });

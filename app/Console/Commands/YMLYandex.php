@@ -39,7 +39,7 @@ class YMLYandex extends Command
      */
     public function fire()
     {
-        $host = 'http://radar.com.ua';
+        $host = 'https://radar.com.ua';
         $path_file = 'storage/app/yml_products.xml';
 
         $date = new \DateTime('NOW');
@@ -155,7 +155,7 @@ class YMLYandex extends Command
                 $line = "\t\t<delivery-options>\n";
                 File::append($path_file, $line);
 
-                    $line = "\t\t\t<option cost=\"50\" days=\"2-5\"/>\n";
+                    $line = "\t\t\t<option cost=\"50\" days=\"2-3\"/>\n";
                     File::append($path_file, $line);
 
                 $line = "\t\t</delivery-options>\n";
@@ -257,7 +257,7 @@ class YMLYandex extends Command
 
                                         if(!empty($product->thumbnail->first()->path)){
                                             //Картинка
-                                            $line = "\t\t\t\t<picture>".$host.$product->thumbnail->first()->path."</picture>\n";
+                                            $line = "\t\t\t\t<picture>".$host.str_replace(' ', '%20', $product->thumbnail->first()->path)."</picture>\n";
                                             File::append($path_file, $line);
                                         }
                                     
