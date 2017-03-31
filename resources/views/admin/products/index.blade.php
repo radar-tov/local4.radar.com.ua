@@ -375,7 +375,7 @@
                             - @{{ product.discount }} %
                         </span>
 
-                        <span class="label label-lg label-pink arrowed-right" v-show="product.nacenka > 0">
+                        <span class="label label-sm label-danger arrowed-right" v-show="product.nacenka > 0">
                             + @{{ product.nacenka }} %
                         </span>
                         @{{ product.out_price }}
