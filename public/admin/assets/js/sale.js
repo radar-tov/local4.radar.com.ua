@@ -207,7 +207,7 @@ var saleVue = new Vue({
 
         addProduct: function(relProduct, index){
             this.productsList.products.splice(index, 1);
-            this.relOptions.selected.push(relProduct)
+            this.relOptions.selected.push(relProduct);
             this.selectedProductsIds.push(relProduct.id);
             this.syncProducts();
             this.getRelatedProducts();
@@ -216,8 +216,13 @@ var saleVue = new Vue({
 
         removeProduct: function(relProduct, index){
             this.relOptions.selected.splice(index, 1);
-            this.productsList.products.push(relProduct)
-            this.selectedProductsIds.splice(index, 1);
+            this.productsList.products.push(relProduct);
+            for (var ind = 0; ind < this.selectedProductsIds.length; ++ind) {
+                if(this.selectedProductsIds[ind] == relProduct.id){
+                    this.selectedProductsIds.splice(ind, 1);
+                    console.log(this.selectedProductsIds[ind], ind);
+                }
+            }
             this.syncProducts();
             this.getRelatedProducts();
             this.getProducts();
