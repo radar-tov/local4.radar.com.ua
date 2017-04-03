@@ -22,10 +22,13 @@
 
     <div class="row" id="productsVue">
         <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
-        <div class="col-xs-6">
+        <div class="col-xs-2">
             <a href="{!! route('products.create') !!}" class="btn btn-sm btn-primary" title="Добавить товар">
                 <i class="ace-icon fa fa-plus"></i> Добавить товар
             </a>
+        </div>
+        <div class="col-xs-2">
+            <button class="btn btn-sm btn-primary" v-on:click.prevent="showPanelSearch()"> Поиск </button>
         </div>
 
         <div class="col-xs-6 ">
@@ -37,7 +40,7 @@
 
         <div class="col-xs-12">
             <br/>
-            <div class="well" style="min-height: 170px; padding: 19px 0 40px 0">
+            <div class="well" style="min-height: 170px; padding: 19px 0 40px 0" id="SearchPanel">
                 <div class="row">
                     <div v-show="!selectedProductsIds.length">
 
