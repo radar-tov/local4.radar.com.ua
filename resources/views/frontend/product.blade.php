@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-    {{ dump(session()->all()) }}
+    {{--{{ dump(session()->all()) }}--}}
     <section class="breadcrumbs">
         <div class="container">
             <div class="row">
@@ -97,10 +97,29 @@
                     @if(isset($product->brand->title))
                         <p class="brand no-margin">Производитель: <span>{{ $product->brand->title }}</span></p>
                     @endif
+
+
+
                     <div id="rating_3" class="item-rating left">
-                        <input type="hidden" name="vote-id" value="5" id=""/>
+                        {{--индификатор рейтинга--}}
+                        {{--<input type="hidden" name="vote-id" value="5" id=""/>--}}
+                        {{--кол-во проголосовавших--}}
+                        <input type="hidden" name="votes" value="{{ $product->rates->count() }}"/>
+                        {{--кол-во закрашеных звёзд--}}
                         <input type="hidden" name="val" value="{{ array_sum($product->rates->pluck('rate')->all()) / ($product->rates->count() ?: 1) }}">
+                        {{--голосовал ли за этот товар--}}
+                        <input type="hidden" value="{{ in_array($pid, null !== Session('rated') ? Session('rated') : []) }}" id="check"/>
                     </div>
+                    {{--{{ dump(session()->all()) }}--}}
+
+                    {{--@if(Auth::check())
+                        <input type="hidden" value="{{ in_array($pid, null !== Session('rated') ? Session('rated') : []) }}" id="check"/>
+                    @else
+                        <input type="hidden" value="1" id="check"/>
+                    @endif--}}
+
+
+
                     <div class="col s12 clearleft wrap-price">
                         <div class="pricesBlock" style="width:100%;float:left">
                             <div class="col s12 item-prices">
@@ -423,13 +442,6 @@
     {{--</div>--}}
 
     <!--  Scripts-->
-
-    @if(Auth::check())
-        <input type="hidden" value="{{ in_array($pid, null !== Session('rated') ? Session('rated') : []) }}"
-               id="check"/>
-    @else
-        <input type="hidden" value="1" id="check"/>
-    @endif
 
 @endsection
 
