@@ -55,11 +55,9 @@
                         <p class="sku">Код: <span>{{ $product->id }}</span></p>
                     @endif
                 </div>--}}
-                <div class="col s4 no-padding">
-                    <div class="rating_1">
-                        <input type="hidden" name="vote-id" value="5"/>
-                        <input type="hidden" name="val" value="{{ array_sum($product->rates->pluck('rate')->all()) / ($product->rates->count() ?: 1) }}">
-                    </div>
+                <div class="rating_1">
+                    <input type="hidden" name="vote-id" value="5"/>
+                    <input type="hidden" name="val" value="{{ array_sum($product->rates->pluck('rate')->all()) / ($product->rates->count() ?: 1) }}">
                 </div>
                 <div class="item-content">
 
