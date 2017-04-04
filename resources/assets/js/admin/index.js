@@ -326,6 +326,7 @@ function getData() {
         }).done(function (response) {
             $("#cart").html(response.cart);
             $("#order").html(response.order);
+            $("#online").html(response.online);
         });
     };
 }

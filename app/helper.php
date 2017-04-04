@@ -79,6 +79,10 @@ function orderItemsCount() {
     return (new \App\Http\Controllers\Admin\OrdersController())->newOrder();
 }
 
+function onlineItemsCount() {
+    return (new \App\Http\Controllers\Admin\OnlineController())->getOnline();
+}
+
 function cartItemsCount() {
 	return (new \App\Http\Controllers\Frontend\CartController())->calcProductsInCart();
 }
