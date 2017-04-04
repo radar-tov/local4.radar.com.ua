@@ -9872,6 +9872,7 @@ h3 {
     position: absolute;
     width: 70px;
     margin: 320px 0 0 0 !important;
+    z-index: 10;
 }
 .slick-slide .sale-img{
     margin: 280px 0 0 0 !important;
