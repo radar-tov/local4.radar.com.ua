@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
 
 class YMLYandex extends Command
 {
@@ -230,20 +231,18 @@ class YMLYandex extends Command
                                             File::append($path_file, $line);
                                         }
 
-                                        if(isset($product->price)) {
-                                            //Цена
+                                        //Цена
+                                        Auth::loginUsingId(292);
+                                        if(isset($product->out_price)) {
 
-
-                                            if($product->out_price > 0){
-                                                $cena =  $product->out_price;
+                                            if($product->hasDiscount()){
+                                                $cena =  $product->getNewPriceYandex();
                                             }else{
-                                                $cena = $product->price;
+                                                $cena = $product->out_price;
                                             }
-
 
                                             $line = "\t\t\t\t<price>".round($cena)."</price>\n";
                                             File::append($path_file, $line);
-
                                             unset($cena);
                                         }
 
