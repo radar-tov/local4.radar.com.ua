@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
 
 class YMLYandex extends Command
 {
@@ -39,7 +40,7 @@ class YMLYandex extends Command
      */
     public function fire()
     {
-        $host = 'http://radar.com.ua';
+        $host = 'https://radar.com.ua';
         $path_file = 'storage/app/yml_products.xml';
 
         $date = new \DateTime('NOW');
@@ -48,29 +49,29 @@ class YMLYandex extends Command
         $in = 41055;
         $to = 41105;
 
-        echo "Запись файла началась. $date\n";
+        echo "File recording started. $date\n";
 
         if(!$this->headerYML($host, $path_file, $date)){
-            echo "Ошибка записи шапки.\n";
+            echo "Error writing header.\n";
             exit();
         }
 
         $i = 1; $id = 0;
-        while($id < 41777){
+        while($id < 42000){
             if($i > 1){
                 $in = $id + 1;
                 $to = $in + 50;
             }
-            echo "$i. от $in до $to \n";
+            echo "$i. from $in to $to \n";
             $id = $this->tovarYML($host, $path_file, $in, $to);
             $i++;
         }
 
         if($this->footerYML($path_file)){
-            echo "Запись завершена.\n";
+            echo "Recording completed.\n";
             exit();
         }else{
-            echo "Ошибка записи подвала.\n";
+            echo "Error recording footer.\n";
             exit();
         };
 
@@ -155,7 +156,7 @@ class YMLYandex extends Command
                 $line = "\t\t<delivery-options>\n";
                 File::append($path_file, $line);
 
-                    $line = "\t\t\t<option cost=\"50\" days=\"2-5\"/>\n";
+                    $line = "\t\t\t<option cost=\"50\" days=\"2-3\"/>\n";
                     File::append($path_file, $line);
 
                 $line = "\t\t</delivery-options>\n";
@@ -230,20 +231,18 @@ class YMLYandex extends Command
                                             File::append($path_file, $line);
                                         }
 
-                                        if(isset($product->price)) {
-                                            //Цена
+                                        //Цена
+                                        Auth::loginUsingId(292);
+                                        if(isset($product->out_price)) {
 
-
-                                            if($product->out_price > 0){
-                                                $cena =  $product->out_price;
+                                            if($product->hasDiscount()){
+                                                $cena =  $product->getNewPriceYandex();
                                             }else{
-                                                $cena = $product->price;
+                                                $cena = $product->out_price;
                                             }
-
 
                                             $line = "\t\t\t\t<price>".round($cena)."</price>\n";
                                             File::append($path_file, $line);
-
                                             unset($cena);
                                         }
 
@@ -257,7 +256,7 @@ class YMLYandex extends Command
 
                                         if(!empty($product->thumbnail->first()->path)){
                                             //Картинка
-                                            $line = "\t\t\t\t<picture>".$host.$product->thumbnail->first()->path."</picture>\n";
+                                            $line = "\t\t\t\t<picture>".$host.str_replace(' ', '%20', $product->thumbnail->first()->path)."</picture>\n";
                                             File::append($path_file, $line);
                                         }
                                     

@@ -8,9 +8,9 @@ if( ! Request::is('dashboard*') and ! Request::is('auth*') and ! Request::is('se
 
 	Route::group(['namespace' => '\App\Http\Controllers\Frontend', 'middleware' => 'bot'], function()
 	{
-		Route::get('rate', 'FrontendController@rateProduct');
+        Route::get('/', 'FrontendController@index');
+	    Route::get('rate', 'FrontendController@rateProduct');
         Route::get('oneclick/{id}', ['uses'=>'FrontendController@oneClick','as'=>'frontend.oneclick']);
-		Route::get('/', 'FrontendController@index');
 
 		Route::get('stati',['uses'=>'InformationController@getPage','as'=>'frontend.page']);
 		Route::get('stati/{slug}',['uses'=>'InformationController@getArticle','as'=>'frontend.article']);

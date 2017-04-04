@@ -161,7 +161,7 @@
                 <td> @{{ relProduct.article }}</td>
                 <td> @{{ relProduct.price }}</td>
                 <td class="options">
-                    <a href="#" style="font-size: 18px; color:indianred" v-on:click.stop="removeProduct(relProduct, index)"><i class="fa fa-remove"></i></a>
+                    <a href="#" style="font-size: 18px; color:indianred" v-on:click="removeProduct(relProduct, index)"><i class="fa fa-remove"></i></a>
                 </td>
             </tr>
         </table>

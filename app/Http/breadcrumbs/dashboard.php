@@ -412,3 +412,12 @@ Breadcrumbs::register('admincart.index', function($breadcrumbs)
     $breadcrumbs->parent('index');
     $breadcrumbs->push('Корзина', route('admincart.index'));
 });
+
+
+
+// Dashboard > config
+Breadcrumbs::register('config.index', function($breadcrumbs)
+{
+    $breadcrumbs->parent('index');
+    $breadcrumbs->push('Конфигурация', route('config.index'));
+});

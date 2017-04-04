@@ -256,6 +256,14 @@ class Product extends Eloquent {
 		return number_format($price, 0, '', ' ');
 	}
 
+    public function getNewPriceYandex() {
+        if (count($this->relevantSale) && $this->relevantSale->first()->discount > 0) {
+            return $this->out_price - ($this->out_price / 100 * $this->relevantSale->first()->discount);
+        } else {
+            return $this->out_price - ($this->out_price / 100 * $this->discount);
+        }
+    }
+
 	/**
 	 * @return int|mixed
 	 */

@@ -32,7 +32,7 @@ class Kernel extends HttpKernel
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'permissions' => \App\Http\Middleware\Permissions::class,
-//        'data' => \App\Http\Middleware\DataHandler::class,
+        'permissionsserver' => \App\Http\Middleware\PermissionsServer::class,
 	    'pageHasFilter' => \App\Http\Middleware\PageHasFilter::class,
 	    'frontAuth' => FrontAuth::class,
         'handleSlug' => HandleSlug::class,

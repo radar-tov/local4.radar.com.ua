@@ -45,6 +45,10 @@
                         <label for="order-address" class="col s12 m4 l4">Пароль:<span class="red-text"> *</span></label>
                         <input class="col s12 m6 l7" name="password" placeholder="введите пароль" type="password" value="">
                     </p>
+                    <p class="formField">
+                        <input type="checkbox" name="remember" id="remember">
+                        <label for="remember" class="remember">Запомнить</label>
+                    </p>
 
                     <div class="col s12"><button class="btn waves-effect waves-light" type="submit" name="action">Войти</button></div>
 
