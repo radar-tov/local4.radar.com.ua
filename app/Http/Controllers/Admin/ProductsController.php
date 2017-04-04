@@ -227,16 +227,16 @@ class ProductsController extends AdminController
                 $request->session()->save();
                 $params['status'] = $request->get('status');
             }else{
-                if($request->get('status') == 'active_1'){
+                if($request->get('status') == 'active.1'){
                     Session::forget('admin_status');
-                    $request->merge(array('status' => 'active_1'));
-                    $params['status'] = 'active_1';
+                    $request->merge(array('status' => 'active.1'));
+                    $params['status'] = 'active.1';
                 }elseif(Session::get('admin_status')){
                     $request->merge(array('status' => Session::get('admin_status')));
                     $params['status'] = Session::get('admin_status');
                 }else{
-                    $request->merge(array('status' => 'active_1'));
-                    $params['status'] = 'active_1';
+                    $request->merge(array('status' => 'active.1'));
+                    $params['status'] = 'active.1';
                 }
             }
             //dump($params['status']);

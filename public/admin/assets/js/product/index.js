@@ -178,6 +178,10 @@ var productsVue = new Vue({
 
         showPanel: function () {
             $("#panel").slideToggle('slow');
+        },
+
+        showPanelSearch: function () {
+            $("#SearchPanel").slideToggle('slow');
         }
     }
 })
