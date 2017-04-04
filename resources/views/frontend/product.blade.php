@@ -147,6 +147,7 @@
                                 </div>
 
                                 <div class="addtocart-button-item center-align col">
+                                    @if($product->available > 0)
                                     <input type="submit"
                                            name="addtocart"
                                            class="@if($product->available == 1) addtocart-button-hover @endif buyKol"
@@ -154,8 +155,9 @@
                                            data-productId="{{ $product->id }}"
                                            data-productPrice="{{ $product->getPrice() }}"
                                            value="@if($product->available==1) {{ productInCart($product) ? 'В корзине' : 'Купить' }} @elseif($product->available==2) Под заказ @endif"
-                                           title="@if($product->available==1) Купить @elseif($product->available==2) Под заказ @elseif($product->available==0) Нет в наличии @endif"
+                                           title="@if($product->available==1) Купить @elseif($product->available==2) Под заказ @endif"
                                            @if($product->available != 1) disabled @endif>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col s12 wrapper-buttons">
