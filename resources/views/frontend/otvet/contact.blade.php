@@ -1,5 +1,5 @@
 <div class="center mod col">
-    <h3>{{ Session::get('otvet') }}</h3>
+    {!! Session::get('otvet') !!}
 </div>
 {{ Session::forget('from_otvet') }}
 {{ Session::forget('otvet') }}

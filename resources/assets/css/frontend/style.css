@@ -9880,3 +9880,7 @@ h3 {
     width: 40px;
     margin: -15px 0 0 -15px;
 }
+.remember{
+    float: right;
+    padding: 5px 60px 0 30px;
+}

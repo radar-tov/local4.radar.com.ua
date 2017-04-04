@@ -99,7 +99,7 @@
                                         </div>
                                         <div class="form-group">
                                             <input class="input-text col form-control" name="phone" id="phone"
-                                                   placeholder="Ваш номер телефона (*)" title="Telephone" value="" type="text">
+                                                   placeholder="Ваш номер телефона" title="Telephone" value="" type="text">
                                         </div>
                                     </div>
                                     <div class="col s12 m6 no-padding">

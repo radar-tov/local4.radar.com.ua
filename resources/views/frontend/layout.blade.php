@@ -7,7 +7,7 @@
     <!-- section SEO  -->
     @yield('seo')
     <!-- / section SEO  -->
-    <link rel="canonical" href="{{ $_SERVER['REQUEST_URI'] }}">
+    <link rel="canonical" href="{{ Request::url() }}">
     <!-- CSS  -->  {{--  !!!   последовательность css не менять--}}
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="{{ elixir('css/frontend/all.css') }}" type="text/css"  media="screen">
