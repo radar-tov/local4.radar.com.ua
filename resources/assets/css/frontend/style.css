@@ -9884,3 +9884,14 @@ h3 {
     float: right;
     padding: 5px 60px 0 30px;
 }
+#one-click{
+    background-image: url('/frontend/images/no_product.png');
+    background-repeat: no-repeat;
+    background-size: 40px;
+    background-position: center top;
+}
+#one-click:hover{
+    background-color: #ff8c00;
+    color: white;
+    background-image: url('/frontend/images/no_product_w.png');
+}

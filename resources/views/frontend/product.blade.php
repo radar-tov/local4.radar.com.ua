@@ -185,7 +185,7 @@
                                 @if ($product->available==1)
                                     <div class="col short-desc s4 no-margin">
                                         <a href="{{ route('frontend.oneclick', $product->id) }}" class="oneClick fancybox.ajax">
-                                            <p class="availability green-text no-margin" id="one-click"><img src="/frontend/images/no_product.png" class="one-click-img"/>Купить в 1 клик</p>
+                                            <p class="availability green-text no-margin" id="one-click">Купить в 1 клик</p>
                                         </a>
                                     </div>
                                 @endif
