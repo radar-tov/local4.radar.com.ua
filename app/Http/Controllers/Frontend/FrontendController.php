@@ -96,6 +96,7 @@ class FrontendController extends BaseController
         /*if($request->session()->has('bot') && !$request->session()->get('bot')){
             $myLog->add("Просмотр категории " . $categorySlug . '/' . $subcategorySlug);
         }*/
+        $myLog->add("Просмотр категории " . $categorySlug . '/' . $subcategorySlug);
 
 		if($category->children->count() > 0 and !$subcategory){
             // Список подкатегорий без фильтров
@@ -209,7 +210,7 @@ class FrontendController extends BaseController
         /*if($request->session()->has('bot') && !$request->session()->get('bot')){
             $myLog->add("Просмотр товара " . $productSlug);
         }*/
-
+        $myLog->add("Просмотр товара " . $productSlug);
 		// Ajax request is used
 		// for assess product
 		if($request->ajax()){

@@ -23,7 +23,7 @@
                                     <h3>Онлайн</h3>
                                 </div>
                                 <div class="widget-body">
-                                    <div class="widget-main">
+                                    <div class="widget-main" style="overflow: auto; height: 330px;">
                                         <table class="table table-bordered table-hover" v-show="onlineList.length > 0">
                                             <thead>
                                             <tr>
@@ -56,7 +56,7 @@
                                     <h3>Лог</h3>
                                 </div>
                                 <div class="widget-body">
-                                    <div class="widget-main" style="overflow: scroll; height: 330px;">
+                                    <div class="widget-main" style="overflow: auto; height: 330px;">
                                         <table class="table table-bordered table-hover" v-show="logList.length > 0">
                                             <tr v-for="item in logList">
                                                 <td class="middle">@{{ item.ip }} </td>
@@ -81,7 +81,7 @@
                                     <h3>Журнал</h3>
                                 </div>
                                 <div class="widget-body ace-scroll">
-                                    <div class="widget-main"></div>
+                                    <div class="widget-main" style="overflow: auto; height: 330px;"></div>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                                     <h3>Чат</h3>
                                 </div>
                                 <div class="widget-body ace-scroll">
-                                    <div class="widget-main"></div>
+                                    <div class="widget-main" style="overflow: auto; height: 330px;"></div>
                                 </div>
                             </div>
                         </div>
