@@ -31,14 +31,18 @@ class BotDefinition
             'Yandex.Commerce.Pinger'
         );
 
-        foreach($bots as $bot){
-            if(stripos($_SERVER['HTTP_USER_AGENT'], $bot) !== false){
-                $_ENV['BOT'] = true;
-                break;
-            }else{
-                $_ENV['BOT'] = false;
+        if(!$request->session()->has('bot')){
+            foreach($bots as $bot){
+                if(stripos($_SERVER['HTTP_USER_AGENT'], $bot) !== false){
+                    $_ENV['BOT'] = true;
+                    break;
+                }else{
+                    $_ENV['BOT'] = false;
+                }
             }
+            $request->session()->put('bot', $_ENV['BOT']);
         }
+
 
         return $next($request);
     }
