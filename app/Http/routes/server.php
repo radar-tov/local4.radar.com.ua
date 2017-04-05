@@ -9,6 +9,7 @@ Route::group(['middleware' => ['permissionsserver','handleSlug'],'namespace'=>'\
         Route::get('addzakaz', ['as' => 'server.addzakaz', 'uses' => 'OfficialController@addZakaz']);
         /* Данные для админке корзина и остальное */
         Route::get('getdata', ['as' => 'server.getdata', 'uses' => 'OfficialController@getdata']);
+        Route::get('getonline', ['as' => 'server.getonline', 'uses' => 'OfficialController@getonline']);
         /* TWITTER */
         Route::post('send', 'TwitterController@send');
     });

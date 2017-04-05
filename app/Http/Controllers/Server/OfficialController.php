@@ -60,4 +60,18 @@ class OfficialController extends ServerController
 
         return $data;
     }
+
+    public function getonline(){
+        $online = Online::all();
+        if($online->count() > 0){
+            $data['online'] = '';
+            foreach ($online as $tiam){
+                $data['online'] .= "<p>[ $tiam->ip ] $tiam->updated_at - <a href='$tiam->page' target='_blank'>$tiam->page</a></p>";
+            }
+        }else{
+            $data['online'] = '';
+        }
+
+        return $data;
+    }
 }

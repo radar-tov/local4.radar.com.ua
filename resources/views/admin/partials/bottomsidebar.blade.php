@@ -18,6 +18,9 @@
             </span>
         </a>
         <ul class="breadcrumb">
+            <li>
+                <a href="{{ route('home.index') }}"><i class="ace-icon fa fa-home home-icon white"></i></a>
+            </li>
             {!! Breadcrumbs::renderIfExists() !!}
         </ul>
     </div>

@@ -1,8 +1,16 @@
 <?php
-// Dashboard
+// Dashboard > home
+Breadcrumbs::register('home.index', function($breadcrumbs)
+{
+    $breadcrumbs->push('Главная', route('home.index'));
+});
+
+
+// Dashboard > Админпанель
 Breadcrumbs::register('index', function($breadcrumbs)
 {
-	$breadcrumbs->push('Админпанель', route('index'));
+    $breadcrumbs->parent('home.index');
+    $breadcrumbs->push('Админпанель', route('index'));
 });
 
 
@@ -11,7 +19,7 @@ Breadcrumbs::register('index', function($breadcrumbs)
 // Dashboard > Product
 Breadcrumbs::register('products.index', function($breadcrumbs)
 {
-    $breadcrumbs->parent('index');
+    $breadcrumbs->parent('home.index');
     $breadcrumbs->push('Товары', route('products.index'));
 });
 // Dashboard > Product > Create
@@ -38,7 +46,7 @@ Breadcrumbs::register('products.trash', function($breadcrumbs)
 // Dashboard > Users
 Breadcrumbs::register('users.indexGet', function($breadcrumbs)
 {
-	$breadcrumbs->parent('index');
+	$breadcrumbs->parent('home.index');
 	$breadcrumbs->push('Пользователи', route('users.indexGet'));
 });
 // Dashboard > Users > Create
@@ -60,7 +68,7 @@ Breadcrumbs::register('users.edit', function($breadcrumbs)
 // Dashboard > Sliders
 Breadcrumbs::register('sliders.index', function($breadcrumbs)
 {
-    $breadcrumbs->parent('index');
+    $breadcrumbs->parent('home.index');
     $breadcrumbs->push('Слайдер 1', route('sliders.index'));
 });
 // Dashboard > Sliders > Create
@@ -82,7 +90,7 @@ Breadcrumbs::register('sliders.edit', function($breadcrumbs)
 // Dashboard > Sliders
 Breadcrumbs::register('slider2.index', function($breadcrumbs)
 {
-    $breadcrumbs->parent('index');
+    $breadcrumbs->parent('home.index');
     $breadcrumbs->push('Слайдер 2', route('slider2.index'));
 });
 // Dashboard > Sliders > Create
@@ -105,7 +113,7 @@ Breadcrumbs::register('slider2.edit', function($breadcrumbs)
 // Dashboard > Baners
 Breadcrumbs::register('banners.index', function($breadcrumbs)
 {
-    $breadcrumbs->parent('index');
+    $breadcrumbs->parent('home.index');
     $breadcrumbs->push('Баннеры', route('banners.index'));
 });
 // Dashboard > Baners > Edit
@@ -129,7 +137,7 @@ Breadcrumbs::register('banners.create', function($breadcrumbs)
 // Dashboard > Categories
 Breadcrumbs::register('categories.index', function($breadcrumbs)
 {
-	$breadcrumbs->parent('index');
+	$breadcrumbs->parent('home.index');
 	$breadcrumbs->push('Категории', route('categories.index'));
 });
 
@@ -154,7 +162,7 @@ Breadcrumbs::register('categories.edit', function($breadcrumbs)
 // Dashboard > Filters
 Breadcrumbs::register('filters.index', function($breadcrumbs)
 {
-	$breadcrumbs->parent('index');
+	$breadcrumbs->parent('home.index');
 	$breadcrumbs->push('Фильтры', route('filters.index'));
 });
 // Dashboard > Filters > Edit
@@ -170,7 +178,7 @@ Breadcrumbs::register('filters.edit', function($breadcrumbs)
 // Dashboard > Cena
 Breadcrumbs::register('cena.index', function($breadcrumbs)
 {
-    $breadcrumbs->parent('index');
+    $breadcrumbs->parent('home.index');
     $breadcrumbs->push('Группы цен', route('cena.index'));
 });
 
@@ -183,7 +191,7 @@ Breadcrumbs::register('cena.index', function($breadcrumbs)
 // Dashboard > Characteristics
 Breadcrumbs::register('characteristics.index', function($breadcrumbs)
 {
-    $breadcrumbs->parent('index');
+    $breadcrumbs->parent('home.index');
     $breadcrumbs->push('Характеристики', route('characteristics.index'));
 });
 // Dashboard > Characteristics > Edit
@@ -198,7 +206,7 @@ Breadcrumbs::register('characteristics.edit', function($breadcrumbs)
 // Dashboard > Sales
 Breadcrumbs::register('sales.index', function($breadcrumbs)
 {
-    $breadcrumbs->parent('index');
+    $breadcrumbs->parent('home.index');
     $breadcrumbs->push('Акции', route('sales.index'));
 });
 // Dashboard > Sales > Create
@@ -220,7 +228,7 @@ Breadcrumbs::register('sales.edit', function($breadcrumbs)
 // Dashboard > Stock
 Breadcrumbs::register('stock.index', function($breadcrumbs)
 {
-    $breadcrumbs->parent('index');
+    $breadcrumbs->parent('home.index');
     $breadcrumbs->push('Акц.комплекты', route('stock.index'));
 });
 // Dashboard > Stock > Create
@@ -241,7 +249,7 @@ Breadcrumbs::register('stock.edit', function($breadcrumbs)
 // Dashboard > Groups
 Breadcrumbs::register('groups.index', function($breadcrumbs)
 {
-    $breadcrumbs->parent('index');
+    $breadcrumbs->parent('home.index');
     $breadcrumbs->push('Группа покупателей', route('groups.index'));
 });
 // Dashboard > Groups > Create
@@ -264,7 +272,7 @@ Breadcrumbs::register('groups.edit', function($breadcrumbs)
 // Dashboard > Brands
 Breadcrumbs::register('brands.index', function($breadcrumbs)
 {
-    $breadcrumbs->parent('index');
+    $breadcrumbs->parent('home.index');
     $breadcrumbs->push('Бренды', route('brands.index'));
 });
 // Dashboard > Groups > Create
@@ -287,7 +295,7 @@ Breadcrumbs::register('brands.edit', function($breadcrumbs)
 // Dashboard > Shipments
 Breadcrumbs::register('shipments.index', function($breadcrumbs)
 {
-    $breadcrumbs->parent('index');
+    $breadcrumbs->parent('home.index');
     $breadcrumbs->push('Способы доставки', route('shipments.index'));
 });
 // Dashboard > Shipments > Create
@@ -316,7 +324,7 @@ Breadcrumbs::register('novaposhta.index', function($breadcrumbs)
 // Dashboard > Payments
 Breadcrumbs::register('payments.index', function($breadcrumbs)
 {
-    $breadcrumbs->parent('index');
+    $breadcrumbs->parent('home.index');
     $breadcrumbs->push('Оплаты', route('payments.index'));
 });
 // Dashboard > Payments > Create
@@ -337,7 +345,7 @@ Breadcrumbs::register('payments.edit', function($breadcrumbs)
 // Dashboard > Orders
 Breadcrumbs::register('orders.index', function($breadcrumbs)
 {
-    $breadcrumbs->parent('index');
+    $breadcrumbs->parent('home.index');
     $breadcrumbs->push('Заказы', route('orders.index'));
 });
 // Dashboard > Orders > Show
@@ -354,7 +362,7 @@ Breadcrumbs::register('orders.show', function($breadcrumbs, $n)
 // Dashboard > Static_pages
 Breadcrumbs::register('static_pages.index', function($breadcrumbs)
 {
-	$breadcrumbs->parent('index');
+	$breadcrumbs->parent('home.index');
 	$breadcrumbs->push('Страницы', route('static_pages.index'));
 });
 // Dashboard > Static_pages > Edit
@@ -371,7 +379,7 @@ Breadcrumbs::register('static_pages.edit', function($breadcrumbs)
 // Dashboard > Articles
 Breadcrumbs::register('articles.index', function($breadcrumbs)
 {
-    $breadcrumbs->parent('index');
+    $breadcrumbs->parent('home.index');
     $breadcrumbs->push('Статьи', route('articles.index'));
 });
 
@@ -394,7 +402,7 @@ Breadcrumbs::register('articles.edit', function($breadcrumbs)
 // Dashboard > reviews
 Breadcrumbs::register('reviews.index', function($breadcrumbs)
 {
-    $breadcrumbs->parent('index');
+    $breadcrumbs->parent('home.index');
     $breadcrumbs->push('Отзывы', route('reviews.index'));
 });
 // Dashboard > reviews > Edit
@@ -409,7 +417,7 @@ Breadcrumbs::register('reviews.edit', function($breadcrumbs)
 // Dashboard > cart
 Breadcrumbs::register('admincart.index', function($breadcrumbs)
 {
-    $breadcrumbs->parent('index');
+    $breadcrumbs->parent('home.index');
     $breadcrumbs->push('Корзина', route('admincart.index'));
 });
 
@@ -418,6 +426,6 @@ Breadcrumbs::register('admincart.index', function($breadcrumbs)
 // Dashboard > config
 Breadcrumbs::register('config.index', function($breadcrumbs)
 {
-    $breadcrumbs->parent('index');
+    $breadcrumbs->parent('home.index');
     $breadcrumbs->push('Конфигурация', route('config.index'));
 });
