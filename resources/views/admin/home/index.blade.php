@@ -29,7 +29,8 @@
                                             <tr>
                                                 <th>IP</th>
                                                 <th>Страница</th>
-                                                <th>Время</th>
+                                                <th>Вход</th>
+                                                <th>Обновление</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -38,6 +39,7 @@
                                                 <td>
                                                     <a v-bind:href="item.page">@{{ item.page }}</a>
                                                 </td>
+                                                <td class="middle">@{{ item.created_at }}</td>
                                                 <td class="middle">@{{ item.updated_at }}</td>
                                             </tr>
                                             </tbody>
@@ -54,7 +56,18 @@
                                     <h3>Лог</h3>
                                 </div>
                                 <div class="widget-body">
-                                    <div class="widget-main"></div>
+                                    <div class="widget-main" style="overflow: scroll; height: 330px;">
+                                        <table class="table table-bordered table-hover" v-show="logList.length > 0">
+                                            <tr v-for="item in logList">
+                                                <td class="middle">@{{ item.ip }} </td>
+                                                <td>
+                                                    <a v-bind:href="item.page">@{{ item.page }}</a>
+                                                </td>
+                                                <td class="middle">@{{ item.log }}</td>
+                                                <td class="middle">@{{ item.created_at }}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -67,7 +80,7 @@
                                 <div class="widget-header widget-header-flat">
                                     <h3>Журнал</h3>
                                 </div>
-                                <div class="widget-body">
+                                <div class="widget-body ace-scroll">
                                     <div class="widget-main"></div>
                                 </div>
                             </div>
@@ -79,7 +92,7 @@
                                 <div class="widget-header widget-header-flat">
                                     <h3>Чат</h3>
                                 </div>
-                                <div class="widget-body">
+                                <div class="widget-body ace-scroll">
                                     <div class="widget-main"></div>
                                 </div>
                             </div>
@@ -104,7 +117,8 @@
 
             data: {
                 token: $("input[name='_token']").val(),
-                onlineList: {}
+                onlineList: {},
+                logList: {}
             },
 
             created: function () {
@@ -121,7 +135,8 @@
                         }
                     };
                     this.$http.get('/server/getonline', options).then(function (response) {
-                        vue.onlineList = response.body.online
+                        vue.onlineList = response.body.online;
+                        vue.logList = response.body.log.data;
                     }, function (error) {
 
                     });

@@ -36,6 +36,7 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Frontend\SmsApiTwitterController;
 use App\Models\Online;
+use App\Models\MyLog;
 /**
  * Class FrontendController
  * @package App\Http\Controllers\Frontend
@@ -82,16 +83,19 @@ class FrontendController extends BaseController
 	 *
 	 * Show products by category
 	 */
-	public function catalog(Request $request, FilterService $filterService, $categorySlug, $subcategorySlug=null)
+	public function catalog(Request $request, FilterService $filterService, $categorySlug, $subcategorySlug=null, MyLog $myLog)
 	{
-		// Ajax request is used when
+
+	    // Ajax request is used when
 		// paginate or filter products
-
 		$category = Category::where('show',1)->where('slug', $categorySlug)->with('children')->with('filters')->first();
-
 		$subcategory = Category::where('slug', $subcategorySlug)->with('children')->with('filters')->first();
 
         if(!$category) abort(404);
+
+        if($request->session()->has('bot') && !$request->session()->get('bot')){
+            $myLog->add("Просмотр категории " . $categorySlug . '/' . $subcategorySlug);
+        }
 
 		if($category->children->count() > 0 and !$subcategory){
             // Список подкатегорий без фильтров
@@ -176,9 +180,9 @@ class FrontendController extends BaseController
 	 *
 	 * Show single product view
 	 */
-	public function product($categorySlug, $subcategorySlug, $productSlug, Request $request)
+	public function product($categorySlug, $subcategorySlug, $productSlug, Request $request, MyLog $myLog)
 	{
-		$product = Product::whereRaw("products.slug = '$productSlug'" )
+	    $product = Product::whereRaw("products.slug = '$productSlug'" )
             ->whereHas(
                 'category', function($category) use($subcategorySlug){
 			$category->where('slug', $subcategorySlug);
@@ -201,6 +205,10 @@ class FrontendController extends BaseController
 		->first();
 
         if(!$product) abort(404);
+
+        if($request->session()->has('bot') && !$request->session()->get('bot')){
+            $myLog->add("Просмотр товара " . $productSlug);
+        }
 
 		// Ajax request is used
 		// for assess product

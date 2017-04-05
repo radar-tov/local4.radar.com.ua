@@ -11,6 +11,7 @@ use App\Services\BuyService;
 use App\Models\Order;
 use App\Models\Online;
 use Carbon\Carbon;
+use App\Models\MyLog;
 
 class OfficialController extends ServerController
 {
@@ -67,6 +68,12 @@ class OfficialController extends ServerController
             $data['online'] = $online;
         }else{
             $data['online'] = '';
+        }
+        $log = MyLog::orderBy('created_at', 'DESC')->paginate(10);
+        if($log->count() > 0){
+            $data['log'] = $log;
+        }else{
+            $data['log'] = '';
         }
 
         return $data;
