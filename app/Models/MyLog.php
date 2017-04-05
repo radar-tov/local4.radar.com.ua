@@ -11,9 +11,9 @@ class MyLog extends Model
 
     public function add($log){
         $newLog = new MyLog();
-        $newLog->ip = $_SERVER['REMOTE_ADDR'];
-        $newLog->page = $_SERVER['HTTP_REFERER'];
-        $newLog->token = session('_token');
+        $newLog->ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+        $newLog->page = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+        /*$newLog->token = isset( session('_token') ) ? session('_token') : '';*/
         $newLog->log = $log;
         $newLog->save();
     }
