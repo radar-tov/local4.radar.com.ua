@@ -93,9 +93,9 @@ class FrontendController extends BaseController
 
         if(!$category) abort(404);
 
-        if($request->session()->has('bot') && !$request->session()->get('bot')){
+        /*if($request->session()->has('bot') && !$request->session()->get('bot')){
             $myLog->add("Просмотр категории " . $categorySlug . '/' . $subcategorySlug);
-        }
+        }*/
 
 		if($category->children->count() > 0 and !$subcategory){
             // Список подкатегорий без фильтров
@@ -206,9 +206,9 @@ class FrontendController extends BaseController
 
         if(!$product) abort(404);
 
-        if($request->session()->has('bot') && !$request->session()->get('bot')){
+        /*if($request->session()->has('bot') && !$request->session()->get('bot')){
             $myLog->add("Просмотр товара " . $productSlug);
-        }
+        }*/
 
 		// Ajax request is used
 		// for assess product
