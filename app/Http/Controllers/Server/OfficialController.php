@@ -77,7 +77,7 @@ class OfficialController extends ServerController
             }
         }
 
-        $log = MyLog::orderBy('created_at', 'DESC')->paginate(20);
+        $log = MyLog::orderBy('created_at', 'DESC')->paginate(50);
         if($log->count() > 0){
             $data['log'] = $log;
         }else{

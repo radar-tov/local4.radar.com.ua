@@ -65,7 +65,7 @@
                                 <h3>Лог</h3>
                             </div>
                             <div class="widget-body">
-                                <div class="widget-main" style="overflow: auto; height: 800px;">
+                                <div class="widget-main" style="overflow: auto; height: 770px;">
                                     <table v-show="logList.length > 0">
                                         <tr v-for="item in logList">
                                             <td class="middle">@{{ item.ip }}&nbsp;&nbsp;</td>
