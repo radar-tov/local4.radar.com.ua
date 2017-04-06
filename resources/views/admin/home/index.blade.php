@@ -60,12 +60,12 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="row">
-                        <div class="widget-box" style="min-height: 805px">
+                        <div class="widget-box" style="min-height: 800px">
                             <div class="widget-header">
                                 <h3>Лог</h3>
                             </div>
                             <div class="widget-body">
-                                <div class="widget-main" style="overflow: auto; height: 760px;">
+                                <div class="widget-main" style="overflow: auto; height: 750px;">
                                     <table v-show="logList.length > 0">
                                         <tr v-for="item in logList">
                                             <td class="middle">@{{ item.ip }}&nbsp;&nbsp;</td>
