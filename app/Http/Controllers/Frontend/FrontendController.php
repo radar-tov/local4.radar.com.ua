@@ -35,6 +35,8 @@ use Session;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Frontend\SmsApiTwitterController;
+use App\Models\Online;
+use App\Models\MyLog;
 /**
  * Class FrontendController
  * @package App\Http\Controllers\Frontend
@@ -81,16 +83,17 @@ class FrontendController extends BaseController
 	 *
 	 * Show products by category
 	 */
-	public function catalog(Request $request, FilterService $filterService, $categorySlug, $subcategorySlug=null)
+	public function catalog(Request $request, FilterService $filterService, $categorySlug, $subcategorySlug=null, MyLog $myLog)
 	{
-		// Ajax request is used when
+
+	    // Ajax request is used when
 		// paginate or filter products
-
 		$category = Category::where('show',1)->where('slug', $categorySlug)->with('children')->with('filters')->first();
-
 		$subcategory = Category::where('slug', $subcategorySlug)->with('children')->with('filters')->first();
 
         if(!$category) abort(404);
+
+
 
 		if($category->children->count() > 0 and !$subcategory){
             // Список подкатегорий без фильтров
@@ -111,7 +114,10 @@ class FrontendController extends BaseController
 					}
                 }
             }
-
+            /*if($request->session()->has('bot') && !$request->session()->get('bot')){
+                $myLog->add("Просмотр категории " . $categorySlug . '/' . $subcategorySlug);
+            }*/
+            $myLog->add("Просмотр категории " . $categorySlug);
 			return Response::view('frontend.subcategories', compact('categories','category'));
 				//->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
 	  	}
@@ -143,7 +149,10 @@ class FrontendController extends BaseController
 				}
 			}
 		}
-
+        /*if($request->session()->has('bot') && !$request->session()->get('bot')){
+            $myLog->add("Просмотр категории " . $categorySlug . '/' . $subcategorySlug);
+        }*/
+        $myLog->add("Просмотр категории " . $categorySlug . '/' . $subcategorySlug);
 
 		return Response::view('frontend.catalog', compact('subcategory', 'category'));
 			//->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT')
@@ -175,9 +184,9 @@ class FrontendController extends BaseController
 	 *
 	 * Show single product view
 	 */
-	public function product($categorySlug, $subcategorySlug, $productSlug, Request $request)
+	public function product($categorySlug, $subcategorySlug, $productSlug, Request $request, MyLog $myLog)
 	{
-		$product = Product::whereRaw("products.slug = '$productSlug'" )
+	    $product = Product::whereRaw("products.slug = '$productSlug'" )
             ->whereHas(
                 'category', function($category) use($subcategorySlug){
 			$category->where('slug', $subcategorySlug);
@@ -200,6 +209,7 @@ class FrontendController extends BaseController
 		->first();
 
         if(!$product) abort(404);
+
 
 		// Ajax request is used
 		// for assess product
@@ -226,7 +236,10 @@ class FrontendController extends BaseController
 				}
 			}
         }
-
+        /*if($request->session()->has('bot') && !$request->session()->get('bot')){
+            $myLog->add("Просмотр товара " . $productSlug);
+        }*/
+        $myLog->add("Просмотр товара " . $productSlug);
 
         return Response::view('frontend.product', compact('product','productReviewId'));
             //->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
@@ -366,7 +379,7 @@ class FrontendController extends BaseController
      * @return \Illuminate\View\View Show static 'service' page
      * Show static 'service' page
      */
-	public function staticPage(Request $request)
+	public function staticPage(Request $request, MyLog $myLog)
 	{
 		$slug = trim($request->getRequestUri(), '/');
 		$page = StaticPage::where('slug', $slug)->first();
@@ -387,7 +400,10 @@ class FrontendController extends BaseController
 				}
 			}
         }
-
+        /*if($request->session()->has('bot') && !$request->session()->get('bot')){
+            $myLog->add("Просмотр категории " . $categorySlug . '/' . $subcategorySlug);
+        }*/
+        $myLog->add("Просмотр страницы " . $slug);
  		return Response::view('frontend.static', compact('page'));
 			//->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
 	}
@@ -594,52 +610,27 @@ class FrontendController extends BaseController
     }
 
     public function getcart(){
-        $data = "<img src=\"/frontend/images/no_product.png\"/>
-                        <div>
-                            <p>Товаров: <span class='qty'>".cartItemsCount()."</span> шт</p>
-                            <p>На сумму: <span class='_sum'>".cartTotalPrice()."</span> грн</p>
-                               <div>
-                                    <div class='cart-content'>";
-        if(cartItemsCount()){
-            $data .= "
-                <div class='col s12 cart_filled' style='display:block'>
-                    <strong>В корзине <span class='qty-items'>".cartItemsCount()."</span>товар/ов</strong>
-                    <strong>На сумму
-                        <span class='sum-payment'>
-                            <span class='_sum'>".cartTotalPrice()."</span>
-                            <span class='currency'> грн</span>
-                        </span>
-                    </strong>
-                    <a href='/cart' class='waves-effect waves-light btn'>Перейти в корзину</a>
-                </div>
-                <div class='col s8 cart_empty' style='display:none'>
-                    <strong><span class='left'>В корзине ещё нет товаров</span></strong>
-                </div>
-            ";
-        }else{
-            $data .= "
-                    <div class='col s12 cart_filled' style='display:none'>
-                    <strong>В корзине <span class='qty-items'>".cartItemsCount()."</span>товар/ов</strong>
-                    <strong>На сумму
-                        <span class='sum-payment'>
-                            <span class='_sum'>".cartTotalPrice()."</span>
-                            <span class='currency'> грн</span>
-                        </span>
-                    </strong>
-                    <a href='/cart' class='waves-effect waves-light btn'>Перейти в корзину</a>
-                </div>
-                <div class='col s8 cart_empty' style='display:block'>
-                    <strong><span class='left'>В корзине ещё нет товаров</span></strong>
-                </div>
-            ";
+        $records = Online::where('updated_at', '<', Carbon::now()->subMinute(2))->get();
+        if($records->count() > 0){
+            foreach ($records as $record) {
+                $record->delete();
+            }
         }
 
-        $data .= "
-                    </div>
-                </div>
-            </div>
-        ";
-
-        return $data;
+        $onl = Online::where('token', session('_token'))->first();
+        if($onl){
+            $onl->ip = $_SERVER['REMOTE_ADDR'];
+            $onl->page = $_SERVER['HTTP_REFERER'];
+            $onl->token = session('_token');
+            $onl->updated_at = Carbon::now();
+            $onl->save();
+        }else{
+            $onl = new Online();
+            $onl->ip = $_SERVER['REMOTE_ADDR'];
+            $onl->page = $_SERVER['HTTP_REFERER'];
+            $onl->token = session('_token');
+            $onl->save();
+        }
+        return view('frontend.otvet.cart');
     }
 }

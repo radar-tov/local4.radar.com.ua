@@ -55,12 +55,10 @@
                         <p class="sku">Код: <span>{{ $product->id }}</span></p>
                     @endif
                 </div>--}}
-                {{--<div class="col s4 no-padding">
-                    <div class="rating_1">
-                        <input type="hidden" name="vote-id" value="5"/>
-                        <input type="hidden" name="val" value="{{ array_sum($product->rates->pluck('rate')->all()) / ($product->rates->count() ?: 1) }}">
-                    </div>
-                </div>--}}
+                <div class="rating_1">
+                    <input type="hidden" name="vote-id" value="5"/>
+                    <input type="hidden" name="val" value="{{ array_sum($product->rates->pluck('rate')->all()) / ($product->rates->count() ?: 1) }}">
+                </div>
                 <div class="item-content">
 
                     @if($product->hasDiscount())
@@ -91,27 +89,21 @@
                     <a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}/{{ $product->slug}}">
                         <div class="linkProduct">
                              {{--onclick="return location.href = '/{{ $product->category->parent->slug }}/{{ $product->category->slug }}/{{ $product->slug}}'">--}}
-
-                            <div class="stable">
-                                @if(count($product->thumbnail) && file_exists(public_path($product->thumbnail->first()->path)))
-                                    <img class="hover-item" src="{{ $product->thumbnail->first()->path or null }}">
-                                @else
-                                    <img class="hover-item" src="/frontend/images/default.png">
-                                @endif
-                            </div>
-
-                            <input type="hidden" value="{{ $product->id }}" class="_id"/>
-                            {{--<div class="rating_2">
-                                <input type="hidden" name="vote-id" value="5"/>
-                                <input type="hidden" name="val" value="{{ array_sum($product->rates->pluck('rate')->all()) / ($product->rates->count() ?: 1) }}">
-                            </div>--}}
-
-
                             {{--<span class="outlook">
                                 <a href="/{{ $product->category->parent->slug }}/{{ $product->category->slug }}/{{ $product->slug}}">
                                     Посмотреть товар
                                 </a>
                             </span>--}}
+
+
+                            {{--<div class="stable">
+                                @if(count($product->thumbnail) && file_exists(public_path($product->thumbnail->first()->path)))
+                                    <img class="hover-item" src="{{ $product->thumbnail->first()->path or null }}">
+                                @else
+                                    <img class="hover-item" src="/frontend/images/default.png">
+                                @endif
+                            </div>--}}
+
 
                             <span class="hover-item-title">{{ $product->title }}</span>
                             @if($product->article != '-')
@@ -120,11 +112,17 @@
                                 <p class="hover-sku">Код: <span>{{ $product->id }}</span></p>
                             @endif
 
-                            @if($product->video)
-                                <span class="video-review uppercase">видеообзор</span>
+                            <input type="hidden" value="{{ $product->id }}" class="_id"/>
+                            <div class="rating_2">
+                                <input type="hidden" name="vote-id" value="5"/>
+                                <input type="hidden" name="val" value="{{ array_sum($product->rates->pluck('rate')->all()) / ($product->rates->count() ?: 1) }}">
+                            </div>
+
+                            {{--@if($product->video)--}}
+                                {{--<span class="video-review uppercase">видеообзор</span>--}}
                                 {{--<a href="#video" class="modal-trigger video-review uppercase">видеообзор</a>--}}
                                 {{--<span class="_video" style="display:none;">{!!  $product->video !!}</span>--}}
-                            @endif
+                            {{--@endif--}}
 
                             <div class="clearing"></div>
 

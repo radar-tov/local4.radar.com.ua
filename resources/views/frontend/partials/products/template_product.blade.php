@@ -46,12 +46,10 @@
                 {{--<div class="col s8 no-padding">
                     <p class="sku">Код: <span>{{ $pivet_product->article }}</span></p>
                 </div>--}}
-                {{--<div class="col s4 no-padding">
-                    <div class="rating_1">
-                        <input type="hidden" name="vote-id" value="5"/>
-                        <input type="hidden" name="val" value="{{ array_sum($pivet_product->rates->pluck('rate')->all()) / ($pivet_product->rates->count() ?: 1) }}">
-                    </div>
-                </div>--}}
+                <div class="rating_1">
+                    <input type="hidden" name="vote-id" value="5"/>
+                    <input type="hidden" name="val" value="{{ array_sum($pivet_product->rates->pluck('rate')->all()) / ($pivet_product->rates->count() ?: 1) }}">
+                </div>
                 <div class="item-content">
 
                     @if($pivet_product->hasDiscount())
@@ -92,10 +90,10 @@
                             </div>
 
                             <input type="hidden" value="{{ $pivet_product->id }}" class="_id"/>
-                            {{--<div class="rating_2">
+                            <div class="rating_2">
                                 <input type="hidden" name="vote-id" value="5"/>
                                 <input type="hidden" name="val" value="{{ array_sum($pivet_product->rates->pluck('rate')->all()) / ($pivet_product->rates->count() ?: 1) }}">
-                            </div>--}}
+                            </div>
 
 
                             {{--<span class="outlook">

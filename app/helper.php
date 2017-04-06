@@ -79,6 +79,10 @@ function orderItemsCount() {
     return (new \App\Http\Controllers\Admin\OrdersController())->newOrder();
 }
 
+function onlineItemsCount() {
+    return (new \App\Http\Controllers\Admin\OnlineController())->getOnline();
+}
+
 function cartItemsCount() {
 	return (new \App\Http\Controllers\Frontend\CartController())->calcProductsInCart();
 }
@@ -98,13 +102,11 @@ function productInCart($product) {
 		$prod = Cart::instance($instance)->search(function($item) use ($id) {
             return $id == $item->id;
         });
-		if (!emptyArray($prod)) {
+		if (!$prod->isEmpty()) {
 		    return true;
 		    break;
 		}
-
 	}
-
 	return false;
 }
 

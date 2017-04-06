@@ -13,6 +13,7 @@
 @endsection
 
 @section('content')
+    {{--{{ dump(session()->all()) }}--}}
     <section class="breadcrumbs">
         <div class="container">
             <div class="row">
@@ -96,10 +97,29 @@
                     @if(isset($product->brand->title))
                         <p class="brand no-margin">Производитель: <span>{{ $product->brand->title }}</span></p>
                     @endif
-                    {{--<div id="rating_3" class="item-rating left">
-                        <input type="hidden" name="vote-id" value="5" id=""/>
+
+
+
+                    <div id="rating_3" class="item-rating left">
+                        {{--индификатор рейтинга--}}
+                        {{--<input type="hidden" name="vote-id" value="5" id=""/>--}}
+                        {{--кол-во проголосовавших--}}
+                        <input type="hidden" name="votes" value="{{ $product->rates->count() }}"/>
+                        {{--кол-во закрашеных звёзд--}}
                         <input type="hidden" name="val" value="{{ array_sum($product->rates->pluck('rate')->all()) / ($product->rates->count() ?: 1) }}">
-                    </div>--}}
+                        {{--голосовал ли за этот товар--}}
+                        <input type="hidden" value="{{ in_array($pid, null !== Session('rated') ? Session('rated') : []) }}" id="check"/>
+                    </div>
+                    {{--{{ dump(session()->all()) }}--}}
+
+                    {{--@if(Auth::check())
+                        <input type="hidden" value="{{ in_array($pid, null !== Session('rated') ? Session('rated') : []) }}" id="check"/>
+                    @else
+                        <input type="hidden" value="1" id="check"/>
+                    @endif--}}
+
+
+
                     <div class="col s12 clearleft wrap-price">
                         <div class="pricesBlock" style="width:100%;float:left">
                             <div class="col s12 item-prices">
@@ -127,6 +147,7 @@
                                 </div>
 
                                 <div class="addtocart-button-item center-align col">
+                                    @if($product->available > 0)
                                     <input type="submit"
                                            name="addtocart"
                                            class="@if($product->available == 1) addtocart-button-hover @endif buyKol"
@@ -134,8 +155,9 @@
                                            data-productId="{{ $product->id }}"
                                            data-productPrice="{{ $product->getPrice() }}"
                                            value="@if($product->available==1) {{ productInCart($product) ? 'В корзине' : 'Купить' }} @elseif($product->available==2) Под заказ @endif"
-                                           title="@if($product->available==1) Купить @elseif($product->available==2) Под заказ @elseif($product->available==0) Нет в наличии @endif"
+                                           title="@if($product->available==1) Купить @elseif($product->available==2) Под заказ @endif"
                                            @if($product->available != 1) disabled @endif>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col s12 wrapper-buttons">
@@ -165,7 +187,7 @@
                                 @if ($product->available==1)
                                     <div class="col short-desc s4 no-margin">
                                         <a href="{{ route('frontend.oneclick', $product->id) }}" class="oneClick fancybox.ajax">
-                                            <p class="availability green-text no-margin" id="one-click"><img src="/frontend/images/no_product.png" class="one-click-img"/>Купить в 1 клик</p>
+                                            <p class="availability green-text no-margin" id="one-click">Купить в 1 клик</p>
                                         </a>
                                     </div>
                                 @endif
@@ -422,13 +444,6 @@
     {{--</div>--}}
 
     <!--  Scripts-->
-
-    @if(Auth::check())
-        <input type="hidden" value="{{ in_array($pid, null !== Session('rated') ? Session('rated') : []) }}"
-               id="check"/>
-    @else
-        <input type="hidden" value="1" id="check"/>
-    @endif
 
 @endsection
 

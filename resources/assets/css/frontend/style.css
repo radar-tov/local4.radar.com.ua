@@ -5905,7 +5905,7 @@ ol.breadcrumb {
     z-index: 1;
     width: 100%;
     text-align: center;
-    padding-top: 10px
+    /*padding-top: 10px*/
 }
 
 .addtocart-button-item {
@@ -7747,7 +7747,7 @@ li.banner.card.megamenu .card-image .card-title {
     }
 
     .rating_2 {
-        margin-top: 101px
+        /*margin-top: 101px*/
     }
 
     #video, div#object-3d {
@@ -8194,7 +8194,7 @@ li.banner.card.megamenu .card-image .card-title {
     }
 
     .rating_2 {
-        margin-top: 45%
+        /*margin-top: 45%*/
     }
 
     .links span a {
@@ -9872,6 +9872,7 @@ h3 {
     position: absolute;
     width: 70px;
     margin: 320px 0 0 0 !important;
+    z-index: 10;
 }
 .slick-slide .sale-img{
     margin: 280px 0 0 0 !important;
@@ -9883,4 +9884,15 @@ h3 {
 .remember{
     float: right;
     padding: 5px 60px 0 30px;
+}
+#one-click{
+    background-image: url('/frontend/images/no_product.png');
+    background-repeat: no-repeat;
+    background-size: 40px;
+    background-position: center top;
+}
+#one-click:hover{
+    background-color: #ff8c00;
+    color: white;
+    background-image: url('/frontend/images/no_product_w.png');
 }

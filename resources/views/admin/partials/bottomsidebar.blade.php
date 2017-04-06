@@ -10,9 +10,17 @@
     <div class="navbar-header pull-left">
         <!-- #section:basics/navbar.layout.brand -->
         <a href="/" class="navbar-brand">
-            <small>Перейти на сайт</small>
+            <small>Сайт</small>
+            <span id="online">
+            @if(onlineItemsCount() > 0)
+                <span class="badge badge-danger">{{ onlineItemsCount() }}</span>
+            @endif
+            </span>
         </a>
         <ul class="breadcrumb">
+            <li>
+                <a href="{{ route('home.index') }}"><i class="ace-icon fa fa-home home-icon white"></i></a>
+            </li>
             {!! Breadcrumbs::renderIfExists() !!}
         </ul>
     </div>
@@ -70,10 +78,10 @@
                     <a href="{!! route('orders.index') !!}">
                         <i class="ace-icon fa fa-shopping-basket menu_top"></i> Заказы
                         <span id="order">
-                                @if(orderItemsCount() > 0)
-                                <span class="badge badge-danger">{{ orderItemsCount() }}</span>
-                            @endif
-                            </span>
+                        @if(orderItemsCount() > 0)
+                            <span class="badge badge-danger">{{ orderItemsCount() }}</span>
+                        @endif
+                        </span>
                     </a>
                 </li>
                 <li>

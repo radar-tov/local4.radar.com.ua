@@ -39,6 +39,7 @@ elixir(function(mix) {
             'frontend/unknown2.js',
             'frontend/materialbox.js',
             'frontend/jquery-2.1.3.min.js',
+            'frontend/rating.js',
             'frontend/index.js',
             'frontend/jquery.mousewheel.pack.js',
             'frontend/jquery.fancybox.pack.js',

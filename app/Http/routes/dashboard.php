@@ -196,8 +196,14 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         Route::get('admincart', ['as' => 'admincart.index', 'uses' => 'AdminCartController@index']);
         /* / Cart */
 
+        /* config */
         Route::get('config/index', ['as' => 'config.index', 'uses' => 'ConfigController@index']);
         Route::post('config/update', ['as' => 'config.update', 'uses' => 'ConfigController@update']);
+        /* / config */
+
+        /* Home */
+        Route::get('home', ['as' => 'home.index', 'uses' => 'HomeController@index']);
+        /* / Home */
     });
 
 });
