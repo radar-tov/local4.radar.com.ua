@@ -70,7 +70,7 @@
                                         <tr v-for="item in logList">
                                             <td class="middle">@{{ item.ip }}&nbsp;&nbsp;</td>
                                             <td>
-                                                <a v-bind:href="item.page">@{{ item.page }}&nbsp;&nbsp;</a>
+                                                <a v-bind:href="item.page">@{{ item.page.substr(26, 55) }}&nbsp;&nbsp;</a>
                                             </td>
                                             <td class="middle">@{{ item.log }}&nbsp;&nbsp;</td>
                                             <td class="middle">@{{ item.created_at }}</td>

@@ -46,7 +46,7 @@ class OfficialController extends ServerController
             $data['order'] = '';
         }
 
-        $records = Online::where('updated_at', '<', Carbon::now()->subMinute(2))->get();
+        $records = Online::where('updated_at', '<', Carbon::now()->subMinute(5))->get();
         if($records->count() > 0){
             foreach ($records as $record) {
                 $record->delete();
