@@ -34,12 +34,12 @@
                                         </thead>
                                         <tbody>
                                         <tr v-for="item in onlineList">
-                                            <td class="middle">@{{ item.ip }}&nbsp;</td>
+                                            <td class="middle">@{{ item.ip }}&nbsp;&nbsp;</td>
                                             <td>
-                                                <a v-bind:href="item.page">@{{ item.page }}&nbsp;</a>
+                                                <a v-bind:href="item.page">@{{ item.page }}&nbsp;&nbsp;</a>
                                             </td>
-                                            <td class="middle">@{{ item.created_at }}&nbsp;</td>
-                                            <td class="middle">@{{ item.updated_at }}&nbsp;</td>
+                                            <td class="middle">@{{ item.created_at }}&nbsp;&nbsp;</td>
+                                            <td class="middle">@{{ item.updated_at }}</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -65,15 +65,15 @@
                                 <h3>Лог</h3>
                             </div>
                             <div class="widget-body">
-                                <div class="widget-main" style="overflow: auto; height: 330px;">
+                                <div class="widget-main" style="overflow: auto; height: 800px;">
                                     <table v-show="logList.length > 0">
                                         <tr v-for="item in logList">
-                                            <td class="middle">@{{ item.ip }}&nbsp;</td>
+                                            <td class="middle">@{{ item.ip }}&nbsp;&nbsp;</td>
                                             <td>
-                                                <a v-bind:href="item.page">@{{ item.page }}&nbsp;</a>
+                                                <a v-bind:href="item.page">@{{ item.page }}&nbsp;&nbsp;</a>
                                             </td>
-                                            <td class="middle">@{{ item.log }}&nbsp;</td>
-                                            <td class="middle">@{{ item.created_at }}&nbsp;</td>
+                                            <td class="middle">@{{ item.log }}&nbsp;&nbsp;</td>
+                                            <td class="middle">@{{ item.created_at }}</td>
                                         </tr>
                                     </table>
                                 </div>
