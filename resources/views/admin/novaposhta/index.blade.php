@@ -54,8 +54,8 @@
                         _token: vue.token,
                         np_id: vue.np_id
                     };
-                    this.$http.post('/server/np/getAllAreas', options).then(function (response) {
-                        vue.response = response.data;
+                    this.$http.post('/server/np/updateAreas', options).then(function (response) {
+                        vue.response = response;
                     }, function (error) {
                         vue.errors = error;
                     });

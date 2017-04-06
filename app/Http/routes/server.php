@@ -14,7 +14,7 @@ Route::group(['middleware' => ['permissionsserver','handleSlug'],'namespace'=>'\
         Route::post('send', 'TwitterController@send');
         /* NP */
         Route::post('np/tracking', 'ApiNP@tracking');
-        Route::post('np/getAllAreas', 'ApiNP@getAllAreas');
+        Route::post('np/updateAreas', 'ApiNP@updateAreas');
     });
 
 });
