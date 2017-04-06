@@ -17,13 +17,22 @@ class ApiNP extends Controller
         $this->np = new NovaPoshtaApi2(env('NP_API'));
     }
 
-    //59000249176580
+    /**
+     * Проверяет статус отправки по номеру
+     *
+     * @param Request $request
+     * @return string
+     */
     public function tracking(Request $request){
         return $this->np->documentsTracking($request->np_id);
     }
 
+    /**
+     * Обновляет список областей
+     *
+     * @return string
+     */
     public function updateAreas(){
-        //return $this->np->getAreas();
         $data = $this->np->getAreas();
         foreach ($data['data'] as $tiam){
             $area = Area::where('Description', $tiam['Description'])->first();
@@ -40,8 +49,12 @@ class ApiNP extends Controller
         return 'OK';
     }
 
+    /**
+     * Обновляет список населённых пунктов с отделениями НП.
+     *
+     * @return string
+     */
     public function updateCities(){
-        //return $this->np->getCities();
         $data = $this->np->getCities();
         foreach ($data['data'] as $tiam){
             $area = Citie::where('Description', $tiam['Description'])->first();

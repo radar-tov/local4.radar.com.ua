@@ -13,7 +13,7 @@ class Citie extends Model
         'DescriptionRu',
         'Area',
         'PreventEntryNewStreetsUser',
-//        'Conglomerates',
+        'Conglomerates',
         'CityID'
     ];
 }
