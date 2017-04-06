@@ -69,7 +69,15 @@ class OfficialController extends ServerController
         }else{
             $data['online'] = '';
         }
-        $log = MyLog::orderBy('created_at', 'DESC')->paginate(10);
+
+        $records = MyLog::where('created_at', '<', Carbon::now()->subHour(1))->get();
+        if($records->count() > 0){
+            foreach ($records as $record) {
+                $record->delete();
+            }
+        }
+
+        $log = MyLog::orderBy('created_at', 'DESC')->paginate(20);
         if($log->count() > 0){
             $data['log'] = $log;
         }else{

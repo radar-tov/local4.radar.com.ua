@@ -93,10 +93,7 @@ class FrontendController extends BaseController
 
         if(!$category) abort(404);
 
-        /*if($request->session()->has('bot') && !$request->session()->get('bot')){
-            $myLog->add("Просмотр категории " . $categorySlug . '/' . $subcategorySlug);
-        }*/
-        $myLog->add("Просмотр категории " . $categorySlug . '/' . $subcategorySlug);
+
 
 		if($category->children->count() > 0 and !$subcategory){
             // Список подкатегорий без фильтров
@@ -117,7 +114,10 @@ class FrontendController extends BaseController
 					}
                 }
             }
-
+            /*if($request->session()->has('bot') && !$request->session()->get('bot')){
+                $myLog->add("Просмотр категории " . $categorySlug . '/' . $subcategorySlug);
+            }*/
+            $myLog->add("Просмотр категории " . $categorySlug);
 			return Response::view('frontend.subcategories', compact('categories','category'));
 				//->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
 	  	}
@@ -149,7 +149,10 @@ class FrontendController extends BaseController
 				}
 			}
 		}
-
+        /*if($request->session()->has('bot') && !$request->session()->get('bot')){
+            $myLog->add("Просмотр категории " . $categorySlug . '/' . $subcategorySlug);
+        }*/
+        $myLog->add("Просмотр категории " . $categorySlug . '/' . $subcategorySlug);
 
 		return Response::view('frontend.catalog', compact('subcategory', 'category'));
 			//->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT')
@@ -207,10 +210,7 @@ class FrontendController extends BaseController
 
         if(!$product) abort(404);
 
-        /*if($request->session()->has('bot') && !$request->session()->get('bot')){
-            $myLog->add("Просмотр товара " . $productSlug);
-        }*/
-        $myLog->add("Просмотр товара " . $productSlug);
+
 		// Ajax request is used
 		// for assess product
 		if($request->ajax()){
@@ -236,7 +236,10 @@ class FrontendController extends BaseController
 				}
 			}
         }
-
+        /*if($request->session()->has('bot') && !$request->session()->get('bot')){
+            $myLog->add("Просмотр товара " . $productSlug);
+        }*/
+        $myLog->add("Просмотр товара " . $productSlug);
 
         return Response::view('frontend.product', compact('product','productReviewId'));
             //->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
@@ -376,7 +379,7 @@ class FrontendController extends BaseController
      * @return \Illuminate\View\View Show static 'service' page
      * Show static 'service' page
      */
-	public function staticPage(Request $request)
+	public function staticPage(Request $request, MyLog $myLog)
 	{
 		$slug = trim($request->getRequestUri(), '/');
 		$page = StaticPage::where('slug', $slug)->first();
@@ -397,7 +400,10 @@ class FrontendController extends BaseController
 				}
 			}
         }
-
+        /*if($request->session()->has('bot') && !$request->session()->get('bot')){
+            $myLog->add("Просмотр категории " . $categorySlug . '/' . $subcategorySlug);
+        }*/
+        $myLog->add("Просмотр страницы " . $slug);
  		return Response::view('frontend.static', compact('page'));
 			//->header( 'Last-Modified', $date->format("D, d M Y H:i:s").' GMT');
 	}
