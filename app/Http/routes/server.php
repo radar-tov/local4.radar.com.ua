@@ -12,6 +12,9 @@ Route::group(['middleware' => ['permissionsserver','handleSlug'],'namespace'=>'\
         Route::get('getonline', ['as' => 'server.getonline', 'uses' => 'OfficialController@getonline']);
         /* TWITTER */
         Route::post('send', 'TwitterController@send');
+        /* NP */
+        Route::post('np/tracking', 'ApiNP@tracking');
+        Route::post('np/getAllAreas', 'ApiNP@getAllAreas');
     });
 
 });
