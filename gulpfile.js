@@ -69,6 +69,7 @@ gulp.task('style-admin', function() {
     mix.scripts(
         [
             'frontend/jquery-2.1.3.min.js',
+            'frontend/rating.js',
             'frontend/jquery.mousewheel.pack.js',
             'frontend/jquery.fancybox.pack.js',
             'frontend/indexFooter.js'

@@ -318,14 +318,13 @@ function deleteCookie(name) {
 //Выборка данных по заказам и корзине
 function getData() {
     var token = $("input[name='_token']").val();
-    if(window.fokus) {
-        $.ajax({
-            type: "GET",
-            url: "/server/getdata",
-            data: {_token: token}
-        }).done(function (response) {
-            $("#cart").html(response.cart);
-            $("#order").html(response.order);
-        });
-    };
+    $.ajax({
+        type: "GET",
+        url: "/server/getdata",
+        data: {_token: token}
+    }).done(function (response) {
+        $("#cart").html(response.cart);
+        $("#order").html(response.order);
+        $("#online").html(response.online);
+    });
 }

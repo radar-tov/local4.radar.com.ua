@@ -161,7 +161,7 @@
                                 </p>
                                 <p class="formField">
                                     <label for="order-telephone" class="col s12 m4 l4">Телефон:</label>
-                                    <input class="col s12 m6 l7" id="order-telephone" placeholder="введите номер телефона" tabindex="3" name="phone" type="text"value="">
+                                    <input class="col s12 m6 l7" id="phone1" placeholder="введите номер телефона" tabindex="3" name="phone" type="text"value="">
                                 </p>
 
                                 {{--<p class="formField">
@@ -191,7 +191,7 @@
 								</p>
 								<p class="formField">
 									<label for="order-telephone" class="col s12 m4 l4">Телефон:<span class="red-text"> *</span></label>
-									<input class="col s12 m6 l7" id="order-telephone" placeholder="введите номер телефона" tabindex="3" name="phone" type="text"value="" required>
+									<input class="col s12 m6 l7" id="phone2" placeholder="введите номер телефона" tabindex="3" name="phone" type="text"value="" required>
 								</p>
 								<p class="formField">
 									<label for="order-email" class="col s12 m4 l4">Электронная почта:</label>
@@ -329,4 +329,10 @@
 
 @section('bottom-scripts')
     {!! Html::script("frontend/js/myVue.js") !!}
+    {!! Html::script("frontend/js/jquery.maskedinput.min.js") !!}
+    <script>
+        $("#phone").mask("(999)999-99-99");
+        $("#phone1").mask("(999)999-99-99");
+        $("#phone2").mask("(999)999-99-99");
+    </script>
 @endsection
