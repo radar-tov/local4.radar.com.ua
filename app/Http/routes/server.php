@@ -15,6 +15,7 @@ Route::group(['middleware' => ['permissionsserver','handleSlug'],'namespace'=>'\
         /* NP */
         Route::post('np/tracking', 'ApiNP@tracking');
         Route::post('np/updateAreas', 'ApiNP@updateAreas');
+        Route::post('np/updateCities', 'ApiNP@updateCities');
     });
 
 });
