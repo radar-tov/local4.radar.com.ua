@@ -42,13 +42,18 @@ class UsersController extends  AdminController
 
             if(!empty($request->get('search'))){
                 $ar = [' ', '-', '-', '(', ')', '+38'];
-                $search = $request->get('search');
+                $search = trim ($request->get('search'));
                 foreach ($ar as $v){
                     $search = str_replace($v, '', $search);
                 }
-
                 $ar = str_split($search);
-                $search = '('.$ar[0].$ar[1].$ar[2].')'.$ar[3].$ar[4].$ar[5].'-'.$ar[6].$ar[7].'-'.$ar[8].$ar[9];
+                //dd($ar);
+                if(is_numeric($ar[1])){
+                    //dd($ar);
+                    $search = '('.$ar[0].$ar[1].$ar[2].')'.$ar[3].$ar[4].$ar[5].'-'.$ar[6].$ar[7].'-'.$ar[8].$ar[9];
+                }else{
+                    $search = $request->get('search');
+                }
             }else{
                 $search = null;
             }
