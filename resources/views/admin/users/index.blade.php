@@ -75,7 +75,7 @@
                         <td>{{ $user->organization }}</td>
                         <td><a href="{!! route('users.show',[$user->id]) !!}" target="_blank">{{ $user->name }}</a></td>
                         <td>{{ $user->email }}</td>
-                        <td>{{ $user->phone }}, {{ $user->phone_all }}</td>
+                        <td>{{ $user->phone }}, {{ $user->phone_1 }}, {{ $user->phone_2 }}, {{ $user->phone_3 }}</td>
                         <td>{{ $user->city }} <small style="color: #808080;">  {{ $user->country }} </small></td>
                         <td class="center">
                             @if($user->isAdmin())

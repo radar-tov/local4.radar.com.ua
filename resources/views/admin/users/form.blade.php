@@ -132,10 +132,6 @@
         </script>
     </div>
     <div class="form-group">
-        {!! Form::label('phone_all','Доп. телефоны')!!}<br/>
-        {!! Form::text('phone_all',$value = null, ['class'=>'form-control','placeholder'=>'Доп. телефоны пользователя']) !!}
-    </div>
-    <div class="form-group">
         {!! Form::label('city','Город')!!}<br/>
         {!! Form::text('city',$value = null, ['class'=>'form-control','placeholder'=>'Город пользователя']) !!}
     </div>
