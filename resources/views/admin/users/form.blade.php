@@ -78,6 +78,60 @@
         </script>
     </div>
     <div class="form-group">
+        <label for="form-field-mask-2"> Телефон №1 </label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="ace-icon fa fa-phone"></i>
+            </span>
+            {!! Form::text('phone_1',$value = null, [
+                'class'=>'form-control form-control input-mask-phone',
+                'placeholder'=>'Телефон 1 пользователя',
+                'id' => 'phone_1'
+            ]) !!}
+        </div>
+        <script>
+            jQuery(function($){
+                $("#phone_1").mask("(999)999-99-99");
+            });
+        </script>
+    </div>
+    <div class="form-group">
+        <label for="form-field-mask-2"> Телефон №2 </label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="ace-icon fa fa-phone"></i>
+            </span>
+            {!! Form::text('phone_2',$value = null, [
+                'class'=>'form-control form-control input-mask-phone',
+                'placeholder'=>'Телефон 2 пользователя',
+                'id' => 'phone_2'
+            ]) !!}
+        </div>
+        <script>
+            jQuery(function($){
+                $("#phone_2").mask("(999)999-99-99");
+            });
+        </script>
+    </div>
+    <div class="form-group">
+        <label for="form-field-mask-2"> Телефон №3 </label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="ace-icon fa fa-phone"></i>
+            </span>
+            {!! Form::text('phone_3',$value = null, [
+                'class'=>'form-control form-control input-mask-phone',
+                'placeholder'=>'Телефон 3 пользователя',
+                'id' => 'phone_3'
+            ]) !!}
+        </div>
+        <script>
+            jQuery(function($){
+                $("#phone_3").mask("(999)999-99-99");
+            });
+        </script>
+    </div>
+    <div class="form-group">
         {!! Form::label('phone_all','Доп. телефоны')!!}<br/>
         {!! Form::text('phone_all',$value = null, ['class'=>'form-control','placeholder'=>'Доп. телефоны пользователя']) !!}
     </div>

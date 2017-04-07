@@ -47,6 +47,9 @@
                     <th>Имя</th>
                     <th>Email</th>
                     <th>Телефон</th>
+                    <th>Телефон 1</th>
+                    <th>Телефон 2</th>
+                    <th>Телефон 3</th>
                     <th>Город</th>
                     <th class="center" style="width: 135px">Уровень доступа</th>
                     <th colspan="2" class="options">Опции</th>

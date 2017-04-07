@@ -40,11 +40,19 @@ class UsersController extends  AdminController
 	{
         if ($request->ajax()){
 
-            $ar = [' ', '-', '-', '(', ')', '+38'];
-            $search = $request->get('search');
-            foreach ($ar as $v){
-                $search = str_replace($v, '', $search);
+            if(!empty($request->get('search'))){
+                $ar = [' ', '-', '-', '(', ')', '+38'];
+                $search = $request->get('search');
+                foreach ($ar as $v){
+                    $search = str_replace($v, '', $search);
+                }
+
+                $ar = str_split($search);
+                $search = '('.$ar[0].$ar[1].$ar[2].')'.$ar[3].$ar[4].$ar[5].'-'.$ar[6].$ar[7].'-'.$ar[8].$ar[9];
+            }else{
+                $search = null;
             }
+
 
             $order = $request->get('sortBy') ? $request->get('sortBy') : 'id';
             $por = $request->get('sortByPor') ? $request->get('sortByPor') : 'DESC';
@@ -59,6 +67,9 @@ class UsersController extends  AdminController
                     ->orWhere('city', 'LIKE', '%'.$search.'%')
                     ->orWhere('organization', 'LIKE', '%'.$search.'%')
                     ->orWhere('phone_all', 'LIKE', '%'.$search.'%')
+                    ->orWhere('phone_1', 'LIKE', '%'.$search.'%')
+                    ->orWhere('phone_2', 'LIKE', '%'.$search.'%')
+                    ->orWhere('phone_3', 'LIKE', '%'.$search.'%')
                     ->orWhere('phone', 'LIKE', '%'.$search.'%');
 
             })->where('status', $status ?: 'LIKE', '%')
@@ -95,6 +106,9 @@ class UsersController extends  AdminController
 				 ->orWhere('city', 'LIKE', '%'.$search.'%')
                  ->orWhere('organization', 'LIKE', '%'.$search.'%')
                  ->orWhere('phone_all', 'LIKE', '%'.$search.'%')
+                 ->orWhere('phone_1', 'LIKE', '%'.$search.'%')
+                 ->orWhere('phone_2', 'LIKE', '%'.$search.'%')
+                 ->orWhere('phone_3', 'LIKE', '%'.$search.'%')
 				 ->orWhere('phone', 'LIKE', '%'.$search.'%');
 
 		})->orderBy('id', 'DESC')->paginate(30);
