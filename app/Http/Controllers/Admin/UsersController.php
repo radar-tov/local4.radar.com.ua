@@ -118,7 +118,7 @@ class UsersController extends  AdminController
 
 		$permissions= $this->permissions;
 
-		return view('admin.users.index',compact('users','permissions', 'search'));
+		return view('admin.users.indexget',compact('users','permissions', 'search'));
 	}
 
 	public function indexGet(){
@@ -143,7 +143,7 @@ class UsersController extends  AdminController
 		$user = $user->create($request->all());
 
 		if((int)$request->get('button')) {
-			return redirect()->route('users.indexget')->withMessage('');
+			return redirect()->route('users.indexGet')->withMessage('');
 		}
 		return redirect()->route('users.edit',$user->id);
 	}
@@ -197,7 +197,7 @@ class UsersController extends  AdminController
         }
 
 		if((int)$request->get('button')) {
-			return redirect()->route('users.index')->withMessage('');
+			return redirect()->route('users.indexGet')->withMessage('');
 		}
 
 		return redirect()->route('users.edit',$id);
@@ -212,7 +212,7 @@ class UsersController extends  AdminController
 	{
 		$user->findOrFail($id)->delete();
 
-		return redirect()->route('users.index');
+		return redirect()->route('users.indexGet');
 	}
 
 
@@ -227,10 +227,10 @@ class UsersController extends  AdminController
 
 			$users = User::where('email', 'like', $query)->orWhere('name','like',$query)->paginate();
 
-			return view('admin.users.index')->withUsers($users)->withPermissions($this->permissions)->withQ($request->get('q'));
+			return view('admin.users.indexget')->withUsers($users)->withPermissions($this->permissions)->withQ($request->get('q'));
 
 		} catch(\Exception $e) {
-			return redirect()->route('users.index')->withMessage($e->getMessage());
+			return redirect()->route('users.users.indexGet')->withMessage($e->getMessage());
 		}
 	}
 

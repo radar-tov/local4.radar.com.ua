@@ -11,7 +11,7 @@
         <div class="">
             <a href="{{ route("users.create") }}" class="btn btn-sm btn-primary"><i class="ace-icon fa fa-plus"></i>Добавить пользователя</a>
             <div class="col-lg-3 pull-right no-padding">
-                {!! Form::open(['route' => 'users.index', 'method' => 'GET']) !!}
+                {!! Form::open(['route' => 'users.indexGet', 'method' => 'GET']) !!}
                 <div class="input-group">
                     {{--<select name="order" id="order">
                         <option value="ASC">По порядку</option>
@@ -30,7 +30,7 @@
 
             @if(Request::has('search'))
                 <div class="col-xs-2 pull-right">
-                    <a href="{{ route('users.index') }}" class="btn btn-primary btn-sm pull-right">
+                    <a href="{{ route('users.indexGet') }}" class="btn btn-primary btn-sm pull-right">
                         <i class="fa fa-chevron-left"></i> Вернуться
                     </a>
                 </div>
