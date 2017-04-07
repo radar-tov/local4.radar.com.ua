@@ -24,7 +24,7 @@
 @section('content')
     <div class="row">
         @include('admin.partials.errors')
-        {!! Form::open(['route'=>'dashboard.users.store','method'=>'post', 'id'=>'form-data']) !!}
+        {!! Form::open(['route'=>'users.store','method'=>'post', 'id'=>'form-data']) !!}
             @include('admin.users.form')
         {!! Form::close() !!}
     </div>
