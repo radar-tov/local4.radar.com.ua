@@ -143,7 +143,7 @@ class UsersController extends  AdminController
 		$user = $user->create($request->all());
 
 		if((int)$request->get('button')) {
-			return redirect()->route('users.index')->withMessage('');
+			return redirect()->route('users.indexget')->withMessage('');
 		}
 		return redirect()->route('users.edit',$user->id);
 	}
