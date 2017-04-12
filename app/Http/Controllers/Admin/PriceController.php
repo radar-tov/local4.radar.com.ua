@@ -25,7 +25,7 @@ class PriceController extends Controller
         $emailFrom = Setting::pluck('contact_email')->first();
         $auth = \Config::get('gmail');
         $mail = new PHPMailer;
-        $mail->SMTPDebug = 3;
+        //$mail->SMTPDebug = 3;
         $mail->isSMTP();
         $mail->Host = $auth['gmail_host'];
         $mail->SMTPAuth = true;
@@ -38,15 +38,19 @@ class PriceController extends Controller
         $mail->setFrom($emailFrom, 'Radar.com.ua');
 
 
-        $body = '';
+        $body = "Прайс для $user->name от Интернет магазина Radar.com.ua";
         $mail->Subject = 'Прайс от магазина Radar.com.ua';
         $mail->addAddress($user->email, $user->name);
         $mail->msgHTML($body);
         $mail->addAttachment("xls/price.xls");
 
         if(!$mail->send()) {
-            return redirect()->back()->with(['message'=>'Ошибка']);
+            /*echo 'error';
+            print_r($auth);
+            echo $mail->ErrorInfo;*/
+            return redirect()->back()->with(['message' => $mail->ErrorInfo]);
         } else {
+            //echo 'ok';
             return redirect()->back();
         }
     }
