@@ -300,6 +300,13 @@
             </a>
             <b class="arrow"></b>
         </li>
+        <li  class="{{ Request::is('dashboard/sms*') ? 'active' : null }} highlight">
+            <a href="{{ route("sms.index") }}">
+                <i class="menu-icon fa fa-mobile-phone"></i>
+                <span class="menu-text"> SMS </span>
+            </a>
+            <b class="arrow"></b>
+        </li>
         {{--<li  class="{{ Request::is('dashboard/transfer*') ? 'active' : null }} highlight">
             <a href="{{ route("transfer.index") }}">
                 <i class="menu-icon fa fa-retweet"></i>

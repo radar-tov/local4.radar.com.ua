@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Response;
 use App\Models\User;
 use Mail;
 use App\Models\Setting;
+use PHPMailer;
 
 class PriceController extends Controller
 {
@@ -20,23 +21,37 @@ class PriceController extends Controller
     public function emailUser($id){
 
         $user = User::find($id);
-        $datatext = [
-            'username' => $user->name
-        ];
 
-        $data =[
-            'to' => $user->email,
-            'name' => $user->name,
-            'path' => 'xls/price.xls',
-            'from' => Setting::pluck('contact_email')->first()
-        ];
+        $emailFrom = Setting::pluck('contact_email')->first();
+        $auth = \Config::get('gmail');
+        $mail = new PHPMailer;
+        //$mail->SMTPDebug = 3;
+        $mail->isSMTP();
+        $mail->Host = $auth['gmail_host'];
+        $mail->SMTPAuth = true;
+        $mail->Username = $auth['gmail_username'];
+        $mail->Password = $auth['gmail_password'];
+        $mail->SMTPSecure = $auth['gmail_secure'];
+        $mail->Port = $auth['gmail_port'];
+        $mail->CharSet = 'UTF-8';
+        $mail->isHTML(true);
+        $mail->setFrom($emailFrom, 'Radar.com.ua');
 
-        Mail::send('emails.price', ['data' => $datatext] , function($message) use ($data)
-        {
-            $message->from($data['from'], 'Интернет магазин Radar');
-            $message->to($data['to'], $data['name'])->subject('Прайс от магазина Radar.com.ua');
-            $message->attach($data['path']);
-        });
-        return redirect()->back();
+
+        $body = "Прайс для $user->name от Интернет магазина Radar.com.ua";
+        $mail->Subject = 'Прайс от магазина Radar.com.ua';
+        $mail->addAddress($user->email, $user->name);
+        $mail->msgHTML($body);
+        $mail->addAttachment("xls/price.xls");
+
+        if(!$mail->send()) {
+            /*echo 'error';
+            print_r($auth);
+            echo $mail->ErrorInfo;*/
+            return redirect()->back()->with(['message' => $mail->ErrorInfo]);
+        } else {
+            //echo 'ok';
+            return redirect()->back();
+        }
     }
 }

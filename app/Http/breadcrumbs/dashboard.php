@@ -429,3 +429,11 @@ Breadcrumbs::register('config.index', function($breadcrumbs)
     $breadcrumbs->parent('home.index');
     $breadcrumbs->push('Конфигурация', route('config.index'));
 });
+
+
+// Dashboard > sms
+Breadcrumbs::register('sms.index', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home.index');
+    $breadcrumbs->push('СМС', route('sms.index'));
+});

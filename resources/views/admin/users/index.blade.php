@@ -11,7 +11,7 @@
         <div class="">
             <a href="{{ route("users.create") }}" class="btn btn-sm btn-primary"><i class="ace-icon fa fa-plus"></i>Добавить пользователя</a>
             <div class="col-lg-3 pull-right no-padding">
-                {!! Form::open(['route' => 'users.index', 'method' => 'GET']) !!}
+                {!! Form::open(['route' => 'users.indexGet', 'method' => 'GET']) !!}
                 <div class="input-group">
                     {{--<select name="order" id="order">
                         <option value="ASC">По порядку</option>
@@ -30,7 +30,7 @@
 
             @if(Request::has('search'))
                 <div class="col-xs-2 pull-right">
-                    <a href="{{ route('users.index') }}" class="btn btn-primary btn-sm pull-right">
+                    <a href="{{ route('users.indexGet') }}" class="btn btn-primary btn-sm pull-right">
                         <i class="fa fa-chevron-left"></i> Вернуться
                     </a>
                 </div>
@@ -46,7 +46,7 @@
                     <th>Организация</th>
                     <th>Имя</th>
                     <th>Email</th>
-                    <th>Телефон</th>
+                    <th>Телефоны</th>
                     <th>Город</th>
                     <th class="center" style="width: 135px">Уровень доступа</th>
                     <th colspan="2" class="options">Опции</th>
@@ -72,7 +72,7 @@
                         <td>{{ $user->organization }}</td>
                         <td><a href="{!! route('users.show',[$user->id]) !!}" target="_blank">{{ $user->name }}</a></td>
                         <td>{{ $user->email }}</td>
-                        <td>{{ $user->phone }}, {{ $user->phone_all }}</td>
+                        <td>{{ $user->phone }}, {{ $user->phone_1 }}, {{ $user->phone_2 }}, {{ $user->phone_3 }}</td>
                         <td>{{ $user->city }} <small style="color: #808080;">  {{ $user->country }} </small></td>
                         <td class="center">
                             @if($user->isAdmin())

@@ -40,11 +40,24 @@ class UsersController extends  AdminController
 	{
         if ($request->ajax()){
 
-            $ar = [' ', '-', '-', '(', ')', '+38'];
-            $search = $request->get('search');
-            foreach ($ar as $v){
-                $search = str_replace($v, '', $search);
+            if(!empty($request->get('search'))){
+                $ar = [' ', '-', '-', '(', ')', '+38'];
+                $search = trim ($request->get('search'));
+                foreach ($ar as $v){
+                    $search = str_replace($v, '', $search);
+                }
+                $ar = str_split($search);
+                //dd($ar);
+                if(is_numeric($ar[1])){
+                    //dd($ar);
+                    $search = '('.$ar[0].$ar[1].$ar[2].')'.$ar[3].$ar[4].$ar[5].'-'.$ar[6].$ar[7].'-'.$ar[8].$ar[9];
+                }else{
+                    $search = $request->get('search');
+                }
+            }else{
+                $search = null;
             }
+
 
             $order = $request->get('sortBy') ? $request->get('sortBy') : 'id';
             $por = $request->get('sortByPor') ? $request->get('sortByPor') : 'DESC';
@@ -58,7 +71,9 @@ class UsersController extends  AdminController
                     ->orWhere('email', 'LIKE', '%'.$search.'%')
                     ->orWhere('city', 'LIKE', '%'.$search.'%')
                     ->orWhere('organization', 'LIKE', '%'.$search.'%')
-                    ->orWhere('phone_all', 'LIKE', '%'.$search.'%')
+                    ->orWhere('phone_1', 'LIKE', '%'.$search.'%')
+                    ->orWhere('phone_2', 'LIKE', '%'.$search.'%')
+                    ->orWhere('phone_3', 'LIKE', '%'.$search.'%')
                     ->orWhere('phone', 'LIKE', '%'.$search.'%');
 
             })->where('status', $status ?: 'LIKE', '%')
@@ -94,14 +109,16 @@ class UsersController extends  AdminController
 				 ->orWhere('email', 'LIKE', '%'.$search.'%')
 				 ->orWhere('city', 'LIKE', '%'.$search.'%')
                  ->orWhere('organization', 'LIKE', '%'.$search.'%')
-                 ->orWhere('phone_all', 'LIKE', '%'.$search.'%')
+                 ->orWhere('phone_1', 'LIKE', '%'.$search.'%')
+                 ->orWhere('phone_2', 'LIKE', '%'.$search.'%')
+                 ->orWhere('phone_3', 'LIKE', '%'.$search.'%')
 				 ->orWhere('phone', 'LIKE', '%'.$search.'%');
 
 		})->orderBy('id', 'DESC')->paginate(30);
 
 		$permissions= $this->permissions;
 
-		return view('admin.users.index',compact('users','permissions', 'search'));
+		return view('admin.users.indexget',compact('users','permissions', 'search'));
 	}
 
 	public function indexGet(){
@@ -126,7 +143,7 @@ class UsersController extends  AdminController
 		$user = $user->create($request->all());
 
 		if((int)$request->get('button')) {
-			return redirect()->route('users.index')->withMessage('');
+			return redirect()->route('users.indexGet')->withMessage('');
 		}
 		return redirect()->route('users.edit',$user->id);
 	}
@@ -180,7 +197,7 @@ class UsersController extends  AdminController
         }
 
 		if((int)$request->get('button')) {
-			return redirect()->route('users.index')->withMessage('');
+			return redirect()->route('users.indexGet')->withMessage('');
 		}
 
 		return redirect()->route('users.edit',$id);
@@ -195,7 +212,7 @@ class UsersController extends  AdminController
 	{
 		$user->findOrFail($id)->delete();
 
-		return redirect()->route('users.index');
+		return redirect()->route('users.indexGet');
 	}
 
 
@@ -210,10 +227,10 @@ class UsersController extends  AdminController
 
 			$users = User::where('email', 'like', $query)->orWhere('name','like',$query)->paginate();
 
-			return view('admin.users.index')->withUsers($users)->withPermissions($this->permissions)->withQ($request->get('q'));
+			return view('admin.users.indexget')->withUsers($users)->withPermissions($this->permissions)->withQ($request->get('q'));
 
 		} catch(\Exception $e) {
-			return redirect()->route('users.index')->withMessage($e->getMessage());
+			return redirect()->route('users.users.indexGet')->withMessage($e->getMessage());
 		}
 	}
 

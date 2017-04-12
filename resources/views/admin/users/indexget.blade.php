@@ -118,7 +118,7 @@
                     <th>Организация</th>
                     <th>Имя</th>
                     <th>Email</th>
-                    <th>Телефон</th>
+                    <th>Телефоны</th>
                     <th>Город</th>
                     <th class="center" style="width: 135px">Роль</th>
                     <th colspan="2" class="options">Опции</th>
@@ -139,7 +139,7 @@
                         <td>@{{ user.organization }}</td>
                         <td><a v-bind:href="'/dashboard/users/' + user.id" target="_blank">@{{ user.name }}</a></td>
                         <td>@{{ user.email }}</td>
-                        <td>@{{ user.phone }}, @{{ user.phone_all }}</td>
+                        <td>@{{ user.phone }}, @{{ user.phone_1 }}, @{{ user.phone_2 }}, @{{ user.phone_3 }}</td>
                         <td>@{{ user.city }} <small style="color: #808080;">  @{{ user.country }} </small></td>
                         <td>
                             <span class="label label-danger arrowed" v-if="user.role_id == 1 && user.permissions == -5">Админ</span>

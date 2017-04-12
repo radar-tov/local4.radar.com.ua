@@ -12,10 +12,15 @@ Route::group(['middleware' => ['permissionsserver','handleSlug'],'namespace'=>'\
         Route::get('getonline', ['as' => 'server.getonline', 'uses' => 'OfficialController@getonline']);
         /* TWITTER */
         Route::post('send', 'TwitterController@send');
+
         /* NP */
         Route::post('np/tracking', 'ApiNP@tracking');
         Route::post('np/updateAreas', 'ApiNP@updateAreas');
         Route::post('np/updateCities', 'ApiNP@updateCities');
+
+        /* SMS  turbosms.ua */
+        Route::post('sms/send', 'SmsController@send');
+
     });
 
 });

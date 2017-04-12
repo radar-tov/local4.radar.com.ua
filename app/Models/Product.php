@@ -164,6 +164,13 @@ class Product extends Eloquent {
 		return $this->belongsTo(Brand::class);
 	}
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function country() {
+        return $this->belongsTo(Country::class);
+    }
+
 	/**
 	 * @param $query
 	 * @return mixed
