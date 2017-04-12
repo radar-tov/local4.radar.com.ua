@@ -8,10 +8,24 @@ use SoapClient;
 
 class SmsController extends Controller
 {
+    /**
+     * @var SoapClient
+     */
     public $client;
+
+    /**
+     * @var
+     */
     protected $login;
+
+    /**
+     * @var
+     */
     protected $password;
 
+    /**
+     * SmsController constructor.
+     */
     public function __construct()
     {
         $this->client = new SoapClient('http://turbosms.in.ua/api/wsdl.html');
@@ -24,6 +38,9 @@ class SmsController extends Controller
         $this->client->Auth($auth);
     }
 
+    /**
+     * @return string
+     */
     public function getBalance(){
         try{
             // Получаем количество доступных кредитов
@@ -34,7 +51,10 @@ class SmsController extends Controller
         }
     }
 
-
+    /**
+     * @param Request $request
+     * @return string
+     */
     public function send(Request $request){
         try{
             if($request->get('phone') != ''){
