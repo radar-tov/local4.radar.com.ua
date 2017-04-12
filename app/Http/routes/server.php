@@ -12,6 +12,8 @@ Route::group(['middleware' => ['permissionsserver','handleSlug'],'namespace'=>'\
         Route::get('getonline', ['as' => 'server.getonline', 'uses' => 'OfficialController@getonline']);
         /* TWITTER */
         Route::post('send', 'TwitterController@send');
+        /* SMS  turbosms.ua */
+        Route::post('sms/send', 'SmsController@send');
     });
 
 });

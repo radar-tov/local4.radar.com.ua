@@ -204,6 +204,10 @@ Route::group(['middleware' => ['permissions','handleSlug'],'namespace'=>'\App\Ht
         /* Home */
         Route::get('home', ['as' => 'home.index', 'uses' => 'HomeController@index']);
         /* / Home */
+
+        /* Home */
+        Route::get('sms/index', ['as' => 'sms.index', 'uses' => 'SmsController@index']);
+        /* / Home */
     });
 
 });
