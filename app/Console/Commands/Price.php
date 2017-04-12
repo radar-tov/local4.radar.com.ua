@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Excel;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 
 class Price extends Command
 {
@@ -40,6 +41,8 @@ class Price extends Command
     public function handle()
     {
         echo "Start recording a price.\n";
+
+        Auth::loginUsingId(349);
 
         Excel::create('price', function($excel) {
 
