@@ -10,13 +10,23 @@ use App\Http\Controllers\Server\ApiTwitterController;
 
 class TwitterController extends Controller
 {
+    /**
+     * @var
+     */
     protected $auth;
 
+    /**
+     * TwitterController constructor.
+     */
     public function __construct()
     {
         $this->auth = \Config::get('twitter');
     }
 
+    /**
+     * @param Request $requests
+     * @return string
+     */
     public function send(Request $requests){
         $text = $requests->get('text');
         $twitter = new ApiTwitterController($this->auth);

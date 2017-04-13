@@ -8,11 +8,18 @@ use Mockery\CountValidator\Exception;
 
 abstract class ServerController extends  Controller
 {
+    /**
+     * ServerController constructor.
+     */
     public function __construct()
     {
         view()->share('currentUser',Auth::user());
     }
 
+    /**
+     * @param $query
+     * @return string
+     */
     protected function prepareSearchQuery($query)
     {
         $query = array_filter(preg_split('/\s+/i',$query),function($v){

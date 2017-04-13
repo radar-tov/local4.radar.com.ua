@@ -15,10 +15,18 @@ use App\Models\MyLog;
 
 class OfficialController extends ServerController
 {
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function myTemplate(){
         return view('mail/zakaz1click');
     }
 
+    /**
+     * @param BuyRequest $request
+     * @param BuyService $buyService
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
     public function addZakaz(BuyRequest $request, BuyService $buyService){
         //dd($request->all());
 
@@ -32,6 +40,10 @@ class OfficialController extends ServerController
         return redirect()->route('orders.index');
     }
 
+    /**
+     * @param Order $order
+     * @return mixed
+     */
     public function getdata(Order $order){
         if(cartItemsCount() > 0){
             $data['cart'] = "<span class='badge badge-warning'>".cartItemsCount()."</span>";
@@ -62,6 +74,9 @@ class OfficialController extends ServerController
         return $data;
     }
 
+    /**
+     * @return mixed
+     */
     public function getonline(){
         $online = Online::all();
         if($online->count() > 0){
