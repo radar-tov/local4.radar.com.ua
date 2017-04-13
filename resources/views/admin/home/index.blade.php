@@ -16,45 +16,41 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="col-sm-6">
-                    <div class="row">
-                        <div class="widget-box" style="min-height: 400px">
-                            <div class="widget-header">
-                                <h3>Онлайн</h3>
-                            </div>
-                            <div class="widget-body">
-                                <div class="widget-main" style="overflow: auto; height: 330px;">
-                                    <table v-show="onlineList.length > 0">
-                                        <thead>
-                                        <tr>
-                                            <th>IP</th>
-                                            <th>Страница</th>
-                                            <th>Вход</th>
-                                            <th>Обновление</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr v-for="item in onlineList">
-                                            <td class="middle">@{{ item.ip }}&nbsp;&nbsp;</td>
-                                            <td>
-                                                <a v-bind:href="item.page">@{{ item.page }}&nbsp;&nbsp;</a>
-                                            </td>
-                                            <td class="middle">@{{ item.created_at }}&nbsp;&nbsp;</td>
-                                            <td class="middle">@{{ item.updated_at }}</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                    <div class="widget-box" style="min-height: 400px">
+                        <div class="widget-header">
+                            <h3>Онлайн</h3>
+                        </div>
+                        <div class="widget-body">
+                            <div class="widget-main" style="overflow: auto; height: 330px;">
+                                <table v-show="onlineList.length > 0">
+                                    <thead>
+                                    <tr>
+                                        <th>IP</th>
+                                        <th>Страница</th>
+                                        <th>Вход</th>
+                                        <th>Обновление</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="item in onlineList">
+                                        <td class="middle">@{{ item.ip }}&nbsp;&nbsp;</td>
+                                        <td>
+                                            <a v-bind:href="item.page">@{{ item.page }}&nbsp;&nbsp;</a>
+                                        </td>
+                                        <td class="middle">@{{ item.created_at }}&nbsp;&nbsp;</td>
+                                        <td class="middle">@{{ item.updated_at }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="widget-box" style="min-height: 400px">
-                            <div class="widget-header">
-                                <h3>Чат</h3>
-                            </div>
-                            <div class="widget-body ace-scroll">
-                                <div class="widget-main" style="overflow: auto; height: 330px;"></div>
-                            </div>
+                    <div class="widget-box" style="min-height: 400px">
+                        <div class="widget-header">
+                            <h3>Чат</h3>
+                        </div>
+                        <div class="widget-body ace-scroll">
+                            <div class="widget-main" style="overflow: auto; height: 330px;"></div>
                         </div>
                     </div>
                 </div>

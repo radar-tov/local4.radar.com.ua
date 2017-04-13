@@ -20,7 +20,8 @@
         "doctrine/dbal": "^2.5",
         "gloudemans/shoppingcart": "^2.3",
         "maatwebsite/excel": "^2.0.0",
-        "phpmailer/phpmailer": "~5.2"
+        "phpmailer/phpmailer": "~5.2",
+        "lis-dev/nova-poshta-api-2": "dev-master"
     },
     "require-dev": {
         "sebastian/exporter": "^2.0",

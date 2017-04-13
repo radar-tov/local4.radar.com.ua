@@ -17,8 +17,8 @@ var productsVue = new Vue({
         areaUpdate: function () {
             var vue = this;
             var options = {};
-            this.$http.get('/dashboard/API/getAreas', options).then(function (response) {
-               vue.response = response.body;
+            this.$http.post('/server/np/tracking', options).then(function (response) {
+               vue.response = response;
             }, function (error) {
                 vue.errors = error;
             });
