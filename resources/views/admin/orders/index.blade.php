@@ -52,6 +52,8 @@
                             <th class="center">Общ. сумма</th>
                             <th>Сп. оплаты</th>
                             <th>Сп. доставки</th>
+                            <th>№ ТТН</th>
+                            <th>Статус ТТН</th>
                             <th class="center">Статус</th>
                             <th class="option">Удалить</th>
                         </tr>
@@ -83,6 +85,8 @@
                                 <td  class="center">{{ $order->getTotal() }} грн</td>
                                 <td>{{ $order->payment_method->title or 'Не указано' }} </td>
                                 <td>{{ $order->shipping_method->title or 'Не указано' }}</td>
+                                <td>{{ $order->np_id or 'Не указано' }}</td>
+                                <td>{{ $order->np_status or 'Не указано' }}</td>
                                 <td class="center">
                                     <span class="status status-{{ $order->status_id }}">
                                         {{ Config::get('order_status')[ $order->status_id] }}

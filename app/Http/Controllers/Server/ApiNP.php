@@ -10,8 +10,14 @@ use App\Models\NP\Citie;
 
 class ApiNP extends Controller
 {
+    /**
+     * @var NovaPoshtaApi2
+     */
     public $np;
 
+    /**
+     * ApiNP constructor.
+     */
     public function __construct()
     {
         $this->np = new NovaPoshtaApi2(env('NP_API'));
@@ -78,5 +84,10 @@ class ApiNP extends Controller
             $area->save();
         }
         return 'OK';
+    }
+
+    public function getStatus($id)
+    {
+        return $this->np->documentsTracking($id);
     }
 }

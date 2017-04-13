@@ -99,6 +99,19 @@
             </div>
         </div>
 
+        <div class="col-xs-12">
+            <div class="form-group">
+                {!! Form::label('np_id', 'Номер ТТН Новой почты') !!}
+                {!! Form::text('np_id', $value = null, ['class' => 'form-control']) !!}
+            </div>
+        </div>
+
+        <div class="col-xs-12">
+            <div class="form-group">
+                {!! Form::label('np_status', 'Статус ТТН Новой почты') !!}
+                {!! Form::text('np_status', $value = null, ['class' => 'form-control']) !!}
+            </div>
+        </div>
     </div>
 
     <div class="col-xs-6 row">

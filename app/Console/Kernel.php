@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\XMLSitemap::class,
         \App\Console\Commands\YMLYandex::class,
         \App\Console\Commands\Price::class,
+        \App\Console\Commands\NpStatus::class,
     ];
 
     /**
@@ -31,6 +32,6 @@ class Kernel extends ConsoleKernel
         $schedule->command('xmlsitemap')->dailyAt('03:00')->sendOutputTo("storage/app/shed_log.txt");
         $schedule->command('umlyandex')->dailyAt('04:00')->sendOutputTo("storage/app/yml_log.txt");
         $schedule->command('price')->dailyAt('04:30');
-        //$schedule->command('price')->cron('* * * * *')->sendOutputTo("storage/app/price.txt");
+        $schedule->command('npstatus')->cron('00 08-20 * * 1-6');
     }
 }
