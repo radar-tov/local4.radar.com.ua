@@ -54,15 +54,20 @@ class NpStatus extends Command
 
             foreach ($orders as $order)
             {
-                echo "Status request ID: " . $order->np_id . "\n";
-                $request = $np->getStatus($order->np_id);
+                if($order->np_id != ''){
+                    echo "Status request ID: " . $order->np_id . "\n";
+                    $request = $np->getStatus($order->np_id);
+                }else{
+                    echo "Empty ID: " . $order->np_id . "\n";
+                    continue;
+                }
 
                 if($request)
                 {
                     echo "Status received ID: " . $order->np_id . "\n";
                 }else{
                     echo "Request error ID: " . $order->np_id . "\n";
-                    throw new \Exception("Request error");
+                    continue;
                 }
 
                 $order->np_response = serialize($request['data']);
@@ -72,7 +77,7 @@ class NpStatus extends Command
                     echo "Order save ID: " . $order->np_id . "\n";
                 }else{
                     echo "Error save ID: " . $order->np_id . "\n";
-                    throw new \Exception("Error save");
+                    continue;
                 }
             }
 
