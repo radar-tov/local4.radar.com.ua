@@ -85,6 +85,50 @@ class SmsController extends Controller
 
     }
 
+    /**
+     * @param Request $request
+     * @return string
+     */
+    public function sendNpId(Request $request)
+    {
+        try{
+            if(!$request->get('np_id') or $request->get('np_id') == '')
+            {
+                throw new \Exception("Нет номера декларации.");
+            }
+
+            if($request->get('phone') and $request->get('phone') != ''){
+                $ar = [' ', '-', '-', '(', ')', '+38'];
+                $phone = trim ($request->get('phone'));
+                foreach ($ar as $v){
+                    $phone = str_replace($v, '', $phone);
+                }
+                $ar = str_split($phone);
+                $phone = '+38'.$ar[0].$ar[1].$ar[2].$ar[3].$ar[4].$ar[5].$ar[6].$ar[7].$ar[8].$ar[9];
+            }else{
+                throw new \Exception("Нет номера телефона");
+            }
+
+            $text = "Ваш заказ отправлен Новой почтой № ТТН " . $request->get('np_id');
+
+            $sms = [
+                'sender' => \Config::get('sms.sender'),
+                'destination' => $phone,
+                'text' => $text
+            ];
+            
+            $result = $this->client->SendSMS($sms);
+
+            // Выводим результат отправки.
+            $message = $result->SendSMSResult->ResultArray[0] . PHP_EOL;
+
+        } catch (\Exception $e) {
+            $message = 'Ошибка: ' . $e->getMessage();
+        } finally {
+            return $message;
+        }
+    }
+
 /*    public function sendMass(Request $request){
         $sms = [
             'sender' => \Config::get('sms.sender'),

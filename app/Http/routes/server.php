@@ -20,6 +20,7 @@ Route::group(['middleware' => ['permissionsserver','handleSlug'],'namespace'=>'\
 
         /* SMS  turbosms.ua */
         Route::post('sms/send', 'SmsController@send');
+        Route::post('sms/sendNpId', 'SmsController@sendNpId');
 
     });
 

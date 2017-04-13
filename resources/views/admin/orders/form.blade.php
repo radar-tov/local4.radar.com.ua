@@ -102,7 +102,11 @@
         <div class="col-xs-12">
             <div class="form-group">
                 {!! Form::label('np_id', 'Номер ТТН Новой почты') !!}
-                {!! Form::text('np_id', $value = null, ['class' => 'form-control']) !!}
+                <button class="btn btn-minier btn-purple" onclick="sendSms(); return false;">
+                    <i class="ace-icon fa fa-mobile-phone"></i>
+                    Отправить SMS</button>
+                <span id="smsrequest"></span>
+                {!! Form::text('np_id', $value = null, ['class' => 'form-control', 'id' => 'np_id']) !!}
             </div>
         </div>
 
@@ -123,6 +127,7 @@
                 <a href="/dashboard/users/{{ $order->user->id }}">{{ $order->user->name or 'Не указано'}}</a>
             </li>
             <li class="list-group-item"><b>Телефон: </b>{{ $order->user->phone }}</li>
+            <input type="hidden" id="phone" name="phone" value="{{ $order->user->phone }}">
             <li class="list-group-item"><b>E-mail: </b>{{ $order->user->email }}</li>
             <li class="list-group-item"><b>Адрес: </b>{{ $order->user->address }}</li>
             @if($order->note)
@@ -188,6 +193,25 @@
                         console.log(total)
             })
         })
+
+        function sendSms() {
+            $.ajax({
+                type:'POST',
+                url:"/server/sms/sendNpId",
+                data:{
+                    np_id: $("#np_id").val(),
+                    phone: $("#phone").val(),
+                    _token: $("input[name=_token]").val()
+                },
+                success: function (response) {
+                    $("#smsrequest").html(response);
+                },
+                error: function (errors) {
+                    $("#smsrequest").html(errors);
+                }
+            });
+            return false;
+        }
     </script>
 
     <link rel='stylesheet' href='https://apimgmtstorelinmtekiynqw.blob.core.windows.net/content/MediaLibrary/Widget/Tracking/styles/tracking.css' />
